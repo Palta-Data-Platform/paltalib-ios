@@ -44,46 +44,30 @@ Using Amplitude directly:
 ```swift
 // in application(_:willFinishLaunchingWithOptions:)
 //
-let appAmplitude = Amplitude.instance(withName: "<AppName>Amplitude")
-appAmplitude.initializeApiKey("<YourAmplitudeAPIKey>")
-
-let paltaAmplitude = Amplitude.instance(withName: "<AppName>Palta")
-paltaAmplitude.initializeApiKey("<YourPaltabrainAPIKey>")
-paltaAmplitude.setServerUrl(URL(string: "https://api.paltabrain.com/events/")!)
+Amplitude.instance().initializeApiKey("<YourAmplitudeAPIKey>")
 
 // ...
 // somewhere later
 //
-let amplitudes = [
-    Amplitude.instance(withName: "<AppName>Amplitude"),
-    Amplitude.instance(withName: "<AppName>Palta")
-]
 
-instance.amplitureInstances.forEach {
-    $0.logEvent(
-        "Event Name",
-        withEventProperties: [
-            "key": "value"
-        ]
-     )
-}
+Amplitude.instance().logEvent(
+    "Event Name",
+    withEventProperties: [
+        "key": "value"
+    ]
+)
 
-instance.amplitureInstances.forEach {
-    let revenue = AMPRevenue()
-    revenue.setProductIdentifier("com.appname.app.some.product.id")
-    revenue.setPrice(29.99)
+let revenue = AMPRevenue()
+revenue.setProductIdentifier("com.appname.app.some.product.id")
+revenue.setPrice(29.99)
+Amplitude.instance().logRevenueV2(revenue)
 
-    $0.logRevenueV2(revenue)
-}
-
-instance.amplitureInstances.forEach {
-    $0.setUserProperties(
-        [
-            "Property Name": "property_value",
-            "Another Property Name": "another_property_value",
-        ]
-    )
-}
+Amplitude.instance().setUserProperties(
+    [
+        "Property Name": "property_value",
+        "Another Property Name": "another_property_value",
+    ]
+)
 
 ```
 
@@ -91,6 +75,7 @@ Using PaltaLib:
 
 ```swift
 // in application(_:willFinishLaunchingWithOptions:)
+// under the hood this method will initialize two amplitudes
 //
 PaltaLib.configure(
     name: "<AppName>",
