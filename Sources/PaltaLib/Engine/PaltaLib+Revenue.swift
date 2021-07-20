@@ -28,8 +28,12 @@ extension PaltaLib {
 
     public func logRevenue(from id: String,
                            price: Decimal) {
-        logRevenue(.init(id: id,
-                         price: price))
+        logRevenue(
+            .init(
+                id: id,
+                price: price
+            )
+        )
     }
 
     public func logRevenue(_ revenueEvent: RevenueEvent) {

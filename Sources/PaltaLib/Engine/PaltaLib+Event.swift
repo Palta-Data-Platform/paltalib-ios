@@ -24,10 +24,14 @@ extension PaltaLib {
                          withEventProperties: [AnyHashable : Any]? = nil,
                          withGroups: [AnyHashable : Any]? = nil,
                          outOfSession: Bool = false) {
-        logEvent(.init(name: eventType,
-                       properties: withEventProperties,
-                       groups: withGroups,
-                       outOfSession: outOfSession))
+        logEvent(
+            .init(
+                name: eventType,
+                properties: withEventProperties,
+                groups: withGroups,
+                outOfSession: outOfSession
+            )
+        )
     }
 
     public func logEvent(_ event: Event) {

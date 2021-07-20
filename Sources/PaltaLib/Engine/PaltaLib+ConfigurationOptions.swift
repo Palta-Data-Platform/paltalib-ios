@@ -20,16 +20,18 @@ extension PaltaLib {
 
             if let amplitudeAPIKey = amplitudeAPIKey {
                 targets.append(
-                    .init(name: amplitudeName,
-                          apiKey: amplitudeAPIKey
+                    .init(
+                        name: amplitudeName,
+                        apiKey: amplitudeAPIKey
                     )
                 )
             }
 
             if let paltaAPIKey = paltaAPIKey {
                 targets.append(
-                    .init(name: paltaName,
-                          apiKey: paltaAPIKey
+                    .init(
+                        name: paltaName,
+                        apiKey: paltaAPIKey
                     )
                 )
             }
