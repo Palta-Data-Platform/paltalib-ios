@@ -46,6 +46,40 @@ public final class PaltaLib {
         }
     }
 
+    public func identify(with values: [String: NSObject],
+                         outOfSession: Bool = false) {
+        let identify = AMPIdentify()
+        values.forEach { key, value in
+            identify.append(key, value: value)
+        }
+
+        amplitureInstances.forEach {
+            $0.identify(
+                identify,
+                outOfSession: outOfSession
+            )
+        }
+    }
+
+    public func groupIdentify(withGroupType: String,
+                              groupName: NSObject,
+                              with values: [String: NSObject],
+                              outOfSession: Bool = false) {
+        let identify = AMPIdentify()
+        values.forEach { key, value in
+            identify.append(key, value: value)
+        }
+
+        amplitureInstances.forEach {
+            $0.groupIdentify(
+                withGroupType: withGroupType,
+                groupName: groupName,
+                groupIdentify: identify,
+                outOfSession: outOfSession
+            )
+        }
+    }
+
     var targets = [Target]()
     var amplitureInstances = [Amplitude]()
 }

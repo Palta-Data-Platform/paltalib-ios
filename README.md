@@ -49,7 +49,6 @@ Amplitude.instance().initializeApiKey("<YourAmplitudeAPIKey>")
 // ...
 // somewhere later
 //
-
 Amplitude.instance().logEvent(
     "Event Name",
     withEventProperties: [
