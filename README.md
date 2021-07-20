@@ -17,7 +17,7 @@ Simple wrapper around [Amplitude-iOS](https://github.com/amplitude/Amplitude-iOS
 Add the following to your `Podfile`:
 
 ```ruby
-
+pod 'PaltaLib', :git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :branch => 'master'
 ```
 
 <br/>
@@ -54,7 +54,6 @@ paltaAmplitude.setServerUrl(URL(string: "https://api.paltabrain.com/events/")!)
 // ...
 // somewhere later
 //
-
 let amplitudes = [
     Amplitude.instance(withName: "<AppName>Amplitude"),
     Amplitude.instance(withName: "<AppName>Palta")
