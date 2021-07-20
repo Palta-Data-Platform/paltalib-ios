@@ -8,11 +8,11 @@ extension PaltaLib {
         let additionalTargets: [Target]
 
         private var amplitudeName: String {
-            name + "Amplitude"
+            name + Settings.amplitudeSuffix
         }
 
         private var paltaName: String {
-            name + "Palta"
+            name + Settings.paltaSuffix
         }
 
         var allTargets: [Target] {
