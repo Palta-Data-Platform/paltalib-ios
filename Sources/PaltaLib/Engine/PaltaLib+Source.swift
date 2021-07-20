@@ -2,7 +2,7 @@ import Foundation
 
 extension PaltaLib {
 
-    public struct Source {
+    public struct Target {
 
         let name: String
         let apiKey: String
@@ -20,7 +20,7 @@ extension PaltaLib {
 
 // MARK: - Equatable
 
-extension PaltaLib.Source: Equatable {
+extension PaltaLib.Target: Equatable {
 
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.name == rhs.name

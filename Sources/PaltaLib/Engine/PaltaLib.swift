@@ -13,18 +13,18 @@ public final class PaltaLib {
     }
 
     public static func configure(using configurationOptions: ConfigurationOptions) {
-        let sources = configurationOptions.allSources
-        sources.forEach(addSource)
-        instance.sources = sources
+        let targets = configurationOptions.allTargets
+        targets.forEach(addTarget)
+        instance.targets = targets
     }
 
-    public static func addSource(_ source: Source) {
-        guard !instance.sources.contains(source) else { return }
+    public static func addTarget(_ target: Target) {
+        guard !instance.targets.contains(target) else { return }
 
-        let amplitudeInstance = Amplitude.instance(withName: source.name)
-        amplitudeInstance.initializeApiKey(source.apiKey)
+        let amplitudeInstance = Amplitude.instance(withName: target.name)
+        amplitudeInstance.initializeApiKey(target.apiKey)
 
-        if let serverURL = source.serverURL {
+        if let serverURL = target.serverURL {
             amplitudeInstance.setServerUrl(serverURL.absoluteString)
         }
 
@@ -37,6 +37,6 @@ public final class PaltaLib {
         }
     }
 
-    var sources = [Source]()
+    var targets = [Target]()
     var amplitureInstances = [Amplitude]()
 }

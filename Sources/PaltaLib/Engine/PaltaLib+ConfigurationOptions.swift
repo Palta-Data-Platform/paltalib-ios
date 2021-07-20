@@ -4,9 +4,9 @@ extension PaltaLib {
 
         let appAmplitudeAPIKey: String
         let paltabrainAmplitudeAPIKey: String
-        let additionalSources: [Source]
+        let additionalTargets: [Target]
 
-        var allSources: [Source] {
+        var allTargets: [Target] {
             [
                 .init(
                     name: Settings.appAmplitudeInstanceName,
@@ -17,15 +17,15 @@ extension PaltaLib {
                     apiKey: paltabrainAmplitudeAPIKey,
                     serverURL: Settings.paltabrainEventsURL
                 )
-            ] + additionalSources
+            ] + additionalTargets
         }
 
         public init(appAmplitudeAPIKey: String,
                     paltabrainAmplitudeAPIKey: String,
-                    additionalSources: [Source] = []) {
+                    additionalTargets: [Target] = []) {
             self.appAmplitudeAPIKey = appAmplitudeAPIKey
             self.paltabrainAmplitudeAPIKey = paltabrainAmplitudeAPIKey
-            self.additionalSources = additionalSources
+            self.additionalTargets = additionalTargets
         }
     }
 }
