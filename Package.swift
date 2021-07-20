@@ -27,7 +27,7 @@ let targets: [Target] = [
     .target(
         name: "PaltaLib",
         dependencies: [
-            .product(name: "Amplitude", package: "Amplitude")
+            "Amplitude"
         ]
     )
 ]
