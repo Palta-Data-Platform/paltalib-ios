@@ -31,6 +31,12 @@ public final class PaltaLib {
         instance.amplitureInstances.append(amplitudeInstance)
     }
 
+    public func setUserId(_ userId: String) {
+        amplitureInstances.forEach {
+            $0.setUserId(userId)
+        }
+    }
+
     var sources = [Source]()
     var amplitureInstances = [Amplitude]()
 }
