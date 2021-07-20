@@ -6,10 +6,17 @@ public final class PaltaLib {
         .init()
     }
 
-    public static func configure(appAPIKey: String,
-                                 paltabrainAPIKey: String) {
-        configure(using: .init(appAmplitudeAPIKey: appAPIKey,
-                               paltabrainAmplitudeAPIKey: paltabrainAPIKey))
+    public static func configure(name: String,
+                                 amplitudeAPIKey: String? = nil,
+                                 paltaAPIKey: String? = nil) {
+        configure(
+            using:
+                .init(
+                    name: name,
+                    amplitudeAPIKey: amplitudeAPIKey,
+                    paltaAPIKey: paltaAPIKey
+                )
+        )
     }
 
     public static func configure(using configurationOptions: ConfigurationOptions) {

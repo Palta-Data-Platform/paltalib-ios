@@ -2,29 +2,50 @@ extension PaltaLib {
 
     public struct ConfigurationOptions {
 
-        let appAmplitudeAPIKey: String
-        let paltabrainAmplitudeAPIKey: String
+        let name: String
+        let amplitudeAPIKey: String?
+        let paltaAPIKey: String?
         let additionalTargets: [Target]
 
-        var allTargets: [Target] {
-            [
-                .init(
-                    name: Settings.appAmplitudeInstanceName,
-                    apiKey: appAmplitudeAPIKey
-                ),
-                .init(
-                    name: Settings.paltabrainAmplitudeInstanceName,
-                    apiKey: paltabrainAmplitudeAPIKey,
-                    serverURL: Settings.paltabrainEventsURL
-                )
-            ] + additionalTargets
+        private var amplitudeName: String {
+            name + "Amplitude"
         }
 
-        public init(appAmplitudeAPIKey: String,
-                    paltabrainAmplitudeAPIKey: String,
+        private var paltaName: String {
+            name + "Palta"
+        }
+
+        var allTargets: [Target] {
+            var targets = [Target]()
+
+            if let amplitudeAPIKey = amplitudeAPIKey {
+                targets.append(
+                    .init(name: amplitudeName,
+                          apiKey: amplitudeAPIKey
+                    )
+                )
+            }
+
+            if let paltaAPIKey = paltaAPIKey {
+                targets.append(
+                    .init(name: paltaName,
+                          apiKey: paltaAPIKey
+                    )
+                )
+            }
+
+            targets += additionalTargets
+
+            return targets
+        }
+
+        public init(name: String,
+                    amplitudeAPIKey: String? = nil,
+                    paltaAPIKey: String? = nil,
                     additionalTargets: [Target] = []) {
-            self.appAmplitudeAPIKey = appAmplitudeAPIKey
-            self.paltabrainAmplitudeAPIKey = paltabrainAmplitudeAPIKey
+            self.name = name
+            self.amplitudeAPIKey = amplitudeAPIKey
+            self.paltaAPIKey = paltaAPIKey
             self.additionalTargets = additionalTargets
         }
     }
