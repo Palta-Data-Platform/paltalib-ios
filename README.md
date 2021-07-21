@@ -17,7 +17,7 @@ Simple wrapper around [Amplitude-iOS](https://github.com/amplitude/Amplitude-iOS
 Add the following to your `Podfile`:
 
 ```ruby
-pod 'PaltaLib', :git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :branch => 'master'
+pod 'PaltaLib'
 ```
 
 <br/>
