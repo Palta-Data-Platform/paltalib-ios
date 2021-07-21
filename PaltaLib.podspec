@@ -10,5 +10,5 @@ Pod::Spec.new do |spec|
   spec.requires_arc          = true
   spec.ios.deployment_target = '9.0'
 
-  spec.dependency 'Amplitude-iOS', '~> 4.0.0'
+  spec.dependency 'Amplitude-iOS', '~> 8.3.0'
 end
