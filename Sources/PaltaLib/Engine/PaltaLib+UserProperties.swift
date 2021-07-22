@@ -2,9 +2,7 @@ import Amplitude
 
 extension PaltaLib {
 
-    public typealias UserProperties = [AnyHashable: Any]
-
-    public func setUserProperties(_ userProperties: UserProperties) {
+    public func setUserProperties(_ userProperties: [AnyHashable: Any]) {
         amplitudeInstances.forEach {
             $0.setUserProperties(userProperties)
         }
