@@ -2,49 +2,14 @@ import Amplitude
 
 extension PaltaLib {
 
-    public struct RevenueEvent {
-
-        fileprivate let id: String
-        fileprivate let price: Decimal
-        fileprivate let quantity: Int
-        fileprivate let type: String?
-        fileprivate let receipt: Data?
-        fileprivate let properties: [AnyHashable: Any]?
-
-        public init(id: String,
-                    price: Decimal,
-                    quantity: Int = 1,
-                    type: String? = nil,
-                    receipt: Data? = nil,
-                    properties: [AnyHashable: Any]? = nil) {
-            self.id = id
-            self.price = price
-            self.quantity = quantity
-            self.type = type
-            self.receipt = receipt
-            self.properties = properties
+    @available(*, deprecated, message: "Use `logRevenueV2` and `AMPRevenue` instead")
+    public func logRevenue(_ productIdentifier: String? = nil, quantity: Int = 1, price: NSNumber, receipt: Data? = nil) {
+        amplitudeInstances.forEach {
+            $0.logRevenue(productIdentifier, quantity: quantity, price: price, receipt: receipt)
         }
     }
 
-    public func logRevenue(from id: String,
-                           price: Decimal) {
-        logRevenue(
-            .init(
-                id: id,
-                price: price
-            )
-        )
-    }
-
-    public func logRevenue(_ revenueEvent: RevenueEvent) {
-        let revenue = AMPRevenue()
-        revenue.setProductIdentifier(revenueEvent.id)
-        revenue.setPrice(revenueEvent.price as NSNumber)
-        revenue.setQuantity(revenueEvent.quantity)
-        revenue.setRevenueType(revenueEvent.type)
-        revenue.setReceipt(revenueEvent.receipt)
-        revenue.setEventProperties(revenueEvent.properties)
-
+    public func logRevenueV2(_ revenue: AMPRevenue) {
         amplitudeInstances.forEach {
             $0.logRevenueV2(revenue)
         }
