@@ -31,7 +31,8 @@ extension PaltaLib {
                 targets.append(
                     .init(
                         name: paltaName,
-                        apiKey: paltaAPIKey
+                        apiKey: paltaAPIKey,
+                        serverURL: Settings.paltaServerURL
                     )
                 )
             }
@@ -45,6 +46,7 @@ extension PaltaLib {
                     amplitudeAPIKey: String? = nil,
                     paltaAPIKey: String? = nil,
                     additionalTargets: [Target] = []) {
+
             self.name = name
             self.amplitudeAPIKey = amplitudeAPIKey
             self.paltaAPIKey = paltaAPIKey
