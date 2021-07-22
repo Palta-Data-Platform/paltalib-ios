@@ -8,7 +8,8 @@ Pod::Spec.new do |spec|
   spec.source                = { :git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :tag => "v#{spec.version}" }
   spec.source_files          = 'Sources/PaltaLib/**/*.swift'
   spec.requires_arc          = true
-  spec.ios.deployment_target = '9.0'
+  spec.ios.deployment_target = '10.0'
+  spec.swift_versions        = '5.3'
 
-  spec.dependency 'Amplitude-iOS', '~> 8.3.0'
+  spec.dependency 'Amplitude', '~> 8.3.0'
 end
