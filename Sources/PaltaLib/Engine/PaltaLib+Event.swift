@@ -35,7 +35,7 @@ extension PaltaLib {
     }
 
     public func logEvent(_ event: Event) {
-        amplitureInstances.forEach {
+        amplitudeInstances.forEach {
             $0.logEvent(
                 event.name,
                 withEventProperties: event.properties,

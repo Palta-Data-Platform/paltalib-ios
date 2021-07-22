@@ -45,7 +45,7 @@ extension PaltaLib {
         revenue.setReceipt(revenueEvent.receipt)
         revenue.setEventProperties(revenueEvent.properties)
 
-        amplitureInstances.forEach {
+        amplitudeInstances.forEach {
             $0.logRevenueV2(revenue)
         }
     }
