@@ -9,7 +9,7 @@ Simple wrapper around [Amplitude-iOS](https://github.com/amplitude/Amplitude-iOS
 ### Swift Package Manager
 
 ```swift
-.package(url: "https://github.com/Palta-Data-Platform/paltalib-ios.git", branch: "master")
+.package(url: "https://github.com/Palta-Data-Platform/paltalib-ios.git", branch: "main")
 ```
 
 ### CocoaPods
