@@ -8,9 +8,9 @@ public final class PaltaLib {
         .init()
     }()
 
-    public static func configure(name: String,
-                                 amplitudeAPIKey: String? = nil,
-                                 paltaAPIKey: String? = nil) {
+    public func configure(name: String,
+                          amplitudeAPIKey: String? = nil,
+                          paltaAPIKey: String? = nil) {
         configure(
             using:
                 .init(
@@ -21,14 +21,14 @@ public final class PaltaLib {
         )
     }
 
-    public static func configure(using configurationOptions: ConfigurationOptions) {
+    public func configure(using configurationOptions: ConfigurationOptions) {
         let targets = configurationOptions.allTargets
         targets.forEach(addTarget)
-        instance.targets = targets
+        self.targets = targets
     }
 
-    public static func addTarget(_ target: Target) {
-        guard !instance.targets.contains(target) else { return }
+    public func addTarget(_ target: Target) {
+        guard !targets.contains(target) else { return }
 
         let amplitudeInstance = Amplitude.instance(withName: target.name)
         amplitudeInstance.initializeApiKey(target.apiKey)
@@ -37,11 +37,11 @@ public final class PaltaLib {
             amplitudeInstance.setServerUrl(serverURL.absoluteString)
         }
 
-        instance.amplitureInstances.append(amplitudeInstance)
+        amplitudeInstances.append(amplitudeInstance)
     }
 
     public func setUserId(_ userId: String) {
-        amplitureInstances.forEach {
+        amplitudeInstances.forEach {
             $0.setUserId(userId)
         }
     }
@@ -53,7 +53,7 @@ public final class PaltaLib {
             identify.append(key, value: value)
         }
 
-        amplitureInstances.forEach {
+        amplitudeInstances.forEach {
             $0.identify(
                 identify,
                 outOfSession: outOfSession
@@ -70,7 +70,7 @@ public final class PaltaLib {
             identify.append(key, value: value)
         }
 
-        amplitureInstances.forEach {
+        amplitudeInstances.forEach {
             $0.groupIdentify(
                 withGroupType: withGroupType,
                 groupName: groupName,
@@ -81,5 +81,5 @@ public final class PaltaLib {
     }
 
     var targets = [Target]()
-    var amplitureInstances = [Amplitude]()
+    var amplitudeInstances = [Amplitude]()
 }

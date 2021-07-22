@@ -76,7 +76,7 @@ Using PaltaLib:
 // in application(_:willFinishLaunchingWithOptions:)
 // under the hood this method will initialize two amplitudes
 //
-PaltaLib.configure(
+PaltaLib.intance.configure(
     name: "<AppName>",
     amplitudeAPIKey: "<YourAmplitudeAPIKey>",
     paltaAPIKey: "<YourPaltabrainAPIKey>"
