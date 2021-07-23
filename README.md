@@ -31,7 +31,7 @@ In addition you can add custom target by specifying `name`, `apiKey` and `server
 After configuration you can use `PaltaLib.instance` for all amplitude logic such us:
 
 - `logEvent(_:withEventProperties:withGroups:outOfSession:)`
-- `logRevenue(_:)`
+- `logRevenueV2(_:)`
 - `setUserProperties(_:)`
 - `setUserId(_:)`
 
@@ -91,11 +91,10 @@ PaltaLib.instance.logEvent(
         "key": "value"
     ]
 )
-
-PaltaLib.instance.logRevenue(
-    from: "com.appname.app.some.product.id",
-    price: 29.99
-)
+let revenue = AMPRevenue()
+revenue.setProductIdentifier("com.appname.app.some.product.id")
+revenue.setPrice(29.99)
+PaltaLib.instance.logRevenueV2(revenue)
 
 PaltaLib.instance.setUserProperties(
     [
