@@ -91,6 +91,7 @@ PaltaLib.instance.logEvent(
         "key": "value"
     ]
 )
+
 let revenue = AMPRevenue()
 revenue.setProductIdentifier("com.appname.app.some.product.id")
 revenue.setPrice(29.99)
