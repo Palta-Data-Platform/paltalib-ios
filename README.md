@@ -79,7 +79,8 @@ Using PaltaLib:
 PaltaLib.intance.configure(
     name: "<AppName>",
     amplitudeAPIKey: "<YourAmplitudeAPIKey>",
-    paltaAPIKey: "<YourPaltabrainAPIKey>"
+    paltaAPIKey: "<YourPaltabrainAPIKey>",
+    trackingSessionEvents: true
 )
 
 // ...

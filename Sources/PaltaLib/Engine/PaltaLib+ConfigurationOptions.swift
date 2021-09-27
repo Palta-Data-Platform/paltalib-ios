@@ -6,6 +6,7 @@ extension PaltaLib {
         let amplitudeAPIKey: String?
         let paltaAPIKey: String?
         let additionalTargets: [Target]
+        let trackingSessionEvents: Bool
 
         private var amplitudeName: String {
             name + Settings.amplitudeSuffix
@@ -22,7 +23,8 @@ extension PaltaLib {
                 targets.append(
                     .init(
                         name: amplitudeName,
-                        apiKey: amplitudeAPIKey
+                        apiKey: amplitudeAPIKey,
+                        trackingSessionEvents: trackingSessionEvents
                     )
                 )
             }
@@ -32,6 +34,7 @@ extension PaltaLib {
                     .init(
                         name: paltaName,
                         apiKey: paltaAPIKey,
+                        trackingSessionEvents: trackingSessionEvents,
                         serverURL: Settings.paltaServerURL
                     )
                 )
@@ -45,12 +48,14 @@ extension PaltaLib {
         public init(name: String,
                     amplitudeAPIKey: String? = nil,
                     paltaAPIKey: String? = nil,
-                    additionalTargets: [Target] = []) {
+                    additionalTargets: [Target] = [],
+                    trackingSessionEvents: Bool) {
 
             self.name = name
             self.amplitudeAPIKey = amplitudeAPIKey
             self.paltaAPIKey = paltaAPIKey
             self.additionalTargets = additionalTargets
+            self.trackingSessionEvents = trackingSessionEvents
         }
     }
 }

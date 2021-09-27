@@ -11,13 +11,15 @@ public final class PaltaLib {
 
     public func configure(name: String,
                           amplitudeAPIKey: String? = nil,
-                          paltaAPIKey: String? = nil) {
+                          paltaAPIKey: String? = nil,
+                          trackingSessionEvents: Bool = false) {
 
         configure(
             using: .init(
                 name: name,
                 amplitudeAPIKey: amplitudeAPIKey,
-                paltaAPIKey: paltaAPIKey
+                paltaAPIKey: paltaAPIKey,
+                trackingSessionEvents: trackingSessionEvents
             )
         )
     }
@@ -33,6 +35,7 @@ public final class PaltaLib {
         guard !targets.contains(target) else { return }
 
         let amplitudeInstance = Amplitude.instance(withName: target.name)
+        amplitudeInstance.trackingSessionEvents = target.trackingSessionEvents
         amplitudeInstance.initializeApiKey(target.apiKey)
 
         if let serverURL = target.serverURL {
