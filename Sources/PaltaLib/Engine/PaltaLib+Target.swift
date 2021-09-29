@@ -6,13 +6,16 @@ extension PaltaLib {
 
         let name: String
         let apiKey: String
+        let trackingSessionEvents: Bool
         let serverURL: URL?
 
         public init(name: String,
                     apiKey: String,
+                    trackingSessionEvents: Bool,
                     serverURL: URL? = nil) {
             self.name = name
             self.apiKey = apiKey
+            self.trackingSessionEvents = trackingSessionEvents
             self.serverURL = serverURL
         }
     }
