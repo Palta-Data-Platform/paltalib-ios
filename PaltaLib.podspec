@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'PaltaLib'
-  spec.version               = '1.0.2'
+  spec.version               = '1.0.3'
   spec.license               = 'MIT'
   spec.summary               = 'Simple wrapper around Amplitude-iOS'
   spec.homepage              = 'https://github.com/Palta-Data-Platform/paltalib-ios'
