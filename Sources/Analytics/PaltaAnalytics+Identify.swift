@@ -1,6 +1,6 @@
 import Amplitude
 
-extension PaltaLib {
+extension PaltaAnalytics {
 
     public func setUserId(_ userId: String?) {
         amplitudeInstances.forEach {

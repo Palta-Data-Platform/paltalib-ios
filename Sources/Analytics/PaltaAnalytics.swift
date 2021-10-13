@@ -1,13 +1,13 @@
 import Amplitude
 
-public final class PaltaLib {
+public final class PaltaAnalytics {
 
     var targets = [Target]()
     var amplitudeInstances = [Amplitude]()
 
     public init() {}
 
-    public static let instance = PaltaLib()
+    public static let instance = PaltaAnalytics()
 
     public func configure(name: String,
                           amplitudeAPIKey: String? = nil,
