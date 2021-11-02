@@ -8,7 +8,7 @@ protocol NetworkServiceInterface {
                                  completion: @escaping ((Result<T, Error>) -> Void))
 }
 
-final class NetworkService {
+final class NetworkService: NetworkServiceInterface {
     public func makeRequest<T: Codable>(url: URL,
                                         body: [String: Any]?,
                                         headers: [String: Any]?,
@@ -21,7 +21,8 @@ final class NetworkService {
         if let body = body {
             request.httpBody = getData(from: body)
         }
-        URLSession().dataTask(with: request) { data, response, error in
+        let session = URLSession(configuration: .default)
+        session.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return

@@ -8,13 +8,13 @@ final class ConfigurationService {
         self.networkService = networkService
     }
     
-    public func requestConfigs(completion: @escaping (Result<Codable, Error> -> Void)) {
+    public func requestConfigs(apiKey: String, completion: @escaping (Result<Config, Error>) -> Void) {
         guard let url = NetworkRouter.remoteConfigs.asUrl() else {
             return
         }
-        networkService.makeRequest(url: ,
+        networkService.makeRequest(url: url,
                                    body: nil,
-                                   headers: nil,
+                                   headers: ["X-API-Key": apiKey],
                                    method: .GET,
                                    completion: completion)
     }
