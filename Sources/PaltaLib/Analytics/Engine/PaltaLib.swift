@@ -6,7 +6,7 @@ public final class PaltaLib {
     var amplitudeInstances = [Amplitude]()
     private let networkService: NetworkServiceInterface = NetworkService()
     private lazy var configurationService = ConfigurationService(networkService: networkService)
-    private var apiKey: String = "" //TODO: Add default API key
+    private var apiKey: String?
 
     public init() {}
 
@@ -34,14 +34,18 @@ public final class PaltaLib {
     }
     
     private func requestRemoteConfigs() {
+        guard let apiKey = apiKey else {
+            print("PaltaLib: error: API key is not set")
+            return
+        }
         configurationService.requestConfigs(apiKey: apiKey) { [self] result in
             switch result {
             case .failure(let error):
-                print(error)
-                self.addConfigTarget(.defaultTarget)
+                print("PaltaLib: configuration fetch failed: \(error.localizedDescription), used default config.")
+                addConfigTarget(.defaultTarget)
             case .success(let config):
                 config.targets.forEach { [self] in
-                    self.addConfigTarget($0)
+                    addConfigTarget($0)
                 }
             }
         }
@@ -54,6 +58,10 @@ public final class PaltaLib {
     }
     
     public func addConfigTarget(_ target: ConfigTarget) {
+        guard let apiKey = apiKey else {
+            print("PaltaLib: error: API key is not set")
+            return
+        }
         let amplitudeInstance = Amplitude.instance(withName: target.name)
         let settings = target.settings
         amplitudeInstance.trackingSessionEvents = settings.trackingSessionEvents
@@ -93,13 +101,7 @@ public final class PaltaLib {
             $0.initializeApiKey(apiKey, userId: userId)
         }
     }
-    
-//    public func setOptOut(_ enabled: Bool) {
-//        amplitudeInstances.forEach {
-//            $0.setOptOut(enabled)
-//        }
-//    }
-    
+        
     public func setOffline(_ offline: Bool) {
         amplitudeInstances.forEach {
             $0.setOffline(offline)
@@ -178,8 +180,9 @@ public final class PaltaLib {
     }
     
     public func regenerateDeviceId() {
+        let deviceId = UUID().uuidString.appending("R")
         amplitudeInstances.forEach {
-            $0.regenerateDeviceId()
+            $0.setDeviceId(deviceId)
         }
     }
     
