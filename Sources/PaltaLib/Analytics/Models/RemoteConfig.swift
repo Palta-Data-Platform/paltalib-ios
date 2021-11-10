@@ -1,10 +1,10 @@
 import Foundation
 
-struct Config: Codable {
+struct RemoteConfig: Codable {
     let targets: [ConfigTarget]
 }
 
-struct ConfigTarget: Codable {
+public struct ConfigTarget: Codable {
     
     static let defaultTarget = ConfigTarget(name: "Default",
                                             settings: ConfigSettings(eventUploadThreshold: 12,
@@ -17,13 +17,35 @@ struct ConfigTarget: Codable {
     let name: String
     let settings: ConfigSettings
     let url: String?
+    
+    public init(name: String,
+                settings: ConfigSettings,
+                url: String?) {
+        self.name = name
+        self.settings = settings
+        self.url = url
+    }
 }
 
-struct ConfigSettings: Codable {
+public struct ConfigSettings: Codable {
     let eventUploadThreshold: Int
     let eventUploadMaxBatchSize: Int
     let eventMaxCount: Int
     let eventUploadPeriodSeconds: Int
     let minTimeBetweenSessionsMillis: Int
     let trackingSessionEvents: Bool
+    
+    public init(eventUploadThreshold: Int,
+                eventUploadMaxBatchSize: Int,
+                eventMaxCount: Int,
+                eventUploadPeriodSeconds: Int,
+                minTimeBetweenSessionsMillis: Int,
+                trackingSessionEvents: Bool) {
+        self.eventUploadThreshold = eventUploadThreshold
+        self.eventUploadMaxBatchSize = eventUploadMaxBatchSize
+        self.eventMaxCount = eventMaxCount
+        self.eventUploadPeriodSeconds = eventUploadPeriodSeconds
+        self.minTimeBetweenSessionsMillis = minTimeBetweenSessionsMillis
+        self.trackingSessionEvents = trackingSessionEvents
+    }
 }

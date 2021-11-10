@@ -53,7 +53,7 @@ public final class PaltaLib {
         self.targets = targets
     }
     
-    private func addConfigTarget(_ target: ConfigTarget) {
+    public func addConfigTarget(_ target: ConfigTarget) {
         let amplitudeInstance = Amplitude.instance(withName: target.name)
         let settings = target.settings
         amplitudeInstance.trackingSessionEvents = settings.trackingSessionEvents
@@ -66,6 +66,7 @@ public final class PaltaLib {
         if let url = target.url {
             amplitudeInstance.setServerUrl(url)
         }
+        amplitudeInstances.append(amplitudeInstance)
     }
 
     public func addTarget(_ target: Target) {
