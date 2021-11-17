@@ -1,6 +1,6 @@
 import Amplitude
 
-public final class PaltaLib {
+public final class PaltaAnalytics {
 
     var targets = [Target]()
     var amplitudeInstances = [Amplitude]()
@@ -10,7 +10,7 @@ public final class PaltaLib {
 
     public init() {}
 
-    public static let instance = PaltaLib()
+    public static let instance = PaltaAnalytics()
 
     public func configure(name: String,
                           amplitudeAPIKey: String? = nil,
@@ -35,13 +35,13 @@ public final class PaltaLib {
     
     private func requestRemoteConfigs() {
         guard let apiKey = apiKey else {
-            print("PaltaLib: error: API key is not set")
+            print("PaltaAnalytics: error: API key is not set")
             return
         }
         configurationService.requestConfigs(apiKey: apiKey) { [self] result in
             switch result {
             case .failure(let error):
-                print("PaltaLib: configuration fetch failed: \(error.localizedDescription), used default config.")
+                print("PaltaAnalytics: configuration fetch failed: \(error.localizedDescription), used default config.")
                 addConfigTarget(.defaultTarget)
             case .success(let config):
                 config.targets.forEach { [self] in
@@ -59,7 +59,7 @@ public final class PaltaLib {
     
     public func addConfigTarget(_ target: ConfigTarget) {
         guard let apiKey = apiKey else {
-            print("PaltaLib: error: API key is not set")
+            print("PaltaAnalytics: error: API key is not set")
             return
         }
         let amplitudeInstance = Amplitude.instance(withName: target.name)

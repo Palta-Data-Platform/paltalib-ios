@@ -1,6 +1,6 @@
 import Amplitude
 
-extension PaltaLib {
+extension PaltaAnalytics {
 
     public func logEvent(_ eventType: String,
                          withEventProperties eventProperties: [AnyHashable : Any]? = nil,

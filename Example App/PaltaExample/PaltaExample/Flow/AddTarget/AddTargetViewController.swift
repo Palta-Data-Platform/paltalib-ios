@@ -164,7 +164,7 @@ class AddTargetViewController: UIViewController {
                                       minTimeBetweenSessionsMillis: minTimeBetweenSessions,
                                       trackingSessionEvents: false)
         
-        PaltaLib.instance.addConfigTarget(.init(name: name, settings: settings, url: urlTextField.text))
+        PaltaAnalytics.instance.addConfigTarget(.init(name: name, settings: settings, url: urlTextField.text))
         navigationController?.popViewController(animated: true)
     }
 }
