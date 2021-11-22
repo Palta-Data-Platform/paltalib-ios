@@ -14,4 +14,36 @@ extension PaltaAnalytics {
             $0.logRevenueV2(revenue)
         }
     }
+    
+    @available(*, deprecated, message: "Use `logRevenueV2` and `AMPRevenue` instead")
+    public func logRevenue(amount: NSNumber) {
+        amplitudeInstances.forEach {
+            $0.logRevenue(amount)
+        }
+    }
+    
+    @available(*, deprecated, message: "Use `logRevenueV2` and `AMPRevenue` instead")
+    public func logRevenue(productIdentifier: String,
+                           quantity: Int,
+                           price: NSNumber) {
+        amplitudeInstances.forEach {
+            $0.logRevenue(productIdentifier,
+                          quantity: quantity,
+                          price: price)
+        }
+    }
+    
+    @available(*, deprecated, message: "Use `logRevenueV2` and `AMPRevenue` instead")
+    public func logRevenue(productIdentifier: String,
+                           quantity: Int,
+                           price: NSNumber,
+                           receipt: Data) {
+        amplitudeInstances.forEach {
+            $0.logRevenue(productIdentifier,
+                          quantity: quantity,
+                          price: price,
+                          receipt: receipt)
+        }
+    }
+
 }
