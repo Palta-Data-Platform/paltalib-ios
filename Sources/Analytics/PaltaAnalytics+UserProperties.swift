@@ -1,6 +1,6 @@
 import Amplitude
 
-extension PaltaLib {
+extension PaltaAnalytics {
 
     public func setUserProperties(_ userProperties: [AnyHashable: Any]) {
         amplitudeInstances.forEach {
