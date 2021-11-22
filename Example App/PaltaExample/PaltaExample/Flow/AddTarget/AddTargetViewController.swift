@@ -86,9 +86,9 @@ class AddTargetViewController: UIViewController {
         textField.keyboardType = .default
         return textField
     }()
-
     
-    // trackingSessionEvents
+    private let trackingSwitchView = SwitchView(text: "Tracking session events", isOn: false)
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -101,10 +101,11 @@ class AddTargetViewController: UIViewController {
         stackView.addArrangedSubview(eventUploadThresholdTextField)
         stackView.addArrangedSubview(minTimeBetweenSessionsMillisTextField)
         stackView.addArrangedSubview(urlTextField)
+        stackView.addArrangedSubview(trackingSwitchView)
         return stackView
     }()
     
-    private lazy var addBUtton: UIButton = {
+    private lazy var addButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Add target", for: .normal)
         button.layer.borderColor = UIColor.systemBlue.cgColor
@@ -115,7 +116,7 @@ class AddTargetViewController: UIViewController {
         button.addTarget(self, action: #selector(addTarget), for: .touchUpInside)
         return button
     }()
-
+    
     private let viewModel: AddTargetViewModelInterface
     
     init(viewModel: AddTargetViewModelInterface) {
@@ -137,6 +138,7 @@ class AddTargetViewController: UIViewController {
         title = "Add target"
         view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         configureStackView()
+        configureAddButton()
     }
     
     private func configureStackView() {
@@ -145,6 +147,14 @@ class AddTargetViewController: UIViewController {
                                      stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
                                      stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)])
+    }
+    
+    private func configureAddButton() {
+        view.addSubview(addButton)
+        NSLayoutConstraint.activate([addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+                                     addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+                                     addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+                                     addButton.heightAnchor.constraint(equalToConstant: 60)])
     }
     
     @objc private func addTarget() {
