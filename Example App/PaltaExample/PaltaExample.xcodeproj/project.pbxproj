@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F512FEB272B3AA000D26F76 /* PaltaLib in Frameworks */ = {isa = PBXBuildFile; productRef = 7F512FEA272B3AA000D26F76 /* PaltaLib */; };
+		7FB35FDE272973C900A656E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB35FDD272973C900A656E1 /* AppDelegate.swift */; };
+		7FB35FE0272973C900A656E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB35FDF272973C900A656E1 /* SceneDelegate.swift */; };
+		7FB35FE8272973C900A656E1 /* PaltaExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7FB35FE6272973C900A656E1 /* PaltaExample.xcdatamodeld */; };
+		7FB35FEA272973CB00A656E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FB35FE9272973CB00A656E1 /* Assets.xcassets */; };
+		7FB35FED272973CB00A656E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FB35FEB272973CB00A656E1 /* LaunchScreen.storyboard */; };
+		7FE10A7F27316E6E003081CF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A7D27316E6E003081CF /* MainViewController.swift */; };
+		7FE10A8027316E6E003081CF /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A7E27316E6E003081CF /* MainViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7FB35FDA272973C900A656E1 /* PaltaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaltaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FB35FDD272973C900A656E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7FB35FDF272973C900A656E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		7FB35FE7272973C900A656E1 /* PaltaExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PaltaExample.xcdatamodel; sourceTree = "<group>"; };
+		7FB35FE9272973CB00A656E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7FB35FEC272973CB00A656E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7FB35FEE272973CB00A656E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FB35FFF272978F400A656E1 /* paltalib-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "paltalib-ios"; path = ../..; sourceTree = "<group>"; };
+		7FE10A7D27316E6E003081CF /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7FE10A7E27316E6E003081CF /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7FB35FD7272973C900A656E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F512FEB272B3AA000D26F76 /* PaltaLib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7FB35FD1272973C900A656E1 = {
+			isa = PBXGroup;
+			children = (
+				7FB35FF62729756000A656E1 /* Packages */,
+				7FB35FDC272973C900A656E1 /* PaltaExample */,
+				7FB35FDB272973C900A656E1 /* Products */,
+				7FB35FFB2729767500A656E1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7FB35FDB272973C900A656E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7FB35FDA272973C900A656E1 /* PaltaExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7FB35FDC272973C900A656E1 /* PaltaExample */ = {
+			isa = PBXGroup;
+			children = (
+				7FB35FDD272973C900A656E1 /* AppDelegate.swift */,
+				7FE10A7B27316E6E003081CF /* Flow */,
+				7FB35FDF272973C900A656E1 /* SceneDelegate.swift */,
+				7FB35FE9272973CB00A656E1 /* Assets.xcassets */,
+				7FB35FEB272973CB00A656E1 /* LaunchScreen.storyboard */,
+				7FB35FEE272973CB00A656E1 /* Info.plist */,
+				7FB35FE6272973C900A656E1 /* PaltaExample.xcdatamodeld */,
+			);
+			path = PaltaExample;
+			sourceTree = "<group>";
+		};
+		7FB35FF62729756000A656E1 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				7FB35FFF272978F400A656E1 /* paltalib-ios */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		7FB35FFB2729767500A656E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7FE10A7B27316E6E003081CF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				7FE10A7C27316E6E003081CF /* Main */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		7FE10A7C27316E6E003081CF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7FE10A7D27316E6E003081CF /* MainViewController.swift */,
+				7FE10A7E27316E6E003081CF /* MainViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7FB35FD9272973C900A656E1 /* PaltaExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FB35FF1272973CB00A656E1 /* Build configuration list for PBXNativeTarget "PaltaExample" */;
+			buildPhases = (
+				7FB35FD6272973C900A656E1 /* Sources */,
+				7FB35FD7272973C900A656E1 /* Frameworks */,
+				7FB35FD8272973C900A656E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PaltaExample;
+			packageProductDependencies = (
+				7F512FEA272B3AA000D26F76 /* PaltaLib */,
+			);
+			productName = PaltaExample;
+			productReference = 7FB35FDA272973C900A656E1 /* PaltaExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7FB35FD2272973C900A656E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					7FB35FD9272973C900A656E1 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+				};
+			};
+			buildConfigurationList = 7FB35FD5272973C900A656E1 /* Build configuration list for PBXProject "PaltaExample" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7FB35FD1272973C900A656E1;
+			productRefGroup = 7FB35FDB272973C900A656E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7FB35FD9272973C900A656E1 /* PaltaExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7FB35FD8272973C900A656E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FB35FED272973CB00A656E1 /* LaunchScreen.storyboard in Resources */,
+				7FB35FEA272973CB00A656E1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7FB35FD6272973C900A656E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FE10A8027316E6E003081CF /* MainViewModel.swift in Sources */,
+				7FB35FDE272973C900A656E1 /* AppDelegate.swift in Sources */,
+				7FB35FE0272973C900A656E1 /* SceneDelegate.swift in Sources */,
+				7FB35FE8272973C900A656E1 /* PaltaExample.xcdatamodeld in Sources */,
+				7FE10A7F27316E6E003081CF /* MainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7FB35FEB272973CB00A656E1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FB35FEC272973CB00A656E1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7FB35FEF272973CB00A656E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7FB35FF0272973CB00A656E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7FB35FF2272973CB00A656E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 973TU6JN8G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PaltaExample/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.PaltaExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7FB35FF3272973CB00A656E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 973TU6JN8G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PaltaExample/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.PaltaExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7FB35FD5272973C900A656E1 /* Build configuration list for PBXProject "PaltaExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FB35FEF272973CB00A656E1 /* Debug */,
+				7FB35FF0272973CB00A656E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7FB35FF1272973CB00A656E1 /* Build configuration list for PBXNativeTarget "PaltaExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FB35FF2272973CB00A656E1 /* Debug */,
+				7FB35FF3272973CB00A656E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7F512FEA272B3AA000D26F76 /* PaltaLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PaltaLib;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		7FB35FE6272973C900A656E1 /* PaltaExample.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7FB35FE7272973C900A656E1 /* PaltaExample.xcdatamodel */,
+			);
+			currentVersion = 7FB35FE7272973C900A656E1 /* PaltaExample.xcdatamodel */;
+			path = PaltaExample.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 7FB35FD2272973C900A656E1 /* Project object */;
+}
