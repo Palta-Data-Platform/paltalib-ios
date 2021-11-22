@@ -1,6 +1,6 @@
 import Amplitude
 
-extension PaltaLib {
+extension PaltaAnalytics {
 
     @available(*, deprecated, message: "Use `logRevenueV2` and `AMPRevenue` instead")
     public func logRevenue(_ productIdentifier: String? = nil, quantity: Int = 1, price: NSNumber, receipt: Data? = nil) {
