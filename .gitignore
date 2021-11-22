@@ -3,3 +3,4 @@ Package.resolved
 .build/
 .swiftpm/
 .vscode/
+node_modules
