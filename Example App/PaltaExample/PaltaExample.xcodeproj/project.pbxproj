@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F3B88D52745382C000A6D46 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3B88D42745382C000A6D46 /* SwitchView.swift */; };
 		7F512FEB272B3AA000D26F76 /* PaltaLib in Frameworks */ = {isa = PBXBuildFile; productRef = 7F512FEA272B3AA000D26F76 /* PaltaLib */; };
 		7FA55BD02739211C00B16D94 /* AddTargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA55BCE2739211C00B16D94 /* AddTargetViewModel.swift */; };
 		7FA55BD12739211C00B16D94 /* AddTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA55BCF2739211C00B16D94 /* AddTargetViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F3B88D42745382C000A6D46 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
 		7FA55BCE2739211C00B16D94 /* AddTargetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTargetViewModel.swift; sourceTree = "<group>"; };
 		7FA55BCF2739211C00B16D94 /* AddTargetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTargetViewController.swift; sourceTree = "<group>"; };
 		7FB35FDA272973C900A656E1 /* PaltaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaltaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +48,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F3B88D12745380B000A6D46 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7F3B88D22745380F000A6D46 /* Views */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7F3B88D22745380F000A6D46 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7F3B88D327453812000A6D46 /* SwitchView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7F3B88D327453812000A6D46 /* SwitchView */ = {
+			isa = PBXGroup;
+			children = (
+				7F3B88D42745382C000A6D46 /* SwitchView.swift */,
+			);
+			path = SwitchView;
+			sourceTree = "<group>";
+		};
 		7FA55BCD2739211C00B16D94 /* AddTarget */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +102,7 @@
 		7FB35FDC272973C900A656E1 /* PaltaExample */ = {
 			isa = PBXGroup;
 			children = (
+				7F3B88D12745380B000A6D46 /* Common */,
 				7FB35FDD272973C900A656E1 /* AppDelegate.swift */,
 				7FE10A7B27316E6E003081CF /* Flow */,
 				7FB35FDF272973C900A656E1 /* SceneDelegate.swift */,
@@ -193,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F3B88D52745382C000A6D46 /* SwitchView.swift in Sources */,
 				7FE10A8027316E6E003081CF /* MainViewModel.swift in Sources */,
 				7FA55BD02739211C00B16D94 /* AddTargetViewModel.swift in Sources */,
 				7FB35FDE272973C900A656E1 /* AppDelegate.swift in Sources */,
