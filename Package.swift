@@ -20,7 +20,7 @@ let products: [Product] = [
 ]
 
 let dependencies: [Package.Dependency] = [
-    .package(name: "Amplitude", url: "https://github.com/amplitude/Amplitude-iOS.git", from: "8.4.0")
+    .package(name: "Amplitude", url: "https://github.com/amplitude/Amplitude-iOS.git", from: "8.5.0")
 ]
 
 let targets: [Target] = [

@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.subspec "Analytics" do |spec|
     spec.source_files = 'Sources/Analytics/**/*.swift'
     spec.dependency 'PaltaLib/Core'
-    spec.dependency 'Amplitude', '~> 8.4.0'
+    spec.dependency 'Amplitude', '~> 8.5.0'
   end
 
   spec.subspec "Purchases" do |spec|
@@ -27,12 +27,12 @@ Pod::Spec.new do |spec|
     spec.dependency 'PaltaLib/Core'
     spec.dependency 'PaltaLib/Analytics'
     spec.dependency 'PaltaLib/Attribution'
-    spec.dependency 'Purchases', '~> 3.12.6'
+    spec.dependency 'Purchases', '~> 3.13.0'
   end
 
   spec.subspec "Attribution" do |spec|
     spec.source_files = 'Sources/Attribution/**/*.swift'
     spec.dependency 'PaltaLib/Core'
-    spec.dependency 'AppsFlyerFramework', '~> 6.4.0'
+    spec.dependency 'AppsFlyerFramework', '~> 6.4.2'
   end
 end
