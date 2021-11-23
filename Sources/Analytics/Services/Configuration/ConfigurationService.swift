@@ -8,7 +8,7 @@ final class ConfigurationService {
         self.networkService = networkService
     }
     
-    public func requestConfigs(apiKey: String, completion: @escaping (Result<Config, Error>) -> Void) {
+    public func requestConfigs(apiKey: String, completion: @escaping (Result<RemoteConfig, Error>) -> Void) {
         guard let url = NetworkRouter.remoteConfigs.asUrl() else {
             return
         }
