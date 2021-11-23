@@ -52,7 +52,7 @@ private extension HTTPRequest {
         }
 
         return HTTPRequest(method: .post,
-                           path: "v1/send-restore-subscription-email",
+                           path: "/v1/send-restore-subscription-email",
                            body: data)
     }
 
@@ -67,7 +67,7 @@ private extension HTTPRequest {
         }
 
         return HTTPRequest(method: .post,
-                           path: "v1/unsubscribe",
+                           path: "/v1/unsubscribe",
                            body: data)
     }
 }

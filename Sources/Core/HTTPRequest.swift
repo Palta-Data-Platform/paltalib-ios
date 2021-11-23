@@ -38,9 +38,14 @@ extension HTTPRequest {
 
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "accept")
+
+        if let body = body {
+            request.httpBody = body
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+
         headerFields.forEach { request.setValue($0.1, forHTTPHeaderField: $0.0) }
-        body.flatMap { request.httpBody = $0 }
 
         return request
     }
