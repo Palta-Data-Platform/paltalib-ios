@@ -11,7 +11,9 @@ final class PaltaAppsflyerAdapter: NSObject {
     private static let _sharedInstance = PaltaAppsflyerAdapter(appsflyerInstance: AppsFlyerLib.shared())
     static var sharedInstance: PaltaAppsflyerAdapter {
         defer {
-            _sharedInstance.checkAppsflyerDelegateWasNotStolen()
+            if _sharedInstance.isInitialSetupFinished {
+                _sharedInstance.checkAppsflyerDelegateWasNotStolen()
+            }
         }
 
         return _sharedInstance
@@ -20,25 +22,27 @@ final class PaltaAppsflyerAdapter: NSObject {
     weak var delegate: PaltaAppsflyerAdapterDelegate?
 
     private let appsflyerInstance: AppsFlyerLib
+    private var isInitialSetupFinished: Bool = false
+
     init(appsflyerInstance: AppsFlyerLib) {
         self.appsflyerInstance = appsflyerInstance
 
         super.init()
-
-        appsflyerInstance.delegate = self
-        appsflyerInstance.deepLinkDelegate = self
     }
 
     var appsflyerUID: String {
         return appsflyerInstance.getAppsFlyerUID()
     }
 
-    func setAppsflyerDevKey(_ key: String) {
+    func setupAppsflyerWith(devKey key: String, appleAppID appID: String) {
         appsflyerInstance.appsFlyerDevKey = key
-    }
-
-    func setAppleAppID(_ appID: String) {
         appsflyerInstance.appleAppID = appID
+
+        // Must be called AFTER setting appsFlyerDevKey and appleAppID
+        // https://dev.appsflyer.com/hc/docs/integrate-ios-sdk#full-example
+        appsflyerInstance.delegate = self
+        appsflyerInstance.deepLinkDelegate = self
+        isInitialSetupFinished = true
     }
 
     func setCustomerUserID(_ userID: String) {

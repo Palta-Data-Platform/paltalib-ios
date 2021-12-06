@@ -11,6 +11,7 @@ public final class PaltaAttribution {
     public static let instance = PaltaAttribution(appsflyerAdapter: PaltaAppsflyerAdapter.sharedInstance)
 
     public weak var delegate: PaltaAttributionDelegate?
+    public var appsflyerUID: String { appsflyerAdapter.appsflyerUID }
 
     private let appsflyerAdapter: PaltaAppsflyerAdapter
     
@@ -33,8 +34,7 @@ public final class PaltaAttribution {
     }
 
     func configure(using configuration: Configuration) {
-        appsflyerAdapter.setAppsflyerDevKey(configuration.appsFlyerDevKey)
-        appsflyerAdapter.setAppleAppID(configuration.appleAppID)
+        appsflyerAdapter.setupAppsflyerWith(devKey: configuration.appsFlyerDevKey, appleAppID: configuration.appleAppID)
         if let userID = configuration.userID {
             appsflyerAdapter.setCustomerUserID(userID)
         }
