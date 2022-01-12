@@ -3,7 +3,7 @@
 //  PaltaExample
 import UIKit
 import CoreData
-import PaltaLib
+import PaltaLibAnalytics
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
