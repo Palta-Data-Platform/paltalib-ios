@@ -14,21 +14,50 @@ let products: [Product] = [
     .library(
         name: "PaltaLib",
         targets: [
-            "PaltaLib"
+            "PaltaLibCore",
+            "PaltaLibAnalytics",
+            "PaltaLibPurchases",
+            "PaltaLibAttribution"
         ]
     )
 ]
 
 let dependencies: [Package.Dependency] = [
-    .package(name: "Amplitude", url: "https://github.com/amplitude/Amplitude-iOS.git", from: "8.5.0")
+    .package(name: "Amplitude", url: "https://github.com/amplitude/Amplitude-iOS.git", from: "8.5.0"),
+    .package(name: "Purchases", url: "https://github.com/RevenueCat/purchases-ios.git", from: "3.13.0"),
+    .package(name: "AppsFlyerLib", url: "https://github.com/AppsFlyerSDK/AppsFlyerFramework.git", from: "6.4.2")
 ]
 
 let targets: [Target] = [
     .target(
-        name: "PaltaLib",
+        name: "PaltaLibCore",
+        path: "Sources/Core"
+    ),
+    .target(
+        name: "PaltaLibAnalytics",
         dependencies: [
+            "PaltaLibCore",
             "Amplitude"
-        ]
+        ],
+        path: "Sources/Analytics"
+    ),
+    .target(
+        name: "PaltaLibPurchases",
+        dependencies: [
+            "PaltaLibCore",
+            "PaltaLibAnalytics",
+            "PaltaLibAttribution",
+            "Purchases",
+        ],
+        path: "Sources/Purchases"
+    ),
+    .target(
+        name: "PaltaLibAttribution",
+        dependencies: [
+            "PaltaLibCore",
+            "AppsFlyerLib"
+        ],
+        path: "Sources/Attribution"
     )
 ]
 

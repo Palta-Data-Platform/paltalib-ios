@@ -1,5 +1,5 @@
 import UIKit
-import PaltaLib
+import PaltaLibAnalytics
 
 class AddTargetViewController: UIViewController {
     
