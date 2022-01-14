@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 public protocol PaltaAttributionDelegate: AnyObject {
     func didReceiveUserID(_ attribution: PaltaAttribution, userID: String)

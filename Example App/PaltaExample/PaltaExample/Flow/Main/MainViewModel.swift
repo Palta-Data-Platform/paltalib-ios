@@ -1,5 +1,5 @@
 import Foundation
-import PaltaLibAnalytics
+import PaltaLib
 
 protocol MainViewModelInterface: AnyObject {
     func logTestEvent()
