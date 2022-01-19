@@ -1,5 +1,6 @@
 import Foundation
 import AppsFlyerLib
+import UIKit
 
 protocol PaltaAppsflyerAdapterDelegate: AnyObject {
     func didReceiveConversion(_ adapter: PaltaAppsflyerAdapter, with result: Result<[AnyHashable: Any], Error>)

@@ -14,10 +14,7 @@ let products: [Product] = [
     .library(
         name: "PaltaLib",
         targets: [
-            "PaltaLibCore",
-            "PaltaLibAnalytics",
-            "PaltaLibPurchases",
-            "PaltaLibAttribution"
+            "PaltaLib"
         ]
     )
 ]
@@ -30,34 +27,13 @@ let dependencies: [Package.Dependency] = [
 
 let targets: [Target] = [
     .target(
-        name: "PaltaLibCore",
-        path: "Sources/Core"
-    ),
-    .target(
-        name: "PaltaLibAnalytics",
+        name: "PaltaLib",
         dependencies: [
-            "PaltaLibCore",
-            "Amplitude"
-        ],
-        path: "Sources/Analytics"
-    ),
-    .target(
-        name: "PaltaLibPurchases",
-        dependencies: [
-            "PaltaLibCore",
-            "PaltaLibAnalytics",
-            "PaltaLibAttribution",
             "Purchases",
-        ],
-        path: "Sources/Purchases"
-    ),
-    .target(
-        name: "PaltaLibAttribution",
-        dependencies: [
-            "PaltaLibCore",
+            "Amplitude",
             "AppsFlyerLib"
         ],
-        path: "Sources/Attribution"
+        path: "Sources"
     )
 ]
 
