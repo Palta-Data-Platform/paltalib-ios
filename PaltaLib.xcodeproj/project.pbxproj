@@ -47,6 +47,8 @@
 		111159A427F7172600A41ADA /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 111159A327F7172600A41ADA /* Purchases */; };
 		111159A727F7179A00A41ADA /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 111159A627F7179A00A41ADA /* AppsFlyerLib */; };
 		111159A827F7199800A41ADA /* PaltaLibAttribution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111595227F7093500A41ADA /* PaltaLibAttribution.framework */; };
+		111159AA27F71CDB00A41ADA /* CodableDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159A927F71CDB00A41ADA /* CodableDictionary.swift */; };
+		111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +171,8 @@
 		1111595B27F7095200A41ADA /* PaltaAppsflyerAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaltaAppsflyerAdapter.swift; sourceTree = "<group>"; };
 		1111595C27F7095200A41ADA /* PaltaAttribution+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+Configuration.swift"; sourceTree = "<group>"; };
 		1111599D27F70E8B00A41ADA /* SampleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTest.swift; sourceTree = "<group>"; };
+		111159A927F71CDB00A41ADA /* CodableDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableDictionary.swift; sourceTree = "<group>"; };
+		111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDictionaryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +255,7 @@
 			children = (
 				111158D527F603D800A41ADA /* HTTPClient.swift */,
 				111158D627F603D800A41ADA /* HTTPRequest.swift */,
+				111159A927F71CDB00A41ADA /* CodableDictionary.swift */,
 			);
 			path = Sources/Core;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				1111599D27F70E8B00A41ADA /* SampleTest.swift */,
+				111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */,
 			);
 			path = LibDevelopment/Tests;
 			sourceTree = "<group>";
@@ -597,6 +603,7 @@
 			files = (
 				111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */,
 				111158D827F603D800A41ADA /* HTTPClient.swift in Sources */,
+				111159AA27F71CDB00A41ADA /* CodableDictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +611,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
 				1111599E27F70E8B00A41ADA /* SampleTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
