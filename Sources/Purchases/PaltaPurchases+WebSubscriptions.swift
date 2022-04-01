@@ -1,4 +1,5 @@
 import Foundation
+import PaltaLibCore
 
 extension PaltaPurchases {
     public func sendRestoreLink(to email: String, completion: @escaping (Result<Void, Error>) -> Void) {

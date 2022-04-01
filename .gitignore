@@ -4,3 +4,6 @@ Package.resolved
 .swiftpm/
 .vscode/
 node_modules
+/Example App/PaltaExample/PaltaExample.xcodeproj/xcuserdata/
+/Palta.xcworkspace/xcuserdata/
+*.xcuserstate

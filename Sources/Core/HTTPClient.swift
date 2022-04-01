@@ -4,7 +4,7 @@ public final class HTTPClient {
     private let baseURL: URL
     private let urlSession: URLSession
 
-    init(baseURL: URL,
+    public init(baseURL: URL,
          urlSession: URLSession = .init(configuration: URLSessionConfiguration.default)) {
         self.baseURL = baseURL
         self.urlSession = urlSession

@@ -1,6 +1,8 @@
 import Foundation
 import StoreKit
 import Purchases
+import PaltaLibAttribution
+import PaltaLibCore
 
 public final class PaltaPurchases {
     public static let instance: PaltaPurchases = {

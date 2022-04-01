@@ -22,7 +22,7 @@ public struct HTTPRequest: Hashable {
 }
 
 extension HTTPRequest {
-    func urlRequest(url: URL,
+    public func urlRequest(url: URL,
                     headerFields: [String: String] = [:]) -> URLRequest? {
         guard var components = URLComponents(string: url.absoluteString) else {
             return nil

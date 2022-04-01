@@ -1,0 +1,1231 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		111158D827F603D800A41ADA /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111158D527F603D800A41ADA /* HTTPClient.swift */; };
+		111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111158D627F603D800A41ADA /* HTTPRequest.swift */; };
+		111158FC27F6FE5600A41ADA /* PaltaLibCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111158CB27F601FC00A41ADA /* PaltaLibCore.framework */; platformFilter = ios; };
+		1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593527F708E400A41ADA /* PaltaAnalytics+Revenue.swift */; };
+		1111596627F70BE400A41ADA /* PaltaAnalytics+Identify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593827F708E400A41ADA /* PaltaAnalytics+Identify.swift */; };
+		1111596727F70BE400A41ADA /* PaltaAnalytics+Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593727F708E400A41ADA /* PaltaAnalytics+Target.swift */; };
+		1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593427F708E400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift */; };
+		1111596927F70BE400A41ADA /* PaltaAnalytics+UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593927F708E400A41ADA /* PaltaAnalytics+UserProperties.swift */; };
+		1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593627F708E400A41ADA /* PaltaAnalytics.swift */; };
+		1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593327F708E400A41ADA /* PaltaAnalytics+Event.swift */; };
+		1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593B27F708E400A41ADA /* RemoteConfig.swift */; };
+		1111596D27F70BF500A41ADA /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111594027F708E400A41ADA /* NetworkRouter.swift */; };
+		1111596E27F70BF500A41ADA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111592B27F708CA00A41ADA /* Settings.swift */; };
+		1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593E27F708E400A41ADA /* ConfigurationService.swift */; };
+		1111597027F70BF500A41ADA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111594127F708E400A41ADA /* NetworkService.swift */; };
+		1111597127F70C0100A41ADA /* PurchaserInfo+RevenueCat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591427F7086C00A41ADA /* PurchaserInfo+RevenueCat.swift */; };
+		1111597227F70C0100A41ADA /* PurchaseInfoListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591627F7086C00A41ADA /* PurchaseInfoListener.swift */; };
+		1111597327F70C0100A41ADA /* PaltaPurchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591227F7086C00A41ADA /* PaltaPurchases.swift */; };
+		1111597427F70C0100A41ADA /* PaltaPurchases+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591527F7086C00A41ADA /* PaltaPurchases+Configuration.swift */; };
+		1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591027F7086C00A41ADA /* PurchasesError.swift */; };
+		1111597627F70C0100A41ADA /* PurchaserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591127F7086C00A41ADA /* PurchaserInfo.swift */; };
+		1111597727F70C0100A41ADA /* PaltaPurchases+WebSubscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591327F7086C00A41ADA /* PaltaPurchases+WebSubscriptions.swift */; };
+		1111598027F70C1500A41ADA /* PaltaAttribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111595927F7095200A41ADA /* PaltaAttribution.swift */; };
+		1111598127F70C1500A41ADA /* PaltaAttribution+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111595C27F7095200A41ADA /* PaltaAttribution+Configuration.swift */; };
+		1111598227F70C1500A41ADA /* PaltaAppsflyerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111595B27F7095200A41ADA /* PaltaAppsflyerAdapter.swift */; };
+		1111598327F70C1500A41ADA /* PaltaAttribution+DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111595A27F7095200A41ADA /* PaltaAttribution+DeepLink.swift */; };
+		1111598527F70C3700A41ADA /* PaltaLibCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111158CB27F601FC00A41ADA /* PaltaLibCore.framework */; platformFilter = ios; };
+		1111598627F70C3700A41ADA /* PaltaLibCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 111158CB27F601FC00A41ADA /* PaltaLibCore.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1111598A27F70C3D00A41ADA /* PaltaLibCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111158CB27F601FC00A41ADA /* PaltaLibCore.framework */; platformFilter = ios; };
+		1111598B27F70C3D00A41ADA /* PaltaLibCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 111158CB27F601FC00A41ADA /* PaltaLibCore.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1111598F27F70C4200A41ADA /* PaltaLibCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111158CB27F601FC00A41ADA /* PaltaLibCore.framework */; platformFilter = ios; };
+		1111599027F70C4200A41ADA /* PaltaLibCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 111158CB27F601FC00A41ADA /* PaltaLibCore.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1111599A27F70CB000A41ADA /* PaltaLibAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111592327F7089400A41ADA /* PaltaLibAnalytics.framework */; };
+		1111599B27F70CB000A41ADA /* PaltaLibAttribution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111595227F7093500A41ADA /* PaltaLibAttribution.framework */; };
+		1111599C27F70CB000A41ADA /* PaltaLibPayments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111590927F7079A00A41ADA /* PaltaLibPayments.framework */; };
+		1111599E27F70E8B00A41ADA /* SampleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111599D27F70E8B00A41ADA /* SampleTest.swift */; };
+		111159A127F716A900A41ADA /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 111159A027F716A900A41ADA /* Amplitude */; };
+		111159A427F7172600A41ADA /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 111159A327F7172600A41ADA /* Purchases */; };
+		111159A727F7179A00A41ADA /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 111159A627F7179A00A41ADA /* AppsFlyerLib */; };
+		111159A827F7199800A41ADA /* PaltaLibAttribution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111595227F7093500A41ADA /* PaltaLibAttribution.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		111158FD27F6FE5600A41ADA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 111158CA27F601FC00A41ADA;
+			remoteInfo = PaltaLibCore;
+		};
+		1111598727F70C3700A41ADA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 111158CA27F601FC00A41ADA;
+			remoteInfo = PaltaLibCore;
+		};
+		1111598C27F70C3D00A41ADA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 111158CA27F601FC00A41ADA;
+			remoteInfo = PaltaLibCore;
+		};
+		1111599127F70C4200A41ADA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 111158CA27F601FC00A41ADA;
+			remoteInfo = PaltaLibCore;
+		};
+		1111599427F70C5700A41ADA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1111592227F7089400A41ADA;
+			remoteInfo = PaltaLibAnalytics;
+		};
+		1111599627F70C5700A41ADA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1111595127F7093500A41ADA;
+			remoteInfo = PaltaLibAttribution;
+		};
+		1111599827F70C5700A41ADA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1111590827F7079A00A41ADA;
+			remoteInfo = PaltaLibPayments;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1111598927F70C3800A41ADA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1111598627F70C3700A41ADA /* PaltaLibCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111598E27F70C3D00A41ADA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1111598B27F70C3D00A41ADA /* PaltaLibCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111599327F70C4200A41ADA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1111599027F70C4200A41ADA /* PaltaLibCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		111158CB27F601FC00A41ADA /* PaltaLibCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		111158D527F603D800A41ADA /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		111158D627F603D800A41ADA /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		111158F827F6FE5600A41ADA /* PaltaLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaltaLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1111590927F7079A00A41ADA /* PaltaLibPayments.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibPayments.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1111591027F7086C00A41ADA /* PurchasesError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchasesError.swift; sourceTree = "<group>"; };
+		1111591127F7086C00A41ADA /* PurchaserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaserInfo.swift; sourceTree = "<group>"; };
+		1111591227F7086C00A41ADA /* PaltaPurchases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaltaPurchases.swift; sourceTree = "<group>"; };
+		1111591327F7086C00A41ADA /* PaltaPurchases+WebSubscriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaPurchases+WebSubscriptions.swift"; sourceTree = "<group>"; };
+		1111591427F7086C00A41ADA /* PurchaserInfo+RevenueCat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PurchaserInfo+RevenueCat.swift"; sourceTree = "<group>"; };
+		1111591527F7086C00A41ADA /* PaltaPurchases+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaPurchases+Configuration.swift"; sourceTree = "<group>"; };
+		1111591627F7086C00A41ADA /* PurchaseInfoListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseInfoListener.swift; sourceTree = "<group>"; };
+		1111592327F7089400A41ADA /* PaltaLibAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1111592B27F708CA00A41ADA /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		1111593327F708E400A41ADA /* PaltaAnalytics+Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+Event.swift"; sourceTree = "<group>"; };
+		1111593427F708E400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+ConfigurationOptions.swift"; sourceTree = "<group>"; };
+		1111593527F708E400A41ADA /* PaltaAnalytics+Revenue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+Revenue.swift"; sourceTree = "<group>"; };
+		1111593627F708E400A41ADA /* PaltaAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaltaAnalytics.swift; sourceTree = "<group>"; };
+		1111593727F708E400A41ADA /* PaltaAnalytics+Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+Target.swift"; sourceTree = "<group>"; };
+		1111593827F708E400A41ADA /* PaltaAnalytics+Identify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+Identify.swift"; sourceTree = "<group>"; };
+		1111593927F708E400A41ADA /* PaltaAnalytics+UserProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+UserProperties.swift"; sourceTree = "<group>"; };
+		1111593B27F708E400A41ADA /* RemoteConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
+		1111593E27F708E400A41ADA /* ConfigurationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationService.swift; sourceTree = "<group>"; };
+		1111594027F708E400A41ADA /* NetworkRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
+		1111594127F708E400A41ADA /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		1111595227F7093500A41ADA /* PaltaLibAttribution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibAttribution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1111595927F7095200A41ADA /* PaltaAttribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaltaAttribution.swift; sourceTree = "<group>"; };
+		1111595A27F7095200A41ADA /* PaltaAttribution+DeepLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+DeepLink.swift"; sourceTree = "<group>"; };
+		1111595B27F7095200A41ADA /* PaltaAppsflyerAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaltaAppsflyerAdapter.swift; sourceTree = "<group>"; };
+		1111595C27F7095200A41ADA /* PaltaAttribution+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+Configuration.swift"; sourceTree = "<group>"; };
+		1111599D27F70E8B00A41ADA /* SampleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTest.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		111158C827F601FC00A41ADA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		111158F527F6FE5600A41ADA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1111599A27F70CB000A41ADA /* PaltaLibAnalytics.framework in Frameworks */,
+				1111599B27F70CB000A41ADA /* PaltaLibAttribution.framework in Frameworks */,
+				1111599C27F70CB000A41ADA /* PaltaLibPayments.framework in Frameworks */,
+				111158FC27F6FE5600A41ADA /* PaltaLibCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111590627F7079A00A41ADA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				111159A827F7199800A41ADA /* PaltaLibAttribution.framework in Frameworks */,
+				1111598527F70C3700A41ADA /* PaltaLibCore.framework in Frameworks */,
+				111159A427F7172600A41ADA /* Purchases in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111592027F7089400A41ADA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				111159A127F716A900A41ADA /* Amplitude in Frameworks */,
+				1111598A27F70C3D00A41ADA /* PaltaLibCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111594F27F7093500A41ADA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1111598F27F70C4200A41ADA /* PaltaLibCore.framework in Frameworks */,
+				111159A727F7179A00A41ADA /* AppsFlyerLib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		111158B227F6014D00A41ADA = {
+			isa = PBXGroup;
+			children = (
+				111158CC27F601FC00A41ADA /* Sources/Core */,
+				1111590A27F7079A00A41ADA /* Sources/Purchases */,
+				1111592427F7089400A41ADA /* Sources/Analytics */,
+				1111595327F7093500A41ADA /* Sources/Attribution */,
+				111158F927F6FE5600A41ADA /* LibDevelopment/Tests */,
+				111158BD27F6014D00A41ADA /* Products */,
+				1111598427F70C3700A41ADA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		111158BD27F6014D00A41ADA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				111158CB27F601FC00A41ADA /* PaltaLibCore.framework */,
+				111158F827F6FE5600A41ADA /* PaltaLibTests.xctest */,
+				1111590927F7079A00A41ADA /* PaltaLibPayments.framework */,
+				1111592327F7089400A41ADA /* PaltaLibAnalytics.framework */,
+				1111595227F7093500A41ADA /* PaltaLibAttribution.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		111158CC27F601FC00A41ADA /* Sources/Core */ = {
+			isa = PBXGroup;
+			children = (
+				111158D527F603D800A41ADA /* HTTPClient.swift */,
+				111158D627F603D800A41ADA /* HTTPRequest.swift */,
+			);
+			path = Sources/Core;
+			sourceTree = "<group>";
+		};
+		111158F927F6FE5600A41ADA /* LibDevelopment/Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1111599D27F70E8B00A41ADA /* SampleTest.swift */,
+			);
+			path = LibDevelopment/Tests;
+			sourceTree = "<group>";
+		};
+		1111590A27F7079A00A41ADA /* Sources/Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				1111591227F7086C00A41ADA /* PaltaPurchases.swift */,
+				1111591527F7086C00A41ADA /* PaltaPurchases+Configuration.swift */,
+				1111591327F7086C00A41ADA /* PaltaPurchases+WebSubscriptions.swift */,
+				1111591627F7086C00A41ADA /* PurchaseInfoListener.swift */,
+				1111591127F7086C00A41ADA /* PurchaserInfo.swift */,
+				1111591427F7086C00A41ADA /* PurchaserInfo+RevenueCat.swift */,
+				1111591027F7086C00A41ADA /* PurchasesError.swift */,
+			);
+			path = Sources/Purchases;
+			sourceTree = "<group>";
+		};
+		1111592427F7089400A41ADA /* Sources/Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				1111593227F708E400A41ADA /* Engine */,
+				1111593A27F708E400A41ADA /* Models */,
+				1111593C27F708E400A41ADA /* Services */,
+				1111592B27F708CA00A41ADA /* Settings.swift */,
+			);
+			path = Sources/Analytics;
+			sourceTree = "<group>";
+		};
+		1111593227F708E400A41ADA /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				1111593327F708E400A41ADA /* PaltaAnalytics+Event.swift */,
+				1111593427F708E400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift */,
+				1111593527F708E400A41ADA /* PaltaAnalytics+Revenue.swift */,
+				1111593627F708E400A41ADA /* PaltaAnalytics.swift */,
+				1111593727F708E400A41ADA /* PaltaAnalytics+Target.swift */,
+				1111593827F708E400A41ADA /* PaltaAnalytics+Identify.swift */,
+				1111593927F708E400A41ADA /* PaltaAnalytics+UserProperties.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		1111593A27F708E400A41ADA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1111593B27F708E400A41ADA /* RemoteConfig.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1111593C27F708E400A41ADA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1111593D27F708E400A41ADA /* Configuration */,
+				1111593F27F708E400A41ADA /* Networking */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1111593D27F708E400A41ADA /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				1111593E27F708E400A41ADA /* ConfigurationService.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		1111593F27F708E400A41ADA /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1111594027F708E400A41ADA /* NetworkRouter.swift */,
+				1111594127F708E400A41ADA /* NetworkService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		1111595327F7093500A41ADA /* Sources/Attribution */ = {
+			isa = PBXGroup;
+			children = (
+				1111595B27F7095200A41ADA /* PaltaAppsflyerAdapter.swift */,
+				1111595927F7095200A41ADA /* PaltaAttribution.swift */,
+				1111595C27F7095200A41ADA /* PaltaAttribution+Configuration.swift */,
+				1111595A27F7095200A41ADA /* PaltaAttribution+DeepLink.swift */,
+			);
+			path = Sources/Attribution;
+			sourceTree = "<group>";
+		};
+		1111598427F70C3700A41ADA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		111158C627F601FC00A41ADA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111590427F7079A00A41ADA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111591E27F7089400A41ADA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111594D27F7093500A41ADA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		111158CA27F601FC00A41ADA /* PaltaLibCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 111158CF27F601FC00A41ADA /* Build configuration list for PBXNativeTarget "PaltaLibCore" */;
+			buildPhases = (
+				111158C627F601FC00A41ADA /* Headers */,
+				111158C727F601FC00A41ADA /* Sources */,
+				111158C827F601FC00A41ADA /* Frameworks */,
+				111158C927F601FC00A41ADA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PaltaLibCore;
+			productName = Core;
+			productReference = 111158CB27F601FC00A41ADA /* PaltaLibCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		111158F727F6FE5600A41ADA /* PaltaLibTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 111158FF27F6FE5600A41ADA /* Build configuration list for PBXNativeTarget "PaltaLibTests" */;
+			buildPhases = (
+				111158F427F6FE5600A41ADA /* Sources */,
+				111158F527F6FE5600A41ADA /* Frameworks */,
+				111158F627F6FE5600A41ADA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1111599527F70C5700A41ADA /* PBXTargetDependency */,
+				1111599727F70C5700A41ADA /* PBXTargetDependency */,
+				1111599927F70C5700A41ADA /* PBXTargetDependency */,
+				111158FE27F6FE5600A41ADA /* PBXTargetDependency */,
+			);
+			name = PaltaLibTests;
+			productName = PaltaLibTests;
+			productReference = 111158F827F6FE5600A41ADA /* PaltaLibTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1111590827F7079A00A41ADA /* PaltaLibPayments */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1111590D27F7079A00A41ADA /* Build configuration list for PBXNativeTarget "PaltaLibPayments" */;
+			buildPhases = (
+				1111590427F7079A00A41ADA /* Headers */,
+				1111590527F7079A00A41ADA /* Sources */,
+				1111590627F7079A00A41ADA /* Frameworks */,
+				1111590727F7079A00A41ADA /* Resources */,
+				1111598927F70C3800A41ADA /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1111598827F70C3700A41ADA /* PBXTargetDependency */,
+			);
+			name = PaltaLibPayments;
+			packageProductDependencies = (
+				111159A327F7172600A41ADA /* Purchases */,
+			);
+			productName = PaltaLibPayments;
+			productReference = 1111590927F7079A00A41ADA /* PaltaLibPayments.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		1111592227F7089400A41ADA /* PaltaLibAnalytics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1111592727F7089400A41ADA /* Build configuration list for PBXNativeTarget "PaltaLibAnalytics" */;
+			buildPhases = (
+				1111591E27F7089400A41ADA /* Headers */,
+				1111591F27F7089400A41ADA /* Sources */,
+				1111592027F7089400A41ADA /* Frameworks */,
+				1111592127F7089400A41ADA /* Resources */,
+				1111598E27F70C3D00A41ADA /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1111598D27F70C3D00A41ADA /* PBXTargetDependency */,
+			);
+			name = PaltaLibAnalytics;
+			packageProductDependencies = (
+				111159A027F716A900A41ADA /* Amplitude */,
+			);
+			productName = PaltaLibAnalytics;
+			productReference = 1111592327F7089400A41ADA /* PaltaLibAnalytics.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		1111595127F7093500A41ADA /* PaltaLibAttribution */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1111595627F7093500A41ADA /* Build configuration list for PBXNativeTarget "PaltaLibAttribution" */;
+			buildPhases = (
+				1111594D27F7093500A41ADA /* Headers */,
+				1111594E27F7093500A41ADA /* Sources */,
+				1111594F27F7093500A41ADA /* Frameworks */,
+				1111595027F7093500A41ADA /* Resources */,
+				1111599327F70C4200A41ADA /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1111599227F70C4200A41ADA /* PBXTargetDependency */,
+			);
+			name = PaltaLibAttribution;
+			packageProductDependencies = (
+				111159A627F7179A00A41ADA /* AppsFlyerLib */,
+			);
+			productName = PaltaLibAttribution;
+			productReference = 1111595227F7093500A41ADA /* PaltaLibAttribution.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		111158B327F6014D00A41ADA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					111158CA27F601FC00A41ADA = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					111158F727F6FE5600A41ADA = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
+					1111590827F7079A00A41ADA = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					1111592227F7089400A41ADA = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					1111595127F7093500A41ADA = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 111158B627F6014D00A41ADA /* Build configuration list for PBXProject "PaltaLib" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 111158B227F6014D00A41ADA;
+			packageReferences = (
+				1111599F27F716A900A41ADA /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
+				111159A227F7172600A41ADA /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				111159A527F7179A00A41ADA /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
+			);
+			productRefGroup = 111158BD27F6014D00A41ADA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				111158CA27F601FC00A41ADA /* PaltaLibCore */,
+				1111590827F7079A00A41ADA /* PaltaLibPayments */,
+				1111592227F7089400A41ADA /* PaltaLibAnalytics */,
+				1111595127F7093500A41ADA /* PaltaLibAttribution */,
+				111158F727F6FE5600A41ADA /* PaltaLibTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		111158C927F601FC00A41ADA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		111158F627F6FE5600A41ADA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111590727F7079A00A41ADA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111592127F7089400A41ADA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111595027F7093500A41ADA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		111158C727F601FC00A41ADA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */,
+				111158D827F603D800A41ADA /* HTTPClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		111158F427F6FE5600A41ADA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1111599E27F70E8B00A41ADA /* SampleTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111590527F7079A00A41ADA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1111597427F70C0100A41ADA /* PaltaPurchases+Configuration.swift in Sources */,
+				1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */,
+				1111597227F70C0100A41ADA /* PurchaseInfoListener.swift in Sources */,
+				1111597727F70C0100A41ADA /* PaltaPurchases+WebSubscriptions.swift in Sources */,
+				1111597327F70C0100A41ADA /* PaltaPurchases.swift in Sources */,
+				1111597127F70C0100A41ADA /* PurchaserInfo+RevenueCat.swift in Sources */,
+				1111597627F70C0100A41ADA /* PurchaserInfo.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111591F27F7089400A41ADA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1111596927F70BE400A41ADA /* PaltaAnalytics+UserProperties.swift in Sources */,
+				1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */,
+				1111596727F70BE400A41ADA /* PaltaAnalytics+Target.swift in Sources */,
+				1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */,
+				1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */,
+				1111596E27F70BF500A41ADA /* Settings.swift in Sources */,
+				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
+				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,
+				1111596627F70BE400A41ADA /* PaltaAnalytics+Identify.swift in Sources */,
+				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
+				1111597027F70BF500A41ADA /* NetworkService.swift in Sources */,
+				1111596D27F70BF500A41ADA /* NetworkRouter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1111594E27F7093500A41ADA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1111598327F70C1500A41ADA /* PaltaAttribution+DeepLink.swift in Sources */,
+				1111598027F70C1500A41ADA /* PaltaAttribution.swift in Sources */,
+				1111598127F70C1500A41ADA /* PaltaAttribution+Configuration.swift in Sources */,
+				1111598227F70C1500A41ADA /* PaltaAppsflyerAdapter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		111158FE27F6FE5600A41ADA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 111158CA27F601FC00A41ADA /* PaltaLibCore */;
+			targetProxy = 111158FD27F6FE5600A41ADA /* PBXContainerItemProxy */;
+		};
+		1111598827F70C3700A41ADA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 111158CA27F601FC00A41ADA /* PaltaLibCore */;
+			targetProxy = 1111598727F70C3700A41ADA /* PBXContainerItemProxy */;
+		};
+		1111598D27F70C3D00A41ADA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 111158CA27F601FC00A41ADA /* PaltaLibCore */;
+			targetProxy = 1111598C27F70C3D00A41ADA /* PBXContainerItemProxy */;
+		};
+		1111599227F70C4200A41ADA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 111158CA27F601FC00A41ADA /* PaltaLibCore */;
+			targetProxy = 1111599127F70C4200A41ADA /* PBXContainerItemProxy */;
+		};
+		1111599527F70C5700A41ADA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1111592227F7089400A41ADA /* PaltaLibAnalytics */;
+			targetProxy = 1111599427F70C5700A41ADA /* PBXContainerItemProxy */;
+		};
+		1111599727F70C5700A41ADA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1111595127F7093500A41ADA /* PaltaLibAttribution */;
+			targetProxy = 1111599627F70C5700A41ADA /* PBXContainerItemProxy */;
+		};
+		1111599927F70C5700A41ADA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1111590827F7079A00A41ADA /* PaltaLibPayments */;
+			targetProxy = 1111599827F70C5700A41ADA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		111158C127F6014D00A41ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		111158C227F6014D00A41ADA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		111158D027F601FC00A41ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3NRJ5W5TPS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.paltalib.Core;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		111158D127F601FC00A41ADA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3NRJ5W5TPS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.paltalib.Core;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1111590027F6FE5600A41ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3NRJ5W5TPS;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.paltalib.PaltaLibTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1111590127F6FE5600A41ADA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3NRJ5W5TPS;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.paltalib.PaltaLibTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1111590E27F7079A00A41ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3NRJ5W5TPS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.paltalib.PaltaLibPayments;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1111590F27F7079A00A41ADA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3NRJ5W5TPS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.paltalib.PaltaLibPayments;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1111592827F7089400A41ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3NRJ5W5TPS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.paltalib.PaltaLibAnalytics;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1111592927F7089400A41ADA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3NRJ5W5TPS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.paltalib.PaltaLibAnalytics;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1111595727F7093500A41ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3NRJ5W5TPS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.paltalib.PaltaLibAttribution;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1111595827F7093500A41ADA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 3NRJ5W5TPS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.paltalib.PaltaLibAttribution;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		111158B627F6014D00A41ADA /* Build configuration list for PBXProject "PaltaLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				111158C127F6014D00A41ADA /* Debug */,
+				111158C227F6014D00A41ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		111158CF27F601FC00A41ADA /* Build configuration list for PBXNativeTarget "PaltaLibCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				111158D027F601FC00A41ADA /* Debug */,
+				111158D127F601FC00A41ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		111158FF27F6FE5600A41ADA /* Build configuration list for PBXNativeTarget "PaltaLibTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1111590027F6FE5600A41ADA /* Debug */,
+				1111590127F6FE5600A41ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1111590D27F7079A00A41ADA /* Build configuration list for PBXNativeTarget "PaltaLibPayments" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1111590E27F7079A00A41ADA /* Debug */,
+				1111590F27F7079A00A41ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1111592727F7089400A41ADA /* Build configuration list for PBXNativeTarget "PaltaLibAnalytics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1111592827F7089400A41ADA /* Debug */,
+				1111592927F7089400A41ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1111595627F7093500A41ADA /* Build configuration list for PBXNativeTarget "PaltaLibAttribution" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1111595727F7093500A41ADA /* Debug */,
+				1111595827F7093500A41ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1111599F27F716A900A41ADA /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-iOS.git";
+			requirement = {
+				kind = exactVersion;
+				version = 8.10.0;
+			};
+		};
+		111159A227F7172600A41ADA /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.14.1;
+			};
+		};
+		111159A527F7179A00A41ADA /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		111159A027F716A900A41ADA /* Amplitude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1111599F27F716A900A41ADA /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
+			productName = Amplitude;
+		};
+		111159A327F7172600A41ADA /* Purchases */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 111159A227F7172600A41ADA /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = Purchases;
+		};
+		111159A627F7179A00A41ADA /* AppsFlyerLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 111159A527F7179A00A41ADA /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
+			productName = AppsFlyerLib;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 111158B327F6014D00A41ADA /* Project object */;
+}

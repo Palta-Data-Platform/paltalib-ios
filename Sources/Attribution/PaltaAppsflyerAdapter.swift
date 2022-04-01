@@ -2,15 +2,15 @@ import Foundation
 import AppsFlyerLib
 import UIKit
 
-protocol PaltaAppsflyerAdapterDelegate: AnyObject {
+public protocol PaltaAppsflyerAdapterDelegate: AnyObject {
     func didReceiveConversion(_ adapter: PaltaAppsflyerAdapter, with result: Result<[AnyHashable: Any], Error>)
     func didReceiveAttributionInfo(_ adapter: PaltaAppsflyerAdapter, with result: Result<[AnyHashable: Any], Error>)
     func didReceiveDeepLink(_ attribution: PaltaAppsflyerAdapter, deepLink: PaltaAttribution.DeepLink)
 }
 
-final class PaltaAppsflyerAdapter: NSObject {
+public final class PaltaAppsflyerAdapter: NSObject {
     private static let _sharedInstance = PaltaAppsflyerAdapter(appsflyerInstance: AppsFlyerLib.shared())
-    static var sharedInstance: PaltaAppsflyerAdapter {
+    public static var sharedInstance: PaltaAppsflyerAdapter {
         defer {
             if _sharedInstance.isInitialSetupFinished {
                 _sharedInstance.checkAppsflyerDelegateWasNotStolen()
@@ -31,7 +31,7 @@ final class PaltaAppsflyerAdapter: NSObject {
         super.init()
     }
 
-    var appsflyerUID: String {
+    public var appsflyerUID: String {
         return appsflyerInstance.getAppsFlyerUID()
     }
 
@@ -86,25 +86,25 @@ final class PaltaAppsflyerAdapter: NSObject {
 }
 
 extension PaltaAppsflyerAdapter: AppsFlyerLibDelegate {
-    func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {
+    public func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {
         delegate?.didReceiveConversion(self, with: .success(conversionInfo))
     }
 
-    func onConversionDataFail(_ error: Error) {
+    public func onConversionDataFail(_ error: Error) {
         delegate?.didReceiveConversion(self, with: .failure(error))
     }
 
-    func onAppOpenAttribution(_ attributionData: [AnyHashable: Any]) {
+    public func onAppOpenAttribution(_ attributionData: [AnyHashable: Any]) {
         delegate?.didReceiveAttributionInfo(self, with: .success(attributionData))
     }
 
-    func onAppOpenAttributionFailure(_ error: Error) {
+    public func onAppOpenAttributionFailure(_ error: Error) {
         delegate?.didReceiveAttributionInfo(self, with: .failure(error))
     }
 }
 
 extension PaltaAppsflyerAdapter: DeepLinkDelegate {
-    func didResolveDeepLink(_ result: DeepLinkResult) {
+    public func didResolveDeepLink(_ result: DeepLinkResult) {
         switch result.status {
         case .notFound:
             print("Deep link not found")
