@@ -8,7 +8,7 @@
 import Foundation
 @testable import PaltaLibAnalytics
 
-final class TimerMock: Timer {
+final class TimerMock: PaltaLibAnalytics.Timer {
     var passedInterval: TimeInterval?
 
     private var dispatchQueue: DispatchQueue?

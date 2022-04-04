@@ -48,24 +48,25 @@
 		111159A827F7199800A41ADA /* PaltaLibAttribution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111595227F7093500A41ADA /* PaltaLibAttribution.framework */; };
 		111159AA27F71CDB00A41ADA /* CodableDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159A927F71CDB00A41ADA /* CodableDictionary.swift */; };
 		111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */; };
-		111159B127F72D5E00A41ADA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159AE27F72D5E00A41ADA /* Event.swift */; };
-		111159B727F73F8400A41ADA /* EventQueueCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159B627F73F8400A41ADA /* EventQueueCore.swift */; };
-		111159B927F73F9000A41ADA /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159B827F73F9000A41ADA /* Timer.swift */; };
 		111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BA27F76AEF00A41ADA /* EventQueueCoreTests.swift */; };
 		111159BD27F7723700A41ADA /* TimerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BC27F7723700A41ADA /* TimerMock.swift */; };
 		111159BF27F773E900A41ADA /* EventMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BE27F773E900A41ADA /* EventMock.swift */; };
 		11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3127FAF23F00A41ADA /* TimerTests.swift */; };
-		11115A3427FAFA7A00A41ADA /* EventStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3327FAFA7A00A41ADA /* EventStorage.swift */; };
 		11115A3627FB00A500A41ADA /* FileEventStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3527FB00A500A41ADA /* FileEventStorageTests.swift */; };
-		11115A3A27FB172D00A41ADA /* EventQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3927FB172D00A41ADA /* EventQueue.swift */; };
-		11115A3C27FB176700A41ADA /* EventSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3B27FB176700A41ADA /* EventSender.swift */; };
-		11115A3E27FB18B000A41ADA /* EventComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3D27FB18B000A41ADA /* EventComposer.swift */; };
 		11115A4027FB740B00A41ADA /* EventStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3F27FB740B00A41ADA /* EventStorageMock.swift */; };
 		11115A4227FB74B000A41ADA /* EventSenderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A4127FB74B000A41ADA /* EventSenderMock.swift */; };
 		11115A4427FB751E00A41ADA /* EventComposerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A4327FB751E00A41ADA /* EventComposerMock.swift */; };
 		11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A4527FB757400A41ADA /* EventQueueTests.swift */; };
 		11115A4827FB75CD00A41ADA /* EventQueueCoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A4727FB75CD00A41ADA /* EventQueueCoreMock.swift */; };
 		11115A4A27FB7D0000A41ADA /* EventSendErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A4927FB7D0000A41ADA /* EventSendErrorTests.swift */; };
+		11115A4B27FB7E5700A41ADA /* EventComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3D27FB18B000A41ADA /* EventComposer.swift */; };
+		11115A4C27FB7E6000A41ADA /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159B827F73F9000A41ADA /* Timer.swift */; };
+		11115A4D27FB7E6B00A41ADA /* EventQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3927FB172D00A41ADA /* EventQueue.swift */; };
+		11115A4E27FB7E6B00A41ADA /* EventQueueCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159B627F73F8400A41ADA /* EventQueueCore.swift */; };
+		11115A4F27FB7E6B00A41ADA /* EventSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3B27FB176700A41ADA /* EventSender.swift */; };
+		11115A5027FB7E6B00A41ADA /* EventStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3327FAFA7A00A41ADA /* EventStorage.swift */; };
+		11115A5127FB7E6B00A41ADA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159AE27F72D5E00A41ADA /* Event.swift */; };
+		11115A5327FB7FAD00A41ADA /* EventComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A5227FB7FAD00A41ADA /* EventComposerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +208,7 @@
 		11115A4527FB757400A41ADA /* EventQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueTests.swift; sourceTree = "<group>"; };
 		11115A4727FB75CD00A41ADA /* EventQueueCoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueCoreMock.swift; sourceTree = "<group>"; };
 		11115A4927FB7D0000A41ADA /* EventSendErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSendErrorTests.swift; sourceTree = "<group>"; };
+		11115A5227FB7FAD00A41ADA /* EventComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +420,7 @@
 				11115A3127FAF23F00A41ADA /* TimerTests.swift */,
 				11115A4527FB757400A41ADA /* EventQueueTests.swift */,
 				11115A4927FB7D0000A41ADA /* EventSendErrorTests.swift */,
+				11115A5227FB7FAD00A41ADA /* EventComposerTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -686,20 +689,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11115A3A27FB172D00A41ADA /* EventQueue.swift in Sources */,
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
 				11115A4A27FB7D0000A41ADA /* EventSendErrorTests.swift in Sources */,
-				111159B127F72D5E00A41ADA /* Event.swift in Sources */,
-				111159B927F73F9000A41ADA /* Timer.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
-				11115A3E27FB18B000A41ADA /* EventComposer.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
 				11115A4427FB751E00A41ADA /* EventComposerMock.swift in Sources */,
-				111159B727F73F8400A41ADA /* EventQueueCore.swift in Sources */,
-				11115A3427FAFA7A00A41ADA /* EventStorage.swift in Sources */,
 				11115A4027FB740B00A41ADA /* EventStorageMock.swift in Sources */,
-				11115A3C27FB176700A41ADA /* EventSender.swift in Sources */,
 				111159BF27F773E900A41ADA /* EventMock.swift in Sources */,
+				11115A5327FB7FAD00A41ADA /* EventComposerTests.swift in Sources */,
 				11115A3627FB00A500A41ADA /* FileEventStorageTests.swift in Sources */,
 				111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */,
 				11115A4227FB74B000A41ADA /* EventSenderMock.swift in Sources */,
@@ -727,17 +724,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				1111596927F70BE400A41ADA /* PaltaAnalytics+UserProperties.swift in Sources */,
+				11115A4D27FB7E6B00A41ADA /* EventQueue.swift in Sources */,
 				1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */,
 				1111596727F70BE400A41ADA /* PaltaAnalytics+Target.swift in Sources */,
+				11115A5027FB7E6B00A41ADA /* EventStorage.swift in Sources */,
 				1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */,
+				11115A5127FB7E6B00A41ADA /* Event.swift in Sources */,
+				11115A4B27FB7E5700A41ADA /* EventComposer.swift in Sources */,
 				1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */,
 				1111596E27F70BF500A41ADA /* Settings.swift in Sources */,
 				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
 				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,
+				11115A4C27FB7E6000A41ADA /* Timer.swift in Sources */,
 				1111596627F70BE400A41ADA /* PaltaAnalytics+Identify.swift in Sources */,
 				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
 				1111597027F70BF500A41ADA /* NetworkService.swift in Sources */,
+				11115A4F27FB7E6B00A41ADA /* EventSender.swift in Sources */,
 				1111596D27F70BF500A41ADA /* NetworkRouter.swift in Sources */,
+				11115A4E27FB7E6B00A41ADA /* EventQueueCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

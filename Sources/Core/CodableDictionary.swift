@@ -25,7 +25,7 @@ public struct CodableDictionary: Hashable {
         }
     }
 
-    init(_ dictionary: [String: Any]) {
+    public init(_ dictionary: [String: Any]) {
         self.dictionary = dictionary.compactMapValues(Content.init)
     }
 }

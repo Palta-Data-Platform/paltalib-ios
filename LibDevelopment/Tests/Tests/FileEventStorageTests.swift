@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import PaltaLibAnalytics
 
 final class FileEventStorageTests: XCTestCase {
     override func setUpWithError() throws {

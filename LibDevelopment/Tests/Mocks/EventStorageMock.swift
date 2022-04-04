@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import PaltaLibAnalytics
 
 final class EventStorageMock: EventStorage {
     var addedEvents: [Event] = []

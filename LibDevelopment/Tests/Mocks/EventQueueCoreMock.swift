@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import PaltaLibAnalytics
 
 final class EventQueueCoreMock: EventQueueCore {
     var sendHandler: UploadHandler?

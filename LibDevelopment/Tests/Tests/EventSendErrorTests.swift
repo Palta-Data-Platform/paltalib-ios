@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import PaltaLibAnalytics
 
 final class EventSendErrorTests: XCTestCase {
     func testTimeout() {

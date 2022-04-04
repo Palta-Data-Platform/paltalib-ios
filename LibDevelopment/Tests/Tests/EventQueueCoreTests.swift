@@ -7,6 +7,7 @@
 
 import Foundation
 import XCTest
+@testable import PaltaLibAnalytics
 
 final class EventQueueCoreTests: XCTestCase {
     private var timerMock: TimerMock!

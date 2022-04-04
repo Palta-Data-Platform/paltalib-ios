@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import PaltaLibAnalytics
 
 final class EventSenderMock: EventSender {
     var sentEvents: [Event]?
