@@ -55,6 +55,7 @@
 		111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BA27F76AEF00A41ADA /* EventQueueCoreTests.swift */; };
 		111159BD27F7723700A41ADA /* TimerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BC27F7723700A41ADA /* TimerMock.swift */; };
 		111159BF27F773E900A41ADA /* EventMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BE27F773E900A41ADA /* EventMock.swift */; };
+		11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3127FAF23F00A41ADA /* TimerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +186,7 @@
 		111159BA27F76AEF00A41ADA /* EventQueueCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueCoreTests.swift; sourceTree = "<group>"; };
 		111159BC27F7723700A41ADA /* TimerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerMock.swift; sourceTree = "<group>"; };
 		111159BE27F773E900A41ADA /* EventMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMock.swift; sourceTree = "<group>"; };
+		11115A3127FAF23F00A41ADA /* TimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +280,7 @@
 				1111599D27F70E8B00A41ADA /* SampleTest.swift */,
 				111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */,
 				111159BA27F76AEF00A41ADA /* EventQueueCoreTests.swift */,
+				11115A3127FAF23F00A41ADA /* TimerTests.swift */,
 				111159BC27F7723700A41ADA /* TimerMock.swift */,
 				111159BE27F773E900A41ADA /* EventMock.swift */,
 			);
@@ -645,6 +648,7 @@
 				111159B727F73F8400A41ADA /* EventQueueCore.swift in Sources */,
 				111159BF27F773E900A41ADA /* EventMock.swift in Sources */,
 				111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */,
+				11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

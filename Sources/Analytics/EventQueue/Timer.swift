@@ -20,5 +20,20 @@ struct TimerToken {
 }
 
 protocol Timer {
+    @discardableResult
     func scheduleTimer(timeInterval: TimeInterval, on dispatchQueue: DispatchQueue, completion: @escaping () -> Void) -> TimerToken
+}
+
+final class TimerImpl: Timer {
+    @discardableResult
+    func scheduleTimer(
+        timeInterval: TimeInterval,
+        on dispatchQueue: DispatchQueue,
+        completion: @escaping () -> Void
+    ) -> TimerToken {
+        let workItem = DispatchWorkItem(block: completion)
+        dispatchQueue.asyncAfter(deadline: .now() + timeInterval, execute: workItem)
+
+        return TimerToken(cancelHandler: { workItem.cancel() })
+    }
 }
