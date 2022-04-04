@@ -7,3 +7,5 @@ node_modules
 /Example App/PaltaExample/PaltaExample.xcodeproj/xcuserdata/
 /Palta.xcworkspace/xcuserdata/
 *.xcuserstate
+xcuserdata
+UserInterfaceState.xcuserstate

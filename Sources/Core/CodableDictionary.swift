@@ -218,3 +218,18 @@ extension CFNumberType {
         }
     }
 }
+
+extension CodableDictionary: ExpressibleByDictionaryLiteral {
+    public typealias Key = String
+    public typealias Value = Any
+
+    public init(dictionaryLiteral elements: (String, Any)...) {
+        var dict: [String: Any] = [:]
+        dict.reserveCapacity(elements.count)
+        elements.forEach {
+            dict[$0] = $1
+        }
+
+        self.init(dict)
+    }
+}

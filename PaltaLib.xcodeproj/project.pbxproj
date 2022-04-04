@@ -49,6 +49,12 @@
 		111159A827F7199800A41ADA /* PaltaLibAttribution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111595227F7093500A41ADA /* PaltaLibAttribution.framework */; };
 		111159AA27F71CDB00A41ADA /* CodableDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159A927F71CDB00A41ADA /* CodableDictionary.swift */; };
 		111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */; };
+		111159B127F72D5E00A41ADA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159AE27F72D5E00A41ADA /* Event.swift */; };
+		111159B727F73F8400A41ADA /* EventQueueCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159B627F73F8400A41ADA /* EventQueueCore.swift */; };
+		111159B927F73F9000A41ADA /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159B827F73F9000A41ADA /* Timer.swift */; };
+		111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BA27F76AEF00A41ADA /* EventQueueCoreTests.swift */; };
+		111159BD27F7723700A41ADA /* TimerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BC27F7723700A41ADA /* TimerMock.swift */; };
+		111159BF27F773E900A41ADA /* EventMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BE27F773E900A41ADA /* EventMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +179,12 @@
 		1111599D27F70E8B00A41ADA /* SampleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTest.swift; sourceTree = "<group>"; };
 		111159A927F71CDB00A41ADA /* CodableDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableDictionary.swift; sourceTree = "<group>"; };
 		111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDictionaryTests.swift; sourceTree = "<group>"; };
+		111159AE27F72D5E00A41ADA /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		111159B627F73F8400A41ADA /* EventQueueCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventQueueCore.swift; sourceTree = "<group>"; };
+		111159B827F73F9000A41ADA /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		111159BA27F76AEF00A41ADA /* EventQueueCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueCoreTests.swift; sourceTree = "<group>"; };
+		111159BC27F7723700A41ADA /* TimerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerMock.swift; sourceTree = "<group>"; };
+		111159BE27F773E900A41ADA /* EventMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +277,9 @@
 			children = (
 				1111599D27F70E8B00A41ADA /* SampleTest.swift */,
 				111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */,
+				111159BA27F76AEF00A41ADA /* EventQueueCoreTests.swift */,
+				111159BC27F7723700A41ADA /* TimerMock.swift */,
+				111159BE27F773E900A41ADA /* EventMock.swift */,
 			);
 			path = LibDevelopment/Tests;
 			sourceTree = "<group>";
@@ -286,6 +301,7 @@
 		1111592427F7089400A41ADA /* Sources/Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				111159AD27F72D5E00A41ADA /* EventQueue */,
 				1111593227F708E400A41ADA /* Engine */,
 				1111593A27F708E400A41ADA /* Models */,
 				1111593C27F708E400A41ADA /* Services */,
@@ -358,6 +374,16 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		111159AD27F72D5E00A41ADA /* EventQueue */ = {
+			isa = PBXGroup;
+			children = (
+				111159AE27F72D5E00A41ADA /* Event.swift */,
+				111159B627F73F8400A41ADA /* EventQueueCore.swift */,
+				111159B827F73F9000A41ADA /* Timer.swift */,
+			);
+			path = EventQueue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -612,7 +638,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
+				111159B127F72D5E00A41ADA /* Event.swift in Sources */,
 				1111599E27F70E8B00A41ADA /* SampleTest.swift in Sources */,
+				111159B927F73F9000A41ADA /* Timer.swift in Sources */,
+				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
+				111159B727F73F8400A41ADA /* EventQueueCore.swift in Sources */,
+				111159BF27F773E900A41ADA /* EventMock.swift in Sources */,
+				111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
