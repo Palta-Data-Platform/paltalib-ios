@@ -56,6 +56,8 @@
 		111159BD27F7723700A41ADA /* TimerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BC27F7723700A41ADA /* TimerMock.swift */; };
 		111159BF27F773E900A41ADA /* EventMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159BE27F773E900A41ADA /* EventMock.swift */; };
 		11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3127FAF23F00A41ADA /* TimerTests.swift */; };
+		11115A3427FAFA7A00A41ADA /* EventStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3327FAFA7A00A41ADA /* EventStorage.swift */; };
+		11115A3627FB00A500A41ADA /* FileEventStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3527FB00A500A41ADA /* FileEventStorageTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +189,8 @@
 		111159BC27F7723700A41ADA /* TimerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerMock.swift; sourceTree = "<group>"; };
 		111159BE27F773E900A41ADA /* EventMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMock.swift; sourceTree = "<group>"; };
 		11115A3127FAF23F00A41ADA /* TimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTests.swift; sourceTree = "<group>"; };
+		11115A3327FAFA7A00A41ADA /* EventStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorage.swift; sourceTree = "<group>"; };
+		11115A3527FB00A500A41ADA /* FileEventStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEventStorageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +284,7 @@
 				1111599D27F70E8B00A41ADA /* SampleTest.swift */,
 				111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */,
 				111159BA27F76AEF00A41ADA /* EventQueueCoreTests.swift */,
+				11115A3527FB00A500A41ADA /* FileEventStorageTests.swift */,
 				11115A3127FAF23F00A41ADA /* TimerTests.swift */,
 				111159BC27F7723700A41ADA /* TimerMock.swift */,
 				111159BE27F773E900A41ADA /* EventMock.swift */,
@@ -385,6 +390,7 @@
 				111159AE27F72D5E00A41ADA /* Event.swift */,
 				111159B627F73F8400A41ADA /* EventQueueCore.swift */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
+				11115A3327FAFA7A00A41ADA /* EventStorage.swift */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -646,7 +652,9 @@
 				111159B927F73F9000A41ADA /* Timer.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
 				111159B727F73F8400A41ADA /* EventQueueCore.swift in Sources */,
+				11115A3427FAFA7A00A41ADA /* EventStorage.swift in Sources */,
 				111159BF27F773E900A41ADA /* EventMock.swift in Sources */,
+				11115A3627FB00A500A41ADA /* FileEventStorageTests.swift in Sources */,
 				111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */,
 				11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */,
 			);

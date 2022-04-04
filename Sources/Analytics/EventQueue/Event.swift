@@ -8,7 +8,7 @@
 import Foundation
 import PaltaLibCore
 
-struct Event: Codable {
+struct Event: Codable, Hashable {
     enum CodingKeys: String, CodingKey {
         case eventType = "event_type"
         case eventProperties = "event_properties"

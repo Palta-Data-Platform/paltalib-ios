@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CodableDictionary: Equatable {
+public struct CodableDictionary: Hashable {
     var dictionary: [String: Content]
 
     subscript(_ key: String) -> Any? {
@@ -74,7 +74,7 @@ extension CodableDictionary: Codable {
 }
 
 extension CodableDictionary {
-    enum Content: Codable, Equatable {
+    enum Content: Codable, Hashable {
         case integer(Int64)
         case double(Double)
         case string(String)
