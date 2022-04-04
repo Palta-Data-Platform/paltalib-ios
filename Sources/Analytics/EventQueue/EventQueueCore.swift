@@ -15,7 +15,7 @@ struct EventQueueConfig {
     let maxConcurrentOperations: Int
 }
 
-protocol EventQueueCore {
+protocol EventQueueCore: AnyObject {
     typealias UploadHandler = (ArraySlice<Event>, @escaping () -> Void) -> Void
     typealias RemoveHandler = (ArraySlice<Event>) -> Void
 
