@@ -18,7 +18,7 @@ extension Event {
             groups: [:],
             groupProperties: [:],
             sessionId: 1,
-            timestamp: timestamp ?? Int(Date().timeIntervalSince1970 * 1000)
+            timestamp: timestamp ?? .currentTimestamp()
         )
     }
 }

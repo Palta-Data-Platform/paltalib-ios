@@ -12,6 +12,7 @@ protocol EventComposer {
     func composeEvent(
         eventType: String,
         eventProperties: [String: Any],
+        apiProperties: [String: Any],
         groups: [String: Any],
         timestamp: Int?
     ) -> Event
@@ -21,15 +22,16 @@ final class EventComposerImpl: EventComposer {
     func composeEvent(
         eventType: String,
         eventProperties: [String: Any],
+        apiProperties: [String: Any],
         groups: [String: Any],
         timestamp: Int?
     ) -> Event {
-        let timestamp = timestamp ?? Int(Date().timeIntervalSince1970 * 1000)
+        let timestamp = timestamp ?? .currentTimestamp()
 
         return Event(
             eventType: eventType,
             eventProperties: CodableDictionary(eventProperties),
-            apiProperties: [:],
+            apiProperties: CodableDictionary(apiProperties),
             userProperties: [:],
             groups: CodableDictionary(groups),
             groupProperties: [:],

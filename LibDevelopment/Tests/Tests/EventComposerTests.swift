@@ -16,13 +16,15 @@ final class EventComposerTests: XCTestCase {
         let event = composer.composeEvent(
             eventType: "someType",
             eventProperties: ["prop": "A"],
-            groups: ["group": "B"],
+            apiProperties: ["api": "B"],
+            groups: ["group": "C"],
             timestamp: 11
         )
 
         XCTAssertEqual(event.eventType, "someType")
         XCTAssertEqual(event.eventProperties, ["prop": "A"])
-        XCTAssertEqual(event.groups, ["group": "B"])
+        XCTAssertEqual(event.apiProperties, ["api": "B"])
+        XCTAssertEqual(event.groups, ["group": "C"])
         XCTAssertEqual(event.timestamp, 11)
     }
 
@@ -32,10 +34,11 @@ final class EventComposerTests: XCTestCase {
         let event = composer.composeEvent(
             eventType: "someType",
             eventProperties: [:],
+            apiProperties: [:],
             groups: [:],
             timestamp: nil
         )
 
-        XCTAssert(abs(event.timestamp - Int(Date().timeIntervalSince1970 * 1000)) < 2)
+        XCTAssert(abs(event.timestamp - .currentTimestamp()) < 2)
     }
 }

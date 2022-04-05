@@ -46,6 +46,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(composerMock.eventProperties as? [String: String], ["prop": "1"])
         XCTAssertEqual(composerMock.groups as? [String: Int], ["group": 2])
         XCTAssertEqual(composerMock.timestamp, 22)
+        XCTAssert(composerMock.apiProperties?.isEmpty == true)
 
         XCTAssertEqual(coreMock.addedEvents, [.mock()])
         XCTAssertEqual(storageMock.addedEvents, [.mock()])

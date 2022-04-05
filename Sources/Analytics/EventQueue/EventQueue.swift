@@ -39,6 +39,7 @@ final class EventQueue {
         let event = eventComposer.composeEvent(
             eventType: eventType,
             eventProperties: eventProperties,
+            apiProperties: [:],
             groups: groups,
             timestamp: timestamp
         )

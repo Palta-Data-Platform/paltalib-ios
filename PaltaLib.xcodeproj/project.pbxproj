@@ -67,6 +67,10 @@
 		11115A5027FB7E6B00A41ADA /* EventStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A3327FAFA7A00A41ADA /* EventStorage.swift */; };
 		11115A5127FB7E6B00A41ADA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159AE27F72D5E00A41ADA /* Event.swift */; };
 		11115A5327FB7FAD00A41ADA /* EventComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A5227FB7FAD00A41ADA /* EventComposerTests.swift */; };
+		11115A5827FC59BC00A41ADA /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A5427FC4FA200A41ADA /* SessionManager.swift */; };
+		11115A5927FC59C900A41ADA /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A5627FC503A00A41ADA /* Session.swift */; };
+		11115A5C27FC5A3600A41ADA /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A5A27FC59E700A41ADA /* Timestamp.swift */; };
+		11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A5D27FC789D00A41ADA /* SessionManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +213,10 @@
 		11115A4727FB75CD00A41ADA /* EventQueueCoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueCoreMock.swift; sourceTree = "<group>"; };
 		11115A4927FB7D0000A41ADA /* EventSendErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSendErrorTests.swift; sourceTree = "<group>"; };
 		11115A5227FB7FAD00A41ADA /* EventComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposerTests.swift; sourceTree = "<group>"; };
+		11115A5427FC4FA200A41ADA /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		11115A5627FC503A00A41ADA /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		11115A5A27FC59E700A41ADA /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
+		11115A5D27FC789D00A41ADA /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +356,9 @@
 		1111593A27F708E400A41ADA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				111159AE27F72D5E00A41ADA /* Event.swift */,
+				11115A5627FC503A00A41ADA /* Session.swift */,
+				11115A5A27FC59E700A41ADA /* Timestamp.swift */,
 				1111593B27F708E400A41ADA /* RemoteConfig.swift */,
 			);
 			path = Models;
@@ -400,13 +411,13 @@
 		111159AD27F72D5E00A41ADA /* EventQueue */ = {
 			isa = PBXGroup;
 			children = (
-				111159AE27F72D5E00A41ADA /* Event.swift */,
 				11115A3927FB172D00A41ADA /* EventQueue.swift */,
 				111159B627F73F8400A41ADA /* EventQueueCore.swift */,
 				11115A3327FAFA7A00A41ADA /* EventStorage.swift */,
 				11115A3B27FB176700A41ADA /* EventSender.swift */,
 				11115A3D27FB18B000A41ADA /* EventComposer.swift */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
+				11115A5427FC4FA200A41ADA /* SessionManager.swift */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -421,6 +432,7 @@
 				11115A4527FB757400A41ADA /* EventQueueTests.swift */,
 				11115A4927FB7D0000A41ADA /* EventSendErrorTests.swift */,
 				11115A5227FB7FAD00A41ADA /* EventComposerTests.swift */,
+				11115A5D27FC789D00A41ADA /* SessionManagerTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -691,6 +703,7 @@
 			files = (
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
 				11115A4A27FB7D0000A41ADA /* EventSendErrorTests.swift in Sources */,
+				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
 				11115A4427FB751E00A41ADA /* EventComposerMock.swift in Sources */,
@@ -737,10 +750,13 @@
 				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,
 				11115A4C27FB7E6000A41ADA /* Timer.swift in Sources */,
 				1111596627F70BE400A41ADA /* PaltaAnalytics+Identify.swift in Sources */,
+				11115A5C27FC5A3600A41ADA /* Timestamp.swift in Sources */,
+				11115A5927FC59C900A41ADA /* Session.swift in Sources */,
 				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
 				1111597027F70BF500A41ADA /* NetworkService.swift in Sources */,
 				11115A4F27FB7E6B00A41ADA /* EventSender.swift in Sources */,
 				1111596D27F70BF500A41ADA /* NetworkRouter.swift in Sources */,
+				11115A5827FC59BC00A41ADA /* SessionManager.swift in Sources */,
 				11115A4E27FB7E6B00A41ADA /* EventQueueCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
