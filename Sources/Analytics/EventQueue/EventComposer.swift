@@ -19,6 +19,12 @@ protocol EventComposer {
 }
 
 final class EventComposerImpl: EventComposer {
+    private let sessionIdProvider: SessionIdProvider
+
+    init(sessionIdProvider: SessionIdProvider) {
+        self.sessionIdProvider = sessionIdProvider
+    }
+
     func composeEvent(
         eventType: String,
         eventProperties: [String: Any],
@@ -35,7 +41,7 @@ final class EventComposerImpl: EventComposer {
             userProperties: [:],
             groups: CodableDictionary(groups),
             groupProperties: [:],
-            sessionId: 0,
+            sessionId: sessionIdProvider.sessionId,
             timestamp: timestamp
         )
     }

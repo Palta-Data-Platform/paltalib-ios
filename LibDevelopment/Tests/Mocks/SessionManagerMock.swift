@@ -8,7 +8,8 @@
 import Foundation
 @testable import PaltaLibAnalytics
 
-final class SessionManagerMock: SessionManager {
+final class SessionManagerMock: SessionManager, SessionIdProvider {
+    var sessionId: Int = -1
     var sessionEventLogger: ((String, Int) -> Void)?
 
     var refreshSessionCalled = false
