@@ -15,6 +15,7 @@ final class EventQueueTests: XCTestCase {
     var storageMock: EventStorageMock!
     var senderMock: EventSenderMock!
     var composerMock: EventComposerMock!
+    var sessionManagerMock: SessionManagerMock!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -24,12 +25,14 @@ final class EventQueueTests: XCTestCase {
         storageMock = .init()
         senderMock = .init()
         composerMock = .init()
+        sessionManagerMock = .init()
 
         eventQueue = .init(
             core: coreMock,
             storage: storageMock,
             sender: senderMock,
             eventComposer: composerMock,
+            sessionManager: sessionManagerMock,
             timer: timerMock
         )
     }
@@ -52,6 +55,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(storageMock.addedEvents, [.mock()])
         XCTAssertNil(senderMock.sentEvents)
         XCTAssertNil(timerMock.passedInterval)
+        XCTAssert(sessionManagerMock.refreshSessionCalled)
     }
 
     func testInit() {
@@ -62,12 +66,14 @@ final class EventQueueTests: XCTestCase {
             storage: storageMock,
             sender: senderMock,
             eventComposer: composerMock,
+            sessionManager: sessionManagerMock,
             timer: timerMock
         )
 
         XCTAssertEqual(storageMock.eventsToLoad, coreMock.addedEvents)
         XCTAssertNotNil(coreMock.sendHandler)
         XCTAssertNotNil(coreMock.removeHandler)
+        XCTAssert(sessionManagerMock.startCalled)
     }
 
     func testSuccessfulSend() {
@@ -129,5 +135,30 @@ final class EventQueueTests: XCTestCase {
         coreMock.removeHandler?(ArraySlice(eventsToRemove))
 
         XCTAssertEqual(storageMock.removedEvents, eventsToRemove)
+    }
+
+    func testSessionEvent() {
+        sessionManagerMock.sessionEventLogger?("some event", 234)
+
+        XCTAssertEqual(coreMock.addedEvents.count, 1)
+        XCTAssertEqual(coreMock.addedEvents.first?.eventType, "some event")
+        XCTAssertEqual(coreMock.addedEvents.first?.timestamp, 234)
+        XCTAssertEqual(coreMock.addedEvents.first?.apiProperties, ["special": "some event"])
+        XCTAssertEqual(coreMock.addedEvents.first?.userProperties, [:])
+        XCTAssertEqual(coreMock.addedEvents.first?.eventProperties, [:])
+        XCTAssertEqual(coreMock.addedEvents.first?.groups, [:])
+        XCTAssertEqual(coreMock.addedEvents.first?.groupProperties, [:])
+
+        XCTAssertEqual(storageMock.addedEvents.count, 1)
+        XCTAssertEqual(storageMock.addedEvents.first?.eventType, "some event")
+        XCTAssertEqual(storageMock.addedEvents.first?.timestamp, 234)
+        XCTAssertEqual(storageMock.addedEvents.first?.apiProperties, ["special": "some event"])
+        XCTAssertEqual(storageMock.addedEvents.first?.userProperties, [:])
+        XCTAssertEqual(storageMock.addedEvents.first?.eventProperties, [:])
+        XCTAssertEqual(storageMock.addedEvents.first?.groups, [:])
+        XCTAssertEqual(storageMock.addedEvents.first?.groupProperties, [:])
+
+        XCTAssert(storageMock.removedEvents.isEmpty)
+        XCTAssertNil(senderMock.sentEvents)
     }
 }

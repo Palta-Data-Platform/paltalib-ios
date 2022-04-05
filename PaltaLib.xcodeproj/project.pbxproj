@@ -71,6 +71,7 @@
 		11115A5927FC59C900A41ADA /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A5627FC503A00A41ADA /* Session.swift */; };
 		11115A5C27FC5A3600A41ADA /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A5A27FC59E700A41ADA /* Timestamp.swift */; };
 		11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A5D27FC789D00A41ADA /* SessionManagerTests.swift */; };
+		11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6027FC8EBC00A41ADA /* SessionManagerMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -217,6 +218,7 @@
 		11115A5627FC503A00A41ADA /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		11115A5A27FC59E700A41ADA /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		11115A5D27FC789D00A41ADA /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
+		11115A6027FC8EBC00A41ADA /* SessionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +448,7 @@
 				11115A4127FB74B000A41ADA /* EventSenderMock.swift */,
 				11115A4327FB751E00A41ADA /* EventComposerMock.swift */,
 				11115A4727FB75CD00A41ADA /* EventQueueCoreMock.swift */,
+				11115A6027FC8EBC00A41ADA /* SessionManagerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				11115A4A27FB7D0000A41ADA /* EventSendErrorTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
+				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
 				11115A4427FB751E00A41ADA /* EventComposerMock.swift in Sources */,
 				11115A4027FB740B00A41ADA /* EventStorageMock.swift in Sources */,

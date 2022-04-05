@@ -12,6 +12,7 @@ final class EventQueue {
     private let storage: EventStorage
     private let sender: EventSender
     private let eventComposer: EventComposer
+    private let sessionManager: SessionManager
     private let timer: Timer
 
     init(
@@ -19,15 +20,18 @@ final class EventQueue {
         storage: EventStorage,
         sender: EventSender,
         eventComposer: EventComposer,
+        sessionManager: SessionManager,
         timer: Timer
     ) {
         self.core = core
         self.storage = storage
         self.sender = sender
         self.eventComposer = eventComposer
+        self.sessionManager = sessionManager
         self.timer = timer
 
         setupCore()
+        startSessionManager()
     }
 
     func logEvent(
@@ -46,6 +50,7 @@ final class EventQueue {
 
         storage.storeEvent(event)
         core.addEvent(event)
+        sessionManager.refreshSession(with: event)
     }
 
     private func setupCore() {
@@ -60,6 +65,26 @@ final class EventQueue {
         storage.loadEvents { [core] events in
             core.addEvents(events)
         }
+    }
+
+    private func startSessionManager() {
+        sessionManager.sessionEventLogger = { [weak self] eventName, timestamp in
+            let event = Event(
+                eventType: eventName,
+                eventProperties: [:],
+                apiProperties: ["special": eventName],
+                userProperties: [:],
+                groups: [:],
+                groupProperties: [:],
+                sessionId: -1,
+                timestamp: timestamp
+            )
+
+            self?.core.addEvent(event)
+            self?.storage.storeEvent(event)
+        }
+
+        sessionManager.start()
     }
 
     private func sendEvents(_ events: [Event], _ completionHandler: @escaping () -> Void) {
