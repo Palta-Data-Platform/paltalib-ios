@@ -1,21 +1,15 @@
 import Foundation
+import PaltaLibCore
 
 final class ConfigurationService {
     
-    private let networkService: NetworkServiceInterface
+    private let httpClient: HTTPClient
     
-    init(networkService: NetworkServiceInterface) {
-        self.networkService = networkService
+    init(httpClient: HTTPClient) {
+        self.httpClient = httpClient
     }
     
     public func requestConfigs(apiKey: String, completion: @escaping (Result<RemoteConfig, Error>) -> Void) {
-        guard let url = NetworkRouter.remoteConfigs.asUrl() else {
-            return
-        }
-        networkService.makeRequest(url: url,
-                                   body: nil,
-                                   headers: ["X-API-Key": apiKey],
-                                   method: .GET,
-                                   completion: completion)
+        httpClient.perform(AnalyticsHTTPRequest.remoteConfig(apiKey), with: completion)
     }
 }

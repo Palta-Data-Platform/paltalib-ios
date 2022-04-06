@@ -18,6 +18,8 @@ public protocol AutobuildingHTTPRequest: HTTPRequest {
     var headers: [String: String]? { get }
     var queryParameters: [String: String]? { get }
     var body: Data? { get }
+    var cachePolicy: URLRequest.CachePolicy? { get }
+    var timeout: TimeInterval? { get }
 }
 
 public protocol CodableAutobuildingHTTPRequest: AutobuildingHTTPRequest {
@@ -30,6 +32,18 @@ public extension AutobuildingHTTPRequest {
     }
 
     var queryParameters: [String : String]? {
+        nil
+    }
+
+    var body: Data? {
+        nil
+    }
+
+    var cachePolicy: URLRequest.CachePolicy? {
+        nil
+    }
+
+    var timeout: TimeInterval? {
         nil
     }
     
@@ -51,6 +65,14 @@ public extension AutobuildingHTTPRequest {
 
         if let body = body {
             request.httpBody = body
+        }
+
+        if let timeout = timeout {
+            request.timeoutInterval = timeout
+        }
+
+        if let cachePolicy = cachePolicy {
+            request.cachePolicy = cachePolicy
         }
 
         headerFields.forEach { request.setValue($0.1, forHTTPHeaderField: $0.0) }

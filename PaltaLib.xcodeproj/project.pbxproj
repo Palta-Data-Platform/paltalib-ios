@@ -18,10 +18,8 @@
 		1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593627F708E400A41ADA /* PaltaAnalytics.swift */; };
 		1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593327F708E400A41ADA /* PaltaAnalytics+Event.swift */; };
 		1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593B27F708E400A41ADA /* RemoteConfig.swift */; };
-		1111596D27F70BF500A41ADA /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111594027F708E400A41ADA /* NetworkRouter.swift */; };
 		1111596E27F70BF500A41ADA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111592B27F708CA00A41ADA /* Settings.swift */; };
 		1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593E27F708E400A41ADA /* ConfigurationService.swift */; };
-		1111597027F70BF500A41ADA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111594127F708E400A41ADA /* NetworkService.swift */; };
 		1111597127F70C0100A41ADA /* PurchaserInfo+RevenueCat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591427F7086C00A41ADA /* PurchaserInfo+RevenueCat.swift */; };
 		1111597227F70C0100A41ADA /* PurchaseInfoListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591627F7086C00A41ADA /* PurchaseInfoListener.swift */; };
 		1111597327F70C0100A41ADA /* PaltaPurchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591227F7086C00A41ADA /* PaltaPurchases.swift */; };
@@ -78,6 +76,8 @@
 		11115A7127FDBBF500A41ADA /* CancelRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6527FDB67300A41ADA /* CancelRequestData.swift */; };
 		11115A7227FDBBF500A41ADA /* PurchaseHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6D27FDB9C000A41ADA /* PurchaseHTTPRequest.swift */; };
 		11115A7527FDBD4000A41ADA /* PurchaseHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7327FDBCD400A41ADA /* PurchaseHTTPRequestTests.swift */; };
+		11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */; };
+		11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,8 +192,6 @@
 		1111593927F708E400A41ADA /* PaltaAnalytics+UserProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+UserProperties.swift"; sourceTree = "<group>"; };
 		1111593B27F708E400A41ADA /* RemoteConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		1111593E27F708E400A41ADA /* ConfigurationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationService.swift; sourceTree = "<group>"; };
-		1111594027F708E400A41ADA /* NetworkRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
-		1111594127F708E400A41ADA /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		1111595227F7093500A41ADA /* PaltaLibAttribution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibAttribution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1111595927F7095200A41ADA /* PaltaAttribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaltaAttribution.swift; sourceTree = "<group>"; };
 		1111595A27F7095200A41ADA /* PaltaAttribution+DeepLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+DeepLink.swift"; sourceTree = "<group>"; };
@@ -231,6 +229,8 @@
 		11115A6A27FDB87B00A41ADA /* AnyEncodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodableTests.swift; sourceTree = "<group>"; };
 		11115A6D27FDB9C000A41ADA /* PurchaseHTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHTTPRequest.swift; sourceTree = "<group>"; };
 		11115A7327FDBCD400A41ADA /* PurchaseHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHTTPRequestTests.swift; sourceTree = "<group>"; };
+		11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHTTPRequest.swift; sourceTree = "<group>"; };
+		11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHTTPRequestTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,8 +400,7 @@
 		1111593F27F708E400A41ADA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				1111594027F708E400A41ADA /* NetworkRouter.swift */,
-				1111594127F708E400A41ADA /* NetworkService.swift */,
+				11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -451,6 +450,7 @@
 				11115A5D27FC789D00A41ADA /* SessionManagerTests.swift */,
 				11115A6A27FDB87B00A41ADA /* AnyEncodableTests.swift */,
 				11115A7327FDBCD400A41ADA /* PurchaseHTTPRequestTests.swift */,
+				11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -733,6 +733,7 @@
 			files = (
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
 				11115A4A27FB7D0000A41ADA /* EventSendErrorTests.swift in Sources */,
+				11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
@@ -781,6 +782,7 @@
 				11115A5127FB7E6B00A41ADA /* Event.swift in Sources */,
 				11115A4B27FB7E5700A41ADA /* EventComposer.swift in Sources */,
 				1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */,
+				11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */,
 				1111596E27F70BF500A41ADA /* Settings.swift in Sources */,
 				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
 				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,
@@ -789,9 +791,7 @@
 				11115A5C27FC5A3600A41ADA /* Timestamp.swift in Sources */,
 				11115A5927FC59C900A41ADA /* Session.swift in Sources */,
 				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
-				1111597027F70BF500A41ADA /* NetworkService.swift in Sources */,
 				11115A4F27FB7E6B00A41ADA /* EventSender.swift in Sources */,
-				1111596D27F70BF500A41ADA /* NetworkRouter.swift in Sources */,
 				11115A5827FC59BC00A41ADA /* SessionManager.swift in Sources */,
 				11115A4E27FB7E6B00A41ADA /* EventQueueCore.swift in Sources */,
 			);

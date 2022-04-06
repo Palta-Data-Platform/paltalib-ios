@@ -1,11 +1,12 @@
 import Amplitude
+import PaltaLibCore
 
 public final class PaltaAnalytics {
 
     var targets = [Target]()
     var amplitudeInstances = [Amplitude]()
-    private let networkService: NetworkServiceInterface = NetworkService()
-    private lazy var configurationService = ConfigurationService(networkService: networkService)
+    private let httpClient = HTTPClient()
+    private lazy var configurationService = ConfigurationService(httpClient: httpClient)
     private var apiKey: String?
 
     public init() {}
