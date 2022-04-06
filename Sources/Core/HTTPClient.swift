@@ -1,18 +1,19 @@
 import Foundation
 
 public final class HTTPClient {
-    private let baseURL: URL
     private let urlSession: URLSession
 
-    public init(baseURL: URL,
-         urlSession: URLSession = .init(configuration: URLSessionConfiguration.default)) {
-        self.baseURL = baseURL
+    public init(
+        urlSession: URLSession = .init(configuration: URLSessionConfiguration.default)
+    ) {
         self.urlSession = urlSession
     }
 
-    public func perform<T: Decodable>(_ request: HTTPRequest,
-                                      with completion: @escaping (Result<T, Error>) -> Void) {
-        guard let urlRequest = request.urlRequest(url: baseURL) else {
+    public func perform<T: Decodable>(
+        _ request: HTTPRequest,
+        with completion: @escaping (Result<T, Error>) -> Void
+    ) {
+        guard let urlRequest = request.urlRequest(headerFields: [:]) else {
             completion(.failure(NSError.badRequest))
             return
         }
@@ -34,21 +35,10 @@ public final class HTTPClient {
             completion(result)
         }
 
-        let task: URLSessionDataTask
-
-        switch request.method {
-        case .get:
-            task = urlSession.dataTask(
-                with: urlRequest,
-                completionHandler: completion
-            )
-        case .put, .post, .patch:
-            task = urlSession.uploadTask(
-                with: urlRequest,
-                from: request.body,
-                completionHandler: completion
-            )
-        }
+        let task = urlSession.dataTask(
+            with: urlRequest,
+            completionHandler: completion
+        )
 
         task.resume()
     }

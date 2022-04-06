@@ -1,35 +1,45 @@
 import Foundation
 
-public struct HTTPRequest: Hashable {
-    public enum Method: String {
-        case get = "GET"
-        case post = "POST"
-        case patch = "PATCH"
-        case put = "PUT"
-    }
-
-    var method: Method
-    var path: String
-    var parameters: [String: String]?
-    var body: Data?
-
-    public init(method: Method, path: String, parameters: [String: String]? = nil, body: Data? = nil) {
-        self.method = method
-        self.path = path
-        self.parameters = parameters
-        self.body = body
-    }
+public enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case patch = "PATCH"
+    case put = "PUT"
 }
 
-extension HTTPRequest {
-    public func urlRequest(url: URL,
-                    headerFields: [String: String] = [:]) -> URLRequest? {
-        guard var components = URLComponents(string: url.absoluteString) else {
+public protocol HTTPRequest {
+    func urlRequest(headerFields: [String: String]) -> URLRequest?
+}
+
+public protocol AutobuildingHTTPRequest: HTTPRequest {
+    var method: HTTPMethod { get }
+    var baseURL: URL { get }
+    var path: String { get }
+    var headers: [String: String]? { get }
+    var queryParameters: [String: String]? { get }
+    var body: Data? { get }
+}
+
+public protocol CodableAutobuildingHTTPRequest: AutobuildingHTTPRequest {
+    var bodyObject: AnyEncodable? { get }
+}
+
+public extension AutobuildingHTTPRequest {
+    var headers: [String : String]? {
+        nil
+    }
+
+    var queryParameters: [String : String]? {
+        nil
+    }
+    
+    func urlRequest(headerFields: [String: String]) -> URLRequest? {
+        guard var components = URLComponents(string: baseURL.absoluteString) else {
             return nil
         }
 
         components.path = path
-        let queryItems = parameters?.map { URLQueryItem(name: $0.0, value: $0.1) }
+        let queryItems = queryParameters?.map { URLQueryItem(name: $0.0, value: $0.1) }
         components.queryItems = queryItems
 
         guard let url = components.url else {
@@ -41,12 +51,17 @@ extension HTTPRequest {
 
         if let body = body {
             request.httpBody = body
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
 
         headerFields.forEach { request.setValue($0.1, forHTTPHeaderField: $0.0) }
+        headers?.forEach { request.setValue($0.1, forHTTPHeaderField: $0.0) }
 
         return request
+    }
+}
+
+public extension AutobuildingHTTPRequest where Self: CodableAutobuildingHTTPRequest {
+    var body: Data? {
+        bodyObject.flatMap { try? JSONEncoder().encode($0) }
     }
 }

@@ -250,10 +250,6 @@ extension PaltaPurchases {
 
 private extension HTTPClient {
     static var defaultWebSubscriptionClient: HTTPClient {
-        guard let url = URL(string: "https://ws.prod.paltabrain.com") else {
-            fatalError()
-        }
-
-        return HTTPClient(baseURL: url)
+        return HTTPClient()
     }
 }
