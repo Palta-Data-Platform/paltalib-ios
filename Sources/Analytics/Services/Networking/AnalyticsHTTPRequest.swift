@@ -8,15 +8,18 @@
 import Foundation
 import PaltaLibCore
 
-enum AnalyticsHTTPRequest {
+enum AnalyticsHTTPRequest: Equatable {
     case remoteConfig(String)
+    case sendEvents(SendEventsPayload)
 }
 
-extension AnalyticsHTTPRequest: AutobuildingHTTPRequest {
+extension AnalyticsHTTPRequest: CodableAutobuildingHTTPRequest {
     var method: HTTPMethod {
         switch self {
         case .remoteConfig:
             return .get
+        case .sendEvents:
+            return .post
         }
     }
 
@@ -28,6 +31,8 @@ extension AnalyticsHTTPRequest: AutobuildingHTTPRequest {
         switch self {
         case .remoteConfig:
             return "/v1/config"
+        case .sendEvents:
+            return "/v1/events-v2"
         }
     }
 
@@ -39,10 +44,27 @@ extension AnalyticsHTTPRequest: AutobuildingHTTPRequest {
         switch self {
         case .remoteConfig(let apiKey):
             return ["X-API-Key": apiKey]
+
+        case .sendEvents(let payload):
+            return ["X-API-Key": payload.apiKey]
         }
     }
 
     var timeout: TimeInterval? {
-        10
+        switch self {
+        case .remoteConfig:
+            return 10
+        case .sendEvents:
+            return 30
+        }
+    }
+
+    var bodyObject: AnyEncodable? {
+        switch self {
+        case .remoteConfig:
+            return nil
+        case .sendEvents(let sendEventsPayload):
+            return sendEventsPayload.typeErased
+        }
     }
 }

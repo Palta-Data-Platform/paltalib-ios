@@ -8,7 +8,7 @@
 import Foundation
 
 public final class CoreAssembly {
-    public private(set) lazy var httpClient = HTTPClient()
+    public private(set) lazy var httpClient: HTTPClient = HTTPClientImpl()
 
     public init() {}
 }

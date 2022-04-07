@@ -1,6 +1,13 @@
 import Foundation
 
-public final class HTTPClient {
+public protocol HTTPClient {
+    func perform<T: Decodable>(
+        _ request: HTTPRequest,
+        with completion: @escaping (Result<T, Error>) -> Void
+    )
+}
+
+public final class HTTPClientImpl: HTTPClient {
     private let urlSession: URLSession
 
     public init(
@@ -31,7 +38,7 @@ public final class HTTPClient {
                 return
             }
 
-            let result: Result<T, Error> = HTTPClient.processResponse(data, of: request)
+            let result: Result<T, Error> = HTTPClientImpl.processResponse(data, of: request)
             completion(result)
         }
 
@@ -48,12 +55,12 @@ public final class HTTPClient {
             return .failure(NSError.badResponseError)
         }
 
-        guard let responseObject = try? JSONDecoder().decode(T.self, from: data) else {
-            let error = NSError.parseError(String(data: data, encoding: .utf8) ?? "")
+        do {
+            let responseObject = try JSONDecoder().decode(T.self, from: data)
+            return .success(responseObject)
+        } catch {
             return .failure(error)
         }
-
-        return .success(responseObject)
     }
 }
 

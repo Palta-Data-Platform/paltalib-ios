@@ -20,10 +20,12 @@ final class EventQueueAssembly {
         notificationCenter: .default
     )
 
+    private(set) lazy var eventSender = EventSenderImpl(httpClient: coreAssembly.httpClient)
+
     private(set) lazy var eventQueue = EventQueue(
         core: eventQueueCore,
         storage: eventStorage,
-        sender: { fatalError() }(),
+        sender: eventSender,
         eventComposer: eventComposer,
         sessionManager: sessionManager,
         timer: TimerImpl()

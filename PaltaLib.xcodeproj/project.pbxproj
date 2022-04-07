@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		111158D827F603D800A41ADA /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111158D527F603D800A41ADA /* HTTPClient.swift */; };
+		111158D827F603D800A41ADA /* HTTPClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111158D527F603D800A41ADA /* HTTPClientImpl.swift */; };
 		111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111158D627F603D800A41ADA /* HTTPRequest.swift */; };
 		111158FC27F6FE5600A41ADA /* PaltaLibCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111158CB27F601FC00A41ADA /* PaltaLibCore.framework */; platformFilter = ios; };
 		1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593527F708E400A41ADA /* PaltaAnalytics+Revenue.swift */; };
@@ -81,6 +81,10 @@
 		11115A7D27FDCDF600A41ADA /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */; };
 		11115A8027FDCF5A00A41ADA /* PurchasesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7E27FDCE0B00A41ADA /* PurchasesAssembly.swift */; };
 		11115A8227FEC60400A41ADA /* EventQueueAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */; };
+		11115A8427FEFFB200A41ADA /* SendEventsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8327FEFFB200A41ADA /* SendEventsPayload.swift */; };
+		11115A8727FF1BCF00A41ADA /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */; };
+		11115A8A27FF27D500A41ADA /* EventSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8827FF27CD00A41ADA /* EventSenderTests.swift */; };
+		11115A8D27FF293800A41ADA /* HTTPClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8B27FF292700A41ADA /* HTTPClientMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,7 +177,7 @@
 
 /* Begin PBXFileReference section */
 		111158CB27F601FC00A41ADA /* PaltaLibCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		111158D527F603D800A41ADA /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		111158D527F603D800A41ADA /* HTTPClientImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientImpl.swift; sourceTree = "<group>"; };
 		111158D627F603D800A41ADA /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		111158F827F6FE5600A41ADA /* PaltaLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaltaLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1111590927F7079A00A41ADA /* PaltaLibPayments.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibPayments.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +241,10 @@
 		11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
 		11115A7E27FDCE0B00A41ADA /* PurchasesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesAssembly.swift; sourceTree = "<group>"; };
 		11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueAssembly.swift; sourceTree = "<group>"; };
+		11115A8327FEFFB200A41ADA /* SendEventsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEventsPayload.swift; sourceTree = "<group>"; };
+		11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
+		11115A8827FF27CD00A41ADA /* EventSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSenderTests.swift; sourceTree = "<group>"; };
+		11115A8B27FF292700A41ADA /* HTTPClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,11 +325,12 @@
 		111158CC27F601FC00A41ADA /* Sources/Core */ = {
 			isa = PBXGroup;
 			children = (
-				111158D527F603D800A41ADA /* HTTPClient.swift */,
+				111158D527F603D800A41ADA /* HTTPClientImpl.swift */,
 				111158D627F603D800A41ADA /* HTTPRequest.swift */,
 				11115A6727FDB70A00A41ADA /* AnyEncodable.swift */,
 				111159A927F71CDB00A41ADA /* CodableDictionary.swift */,
 				11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */,
+				11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */,
 			);
 			path = Sources/Core;
 			sourceTree = "<group>";
@@ -409,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */,
+				11115A8327FEFFB200A41ADA /* SendEventsPayload.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -460,6 +470,7 @@
 				11115A6A27FDB87B00A41ADA /* AnyEncodableTests.swift */,
 				11115A7327FDBCD400A41ADA /* PurchaseHTTPRequestTests.swift */,
 				11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */,
+				11115A8827FF27CD00A41ADA /* EventSenderTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -474,6 +485,7 @@
 				11115A4327FB751E00A41ADA /* EventComposerMock.swift */,
 				11115A4727FB75CD00A41ADA /* EventQueueCoreMock.swift */,
 				11115A6027FC8EBC00A41ADA /* SessionManagerMock.swift */,
+				11115A8B27FF292700A41ADA /* HTTPClientMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -729,8 +741,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11115A8727FF1BCF00A41ADA /* EmptyResponse.swift in Sources */,
 				111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */,
-				111158D827F603D800A41ADA /* HTTPClient.swift in Sources */,
+				111158D827F603D800A41ADA /* HTTPClientImpl.swift in Sources */,
 				11115A6927FDB84E00A41ADA /* AnyEncodable.swift in Sources */,
 				11115A7D27FDCDF600A41ADA /* CoreAssembly.swift in Sources */,
 				111159AA27F71CDB00A41ADA /* CodableDictionary.swift in Sources */,
@@ -749,6 +762,8 @@
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
 				11115A7527FDBD4000A41ADA /* PurchaseHTTPRequestTests.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
+				11115A8D27FF293800A41ADA /* HTTPClientMock.swift in Sources */,
+				11115A8A27FF27D500A41ADA /* EventSenderTests.swift in Sources */,
 				11115A4427FB751E00A41ADA /* EventComposerMock.swift in Sources */,
 				11115A4027FB740B00A41ADA /* EventStorageMock.swift in Sources */,
 				111159BF27F773E900A41ADA /* EventMock.swift in Sources */,
@@ -787,6 +802,7 @@
 				1111596927F70BE400A41ADA /* PaltaAnalytics+UserProperties.swift in Sources */,
 				11115A4D27FB7E6B00A41ADA /* EventQueue.swift in Sources */,
 				11115A8227FEC60400A41ADA /* EventQueueAssembly.swift in Sources */,
+				11115A8427FEFFB200A41ADA /* SendEventsPayload.swift in Sources */,
 				1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */,
 				1111596727F70BE400A41ADA /* PaltaAnalytics+Target.swift in Sources */,
 				11115A5027FB7E6B00A41ADA /* EventStorage.swift in Sources */,

@@ -5,7 +5,7 @@ public final class PaltaAnalytics {
 
     var targets = [Target]()
     var amplitudeInstances = [Amplitude]()
-    private let httpClient = HTTPClient()
+    private let httpClient = HTTPClientImpl()
     private lazy var configurationService = ConfigurationService(httpClient: httpClient)
     private var apiKey: String?
 

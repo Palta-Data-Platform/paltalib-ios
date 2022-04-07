@@ -252,6 +252,6 @@ extension PaltaPurchases {
 
 private extension HTTPClient {
     static var defaultWebSubscriptionClient: HTTPClient {
-        return HTTPClient()
+        return HTTPClientImpl()
     }
 }
