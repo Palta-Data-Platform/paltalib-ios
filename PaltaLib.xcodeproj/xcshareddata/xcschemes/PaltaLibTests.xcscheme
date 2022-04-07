@@ -10,7 +10,32 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1111592227F7089400A41ADA"
+            BuildableName = "PaltaLibAnalytics.framework"
+            BlueprintName = "PaltaLibAnalytics"
+            ReferencedContainer = "container:PaltaLib.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "111158CA27F601FC00A41ADA"
+            BuildableName = "PaltaLibCore.framework"
+            BlueprintName = "PaltaLibCore"
+            ReferencedContainer = "container:PaltaLib.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1111590827F7079A00A41ADA"
+            BuildableName = "PaltaLibPayments.framework"
+            BlueprintName = "PaltaLibPayments"
+            ReferencedContainer = "container:PaltaLib.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
