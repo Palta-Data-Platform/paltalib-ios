@@ -78,6 +78,9 @@
 		11115A7527FDBD4000A41ADA /* PurchaseHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7327FDBCD400A41ADA /* PurchaseHTTPRequestTests.swift */; };
 		11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */; };
 		11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */; };
+		11115A7D27FDCDF600A41ADA /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */; };
+		11115A8027FDCF5A00A41ADA /* PurchasesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7E27FDCE0B00A41ADA /* PurchasesAssembly.swift */; };
+		11115A8227FEC60400A41ADA /* EventQueueAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +234,9 @@
 		11115A7327FDBCD400A41ADA /* PurchaseHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHTTPRequestTests.swift; sourceTree = "<group>"; };
 		11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHTTPRequest.swift; sourceTree = "<group>"; };
 		11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHTTPRequestTests.swift; sourceTree = "<group>"; };
+		11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
+		11115A7E27FDCE0B00A41ADA /* PurchasesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesAssembly.swift; sourceTree = "<group>"; };
+		11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +321,7 @@
 				111158D627F603D800A41ADA /* HTTPRequest.swift */,
 				11115A6727FDB70A00A41ADA /* AnyEncodable.swift */,
 				111159A927F71CDB00A41ADA /* CodableDictionary.swift */,
+				11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */,
 			);
 			path = Sources/Core;
 			sourceTree = "<group>";
@@ -339,6 +346,7 @@
 				1111591127F7086C00A41ADA /* PurchaserInfo.swift */,
 				1111591427F7086C00A41ADA /* PurchaserInfo+RevenueCat.swift */,
 				1111591027F7086C00A41ADA /* PurchasesError.swift */,
+				11115A7E27FDCE0B00A41ADA /* PurchasesAssembly.swift */,
 			);
 			path = Sources/Purchases;
 			sourceTree = "<group>";
@@ -433,6 +441,7 @@
 				11115A3D27FB18B000A41ADA /* EventComposer.swift */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
 				11115A5427FC4FA200A41ADA /* SessionManager.swift */,
+				11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -723,6 +732,7 @@
 				111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */,
 				111158D827F603D800A41ADA /* HTTPClient.swift in Sources */,
 				11115A6927FDB84E00A41ADA /* AnyEncodable.swift in Sources */,
+				11115A7D27FDCDF600A41ADA /* CoreAssembly.swift in Sources */,
 				111159AA27F71CDB00A41ADA /* CodableDictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -765,6 +775,7 @@
 				11115A7227FDBBF500A41ADA /* PurchaseHTTPRequest.swift in Sources */,
 				1111597327F70C0100A41ADA /* PaltaPurchases.swift in Sources */,
 				1111597127F70C0100A41ADA /* PurchaserInfo+RevenueCat.swift in Sources */,
+				11115A8027FDCF5A00A41ADA /* PurchasesAssembly.swift in Sources */,
 				1111597627F70C0100A41ADA /* PurchaserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -775,6 +786,7 @@
 			files = (
 				1111596927F70BE400A41ADA /* PaltaAnalytics+UserProperties.swift in Sources */,
 				11115A4D27FB7E6B00A41ADA /* EventQueue.swift in Sources */,
+				11115A8227FEC60400A41ADA /* EventQueueAssembly.swift in Sources */,
 				1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */,
 				1111596727F70BE400A41ADA /* PaltaAnalytics+Target.swift in Sources */,
 				11115A5027FB7E6B00A41ADA /* EventStorage.swift in Sources */,

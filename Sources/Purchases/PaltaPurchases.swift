@@ -5,15 +5,15 @@ import PaltaLibAttribution
 import PaltaLibCore
 
 public final class PaltaPurchases {
+    static let assembly = PurchasesAssembly()
+
     public static let instance: PaltaPurchases = {
         guard isConfigured else {
             fatalError("SDK must be configured before accessing instance")
         }
 
         #warning("TODO: PaltaPurchases should not depend on PaltaAppsflyerAdapter, there should be a way to install components separatly")
-        return PaltaPurchases(purchases: Purchases.shared,
-                              appsflyerAdapter: PaltaAppsflyerAdapter.sharedInstance,
-                              httpClient: HTTPClient.defaultWebSubscriptionClient)
+        return assembly.purchasesInstance
     }()
 
     private let purchases: Purchases
@@ -23,9 +23,11 @@ public final class PaltaPurchases {
     private static var isConfigured = false
     private (set) static var webSubscriptionID: String?
 
-    private init(purchases: Purchases,
-                 appsflyerAdapter: PaltaAppsflyerAdapter,
-                 httpClient: HTTPClient) {
+    init(
+        purchases: Purchases,
+        appsflyerAdapter: PaltaAppsflyerAdapter,
+        httpClient: HTTPClient
+    ) {
         self.purchases = purchases
         self.appsflyerAdapter = appsflyerAdapter
         self.httpClient = httpClient
