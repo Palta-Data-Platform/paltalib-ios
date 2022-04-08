@@ -85,6 +85,10 @@
 		11115A8727FF1BCF00A41ADA /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */; };
 		11115A8A27FF27D500A41ADA /* EventSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8827FF27CD00A41ADA /* EventSenderTests.swift */; };
 		11115A8D27FF293800A41ADA /* HTTPClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8B27FF292700A41ADA /* HTTPClientMock.swift */; };
+		11115A8F28001F2300A41ADA /* UserPropertiesKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8E28001F2300A41ADA /* UserPropertiesKeeper.swift */; };
+		11115A9128001FA800A41ADA /* UserProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9028001FA800A41ADA /* UserProperties.swift */; };
+		11115A96280023B200A41ADA /* UserPropertiesKeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A94280023A300A41ADA /* UserPropertiesKeeperTests.swift */; };
+		11115A9728003BD600A41ADA /* UserDefaults+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9228001FE400A41ADA /* UserDefaults+Codable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +249,10 @@
 		11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		11115A8827FF27CD00A41ADA /* EventSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSenderTests.swift; sourceTree = "<group>"; };
 		11115A8B27FF292700A41ADA /* HTTPClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientMock.swift; sourceTree = "<group>"; };
+		11115A8E28001F2300A41ADA /* UserPropertiesKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesKeeper.swift; sourceTree = "<group>"; };
+		11115A9028001FA800A41ADA /* UserProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProperties.swift; sourceTree = "<group>"; };
+		11115A9228001FE400A41ADA /* UserDefaults+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Codable.swift"; sourceTree = "<group>"; };
+		11115A94280023A300A41ADA /* UserPropertiesKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesKeeperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +339,7 @@
 				111159A927F71CDB00A41ADA /* CodableDictionary.swift */,
 				11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */,
 				11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */,
+				11115A9228001FE400A41ADA /* UserDefaults+Codable.swift */,
 			);
 			path = Sources/Core;
 			sourceTree = "<group>";
@@ -393,6 +402,7 @@
 				11115A5627FC503A00A41ADA /* Session.swift */,
 				11115A5A27FC59E700A41ADA /* Timestamp.swift */,
 				1111593B27F708E400A41ADA /* RemoteConfig.swift */,
+				11115A9028001FA800A41ADA /* UserProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -452,6 +462,7 @@
 				111159B827F73F9000A41ADA /* Timer.swift */,
 				11115A5427FC4FA200A41ADA /* SessionManager.swift */,
 				11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */,
+				11115A8E28001F2300A41ADA /* UserPropertiesKeeper.swift */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -471,6 +482,7 @@
 				11115A7327FDBCD400A41ADA /* PurchaseHTTPRequestTests.swift */,
 				11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */,
 				11115A8827FF27CD00A41ADA /* EventSenderTests.swift */,
+				11115A94280023A300A41ADA /* UserPropertiesKeeperTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -743,6 +755,7 @@
 			files = (
 				11115A8727FF1BCF00A41ADA /* EmptyResponse.swift in Sources */,
 				111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */,
+				11115A9728003BD600A41ADA /* UserDefaults+Codable.swift in Sources */,
 				111158D827F603D800A41ADA /* HTTPClientImpl.swift in Sources */,
 				11115A6927FDB84E00A41ADA /* AnyEncodable.swift in Sources */,
 				11115A7D27FDCDF600A41ADA /* CoreAssembly.swift in Sources */,
@@ -759,6 +772,7 @@
 				11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
+				11115A96280023B200A41ADA /* UserPropertiesKeeperTests.swift in Sources */,
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
 				11115A7527FDBD4000A41ADA /* PurchaseHTTPRequestTests.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
@@ -804,6 +818,8 @@
 				11115A8227FEC60400A41ADA /* EventQueueAssembly.swift in Sources */,
 				11115A8427FEFFB200A41ADA /* SendEventsPayload.swift in Sources */,
 				1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */,
+				11115A8F28001F2300A41ADA /* UserPropertiesKeeper.swift in Sources */,
+				11115A9128001FA800A41ADA /* UserProperties.swift in Sources */,
 				1111596727F70BE400A41ADA /* PaltaAnalytics+Target.swift in Sources */,
 				11115A5027FB7E6B00A41ADA /* EventStorage.swift in Sources */,
 				1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */,

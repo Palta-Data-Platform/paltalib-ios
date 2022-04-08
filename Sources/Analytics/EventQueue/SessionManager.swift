@@ -81,11 +81,10 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     private func restoreSession() -> Session? {
-        let session = try? userDefaults
-            .data(forKey: defaultsKey)
-            .map { try JSONDecoder().decode(Session.self, from: $0) }
-
-        guard let session = session, Int.currentTimestamp() - session.lastEventTimestamp < maxSessionAge else {
+        guard
+            let session: Session = userDefaults.object(for: defaultsKey),
+            Int.currentTimestamp() - session.lastEventTimestamp < maxSessionAge
+        else {
             return nil
         }
 
@@ -93,10 +92,6 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     private func saveSession() {
-        do {
-            try userDefaults.set(JSONEncoder().encode(session), forKey: defaultsKey)
-        } catch {
-            print("Error saving session: \(error)")
-        }
+        userDefaults.set(session, for: defaultsKey)
     }
 }
