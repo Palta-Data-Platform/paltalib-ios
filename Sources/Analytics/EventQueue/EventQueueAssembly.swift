@@ -13,7 +13,12 @@ final class EventQueueAssembly {
 
     private(set) lazy var eventStorage: EventStorage = FileEventStorage()
 
-    private(set) lazy var eventComposer: EventComposer = EventComposerImpl(sessionIdProvider: sessionManager)
+    private(set) lazy var eventComposer: EventComposer = EventComposerImpl(
+        sessionIdProvider: sessionManager,
+        userPropertiesProvider: userPropertiesKeeper
+    )
+
+    private(set) lazy var userPropertiesKeeper: UserPropertiesKeeper = UserPropertiesKeeperImpl(userDefaults: .standard)
 
     private(set) lazy var sessionManager = SessionManagerImpl(
         userDefaults: .standard,

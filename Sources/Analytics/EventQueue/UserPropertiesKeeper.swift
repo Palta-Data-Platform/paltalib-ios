@@ -10,12 +10,12 @@ import PaltaLibCore
 
 protocol UserPropertiesProvider: AnyObject {
     var userId: String? { get }
-    var deviceId: String? { get }
+    var deviceId: UUID? { get }
 }
 
 protocol UserPropertiesKeeper: UserPropertiesProvider {
     var userId: String? { get set }
-    var deviceId: String? { get set }
+    var deviceId: UUID? { get set }
 }
 
 final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
@@ -28,7 +28,7 @@ final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
         }
     }
 
-    var deviceId: String? {
+    var deviceId: UUID? {
         get {
             userProperties?.deviceId
         }

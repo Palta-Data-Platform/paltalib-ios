@@ -11,6 +11,7 @@ import PaltaLibCore
 
 final class EventComposerTests: XCTestCase {
     var sessionManagerMock: SessionManagerMock!
+    var userPropertiesMock: UserPropertiesKeeperMock!
 
     var composer: EventComposerImpl!
 
@@ -18,11 +19,17 @@ final class EventComposerTests: XCTestCase {
         try super.setUpWithError()
 
         sessionManagerMock = SessionManagerMock()
-        composer = EventComposerImpl(sessionIdProvider: sessionManagerMock)
+        userPropertiesMock = UserPropertiesKeeperMock()
+        composer = EventComposerImpl(
+            sessionIdProvider: sessionManagerMock,
+            userPropertiesProvider: userPropertiesMock
+        )
     }
 
     func testCompose() {
         sessionManagerMock.sessionId = 845
+        userPropertiesMock.userId = "sample-user-id"
+        userPropertiesMock.deviceId = UUID()
 
         let event = composer.composeEvent(
             eventType: "someType",
@@ -38,6 +45,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertEqual(event.groups, ["group": "C"])
         XCTAssertEqual(event.timestamp, 11)
         XCTAssertEqual(event.sessionId, 845)
+        XCTAssertEqual(event.userId, "sample-user-id")
+        XCTAssertEqual(event.deviceId, userPropertiesMock.deviceId)
     }
 
     func testDefaultTimestamp() {

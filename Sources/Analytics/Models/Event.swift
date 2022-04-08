@@ -18,6 +18,8 @@ struct Event: Codable, Hashable {
         case groupProperties = "group_properties"
         case sessionId = "session_id"
         case timestamp
+        case userId = "user_id"
+        case deviceId = "device_id"
     }
 
     let eventType: String
@@ -28,4 +30,6 @@ struct Event: Codable, Hashable {
     let groupProperties: CodableDictionary
     let sessionId: Int
     let timestamp: Int
+    let userId: String?
+    let deviceId: UUID?
 }

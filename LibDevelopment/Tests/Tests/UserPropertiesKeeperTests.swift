@@ -20,12 +20,13 @@ final class UserPropertiesKeeperTests: XCTestCase {
     }
 
     func testProvidingCorrectIDs() {
+        let guid = UUID()
         keeper.userId = "mock-user-id"
-        keeper.deviceId = "mock-device-id"
+        keeper.deviceId = guid
 
         keeper = UserPropertiesKeeperImpl(userDefaults: userDefaults)
 
         XCTAssertEqual(keeper.userId, "mock-user-id")
-        XCTAssertEqual(keeper.deviceId, "mock-device-id")
+        XCTAssertEqual(keeper.deviceId, guid)
     }
 }

@@ -1,13 +1,14 @@
 //
-//  UserProperties.swift
+//  UserPropertiesKeeperMock.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 08.04.2022.
 //
 
 import Foundation
+@testable import PaltaLibAnalytics
 
-struct UserProperties: Codable {
+final class UserPropertiesKeeperMock: UserPropertiesKeeper {
     var userId: String?
     var deviceId: UUID?
 }

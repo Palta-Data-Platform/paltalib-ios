@@ -18,7 +18,9 @@ extension Event {
             groups: [:],
             groupProperties: [:],
             sessionId: 1,
-            timestamp: timestamp ?? .currentTimestamp()
+            timestamp: timestamp ?? .currentTimestamp(),
+            userId: nil,
+            deviceId: nil
         )
     }
 }
