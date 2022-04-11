@@ -20,6 +20,16 @@ struct Event: Codable, Hashable {
         case timestamp
         case userId = "user_id"
         case deviceId = "device_id"
+        case platform
+        case appVersion = "version_name"
+        case osName = "os_name"
+        case osVersion = "os_version"
+        case deviceModel = "device_model"
+        case deviceManufacturer = "device_manufacturer"
+        case carrier
+        case country
+        case language
+        case timezone
     }
 
     let eventType: String
@@ -32,4 +42,14 @@ struct Event: Codable, Hashable {
     let timestamp: Int
     let userId: String?
     let deviceId: UUID?
+    let platform: String?
+    let appVersion: String?
+    let osName: String?
+    let osVersion: String?
+    let deviceModel: String?
+    let deviceManufacturer: String?
+    let carrier: String?
+    let country: String?
+    let language: String?
+    let timezone: String
 }

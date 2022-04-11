@@ -6,12 +6,14 @@
 //
 
 import XCTest
+import Amplitude
 import PaltaLibCore
 @testable import PaltaLibAnalytics
 
 final class EventComposerTests: XCTestCase {
     var sessionManagerMock: SessionManagerMock!
     var userPropertiesMock: UserPropertiesKeeperMock!
+    var deviceInfoProviderMock: DeviceInfoProviderMock!
 
     var composer: EventComposerImpl!
 
@@ -20,9 +22,12 @@ final class EventComposerTests: XCTestCase {
 
         sessionManagerMock = SessionManagerMock()
         userPropertiesMock = UserPropertiesKeeperMock()
+        deviceInfoProviderMock = DeviceInfoProviderMock()
+
         composer = EventComposerImpl(
             sessionIdProvider: sessionManagerMock,
-            userPropertiesProvider: userPropertiesMock
+            userPropertiesProvider: userPropertiesMock,
+            deviceInfoProvider: deviceInfoProviderMock
         )
     }
 
@@ -30,6 +35,10 @@ final class EventComposerTests: XCTestCase {
         sessionManagerMock.sessionId = 845
         userPropertiesMock.userId = "sample-user-id"
         userPropertiesMock.deviceId = UUID()
+
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
 
         let event = composer.composeEvent(
             eventType: "someType",
@@ -47,6 +56,15 @@ final class EventComposerTests: XCTestCase {
         XCTAssertEqual(event.sessionId, 845)
         XCTAssertEqual(event.userId, "sample-user-id")
         XCTAssertEqual(event.deviceId, userPropertiesMock.deviceId)
+        XCTAssertEqual(event.platform, "iOS")
+        XCTAssertEqual(event.osName, "ios")
+        XCTAssertEqual(event.deviceManufacturer, "Apple")
+        XCTAssertEqual(event.appVersion, "X.V.C")
+        XCTAssertEqual(event.osVersion, "undefinedVersion")
+        XCTAssertEqual(event.deviceModel, "undefinedModel")
+        XCTAssertEqual(event.carrier, "undefinedCarrier")
+        XCTAssertEqual(event.language, "Sakovian")
+        XCTAssertEqual(event.country, "Sakovia")
     }
 
     func testDefaultTimestamp() {
@@ -59,5 +77,304 @@ final class EventComposerTests: XCTestCase {
         )
 
         XCTAssert(abs(event.timestamp - .currentTimestamp()) < 2)
+    }
+
+    func testPositiveTimezone() {
+        deviceInfoProviderMock.timezoneOffset = 1
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertEqual(event.timezone, "GMT+1")
+    }
+
+    func testNegativeTimezone() {
+        deviceInfoProviderMock.timezoneOffset = -6
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertEqual(event.timezone, "GMT-6")
+    }
+
+    func testGreenwichTimezone() {
+        deviceInfoProviderMock.timezoneOffset = 0
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertEqual(event.timezone, "GMT+0")
+    }
+
+    func testTwoDigitTimezone() {
+        deviceInfoProviderMock.timezoneOffset = -11
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertEqual(event.timezone, "GMT-11")
+    }
+
+    func testDisablePlatformTracking() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        composer.trackingOptions = AMPTrackingOptions().disablePlatform()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNotNil(event.country)
+        XCTAssertNotNil(event.language)
+        XCTAssertNotNil(event.osName)
+        XCTAssertNotNil(event.osVersion)
+        XCTAssertNil(event.platform)
+        XCTAssertNotNil(event.appVersion)
+        XCTAssertNotNil(event.deviceModel)
+        XCTAssertNotNil(event.deviceManufacturer)
+        XCTAssertNotNil(event.carrier)
+    }
+
+    func testDisableCountryTracking() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        composer.trackingOptions = AMPTrackingOptions().disableCountry()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNil(event.country)
+        XCTAssertNotNil(event.language)
+        XCTAssertNotNil(event.osName)
+        XCTAssertNotNil(event.osVersion)
+        XCTAssertNotNil(event.platform)
+        XCTAssertNotNil(event.appVersion)
+        XCTAssertNotNil(event.deviceModel)
+        XCTAssertNotNil(event.deviceManufacturer)
+        XCTAssertNotNil(event.carrier)
+    }
+
+    func testDisableLanguageTracking() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        composer.trackingOptions = AMPTrackingOptions().disableLanguage()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNotNil(event.country)
+        XCTAssertNil(event.language)
+        XCTAssertNotNil(event.osName)
+        XCTAssertNotNil(event.osVersion)
+        XCTAssertNotNil(event.platform)
+        XCTAssertNotNil(event.appVersion)
+        XCTAssertNotNil(event.deviceModel)
+        XCTAssertNotNil(event.deviceManufacturer)
+        XCTAssertNotNil(event.carrier)
+    }
+
+    func testDisableOsNameTracking() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        composer.trackingOptions = AMPTrackingOptions().disableOSName()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNotNil(event.country)
+        XCTAssertNotNil(event.language)
+        XCTAssertNil(event.osName)
+        XCTAssertNotNil(event.osVersion)
+        XCTAssertNotNil(event.platform)
+        XCTAssertNotNil(event.appVersion)
+        XCTAssertNotNil(event.deviceModel)
+        XCTAssertNotNil(event.deviceManufacturer)
+        XCTAssertNotNil(event.carrier)
+    }
+
+    func testDisableOsVersionTracking() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        composer.trackingOptions = AMPTrackingOptions().disableOSVersion()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNotNil(event.country)
+        XCTAssertNotNil(event.language)
+        XCTAssertNotNil(event.osName)
+        XCTAssertNil(event.osVersion)
+        XCTAssertNotNil(event.platform)
+        XCTAssertNotNil(event.appVersion)
+        XCTAssertNotNil(event.deviceModel)
+        XCTAssertNotNil(event.deviceManufacturer)
+        XCTAssertNotNil(event.carrier)
+    }
+
+    func testDisableAppVersionTracking() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        composer.trackingOptions = AMPTrackingOptions().disableVersionName()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNotNil(event.country)
+        XCTAssertNotNil(event.language)
+        XCTAssertNotNil(event.osName)
+        XCTAssertNotNil(event.osVersion)
+        XCTAssertNotNil(event.platform)
+        XCTAssertNil(event.appVersion)
+        XCTAssertNotNil(event.deviceModel)
+        XCTAssertNotNil(event.deviceManufacturer)
+        XCTAssertNotNil(event.carrier)
+    }
+
+    func testDisableDeviceModelTracking() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        composer.trackingOptions = AMPTrackingOptions().disableDeviceModel()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNotNil(event.country)
+        XCTAssertNotNil(event.language)
+        XCTAssertNotNil(event.osName)
+        XCTAssertNotNil(event.osVersion)
+        XCTAssertNotNil(event.platform)
+        XCTAssertNotNil(event.appVersion)
+        XCTAssertNil(event.deviceModel)
+        XCTAssertNotNil(event.deviceManufacturer)
+        XCTAssertNotNil(event.carrier)
+    }
+
+    func testDisableDeviceManufacturerTracking() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        composer.trackingOptions = AMPTrackingOptions().disableDeviceManufacturer()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNotNil(event.country)
+        XCTAssertNotNil(event.language)
+        XCTAssertNotNil(event.osName)
+        XCTAssertNotNil(event.osVersion)
+        XCTAssertNotNil(event.platform)
+        XCTAssertNotNil(event.appVersion)
+        XCTAssertNotNil(event.deviceModel)
+        XCTAssertNil(event.deviceManufacturer)
+        XCTAssertNotNil(event.carrier)
+    }
+
+    func testDisableCarrierTracking() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        composer.trackingOptions = AMPTrackingOptions().disableCarrier()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNotNil(event.country)
+        XCTAssertNotNil(event.language)
+        XCTAssertNotNil(event.osName)
+        XCTAssertNotNil(event.osVersion)
+        XCTAssertNotNil(event.platform)
+        XCTAssertNotNil(event.appVersion)
+        XCTAssertNotNil(event.deviceModel)
+        XCTAssertNotNil(event.deviceManufacturer)
+        XCTAssertNil(event.carrier)
     }
 }

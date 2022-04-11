@@ -15,7 +15,8 @@ final class EventQueueAssembly {
 
     private(set) lazy var eventComposer: EventComposer = EventComposerImpl(
         sessionIdProvider: sessionManager,
-        userPropertiesProvider: userPropertiesKeeper
+        userPropertiesProvider: userPropertiesKeeper,
+        deviceInfoProvider: DeviceInfoProviderImpl()
     )
 
     private(set) lazy var userPropertiesKeeper: UserPropertiesKeeper = UserPropertiesKeeperImpl(userDefaults: .standard)

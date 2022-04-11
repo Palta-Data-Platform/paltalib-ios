@@ -20,7 +20,17 @@ extension Event {
             sessionId: 1,
             timestamp: timestamp ?? .currentTimestamp(),
             userId: nil,
-            deviceId: nil
+            deviceId: nil,
+            platform: nil,
+            appVersion: nil,
+            osName: nil,
+            osVersion: nil,
+            deviceModel: nil,
+            deviceManufacturer: nil,
+            carrier: nil,
+            country: nil,
+            language: nil,
+            timezone: "GMT+X"
         )
     }
 }
