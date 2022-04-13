@@ -3,8 +3,11 @@ import Amplitude
 extension PaltaAnalytics {
 
     public func setUserProperties(_ userProperties: [AnyHashable: Any]) {
-        amplitudeInstances.forEach {
-            $0.setUserProperties(userProperties)
+        guard let userProperties = userProperties as? [String: Any] else {
+            assertionFailure("Dictionary must have only String keys")
+            return
         }
+
+        setUserProperties(userProperties)
     }
 }

@@ -10,11 +10,11 @@ public final class PaltaAnalytics {
         paltaQueueAssemblies.map { $0.eventQueue }
     }
 
+    let assembly = AnalyticsAssembly()
+    private(set) var paltaQueueAssemblies: [EventQueueAssembly] = []
+
     private var apiKey: String?
     private var amplitudeApiKey: String?
-
-    private let assembly = AnalyticsAssembly()
-    private var paltaQueueAssemblies: [EventQueueAssembly] = []
 
     public init() {}
 
