@@ -98,6 +98,8 @@
 		114D06FD2806EEE500ACD310 /* IdentityLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06FC2806EEE500ACD310 /* IdentityLogger.swift */; };
 		114D06FF2806F62200ACD310 /* IdentityLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06FE2806F62200ACD310 /* IdentityLoggerTests.swift */; };
 		114D07012806F64B00ACD310 /* EventQueueMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D07002806F64B00ACD310 /* EventQueueMock.swift */; };
+		114D0703280757DB00ACD310 /* RevenueLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D0702280757DB00ACD310 /* RevenueLogger.swift */; };
+		114D070628075C7C00ACD310 /* RevenueLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D070428075C4900ACD310 /* RevenueLoggerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -271,6 +273,8 @@
 		114D06FC2806EEE500ACD310 /* IdentityLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityLogger.swift; sourceTree = "<group>"; };
 		114D06FE2806F62200ACD310 /* IdentityLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityLoggerTests.swift; sourceTree = "<group>"; };
 		114D07002806F64B00ACD310 /* EventQueueMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueMock.swift; sourceTree = "<group>"; };
+		114D0702280757DB00ACD310 /* RevenueLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueLogger.swift; sourceTree = "<group>"; };
+		114D070428075C4900ACD310 /* RevenueLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueLoggerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -485,6 +489,7 @@
 				11115A8E28001F2300A41ADA /* UserPropertiesKeeper.swift */,
 				11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */,
 				114D06FC2806EEE500ACD310 /* IdentityLogger.swift */,
+				114D0702280757DB00ACD310 /* RevenueLogger.swift */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				11115A3527FB00A500A41ADA /* FileEventStorageTests.swift */,
 				11115A3127FAF23F00A41ADA /* TimerTests.swift */,
 				11115A4527FB757400A41ADA /* EventQueueTests.swift */,
+				114D070428075C4900ACD310 /* RevenueLoggerTests.swift */,
 				11115A4927FB7D0000A41ADA /* EventSendErrorTests.swift */,
 				11115A5227FB7FAD00A41ADA /* EventComposerTests.swift */,
 				114D06FE2806F62200ACD310 /* IdentityLoggerTests.swift */,
@@ -807,6 +813,7 @@
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
 				11115A8D27FF293800A41ADA /* HTTPClientMock.swift in Sources */,
 				11115A8A27FF27D500A41ADA /* EventSenderTests.swift in Sources */,
+				114D070628075C7C00ACD310 /* RevenueLoggerTests.swift in Sources */,
 				11115A4427FB751E00A41ADA /* EventComposerMock.swift in Sources */,
 				11115A4027FB740B00A41ADA /* EventStorageMock.swift in Sources */,
 				111159BF27F773E900A41ADA /* EventMock.swift in Sources */,
@@ -869,6 +876,7 @@
 				1111596627F70BE400A41ADA /* PaltaAnalytics+Identify.swift in Sources */,
 				11115A5C27FC5A3600A41ADA /* Timestamp.swift in Sources */,
 				114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */,
+				114D0703280757DB00ACD310 /* RevenueLogger.swift in Sources */,
 				11115A5927FC59C900A41ADA /* Session.swift in Sources */,
 				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
 				11115A4F27FB7E6B00A41ADA /* EventSender.swift in Sources */,

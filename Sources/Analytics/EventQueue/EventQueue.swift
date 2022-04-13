@@ -11,6 +11,7 @@ protocol EventQueue {
     func logEvent(
         eventType: String,
         eventProperties: [String: Any],
+        apiProperties: [String: Any],
         groups: [String: Any],
         userProperties: [String: Any],
         groupProperties: [String: Any],
@@ -49,6 +50,7 @@ final class EventQueueImpl: EventQueue {
     func logEvent(
         eventType: String,
         eventProperties: [String: Any],
+        apiProperties: [String: Any] = [:],
         groups: [String: Any],
         userProperties: [String: Any] = [:],
         groupProperties: [String: Any] = [:],
@@ -58,7 +60,7 @@ final class EventQueueImpl: EventQueue {
         let event = eventComposer.composeEvent(
             eventType: eventType,
             eventProperties: eventProperties,
-            apiProperties: [:],
+            apiProperties: apiProperties,
             groups: groups,
             userProperties: userProperties,
             groupProperties: groupProperties,

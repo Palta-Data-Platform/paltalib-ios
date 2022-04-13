@@ -11,6 +11,7 @@ import Foundation
 final class EventQueueMock: EventQueue {
     var eventType: String?
     var eventProperties: [String : Any]?
+    var apiProperties: [String: Any]?
     var groups: [String : Any]?
     var userProperties: [String : Any]?
     var groupProperties: [String : Any]?
@@ -20,6 +21,7 @@ final class EventQueueMock: EventQueue {
     func logEvent(
         eventType: String,
         eventProperties: [String: Any],
+        apiProperties: [String: Any],
         groups: [String: Any],
         userProperties: [String : Any],
         groupProperties: [String: Any],
@@ -28,6 +30,7 @@ final class EventQueueMock: EventQueue {
     ) {
         self.eventType = eventType
         self.eventProperties = eventProperties
+        self.apiProperties = apiProperties
         self.groups = groups
         self.userProperties = userProperties
         self.groupProperties = groupProperties

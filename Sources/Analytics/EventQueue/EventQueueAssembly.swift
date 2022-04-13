@@ -32,6 +32,8 @@ final class EventQueueAssembly {
 
     private(set) lazy var identityLogger = IdentityLogger(eventQueue: eventQueue)
 
+    private(set) lazy var revenueLogger = RevenueLogger(eventQueue: eventQueue)
+
     private let coreAssembly: CoreAssembly
     private let analyticsCoreAssembly: AnalyticsCoreAssembly
 

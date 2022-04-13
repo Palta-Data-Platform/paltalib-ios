@@ -41,20 +41,21 @@ final class EventQueueTests: XCTestCase {
         eventQueue.logEvent(
             eventType: "event-type",
             eventProperties: ["prop": "1"],
-            groups: ["group": 2],
-            userProperties: ["user": 3],
-            groupProperties: ["groupP": 4],
+            apiProperties: ["api": 2],
+            groups: ["group": 3],
+            userProperties: ["user": 4],
+            groupProperties: ["groupP": 5],
             timestamp: 22
         )
 
         XCTAssertEqual(composerMock.eventType, "event-type")
         XCTAssertEqual(composerMock.eventProperties as? [String: String], ["prop": "1"])
-        XCTAssertEqual(composerMock.groups as? [String: Int], ["group": 2])
-        XCTAssertEqual(composerMock.userProperties as? [String: Int], ["user": 3])
-        XCTAssertEqual(composerMock.groupProperties as? [String: Int], ["groupP": 4])
+        XCTAssertEqual(composerMock.apiProperties as? [String: Int], ["api": 2])
+        XCTAssertEqual(composerMock.groups as? [String: Int], ["group": 3])
+        XCTAssertEqual(composerMock.userProperties as? [String: Int], ["user": 4])
+        XCTAssertEqual(composerMock.groupProperties as? [String: Int], ["groupP": 5])
         XCTAssertEqual(composerMock.timestamp, 22)
         XCTAssertEqual(composerMock.outOfSession, false)
-        XCTAssert(composerMock.apiProperties?.isEmpty == true)
 
         XCTAssertEqual(coreMock.addedEvents, [.mock()])
         XCTAssertEqual(storageMock.addedEvents, [.mock()])

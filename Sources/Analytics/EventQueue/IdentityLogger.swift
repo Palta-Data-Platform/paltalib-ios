@@ -30,6 +30,7 @@ final class IdentityLogger {
         eventQueue.logEvent(
             eventType: identifyEventType,
             eventProperties: [:],
+            apiProperties: [:],
             groups: [:],
             userProperties: userProperties,
             groupProperties: [:],
@@ -55,6 +56,7 @@ final class IdentityLogger {
         eventQueue.logEvent(
             eventType: groupIdentifyEventType,
             eventProperties: [:],
+            apiProperties: [:],
             groups: [groupType: groupName],
             userProperties: [:],
             groupProperties: groupProperties,
@@ -88,6 +90,7 @@ final class IdentityLogger {
         eventQueue.logEvent(
             eventType: identifyEventType,
             eventProperties: [:],
+            apiProperties: [:],
             groups: [groupType: groupName],
             userProperties: userProperties,
             groupProperties: [:],
