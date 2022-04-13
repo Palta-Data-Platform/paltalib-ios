@@ -62,6 +62,10 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
         session = newSession()
     }
 
+    func setSessionId(_ sessionId: Int) {
+        session = Session(id: sessionId)
+    }
+
     private func subscribeForNotifications() {
         subscriptionToken = notificationCenter.addObserver(
             forName: UIApplication.didBecomeActiveNotification,

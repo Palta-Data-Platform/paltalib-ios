@@ -9,21 +9,14 @@ import Foundation
 import PaltaLibCore
 
 final class EventQueueAssembly {
-    private(set) lazy var eventQueueCore: EventQueueCore = EventQueueCoreImpl(timer: TimerImpl())
+    private(set) lazy var eventQueueCore = EventQueueCoreImpl(timer: TimerImpl())
 
     private(set) lazy var eventStorage: EventStorage = FileEventStorage()
 
-    private(set) lazy var eventComposer: EventComposer = EventComposerImpl(
-        sessionIdProvider: sessionManager,
-        userPropertiesProvider: userPropertiesKeeper,
+    private(set) lazy var eventComposer = EventComposerImpl(
+        sessionIdProvider: analyticsCoreAssembly.sessionManager,
+        userPropertiesProvider: analyticsCoreAssembly.userPropertiesKeeper,
         deviceInfoProvider: DeviceInfoProviderImpl()
-    )
-
-    private(set) lazy var userPropertiesKeeper: UserPropertiesKeeper = UserPropertiesKeeperImpl(userDefaults: .standard)
-
-    private(set) lazy var sessionManager = SessionManagerImpl(
-        userDefaults: .standard,
-        notificationCenter: .default
     )
 
     private(set) lazy var eventSender = EventSenderImpl(httpClient: coreAssembly.httpClient)
@@ -33,13 +26,15 @@ final class EventQueueAssembly {
         storage: eventStorage,
         sender: eventSender,
         eventComposer: eventComposer,
-        sessionManager: sessionManager,
+        sessionManager: analyticsCoreAssembly.sessionManager,
         timer: TimerImpl()
     )
 
     private let coreAssembly: CoreAssembly
+    private let analyticsCoreAssembly: AnalyticsCoreAssembly
 
-    init(coreAssembly: CoreAssembly) {
+    init(coreAssembly: CoreAssembly, analyticsCoreAssembly: AnalyticsCoreAssembly) {
         self.coreAssembly = coreAssembly
+        self.analyticsCoreAssembly = analyticsCoreAssembly
     }
 }

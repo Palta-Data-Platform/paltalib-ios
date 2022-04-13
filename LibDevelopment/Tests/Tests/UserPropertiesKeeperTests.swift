@@ -20,7 +20,7 @@ final class UserPropertiesKeeperTests: XCTestCase {
     }
 
     func testProvidingCorrectIDs() {
-        let guid = UUID()
+        let guid = UUID().uuidString
         keeper.userId = "mock-user-id"
         keeper.deviceId = guid
 

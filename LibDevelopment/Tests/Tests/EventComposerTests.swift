@@ -34,7 +34,7 @@ final class EventComposerTests: XCTestCase {
     func testCompose() {
         sessionManagerMock.sessionId = 845
         userPropertiesMock.userId = "sample-user-id"
-        userPropertiesMock.deviceId = UUID()
+        userPropertiesMock.deviceId = UUID().uuidString
 
         deviceInfoProviderMock.appVersion = "X.V.C"
         deviceInfoProviderMock.language = "Sakovian"

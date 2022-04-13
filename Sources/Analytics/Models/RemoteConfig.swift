@@ -5,22 +5,34 @@ struct RemoteConfig: Codable {
 }
 
 public struct ConfigTarget: Codable {
+    public enum Name: String, Codable {
+        case amplitude
+        case paltabrain
+        case `default`
+    }
     
-    static let defaultTarget = ConfigTarget(name: "Default",
-                                            settings: ConfigSettings(eventUploadThreshold: 12,
-                                                                     eventUploadMaxBatchSize: 12,
-                                                                     eventMaxCount: 12,
-                                                                     eventUploadPeriodSeconds: 12,
-                                                                     minTimeBetweenSessionsMillis: 12,
-                                                                     trackingSessionEvents: true),
-                                                                     url: "https://api.paltabrain.com/events")
-    let name: String
+    static let defaultTarget = ConfigTarget(
+        name: .default,
+        settings: ConfigSettings(
+            eventUploadThreshold: 12,
+            eventUploadMaxBatchSize: 12,
+            eventMaxCount: 12,
+            eventUploadPeriodSeconds: 12,
+            minTimeBetweenSessionsMillis: 12,
+            trackingSessionEvents: true
+        ),
+        url: URL(string: "https://api.paltabrain.com/events")
+    )
+
+    let name: Name
     let settings: ConfigSettings
-    let url: String?
+    let url: URL?
     
-    public init(name: String,
-                settings: ConfigSettings,
-                url: String?) {
+    public init(
+        name: Name,
+        settings: ConfigSettings,
+        url: URL?
+    ) {
         self.name = name
         self.settings = settings
         self.url = url
@@ -35,12 +47,14 @@ public struct ConfigSettings: Codable {
     let minTimeBetweenSessionsMillis: Int
     let trackingSessionEvents: Bool
     
-    public init(eventUploadThreshold: Int,
-                eventUploadMaxBatchSize: Int,
-                eventMaxCount: Int,
-                eventUploadPeriodSeconds: Int,
-                minTimeBetweenSessionsMillis: Int,
-                trackingSessionEvents: Bool) {
+    public init(
+        eventUploadThreshold: Int,
+        eventUploadMaxBatchSize: Int,
+        eventMaxCount: Int,
+        eventUploadPeriodSeconds: Int,
+        minTimeBetweenSessionsMillis: Int,
+        trackingSessionEvents: Bool
+    ) {
         self.eventUploadThreshold = eventUploadThreshold
         self.eventUploadMaxBatchSize = eventUploadMaxBatchSize
         self.eventMaxCount = eventMaxCount

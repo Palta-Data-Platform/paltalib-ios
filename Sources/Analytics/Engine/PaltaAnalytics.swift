@@ -2,35 +2,30 @@ import Amplitude
 import PaltaLibCore
 
 public final class PaltaAnalytics {
+    public static let instance = PaltaAnalytics()
 
     var targets = [Target]()
     var amplitudeInstances = [Amplitude]()
-    private let httpClient = HTTPClientImpl()
-    private lazy var configurationService = ConfigurationService(httpClient: httpClient)
+    var paltaQueues: [EventQueue] {
+        paltaQueueAssemblies.map { $0.eventQueue }
+    }
+
     private var apiKey: String?
+    private var amplitudeApiKey: String?
+
+    private let assembly = AnalyticsAssembly()
+    private var paltaQueueAssemblies: [EventQueueAssembly] = []
 
     public init() {}
 
-    public static let instance = PaltaAnalytics()
-
-    public func configure(name: String,
-                          amplitudeAPIKey: String? = nil,
-                          paltaAPIKey: String? = nil,
-                          trackingSessionEvents: Bool = false) {
-
-        configure(
-            using: .init(
-                name: name,
-                amplitudeAPIKey: amplitudeAPIKey,
-                paltaAPIKey: paltaAPIKey,
-                trackingSessionEvents: trackingSessionEvents
-            )
-        )
-    }
-    
-    
-    public func setApiKey(_ apiKey: String) {
-        self.apiKey = apiKey
+    public func configure(
+        name: String,
+        amplitudeAPIKey: String? = nil,
+        paltaAPIKey: String? = nil,
+        trackingSessionEvents: Bool = false
+    ) {
+        self.apiKey = paltaAPIKey
+        self.amplitudeApiKey = amplitudeAPIKey
         requestRemoteConfigs()
     }
     
@@ -39,7 +34,8 @@ public final class PaltaAnalytics {
             print("PaltaAnalytics: error: API key is not set")
             return
         }
-        configurationService.requestConfigs(apiKey: apiKey) { [self] result in
+
+        assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey) { [self] result in
             switch result {
             case .failure(let error):
                 print("PaltaAnalytics: configuration fetch failed: \(error.localizedDescription), used default config.")
@@ -51,19 +47,23 @@ public final class PaltaAnalytics {
             }
         }
     }
-
-    public func configure(using configurationOptions: ConfigurationOptions) {
-        let targets = configurationOptions.allTargets
-        targets.forEach(addTarget)
-        self.targets = targets
-    }
     
-    public func addConfigTarget(_ target: ConfigTarget) {
-        guard let apiKey = apiKey else {
-            print("PaltaAnalytics: error: API key is not set")
+    private func addConfigTarget(_ target: ConfigTarget) {
+        switch target.name {
+        case .amplitude:
+            addAmplitudeTarget(target)
+        case .`default`, .paltabrain:
+            addPaltaBrainTarget(target)
+        }
+    }
+
+    private func addAmplitudeTarget(_ target: ConfigTarget) {
+        guard let apiKey = amplitudeApiKey else {
+            print("PaltaAnalytics: error: API key for amplitude is not set")
             return
         }
-        let amplitudeInstance = Amplitude.instance(withName: target.name)
+
+        let amplitudeInstance = Amplitude.instance(withName: target.name.rawValue)
         let settings = target.settings
         amplitudeInstance.trackingSessionEvents = settings.trackingSessionEvents
         amplitudeInstance.eventMaxCount = Int32(settings.eventMaxCount)
@@ -72,40 +72,61 @@ public final class PaltaAnalytics {
         amplitudeInstance.eventUploadThreshold = Int32(settings.eventUploadThreshold)
         amplitudeInstance.minTimeBetweenSessionsMillis = settings.minTimeBetweenSessionsMillis
         amplitudeInstance.initializeApiKey(apiKey)
+
         if let url = target.url {
-            amplitudeInstance.setServerUrl(url)
+            amplitudeInstance.setServerUrl(url.absoluteString)
         }
+
         amplitudeInstances.append(amplitudeInstance)
     }
 
-    public func addTarget(_ target: Target) {
-        guard !targets.contains(target) else { return }
+    private func addPaltaBrainTarget(_ target: ConfigTarget) {
+        let eventQueueAssembly = assembly.newEventQueueAssembly()
 
-        let amplitudeInstance = Amplitude.instance(withName: target.name)
-        amplitudeInstance.trackingSessionEvents = target.trackingSessionEvents
-        amplitudeInstance.initializeApiKey(target.apiKey)
+        eventQueueAssembly.eventQueueCore.config = .init(
+            maxBatchSize: target.settings.eventUploadMaxBatchSize,
+            uploadInterval: TimeInterval(target.settings.eventUploadPeriodSeconds),
+            uploadThreshold: target.settings.eventUploadThreshold,
+            maxEvents: target.settings.eventMaxCount,
+            maxConcurrentOperations: 5
+        )
 
-        if let serverURL = target.serverURL {
-            amplitudeInstance.setServerUrl(serverURL.absoluteString)
-        }
-        amplitudeInstances.append(amplitudeInstance)
+        assembly.analyticsCoreAssembly.sessionManager.maxSessionAge = target.settings.minTimeBetweenSessionsMillis
+        paltaQueueAssemblies.append(eventQueueAssembly)
     }
+
+//    public func addTarget(_ target: Target) {
+//        guard !targets.contains(target) else { return }
+//
+//        let amplitudeInstance = Amplitude.instance(withName: target.name)
+//        amplitudeInstance.trackingSessionEvents = target.trackingSessionEvents
+//        amplitudeInstance.initializeApiKey(target.apiKey)
+//
+//        if let serverURL = target.serverURL {
+//            amplitudeInstance.setServerUrl(serverURL.absoluteString)
+//        }
+//        amplitudeInstances.append(amplitudeInstance)
+//    }
     
-    public func initializeApiKey(apiKey: String) {
-        amplitudeInstances.forEach {
-            $0.initializeApiKey(apiKey)
-        }
-    }
+//    public func initializeApiKey(apiKey: String) {
+//        amplitudeInstances.forEach {
+//            $0.initializeApiKey(apiKey)
+//        }
+//    }
     
-    public func initializeApiKey(apiKey: String, userId: String?) {
-        amplitudeInstances.forEach {
-            $0.initializeApiKey(apiKey, userId: userId)
-        }
-    }
+//    public func initializeApiKey(apiKey: String, userId: String?) {
+//        amplitudeInstances.forEach {
+//            $0.initializeApiKey(apiKey, userId: userId)
+//        }
+//    }
         
     public func setOffline(_ offline: Bool) {
         amplitudeInstances.forEach {
             $0.setOffline(offline)
+        }
+
+        paltaQueueAssemblies.forEach {
+            $0.eventQueueCore.isPaused = offline
         }
     }
     
@@ -113,11 +134,17 @@ public final class PaltaAnalytics {
         amplitudeInstances.forEach {
             $0.useAdvertisingIdForDeviceId()
         }
+
+        // TODO
     }
 
     public func setTrackingOptions(_ options: AMPTrackingOptions) {
         amplitudeInstances.forEach {
             $0.setTrackingOptions(options)
+        }
+
+        paltaQueueAssemblies.forEach {
+            $0.eventComposer.trackingOptions = options
         }
     }
 
@@ -125,59 +152,64 @@ public final class PaltaAnalytics {
         amplitudeInstances.forEach {
             $0.enableCoppaControl()
         }
+// TODO
+//        paltaQueueAssemblies.forEach {
+//            $0.eventComposer.trackingOptions
+//        }
     }
     
     public func disableCoppaControl() {
         amplitudeInstances.forEach {
             $0.disableCoppaControl()
         }
+        // TODO
     }
     
-    public func setServerUrl(_ serverUrl: String) {
-        amplitudeInstances.forEach {
-            $0.setServerUrl(serverUrl)
-        }
-    }
+//    public func setServerUrl(_ serverUrl: String) {
+//        amplitudeInstances.forEach {
+//            $0.setServerUrl(serverUrl)
+//        }
+//    }
 
-    public func setContentTypeHeader(_ contentType: String) {
-        amplitudeInstances.forEach {
-            $0.setContentTypeHeader(contentType)
-        }
-    }
+//    public func setContentTypeHeader(_ contentType: String) {
+//        amplitudeInstances.forEach {
+//            $0.setContentTypeHeader(contentType)
+//        }
+//    }
     
-    public func setBearerToken(_ token: String) {
-        amplitudeInstances.forEach {
-            $0.setBearerToken(token)
-        }
-    }
+//    public func setBearerToken(_ token: String) {
+//        amplitudeInstances.forEach {
+//            $0.setBearerToken(token)
+//        }
+//    }
     
-    public func setPlan(_ plan: AMPPlan) {
-        amplitudeInstances.forEach {
-            $0.setPlan(plan)
-        }
-    }
+//    public func setPlan(_ plan: AMPPlan) {
+//        amplitudeInstances.forEach {
+//            $0.setPlan(plan)
+//        }
+//    }
 
-    public func setServerZone(_ serverZone: AMPServerZone) {
-        amplitudeInstances.forEach {
-            $0.setServerZone(serverZone)
-        }
-    }
+//    public func setServerZone(_ serverZone: AMPServerZone) {
+//        amplitudeInstances.forEach {
+//            $0.setServerZone(serverZone)
+//        }
+//    }
     
-    public func setServerZone(_ serverZone: AMPServerZone, updateServerUrl: Bool) {
-        amplitudeInstances.forEach {
-            $0.setServerZone(serverZone,
-                             updateServerUrl: updateServerUrl)
-        }
-    }
+//    public func setServerZone(_ serverZone: AMPServerZone, updateServerUrl: Bool) {
+//        amplitudeInstances.forEach {
+//            $0.setServerZone(serverZone,
+//                             updateServerUrl: updateServerUrl)
+//        }
+//    }
     
-    public func printEventsCount() {
-        amplitudeInstances.forEach {
-            $0.printEventsCount()
-        }
-    }
+//    public func printEventsCount() {
+//        amplitudeInstances.forEach {
+//            $0.printEventsCount()
+//        }
+//    }
     
     public func getDeviceId() -> String? {
-        amplitudeInstances.first?.getDeviceId()
+        assembly.analyticsCoreAssembly.userPropertiesKeeper.deviceId
     }
     
     public func regenerateDeviceId() {
@@ -185,33 +217,34 @@ public final class PaltaAnalytics {
         amplitudeInstances.forEach {
             $0.setDeviceId(deviceId)
         }
+        assembly.analyticsCoreAssembly.userPropertiesKeeper.deviceId = deviceId
     }
     
     public func getSessionId() -> Int64? {
-        amplitudeInstances.first?.getSessionId()
+        Int64(assembly.analyticsCoreAssembly.sessionManager.sessionId)
     }
     
     public func setSessionId(_ timestamp: Int64) {
         amplitudeInstances.forEach {
             $0.setSessionId(timestamp)
         }
+
+        assembly.analyticsCoreAssembly.sessionManager.setSessionId(Int(timestamp))
     }
     
-    public func uploadEvents() {
-        amplitudeInstances.forEach {
-            $0.uploadEvents()
-        }
-    }
+//    public func uploadEvents() {
+//        amplitudeInstances.forEach {
+//            $0.uploadEvents()
+//        }
+//    }
 
-    public func startOrContinueSession(_ timestamp: Int64) {
-        amplitudeInstances.forEach {
-            $0.startOrContinueSession(timestamp)
-        }
-    }
+//    public func startOrContinueSession(_ timestamp: Int64) {
+//        amplitudeInstances.forEach {
+//            $0.startOrContinueSession(timestamp)
+//        }
+//    }
     
-    public func getContentTypeHeader() -> String? {
-        amplitudeInstances.first?.getContentTypeHeader()
-    }
-
-
+//    public func getContentTypeHeader() -> String? {
+//        amplitudeInstances.first?.getContentTypeHeader()
+//    }
 }

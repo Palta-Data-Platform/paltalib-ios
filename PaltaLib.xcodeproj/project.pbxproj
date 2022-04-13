@@ -93,6 +93,8 @@
 		11115A9C280065E300A41ADA /* DeviceInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */; };
 		114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */; };
 		114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */; };
+		114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */; };
+		114D06E028041BAA00ACD310 /* AnalyticsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DB28041B5000ACD310 /* AnalyticsAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,6 +263,8 @@
 		11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProvider.swift; sourceTree = "<group>"; };
 		114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderMock.swift; sourceTree = "<group>"; };
 		114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderTests.swift; sourceTree = "<group>"; };
+		114D06DB28041B5000ACD310 /* AnalyticsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAssembly.swift; sourceTree = "<group>"; };
+		114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCoreAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +389,8 @@
 				1111593A27F708E400A41ADA /* Models */,
 				1111593C27F708E400A41ADA /* Services */,
 				1111592B27F708CA00A41ADA /* Settings.swift */,
+				114D06DB28041B5000ACD310 /* AnalyticsAssembly.swift */,
+				114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */,
 			);
 			path = Sources/Analytics;
 			sourceTree = "<group>";
@@ -834,6 +840,7 @@
 				11115A8227FEC60400A41ADA /* EventQueueAssembly.swift in Sources */,
 				11115A8427FEFFB200A41ADA /* SendEventsPayload.swift in Sources */,
 				1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */,
+				114D06E028041BAA00ACD310 /* AnalyticsAssembly.swift in Sources */,
 				11115A8F28001F2300A41ADA /* UserPropertiesKeeper.swift in Sources */,
 				11115A9128001FA800A41ADA /* UserProperties.swift in Sources */,
 				1111596727F70BE400A41ADA /* PaltaAnalytics+Target.swift in Sources */,
@@ -849,6 +856,7 @@
 				11115A4C27FB7E6000A41ADA /* Timer.swift in Sources */,
 				1111596627F70BE400A41ADA /* PaltaAnalytics+Identify.swift in Sources */,
 				11115A5C27FC5A3600A41ADA /* Timestamp.swift in Sources */,
+				114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */,
 				11115A5927FC59C900A41ADA /* Session.swift in Sources */,
 				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
 				11115A4F27FB7E6B00A41ADA /* EventSender.swift in Sources */,

@@ -7,12 +7,16 @@ extension PaltaAnalytics {
         amplitudeInstances.forEach {
             $0.logRevenue(productIdentifier, quantity: quantity, price: price, receipt: receipt)
         }
+
+        // TODO
     }
 
     public func logRevenueV2(_ revenue: AMPRevenue) {
         amplitudeInstances.forEach {
             $0.logRevenueV2(revenue)
         }
+
+        // TODO
     }
     
     @available(*, deprecated, message: "Use `logRevenueV2` and `AMPRevenue` instead")
@@ -20,6 +24,8 @@ extension PaltaAnalytics {
         amplitudeInstances.forEach {
             $0.logRevenue(amount)
         }
+
+        // TODO
     }
     
     @available(*, deprecated, message: "Use `logRevenueV2` and `AMPRevenue` instead")
@@ -31,6 +37,8 @@ extension PaltaAnalytics {
                           quantity: quantity,
                           price: price)
         }
+
+        // TODO
     }
     
     @available(*, deprecated, message: "Use `logRevenueV2` and `AMPRevenue` instead")
@@ -44,6 +52,8 @@ extension PaltaAnalytics {
                           price: price,
                           receipt: receipt)
         }
+
+        // TODO
     }
 
 }

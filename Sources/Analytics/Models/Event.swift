@@ -41,7 +41,7 @@ struct Event: Codable, Hashable {
     let sessionId: Int
     let timestamp: Int
     let userId: String?
-    let deviceId: UUID?
+    let deviceId: String?
     let platform: String?
     let appVersion: String?
     let osName: String?

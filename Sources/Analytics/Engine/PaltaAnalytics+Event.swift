@@ -28,17 +28,34 @@ extension PaltaAnalytics {
                 )
             }
         }
+
+        paltaQueues.forEach {
+            $0.logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties as? [String: Any] ?? [:],
+                groups: groups as? [String: Any] ?? [:],
+                timestamp: timestamp?.intValue
+            )
+        }
     }
     
     public func logEvent(eventType: String) {
         amplitudeInstances.forEach {
             $0.logEvent(eventType)
         }
+
+        paltaQueues.forEach {
+            $0.logEvent(eventType: eventType, eventProperties: [:], groups: [:], timestamp: nil)
+        }
     }
     
     public func logEvent(eventType: String, withEventProperties eventProperties: Dictionary<String, Any>) {
         amplitudeInstances.forEach {
             $0.logEvent(eventType, withEventProperties: eventProperties)
+        }
+
+        paltaQueues.forEach {
+            $0.logEvent(eventType: eventType, eventProperties:  eventProperties, groups: [:], timestamp: nil)
         }
     }
     
@@ -50,6 +67,8 @@ extension PaltaAnalytics {
                         withEventProperties: eventProperties,
                         outOfSession: outOfSession)
         }
+
+        // TODO
     }
     
     public func logEvent(eventType: String,
@@ -59,6 +78,15 @@ extension PaltaAnalytics {
             $0.logEvent(eventType,
                         withEventProperties: eventProperties,
                         withGroups: groups)
+        }
+
+        paltaQueues.forEach {
+            $0.logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                groups: groups,
+                timestamp: nil
+            )
         }
     }
     
@@ -72,6 +100,8 @@ extension PaltaAnalytics {
                         withGroups: groups,
                         outOfSession: outOfSession)
         }
+
+        // TODO
     }
 
     public func logEvent(eventType: String,
@@ -86,6 +116,8 @@ extension PaltaAnalytics {
                         withLongLongTimestamp: longLongTimestamp,
                         outOfSession: outOfSession)
         }
+
+        // TODO
     }
     
     
@@ -101,6 +133,8 @@ extension PaltaAnalytics {
                         withTimestamp: timestamp,
                         outOfSession: outOfSession)
         }
+
+        // TODO
     }
 
 }

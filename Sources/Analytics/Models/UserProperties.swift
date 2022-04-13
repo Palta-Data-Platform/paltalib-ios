@@ -9,5 +9,5 @@ import Foundation
 
 struct UserProperties: Codable {
     var userId: String?
-    var deviceId: UUID?
+    var deviceId: String?
 }

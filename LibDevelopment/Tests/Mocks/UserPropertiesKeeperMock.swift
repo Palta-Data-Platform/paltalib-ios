@@ -10,5 +10,5 @@ import Foundation
 
 final class UserPropertiesKeeperMock: UserPropertiesKeeper {
     var userId: String?
-    var deviceId: UUID?
+    var deviceId: String?
 }

@@ -9,7 +9,7 @@ final class ConfigurationService {
         self.httpClient = httpClient
     }
     
-    public func requestConfigs(apiKey: String, completion: @escaping (Result<RemoteConfig, Error>) -> Void) {
+    func requestConfigs(apiKey: String, completion: @escaping (Result<RemoteConfig, Error>) -> Void) {
         httpClient.perform(AnalyticsHTTPRequest.remoteConfig(apiKey), with: completion)
     }
 }
