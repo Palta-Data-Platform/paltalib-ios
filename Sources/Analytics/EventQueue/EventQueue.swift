@@ -38,14 +38,16 @@ final class EventQueue {
         eventType: String,
         eventProperties: [String: Any],
         groups: [String: Any],
-        timestamp: Int? = nil
+        timestamp: Int? = nil,
+        outOfSession: Bool = false
     ) {
         let event = eventComposer.composeEvent(
             eventType: eventType,
             eventProperties: eventProperties,
             apiProperties: [:],
             groups: groups,
-            timestamp: timestamp
+            timestamp: timestamp,
+            outOfSession: outOfSession
         )
 
         storage.storeEvent(event)

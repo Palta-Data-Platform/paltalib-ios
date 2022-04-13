@@ -15,7 +15,8 @@ protocol EventComposer {
         eventProperties: [String: Any],
         apiProperties: [String: Any],
         groups: [String: Any],
-        timestamp: Int?
+        timestamp: Int?,
+        outOfSession: Bool
     ) -> Event
 }
 
@@ -48,7 +49,8 @@ final class EventComposerImpl: EventComposer {
         eventProperties: [String: Any],
         apiProperties: [String: Any],
         groups: [String: Any],
-        timestamp: Int?
+        timestamp: Int?,
+        outOfSession: Bool
     ) -> Event {
         let timestamp = timestamp ?? .currentTimestamp()
 
@@ -62,6 +64,7 @@ final class EventComposerImpl: EventComposer {
         let country = trackingOptions.shouldTrackCountry() ? deviceInfoProvider.country : nil
         let language = trackingOptions.shouldTrackLanguage() ? deviceInfoProvider.language : nil
         let timezone = "GMT\(timezoneFormatter.string(from: deviceInfoProvider.timezoneOffset as NSNumber) ?? "")"
+        let sessionId = !outOfSession ? sessionIdProvider.sessionId : -1
 
         return Event(
             eventType: eventType,
@@ -70,7 +73,7 @@ final class EventComposerImpl: EventComposer {
             userProperties: [:],
             groups: CodableDictionary(groups),
             groupProperties: [:],
-            sessionId: sessionIdProvider.sessionId,
+            sessionId: sessionId,
             timestamp: timestamp,
             userId: userPropertiesProvider.userId,
             deviceId: userPropertiesProvider.deviceId,

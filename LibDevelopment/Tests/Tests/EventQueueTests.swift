@@ -49,7 +49,26 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(composerMock.eventProperties as? [String: String], ["prop": "1"])
         XCTAssertEqual(composerMock.groups as? [String: Int], ["group": 2])
         XCTAssertEqual(composerMock.timestamp, 22)
+        XCTAssertEqual(composerMock.outOfSession, false)
         XCTAssert(composerMock.apiProperties?.isEmpty == true)
+
+        XCTAssertEqual(coreMock.addedEvents, [.mock()])
+        XCTAssertEqual(storageMock.addedEvents, [.mock()])
+        XCTAssertNil(senderMock.sentEvents)
+        XCTAssertNil(timerMock.passedInterval)
+        XCTAssert(sessionManagerMock.refreshSessionCalled)
+    }
+
+    func testAddOutOfSessionEvent() {
+        eventQueue.logEvent(
+            eventType: "event-type",
+            eventProperties: ["prop": "1"],
+            groups: ["group": 2],
+            timestamp: 22,
+            outOfSession: true
+        )
+
+        XCTAssertEqual(composerMock.outOfSession, true)
 
         XCTAssertEqual(coreMock.addedEvents, [.mock()])
         XCTAssertEqual(storageMock.addedEvents, [.mock()])

@@ -45,7 +45,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: ["prop": "A"],
             apiProperties: ["api": "B"],
             groups: ["group": "C"],
-            timestamp: 11
+            timestamp: 11,
+            outOfSession: false
         )
 
         XCTAssertEqual(event.eventType, "someType")
@@ -73,7 +74,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssert(abs(event.timestamp - .currentTimestamp()) < 2)
@@ -87,7 +89,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertEqual(event.timezone, "GMT+1")
@@ -101,7 +104,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertEqual(event.timezone, "GMT-6")
@@ -115,7 +119,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertEqual(event.timezone, "GMT+0")
@@ -129,7 +134,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertEqual(event.timezone, "GMT-11")
@@ -147,7 +153,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertNotNil(event.timezone)
@@ -174,7 +181,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertNotNil(event.timezone)
@@ -201,7 +209,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertNotNil(event.timezone)
@@ -228,7 +237,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertNotNil(event.timezone)
@@ -255,7 +265,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertNotNil(event.timezone)
@@ -282,7 +293,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertNotNil(event.timezone)
@@ -309,7 +321,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertNotNil(event.timezone)
@@ -336,7 +349,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertNotNil(event.timezone)
@@ -363,7 +377,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
-            timestamp: nil
+            timestamp: nil,
+            outOfSession: false
         )
 
         XCTAssertNotNil(event.timezone)
@@ -376,5 +391,20 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNil(event.carrier)
+    }
+
+    func testOutOfSession() {
+        sessionManagerMock.sessionId = 89
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            timestamp: nil,
+            outOfSession: true
+        )
+
+        XCTAssertEqual(event.sessionId, -1)
     }
 }

@@ -55,7 +55,7 @@ extension PaltaAnalytics {
         }
 
         paltaQueues.forEach {
-            $0.logEvent(eventType: eventType, eventProperties:  eventProperties, groups: [:], timestamp: nil)
+            $0.logEvent(eventType: eventType, eventProperties: eventProperties, groups: [:])
         }
     }
     
@@ -68,7 +68,14 @@ extension PaltaAnalytics {
                         outOfSession: outOfSession)
         }
 
-        // TODO
+        paltaQueues.forEach {
+            $0.logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                groups: [:],
+                outOfSession: outOfSession
+            )
+        }
     }
     
     public func logEvent(eventType: String,
@@ -101,7 +108,14 @@ extension PaltaAnalytics {
                         outOfSession: outOfSession)
         }
 
-        // TODO
+        paltaQueues.forEach {
+            $0.logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                groups: groups,
+                outOfSession: outOfSession
+            )
+        }
     }
 
     public func logEvent(eventType: String,
@@ -117,7 +131,15 @@ extension PaltaAnalytics {
                         outOfSession: outOfSession)
         }
 
-        // TODO
+        paltaQueues.forEach {
+            $0.logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                groups: groups,
+                timestamp: Int(longLongTimestamp),
+                outOfSession: outOfSession
+            )
+        }
     }
     
     
@@ -134,7 +156,15 @@ extension PaltaAnalytics {
                         outOfSession: outOfSession)
         }
 
-        // TODO
+        paltaQueues.forEach {
+            $0.logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                groups: groups,
+                timestamp: timestamp.intValue,
+                outOfSession: outOfSession
+            )
+        }
     }
 
 }

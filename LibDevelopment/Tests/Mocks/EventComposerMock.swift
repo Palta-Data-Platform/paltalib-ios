@@ -14,13 +14,22 @@ final class EventComposerMock: EventComposer {
     var apiProperties: [String : Any]?
     var groups: [String : Any]?
     var timestamp: Int?
+    var outOfSession: Bool?
 
-    func composeEvent(eventType: String, eventProperties: [String : Any], apiProperties: [String : Any], groups: [String : Any], timestamp: Int?) -> Event {
+    func composeEvent(
+        eventType: String,
+        eventProperties: [String : Any],
+        apiProperties: [String : Any],
+        groups: [String : Any],
+        timestamp: Int?,
+        outOfSession: Bool
+    ) -> Event {
         self.eventType = eventType
         self.eventProperties = eventProperties
         self.apiProperties = apiProperties
         self.groups = groups
         self.timestamp = timestamp
+        self.outOfSession = outOfSession
         
         return .mock()
     }
