@@ -6,7 +6,7 @@ public final class PaltaAnalytics {
 
     var targets = [Target]()
     var amplitudeInstances = [Amplitude]()
-    var paltaQueues: [EventQueue] {
+    var paltaQueues: [EventQueueImpl] {
         paltaQueueAssemblies.map { $0.eventQueue }
     }
 

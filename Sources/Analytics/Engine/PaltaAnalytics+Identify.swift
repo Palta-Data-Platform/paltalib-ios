@@ -32,11 +32,13 @@ extension PaltaAnalytics {
             )
         }
 
-        // TODO
+        paltaQueueAssemblies.forEach {
+            $0.identityLogger.identify(identify, outOfSession: outOfSession)
+        }
     }
 
     public func groupIdentify(
-        withGroupType: String,
+        withGroupType groupType: String,
         groupName: NSObject,
         groupIdentify: AMPIdentify,
         outOfSession: Bool = false
@@ -44,14 +46,21 @@ extension PaltaAnalytics {
 
         amplitudeInstances.forEach {
             $0.groupIdentify(
-                withGroupType: withGroupType,
+                withGroupType: groupType,
                 groupName: groupName,
                 groupIdentify: groupIdentify,
                 outOfSession: outOfSession
             )
         }
 
-        // TODO
+        paltaQueueAssemblies.forEach {
+            $0.identityLogger.groupIdentify(
+                groupType: groupType,
+                groupName: groupName,
+                groupIdentify: groupIdentify,
+                outOfSession: outOfSession
+            )
+        }
     }
     
     public func setUserProperties(_ userProperties: Dictionary<String, Any>) {
@@ -59,7 +68,9 @@ extension PaltaAnalytics {
             $0.setUserProperties(userProperties)
         }
 
-        // TODO
+        paltaQueueAssemblies.forEach {
+            $0.identityLogger.setUserProperties(userProperties)
+        }
     }
     
     @available(*, deprecated, message: "Use `- setUserProperties` instead. In earlier versions of the SDK, `replace: YES` replaced the in-memory userProperties dictionary with the input. However, userProperties are no longer stored in memory, so the flag does nothing.")
@@ -72,7 +83,9 @@ extension PaltaAnalytics {
             $0.clearUserProperties()
         }
 
-        // TODO
+        paltaQueueAssemblies.forEach {
+            $0.identityLogger.clearUserProperties()
+        }
     }
     
     public func setGroup(_ groupType: String, groupName: NSObject) {
@@ -80,33 +93,34 @@ extension PaltaAnalytics {
             $0.setGroup(groupType, groupName: groupName)
         }
 
-        // TODO
+        paltaQueueAssemblies.forEach {
+            $0.identityLogger.setGroup(groupType: groupType, groupName: groupName)
+        }
     }
- 
+
+    @available(*, deprecated, message: "Use groupIdentify(withGroupType:groupName:groupIdentify:outOfSession:) instead")
     public func groupIdentifyWithGroupType(_ groupType: String,
                                            groupName: NSObject,
                                            groupIdentify: AMPIdentify) {
-        amplitudeInstances.forEach {
-            $0.groupIdentify(withGroupType: groupType,
-                             groupName: groupName,
-                             groupIdentify: groupIdentify)
-        }
-
-        // TODO
+        self.groupIdentify(
+            withGroupType: groupType,
+            groupName: groupName,
+            groupIdentify: groupIdentify,
+            outOfSession: false
+        )
     }
-    
+
+    @available(*, deprecated, message: "Use groupIdentify(withGroupType:groupName:groupIdentify:outOfSession:) instead")
     public func groupIdentifyWithGroupType(_ groupType: String,
                                            groupName: NSObject,
                                            groupIdentify: AMPIdentify,
                                            outOfSession: Bool) {
-        amplitudeInstances.forEach {
-            $0.groupIdentify(withGroupType: groupType,
-                             groupName: groupName,
-                             groupIdentify: groupIdentify,
-                             outOfSession: outOfSession)
-        }
-
-        // TODO
+        self.groupIdentify(
+            withGroupType: groupType,
+            groupName: groupName,
+            groupIdentify: groupIdentify,
+            outOfSession: outOfSession
+        )
     }
 
     public func setDeviceId(_ deviceId: String) {

@@ -7,7 +7,19 @@
 
 import Foundation
 
-final class EventQueue {
+protocol EventQueue {
+    func logEvent(
+        eventType: String,
+        eventProperties: [String: Any],
+        groups: [String: Any],
+        userProperties: [String: Any],
+        groupProperties: [String: Any],
+        timestamp: Int?,
+        outOfSession: Bool
+    )
+}
+
+final class EventQueueImpl: EventQueue {
     private let core: EventQueueCore
     private let storage: EventStorage
     private let sender: EventSender
@@ -38,6 +50,8 @@ final class EventQueue {
         eventType: String,
         eventProperties: [String: Any],
         groups: [String: Any],
+        userProperties: [String: Any] = [:],
+        groupProperties: [String: Any] = [:],
         timestamp: Int? = nil,
         outOfSession: Bool = false
     ) {
@@ -46,6 +60,8 @@ final class EventQueue {
             eventProperties: eventProperties,
             apiProperties: [:],
             groups: groups,
+            userProperties: userProperties,
+            groupProperties: groupProperties,
             timestamp: timestamp,
             outOfSession: outOfSession
         )

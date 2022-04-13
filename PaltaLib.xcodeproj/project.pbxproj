@@ -95,6 +95,9 @@
 		114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */; };
 		114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */; };
 		114D06E028041BAA00ACD310 /* AnalyticsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DB28041B5000ACD310 /* AnalyticsAssembly.swift */; };
+		114D06FD2806EEE500ACD310 /* IdentityLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06FC2806EEE500ACD310 /* IdentityLogger.swift */; };
+		114D06FF2806F62200ACD310 /* IdentityLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06FE2806F62200ACD310 /* IdentityLoggerTests.swift */; };
+		114D07012806F64B00ACD310 /* EventQueueMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D07002806F64B00ACD310 /* EventQueueMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +268,9 @@
 		114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderTests.swift; sourceTree = "<group>"; };
 		114D06DB28041B5000ACD310 /* AnalyticsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAssembly.swift; sourceTree = "<group>"; };
 		114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCoreAssembly.swift; sourceTree = "<group>"; };
+		114D06FC2806EEE500ACD310 /* IdentityLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityLogger.swift; sourceTree = "<group>"; };
+		114D06FE2806F62200ACD310 /* IdentityLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityLoggerTests.swift; sourceTree = "<group>"; };
+		114D07002806F64B00ACD310 /* EventQueueMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,6 +484,7 @@
 				11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */,
 				11115A8E28001F2300A41ADA /* UserPropertiesKeeper.swift */,
 				11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */,
+				114D06FC2806EEE500ACD310 /* IdentityLogger.swift */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -492,6 +499,7 @@
 				11115A4527FB757400A41ADA /* EventQueueTests.swift */,
 				11115A4927FB7D0000A41ADA /* EventSendErrorTests.swift */,
 				11115A5227FB7FAD00A41ADA /* EventComposerTests.swift */,
+				114D06FE2806F62200ACD310 /* IdentityLoggerTests.swift */,
 				114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */,
 				11115A5D27FC789D00A41ADA /* SessionManagerTests.swift */,
 				11115A6A27FDB87B00A41ADA /* AnyEncodableTests.swift */,
@@ -511,6 +519,7 @@
 				11115A3F27FB740B00A41ADA /* EventStorageMock.swift */,
 				11115A4127FB74B000A41ADA /* EventSenderMock.swift */,
 				11115A4327FB751E00A41ADA /* EventComposerMock.swift */,
+				114D07002806F64B00ACD310 /* EventQueueMock.swift */,
 				11115A4727FB75CD00A41ADA /* EventQueueCoreMock.swift */,
 				11115A6027FC8EBC00A41ADA /* SessionManagerMock.swift */,
 				11115A8B27FF292700A41ADA /* HTTPClientMock.swift */,
@@ -786,12 +795,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
+				114D06FF2806F62200ACD310 /* IdentityLoggerTests.swift in Sources */,
 				11115A4A27FB7D0000A41ADA /* EventSendErrorTests.swift in Sources */,
 				11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
 				11115A96280023B200A41ADA /* UserPropertiesKeeperTests.swift in Sources */,
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
+				114D07012806F64B00ACD310 /* EventQueueMock.swift in Sources */,
 				11115A7527FDBD4000A41ADA /* PurchaseHTTPRequestTests.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
 				11115A8D27FF293800A41ADA /* HTTPClientMock.swift in Sources */,
@@ -851,6 +862,7 @@
 				1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */,
 				11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */,
 				1111596E27F70BF500A41ADA /* Settings.swift in Sources */,
+				114D06FD2806EEE500ACD310 /* IdentityLogger.swift in Sources */,
 				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
 				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,
 				11115A4C27FB7E6000A41ADA /* Timer.swift in Sources */,

@@ -45,6 +45,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: ["prop": "A"],
             apiProperties: ["api": "B"],
             groups: ["group": "C"],
+            userProperties: ["user": "D"],
+            groupProperties: ["groupP": "E"],
             timestamp: 11,
             outOfSession: false
         )
@@ -53,6 +55,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertEqual(event.eventProperties, ["prop": "A"])
         XCTAssertEqual(event.apiProperties, ["api": "B"])
         XCTAssertEqual(event.groups, ["group": "C"])
+        XCTAssertEqual(event.userProperties, ["user": "D"])
+        XCTAssertEqual(event.groupProperties, ["groupP": "E"])
         XCTAssertEqual(event.timestamp, 11)
         XCTAssertEqual(event.sessionId, 845)
         XCTAssertEqual(event.userId, "sample-user-id")
@@ -74,6 +78,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -89,6 +95,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -104,6 +112,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -119,6 +129,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -134,6 +146,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -153,6 +167,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -181,6 +197,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -209,6 +227,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -237,6 +257,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -265,6 +287,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -293,6 +317,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -321,6 +347,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -349,6 +377,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -377,6 +407,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: false
         )
@@ -401,6 +433,8 @@ final class EventComposerTests: XCTestCase {
             eventProperties: [:],
             apiProperties: [:],
             groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
             timestamp: nil,
             outOfSession: true
         )

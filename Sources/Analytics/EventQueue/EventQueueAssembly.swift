@@ -21,7 +21,7 @@ final class EventQueueAssembly {
 
     private(set) lazy var eventSender = EventSenderImpl(httpClient: coreAssembly.httpClient)
 
-    private(set) lazy var eventQueue = EventQueue(
+    private(set) lazy var eventQueue = EventQueueImpl(
         core: eventQueueCore,
         storage: eventStorage,
         sender: eventSender,
@@ -29,6 +29,8 @@ final class EventQueueAssembly {
         sessionManager: analyticsCoreAssembly.sessionManager,
         timer: TimerImpl()
     )
+
+    private(set) lazy var identityLogger = IdentityLogger(eventQueue: eventQueue)
 
     private let coreAssembly: CoreAssembly
     private let analyticsCoreAssembly: AnalyticsCoreAssembly

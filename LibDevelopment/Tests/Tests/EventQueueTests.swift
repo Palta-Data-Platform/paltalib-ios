@@ -9,7 +9,7 @@ import XCTest
 @testable import PaltaLibAnalytics
 
 final class EventQueueTests: XCTestCase {
-    var eventQueue: EventQueue!
+    var eventQueue: EventQueueImpl!
     var coreMock: EventQueueCoreMock!
     var timerMock: TimerMock!
     var storageMock: EventStorageMock!
@@ -42,12 +42,16 @@ final class EventQueueTests: XCTestCase {
             eventType: "event-type",
             eventProperties: ["prop": "1"],
             groups: ["group": 2],
+            userProperties: ["user": 3],
+            groupProperties: ["groupP": 4],
             timestamp: 22
         )
 
         XCTAssertEqual(composerMock.eventType, "event-type")
         XCTAssertEqual(composerMock.eventProperties as? [String: String], ["prop": "1"])
         XCTAssertEqual(composerMock.groups as? [String: Int], ["group": 2])
+        XCTAssertEqual(composerMock.userProperties as? [String: Int], ["user": 3])
+        XCTAssertEqual(composerMock.groupProperties as? [String: Int], ["groupP": 4])
         XCTAssertEqual(composerMock.timestamp, 22)
         XCTAssertEqual(composerMock.outOfSession, false)
         XCTAssert(composerMock.apiProperties?.isEmpty == true)

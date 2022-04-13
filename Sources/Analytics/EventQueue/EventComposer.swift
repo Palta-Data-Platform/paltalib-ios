@@ -15,6 +15,8 @@ protocol EventComposer {
         eventProperties: [String: Any],
         apiProperties: [String: Any],
         groups: [String: Any],
+        userProperties: [String: Any],
+        groupProperties: [String: Any],
         timestamp: Int?,
         outOfSession: Bool
     ) -> Event
@@ -49,6 +51,8 @@ final class EventComposerImpl: EventComposer {
         eventProperties: [String: Any],
         apiProperties: [String: Any],
         groups: [String: Any],
+        userProperties: [String: Any],
+        groupProperties: [String: Any],
         timestamp: Int?,
         outOfSession: Bool
     ) -> Event {
@@ -70,9 +74,9 @@ final class EventComposerImpl: EventComposer {
             eventType: eventType,
             eventProperties: CodableDictionary(eventProperties),
             apiProperties: CodableDictionary(apiProperties),
-            userProperties: [:],
+            userProperties: CodableDictionary(userProperties),
             groups: CodableDictionary(groups),
-            groupProperties: [:],
+            groupProperties: CodableDictionary(groupProperties),
             sessionId: sessionId,
             timestamp: timestamp,
             userId: userPropertiesProvider.userId,
