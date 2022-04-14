@@ -89,19 +89,14 @@ final class EventQueueImpl: EventQueue {
 
     private func startSessionManager() {
         sessionManager.sessionEventLogger = { [weak self] eventName, timestamp in
-//            let event = Event(
-//                eventType: eventName,
-//                eventProperties: [:],
-//                apiProperties: ["special": eventName],
-//                userProperties: [:],
-//                groups: [:],
-//                groupProperties: [:],
-//                sessionId: -1,
-//                timestamp: timestamp
-//            )
-//
-//            self?.core.addEvent(event)
-//            self?.storage.storeEvent(event)
+            self?.logEvent(
+                eventType: eventName,
+                eventProperties: [:],
+                apiProperties: ["special": eventName],
+                groups: [:],
+                timestamp: timestamp,
+                outOfSession: true
+            )
         }
 
         sessionManager.start()
