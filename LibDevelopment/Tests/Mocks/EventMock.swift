@@ -9,7 +9,9 @@ import Foundation
 @testable import PaltaLibAnalytics
 
 extension Event {
-    static func mock(timestamp: Int? = nil) -> Event {
+    static let mockUUID = UUID()
+
+    static func mock(uuid: UUID = Event.mockUUID, timestamp: Int? = nil) -> Event {
         Event(
             eventType: "event",
             eventProperties: [:],
@@ -30,7 +32,10 @@ extension Event {
             carrier: nil,
             country: nil,
             language: nil,
-            timezone: "GMT+X"
+            timezone: "GMT+X",
+            library: Library(name: "", version: ""),
+            uuid: uuid,
+            sequenceNumber: 0
         )
     }
 }

@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import CoreTelephony
+import AdSupport
+import AppTrackingTransparency
 
 protocol DeviceInfoProvider {
     var osVersion: String { get }
@@ -17,6 +19,8 @@ protocol DeviceInfoProvider {
     var country: String? { get }
     var language: String? { get }
     var timezoneOffset: Int { get }
+    var idfa: String? { get }
+    var idfv: String? { get }
 }
 
 final class DeviceInfoProviderImpl: DeviceInfoProvider {
@@ -46,5 +50,23 @@ final class DeviceInfoProviderImpl: DeviceInfoProvider {
 
     var timezoneOffset: Int {
         TimeZone.current.secondsFromGMT() / 3600
+    }
+
+    var idfa: String? {
+        if #available(iOS 14, *) {
+            if ATTrackingManager.trackingAuthorizationStatus != .authorized  {
+                return nil
+            }
+        } else {
+            if ASIdentifierManager.shared().isAdvertisingTrackingEnabled == false {
+                return nil
+            }
+        }
+
+        return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+    }
+
+    var idfv: String? {
+        UIDevice.current.identifierForVendor?.uuidString
     }
 }

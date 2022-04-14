@@ -30,6 +30,14 @@ struct Event: Codable, Hashable {
         case country
         case language
         case timezone
+        case library
+        case uuid
+        case sequenceNumber = "sequence_number"
+    }
+
+    struct Library: Codable, Hashable {
+        let name: String
+        let version: String
     }
 
     let eventType: String
@@ -52,4 +60,7 @@ struct Event: Codable, Hashable {
     let country: String?
     let language: String?
     let timezone: String
+    let library: Library
+    let uuid: UUID
+    let sequenceNumber: Int
 }

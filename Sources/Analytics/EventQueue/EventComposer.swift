@@ -23,6 +23,12 @@ protocol EventComposer {
 }
 
 final class EventComposerImpl: EventComposer {
+    private lazy var sequenceNumber = UserDefaults.standard.integer(forKey: "sequnce_number") {
+        didSet {
+            UserDefaults.standard.set(sequenceNumber, forKey: "sequnce_number")
+        }
+    }
+
     private let timezoneFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.positivePrefix = "+"
@@ -61,6 +67,10 @@ final class EventComposerImpl: EventComposer {
         timestamp: Int?,
         outOfSession: Bool
     ) -> Event {
+        defer {
+            sequenceNumber += 1
+        }
+
         let timestamp = timestamp ?? .currentTimestamp()
 
         let platform = trackingOptions.shouldTrackPlatform() ? "iOS" : nil
@@ -74,6 +84,28 @@ final class EventComposerImpl: EventComposer {
         let language = trackingOptions.shouldTrackLanguage() ? deviceInfoProvider.language : nil
         let timezone = "GMT\(timezoneFormatter.string(from: deviceInfoProvider.timezoneOffset as NSNumber) ?? "")"
         let sessionId = !outOfSession ? sessionIdProvider.sessionId : -1
+
+        let library = Event.Library(
+            name: "PaltaBrain",
+            version: "2.1.0" // TODO: Auto update version
+        )
+
+        var apiProperties = apiProperties
+
+        if trackingOptions.shouldTrackIDFA() {
+            apiProperties["ios_idfa"] = deviceInfoProvider.idfa
+        }
+
+        if trackingOptions.shouldTrackIDFV() {
+            apiProperties["ios_idfv"] = deviceInfoProvider.idfv
+        }
+
+        if
+            let trackingOptions = trackingOptions.getApiPropertiesTrackingOption() as? [String: Any],
+           !trackingOptions.isEmpty
+        {
+            apiProperties["tracking_options"] = trackingOptions
+        }
 
         return Event(
             eventType: eventType,
@@ -95,7 +127,10 @@ final class EventComposerImpl: EventComposer {
             carrier: carrier,
             country: country,
             language: language,
-            timezone: timezone
+            timezone: timezone,
+            library: library,
+            uuid: UUID(),
+            sequenceNumber: sequenceNumber
         )
     }
 }

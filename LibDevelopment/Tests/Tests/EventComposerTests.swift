@@ -56,7 +56,11 @@ final class EventComposerTests: XCTestCase {
 
         XCTAssertEqual(event.eventType, "someType")
         XCTAssertEqual(event.eventProperties, ["prop": "A"])
-        XCTAssertEqual(event.apiProperties, ["api": "B"])
+        XCTAssertEqual(event.apiProperties, [
+            "api": "B",
+            "ios_idfa": "idfa=",
+            "ios_idfv": "idfv="
+        ])
         XCTAssertEqual(event.groups, ["group": "C"])
         XCTAssertEqual(event.userProperties, ["user": "D"])
         XCTAssertEqual(event.groupProperties, ["groupP": "E"])
@@ -73,6 +77,7 @@ final class EventComposerTests: XCTestCase {
         XCTAssertEqual(event.carrier, "undefinedCarrier")
         XCTAssertEqual(event.language, "Sakovian")
         XCTAssertEqual(event.country, "Sakovia")
+        XCTAssertEqual(event.library.name, "PaltaBrain")
     }
 
     func testDefaultTimestamp() {
@@ -87,7 +92,7 @@ final class EventComposerTests: XCTestCase {
             outOfSession: false
         )
 
-        XCTAssert(abs(event.timestamp - .currentTimestamp()) < 2)
+        XCTAssert(abs(event.timestamp - .currentTimestamp()) < 3)
     }
 
     func testPositiveTimezone() {
@@ -186,6 +191,11 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
+        )
     }
 
     func testDisableCountryTracking() {
@@ -216,6 +226,11 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfa": "idfa=", "ios_idfv": "idfv=", "tracking_options": ["country": false]]
+        )
     }
 
     func testDisableLanguageTracking() {
@@ -246,6 +261,11 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
+        )
     }
 
     func testDisableOsNameTracking() {
@@ -276,6 +296,11 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
+        )
     }
 
     func testDisableOsVersionTracking() {
@@ -306,6 +331,11 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
+        )
     }
 
     func testDisableAppVersionTracking() {
@@ -336,6 +366,11 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
+        )
     }
 
     func testDisableDeviceModelTracking() {
@@ -366,6 +401,11 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
+        )
     }
 
     func testDisableDeviceManufacturerTracking() {
@@ -396,6 +436,11 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
+        )
     }
 
     func testDisableCarrierTracking() {
@@ -426,6 +471,81 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
+        )
+    }
+
+    func testDisableIDFA() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disableIDFA()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
+            timestamp: nil,
+            outOfSession: false
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNotNil(event.country)
+        XCTAssertNotNil(event.language)
+        XCTAssertNotNil(event.osName)
+        XCTAssertNotNil(event.osVersion)
+        XCTAssertNotNil(event.platform)
+        XCTAssertNotNil(event.appVersion)
+        XCTAssertNotNil(event.deviceModel)
+        XCTAssertNotNil(event.deviceManufacturer)
+        XCTAssertNotNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfv": "idfv="]
+        )
+    }
+
+    func testDisableIDFV() {
+        deviceInfoProviderMock.appVersion = "X.V.C"
+        deviceInfoProviderMock.language = "Sakovian"
+        deviceInfoProviderMock.country = "Sakovia"
+
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disableIDFV()
+
+        let event = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
+            timestamp: nil,
+            outOfSession: false
+        )
+
+        XCTAssertNotNil(event.timezone)
+        XCTAssertNotNil(event.country)
+        XCTAssertNotNil(event.language)
+        XCTAssertNotNil(event.osName)
+        XCTAssertNotNil(event.osVersion)
+        XCTAssertNotNil(event.platform)
+        XCTAssertNotNil(event.appVersion)
+        XCTAssertNotNil(event.deviceModel)
+        XCTAssertNotNil(event.deviceManufacturer)
+        XCTAssertNotNil(event.carrier)
+
+        XCTAssertEqual(
+            event.apiProperties,
+            ["ios_idfa": "idfa="]
+        )
     }
 
     func testOutOfSession() {
@@ -443,5 +563,70 @@ final class EventComposerTests: XCTestCase {
         )
 
         XCTAssertEqual(event.sessionId, -1)
+    }
+
+    func testIncrementSequenceNumber() {
+        let event1 = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
+            timestamp: nil,
+            outOfSession: false
+        )
+
+        let event2 = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
+            timestamp: nil,
+            outOfSession: true
+        )
+
+        XCTAssert(event2.sequenceNumber - event1.sequenceNumber == 1)
+    }
+
+    func testIncrementSequenceNumberInDifferentSessions() {
+        let event1 = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
+            timestamp: nil,
+            outOfSession: false
+        )
+
+        // Init new composer
+        sessionManagerMock = SessionManagerMock()
+        userPropertiesMock = UserPropertiesKeeperMock()
+        deviceInfoProviderMock = DeviceInfoProviderMock()
+        trackingOptionsProviderMock = TrackingOptionsProviderMock()
+
+        composer = EventComposerImpl(
+            sessionIdProvider: sessionManagerMock,
+            userPropertiesProvider: userPropertiesMock,
+            deviceInfoProvider: deviceInfoProviderMock,
+            trackingOptionsProvider: trackingOptionsProviderMock
+        )
+
+        let event2 = composer.composeEvent(
+            eventType: "someType",
+            eventProperties: [:],
+            apiProperties: [:],
+            groups: [:],
+            userProperties: [:],
+            groupProperties: [:],
+            timestamp: nil,
+            outOfSession: true
+        )
+
+        XCTAssert(event2.sequenceNumber - event1.sequenceNumber == 1)
     }
 }
