@@ -23,8 +23,6 @@ protocol EventComposer {
 }
 
 final class EventComposerImpl: EventComposer {
-    var trackingOptions: AMPTrackingOptions = .init()
-
     private let timezoneFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.positivePrefix = "+"
@@ -32,18 +30,25 @@ final class EventComposerImpl: EventComposer {
         return formatter
     }()
 
+    private var trackingOptions: AMPTrackingOptions {
+        trackingOptionsProvider.trackingOptions
+    }
+
     private let sessionIdProvider: SessionIdProvider
     private let userPropertiesProvider: UserPropertiesProvider
     private let deviceInfoProvider: DeviceInfoProvider
+    private let trackingOptionsProvider: TrackingOptionsProvider
 
     init(
         sessionIdProvider: SessionIdProvider,
         userPropertiesProvider: UserPropertiesProvider,
-        deviceInfoProvider: DeviceInfoProvider
+        deviceInfoProvider: DeviceInfoProvider,
+        trackingOptionsProvider: TrackingOptionsProvider
     ) {
         self.sessionIdProvider = sessionIdProvider
         self.userPropertiesProvider = userPropertiesProvider
         self.deviceInfoProvider = deviceInfoProvider
+        self.trackingOptionsProvider = trackingOptionsProvider
     }
 
     func composeEvent(

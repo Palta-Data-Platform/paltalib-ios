@@ -14,6 +14,7 @@ final class EventComposerTests: XCTestCase {
     var sessionManagerMock: SessionManagerMock!
     var userPropertiesMock: UserPropertiesKeeperMock!
     var deviceInfoProviderMock: DeviceInfoProviderMock!
+    var trackingOptionsProviderMock: TrackingOptionsProviderMock!
 
     var composer: EventComposerImpl!
 
@@ -23,11 +24,13 @@ final class EventComposerTests: XCTestCase {
         sessionManagerMock = SessionManagerMock()
         userPropertiesMock = UserPropertiesKeeperMock()
         deviceInfoProviderMock = DeviceInfoProviderMock()
+        trackingOptionsProviderMock = TrackingOptionsProviderMock()
 
         composer = EventComposerImpl(
             sessionIdProvider: sessionManagerMock,
             userPropertiesProvider: userPropertiesMock,
-            deviceInfoProvider: deviceInfoProviderMock
+            deviceInfoProvider: deviceInfoProviderMock,
+            trackingOptionsProvider: trackingOptionsProviderMock
         )
     }
 
@@ -160,7 +163,7 @@ final class EventComposerTests: XCTestCase {
         deviceInfoProviderMock.language = "Sakovian"
         deviceInfoProviderMock.country = "Sakovia"
 
-        composer.trackingOptions = AMPTrackingOptions().disablePlatform()
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disablePlatform()
 
         let event = composer.composeEvent(
             eventType: "someType",
@@ -190,7 +193,7 @@ final class EventComposerTests: XCTestCase {
         deviceInfoProviderMock.language = "Sakovian"
         deviceInfoProviderMock.country = "Sakovia"
 
-        composer.trackingOptions = AMPTrackingOptions().disableCountry()
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disableCountry()
 
         let event = composer.composeEvent(
             eventType: "someType",
@@ -220,7 +223,7 @@ final class EventComposerTests: XCTestCase {
         deviceInfoProviderMock.language = "Sakovian"
         deviceInfoProviderMock.country = "Sakovia"
 
-        composer.trackingOptions = AMPTrackingOptions().disableLanguage()
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disableLanguage()
 
         let event = composer.composeEvent(
             eventType: "someType",
@@ -250,7 +253,7 @@ final class EventComposerTests: XCTestCase {
         deviceInfoProviderMock.language = "Sakovian"
         deviceInfoProviderMock.country = "Sakovia"
 
-        composer.trackingOptions = AMPTrackingOptions().disableOSName()
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disableOSName()
 
         let event = composer.composeEvent(
             eventType: "someType",
@@ -280,7 +283,7 @@ final class EventComposerTests: XCTestCase {
         deviceInfoProviderMock.language = "Sakovian"
         deviceInfoProviderMock.country = "Sakovia"
 
-        composer.trackingOptions = AMPTrackingOptions().disableOSVersion()
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disableOSVersion()
 
         let event = composer.composeEvent(
             eventType: "someType",
@@ -310,7 +313,7 @@ final class EventComposerTests: XCTestCase {
         deviceInfoProviderMock.language = "Sakovian"
         deviceInfoProviderMock.country = "Sakovia"
 
-        composer.trackingOptions = AMPTrackingOptions().disableVersionName()
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disableVersionName()
 
         let event = composer.composeEvent(
             eventType: "someType",
@@ -340,7 +343,7 @@ final class EventComposerTests: XCTestCase {
         deviceInfoProviderMock.language = "Sakovian"
         deviceInfoProviderMock.country = "Sakovia"
 
-        composer.trackingOptions = AMPTrackingOptions().disableDeviceModel()
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disableDeviceModel()
 
         let event = composer.composeEvent(
             eventType: "someType",
@@ -370,7 +373,7 @@ final class EventComposerTests: XCTestCase {
         deviceInfoProviderMock.language = "Sakovian"
         deviceInfoProviderMock.country = "Sakovia"
 
-        composer.trackingOptions = AMPTrackingOptions().disableDeviceManufacturer()
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disableDeviceManufacturer()
 
         let event = composer.composeEvent(
             eventType: "someType",
@@ -400,7 +403,7 @@ final class EventComposerTests: XCTestCase {
         deviceInfoProviderMock.language = "Sakovian"
         deviceInfoProviderMock.country = "Sakovia"
 
-        composer.trackingOptions = AMPTrackingOptions().disableCarrier()
+        trackingOptionsProviderMock.trackingOptions = AMPTrackingOptions().disableCarrier()
 
         let event = composer.composeEvent(
             eventType: "someType",

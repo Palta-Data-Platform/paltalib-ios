@@ -13,10 +13,13 @@ final class EventQueueAssembly {
 
     private(set) lazy var eventStorage: EventStorage = FileEventStorage()
 
+    private(set) lazy var trackingOptionsProvider = TrackingOptionsProviderImpl()
+
     private(set) lazy var eventComposer = EventComposerImpl(
         sessionIdProvider: analyticsCoreAssembly.sessionManager,
         userPropertiesProvider: analyticsCoreAssembly.userPropertiesKeeper,
-        deviceInfoProvider: DeviceInfoProviderImpl()
+        deviceInfoProvider: DeviceInfoProviderImpl(),
+        trackingOptionsProvider: trackingOptionsProvider
     )
 
     private(set) lazy var eventSender = EventSenderImpl(httpClient: coreAssembly.httpClient)

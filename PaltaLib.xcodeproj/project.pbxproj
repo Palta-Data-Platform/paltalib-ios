@@ -100,6 +100,9 @@
 		114D07012806F64B00ACD310 /* EventQueueMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D07002806F64B00ACD310 /* EventQueueMock.swift */; };
 		114D0703280757DB00ACD310 /* RevenueLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D0702280757DB00ACD310 /* RevenueLogger.swift */; };
 		114D070628075C7C00ACD310 /* RevenueLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D070428075C4900ACD310 /* RevenueLoggerTests.swift */; };
+		114D0708280814D900ACD310 /* TrackingOptionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */; };
+		114D070A280816D200ACD310 /* TrackingOptionsProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D0709280816D200ACD310 /* TrackingOptionsProviderMock.swift */; };
+		114D070C2808336200ACD310 /* TrackingOptionsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -275,6 +278,9 @@
 		114D07002806F64B00ACD310 /* EventQueueMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueMock.swift; sourceTree = "<group>"; };
 		114D0702280757DB00ACD310 /* RevenueLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueLogger.swift; sourceTree = "<group>"; };
 		114D070428075C4900ACD310 /* RevenueLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueLoggerTests.swift; sourceTree = "<group>"; };
+		114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProvider.swift; sourceTree = "<group>"; };
+		114D0709280816D200ACD310 /* TrackingOptionsProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProviderMock.swift; sourceTree = "<group>"; };
+		114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProviderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -490,6 +496,7 @@
 				11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */,
 				114D06FC2806EEE500ACD310 /* IdentityLogger.swift */,
 				114D0702280757DB00ACD310 /* RevenueLogger.swift */,
+				114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -505,6 +512,7 @@
 				114D070428075C4900ACD310 /* RevenueLoggerTests.swift */,
 				11115A4927FB7D0000A41ADA /* EventSendErrorTests.swift */,
 				11115A5227FB7FAD00A41ADA /* EventComposerTests.swift */,
+				114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */,
 				114D06FE2806F62200ACD310 /* IdentityLoggerTests.swift */,
 				114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */,
 				11115A5D27FC789D00A41ADA /* SessionManagerTests.swift */,
@@ -531,6 +539,7 @@
 				11115A8B27FF292700A41ADA /* HTTPClientMock.swift */,
 				11115A9828003D6500A41ADA /* UserPropertiesKeeperMock.swift */,
 				114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */,
+				114D0709280816D200ACD310 /* TrackingOptionsProviderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -800,8 +809,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114D070A280816D200ACD310 /* TrackingOptionsProviderMock.swift in Sources */,
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
 				114D06FF2806F62200ACD310 /* IdentityLoggerTests.swift in Sources */,
+				114D070C2808336200ACD310 /* TrackingOptionsProviderTests.swift in Sources */,
 				11115A4A27FB7D0000A41ADA /* EventSendErrorTests.swift in Sources */,
 				11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
@@ -877,6 +888,7 @@
 				11115A5C27FC5A3600A41ADA /* Timestamp.swift in Sources */,
 				114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */,
 				114D0703280757DB00ACD310 /* RevenueLogger.swift in Sources */,
+				114D0708280814D900ACD310 /* TrackingOptionsProvider.swift in Sources */,
 				11115A5927FC59C900A41ADA /* Session.swift in Sources */,
 				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
 				11115A4F27FB7E6B00A41ADA /* EventSender.swift in Sources */,

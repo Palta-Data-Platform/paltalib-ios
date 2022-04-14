@@ -144,7 +144,7 @@ public final class PaltaAnalytics {
         }
 
         paltaQueueAssemblies.forEach {
-            $0.eventComposer.trackingOptions = options
+            $0.trackingOptionsProvider.setTrackingOptions(options)
         }
     }
 
@@ -152,17 +152,20 @@ public final class PaltaAnalytics {
         amplitudeInstances.forEach {
             $0.enableCoppaControl()
         }
-// TODO
-//        paltaQueueAssemblies.forEach {
-//            $0.eventComposer.trackingOptions
-//        }
+
+        paltaQueueAssemblies.forEach {
+            $0.trackingOptionsProvider.coppaControlEnabled = true
+        }
     }
     
     public func disableCoppaControl() {
         amplitudeInstances.forEach {
             $0.disableCoppaControl()
         }
-        // TODO
+
+        paltaQueueAssemblies.forEach {
+            $0.trackingOptionsProvider.coppaControlEnabled = false
+        }
     }
     
 //    public func setServerUrl(_ serverUrl: String) {
