@@ -26,6 +26,8 @@ public final class PaltaAnalytics {
     ) {
         self.apiKey = paltaAPIKey
         self.amplitudeApiKey = amplitudeAPIKey
+
+        assembly.analyticsCoreAssembly.userPropertiesKeeper.generateDeviceId()
         requestRemoteConfigs()
     }
     
@@ -143,9 +145,7 @@ public final class PaltaAnalytics {
             $0.setTrackingOptions(options)
         }
 
-        paltaQueueAssemblies.forEach {
-            $0.trackingOptionsProvider.setTrackingOptions(options)
-        }
+        assembly.analyticsCoreAssembly.trackingOptionsProvider.setTrackingOptions(options)
     }
 
     public func enableCoppaControl() {
@@ -153,9 +153,7 @@ public final class PaltaAnalytics {
             $0.enableCoppaControl()
         }
 
-        paltaQueueAssemblies.forEach {
-            $0.trackingOptionsProvider.coppaControlEnabled = true
-        }
+        assembly.analyticsCoreAssembly.trackingOptionsProvider.coppaControlEnabled = true
     }
     
     public func disableCoppaControl() {
@@ -163,9 +161,7 @@ public final class PaltaAnalytics {
             $0.disableCoppaControl()
         }
 
-        paltaQueueAssemblies.forEach {
-            $0.trackingOptionsProvider.coppaControlEnabled = false
-        }
+        assembly.analyticsCoreAssembly.trackingOptionsProvider.coppaControlEnabled = false
     }
     
 //    public func setServerUrl(_ serverUrl: String) {
@@ -216,11 +212,11 @@ public final class PaltaAnalytics {
     }
     
     public func regenerateDeviceId() {
-        let deviceId = UUID().uuidString.appending("R")
+        assembly.analyticsCoreAssembly.userPropertiesKeeper.generateDeviceId(forced: true)
+
         amplitudeInstances.forEach {
-            $0.setDeviceId(deviceId)
+            $0.setDeviceId(assembly.analyticsCoreAssembly.userPropertiesKeeper.deviceId ?? "")
         }
-        assembly.analyticsCoreAssembly.userPropertiesKeeper.deviceId = deviceId
     }
     
     public func getSessionId() -> Int64? {

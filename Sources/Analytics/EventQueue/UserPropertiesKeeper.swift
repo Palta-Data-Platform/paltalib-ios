@@ -37,6 +37,8 @@ final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
         }
     }
 
+    var useIDFAasDeviceId = false
+
     private lazy var userProperties: UserProperties? = userDefaults.object(for: defaultsKey) ?? UserProperties() {
         didSet {
             userDefaults.set(userProperties, for: defaultsKey)
@@ -44,9 +46,38 @@ final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
     }
 
     private let defaultsKey = "paltaBrainUserProperties"
+    private let trackingOptionsProvider: TrackingOptionsProvider
+    private let deviceInfoProvider: DeviceInfoProvider
     private let userDefaults: UserDefaults
 
-    init(userDefaults: UserDefaults) {
+    init(
+        trackingOptionsProvider: TrackingOptionsProvider,
+        deviceInfoProvider: DeviceInfoProvider,
+        userDefaults: UserDefaults
+    ) {
+        self.trackingOptionsProvider = trackingOptionsProvider
+        self.deviceInfoProvider = deviceInfoProvider
         self.userDefaults = userDefaults
+    }
+
+    func generateDeviceId(forced: Bool = false) {
+        guard deviceId == nil || forced else {
+            return
+        }
+
+        if
+            useIDFAasDeviceId,
+            trackingOptionsProvider.trackingOptions.shouldTrackIDFA(),
+            let idfa = deviceInfoProvider.idfa
+        {
+            deviceId = idfa
+        } else if
+            trackingOptionsProvider.trackingOptions.shouldTrackIDFV(),
+            let idfv = deviceInfoProvider.idfv
+        {
+            deviceId = idfv
+        } else {
+            deviceId = "\(UUID().uuidString)R"
+        }
     }
 }

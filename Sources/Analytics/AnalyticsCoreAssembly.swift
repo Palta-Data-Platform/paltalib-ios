@@ -9,7 +9,11 @@ import Foundation
 import PaltaLibCore
 
 final class AnalyticsCoreAssembly {
-    private(set) lazy var userPropertiesKeeper: UserPropertiesKeeper = UserPropertiesKeeperImpl(
+    private(set) lazy var trackingOptionsProvider = TrackingOptionsProviderImpl()
+
+    private(set) lazy var userPropertiesKeeper = UserPropertiesKeeperImpl(
+        trackingOptionsProvider: trackingOptionsProvider,
+        deviceInfoProvider: DeviceInfoProviderImpl(),
         userDefaults: .standard
     )
 
