@@ -3,7 +3,7 @@
 //  PaltaExample
 import UIKit
 import CoreData
-import PaltaLib
+import PaltaLibAnalytics
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -12,7 +12,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        PaltaAnalytics.instance.setApiKey("apiKey")
+        PaltaAnalytics.instance.configure(
+            name: "PaltaExample",
+            amplitudeAPIKey: "AMPLITUDE",
+            paltaAPIKey: "PALTA",
+            trackingSessionEvents: true
+        )
+        
         return true
     }
 

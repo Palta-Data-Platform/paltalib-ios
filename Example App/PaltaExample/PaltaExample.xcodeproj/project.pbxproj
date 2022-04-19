@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11850BF72809B67900B6D05F /* PaltaLibAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 11850BF62809B67900B6D05F /* PaltaLibAnalytics */; };
+		11850BF92809B67900B6D05F /* PaltaLibAttribution in Frameworks */ = {isa = PBXBuildFile; productRef = 11850BF82809B67900B6D05F /* PaltaLibAttribution */; };
+		11850BFB2809B67900B6D05F /* PaltaLibCore in Frameworks */ = {isa = PBXBuildFile; productRef = 11850BFA2809B67900B6D05F /* PaltaLibCore */; };
+		11850BFD2809B67900B6D05F /* PaltaLibPurchases in Frameworks */ = {isa = PBXBuildFile; productRef = 11850BFC2809B67900B6D05F /* PaltaLibPurchases */; };
 		7F3B88D52745382C000A6D46 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3B88D42745382C000A6D46 /* SwitchView.swift */; };
-		7F512FEB272B3AA000D26F76 /* PaltaLib in Frameworks */ = {isa = PBXBuildFile; productRef = 7F512FEA272B3AA000D26F76 /* PaltaLib */; };
 		7FA55BD02739211C00B16D94 /* AddTargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA55BCE2739211C00B16D94 /* AddTargetViewModel.swift */; };
 		7FA55BD12739211C00B16D94 /* AddTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA55BCF2739211C00B16D94 /* AddTargetViewController.swift */; };
 		7FB35FDE272973C900A656E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB35FDD272973C900A656E1 /* AppDelegate.swift */; };
@@ -21,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11850BF52809B1D900B6D05F /* Palta */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Palta; path = ../..; sourceTree = "<group>"; };
 		7F3B88D42745382C000A6D46 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
 		7FA55BCE2739211C00B16D94 /* AddTargetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTargetViewModel.swift; sourceTree = "<group>"; };
 		7FA55BCF2739211C00B16D94 /* AddTargetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTargetViewController.swift; sourceTree = "<group>"; };
@@ -31,7 +35,6 @@
 		7FB35FE9272973CB00A656E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FB35FEC272973CB00A656E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7FB35FEE272973CB00A656E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7FB35FFF272978F400A656E1 /* paltalib-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "paltalib-ios"; path = ../..; sourceTree = "<group>"; };
 		7FE10A7D27316E6E003081CF /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7FE10A7E27316E6E003081CF /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,7 +44,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F512FEB272B3AA000D26F76 /* PaltaLib in Frameworks */,
+				11850BFD2809B67900B6D05F /* PaltaLibPurchases in Frameworks */,
+				11850BF72809B67900B6D05F /* PaltaLibAnalytics in Frameworks */,
+				11850BF92809B67900B6D05F /* PaltaLibAttribution in Frameworks */,
+				11850BFB2809B67900B6D05F /* PaltaLibCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,10 +108,10 @@
 		7FB35FDC272973C900A656E1 /* PaltaExample */ = {
 			isa = PBXGroup;
 			children = (
-				7F3B88D12745380B000A6D46 /* Common */,
 				7FB35FDD272973C900A656E1 /* AppDelegate.swift */,
-				7FE10A7B27316E6E003081CF /* Flow */,
 				7FB35FDF272973C900A656E1 /* SceneDelegate.swift */,
+				7FE10A7B27316E6E003081CF /* Flow */,
+				7F3B88D12745380B000A6D46 /* Common */,
 				7FB35FE9272973CB00A656E1 /* Assets.xcassets */,
 				7FB35FEB272973CB00A656E1 /* LaunchScreen.storyboard */,
 				7FB35FEE272973CB00A656E1 /* Info.plist */,
@@ -117,7 +123,7 @@
 		7FB35FF62729756000A656E1 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				7FB35FFF272978F400A656E1 /* paltalib-ios */,
+				11850BF52809B1D900B6D05F /* Palta */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -164,7 +170,10 @@
 			);
 			name = PaltaExample;
 			packageProductDependencies = (
-				7F512FEA272B3AA000D26F76 /* PaltaLib */,
+				11850BF62809B67900B6D05F /* PaltaLibAnalytics */,
+				11850BF82809B67900B6D05F /* PaltaLibAttribution */,
+				11850BFA2809B67900B6D05F /* PaltaLibCore */,
+				11850BFC2809B67900B6D05F /* PaltaLibPurchases */,
 			);
 			productName = PaltaExample;
 			productReference = 7FB35FDA272973C900A656E1 /* PaltaExample.app */;
@@ -439,9 +448,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7F512FEA272B3AA000D26F76 /* PaltaLib */ = {
+		11850BF62809B67900B6D05F /* PaltaLibAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = PaltaLib;
+			productName = PaltaLibAnalytics;
+		};
+		11850BF82809B67900B6D05F /* PaltaLibAttribution */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PaltaLibAttribution;
+		};
+		11850BFA2809B67900B6D05F /* PaltaLibCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PaltaLibCore;
+		};
+		11850BFC2809B67900B6D05F /* PaltaLibPurchases */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PaltaLibPurchases;
 		};
 /* End XCSwiftPackageProductDependency section */
 

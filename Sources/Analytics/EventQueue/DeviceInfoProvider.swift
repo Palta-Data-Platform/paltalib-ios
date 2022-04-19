@@ -37,7 +37,8 @@ final class DeviceInfoProviderImpl: DeviceInfoProvider {
     }
 
     var carrier: String {
-        CTTelephonyNetworkInfo().subscriberCellularProvider?.carrierName ?? "Unknown"
+        ""
+        //CTTelephonyNetworkInfo().subscriberCellularProvider?.carrierName ?? "Unknown"
     }
 
     var country: String? {
@@ -66,7 +67,13 @@ final class DeviceInfoProviderImpl: DeviceInfoProvider {
         return ASIdentifierManager.shared().advertisingIdentifier.uuidString
     }
 
-    var idfv: String? {
-        UIDevice.current.identifierForVendor?.uuidString
-    }
+    private(set) var idfv: String? = {
+        let closure = { UIDevice.current.identifierForVendor?.uuidString }
+
+        if Thread.isMainThread {
+            return closure()
+        } else {
+            return DispatchQueue.main.sync(execute: closure)
+        }
+    }()
 }

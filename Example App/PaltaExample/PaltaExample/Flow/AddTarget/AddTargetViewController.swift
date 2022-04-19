@@ -1,5 +1,5 @@
 import UIKit
-import PaltaLib
+import PaltaLibAnalytics
 
 class AddTargetViewController: UIViewController {
     
@@ -158,23 +158,23 @@ class AddTargetViewController: UIViewController {
     }
     
     @objc private func addTarget() {
-        guard let name = nameTextField.text,
-              let eventMaxCount = Int(eventMaxCountTextField.text ?? ""),
-              let eventUploadMaxBatchSize = Int(eventUploadMaxBatchSizeTextField.text ?? ""),
-              let eventUploadPeriodSeconds = Int(eventUploadPeriodSecondsTextField.text ?? ""),
-              let eventUploadThreshold = Int(eventUploadThresholdTextField.text ?? ""),
-              let minTimeBetweenSessions = Int(minTimeBetweenSessionsMillisTextField.text ?? "") else {
-                  return
-              }
-        
-        let settings = ConfigSettings(eventUploadThreshold: eventUploadThreshold,
-                                      eventUploadMaxBatchSize: eventUploadMaxBatchSize,
-                                      eventMaxCount: eventMaxCount,
-                                      eventUploadPeriodSeconds: eventUploadPeriodSeconds,
-                                      minTimeBetweenSessionsMillis: minTimeBetweenSessions,
-                                      trackingSessionEvents: false)
-        
-        PaltaAnalytics.instance.addConfigTarget(.init(name: name, settings: settings, url: urlTextField.text))
-        navigationController?.popViewController(animated: true)
+//        guard let name = nameTextField.text,
+//              let eventMaxCount = Int(eventMaxCountTextField.text ?? ""),
+//              let eventUploadMaxBatchSize = Int(eventUploadMaxBatchSizeTextField.text ?? ""),
+//              let eventUploadPeriodSeconds = Int(eventUploadPeriodSecondsTextField.text ?? ""),
+//              let eventUploadThreshold = Int(eventUploadThresholdTextField.text ?? ""),
+//              let minTimeBetweenSessions = Int(minTimeBetweenSessionsMillisTextField.text ?? "") else {
+//                  return
+//              }
+//        
+//        let settings = ConfigSettings(eventUploadThreshold: eventUploadThreshold,
+//                                      eventUploadMaxBatchSize: eventUploadMaxBatchSize,
+//                                      eventMaxCount: eventMaxCount,
+//                                      eventUploadPeriodSeconds: eventUploadPeriodSeconds,
+//                                      minTimeBetweenSessionsMillis: minTimeBetweenSessions,
+//                                      trackingSessionEvents: false)
+//        
+//        PaltaAnalytics.instance.addConfigTarget(.init(name: name, settings: settings, url: urlTextField.text))
+//        navigationController?.popViewController(animated: true)
     }
 }

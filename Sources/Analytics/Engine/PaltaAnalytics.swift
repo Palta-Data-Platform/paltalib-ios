@@ -93,6 +93,8 @@ public final class PaltaAnalytics {
             maxConcurrentOperations: 5
         )
 
+        eventQueueAssembly.eventSender.apiToken = apiKey
+
         assembly.analyticsCoreAssembly.sessionManager.maxSessionAge = target.settings.minTimeBetweenSessionsMillis
         paltaQueueAssemblies.append(eventQueueAssembly)
     }

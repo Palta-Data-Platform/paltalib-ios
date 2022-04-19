@@ -5,16 +5,34 @@ import PackageDescription
 let name: String = "PaltaLib"
 
 let platforms: [SupportedPlatform] = [
-    .iOS(.v10),
-    .tvOS(.v9),
-    .macOS(.v10_10)
+    .iOS(.v10)
+//    .tvOS(.v9),
+//    .macOS(.v10_10)
 ]
 
 let products: [Product] = [
     .library(
-        name: "PaltaLib",
+        name: "PaltaLibAttribution",
         targets: [
-            "PaltaLib"
+            "PaltaLibAttribution"
+        ]
+    ),
+    .library(
+        name: "PaltaLibPurchases",
+        targets: [
+            "PaltaLibPurchases"
+        ]
+    ),
+    .library(
+        name: "PaltaLibAnalytics",
+        targets: [
+            "PaltaLibAnalytics"
+        ]
+    ),
+    .library(
+        name: "PaltaLibCore",
+        targets: [
+            "PaltaLibCore"
         ]
     )
 ]
@@ -27,13 +45,33 @@ let dependencies: [Package.Dependency] = [
 
 let targets: [Target] = [
     .target(
-        name: "PaltaLib",
+        name: "PaltaLibCore",
+        dependencies: [],
+        path: "Sources/Core"
+    ),
+    .target(
+        name: "PaltaLibAttribution",
         dependencies: [
-            "Purchases",
-            "Amplitude",
             "AppsFlyerLib"
         ],
-        path: "Sources"
+        path: "Sources/Attribution"
+    ),
+    .target(
+        name: "PaltaLibPurchases",
+        dependencies: [
+            "Purchases",
+            "PaltaLibCore",
+            "PaltaLibAttribution"
+        ],
+        path: "Sources/Purchases"
+    ),
+    .target(
+        name: "PaltaLibAnalytics",
+        dependencies: [
+            "Amplitude",
+            "PaltaLibCore"
+        ],
+        path: "Sources/Analytics"
     )
 ]
 
