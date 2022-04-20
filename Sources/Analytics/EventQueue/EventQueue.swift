@@ -70,7 +70,10 @@ final class EventQueueImpl: EventQueue {
 
         storage.storeEvent(event)
         core.addEvent(event)
-        sessionManager.refreshSession(with: event)
+
+        if !outOfSession {
+            sessionManager.refreshSession(with: event)
+        }
     }
 
     private func setupCore() {

@@ -57,8 +57,8 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(composerMock.timestamp, 22)
         XCTAssertEqual(composerMock.outOfSession, false)
 
-        XCTAssertEqual(coreMock.addedEvents, [.mock()])
-        XCTAssertEqual(storageMock.addedEvents, [.mock()])
+        XCTAssertEqual(coreMock.addedEvents.count, 1)
+        XCTAssertEqual(storageMock.addedEvents.count, 1)
         XCTAssertNil(senderMock.sentEvents)
         XCTAssertNil(timerMock.passedInterval)
         XCTAssert(sessionManagerMock.refreshSessionCalled)
@@ -79,7 +79,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(storageMock.addedEvents, [.mock()])
         XCTAssertNil(senderMock.sentEvents)
         XCTAssertNil(timerMock.passedInterval)
-        XCTAssert(sessionManagerMock.refreshSessionCalled)
+        XCTAssertFalse(sessionManagerMock.refreshSessionCalled)
     }
 
     func testInit() {
