@@ -37,8 +37,7 @@ final class DeviceInfoProviderImpl: DeviceInfoProvider {
     }
 
     var carrier: String {
-        ""
-        //CTTelephonyNetworkInfo().subscriberCellularProvider?.carrierName ?? "Unknown"
+        CTTelephonyNetworkInfo().subscriberCellularProvider?.carrierName ?? "Unknown"
     }
 
     var country: String? {
