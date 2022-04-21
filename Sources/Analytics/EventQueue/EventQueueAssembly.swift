@@ -11,6 +11,16 @@ import PaltaLibCore
 final class EventQueueAssembly {
     private(set) lazy var eventQueueCore = EventQueueCoreImpl(timer: TimerImpl())
 
+    private(set) lazy var liveEventQueueCore = EventQueueCoreImpl(timer: ImmediateTimer()).do {
+        $0.config = .init(
+            maxBatchSize: 5,
+            uploadInterval: 0,
+            uploadThreshold: 3,
+            maxEvents: 100,
+            maxConcurrentOperations: .max
+        )
+    }
+
     private(set) lazy var eventStorage: EventStorage = FileEventStorage()
 
     private(set) lazy var eventComposer = EventComposerImpl(
@@ -24,6 +34,7 @@ final class EventQueueAssembly {
 
     private(set) lazy var eventQueue = EventQueueImpl(
         core: eventQueueCore,
+        liveCore: liveEventQueueCore,
         storage: eventStorage,
         sender: eventSender,
         eventComposer: eventComposer,

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibCore
 
 struct EventQueueConfig {
     let maxBatchSize: Int
@@ -26,7 +27,7 @@ protocol EventQueueCore: AnyObject {
     func addEvents(_ events: [Event])
 }
 
-final class EventQueueCoreImpl: EventQueueCore {
+final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     var sendHandler: UploadHandler?
     var removeHandler: RemoveHandler?
 

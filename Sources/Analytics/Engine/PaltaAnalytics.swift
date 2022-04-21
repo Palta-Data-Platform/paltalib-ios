@@ -93,6 +93,16 @@ public final class PaltaAnalytics {
             maxConcurrentOperations: 5
         )
 
+        eventQueueAssembly.liveEventQueueCore.config = .init(
+            maxBatchSize: target.settings.eventUploadMaxBatchSize,
+            uploadInterval: 0,
+            uploadThreshold: 0,
+            maxEvents: target.settings.eventMaxCount,
+            maxConcurrentOperations: .max
+        )
+
+//        eventQueueAssembly.eventQueue.liveEventTypes = target.settings.liveEventTypes
+
         eventQueueAssembly.eventSender.apiToken = apiKey
 
         assembly.analyticsCoreAssembly.sessionManager.maxSessionAge = target.settings.minTimeBetweenSessionsMillis
@@ -131,6 +141,7 @@ public final class PaltaAnalytics {
 
         paltaQueueAssemblies.forEach {
             $0.eventQueueCore.isPaused = offline
+            $0.liveEventQueueCore.isPaused = offline
         }
     }
     

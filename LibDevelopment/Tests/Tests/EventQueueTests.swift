@@ -11,6 +11,7 @@ import XCTest
 final class EventQueueTests: XCTestCase {
     var eventQueue: EventQueueImpl!
     var coreMock: EventQueueCoreMock!
+    var liveCoreMock: EventQueueCoreMock!
     var timerMock: TimerMock!
     var storageMock: EventStorageMock!
     var senderMock: EventSenderMock!
@@ -21,6 +22,7 @@ final class EventQueueTests: XCTestCase {
         try super.setUpWithError()
 
         coreMock = .init()
+        liveCoreMock = .init()
         timerMock = .init()
         storageMock = .init()
         senderMock = .init()
@@ -29,6 +31,7 @@ final class EventQueueTests: XCTestCase {
 
         eventQueue = .init(
             core: coreMock,
+            liveCore: liveCoreMock,
             storage: storageMock,
             sender: senderMock,
             eventComposer: composerMock,
@@ -62,6 +65,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertNil(senderMock.sentEvents)
         XCTAssertNil(timerMock.passedInterval)
         XCTAssert(sessionManagerMock.refreshSessionCalled)
+        XCTAssert(liveCoreMock.addedEvents.isEmpty)
     }
 
     func testAddOutOfSessionEvent() {
@@ -80,6 +84,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertNil(senderMock.sentEvents)
         XCTAssertNil(timerMock.passedInterval)
         XCTAssertFalse(sessionManagerMock.refreshSessionCalled)
+        XCTAssert(liveCoreMock.addedEvents.isEmpty)
     }
 
     func testInit() {
@@ -87,6 +92,7 @@ final class EventQueueTests: XCTestCase {
 
         eventQueue = .init(
             core: coreMock,
+            liveCore: liveCoreMock,
             storage: storageMock,
             sender: senderMock,
             eventComposer: composerMock,
@@ -97,7 +103,10 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(storageMock.eventsToLoad, coreMock.addedEvents)
         XCTAssertNotNil(coreMock.sendHandler)
         XCTAssertNotNil(coreMock.removeHandler)
+        XCTAssertNotNil(liveCoreMock.sendHandler)
+        XCTAssertNotNil(liveCoreMock.removeHandler)
         XCTAssert(sessionManagerMock.startCalled)
+        XCTAssert(liveCoreMock.addedEvents.isEmpty)
     }
 
     func testSuccessfulSend() {
@@ -106,6 +115,18 @@ final class EventQueueTests: XCTestCase {
         senderMock.result = .success(())
 
         coreMock.sendHandler?(ArraySlice(eventsToSend), sendCompleted.fulfill)
+
+        XCTAssertEqual(senderMock.sentEvents, eventsToSend)
+        wait(for: [sendCompleted], timeout: 0.01)
+        XCTAssertEqual(storageMock.removedEvents, eventsToSend)
+    }
+
+    func testSuccessfulSendFromLiveCore() {
+        let sendCompleted = expectation(description: "Send completed")
+        let eventsToSend = (0...100).map { Event.mock(timestamp: $0) }
+        senderMock.result = .success(())
+
+        liveCoreMock.sendHandler?(ArraySlice(eventsToSend), sendCompleted.fulfill)
 
         XCTAssertEqual(senderMock.sentEvents, eventsToSend)
         wait(for: [sendCompleted], timeout: 0.01)
@@ -173,6 +194,24 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(composerMock.groupProperties?.isEmpty, true)
 
         XCTAssertEqual(coreMock.addedEvents.count, 1)
+        XCTAssertEqual(storageMock.addedEvents.count, 1)
+
+        XCTAssert(storageMock.removedEvents.isEmpty)
+        XCTAssertNil(senderMock.sentEvents)
+        XCTAssert(liveCoreMock.addedEvents.isEmpty)
+    }
+
+    func testLiveEvent() {
+        eventQueue.liveEventTypes = ["liveevent"]
+
+        eventQueue.logEvent(
+            eventType: "liveevent",
+            eventProperties: [:],
+            groups: [:]
+        )
+
+        XCTAssertEqual(coreMock.addedEvents.count, 0)
+        XCTAssertEqual(liveCoreMock.addedEvents.count, 1)
         XCTAssertEqual(storageMock.addedEvents.count, 1)
 
         XCTAssert(storageMock.removedEvents.isEmpty)

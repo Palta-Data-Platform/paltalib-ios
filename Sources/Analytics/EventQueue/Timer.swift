@@ -37,3 +37,14 @@ final class TimerImpl: Timer {
         return TimerToken(cancelHandler: { workItem.cancel() })
     }
 }
+
+final class ImmediateTimer: Timer {
+    func scheduleTimer(
+        timeInterval: TimeInterval,
+        on dispatchQueue: DispatchQueue,
+        completion: @escaping () -> Void
+    ) -> TimerToken {
+        dispatchQueue.async(execute: completion)
+        return TimerToken {}
+    }
+}

@@ -21,7 +21,10 @@ protocol EventQueue {
 }
 
 final class EventQueueImpl: EventQueue {
+    var liveEventTypes: Set<String> = []
+
     private let core: EventQueueCore
+    private let liveCore: EventQueueCore
     private let storage: EventStorage
     private let sender: EventSender
     private let eventComposer: EventComposer
@@ -30,6 +33,7 @@ final class EventQueueImpl: EventQueue {
 
     init(
         core: EventQueueCore,
+        liveCore: EventQueueCore,
         storage: EventStorage,
         sender: EventSender,
         eventComposer: EventComposer,
@@ -37,13 +41,15 @@ final class EventQueueImpl: EventQueue {
         timer: Timer
     ) {
         self.core = core
+        self.liveCore = liveCore
         self.storage = storage
         self.sender = sender
         self.eventComposer = eventComposer
         self.sessionManager = sessionManager
         self.timer = timer
 
-        setupCore()
+        setupCore(core, loadEvents: true)
+        setupCore(liveCore, loadEvents: false)
         startSessionManager()
     }
 
@@ -69,20 +75,29 @@ final class EventQueueImpl: EventQueue {
         )
 
         storage.storeEvent(event)
-        core.addEvent(event)
+
+        if liveEventTypes.contains(eventType) {
+            liveCore.addEvent(event)
+        } else {
+            core.addEvent(event)
+        }
 
         if !outOfSession {
             sessionManager.refreshSession(with: event)
         }
     }
 
-    private func setupCore() {
+    private func setupCore(_ core: EventQueueCore, loadEvents: Bool) {
         core.sendHandler = { [weak self] events, completionHandler in
             self?.sendEvents(Array(events), completionHandler)
         }
 
         core.removeHandler = { [storage] in
             $0.forEach(storage.removeEvent)
+        }
+
+        guard loadEvents else {
+            return
         }
 
         storage.loadEvents { [core] events in

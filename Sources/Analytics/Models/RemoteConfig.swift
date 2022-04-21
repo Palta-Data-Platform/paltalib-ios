@@ -19,7 +19,8 @@ public struct ConfigTarget: Codable {
             eventMaxCount: 12,
             eventUploadPeriodSeconds: 12,
             minTimeBetweenSessionsMillis: 12,
-            trackingSessionEvents: true
+            trackingSessionEvents: true //,
+//            liveEventTypes: []
         ),
         url: URL(string: "https://api.paltabrain.com/events")
     )
@@ -46,6 +47,7 @@ public struct ConfigSettings: Codable {
     let eventUploadPeriodSeconds: Int
     let minTimeBetweenSessionsMillis: Int
     let trackingSessionEvents: Bool
+//    let liveEvents: Set<String>
     
     public init(
         eventUploadThreshold: Int,
@@ -53,7 +55,8 @@ public struct ConfigSettings: Codable {
         eventMaxCount: Int,
         eventUploadPeriodSeconds: Int,
         minTimeBetweenSessionsMillis: Int,
-        trackingSessionEvents: Bool
+        trackingSessionEvents: Bool //,
+//        liveEvents: Set<String>
     ) {
         self.eventUploadThreshold = eventUploadThreshold
         self.eventUploadMaxBatchSize = eventUploadMaxBatchSize
@@ -61,5 +64,6 @@ public struct ConfigSettings: Codable {
         self.eventUploadPeriodSeconds = eventUploadPeriodSeconds
         self.minTimeBetweenSessionsMillis = minTimeBetweenSessionsMillis
         self.trackingSessionEvents = trackingSessionEvents
+//        self.liveEvents = liveEvents
     }
 }
