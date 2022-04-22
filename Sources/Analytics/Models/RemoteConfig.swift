@@ -1,10 +1,10 @@
 import Foundation
 
-struct RemoteConfig: Codable {
+struct RemoteConfig: Codable, Equatable {
     let targets: [ConfigTarget]
 }
 
-public struct ConfigTarget: Codable {
+public struct ConfigTarget: Codable, Equatable {
     public enum Name: String, Codable {
         case amplitude
         case paltabrain
@@ -40,7 +40,7 @@ public struct ConfigTarget: Codable {
     }
 }
 
-public struct ConfigSettings: Codable {
+public struct ConfigSettings: Codable, Equatable {
     let eventUploadThreshold: Int
     let eventUploadMaxBatchSize: Int
     let eventMaxCount: Int

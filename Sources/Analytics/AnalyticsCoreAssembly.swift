@@ -22,7 +22,10 @@ final class AnalyticsCoreAssembly {
         notificationCenter: .default
     )
 
-    private(set) lazy var configurationService = ConfigurationService(httpClient: coreAssembly.httpClient)
+    private(set) lazy var configurationService = ConfigurationService(
+        userDefaults: .standard,
+        httpClient: coreAssembly.httpClient
+    )
 
     private let coreAssembly: CoreAssembly
 

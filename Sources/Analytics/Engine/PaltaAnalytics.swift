@@ -37,7 +37,7 @@ public final class PaltaAnalytics {
             return
         }
 
-        assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey) { [self] result in
+        assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey) { [self] (result: Result<RemoteConfig, Error>) in
             switch result {
             case .failure(let error):
                 print("PaltaAnalytics: configuration fetch failed: \(error.localizedDescription), used default config.")

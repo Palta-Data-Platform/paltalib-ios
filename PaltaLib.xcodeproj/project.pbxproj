@@ -104,6 +104,7 @@
 		114D070A280816D200ACD310 /* TrackingOptionsProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D0709280816D200ACD310 /* TrackingOptionsProviderMock.swift */; };
 		114D070C2808336200ACD310 /* TrackingOptionsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
+		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,6 +284,7 @@
 		114D0709280816D200ACD310 /* TrackingOptionsProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProviderMock.swift; sourceTree = "<group>"; };
 		114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProviderTests.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
+		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +526,7 @@
 				11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */,
 				11115A8827FF27CD00A41ADA /* EventSenderTests.swift */,
 				11115A94280023A300A41ADA /* UserPropertiesKeeperTests.swift */,
+				119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				11115A5327FB7FAD00A41ADA /* EventComposerTests.swift in Sources */,
 				11115A6C27FDB88400A41ADA /* AnyEncodableTests.swift in Sources */,
 				11115A3627FB00A500A41ADA /* FileEventStorageTests.swift in Sources */,
+				119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */,
 				11115A9A28003D6900A41ADA /* UserPropertiesKeeperMock.swift in Sources */,
 				114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */,
 				114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */,
