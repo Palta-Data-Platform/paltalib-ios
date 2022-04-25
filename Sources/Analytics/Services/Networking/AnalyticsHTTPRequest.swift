@@ -62,15 +62,6 @@ extension AnalyticsHTTPRequest: CodableAutobuildingHTTPRequest {
         }
     }
 
-    var queryParameters: [String : String]? {
-        switch self {
-        case .remoteConfig:
-            return nil
-        case .sendEvents(let payload):
-            return ["client": payload.apiKey]
-        }
-    }
-
     var bodyObject: AnyEncodable? {
         switch self {
         case .remoteConfig:

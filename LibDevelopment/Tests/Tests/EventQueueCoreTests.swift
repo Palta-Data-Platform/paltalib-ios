@@ -63,6 +63,7 @@ final class EventQueueCoreTests: XCTestCase {
 
     private var completionHandlers: [() -> Void] = []
     private var sentEvents: [Event]?
+    private var telemetry: Telemetry?
     private var removedEvents: [Event]?
 
     override func setUpWithError() throws {
@@ -79,8 +80,9 @@ final class EventQueueCoreTests: XCTestCase {
         _removeIsCalled = nil
         _removeIsntCalled = nil
 
-        queue.sendHandler = { [unowned self] events, completionHandler in
+        queue.sendHandler = { [unowned self] events, telemetry, completionHandler in
             sentEvents = Array(events)
+            self.telemetry = telemetry
             completionHandlers.append(completionHandler)
             _sendIsCalled?.fulfill()
             _sendIsntCalled?.fulfill()
@@ -123,6 +125,9 @@ final class EventQueueCoreTests: XCTestCase {
         wait(for: [sendIsCalled, removeIsntCalled], timeout: 0.01)
 
         XCTAssertEqual(sentEvents?.count, 1)
+        XCTAssertEqual(telemetry?.batchLoad, 1 / 2)
+        XCTAssertEqual(telemetry?.eventsInBatch, 1)
+        XCTAssertEqual(telemetry?.eventsDroppedSinceLastBatch, 0)
     }
 
     func testTwoSequentalEvents() {
@@ -141,6 +146,9 @@ final class EventQueueCoreTests: XCTestCase {
         wait(for: [sendIsCalled, removeIsntCalled], timeout: 0.01)
 
         XCTAssertEqual(sentEvents?.count, 2)
+        XCTAssertEqual(telemetry?.batchLoad, 2 / 3)
+        XCTAssertEqual(telemetry?.eventsInBatch, 2)
+        XCTAssertEqual(telemetry?.eventsDroppedSinceLastBatch, 0)
     }
 
     func testThresholdSend() {
@@ -173,6 +181,9 @@ final class EventQueueCoreTests: XCTestCase {
         wait(for: [sendIsCalled], timeout: 0.01)
 
         XCTAssertEqual(sentEvents?.count, 2)
+        XCTAssertEqual(telemetry?.batchLoad, 2 / 3)
+        XCTAssertEqual(telemetry?.eventsInBatch, 2)
+        XCTAssertEqual(telemetry?.eventsDroppedSinceLastBatch, 0)
     }
 
     func testMultibatchSend2() {
@@ -245,6 +256,14 @@ final class EventQueueCoreTests: XCTestCase {
         let expectedRemovedTimestamps = Set(0...4)
 
         XCTAssertEqual(removedTimestamps, expectedRemovedTimestamps)
+
+        timerMock.fire()
+
+        wait(for: [sendIsCalled], timeout: 0.01)
+
+        XCTAssertEqual(telemetry?.batchLoad, 5 / 300)
+        XCTAssertEqual(telemetry?.eventsInBatch, 5)
+        XCTAssertEqual(telemetry?.eventsDroppedSinceLastBatch, 5)
     }
 
     func testLongUploadByCount() {

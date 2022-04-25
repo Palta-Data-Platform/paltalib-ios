@@ -27,7 +27,7 @@ final class EventSenderTests: XCTestCase {
         httpClientMock.result = .success(EmptyResponse())
         let successCalled = expectation(description: "Success called")
 
-        eventSender.sendEvents(events) { result in
+        eventSender.sendEvents(events, telemetry: .mock()) { result in
             switch result {
             case .success:
                 successCalled.fulfill()
@@ -39,7 +39,9 @@ final class EventSenderTests: XCTestCase {
         wait(for: [successCalled], timeout: 0.01)
         XCTAssertEqual(
             httpClientMock.request as? AnalyticsHTTPRequest,
-            AnalyticsHTTPRequest.sendEvents(SendEventsPayload(apiKey: "mockToken", events: events))
+            AnalyticsHTTPRequest.sendEvents(
+                SendEventsPayload(apiKey: "mockToken", events: events, serviceInfo: .init(telemetry: .mock()))
+            )
         )
     }
 
@@ -48,7 +50,7 @@ final class EventSenderTests: XCTestCase {
 
         let failCalled = expectation(description: "Fail called")
 
-        eventSender.sendEvents(events) { result in
+        eventSender.sendEvents(events, telemetry: nil) { result in
             switch result {
             case .success:
                 break
@@ -66,7 +68,7 @@ final class EventSenderTests: XCTestCase {
 
         let failCalled = expectation(description: "Fail called")
 
-        eventSender.sendEvents(events) { result in
+        eventSender.sendEvents(events, telemetry: nil) { result in
             switch result {
             case .success:
                 break
@@ -84,7 +86,7 @@ final class EventSenderTests: XCTestCase {
 
         let failCalled = expectation(description: "Fail called")
 
-        eventSender.sendEvents(events) { result in
+        eventSender.sendEvents(events, telemetry: nil) { result in
             switch result {
             case .success:
                 break
@@ -102,7 +104,7 @@ final class EventSenderTests: XCTestCase {
 
         let failCalled = expectation(description: "Fail called")
 
-        eventSender.sendEvents(events) { result in
+        eventSender.sendEvents(events, telemetry: nil) { result in
             switch result {
             case .success:
                 break
@@ -120,7 +122,7 @@ final class EventSenderTests: XCTestCase {
 
         let failCalled = expectation(description: "Fail called")
 
-        eventSender.sendEvents(events) { result in
+        eventSender.sendEvents(events, telemetry: nil) { result in
             switch result {
             case .success:
                 break

@@ -17,7 +17,7 @@ struct EventQueueConfig {
 }
 
 protocol EventQueueCore: AnyObject {
-    typealias UploadHandler = (ArraySlice<Event>, @escaping () -> Void) -> Void
+    typealias UploadHandler = (ArraySlice<Event>, Telemetry, @escaping () -> Void) -> Void
     typealias RemoveHandler = (ArraySlice<Event>) -> Void
 
     var sendHandler: UploadHandler? { get set }
@@ -52,6 +52,8 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     }
 
     private var events: [Event] = []
+
+    private var droppedEventsCount = 0
 
     private var timerFired = false
 
@@ -109,6 +111,7 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         let strippedEvents = events.suffix(from: config.maxEvents)
         events = Array(events.prefix(config.maxEvents))
 
+        droppedEventsCount += strippedEvents.count
         removeHandler?(strippedEvents)
     }
 
@@ -169,10 +172,19 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
 
             let start = batchIndex * batchSize
             let end = min(events.count, (batchIndex + 1) * batchSize)
+            let range = start..<end
             lastUploadedIndex = end
 
+            let telemetry = Telemetry(
+                eventsInBatch: range.count,
+                batchLoad: Double(range.count) / Double(config.maxBatchSize),
+                eventsDroppedSinceLastBatch: droppedEventsCount
+            )
+
+            droppedEventsCount = 0
+
             operationsInProgress += 1
-            sendHandler?(events[start..<end], { [weak self] in
+            sendHandler?(events[range], telemetry, { [weak self] in
                 self?.workingQueue.async {
                     self?.operationsInProgress -= 1
                 }

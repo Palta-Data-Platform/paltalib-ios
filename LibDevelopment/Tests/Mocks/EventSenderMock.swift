@@ -10,9 +10,11 @@ import Foundation
 
 final class EventSenderMock: EventSender {
     var sentEvents: [Event]?
+    var sentTelemetry: Telemetry?
     var result: Result<(), EventSendError>?
 
-    func sendEvents(_ events: [Event], completion: @escaping (Result<(), EventSendError>) -> Void) {
+    func sendEvents(_ events: [Event], telemetry: Telemetry?, completion: @escaping (Result<(), EventSendError>) -> Void) {
+        sentTelemetry = telemetry
         sentEvents = events
         result.map(completion)
     }

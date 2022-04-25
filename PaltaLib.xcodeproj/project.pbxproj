@@ -105,6 +105,8 @@
 		114D070C2808336200ACD310 /* TrackingOptionsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
+		11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4C2816A835004D0185 /* Telemetry.swift */; };
+		11C60F502816D598004D0185 /* TelemetryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4E2816D585004D0185 /* TelemetryMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -285,6 +287,8 @@
 		114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProviderTests.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
+		11C60F4C2816A835004D0185 /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
+		11C60F4E2816D585004D0185 /* TelemetryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +442,7 @@
 				11115A5A27FC59E700A41ADA /* Timestamp.swift */,
 				1111593B27F708E400A41ADA /* RemoteConfig.swift */,
 				11115A9028001FA800A41ADA /* UserProperties.swift */,
+				11C60F4C2816A835004D0185 /* Telemetry.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -538,6 +543,7 @@
 				111159BE27F773E900A41ADA /* EventMock.swift */,
 				11115A3F27FB740B00A41ADA /* EventStorageMock.swift */,
 				11115A4127FB74B000A41ADA /* EventSenderMock.swift */,
+				11C60F4E2816D585004D0185 /* TelemetryMock.swift */,
 				11115A4327FB751E00A41ADA /* EventComposerMock.swift */,
 				114D07002806F64B00ACD310 /* EventQueueMock.swift */,
 				11115A4727FB75CD00A41ADA /* EventQueueCoreMock.swift */,
@@ -841,6 +847,7 @@
 				119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */,
 				11115A9A28003D6900A41ADA /* UserPropertiesKeeperMock.swift in Sources */,
 				114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */,
+				11C60F502816D598004D0185 /* TelemetryMock.swift in Sources */,
 				114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */,
 				111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */,
 				11115A4227FB74B000A41ADA /* EventSenderMock.swift in Sources */,
@@ -876,6 +883,7 @@
 				11115A9C280065E300A41ADA /* DeviceInfoProvider.swift in Sources */,
 				11115A8227FEC60400A41ADA /* EventQueueAssembly.swift in Sources */,
 				11115A8427FEFFB200A41ADA /* SendEventsPayload.swift in Sources */,
+				11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */,
 				1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */,
 				114D06E028041BAA00ACD310 /* AnalyticsAssembly.swift in Sources */,
 				11115A8F28001F2300A41ADA /* UserPropertiesKeeper.swift in Sources */,

@@ -48,8 +48,8 @@ final class EventQueueImpl: EventQueue {
         self.sessionManager = sessionManager
         self.timer = timer
 
-        setupCore(core, loadEvents: true)
-        setupCore(liveCore, loadEvents: false)
+        setupCore(core, liveQueue: false)
+        setupCore(liveCore, liveQueue: true)
         startSessionManager()
     }
 
@@ -87,16 +87,22 @@ final class EventQueueImpl: EventQueue {
         }
     }
 
-    private func setupCore(_ core: EventQueueCore, loadEvents: Bool) {
-        core.sendHandler = { [weak self] events, completionHandler in
-            self?.sendEvents(Array(events), completionHandler)
+    private func setupCore(_ core: EventQueueCore, liveQueue: Bool) {
+        core.sendHandler = { [weak self] events, telemetry, completionHandler in
+            self?.sendEvents(
+                Array(events),
+                telemetry: liveQueue ? nil : telemetry,
+                completionHandler
+            )
         }
 
-        core.removeHandler = { [storage] in
-            $0.forEach(storage.removeEvent)
+        core.removeHandler = { [weak self] in
+            guard let self = self else { return }
+
+            $0.forEach(self.storage.removeEvent)
         }
 
-        guard loadEvents else {
+        guard !liveQueue else {
             return
         }
 
@@ -120,8 +126,8 @@ final class EventQueueImpl: EventQueue {
         sessionManager.start()
     }
 
-    private func sendEvents(_ events: [Event], _ completionHandler: @escaping () -> Void) {
-        sender.sendEvents(events) { [core, storage, timer] result in
+    private func sendEvents(_ events: [Event], telemetry: Telemetry?, _ completionHandler: @escaping () -> Void) {
+        sender.sendEvents(events, telemetry: telemetry) { [core, storage, timer] result in
             switch result {
             case .success:
                 events.forEach(storage.removeEvent)

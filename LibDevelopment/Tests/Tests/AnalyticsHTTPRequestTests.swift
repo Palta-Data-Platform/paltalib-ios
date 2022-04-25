@@ -31,19 +31,20 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
     func testSendEvent() {
         let events: [Event] = [.mock()]
         let request = AnalyticsHTTPRequest.sendEvents(
-            SendEventsPayload(apiKey: "mockKey", events: events)
+            SendEventsPayload(apiKey: "mockKey", events: events, serviceInfo: .init(telemetry: nil))
         )
 
         let expectedHeaders = [
             "additionalHeader": "additionalHeaderValue",
-            "X-API-Key": "mockKey"
+            "X-API-Key": "mockKey",
+            "Content-Type": "application/json"
         ]
 
         let urlRequest = request.urlRequest(headerFields: ["additionalHeader": "additionalHeaderValue"])
 
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
         XCTAssertEqual(urlRequest?.allHTTPHeaderFields, expectedHeaders)
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.paltabrain.com/v1/events-v2"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.paltabrain.com/events-v2"))
         XCTAssertEqual(urlRequest?.timeoutInterval, 30)
         XCTAssertEqual(urlRequest?.cachePolicy, .reloadIgnoringLocalAndRemoteCacheData)
         XCTAssertNotNil(urlRequest?.httpBody)

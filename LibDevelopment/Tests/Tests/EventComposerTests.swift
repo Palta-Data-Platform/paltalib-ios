@@ -92,7 +92,8 @@ final class EventComposerTests: XCTestCase {
             outOfSession: false
         )
 
-        XCTAssert(abs(event.timestamp - .currentTimestamp()) < 3)
+        let timeDiff = abs(event.timestamp - .currentTimestamp())
+        XCTAssert(timeDiff < 5, "\(timeDiff)")
     }
 
     func testPositiveTimezone() {

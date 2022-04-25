@@ -114,9 +114,10 @@ final class EventQueueTests: XCTestCase {
         let eventsToSend = (0...100).map { Event.mock(timestamp: $0) }
         senderMock.result = .success(())
 
-        coreMock.sendHandler?(ArraySlice(eventsToSend), sendCompleted.fulfill)
+        coreMock.sendHandler?(ArraySlice(eventsToSend), .mock(), sendCompleted.fulfill)
 
         XCTAssertEqual(senderMock.sentEvents, eventsToSend)
+        XCTAssertEqual(senderMock.sentTelemetry, .mock())
         wait(for: [sendCompleted], timeout: 0.01)
         XCTAssertEqual(storageMock.removedEvents, eventsToSend)
     }
@@ -126,7 +127,7 @@ final class EventQueueTests: XCTestCase {
         let eventsToSend = (0...100).map { Event.mock(timestamp: $0) }
         senderMock.result = .success(())
 
-        liveCoreMock.sendHandler?(ArraySlice(eventsToSend), sendCompleted.fulfill)
+        liveCoreMock.sendHandler?(ArraySlice(eventsToSend), .mock(), sendCompleted.fulfill)
 
         XCTAssertEqual(senderMock.sentEvents, eventsToSend)
         wait(for: [sendCompleted], timeout: 0.01)
@@ -146,7 +147,7 @@ final class EventQueueTests: XCTestCase {
         let eventsToSend = (0...100).map { Event.mock(timestamp: $0) }
         senderMock.result = .failure(.noInternet)
 
-        coreMock.sendHandler?(ArraySlice(eventsToSend), completion)
+        coreMock.sendHandler?(ArraySlice(eventsToSend), .mock(), completion)
 
         wait(for: [sendIsntCompleted], timeout: 0.03)
 
@@ -165,7 +166,7 @@ final class EventQueueTests: XCTestCase {
         let eventsToSend = (0...100).map { Event.mock(timestamp: $0) }
         senderMock.result = .failure(.badRequest)
 
-        coreMock.sendHandler?(ArraySlice(eventsToSend), sendCompleted.fulfill)
+        coreMock.sendHandler?(ArraySlice(eventsToSend), .mock(), sendCompleted.fulfill)
 
         wait(for: [sendCompleted], timeout: 0.03)
 
@@ -216,5 +217,12 @@ final class EventQueueTests: XCTestCase {
 
         XCTAssert(storageMock.removedEvents.isEmpty)
         XCTAssertNil(senderMock.sentEvents)
+    }
+
+    func testNoTelemetryOnLiveEvent() {
+        liveCoreMock.sendHandler?(ArraySlice([]), .mock(), {})
+
+        XCTAssertEqual(senderMock.sentEvents, [])
+        XCTAssertNil(senderMock.sentTelemetry)
     }
 }

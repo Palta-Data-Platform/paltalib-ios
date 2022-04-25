@@ -26,7 +26,7 @@ enum EventSendError: Error {
 }
 
 protocol EventSender {
-    func sendEvents(_ events: [Event], completion: @escaping (Result<(), EventSendError>) -> Void)
+    func sendEvents(_ events: [Event], telemetry: Telemetry?, completion: @escaping (Result<(), EventSendError>) -> Void)
 }
 
 final class EventSenderImpl: EventSender {
@@ -38,14 +38,18 @@ final class EventSenderImpl: EventSender {
         self.httpClient = httpClient
     }
 
-    func sendEvents(_ events: [Event], completion: @escaping (Result<(), EventSendError>) -> Void) {
+    func sendEvents(
+        _ events: [Event],
+        telemetry: Telemetry?,
+        completion: @escaping (Result<(), EventSendError>) -> Void
+    ) {
         guard let apiToken = apiToken else {
             assertionFailure("Attempt to send event without API token")
             return
         }
 
         let request = AnalyticsHTTPRequest.sendEvents(
-            SendEventsPayload(apiKey: apiToken, events: events)
+            SendEventsPayload(apiKey: apiToken, events: events, serviceInfo: .init(telemetry: telemetry))
         )
 
         httpClient.perform(request) { (result: Result<EmptyResponse, Error>) in

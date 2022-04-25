@@ -11,8 +11,14 @@ struct SendEventsPayload: Encodable, Equatable {
     enum CodingKeys: String, CodingKey {
         case apiKey = "api_key"
         case events
+        case serviceInfo = "paltabrain"
+    }
+
+    struct ServiceInfo: Encodable, Equatable {
+        let telemetry: Telemetry?
     }
 
     let apiKey: String
     let events: [Event]
+    let serviceInfo: ServiceInfo
 }
