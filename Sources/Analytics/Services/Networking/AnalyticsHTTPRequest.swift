@@ -32,7 +32,7 @@ extension AnalyticsHTTPRequest: CodableAutobuildingHTTPRequest {
         case .remoteConfig:
             return "/v1/config"
         case .sendEvents:
-            return "/v1/events-v2"
+            return "/events-v2"
         }
     }
 
@@ -46,7 +46,10 @@ extension AnalyticsHTTPRequest: CodableAutobuildingHTTPRequest {
             return ["X-API-Key": apiKey]
 
         case .sendEvents(let payload):
-            return ["X-API-Key": payload.apiKey]
+            return [
+                "X-API-Key": payload.apiKey,
+                "Content-Type": "application/json"
+            ]
         }
     }
 
@@ -56,6 +59,15 @@ extension AnalyticsHTTPRequest: CodableAutobuildingHTTPRequest {
             return 10
         case .sendEvents:
             return 30
+        }
+    }
+
+    var queryParameters: [String : String]? {
+        switch self {
+        case .remoteConfig:
+            return nil
+        case .sendEvents(let payload):
+            return ["client": payload.apiKey]
         }
     }
 
