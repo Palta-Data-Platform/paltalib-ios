@@ -22,6 +22,7 @@ protocol EventQueue {
 
 final class EventQueueImpl: EventQueue {
     var liveEventTypes: Set<String> = []
+    var excludedEvents: Set<String> = []
 
     private let core: EventQueueCore
     private let liveCore: EventQueueCore
@@ -63,6 +64,10 @@ final class EventQueueImpl: EventQueue {
         timestamp: Int? = nil,
         outOfSession: Bool = false
     ) {
+        guard !excludedEvents.contains(eventType) else {
+            return
+        }
+
         let event = eventComposer.composeEvent(
             eventType: eventType,
             eventProperties: eventProperties,

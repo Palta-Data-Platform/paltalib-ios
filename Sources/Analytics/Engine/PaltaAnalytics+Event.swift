@@ -8,25 +8,14 @@ extension PaltaAnalytics {
                          withTimestamp timestamp: NSNumber? = nil,
                          outOfSession: Bool = false) {
 
-        if let timestamp = timestamp {
-            amplitudeInstances.forEach {
-                $0.logEvent(
-                    eventType,
-                    withEventProperties: eventProperties,
-                    withGroups: groups,
-                    withTimestamp: timestamp,
-                    outOfSession: outOfSession
-                )
-            }
-        } else {
-            amplitudeInstances.forEach {
-                $0.logEvent(
-                    eventType,
-                    withEventProperties: eventProperties,
-                    withGroups: groups,
-                    outOfSession: outOfSession
-                )
-            }
+        amplitudeInstances.forEach {
+            $0.pb_logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                groups: groups,
+                timestamp: timestamp,
+                outOfSession: outOfSession
+            )
         }
 
         paltaQueues.forEach {
@@ -41,7 +30,7 @@ extension PaltaAnalytics {
     
     public func logEvent(eventType: String) {
         amplitudeInstances.forEach {
-            $0.logEvent(eventType)
+            $0.pb_logEvent(eventType: eventType)
         }
 
         paltaQueues.forEach {
@@ -51,7 +40,7 @@ extension PaltaAnalytics {
     
     public func logEvent(eventType: String, withEventProperties eventProperties: Dictionary<String, Any>) {
         amplitudeInstances.forEach {
-            $0.logEvent(eventType, withEventProperties: eventProperties)
+            $0.pb_logEvent(eventType: eventType, eventProperties: eventProperties)
         }
 
         paltaQueues.forEach {
@@ -63,9 +52,11 @@ extension PaltaAnalytics {
                          withEventProperties eventProperties: Dictionary<String, Any>,
                          outOfSession: Bool) {
         amplitudeInstances.forEach {
-            $0.logEvent(eventType,
-                        withEventProperties: eventProperties,
-                        outOfSession: outOfSession)
+            $0.pb_logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                outOfSession: outOfSession
+            )
         }
 
         paltaQueues.forEach {
@@ -82,9 +73,11 @@ extension PaltaAnalytics {
                          withEventProperties eventProperties: Dictionary<String, Any>,
                          withGroups groups: Dictionary<String, Any>) {
         amplitudeInstances.forEach {
-            $0.logEvent(eventType,
-                        withEventProperties: eventProperties,
-                        withGroups: groups)
+            $0.pb_logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                groups: groups
+            )
         }
 
         paltaQueues.forEach {
@@ -102,10 +95,12 @@ extension PaltaAnalytics {
                          withGroups groups: Dictionary<String, Any>,
                          outOfSession: Bool) {
         amplitudeInstances.forEach {
-            $0.logEvent(eventType,
-                        withEventProperties: eventProperties,
-                        withGroups: groups,
-                        outOfSession: outOfSession)
+            $0.pb_logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                groups: groups,
+                outOfSession: outOfSession
+            )
         }
 
         paltaQueues.forEach {
@@ -124,11 +119,13 @@ extension PaltaAnalytics {
                          withLongLongTimestamp longLongTimestamp: Int64,
                          outOfSession: Bool) {
         amplitudeInstances.forEach {
-            $0.logEvent(eventType,
-                        withEventProperties: eventProperties,
-                        withGroups: groups,
-                        withLongLongTimestamp: longLongTimestamp,
-                        outOfSession: outOfSession)
+            $0.pb_logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                groups: groups,
+                timestamp: longLongTimestamp as NSNumber,
+                outOfSession: outOfSession
+            )
         }
 
         paltaQueues.forEach {
@@ -149,11 +146,13 @@ extension PaltaAnalytics {
                          withTimestamp timestamp: NSNumber,
                          outOfSession: Bool) {
         amplitudeInstances.forEach {
-            $0.logEvent(eventType,
-                        withEventProperties: eventProperties,
-                        withGroups: groups,
-                        withTimestamp: timestamp,
-                        outOfSession: outOfSession)
+            $0.pb_logEvent(
+                eventType: eventType,
+                eventProperties: eventProperties,
+                groups: groups,
+                timestamp: timestamp,
+                outOfSession: outOfSession
+            )
         }
 
         paltaQueues.forEach {

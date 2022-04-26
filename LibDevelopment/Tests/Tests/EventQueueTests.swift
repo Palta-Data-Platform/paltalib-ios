@@ -38,6 +38,8 @@ final class EventQueueTests: XCTestCase {
             sessionManager: sessionManagerMock,
             timer: timerMock
         )
+
+        eventQueue.excludedEvents = ["excludedEvent"]
     }
 
     func testAddEvent() {
@@ -224,5 +226,14 @@ final class EventQueueTests: XCTestCase {
 
         XCTAssertEqual(senderMock.sentEvents, [])
         XCTAssertNil(senderMock.sentTelemetry)
+    }
+
+    func testExcludedEvent() {
+        eventQueue.logEvent(eventType: "excludedEvent", eventProperties: [:], groups: [:])
+
+        XCTAssertNil(composerMock.eventType)
+        XCTAssert(coreMock.addedEvents.isEmpty)
+        XCTAssert(liveCoreMock.addedEvents.isEmpty)
+        XCTAssert(storageMock.addedEvents.isEmpty)
     }
 }

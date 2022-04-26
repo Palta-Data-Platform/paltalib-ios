@@ -107,6 +107,7 @@
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4C2816A835004D0185 /* Telemetry.swift */; };
 		11C60F502816D598004D0185 /* TelemetryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4E2816D585004D0185 /* TelemetryMock.swift */; };
+		11C60F5228181323004D0185 /* Amplitude+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F5128181323004D0185 /* Amplitude+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,6 +290,7 @@
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
 		11C60F4C2816A835004D0185 /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
 		11C60F4E2816D585004D0185 /* TelemetryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryMock.swift; sourceTree = "<group>"; };
+		11C60F5128181323004D0185 /* Amplitude+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Amplitude+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +411,7 @@
 		1111592427F7089400A41ADA /* Sources/Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				11C60F532818132B004D0185 /* AmplitudeExtension */,
 				111159AD27F72D5E00A41ADA /* EventQueue */,
 				1111593227F708E400A41ADA /* Engine */,
 				1111593A27F708E400A41ADA /* Models */,
@@ -564,6 +567,14 @@
 				11115A6D27FDB9C000A41ADA /* PurchaseHTTPRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		11C60F532818132B004D0185 /* AmplitudeExtension */ = {
+			isa = PBXGroup;
+			children = (
+				11C60F5128181323004D0185 /* Amplitude+Extensions.swift */,
+			);
+			path = AmplitudeExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -896,6 +907,7 @@
 				1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */,
 				11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */,
 				1111596E27F70BF500A41ADA /* Settings.swift in Sources */,
+				11C60F5228181323004D0185 /* Amplitude+Extensions.swift in Sources */,
 				114D06FD2806EEE500ACD310 /* IdentityLogger.swift in Sources */,
 				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
 				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,

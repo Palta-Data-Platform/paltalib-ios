@@ -112,7 +112,7 @@ final class SessionManagerTests: XCTestCase {
 
         XCTAssertEqual(eventNames, [kAMPSessionEndEvent, kAMPSessionStartEvent])
         XCTAssertEqual(eventTimes[0], lastSessionTimestamp)
-        XCTAssert(abs(Int.currentTimestamp() - eventTimes[1]) < 2)
+        XCTAssert(abs(Int.currentTimestamp() - eventTimes[1]) < 4)
     }
 
     func testRefresh() throws {
