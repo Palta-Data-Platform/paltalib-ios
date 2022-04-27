@@ -4,8 +4,8 @@ struct RemoteConfig: Codable, Equatable {
     let targets: [ConfigTarget]
 }
 
-public struct ConfigTarget: Codable, Equatable {
-    public enum Name: String, Codable {
+struct ConfigTarget: Codable, Equatable {
+    enum Name: String, Codable {
         case amplitude
         case paltabrain
         case `default`
@@ -29,19 +29,9 @@ public struct ConfigTarget: Codable, Equatable {
     let name: Name
     let settings: ConfigSettings
     let url: URL?
-    
-    public init(
-        name: Name,
-        settings: ConfigSettings,
-        url: URL?
-    ) {
-        self.name = name
-        self.settings = settings
-        self.url = url
-    }
 }
 
-public struct ConfigSettings: Codable, Equatable {
+struct ConfigSettings: Codable, Equatable {
     let eventUploadThreshold: Int
     let eventUploadMaxBatchSize: Int
     let eventMaxCount: Int
@@ -50,24 +40,4 @@ public struct ConfigSettings: Codable, Equatable {
     let trackingSessionEvents: Bool
     let realtimeEventTypes: Set<String>
     let excludedEventTypes: Set<String>
-    
-    public init(
-        eventUploadThreshold: Int,
-        eventUploadMaxBatchSize: Int,
-        eventMaxCount: Int,
-        eventUploadPeriodSeconds: Int,
-        minTimeBetweenSessionsMillis: Int,
-        trackingSessionEvents: Bool,
-        realtimeEventTypes: Set<String>,
-        excludedEventTypes: Set<String>
-    ) {
-        self.eventUploadThreshold = eventUploadThreshold
-        self.eventUploadMaxBatchSize = eventUploadMaxBatchSize
-        self.eventMaxCount = eventMaxCount
-        self.eventUploadPeriodSeconds = eventUploadPeriodSeconds
-        self.minTimeBetweenSessionsMillis = minTimeBetweenSessionsMillis
-        self.trackingSessionEvents = trackingSessionEvents
-        self.realtimeEventTypes = realtimeEventTypes
-        self.excludedEventTypes = excludedEventTypes
-    }
 }
