@@ -4,19 +4,19 @@ import PaltaLibCore
 public final class PaltaAnalytics {
     public static let instance = PaltaAnalytics()
 
-    var targets = [Target]()
-    var amplitudeInstances = [Amplitude]()
     var paltaQueues: [EventQueueImpl] {
         paltaQueueAssemblies.map { $0.eventQueue }
     }
 
     let assembly = AnalyticsAssembly()
+
+    private(set) var targets = [Target]()
+    private(set) var amplitudeInstances = [Amplitude]()
+
     private(set) var paltaQueueAssemblies: [EventQueueAssembly] = []
 
     private var apiKey: String?
     private var amplitudeApiKey: String?
-
-    public init() {}
 
     public func configure(
         name: String,
