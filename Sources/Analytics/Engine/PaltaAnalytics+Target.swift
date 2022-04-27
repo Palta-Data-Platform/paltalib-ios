@@ -1,7 +1,6 @@
 import Foundation
 
 extension PaltaAnalytics {
-
     public struct Target {
 
         let name: String
