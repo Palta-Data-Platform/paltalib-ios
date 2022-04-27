@@ -127,7 +127,7 @@ public final class PaltaAnalytics {
             $0.useAdvertisingIdForDeviceId()
         }
 
-        // TODO
+        assembly.analyticsCoreAssembly.userPropertiesKeeper.useIDFAasDeviceId = true
     }
 
     public func setTrackingOptions(_ options: AMPTrackingOptions) {
