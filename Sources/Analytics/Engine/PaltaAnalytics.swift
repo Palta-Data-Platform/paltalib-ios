@@ -110,31 +110,6 @@ public final class PaltaAnalytics {
         assembly.analyticsCoreAssembly.sessionManager.maxSessionAge = target.settings.minTimeBetweenSessionsMillis
         paltaQueueAssemblies.append(eventQueueAssembly)
     }
-
-//    public func addTarget(_ target: Target) {
-//        guard !targets.contains(target) else { return }
-//
-//        let amplitudeInstance = Amplitude.instance(withName: target.name)
-//        amplitudeInstance.trackingSessionEvents = target.trackingSessionEvents
-//        amplitudeInstance.initializeApiKey(target.apiKey)
-//
-//        if let serverURL = target.serverURL {
-//            amplitudeInstance.setServerUrl(serverURL.absoluteString)
-//        }
-//        amplitudeInstances.append(amplitudeInstance)
-//    }
-    
-//    public func initializeApiKey(apiKey: String) {
-//        amplitudeInstances.forEach {
-//            $0.initializeApiKey(apiKey)
-//        }
-//    }
-    
-//    public func initializeApiKey(apiKey: String, userId: String?) {
-//        amplitudeInstances.forEach {
-//            $0.initializeApiKey(apiKey, userId: userId)
-//        }
-//    }
         
     public func setOffline(_ offline: Bool) {
         amplitudeInstances.forEach {
@@ -179,49 +154,6 @@ public final class PaltaAnalytics {
         assembly.analyticsCoreAssembly.trackingOptionsProvider.coppaControlEnabled = false
     }
     
-//    public func setServerUrl(_ serverUrl: String) {
-//        amplitudeInstances.forEach {
-//            $0.setServerUrl(serverUrl)
-//        }
-//    }
-
-//    public func setContentTypeHeader(_ contentType: String) {
-//        amplitudeInstances.forEach {
-//            $0.setContentTypeHeader(contentType)
-//        }
-//    }
-    
-//    public func setBearerToken(_ token: String) {
-//        amplitudeInstances.forEach {
-//            $0.setBearerToken(token)
-//        }
-//    }
-    
-//    public func setPlan(_ plan: AMPPlan) {
-//        amplitudeInstances.forEach {
-//            $0.setPlan(plan)
-//        }
-//    }
-
-//    public func setServerZone(_ serverZone: AMPServerZone) {
-//        amplitudeInstances.forEach {
-//            $0.setServerZone(serverZone)
-//        }
-//    }
-    
-//    public func setServerZone(_ serverZone: AMPServerZone, updateServerUrl: Bool) {
-//        amplitudeInstances.forEach {
-//            $0.setServerZone(serverZone,
-//                             updateServerUrl: updateServerUrl)
-//        }
-//    }
-    
-//    public func printEventsCount() {
-//        amplitudeInstances.forEach {
-//            $0.printEventsCount()
-//        }
-//    }
-    
     public func getDeviceId() -> String? {
         assembly.analyticsCoreAssembly.userPropertiesKeeper.deviceId
     }
@@ -245,20 +177,4 @@ public final class PaltaAnalytics {
 
         assembly.analyticsCoreAssembly.sessionManager.setSessionId(Int(timestamp))
     }
-    
-//    public func uploadEvents() {
-//        amplitudeInstances.forEach {
-//            $0.uploadEvents()
-//        }
-//    }
-
-//    public func startOrContinueSession(_ timestamp: Int64) {
-//        amplitudeInstances.forEach {
-//            $0.startOrContinueSession(timestamp)
-//        }
-//    }
-    
-//    public func getContentTypeHeader() -> String? {
-//        amplitudeInstances.first?.getContentTypeHeader()
-//    }
 }
