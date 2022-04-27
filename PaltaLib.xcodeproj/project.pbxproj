@@ -416,7 +416,7 @@
 			children = (
 				11C60F532818132B004D0185 /* AmplitudeExtension */,
 				111159AD27F72D5E00A41ADA /* EventQueue */,
-				1111593227F708E400A41ADA /* Engine */,
+				1111593227F708E400A41ADA /* Public */,
 				1111593A27F708E400A41ADA /* Models */,
 				1111593C27F708E400A41ADA /* Services */,
 				1111592B27F708CA00A41ADA /* Settings.swift */,
@@ -426,7 +426,7 @@
 			path = Sources/Analytics;
 			sourceTree = "<group>";
 		};
-		1111593227F708E400A41ADA /* Engine */ = {
+		1111593227F708E400A41ADA /* Public */ = {
 			isa = PBXGroup;
 			children = (
 				1111593327F708E400A41ADA /* PaltaAnalytics+Event.swift */,
@@ -437,7 +437,7 @@
 				1111593827F708E400A41ADA /* PaltaAnalytics+Identify.swift */,
 				1111593927F708E400A41ADA /* PaltaAnalytics+UserProperties.swift */,
 			);
-			path = Engine;
+			path = Public;
 			sourceTree = "<group>";
 		};
 		1111593A27F708E400A41ADA /* Models */ = {
@@ -506,13 +506,9 @@
 				11115A3B27FB176700A41ADA /* EventSender.swift */,
 				11115A3D27FB18B000A41ADA /* EventComposer.swift */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
-				11115A5427FC4FA200A41ADA /* SessionManager.swift */,
 				11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */,
-				11115A8E28001F2300A41ADA /* UserPropertiesKeeper.swift */,
-				11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */,
-				114D06FC2806EEE500ACD310 /* IdentityLogger.swift */,
-				114D0702280757DB00ACD310 /* RevenueLogger.swift */,
-				114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */,
+				11C60F5628197310004D0185 /* Context */,
+				11C60F5728197329004D0185 /* Helpers */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -578,6 +574,26 @@
 				11C60F5128181323004D0185 /* Amplitude+Extensions.swift */,
 			);
 			path = AmplitudeExtension;
+			sourceTree = "<group>";
+		};
+		11C60F5628197310004D0185 /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				11115A5427FC4FA200A41ADA /* SessionManager.swift */,
+				11115A8E28001F2300A41ADA /* UserPropertiesKeeper.swift */,
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+		11C60F5728197329004D0185 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */,
+				114D06FC2806EEE500ACD310 /* IdentityLogger.swift */,
+				114D0702280757DB00ACD310 /* RevenueLogger.swift */,
+				114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
