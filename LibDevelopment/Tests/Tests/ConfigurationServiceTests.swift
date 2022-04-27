@@ -35,7 +35,9 @@ final class ConfigurationServiceTests: XCTestCase {
                             eventMaxCount: 1228,
                             eventUploadPeriodSeconds: 4429,
                             minTimeBetweenSessionsMillis: 4393,
-                            trackingSessionEvents: false
+                            trackingSessionEvents: false,
+                            realtimeEventTypes: [],
+                                        excludedEventTypes: []
                         ),
                         url: URL(string: "https://mock.url")
                     )
@@ -76,7 +78,9 @@ final class ConfigurationServiceTests: XCTestCase {
                         eventMaxCount: 1228,
                         eventUploadPeriodSeconds: 4429,
                         minTimeBetweenSessionsMillis: 4393,
-                        trackingSessionEvents: false
+                        trackingSessionEvents: false,
+                        realtimeEventTypes: [],
+                                    excludedEventTypes: []
                     ),
                     url: URL(string: "https://mock.url")
                 )
@@ -153,7 +157,9 @@ final class ConfigurationServiceTests: XCTestCase {
                         eventMaxCount: 434,
                         eventUploadPeriodSeconds: 0,
                         minTimeBetweenSessionsMillis: 678,
-                        trackingSessionEvents: true
+                        trackingSessionEvents: true,
+                        realtimeEventTypes: [],
+                                    excludedEventTypes: []
                     ),
                     url: URL(string: "https://url.mock")
                 )

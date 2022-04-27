@@ -20,9 +20,8 @@ public struct ConfigTarget: Codable, Equatable {
             eventUploadPeriodSeconds: 12,
             minTimeBetweenSessionsMillis: 12,
             trackingSessionEvents: true,
-//            liveEventTypes: [],
-            excludedEvents: []
-
+            realtimeEventTypes: [],
+            excludedEventTypes: []
         ),
         url: URL(string: "https://api.paltabrain.com/events")
     )
@@ -49,8 +48,8 @@ public struct ConfigSettings: Codable, Equatable {
     let eventUploadPeriodSeconds: Int
     let minTimeBetweenSessionsMillis: Int
     let trackingSessionEvents: Bool
-//    let liveEvents: Set<String>
-    let excludedEvents: Set<String>
+    let realtimeEventTypes: Set<String>
+    let excludedEventTypes: Set<String>
     
     public init(
         eventUploadThreshold: Int,
@@ -59,8 +58,8 @@ public struct ConfigSettings: Codable, Equatable {
         eventUploadPeriodSeconds: Int,
         minTimeBetweenSessionsMillis: Int,
         trackingSessionEvents: Bool,
-//        liveEvents: Set<String>,
-        excludedEvents: Set<String>
+        realtimeEventTypes: Set<String>,
+        excludedEventTypes: Set<String>
     ) {
         self.eventUploadThreshold = eventUploadThreshold
         self.eventUploadMaxBatchSize = eventUploadMaxBatchSize
@@ -68,7 +67,7 @@ public struct ConfigSettings: Codable, Equatable {
         self.eventUploadPeriodSeconds = eventUploadPeriodSeconds
         self.minTimeBetweenSessionsMillis = minTimeBetweenSessionsMillis
         self.trackingSessionEvents = trackingSessionEvents
-//        self.liveEvents = liveEvents
-        self.excludedEvents = excludedEvents
+        self.realtimeEventTypes = realtimeEventTypes
+        self.excludedEventTypes = excludedEventTypes
     }
 }

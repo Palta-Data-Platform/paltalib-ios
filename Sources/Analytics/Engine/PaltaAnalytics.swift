@@ -73,7 +73,7 @@ public final class PaltaAnalytics {
         amplitudeInstance.eventUploadPeriodSeconds = Int32(settings.eventUploadPeriodSeconds)
         amplitudeInstance.eventUploadThreshold = Int32(settings.eventUploadThreshold)
         amplitudeInstance.minTimeBetweenSessionsMillis = settings.minTimeBetweenSessionsMillis
-        amplitudeInstance.excludedEvents = settings.excludedEvents
+        amplitudeInstance.excludedEvents = settings.excludedEventTypes
         amplitudeInstance.initializeApiKey(apiKey)
 
         if let url = target.url {
@@ -102,8 +102,8 @@ public final class PaltaAnalytics {
             maxConcurrentOperations: .max
         )
 
-//        eventQueueAssembly.eventQueue.liveEventTypes = target.settings.liveEventTypes
-        eventQueueAssembly.eventQueue.excludedEvents = target.settings.excludedEvents
+        eventQueueAssembly.eventQueue.liveEventTypes = target.settings.realtimeEventTypes
+        eventQueueAssembly.eventQueue.excludedEvents = target.settings.excludedEventTypes
 
         eventQueueAssembly.eventSender.apiToken = apiKey
 
