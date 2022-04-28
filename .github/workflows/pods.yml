@@ -1,6 +1,12 @@
 name: CI
 on:
   workflow_dispatch:
+    inputs:
+      component:
+        type: choice
+        description: Which podspec to push
+        options:
+          - Core
     
 jobs:
   build:
@@ -11,4 +17,4 @@ jobs:
       env:
         COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
       run: |
-        pod trunk push PaltaLib.podspec
+        pod trunk push PaltaLib${{ github.event.inputs.component }}.podspec
