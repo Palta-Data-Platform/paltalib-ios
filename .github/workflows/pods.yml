@@ -9,7 +9,7 @@ on:
           - Core
           - Analytics
           - Attribution
-          - Payments
+          - Purchases
     
 jobs:
   build:
