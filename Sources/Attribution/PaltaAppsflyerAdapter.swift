@@ -80,7 +80,7 @@ public final class PaltaAppsflyerAdapter: NSObject {
 
     private func checkAppsflyerDelegateWasNotStolen() {
         guard appsflyerInstance.delegate === self else {
-            fatalError("Appsflyer delegate has been reset to \(appsflyerInstance.delegate ?? nil)")
+            fatalError("Appsflyer delegate has been reset to \(appsflyerInstance.delegate?.debugDescription ?? "nil")")
         }
     }
 }
