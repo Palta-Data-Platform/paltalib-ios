@@ -22,7 +22,7 @@ final class FileEventStorageTests: XCTestCase {
 
     func testStoreAndLoad() {
         let originalEvents = (0...20).map {
-            Event.mock(timestamp: $0)
+            Event.mock(uuid: UUID(), timestamp: $0)
         }
 
         let storage1 = FileEventStorage()
@@ -51,7 +51,7 @@ final class FileEventStorageTests: XCTestCase {
 
     func testRemoveOnSameInstance() {
         let originalEvents = (0...20).map {
-            Event.mock(timestamp: $0)
+            Event.mock(uuid: UUID(), timestamp: $0)
         }
 
         let storage1 = FileEventStorage()
@@ -84,7 +84,7 @@ final class FileEventStorageTests: XCTestCase {
 
     func testRemoveOnNewInstance() {
         let originalEvents = (0...20).map {
-            Event.mock(timestamp: $0)
+            Event.mock(uuid: UUID(), timestamp: $0)
         }
 
         let storage1 = FileEventStorage()
