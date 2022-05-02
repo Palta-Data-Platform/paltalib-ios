@@ -18,11 +18,24 @@ public final class PaltaAnalytics {
     private var apiKey: String?
     private var amplitudeApiKey: String?
 
+    @available(
+        *,
+         deprecated,
+         message: "Set trackingSessionEvents locally is ignored. Use func configure(name:amplitudeAPIKey:paltaAPIKey:) instead"
+    )
     public func configure(
         name: String,
         amplitudeAPIKey: String? = nil,
         paltaAPIKey: String? = nil,
-        trackingSessionEvents: Bool = false
+        trackingSessionEvents: Bool
+    ) {
+        configure(name: name, amplitudeAPIKey: amplitudeAPIKey, paltaAPIKey: paltaAPIKey)
+    }
+
+    public func configure(
+        name: String,
+        amplitudeAPIKey: String? = nil,
+        paltaAPIKey: String? = nil
     ) {
         self.apiKey = paltaAPIKey
         self.amplitudeApiKey = amplitudeAPIKey
