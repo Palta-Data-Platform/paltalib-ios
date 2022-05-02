@@ -2,26 +2,25 @@
 
 PaltaLib is a set of internal Palta libraries and wrappers around popular third-party SDKs
 
+## Products
+
+| Product | Module name | Description |
+| ------- | ----------- | ----------- |
+| [Analytics](#analytics) | `PaltaLibAnalytics` | Used to send events to Palta Data Platform. |
+| [Payments](#purchases) | `PaltaLibPurchases` | A single entry point to subscriptions management through IAPs, web subscriptions etc |
+
 ## Installing
 
 ### CocoaPods
 
-Add the following to your `Podfile`:
+Add necessary pods to your `Podfile`:
 
 ```ruby
-pod 'PaltaLib'
+pod 'PaltaLibAnalytics'
+pod 'PaltaLibPurchases'
 ```
 
-or alternativelly you could use specific components
-
-```ruby
-pod 'PaltaLib/Core'
-pod 'PaltaLib/Analytics'
-pod 'PaltaLib/Purchases'
-pod 'PaltaLib/Attribution'
-```
-
-### Swift Package Manager (only for versions < 2.0)
+### Swift Package Manager
 
 ```swift
 .package(url: "https://github.com/Palta-Data-Platform/paltalib-ios.git", branch: "main")
@@ -33,14 +32,15 @@ pod 'PaltaLib/Attribution'
 
 `PaltaAnalytics` should be configured on app start 
 ```swift
-PaltaAnalytics.instance.configure(name: "Your_application_name",
-                                  amplitudeAPIKey: Constants.amplitudeApiKey,
-                                  paltaAPIKey: Constants.paltaAPIKey,
-                                  trackingSessionEvents: true)
+PaltaAnalytics.instance.configure(
+    name: "Your_application_name",
+    amplitudeAPIKey: Constants.amplitudeApiKey,
+    paltaAPIKey: Constants.paltaAPIKey
+)
 ```
 
 `amplitudeAPIKey` and `paltaAPIKey` parameters are optional and can be omitted in case you don't need one of them.  
-In addition you can add custom target by specifying `name`, `apiKey` and `serverURL` (optional) with `addTarget(_:)` method.  
+After this call, `PaltaAnalytics` will fetch remote config and will act accordingly.
 
 After configuration you can use `PaltaAnalytics.instance` for all event tracking logic such as:
 
@@ -107,7 +107,7 @@ PaltaAttribution delegate methods are using for conversion, attribution and deep
 
 ### Purchases
 
-`PaltaPurchases` module is using for native purchases performing and payment status handling. `PaltaPurchases` should be configured on app start 
+`PaltaLibPurchases` module is using for native purchases performing and payment status handling. `PaltaPurchases` should be configured on app start 
 ```swift
 private func setupPaltaPurchases() {
     PaltaPurchases.configureWith(revenueCatApiKey: Constants.revenueCatPublicAPIKey,
