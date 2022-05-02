@@ -1,5 +1,36 @@
 import Foundation
 
+public enum NetworkErrorWithResponse<ErrorResponse>: Error {
+    case badRequest
+    case invalidStatusCode(Int, ErrorResponse?)
+    case other(Error)
+    case noData
+    case decodingError(DecodingError?)
+}
+
+public enum NetworkError: Error {
+    case badRequest
+    case invalidStatusCode(Int)
+    case other(Error)
+    case noData
+    case decodingError(DecodingError?)
+
+    init<T>(_ otherError: NetworkErrorWithResponse<T>) {
+        switch otherError {
+        case .badRequest:
+            self = .badRequest
+        case .invalidStatusCode(let code, _):
+            self = .invalidStatusCode(code)
+        case .other(let error):
+            self = .other(error)
+        case .noData:
+            self = .noData
+        case .decodingError(let error):
+            self = .decodingError(error)
+        }
+    }
+}
+
 public final class HTTPClient {
     private let baseURL: URL
     private let urlSession: URLSession
@@ -10,28 +41,31 @@ public final class HTTPClient {
         self.urlSession = urlSession
     }
 
-    public func perform<T: Decodable>(_ request: HTTPRequest,
-                                      with completion: @escaping (Result<T, Error>) -> Void) {
+    public func perform<SuccessResponse: Decodable, ErrorResponse: Decodable>(
+        _ request: HTTPRequest,
+        with completion: @escaping (Result<SuccessResponse, NetworkErrorWithResponse<ErrorResponse>>) -> Void
+    ) {
         guard let urlRequest = request.urlRequest(url: baseURL) else {
-            completion(.failure(NSError.badRequest))
+            completion(.failure(.badRequest))
             return
         }
 
         let completion: (Data?, URLResponse?, Error?) -> Void = { data, response, error in
             let code = (response as? HTTPURLResponse)?.statusCode
             if let statusCode = code, (statusCode < 200 || statusCode > 299) {
-                let error = NSError(domain: URLError.errorDomain, code: statusCode, userInfo: nil)
-                completion(.failure(error))
+                let errorResponse = data.flatMap { try? JSONDecoder().decode(ErrorResponse.self, from: $0) }
+                completion(.failure(.invalidStatusCode(statusCode, errorResponse)))
                 return
             }
             
             if let error = error {
-                completion(.failure(error))
+                    completion(.failure(.other(error)))
                 return
             }
 
-            let result: Result<T, Error> = HTTPClient.processResponse(data, of: request)
-            completion(result)
+            completion(
+                HTTPClient.processResponse(data, of: request)
+            )
         }
 
         let task: URLSessionDataTask
@@ -53,17 +87,20 @@ public final class HTTPClient {
         task.resume()
     }
 
-    private static func processResponse<T: Decodable>(_ data: Data?, of request: HTTPRequest) -> Result<T, Error> {
+    private static func processResponse<SuccessResponse: Decodable, ErrorResponse: Decodable>(
+        _ data: Data?,
+        of request: HTTPRequest
+    ) -> Result<SuccessResponse, NetworkErrorWithResponse<ErrorResponse>> {
         guard let data = data else {
-            return .failure(NSError.badResponseError)
+            return .failure(.noData)
         }
 
-        guard let responseObject = try? JSONDecoder().decode(T.self, from: data) else {
-            let error = NSError.parseError(String(data: data, encoding: .utf8) ?? "")
-            return .failure(error)
+        do {
+            let responseObject = try JSONDecoder().decode(SuccessResponse.self, from: data)
+            return .success(responseObject)
+        } catch {
+            return .failure(.decodingError(error as? DecodingError))
         }
-
-        return .success(responseObject)
     }
 }
 
