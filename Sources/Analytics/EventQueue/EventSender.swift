@@ -52,7 +52,7 @@ final class EventSenderImpl: EventSender {
             SendEventsPayload(apiKey: apiToken, events: events, serviceInfo: .init(telemetry: telemetry))
         )
 
-        httpClient.perform(request) { (result: Result<EmptyResponse, Error>) in
+        httpClient.perform(request) { (result: Result<EmptyResponse, NetworkErrorWithoutResponse>) in
             switch result {
             case .success:
                 completion(.success(()))
@@ -62,16 +62,20 @@ final class EventSenderImpl: EventSender {
         }
     }
 
-    private static func handleError(_ error: Error, _ completion: @escaping (Result<(), EventSendError>) -> Void) {
-        if let networkError = error as? URLError, [.notConnectedToInternet].contains(networkError.code) {
+    private static func handleError(
+        _ error: NetworkErrorWithoutResponse,
+        _ completion: @escaping (Result<(), EventSendError>) -> Void
+    ) {
+        switch error {
+        case .urlError(let error) where error.code == .notConnectedToInternet:
             completion(.failure(.noInternet))
-        } else if let networkError = error as? URLError, [.timedOut].contains(networkError.code) {
+        case .urlError(let error) where error.code == .timedOut:
             completion(.failure(.timeout))
-        } else if let networkError = error as? URLError, (400...499).contains(networkError.code.rawValue) {
+        case .invalidStatusCode(let code, _) where (400...499).contains(code):
             completion(.failure(.badRequest))
-        } else if let networkError = error as? URLError, (500...599).contains(networkError.code.rawValue) {
+        case .invalidStatusCode(let code, _) where (500...599).contains(code):
             completion(.failure(.serverError))
-        } else {
+        default:
             completion(.failure(.unknown))
         }
     }

@@ -46,7 +46,7 @@ final class EventSenderTests: XCTestCase {
     }
 
     func testNoInternet() {
-        httpClientMock.result = .failure(URLError(.notConnectedToInternet))
+        httpClientMock.result = .failure(NetworkErrorWithoutResponse.urlError(URLError(.notConnectedToInternet)))
 
         let failCalled = expectation(description: "Fail called")
 
@@ -64,7 +64,7 @@ final class EventSenderTests: XCTestCase {
     }
 
     func testTimeout() {
-        httpClientMock.result = .failure(URLError(.timedOut))
+        httpClientMock.result = .failure(NetworkErrorWithoutResponse.urlError(URLError(.timedOut)))
 
         let failCalled = expectation(description: "Fail called")
 
@@ -82,7 +82,7 @@ final class EventSenderTests: XCTestCase {
     }
 
     func test400() {
-        httpClientMock.result = .failure(NSError(domain: URLError.errorDomain, code: 422, userInfo: nil))
+        httpClientMock.result = .failure(NetworkErrorWithoutResponse.invalidStatusCode(422, nil))
 
         let failCalled = expectation(description: "Fail called")
 
@@ -100,7 +100,7 @@ final class EventSenderTests: XCTestCase {
     }
 
     func test500() {
-        httpClientMock.result = .failure(NSError(domain: URLError.errorDomain, code: 501, userInfo: nil))
+        httpClientMock.result = .failure(NetworkErrorWithoutResponse.invalidStatusCode(501, nil))
 
         let failCalled = expectation(description: "Fail called")
 
@@ -118,7 +118,7 @@ final class EventSenderTests: XCTestCase {
     }
 
     func testUnknownError() {
-        httpClientMock.result = .failure(NSError(domain: "Some domain", code: 1001, userInfo: nil))
+        httpClientMock.result = .failure(NetworkErrorWithoutResponse.other(NSError(domain: "Some domain", code: 1001, userInfo: nil)))
 
         let failCalled = expectation(description: "Fail called")
 

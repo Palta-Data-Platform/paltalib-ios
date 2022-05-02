@@ -17,7 +17,7 @@ final class ConfigurationService {
     }
     
     func requestConfigs(apiKey: String, completion: @escaping (Result<RemoteConfig, Error>) -> Void) {
-        httpClient.perform(AnalyticsHTTPRequest.remoteConfig(apiKey)) { [weak self] (result: Result<RemoteConfig, Error>) in
+        httpClient.perform(AnalyticsHTTPRequest.remoteConfig(apiKey)) { [weak self] (result: Result<RemoteConfig, NetworkErrorWithoutResponse>) in
             switch (result, self?.cachedConfig) {
             case (.success(let remoteConfig), _):
                 self?.cachedConfig = remoteConfig

@@ -1,9 +1,46 @@
 import Foundation
 
+public typealias NetworkErrorWithoutResponse = NetworkErrorWithResponse<EmptyResponse>
+
+public enum NetworkErrorWithResponse<ErrorResponse>: Error {
+    case badRequest
+    case invalidStatusCode(Int, ErrorResponse?)
+    case other(Error)
+    case noData
+    case urlError(URLError)
+    case decodingError(DecodingError?)
+}
+
+public enum NetworkError: Error {
+    case badRequest
+    case invalidStatusCode(Int)
+    case other(Error)
+    case noData
+    case urlError(URLError)
+    case decodingError(DecodingError?)
+
+    public init<T>(_ otherError: NetworkErrorWithResponse<T>) {
+        switch otherError {
+        case .badRequest:
+            self = .badRequest
+        case .invalidStatusCode(let code, _):
+            self = .invalidStatusCode(code)
+        case .other(let error):
+            self = .other(error)
+        case .noData:
+            self = .noData
+        case .decodingError(let error):
+            self = .decodingError(error)
+        case .urlError(let error):
+            self = .urlError(error)
+        }
+    }
+}
+
 public protocol HTTPClient {
-    func perform<T: Decodable>(
+    func perform<SuccessResponse: Decodable, ErrorResponse: Decodable>(
         _ request: HTTPRequest,
-        with completion: @escaping (Result<T, Error>) -> Void
+        with completion: @escaping (Result<SuccessResponse, NetworkErrorWithResponse<ErrorResponse>>) -> Void
     )
 }
 
@@ -16,30 +53,34 @@ public final class HTTPClientImpl: HTTPClient {
         self.urlSession = urlSession
     }
 
-    public func perform<T: Decodable>(
+    public func perform<SuccessResponse: Decodable, ErrorResponse: Decodable>(
         _ request: HTTPRequest,
-        with completion: @escaping (Result<T, Error>) -> Void
+        with completion: @escaping (Result<SuccessResponse, NetworkErrorWithResponse<ErrorResponse>>) -> Void
     ) {
         guard let urlRequest = request.urlRequest(headerFields: [:]) else {
-            completion(.failure(NSError.badRequest))
+            completion(.failure(.badRequest))
             return
         }
 
         let completion: (Data?, URLResponse?, Error?) -> Void = { data, response, error in
             let code = (response as? HTTPURLResponse)?.statusCode
             if let statusCode = code, (statusCode < 200 || statusCode > 299) {
-                let error = NSError(domain: URLError.errorDomain, code: statusCode, userInfo: nil)
-                completion(.failure(error))
+                let errorResponse = data.flatMap { try? JSONDecoder().decode(ErrorResponse.self, from: $0) }
+                completion(.failure(.invalidStatusCode(statusCode, errorResponse)))
                 return
             }
             
-            if let error = error {
-                completion(.failure(error))
+            if let error = error as? URLError {
+                completion(.failure(.urlError(error)))
+                return
+            } else if let error = error {
+                completion(.failure(.other(error)))
                 return
             }
 
-            let result: Result<T, Error> = HTTPClientImpl.processResponse(data, of: request)
-            completion(result)
+            completion(
+                HTTPClientImpl.processResponse(data, of: request)
+            )
         }
 
         let task = urlSession.dataTask(
@@ -50,16 +91,19 @@ public final class HTTPClientImpl: HTTPClient {
         task.resume()
     }
 
-    private static func processResponse<T: Decodable>(_ data: Data?, of request: HTTPRequest) -> Result<T, Error> {
+    private static func processResponse<SuccessResponse: Decodable, ErrorResponse: Decodable>(
+        _ data: Data?,
+        of request: HTTPRequest
+    ) -> Result<SuccessResponse, NetworkErrorWithResponse<ErrorResponse>> {
         guard let data = data else {
-            return .failure(NSError.badResponseError)
+            return .failure(.noData)
         }
 
         do {
-            let responseObject = try JSONDecoder().decode(T.self, from: data)
+            let responseObject = try JSONDecoder().decode(SuccessResponse.self, from: data)
             return .success(responseObject)
         } catch {
-            return .failure(error)
+            return .failure(.decodingError(error as? DecodingError))
         }
     }
 }

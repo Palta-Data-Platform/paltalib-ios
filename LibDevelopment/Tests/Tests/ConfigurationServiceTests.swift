@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import PaltaLibCore
 @testable import PaltaLibAnalytics
 
 final class ConfigurationServiceTests: XCTestCase {
@@ -110,7 +111,7 @@ final class ConfigurationServiceTests: XCTestCase {
     }
 
     func testRequestConfigErrorWithoutCache() {
-        httpClientMock.result = .failure(NSError(domain: "some", code: 888, userInfo: nil))
+        httpClientMock.result = .failure(NetworkErrorWithoutResponse.urlError(URLError(.timedOut)))
 
         let failCalled = expectation(description: "Fail called")
 
@@ -128,7 +129,7 @@ final class ConfigurationServiceTests: XCTestCase {
     func testRequestConfigErrorWithCache() {
         cacheConfig()
 
-        httpClientMock.result = .failure(NSError(domain: "some", code: 888, userInfo: nil))
+        httpClientMock.result = .failure(NetworkErrorWithoutResponse.noData)
 
         let successCalled = expectation(description: "Success called")
 
