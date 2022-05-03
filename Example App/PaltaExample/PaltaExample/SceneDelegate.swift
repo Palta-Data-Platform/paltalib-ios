@@ -3,7 +3,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    private let mainController = AnalyticsViewController(viewModel: AnalyticsViewModel())
+    private let mainController = MainViewController()
     private lazy var navigationController = UINavigationController(rootViewController: mainController)
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
