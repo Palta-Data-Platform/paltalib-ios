@@ -1,12 +1,11 @@
 import Foundation
 import PaltaLibAnalytics
 
-protocol MainViewModelInterface: AnyObject {
+protocol AnalyticsModelInterface: AnyObject {
     func logTestEvent()
 }
 
-final class MainViewModel: MainViewModelInterface {
-    
+final class AnalyticsViewModel: AnalyticsModelInterface {
     public func logTestEvent() {
         PaltaAnalytics.instance.logEvent("test_button_tapped")
     }

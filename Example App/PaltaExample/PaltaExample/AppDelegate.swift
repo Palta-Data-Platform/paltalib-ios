@@ -12,8 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PaltaAnalytics.instance.configure(
             name: "PaltaExample",
             amplitudeAPIKey: "AMPLITUDE",
-            paltaAPIKey: "0037c694a811422a88e2a3c5a90510e3",
-            trackingSessionEvents: true
+            paltaAPIKey: "0037c694a811422a88e2a3c5a90510e3"
         )
         
         return true

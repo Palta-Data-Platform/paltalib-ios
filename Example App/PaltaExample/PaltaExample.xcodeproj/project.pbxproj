@@ -12,22 +12,18 @@
 		11850BFB2809B67900B6D05F /* PaltaLibCore in Frameworks */ = {isa = PBXBuildFile; productRef = 11850BFA2809B67900B6D05F /* PaltaLibCore */; };
 		11850BFD2809B67900B6D05F /* PaltaLibPurchases in Frameworks */ = {isa = PBXBuildFile; productRef = 11850BFC2809B67900B6D05F /* PaltaLibPurchases */; };
 		7F3B88D52745382C000A6D46 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3B88D42745382C000A6D46 /* SwitchView.swift */; };
-		7FA55BD02739211C00B16D94 /* AddTargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA55BCE2739211C00B16D94 /* AddTargetViewModel.swift */; };
-		7FA55BD12739211C00B16D94 /* AddTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA55BCF2739211C00B16D94 /* AddTargetViewController.swift */; };
 		7FB35FDE272973C900A656E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB35FDD272973C900A656E1 /* AppDelegate.swift */; };
 		7FB35FE0272973C900A656E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB35FDF272973C900A656E1 /* SceneDelegate.swift */; };
 		7FB35FE8272973C900A656E1 /* PaltaExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7FB35FE6272973C900A656E1 /* PaltaExample.xcdatamodeld */; };
 		7FB35FEA272973CB00A656E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FB35FE9272973CB00A656E1 /* Assets.xcassets */; };
 		7FB35FED272973CB00A656E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FB35FEB272973CB00A656E1 /* LaunchScreen.storyboard */; };
-		7FE10A7F27316E6E003081CF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A7D27316E6E003081CF /* MainViewController.swift */; };
-		7FE10A8027316E6E003081CF /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A7E27316E6E003081CF /* MainViewModel.swift */; };
+		7FE10A7F27316E6E003081CF /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A7D27316E6E003081CF /* AnalyticsViewController.swift */; };
+		7FE10A8027316E6E003081CF /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE10A7E27316E6E003081CF /* AnalyticsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		11850BF52809B1D900B6D05F /* Palta */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Palta; path = ../..; sourceTree = "<group>"; };
 		7F3B88D42745382C000A6D46 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
-		7FA55BCE2739211C00B16D94 /* AddTargetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTargetViewModel.swift; sourceTree = "<group>"; };
-		7FA55BCF2739211C00B16D94 /* AddTargetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTargetViewController.swift; sourceTree = "<group>"; };
 		7FB35FDA272973C900A656E1 /* PaltaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaltaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB35FDD272973C900A656E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB35FDF272973C900A656E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,8 +31,8 @@
 		7FB35FE9272973CB00A656E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FB35FEC272973CB00A656E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7FB35FEE272973CB00A656E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7FE10A7D27316E6E003081CF /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		7FE10A7E27316E6E003081CF /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		7FE10A7D27316E6E003081CF /* AnalyticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
+		7FE10A7E27316E6E003081CF /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,15 +72,6 @@
 				7F3B88D42745382C000A6D46 /* SwitchView.swift */,
 			);
 			path = SwitchView;
-			sourceTree = "<group>";
-		};
-		7FA55BCD2739211C00B16D94 /* AddTarget */ = {
-			isa = PBXGroup;
-			children = (
-				7FA55BCE2739211C00B16D94 /* AddTargetViewModel.swift */,
-				7FA55BCF2739211C00B16D94 /* AddTargetViewController.swift */,
-			);
-			path = AddTarget;
 			sourceTree = "<group>";
 		};
 		7FB35FD1272973C900A656E1 = {
@@ -138,19 +125,18 @@
 		7FE10A7B27316E6E003081CF /* Flow */ = {
 			isa = PBXGroup;
 			children = (
-				7FA55BCD2739211C00B16D94 /* AddTarget */,
-				7FE10A7C27316E6E003081CF /* Main */,
+				7FE10A7C27316E6E003081CF /* Analytics */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
 		};
-		7FE10A7C27316E6E003081CF /* Main */ = {
+		7FE10A7C27316E6E003081CF /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				7FE10A7D27316E6E003081CF /* MainViewController.swift */,
-				7FE10A7E27316E6E003081CF /* MainViewModel.swift */,
+				7FE10A7D27316E6E003081CF /* AnalyticsViewController.swift */,
+				7FE10A7E27316E6E003081CF /* AnalyticsViewModel.swift */,
 			);
-			path = Main;
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,13 +216,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F3B88D52745382C000A6D46 /* SwitchView.swift in Sources */,
-				7FE10A8027316E6E003081CF /* MainViewModel.swift in Sources */,
-				7FA55BD02739211C00B16D94 /* AddTargetViewModel.swift in Sources */,
+				7FE10A8027316E6E003081CF /* AnalyticsViewModel.swift in Sources */,
 				7FB35FDE272973C900A656E1 /* AppDelegate.swift in Sources */,
-				7FA55BD12739211C00B16D94 /* AddTargetViewController.swift in Sources */,
 				7FB35FE0272973C900A656E1 /* SceneDelegate.swift in Sources */,
 				7FB35FE8272973C900A656E1 /* PaltaExample.xcdatamodeld in Sources */,
-				7FE10A7F27316E6E003081CF /* MainViewController.swift in Sources */,
+				7FE10A7F27316E6E003081CF /* AnalyticsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
