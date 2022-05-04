@@ -398,15 +398,7 @@
 		1111590A27F7079A00A41ADA /* Sources/Purchases */ = {
 			isa = PBXGroup;
 			children = (
-				11115A6F27FDBB7700A41ADA /* Requests */,
-				1111591227F7086C00A41ADA /* PaltaPurchases.swift */,
-				1111591527F7086C00A41ADA /* PaltaPurchases+Configuration.swift */,
-				1111591327F7086C00A41ADA /* PaltaPurchases+WebSubscriptions.swift */,
-				1111591627F7086C00A41ADA /* PurchaseInfoListener.swift */,
-				1111591127F7086C00A41ADA /* PurchaserInfo.swift */,
-				1111591427F7086C00A41ADA /* PurchaserInfo+RevenueCat.swift */,
-				1111591027F7086C00A41ADA /* PurchasesError.swift */,
-				11115A7E27FDCE0B00A41ADA /* PurchasesAssembly.swift */,
+				114CF5A3282266DE00ADA815 /* Legacy */,
 			);
 			path = Sources/Purchases;
 			sourceTree = "<group>";
@@ -566,6 +558,22 @@
 				11115A6D27FDB9C000A41ADA /* PurchaseHTTPRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		114CF5A3282266DE00ADA815 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				11115A6F27FDBB7700A41ADA /* Requests */,
+				1111591227F7086C00A41ADA /* PaltaPurchases.swift */,
+				1111591527F7086C00A41ADA /* PaltaPurchases+Configuration.swift */,
+				1111591327F7086C00A41ADA /* PaltaPurchases+WebSubscriptions.swift */,
+				1111591627F7086C00A41ADA /* PurchaseInfoListener.swift */,
+				1111591127F7086C00A41ADA /* PurchaserInfo.swift */,
+				1111591427F7086C00A41ADA /* PurchaserInfo+RevenueCat.swift */,
+				1111591027F7086C00A41ADA /* PurchasesError.swift */,
+				11115A7E27FDCE0B00A41ADA /* PurchasesAssembly.swift */,
+			);
+			path = Legacy;
 			sourceTree = "<group>";
 		};
 		11C60F532818132B004D0185 /* AmplitudeExtension */ = {
