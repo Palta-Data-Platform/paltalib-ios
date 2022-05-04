@@ -22,8 +22,11 @@ final class MainViewController: UIViewController {
     private lazy var paymentsButton = Button(
         title: "Payments",
         color: .systemMint
-    ) {
-
+    ) { [weak self] in
+        self?.navigationController?.pushViewController(
+            PurchasesViewController(viewModel: PurchasesViewModel()),
+            animated: true
+        )
     }
 
     private lazy var stackView: UIStackView = {
