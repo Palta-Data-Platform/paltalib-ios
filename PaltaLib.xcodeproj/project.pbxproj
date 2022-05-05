@@ -20,13 +20,7 @@
 		1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593B27F708E400A41ADA /* RemoteConfig.swift */; };
 		1111596E27F70BF500A41ADA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111592B27F708CA00A41ADA /* Settings.swift */; };
 		1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593E27F708E400A41ADA /* ConfigurationService.swift */; };
-		1111597127F70C0100A41ADA /* PurchaserInfo+RevenueCat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591427F7086C00A41ADA /* PurchaserInfo+RevenueCat.swift */; };
-		1111597227F70C0100A41ADA /* PurchaseInfoListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591627F7086C00A41ADA /* PurchaseInfoListener.swift */; };
-		1111597327F70C0100A41ADA /* PaltaPurchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591227F7086C00A41ADA /* PaltaPurchases.swift */; };
-		1111597427F70C0100A41ADA /* PaltaPurchases+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591527F7086C00A41ADA /* PaltaPurchases+Configuration.swift */; };
 		1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591027F7086C00A41ADA /* PurchasesError.swift */; };
-		1111597627F70C0100A41ADA /* PurchaserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591127F7086C00A41ADA /* PurchaserInfo.swift */; };
-		1111597727F70C0100A41ADA /* PaltaPurchases+WebSubscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591327F7086C00A41ADA /* PaltaPurchases+WebSubscriptions.swift */; };
 		1111598027F70C1500A41ADA /* PaltaAttribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111595927F7095200A41ADA /* PaltaAttribution.swift */; };
 		1111598127F70C1500A41ADA /* PaltaAttribution+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111595C27F7095200A41ADA /* PaltaAttribution+Configuration.swift */; };
 		1111598227F70C1500A41ADA /* PaltaAppsflyerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111595B27F7095200A41ADA /* PaltaAppsflyerAdapter.swift */; };
@@ -929,19 +923,13 @@
 			files = (
 				11115A7127FDBBF500A41ADA /* CancelRequestData.swift in Sources */,
 				114CF5A92822673500ADA815 /* PaltaPurchases2.swift in Sources */,
-				1111597427F70C0100A41ADA /* PaltaPurchases+Configuration.swift in Sources */,
 				1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */,
 				11115A7027FDBBF500A41ADA /* RestoreRequestData.swift in Sources */,
-				1111597227F70C0100A41ADA /* PurchaseInfoListener.swift in Sources */,
 				114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */,
 				114CF5AD2822679500ADA815 /* PBPurchasePlugin.swift in Sources */,
-				1111597727F70C0100A41ADA /* PaltaPurchases+WebSubscriptions.swift in Sources */,
 				114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */,
 				11115A7227FDBBF500A41ADA /* PurchaseHTTPRequest.swift in Sources */,
-				1111597327F70C0100A41ADA /* PaltaPurchases.swift in Sources */,
-				1111597127F70C0100A41ADA /* PurchaserInfo+RevenueCat.swift in Sources */,
 				11115A8027FDCF5A00A41ADA /* PurchasesAssembly.swift in Sources */,
-				1111597627F70C0100A41ADA /* PurchaserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,4 +8,6 @@
 import Foundation
 
 public protocol PurchasePlugin {
+    func logIn(appUserId: String)
+    func logOut()
 }

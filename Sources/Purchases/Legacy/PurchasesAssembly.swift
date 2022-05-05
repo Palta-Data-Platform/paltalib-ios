@@ -13,9 +13,9 @@ import PaltaLibCore
 final class PurchasesAssembly {
     private lazy var coreAssembly = CoreAssembly()
 
-    private(set) lazy var purchasesInstance = PaltaPurchases(
-        purchases: Purchases.shared,
-        appsflyerAdapter: PaltaAppsflyerAdapter.sharedInstance,
-        httpClient: coreAssembly.httpClient
-    )
+//    private(set) lazy var purchasesInstance = PaltaPurchases(
+//        purchases: Purchases.shared,
+//        appsflyerAdapter: PaltaAppsflyerAdapter.sharedInstance,
+//        httpClient: coreAssembly.httpClient
+//    )
 }

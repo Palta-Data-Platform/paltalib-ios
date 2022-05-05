@@ -7,6 +7,6 @@
 
 import Foundation
 
-public final class PBPurchasePlugin: PurchasePlugin {
-    
-}
+//public final class PBPurchasePlugin: PurchasePlugin {
+//    
+//}
