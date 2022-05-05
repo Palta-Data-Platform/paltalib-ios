@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Purchases
+import RevenueCat
 import PaltaLibAttribution
 import PaltaLibCore
 

@@ -35,7 +35,6 @@
 		1111599B27F70CB000A41ADA /* PaltaLibAttribution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111595227F7093500A41ADA /* PaltaLibAttribution.framework */; };
 		1111599C27F70CB000A41ADA /* PaltaLibPayments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111590927F7079A00A41ADA /* PaltaLibPayments.framework */; };
 		111159A127F716A900A41ADA /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 111159A027F716A900A41ADA /* Amplitude */; };
-		111159A427F7172600A41ADA /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 111159A327F7172600A41ADA /* Purchases */; };
 		111159A727F7179A00A41ADA /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 111159A627F7179A00A41ADA /* AppsFlyerLib */; };
 		111159A827F7199800A41ADA /* PaltaLibAttribution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111595227F7093500A41ADA /* PaltaLibAttribution.framework */; };
 		111159AA27F71CDB00A41ADA /* CodableDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111159A927F71CDB00A41ADA /* CodableDictionary.swift */; };
@@ -91,6 +90,7 @@
 		114CF5AD2822679500ADA815 /* PBPurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AC2822679500ADA815 /* PBPurchasePlugin.swift */; };
 		114CF5B028226F5600ADA815 /* PaltaPurchases2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AE28226F5300ADA815 /* PaltaPurchases2Tests.swift */; };
 		114CF5B228226F6900ADA815 /* PurchasePluginMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5B128226F6900ADA815 /* PurchasePluginMock.swift */; };
+		114CF5B72823C83000ADA815 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 114CF5B62823C83000ADA815 /* RevenueCat */; };
 		114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */; };
 		114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */; };
 		114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */; };
@@ -326,7 +326,7 @@
 			files = (
 				111159A827F7199800A41ADA /* PaltaLibAttribution.framework in Frameworks */,
 				1111598527F70C3700A41ADA /* PaltaLibCore.framework in Frameworks */,
-				111159A427F7172600A41ADA /* Purchases in Frameworks */,
+				114CF5B72823C83000ADA815 /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,7 +714,7 @@
 			);
 			name = PaltaLibPayments;
 			packageProductDependencies = (
-				111159A327F7172600A41ADA /* Purchases */,
+				114CF5B62823C83000ADA815 /* RevenueCat */,
 			);
 			productName = PaltaLibPayments;
 			productReference = 1111590927F7079A00A41ADA /* PaltaLibPayments.framework */;
@@ -806,8 +806,8 @@
 			mainGroup = 111158B227F6014D00A41ADA;
 			packageReferences = (
 				1111599F27F716A900A41ADA /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
-				111159A227F7172600A41ADA /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				111159A527F7179A00A41ADA /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
+				114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 			);
 			productRefGroup = 111158BD27F6014D00A41ADA /* Products */;
 			projectDirPath = "";
@@ -1279,7 +1279,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1310,7 +1310,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1523,20 +1523,20 @@
 				version = 8.10.0;
 			};
 		};
-		111159A227F7172600A41ADA /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.14.1;
-			};
-		};
 		111159A527F7179A00A41ADA /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 6.5.4;
+			};
+		};
+		114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1547,15 +1547,15 @@
 			package = 1111599F27F716A900A41ADA /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
 			productName = Amplitude;
 		};
-		111159A327F7172600A41ADA /* Purchases */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 111159A227F7172600A41ADA /* XCRemoteSwiftPackageReference "purchases-ios" */;
-			productName = Purchases;
-		};
 		111159A627F7179A00A41ADA /* AppsFlyerLib */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 111159A527F7179A00A41ADA /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
 			productName = AppsFlyerLib;
+		};
+		114CF5B62823C83000ADA815 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

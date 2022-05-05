@@ -6,16 +6,16 @@
 //
 
 import Foundation
-import Purchases
+import RevenueCat
 
 public final class RCPurchasePlugin: PurchasePlugin {
     private let purchases = Purchases.shared
 
     public func logIn(appUserId: String) {
-        purchases.logIn(appUserId, { _, _, _ in })
+        purchases.logIn(appUserId, completion: { _, _, _ in })
     }
 
     public func logOut() {
-        purchases.logOut()
+        purchases.logOut(completion: nil)
     }
 }
