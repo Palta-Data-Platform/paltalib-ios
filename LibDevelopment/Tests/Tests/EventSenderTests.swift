@@ -36,7 +36,7 @@ final class EventSenderTests: XCTestCase {
             }
         }
 
-        wait(for: [successCalled], timeout: 0.01)
+        wait(for: [successCalled], timeout: 0.05)
         XCTAssertEqual(
             httpClientMock.request as? AnalyticsHTTPRequest,
             AnalyticsHTTPRequest.sendEvents(
@@ -60,7 +60,7 @@ final class EventSenderTests: XCTestCase {
             }
         }
 
-        wait(for: [failCalled], timeout: 0.01)
+        wait(for: [failCalled], timeout: 0.05)
     }
 
     func testTimeout() {
@@ -78,7 +78,7 @@ final class EventSenderTests: XCTestCase {
             }
         }
 
-        wait(for: [failCalled], timeout: 0.01)
+        wait(for: [failCalled], timeout: 0.05)
     }
 
     func test400() {
@@ -96,7 +96,7 @@ final class EventSenderTests: XCTestCase {
             }
         }
 
-        wait(for: [failCalled], timeout: 0.01)
+        wait(for: [failCalled], timeout: 0.05)
     }
 
     func test500() {
@@ -114,7 +114,7 @@ final class EventSenderTests: XCTestCase {
             }
         }
 
-        wait(for: [failCalled], timeout: 0.01)
+        wait(for: [failCalled], timeout: 0.05)
     }
 
     func testUnknownError() {
@@ -132,6 +132,6 @@ final class EventSenderTests: XCTestCase {
             }
         }
 
-        wait(for: [failCalled], timeout: 0.01)
+        wait(for: [failCalled], timeout: 0.05)
     }
 }

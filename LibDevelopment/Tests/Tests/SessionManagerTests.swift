@@ -53,7 +53,7 @@ final class SessionManagerTests: XCTestCase {
         }
         sessionManager.start()
 
-        wait(for: [newSessionLogged], timeout: 0.01)
+        wait(for: [newSessionLogged], timeout: 0.05)
     }
 
     func testExpiredSession() throws {
@@ -70,7 +70,7 @@ final class SessionManagerTests: XCTestCase {
         }
         sessionManager.start()
 
-        wait(for: [newSessionLogged], timeout: 0.01)
+        wait(for: [newSessionLogged], timeout: 0.05)
     }
 
     func testAppBecomeActive() {
@@ -84,7 +84,7 @@ final class SessionManagerTests: XCTestCase {
 
         notificationCenter.post(name: UIApplication.didBecomeActiveNotification, object: nil)
 
-        wait(for: [newSessionLogged], timeout: 0.01)
+        wait(for: [newSessionLogged], timeout: 0.05)
     }
 
     func testCreateNewSession() {
@@ -108,7 +108,7 @@ final class SessionManagerTests: XCTestCase {
 
         sessionManager.startNewSession()
 
-        wait(for: [sessionEventLogged], timeout: 0.01)
+        wait(for: [sessionEventLogged], timeout: 0.05)
 
         XCTAssertEqual(eventNames, [kAMPSessionEndEvent, kAMPSessionStartEvent])
         XCTAssertEqual(eventTimes[0], lastSessionTimestamp)
