@@ -84,6 +84,10 @@
 		11115A9728003BD600A41ADA /* UserDefaults+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9228001FE400A41ADA /* UserDefaults+Codable.swift */; };
 		11115A9A28003D6900A41ADA /* UserPropertiesKeeperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9828003D6500A41ADA /* UserPropertiesKeeperMock.swift */; };
 		11115A9C280065E300A41ADA /* DeviceInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */; };
+		1129A4302827E332009DDC41 /* ProductDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A42F2827E332009DDC41 /* ProductDiscount.swift */; };
+		1129A4322827E34F009DDC41 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4312827E34F009DDC41 /* Product.swift */; };
+		1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4332827E370009DDC41 /* PromoOffer.swift */; };
+		1129A4362827E3C2009DDC41 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4352827E3C2009DDC41 /* Transaction.swift */; };
 		114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A72822673100ADA815 /* PurchasePlugin.swift */; };
 		114CF5A92822673500ADA815 /* PaltaPurchases2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A52822670C00ADA815 /* PaltaPurchases2.swift */; };
 		114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */; };
@@ -103,6 +107,13 @@
 		114D0708280814D900ACD310 /* TrackingOptionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */; };
 		114D070A280816D200ACD310 /* TrackingOptionsProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D0709280816D200ACD310 /* TrackingOptionsProviderMock.swift */; };
 		114D070C2808336200ACD310 /* TrackingOptionsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */; };
+		11543015282BCFC80021ED6F /* PaidService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543014282BCFC80021ED6F /* PaidService.swift */; };
+		11543017282BD0AE0021ED6F /* PaidServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543016282BD0AE0021ED6F /* PaidServices.swift */; };
+		11543019282BD3CA0021ED6F /* SuccessfulPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543018282BD3CA0021ED6F /* SuccessfulPurchase.swift */; };
+		1154301B282BD9A90021ED6F /* PurchasePluginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154301A282BD9A90021ED6F /* PurchasePluginResult.swift */; };
+		1154301D282BDD2B0021ED6F /* StoreProduct+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154301C282BDD2B0021ED6F /* StoreProduct+Product.swift */; };
+		1154301F282BDE450021ED6F /* PromotionalOffer+Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154301E282BDE450021ED6F /* PromotionalOffer+Offer.swift */; };
+		11543025282BEF120021ED6F /* PurchasePluginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543024282BEF120021ED6F /* PurchasePluginDelegate.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4C2816A835004D0185 /* Telemetry.swift */; };
@@ -275,6 +286,10 @@
 		11115A94280023A300A41ADA /* UserPropertiesKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesKeeperTests.swift; sourceTree = "<group>"; };
 		11115A9828003D6500A41ADA /* UserPropertiesKeeperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesKeeperMock.swift; sourceTree = "<group>"; };
 		11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProvider.swift; sourceTree = "<group>"; };
+		1129A42F2827E332009DDC41 /* ProductDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDiscount.swift; sourceTree = "<group>"; };
+		1129A4312827E34F009DDC41 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		1129A4332827E370009DDC41 /* PromoOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoOffer.swift; sourceTree = "<group>"; };
+		1129A4352827E3C2009DDC41 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		114CF5A52822670C00ADA815 /* PaltaPurchases2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchases2.swift; sourceTree = "<group>"; };
 		114CF5A72822673100ADA815 /* PurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePlugin.swift; sourceTree = "<group>"; };
 		114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCPurchasePlugin.swift; sourceTree = "<group>"; };
@@ -293,6 +308,13 @@
 		114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProvider.swift; sourceTree = "<group>"; };
 		114D0709280816D200ACD310 /* TrackingOptionsProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProviderMock.swift; sourceTree = "<group>"; };
 		114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProviderTests.swift; sourceTree = "<group>"; };
+		11543014282BCFC80021ED6F /* PaidService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidService.swift; sourceTree = "<group>"; };
+		11543016282BD0AE0021ED6F /* PaidServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidServices.swift; sourceTree = "<group>"; };
+		11543018282BD3CA0021ED6F /* SuccessfulPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessfulPurchase.swift; sourceTree = "<group>"; };
+		1154301A282BD9A90021ED6F /* PurchasePluginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePluginResult.swift; sourceTree = "<group>"; };
+		1154301C282BDD2B0021ED6F /* StoreProduct+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreProduct+Product.swift"; sourceTree = "<group>"; };
+		1154301E282BDE450021ED6F /* PromotionalOffer+Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PromotionalOffer+Offer.swift"; sourceTree = "<group>"; };
+		11543024282BEF120021ED6F /* PurchasePluginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePluginDelegate.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
 		11C60F4C2816A835004D0185 /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
@@ -588,12 +610,55 @@
 		114CF5A4282266FF00ADA815 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				11543020282BED820021ED6F /* Data */,
 				114CF5A52822670C00ADA815 /* PaltaPurchases2.swift */,
-				114CF5A72822673100ADA815 /* PurchasePlugin.swift */,
-				114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */,
-				114CF5AC2822679500ADA815 /* PBPurchasePlugin.swift */,
+				11543021282BED8E0021ED6F /* Plugins */,
 			);
 			path = Public;
+			sourceTree = "<group>";
+		};
+		11543020282BED820021ED6F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1129A42F2827E332009DDC41 /* ProductDiscount.swift */,
+				1129A4312827E34F009DDC41 /* Product.swift */,
+				1129A4332827E370009DDC41 /* PromoOffer.swift */,
+				1129A4352827E3C2009DDC41 /* Transaction.swift */,
+				11543014282BCFC80021ED6F /* PaidService.swift */,
+				11543016282BD0AE0021ED6F /* PaidServices.swift */,
+				11543018282BD3CA0021ED6F /* SuccessfulPurchase.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		11543021282BED8E0021ED6F /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				114CF5A72822673100ADA815 /* PurchasePlugin.swift */,
+				11543024282BEF120021ED6F /* PurchasePluginDelegate.swift */,
+				1154301A282BD9A90021ED6F /* PurchasePluginResult.swift */,
+				11543022282BEDA20021ED6F /* RevenueCat */,
+				11543023282BEDAA0021ED6F /* PaltaBrain */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		11543022282BEDA20021ED6F /* RevenueCat */ = {
+			isa = PBXGroup;
+			children = (
+				114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */,
+				1154301C282BDD2B0021ED6F /* StoreProduct+Product.swift */,
+				1154301E282BDE450021ED6F /* PromotionalOffer+Offer.swift */,
+			);
+			path = RevenueCat;
+			sourceTree = "<group>";
+		};
+		11543023282BEDAA0021ED6F /* PaltaBrain */ = {
+			isa = PBXGroup;
+			children = (
+				114CF5AC2822679500ADA815 /* PBPurchasePlugin.swift */,
+			);
+			path = PaltaBrain;
 			sourceTree = "<group>";
 		};
 		11C60F532818132B004D0185 /* AmplitudeExtension */ = {
@@ -921,15 +986,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11543025282BEF120021ED6F /* PurchasePluginDelegate.swift in Sources */,
+				1129A4302827E332009DDC41 /* ProductDiscount.swift in Sources */,
 				11115A7127FDBBF500A41ADA /* CancelRequestData.swift in Sources */,
 				114CF5A92822673500ADA815 /* PaltaPurchases2.swift in Sources */,
 				1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */,
 				11115A7027FDBBF500A41ADA /* RestoreRequestData.swift in Sources */,
+				1154301D282BDD2B0021ED6F /* StoreProduct+Product.swift in Sources */,
+				1154301B282BD9A90021ED6F /* PurchasePluginResult.swift in Sources */,
+				11543015282BCFC80021ED6F /* PaidService.swift in Sources */,
+				1129A4362827E3C2009DDC41 /* Transaction.swift in Sources */,
+				1129A4322827E34F009DDC41 /* Product.swift in Sources */,
 				114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */,
+				11543017282BD0AE0021ED6F /* PaidServices.swift in Sources */,
 				114CF5AD2822679500ADA815 /* PBPurchasePlugin.swift in Sources */,
 				114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */,
 				11115A7227FDBBF500A41ADA /* PurchaseHTTPRequest.swift in Sources */,
+				1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */,
+				11543019282BD3CA0021ED6F /* SuccessfulPurchase.swift in Sources */,
 				11115A8027FDCF5A00A41ADA /* PurchasesAssembly.swift in Sources */,
+				1154301F282BDE450021ED6F /* PromotionalOffer+Offer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
