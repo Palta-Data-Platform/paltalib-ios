@@ -38,6 +38,39 @@ public final class PaltaPurchases2 {
             $0.logOut()
         }
     }
+    
+    public func getPaidServices(_ completion: @escaping (Result<PaidServices, Error>) -> Void) {
+        checkSetupFinished()
+        
+        var services = PaidServices()
+        var errors: [Error] = []
+        let dispatchGroup = DispatchGroup()
+        let lock = NSRecursiveLock()
+        
+        plugins.forEach { plugin in
+            dispatchGroup.enter()
+            plugin.getPaidServices { result in
+                lock.lock()
+                switch result {
+                case .success(let pluginServices):
+                    services.merge(with: pluginServices)
+                    
+                case .failure(let error):
+                    errors.append(error)
+                }
+                lock.unlock()
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            if let error = errors.first {
+                completion(.failure(error))
+            } else {
+                completion(.success(services))
+            }
+        }
+    }
 
     private func checkSetupFinished() {
         if !setupFinished {
