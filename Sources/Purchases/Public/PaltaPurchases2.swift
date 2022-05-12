@@ -98,6 +98,14 @@ public final class PaltaPurchases2 {
         }
     }
     
+    public func restorePurchases() {
+        checkSetupFinished()
+        
+        plugins.forEach {
+            $0.restorePurchases()
+        }
+    }
+    
     private func start<T>(
         completion: @escaping (Result<T, Error>) -> Void,
         execute: @escaping (PurchasePlugin, @escaping (PurchasePluginResult<T, Error>) -> Void) -> Void

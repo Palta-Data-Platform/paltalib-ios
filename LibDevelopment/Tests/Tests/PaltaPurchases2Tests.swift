@@ -346,6 +346,14 @@ final class PaltaPurchases2Tests: XCTestCase {
         wait(for: [completionCalled], timeout: 0.1)
     }
     
+    func testRestore() {
+        instance.restorePurchases()
+        
+        checkPlugins {
+            $0.restorePurchasesCalled
+        }
+    }
+    
     private func checkPlugins(line: UInt = #line, file: StaticString = #file, _ check: (PurchasePluginMock) -> Bool) {
         XCTAssert(!mockPlugins.isEmpty, file: file, line: line)
         
