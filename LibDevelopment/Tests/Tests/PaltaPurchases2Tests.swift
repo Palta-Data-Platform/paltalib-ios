@@ -16,7 +16,7 @@ final class PaltaPurchases2Tests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
-        mockPlugins = (1...2).map { _ in PurchasePluginMock() }
+        mockPlugins = (0...2).map { _ in PurchasePluginMock() }
         instance = PaltaPurchases2()
         instance.setup(with: mockPlugins)
     }
@@ -37,6 +37,14 @@ final class PaltaPurchases2Tests: XCTestCase {
         
         checkPlugins {
             $0.logInUserId == userId
+        }
+    }
+    
+    func testLogOut() {
+        instance.logOut()
+        
+        checkPlugins {
+            $0.logOutCalled
         }
     }
     

@@ -30,6 +30,14 @@ public final class PaltaPurchases2 {
             $0.logIn(appUserId: appUserId)
         }
     }
+    
+    public func logOut() {
+        checkSetupFinished()
+        
+        plugins.forEach {
+            $0.logOut()
+        }
+    }
 
     private func checkSetupFinished() {
         if !setupFinished {
