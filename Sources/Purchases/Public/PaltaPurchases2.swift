@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibCore
 
 public final class PaltaPurchases2 {
     public static let instance = PaltaPurchases2()
@@ -68,6 +69,46 @@ public final class PaltaPurchases2 {
                 completion(.failure(error))
             } else {
                 completion(.success(services))
+            }
+        }
+    }
+    
+    @available(iOS 12.2, *)
+    public func getPromotionalOffer(
+        for productDiscount: ProductDiscount,
+        product: Product,
+        _ completion: @escaping (Result<PromoOffer, Error>) -> Void
+    ) {
+        checkSetupFinished()
+    
+        guard let firstPlugin = plugins.first else {
+            return
+        }
+        
+        getPromotionalOffer(for: productDiscount, product: product, with: firstPlugin, completion)
+    }
+    
+    @available(iOS 12.2, *)
+    private func getPromotionalOffer(
+        for productDiscount: ProductDiscount,
+        product: Product,
+        with plugin: PurchasePlugin,
+        _ completion: @escaping (Result<PromoOffer, Error>) -> Void
+    ) {
+        plugin.getPromotionalOffer(for: productDiscount, product: product) { [weak self, unowned plugin] pluginResult in
+            guard let self = self else {
+                return
+            }
+            
+            if let result = pluginResult.result {
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            } else if let nextPlugin = self.plugins.nextElement(after: { $0 === plugin }) {
+                self.getPromotionalOffer(for: productDiscount, product: product, with: nextPlugin, completion)
+            } else {
+                // TODO: Improve error handling
+                completion(.failure(NSError(domain: "", code: 0)))
             }
         }
     }

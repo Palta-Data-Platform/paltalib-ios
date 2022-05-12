@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol PurchasePlugin {
+public protocol PurchasePlugin: AnyObject {
     var delegate: PurchasePluginDelegate? { get set }
 
     func logIn(appUserId: String)

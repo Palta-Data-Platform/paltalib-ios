@@ -162,6 +162,94 @@ final class PaltaPurchases2Tests: XCTestCase {
         wait(for: [completionCalled], timeout: 0.1)
     }
     
+    func testPromoOfferFirstSuccess() {
+        let completionCalled = expectation(description: "Get promo offer completed 1")
+        
+        instance.getPromotionalOffer(for: ProductDiscountMock(), product: ProductMock()) { result in
+            guard case .success = result else {
+                return
+            }
+            
+            completionCalled.fulfill()
+        }
+        
+        XCTAssertNotNil(mockPlugins[0].getPromotionalOfferCompletion)
+        XCTAssertNil(mockPlugins[1].getPromotionalOfferCompletion)
+        XCTAssertNil(mockPlugins[2].getPromotionalOfferCompletion)
+        
+        mockPlugins[0].getPromotionalOfferCompletion?(.success(PromoOfferMock()))
+        
+        wait(for: [completionCalled], timeout: 0.1)
+    }
+    
+    func testPromoOfferFirstFail() {
+        let completionCalled = expectation(description: "Get promo offer completed 2")
+        
+        instance.getPromotionalOffer(for: ProductDiscountMock(), product: ProductMock()) { result in
+            guard case .failure = result else {
+                return
+            }
+            
+            completionCalled.fulfill()
+        }
+        
+        XCTAssertNotNil(mockPlugins[0].getPromotionalOfferCompletion)
+        XCTAssertNil(mockPlugins[1].getPromotionalOfferCompletion)
+        XCTAssertNil(mockPlugins[2].getPromotionalOfferCompletion)
+        
+        mockPlugins[0].getPromotionalOfferCompletion?(.failure(NSError(domain: "", code: 0)))
+        
+        wait(for: [completionCalled], timeout: 0.1)
+    }
+    
+    func testPromoOfferLastSuccess() {
+        let completionCalled = expectation(description: "Get promo offer completed 3")
+        
+        instance.getPromotionalOffer(for: ProductDiscountMock(), product: ProductMock()) { result in
+            guard case .success = result else {
+                return
+            }
+            
+            completionCalled.fulfill()
+        }
+        
+        XCTAssertNotNil(mockPlugins[0].getPromotionalOfferCompletion)
+        mockPlugins[0].getPromotionalOfferCompletion?(.notSupported)
+        
+        XCTAssertNotNil(mockPlugins[1].getPromotionalOfferCompletion)
+        mockPlugins[1].getPromotionalOfferCompletion?(.notSupported)
+        
+        XCTAssertNotNil(mockPlugins[2].getPromotionalOfferCompletion)
+        
+        mockPlugins[2].getPromotionalOfferCompletion?(.success(PromoOfferMock()))
+        
+        wait(for: [completionCalled], timeout: 0.1)
+    }
+    
+    func testPromoOfferNotSupportedEverywhere() {
+        let completionCalled = expectation(description: "Get promo offer completed 4")
+        
+        instance.getPromotionalOffer(for: ProductDiscountMock(), product: ProductMock()) { result in
+            guard case .failure = result else {
+                return
+            }
+            
+            completionCalled.fulfill()
+        }
+        
+        XCTAssertNotNil(mockPlugins[0].getPromotionalOfferCompletion)
+        mockPlugins[0].getPromotionalOfferCompletion?(.notSupported)
+        
+        XCTAssertNotNil(mockPlugins[1].getPromotionalOfferCompletion)
+        mockPlugins[1].getPromotionalOfferCompletion?(.notSupported)
+        
+        XCTAssertNotNil(mockPlugins[2].getPromotionalOfferCompletion)
+        
+        mockPlugins[2].getPromotionalOfferCompletion?(.notSupported)
+        
+        wait(for: [completionCalled], timeout: 0.1)
+    }
+    
     private func checkPlugins(line: UInt = #line, file: StaticString = #file, _ check: (PurchasePluginMock) -> Bool) {
         XCTAssert(!mockPlugins.isEmpty, file: file, line: line)
         
