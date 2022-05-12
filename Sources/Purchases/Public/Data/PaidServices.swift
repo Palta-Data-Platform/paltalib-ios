@@ -8,15 +8,15 @@
 import Foundation
 
 public struct PaidServices: Equatable {
-    private var servicesByName: [String: [PaidService]]
+    private var servicesByName: [String: Set<PaidService>]
     
     init(services: [PaidService] = []) {
-        servicesByName = Dictionary(grouping: services, by: { $0.name })
+        servicesByName = Dictionary(grouping: services, by: { $0.name }).mapValues { Set($0) }
     }
     
     mutating func merge(with paidServices: PaidServices) {
         paidServices.servicesByName.forEach {
-            servicesByName[$0.key] = (servicesByName[$0.key] ?? []) + $0.value
+            servicesByName[$0.key] = (servicesByName[$0.key] ?? []).union($0.value)
         }
     }
     
@@ -39,6 +39,6 @@ extension PaidServices {
     }
     
     public subscript(_ name: String) -> [PaidService] {
-        servicesByName[name] ?? []
+        servicesByName[name].map(Array.init) ?? []
     }
 }

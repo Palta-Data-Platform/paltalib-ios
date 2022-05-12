@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PaidService: Equatable {
+public struct PaidService: Hashable {
     public let name: String
     public let startDate: Date
     public let endDate: Date?

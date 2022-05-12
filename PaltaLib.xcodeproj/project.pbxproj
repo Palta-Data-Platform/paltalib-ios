@@ -114,6 +114,8 @@
 		1154301D282BDD2B0021ED6F /* StoreProduct+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154301C282BDD2B0021ED6F /* StoreProduct+Product.swift */; };
 		1154301F282BDE450021ED6F /* PromotionalOffer+Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154301E282BDE450021ED6F /* PromotionalOffer+Offer.swift */; };
 		11543025282BEF120021ED6F /* PurchasePluginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543024282BEF120021ED6F /* PurchasePluginDelegate.swift */; };
+		11543028282BF7B50021ED6F /* PaidServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543026282BF7B00021ED6F /* PaidServiceTests.swift */; };
+		1154302B282C1A760021ED6F /* PaidServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543029282C19FC0021ED6F /* PaidServicesTests.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4C2816A835004D0185 /* Telemetry.swift */; };
@@ -315,6 +317,8 @@
 		1154301C282BDD2B0021ED6F /* StoreProduct+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreProduct+Product.swift"; sourceTree = "<group>"; };
 		1154301E282BDE450021ED6F /* PromotionalOffer+Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PromotionalOffer+Offer.swift"; sourceTree = "<group>"; };
 		11543024282BEF120021ED6F /* PurchasePluginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePluginDelegate.swift; sourceTree = "<group>"; };
+		11543026282BF7B00021ED6F /* PaidServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidServiceTests.swift; sourceTree = "<group>"; };
+		11543029282C19FC0021ED6F /* PaidServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidServicesTests.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
 		11C60F4C2816A835004D0185 /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
@@ -556,6 +560,8 @@
 				11115A94280023A300A41ADA /* UserPropertiesKeeperTests.swift */,
 				119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */,
 				114CF5AE28226F5300ADA815 /* PaltaPurchases2Tests.swift */,
+				11543026282BF7B00021ED6F /* PaidServiceTests.swift */,
+				11543029282C19FC0021ED6F /* PaidServicesTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -610,8 +616,8 @@
 		114CF5A4282266FF00ADA815 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				11543020282BED820021ED6F /* Data */,
 				114CF5A52822670C00ADA815 /* PaltaPurchases2.swift */,
+				11543020282BED820021ED6F /* Data */,
 				11543021282BED8E0021ED6F /* Plugins */,
 			);
 			path = Public;
@@ -976,7 +982,9 @@
 				114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */,
 				111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */,
 				114CF5B228226F6900ADA815 /* PurchasePluginMock.swift in Sources */,
+				1154302B282C1A760021ED6F /* PaidServicesTests.swift in Sources */,
 				11115A4227FB74B000A41ADA /* EventSenderMock.swift in Sources */,
+				11543028282BF7B50021ED6F /* PaidServiceTests.swift in Sources */,
 				11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */,
 				11115A4827FB75CD00A41ADA /* EventQueueCoreMock.swift in Sources */,
 			);
