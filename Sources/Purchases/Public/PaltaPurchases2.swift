@@ -22,6 +22,14 @@ public final class PaltaPurchases2 {
         setupFinished = true
         self.plugins = plugins
     }
+    
+    public func logIn(appUserId: String) {
+        checkSetupFinished()
+        
+        plugins.forEach {
+            $0.logIn(appUserId: appUserId)
+        }
+    }
 
     private func checkSetupFinished() {
         if !setupFinished {
