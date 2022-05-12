@@ -81,21 +81,40 @@ public final class PaltaPurchases2 {
     ) {
         checkSetupFinished()
     
+        start(completion: completion) { plugin, completion in
+            plugin.getPromotionalOffer(for: productDiscount, product: product, completion)
+        }
+    }
+    
+    public func purchase(
+        _ product: Product,
+        with promoOffer: PromoOffer?,
+        _ completion: @escaping (Result<SuccessfulPurchase, Error>) -> Void
+    ) {
+        checkSetupFinished()
+        
+        start(completion: completion) { plugin, completion in
+            plugin.purchase(product, with: promoOffer, completion)
+        }
+    }
+    
+    private func start<T>(
+        completion: @escaping (Result<T, Error>) -> Void,
+        execute: @escaping (PurchasePlugin, @escaping (PurchasePluginResult<T, Error>) -> Void) -> Void
+    ) {
         guard let firstPlugin = plugins.first else {
             return
         }
         
-        getPromotionalOffer(for: productDiscount, product: product, with: firstPlugin, completion)
+        with(firstPlugin, completion: completion, execute: execute)
     }
     
-    @available(iOS 12.2, *)
-    private func getPromotionalOffer(
-        for productDiscount: ProductDiscount,
-        product: Product,
-        with plugin: PurchasePlugin,
-        _ completion: @escaping (Result<PromoOffer, Error>) -> Void
+    private func with<T>(
+        _ plugin: PurchasePlugin,
+        completion: @escaping (Result<T, Error>) -> Void,
+        execute: @escaping (PurchasePlugin, @escaping (PurchasePluginResult<T, Error>) -> Void) -> Void
     ) {
-        plugin.getPromotionalOffer(for: productDiscount, product: product) { [weak self, unowned plugin] pluginResult in
+        execute(plugin) { [weak self, unowned plugin] pluginResult in
             guard let self = self else {
                 return
             }
@@ -105,7 +124,7 @@ public final class PaltaPurchases2 {
                     completion(result)
                 }
             } else if let nextPlugin = self.plugins.nextElement(after: { $0 === plugin }) {
-                self.getPromotionalOffer(for: productDiscount, product: product, with: nextPlugin, completion)
+                self.with(nextPlugin, completion: completion, execute: execute)
             } else {
                 // TODO: Improve error handling
                 completion(.failure(NSError(domain: "", code: 0)))

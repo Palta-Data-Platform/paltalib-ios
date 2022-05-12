@@ -250,6 +250,102 @@ final class PaltaPurchases2Tests: XCTestCase {
         wait(for: [completionCalled], timeout: 0.1)
     }
     
+    func testPurchaseFirstSuccess() {
+        let completionCalled = expectation(description: "Get purchase completed 1")
+        
+        instance.purchase(ProductMock(), with: nil) { result in
+            guard case .success(let purchase) = result else {
+                return
+            }
+            
+            XCTAssertEqual(purchase.transaction, .inApp)
+            
+            completionCalled.fulfill()
+        }
+        
+        XCTAssertNotNil(mockPlugins[0].purchaseCompletion)
+        XCTAssertNil(mockPlugins[1].purchaseCompletion)
+        XCTAssertNil(mockPlugins[2].purchaseCompletion)
+        
+        mockPlugins[0].purchaseCompletion?(
+            .success(SuccessfulPurchase(transaction: .inApp, paidServices: PaidServices()))
+        )
+        
+        wait(for: [completionCalled], timeout: 0.1)
+    }
+    
+    func testPurchaseFirstFail() {
+        let completionCalled = expectation(description: "Get purchase completed 2")
+
+        instance.purchase(ProductMock(), with: nil) { result in
+            guard case .failure = result else {
+                return
+            }
+            
+            completionCalled.fulfill()
+        }
+        
+        XCTAssertNotNil(mockPlugins[0].purchaseCompletion)
+        XCTAssertNil(mockPlugins[1].purchaseCompletion)
+        XCTAssertNil(mockPlugins[2].purchaseCompletion)
+        
+        mockPlugins[0].purchaseCompletion?(.failure(NSError(domain: "", code: 0)))
+        
+        wait(for: [completionCalled], timeout: 0.1)
+    }
+    
+    func testPurchaseLastSuccess() {
+        let completionCalled = expectation(description: "Get purchase completed 3")
+        
+        instance.purchase(ProductMock(), with: nil) { result in
+            guard case .success(let purchase) = result else {
+                return
+            }
+            
+            XCTAssertEqual(purchase.transaction, .web)
+            
+            completionCalled.fulfill()
+        }
+        
+        XCTAssertNotNil(mockPlugins[0].purchaseCompletion)
+        mockPlugins[0].purchaseCompletion?(.notSupported)
+        
+        XCTAssertNotNil(mockPlugins[1].purchaseCompletion)
+        mockPlugins[1].purchaseCompletion?(.notSupported)
+        
+        XCTAssertNotNil(mockPlugins[2].purchaseCompletion)
+        
+        mockPlugins[2].purchaseCompletion?(
+            .success(SuccessfulPurchase(transaction: .web, paidServices: PaidServices()))
+        )
+        
+        wait(for: [completionCalled], timeout: 0.1)
+    }
+    
+    func testPurchaseNotSupportedEverywhere() {
+        let completionCalled = expectation(description: "Get purchase completed 4")
+        
+        instance.purchase(ProductMock(), with: nil) { result in
+            guard case .failure = result else {
+                return
+            }
+            
+            completionCalled.fulfill()
+        }
+        
+        XCTAssertNotNil(mockPlugins[0].purchaseCompletion)
+        mockPlugins[0].purchaseCompletion?(.notSupported)
+        
+        XCTAssertNotNil(mockPlugins[1].purchaseCompletion)
+        mockPlugins[1].purchaseCompletion?(.notSupported)
+        
+        XCTAssertNotNil(mockPlugins[2].purchaseCompletion)
+        
+        mockPlugins[2].purchaseCompletion?(.failure(NSError(domain: "", code: 0)))
+        
+        wait(for: [completionCalled], timeout: 0.1)
+    }
+    
     private func checkPlugins(line: UInt = #line, file: StaticString = #file, _ check: (PurchasePluginMock) -> Bool) {
         XCTAssert(!mockPlugins.isEmpty, file: file, line: line)
         
