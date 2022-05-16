@@ -9,5 +9,8 @@ import Foundation
 import PaltaLibPayments
 
 struct ProductDiscountMock: ProductDiscount {
-    
+    var offerIdentifier: String?
+    var currencyCode: String?
+    var price: Decimal = 0
+    var numberOfPeriods: Int = 0
 }

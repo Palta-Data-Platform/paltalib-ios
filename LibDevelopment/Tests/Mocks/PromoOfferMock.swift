@@ -9,5 +9,5 @@ import Foundation
 import PaltaLibPayments
 
 struct PromoOfferMock: PromoOffer {
-    
+    var productDiscount: ProductDiscount = ProductDiscountMock()
 }

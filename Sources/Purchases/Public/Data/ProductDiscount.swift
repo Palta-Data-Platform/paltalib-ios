@@ -8,5 +8,8 @@
 import Foundation
 
 public protocol ProductDiscount {
-    
+    var offerIdentifier: String? { get }
+    var currencyCode: String? { get }
+    var price: Decimal { get }
+    var numberOfPeriods: Int { get }
 }

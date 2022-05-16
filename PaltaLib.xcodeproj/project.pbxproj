@@ -120,6 +120,8 @@
 		11543034282D02E50021ED6F /* PromoOfferMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543032282D02DF0021ED6F /* PromoOfferMock.swift */; };
 		11543035282D02E80021ED6F /* ProductDiscountMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543030282D02D20021ED6F /* ProductDiscountMock.swift */; };
 		11543038282D03280021ED6F /* ProductMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543036282D02F20021ED6F /* ProductMock.swift */; };
+		1154303A282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543039282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift */; };
+		1154303D282E4CD90021ED6F /* CustomerInfo+PaidServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154303B282E4AF30021ED6F /* CustomerInfo+PaidServices.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4C2816A835004D0185 /* Telemetry.swift */; };
@@ -327,6 +329,8 @@
 		11543030282D02D20021ED6F /* ProductDiscountMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDiscountMock.swift; sourceTree = "<group>"; };
 		11543032282D02DF0021ED6F /* PromoOfferMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoOfferMock.swift; sourceTree = "<group>"; };
 		11543036282D02F20021ED6F /* ProductMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductMock.swift; sourceTree = "<group>"; };
+		11543039282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreProductDiscount+ProductDiscount.swift"; sourceTree = "<group>"; };
+		1154303B282E4AF30021ED6F /* CustomerInfo+PaidServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerInfo+PaidServices.swift"; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
 		11C60F4C2816A835004D0185 /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
@@ -667,6 +671,8 @@
 				114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */,
 				1154301C282BDD2B0021ED6F /* StoreProduct+Product.swift */,
 				1154301E282BDE450021ED6F /* PromotionalOffer+Offer.swift */,
+				11543039282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift */,
+				1154303B282E4AF30021ED6F /* CustomerInfo+PaidServices.swift */,
 			);
 			path = RevenueCat;
 			sourceTree = "<group>";
@@ -1023,11 +1029,13 @@
 				1129A4322827E34F009DDC41 /* Product.swift in Sources */,
 				114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */,
 				11543017282BD0AE0021ED6F /* PaidServices.swift in Sources */,
+				1154303A282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift in Sources */,
 				114CF5AD2822679500ADA815 /* PBPurchasePlugin.swift in Sources */,
 				114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */,
 				11115A7227FDBBF500A41ADA /* PurchaseHTTPRequest.swift in Sources */,
 				1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */,
 				11543019282BD3CA0021ED6F /* SuccessfulPurchase.swift in Sources */,
+				1154303D282E4CD90021ED6F /* CustomerInfo+PaidServices.swift in Sources */,
 				11115A8027FDCF5A00A41ADA /* PurchasesAssembly.swift in Sources */,
 				1154301F282BDE450021ED6F /* PromotionalOffer+Offer.swift in Sources */,
 			);

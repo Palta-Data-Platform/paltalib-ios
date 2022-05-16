@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol PromoOffer {
-    
+    var productDiscount: ProductDiscount { get }
 }

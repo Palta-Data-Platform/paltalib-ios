@@ -26,7 +26,7 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success(PaidServices()))
+                completion(.success(customerInfo?.paidServices ?? PaidServices()))
             }
         }
     }
@@ -36,7 +36,7 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         _ completion: @escaping (PurchasePluginResult<[Product], Error>) -> Void
     ) {
         purchases.getProducts(productIdentifiers) { products in
-            completion(.success(products as [Product]))
+            completion(.success(products.map(RCProduct.init)))
         }
     }
     
@@ -48,7 +48,7 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
     ) {
         guard
             let productDiscount = productDiscount as? StoreProductDiscount,
-            let product = product as? StoreProduct
+            let product = product.storeProduct
         else {
             completion(.notSupported)
             return
@@ -68,7 +68,7 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         with promoOffer: PromoOffer?,
         _ completion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void
     ) {
-        guard let product = product as? StoreProduct else {
+        guard let product = product.storeProduct else {
             completion(.notSupported)
             return
         }
@@ -137,7 +137,7 @@ extension RCPurchasePlugin: PurchasesDelegate {
     ) {
         delegate?.purchasePlugin(
             self,
-            shouldPurchase: product
+            shouldPurchase: RCProduct(product: product)
         ) { [weak self] completion in
             guard let self = self else { return }
             
