@@ -11,15 +11,31 @@ import RevenueCat
 extension CustomerInfo {
     var paidServices: PaidServices {
         PaidServices(
-            services: entitlements.all.values.map {
-                PaidService(
-                    name: $0.identifier,
-                    productIdentifier: $0.productIdentifier,
-                    paymentType: .subscription,
-                    startDate: $0.latestPurchaseDate ?? Date(timeIntervalSince1970: 0),
-                    endDate: $0.expirationDate
-                )
-            }
+            services: subscriptionServices + nonSubscriptionServices
         )
+    }
+    
+    private var subscriptionServices: [PaidService] {
+        entitlements.all.values.map {
+            PaidService(
+                name: $0.identifier,
+                productIdentifier: $0.productIdentifier,
+                paymentType: .subscription,
+                startDate: $0.latestPurchaseDate ?? Date(timeIntervalSince1970: 0),
+                endDate: $0.expirationDate
+            )
+        }
+    }
+    
+    private var nonSubscriptionServices: [PaidService] {
+        nonSubscriptionTransactions.map {
+            PaidService(
+                name: $0.productIdentifier,
+                productIdentifier: $0.productIdentifier,
+                paymentType: .oneOff,
+                startDate: $0.purchaseDate,
+                endDate: nil
+            )
+        }
     }
 }
