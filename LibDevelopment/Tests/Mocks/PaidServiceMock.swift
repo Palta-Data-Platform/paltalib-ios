@@ -15,7 +15,8 @@ extension PaidService {
             productIdentifier: nil,
             paymentType: .subscription,
             startDate: startDate,
-            endDate: endDate
+            endDate: endDate,
+            cancellationDate: nil
         )
     }
 }

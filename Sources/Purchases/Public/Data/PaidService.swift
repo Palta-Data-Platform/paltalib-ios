@@ -19,6 +19,7 @@ public struct PaidService: Hashable {
     public let paymentType: PaymentType
     public let startDate: Date
     public let endDate: Date?
+    public let cancellationDate: Date?
 }
 
 extension PaidService {

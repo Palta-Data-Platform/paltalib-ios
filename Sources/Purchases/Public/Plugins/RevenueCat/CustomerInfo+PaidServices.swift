@@ -22,7 +22,8 @@ extension CustomerInfo {
                 productIdentifier: $0.productIdentifier,
                 paymentType: .subscription,
                 startDate: $0.latestPurchaseDate ?? Date(timeIntervalSince1970: 0),
-                endDate: $0.expirationDate
+                endDate: $0.expirationDate,
+                cancellationDate: $0.unsubscribeDetectedAt
             )
         }
     }
@@ -34,7 +35,8 @@ extension CustomerInfo {
                 productIdentifier: $0.productIdentifier,
                 paymentType: .oneOff,
                 startDate: $0.purchaseDate,
-                endDate: nil
+                endDate: nil,
+                cancellationDate: nil
             )
         }
     }
