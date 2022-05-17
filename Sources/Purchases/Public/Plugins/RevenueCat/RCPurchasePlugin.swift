@@ -11,7 +11,11 @@ import RevenueCat
 public final class RCPurchasePlugin: NSObject, PurchasePlugin {
     public var delegate: PurchasePluginDelegate?
 
-    private let purchases = Purchases.shared
+    private lazy var purchases = Purchases.shared
+    
+    public init(apiKey: String) {
+        Purchases.configure(withAPIKey: apiKey)
+    }
 
     public func logIn(appUserId: String) {
         purchases.logIn(appUserId, completion: { _, _, _ in })
