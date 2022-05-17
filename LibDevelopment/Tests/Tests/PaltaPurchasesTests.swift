@@ -1,5 +1,5 @@
 //
-//  PaltaPurchases2Tests.swift
+//  PaltaPurchasesTests.swift
 //  PaltaLibPayments
 //
 //  Created by Vyacheslav Beltyukov on 04.05.2022.
@@ -9,21 +9,21 @@ import Foundation
 import XCTest
 @testable import PaltaLibPayments
 
-final class PaltaPurchases2Tests: XCTestCase {
-    var instance: PaltaPurchases2!
+final class PaltaPurchasesTests: XCTestCase {
+    var instance: PaltaPurchases!
     var mockPlugins: [PurchasePluginMock] = []
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
         mockPlugins = (0...2).map { _ in PurchasePluginMock() }
-        instance = PaltaPurchases2()
+        instance = PaltaPurchases()
         instance.setup(with: mockPlugins)
     }
     
     func testConfigure() {
         let plugins = (1...3).map { _ in PurchasePluginMock() }
-        let instance = PaltaPurchases2()
+        let instance = PaltaPurchases()
         instance.setup(with: plugins)
 
         XCTAssert(instance.setupFinished)

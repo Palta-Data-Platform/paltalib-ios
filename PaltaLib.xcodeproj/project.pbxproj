@@ -89,10 +89,10 @@
 		1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4332827E370009DDC41 /* PromoOffer.swift */; };
 		1129A4362827E3C2009DDC41 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4352827E3C2009DDC41 /* Transaction.swift */; };
 		114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A72822673100ADA815 /* PurchasePlugin.swift */; };
-		114CF5A92822673500ADA815 /* PaltaPurchases2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A52822670C00ADA815 /* PaltaPurchases2.swift */; };
+		114CF5A92822673500ADA815 /* PaltaPurchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A52822670C00ADA815 /* PaltaPurchases.swift */; };
 		114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */; };
 		114CF5AD2822679500ADA815 /* PBPurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AC2822679500ADA815 /* PBPurchasePlugin.swift */; };
-		114CF5B028226F5600ADA815 /* PaltaPurchases2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AE28226F5300ADA815 /* PaltaPurchases2Tests.swift */; };
+		114CF5B028226F5600ADA815 /* PaltaPurchasesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AE28226F5300ADA815 /* PaltaPurchasesTests.swift */; };
 		114CF5B228226F6900ADA815 /* PurchasePluginMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5B128226F6900ADA815 /* PurchasePluginMock.swift */; };
 		114CF5B72823C83000ADA815 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 114CF5B62823C83000ADA815 /* RevenueCat */; };
 		114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */; };
@@ -299,11 +299,11 @@
 		1129A4312827E34F009DDC41 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		1129A4332827E370009DDC41 /* PromoOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoOffer.swift; sourceTree = "<group>"; };
 		1129A4352827E3C2009DDC41 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		114CF5A52822670C00ADA815 /* PaltaPurchases2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchases2.swift; sourceTree = "<group>"; };
+		114CF5A52822670C00ADA815 /* PaltaPurchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchases.swift; sourceTree = "<group>"; };
 		114CF5A72822673100ADA815 /* PurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePlugin.swift; sourceTree = "<group>"; };
 		114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCPurchasePlugin.swift; sourceTree = "<group>"; };
 		114CF5AC2822679500ADA815 /* PBPurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBPurchasePlugin.swift; sourceTree = "<group>"; };
-		114CF5AE28226F5300ADA815 /* PaltaPurchases2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchases2Tests.swift; sourceTree = "<group>"; };
+		114CF5AE28226F5300ADA815 /* PaltaPurchasesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesTests.swift; sourceTree = "<group>"; };
 		114CF5B128226F6900ADA815 /* PurchasePluginMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePluginMock.swift; sourceTree = "<group>"; };
 		114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderMock.swift; sourceTree = "<group>"; };
 		114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderTests.swift; sourceTree = "<group>"; };
@@ -574,7 +574,7 @@
 				11115A8827FF27CD00A41ADA /* EventSenderTests.swift */,
 				11115A94280023A300A41ADA /* UserPropertiesKeeperTests.swift */,
 				119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */,
-				114CF5AE28226F5300ADA815 /* PaltaPurchases2Tests.swift */,
+				114CF5AE28226F5300ADA815 /* PaltaPurchasesTests.swift */,
 				11543026282BF7B00021ED6F /* PaidServiceTests.swift */,
 				11543029282C19FC0021ED6F /* PaidServicesTests.swift */,
 			);
@@ -635,7 +635,7 @@
 		114CF5A4282266FF00ADA815 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				114CF5A52822670C00ADA815 /* PaltaPurchases2.swift */,
+				114CF5A52822670C00ADA815 /* PaltaPurchases.swift */,
 				11543020282BED820021ED6F /* Data */,
 				11543021282BED8E0021ED6F /* Plugins */,
 			);
@@ -1001,7 +1001,7 @@
 				11115A9A28003D6900A41ADA /* UserPropertiesKeeperMock.swift in Sources */,
 				114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */,
 				11C60F502816D598004D0185 /* TelemetryMock.swift in Sources */,
-				114CF5B028226F5600ADA815 /* PaltaPurchases2Tests.swift in Sources */,
+				114CF5B028226F5600ADA815 /* PaltaPurchasesTests.swift in Sources */,
 				114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */,
 				111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */,
 				114CF5B228226F6900ADA815 /* PurchasePluginMock.swift in Sources */,
@@ -1023,7 +1023,7 @@
 				11543025282BEF120021ED6F /* PurchasePluginDelegate.swift in Sources */,
 				1129A4302827E332009DDC41 /* ProductDiscount.swift in Sources */,
 				11115A7127FDBBF500A41ADA /* CancelRequestData.swift in Sources */,
-				114CF5A92822673500ADA815 /* PaltaPurchases2.swift in Sources */,
+				114CF5A92822673500ADA815 /* PaltaPurchases.swift in Sources */,
 				1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */,
 				11115A7027FDBBF500A41ADA /* RestoreRequestData.swift in Sources */,
 				1154301D282BDD2B0021ED6F /* StoreProduct+Product.swift in Sources */,

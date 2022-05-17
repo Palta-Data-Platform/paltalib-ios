@@ -1,5 +1,5 @@
 //
-//  PaltaPurchases2.swift
+//  PaltaPurchases.swift
 //  PaltaLibCore
 //
 //  Created by Vyacheslav Beltyukov on 04.05.2022.
@@ -8,8 +8,8 @@
 import Foundation
 import PaltaLibCore
 
-public final class PaltaPurchases2 {
-    public static let instance = PaltaPurchases2()
+public final class PaltaPurchases {
+    public static let instance = PaltaPurchases()
 
     var setupFinished = false
     var plugins: [PurchasePlugin] = []
