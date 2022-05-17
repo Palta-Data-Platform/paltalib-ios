@@ -14,9 +14,16 @@ public struct PaidService: Hashable {
         case consumable
     }
     
+    public enum TransactionType {
+        case web
+        case appStore
+        case googlePlay
+    }
+    
     public let name: String
     public let productIdentifier: String?
     public let paymentType: PaymentType
+    public let transactionType: TransactionType
     public let isTrial: Bool
     
     public let startDate: Date
