@@ -21,6 +21,7 @@ extension CustomerInfo {
                 name: $0.identifier,
                 productIdentifier: $0.productIdentifier,
                 paymentType: .subscription,
+                isTrial: $0.periodType == .trial,
                 startDate: $0.latestPurchaseDate ?? Date(timeIntervalSince1970: 0),
                 endDate: $0.expirationDate,
                 cancellationDate: $0.unsubscribeDetectedAt
@@ -34,6 +35,7 @@ extension CustomerInfo {
                 name: $0.productIdentifier,
                 productIdentifier: $0.productIdentifier,
                 paymentType: .oneOff,
+                isTrial: false,
                 startDate: $0.purchaseDate,
                 endDate: nil,
                 cancellationDate: nil

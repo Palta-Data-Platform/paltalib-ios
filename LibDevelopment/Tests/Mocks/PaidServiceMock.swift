@@ -14,6 +14,7 @@ extension PaidService {
             name: name,
             productIdentifier: nil,
             paymentType: .subscription,
+            isTrial: false,
             startDate: startDate,
             endDate: endDate,
             cancellationDate: nil

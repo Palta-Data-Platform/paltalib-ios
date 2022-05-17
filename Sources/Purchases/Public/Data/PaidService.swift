@@ -17,6 +17,8 @@ public struct PaidService: Hashable {
     public let name: String
     public let productIdentifier: String?
     public let paymentType: PaymentType
+    public let isTrial: Bool
+    
     public let startDate: Date
     public let endDate: Date?
     public let cancellationDate: Date?
