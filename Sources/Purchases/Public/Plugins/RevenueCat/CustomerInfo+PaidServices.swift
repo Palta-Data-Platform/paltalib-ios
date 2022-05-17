@@ -14,6 +14,8 @@ extension CustomerInfo {
             services: entitlements.all.values.map {
                 PaidService(
                     name: $0.identifier,
+                    productIdentifier: $0.productIdentifier,
+                    paymentType: .subscription,
                     startDate: $0.latestPurchaseDate ?? Date(timeIntervalSince1970: 0),
                     endDate: $0.expirationDate
                 )

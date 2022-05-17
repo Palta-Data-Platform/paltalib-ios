@@ -8,7 +8,15 @@
 import Foundation
 
 public struct PaidService: Hashable {
+    public enum PaymentType {
+        case subscription
+        case oneOff
+        case consumable
+    }
+    
     public let name: String
+    public let productIdentifier: String?
+    public let paymentType: PaymentType
     public let startDate: Date
     public let endDate: Date?
 }
