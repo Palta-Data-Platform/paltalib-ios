@@ -31,7 +31,7 @@ final class PaltaPurchasesTests: XCTestCase {
     }
     
     func testLogin() {
-        let userId = UUID().uuidString
+        let userId = UserId.uuid(UUID())
         
         instance.logIn(appUserId: userId)
         

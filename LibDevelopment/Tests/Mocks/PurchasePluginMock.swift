@@ -11,7 +11,7 @@ import PaltaLibPayments
 final class PurchasePluginMock: PurchasePlugin {
     var delegate: PurchasePluginDelegate?
     
-    var logInUserId: String?
+    var logInUserId: UserId?
     var logOutCalled = false
     var getPaidServicesCompletion: ((Result<PaidServices, Error>) -> Void)?
     var getProductsCompletion: ((PurchasePluginResult<[Product], Error>) -> Void)?
@@ -22,7 +22,7 @@ final class PurchasePluginMock: PurchasePlugin {
     var attributes: [String : String]?
     var collectDeviceIdentifiersCalled = false
 
-    func logIn(appUserId: String) {
+    func logIn(appUserId: UserId) {
         logInUserId = appUserId
     }
 

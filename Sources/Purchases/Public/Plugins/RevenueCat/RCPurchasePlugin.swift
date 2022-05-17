@@ -17,8 +17,8 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         Purchases.configure(withAPIKey: apiKey)
     }
 
-    public func logIn(appUserId: String) {
-        purchases.logIn(appUserId, completion: { _, _, _ in })
+    public func logIn(appUserId: UserId) {
+        purchases.logIn(appUserId.stringValue, completion: { _, _, _ in })
     }
 
     public func logOut() {

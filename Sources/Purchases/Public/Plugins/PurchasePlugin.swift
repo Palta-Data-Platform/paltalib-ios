@@ -10,7 +10,7 @@ import Foundation
 public protocol PurchasePlugin: AnyObject {
     var delegate: PurchasePluginDelegate? { get set }
 
-    func logIn(appUserId: String)
+    func logIn(appUserId: UserId)
     func logOut()
     
     func getPaidServices(_ completion: @escaping (Result<PaidServices, Error>) -> Void)
