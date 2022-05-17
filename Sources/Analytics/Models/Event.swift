@@ -17,7 +17,7 @@ struct Event: Codable, Hashable {
         case groups
         case groupProperties = "group_properties"
         case sessionId = "session_id"
-        case timestamp
+        case timestamp = "time"
         case userId = "user_id"
         case deviceId = "device_id"
         case platform
