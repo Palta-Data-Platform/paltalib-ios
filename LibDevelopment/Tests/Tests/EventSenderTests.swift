@@ -26,6 +26,8 @@ final class EventSenderTests: XCTestCase {
     func testSuccessfulRequest() {
         httpClientMock.result = .success(EmptyResponse())
         let successCalled = expectation(description: "Success called")
+        
+        eventSender.baseURL = URL(string: "http://mock.com")
 
         eventSender.sendEvents(events, telemetry: .mock()) { result in
             switch result {
@@ -40,6 +42,7 @@ final class EventSenderTests: XCTestCase {
         XCTAssertEqual(
             httpClientMock.request as? AnalyticsHTTPRequest,
             AnalyticsHTTPRequest.sendEvents(
+                URL(string: "http://mock.com"),
                 SendEventsPayload(apiKey: "mockToken", events: events, serviceInfo: .init(telemetry: .mock()))
             )
         )

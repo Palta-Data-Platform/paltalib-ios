@@ -31,6 +31,7 @@ protocol EventSender {
 
 final class EventSenderImpl: EventSender {
     var apiToken: String?
+    var baseURL: URL?
 
     private let httpClient: HTTPClient
 
@@ -49,6 +50,7 @@ final class EventSenderImpl: EventSender {
         }
 
         let request = AnalyticsHTTPRequest.sendEvents(
+            baseURL,
             SendEventsPayload(apiKey: apiToken, events: events, serviceInfo: .init(telemetry: telemetry))
         )
 

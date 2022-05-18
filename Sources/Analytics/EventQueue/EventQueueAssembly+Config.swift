@@ -27,6 +27,8 @@ extension EventQueueAssembly {
 
         eventQueue.liveEventTypes = target.settings.realtimeEventTypes
         eventQueue.excludedEvents = target.settings.excludedEventTypes
+        
+        eventSender.baseURL = target.url
 
         sessionManager.maxSessionAge = target.settings.minTimeBetweenSessionsMillis
     }
