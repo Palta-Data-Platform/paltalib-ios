@@ -46,7 +46,7 @@ final class EventQueueAssemblyTests: XCTestCase {
         XCTAssertEqual(assembly.eventQueueCore.config?.maxEvents, 12)
         XCTAssertEqual(assembly.eventQueueCore.config?.uploadInterval, 15)
         XCTAssertEqual(assembly.sessionManager.maxSessionAge, 87)
-//        XCTAssertEqual(assembly.sessionManager.trackingSessionEvents, true)
+        XCTAssertEqual(assembly.eventQueue.trackingSessionEvents, true)
         XCTAssertEqual(assembly.eventQueue.excludedEvents, ["excluded-event"])
         XCTAssertEqual(assembly.eventQueue.liveEventTypes, ["real-time"])
         

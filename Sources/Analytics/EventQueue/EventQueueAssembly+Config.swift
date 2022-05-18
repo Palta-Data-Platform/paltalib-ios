@@ -25,6 +25,7 @@ extension EventQueueAssembly {
             maxConcurrentOperations: .max
         )
 
+        eventQueue.trackingSessionEvents = target.settings.trackingSessionEvents
         eventQueue.liveEventTypes = target.settings.realtimeEventTypes
         eventQueue.excludedEvents = target.settings.excludedEventTypes
         
