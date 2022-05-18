@@ -30,6 +30,7 @@ final class ConfigurationServiceTests: XCTestCase {
                 targets: [
                     ConfigTarget(
                         name: .paltabrain,
+                        sendMechanism: .paltaBrain,
                         settings: ConfigSettings(
                             eventUploadThreshold: 788,
                             eventUploadMaxBatchSize: 3789,
@@ -73,6 +74,7 @@ final class ConfigurationServiceTests: XCTestCase {
             targets: [
                 ConfigTarget(
                     name: .paltabrain,
+                    sendMechanism: .paltaBrain,
                     settings: ConfigSettings(
                         eventUploadThreshold: 788,
                         eventUploadMaxBatchSize: 3789,
@@ -152,6 +154,7 @@ final class ConfigurationServiceTests: XCTestCase {
             targets: [
                 ConfigTarget(
                     name: .paltabrain,
+                    sendMechanism: .paltaBrain,
                     settings: ConfigSettings(
                         eventUploadThreshold: 656,
                         eventUploadMaxBatchSize: 788,
