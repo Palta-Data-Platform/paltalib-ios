@@ -31,14 +31,14 @@ extension AnalyticsHTTPRequest: CodableAutobuildingHTTPRequest {
         return url
     }
 
-    var path: String {
+    var path: String? {
         switch self {
         case .remoteConfig:
             return "/v1/config"
         case .sendEvents(let url, _) where url == nil:
             return "/events-v2"
         case .sendEvents:
-            return ""
+            return nil
         }
     }
 

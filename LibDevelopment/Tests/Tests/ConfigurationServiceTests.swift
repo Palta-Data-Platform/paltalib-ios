@@ -30,7 +30,6 @@ final class ConfigurationServiceTests: XCTestCase {
                 targets: [
                     ConfigTarget(
                         name: .paltabrain,
-                        sendMechanism: .paltaBrain,
                         settings: ConfigSettings(
                             eventUploadThreshold: 788,
                             eventUploadMaxBatchSize: 3789,
@@ -39,7 +38,8 @@ final class ConfigurationServiceTests: XCTestCase {
                             minTimeBetweenSessionsMillis: 4393,
                             trackingSessionEvents: false,
                             realtimeEventTypes: [],
-                                        excludedEventTypes: []
+                                        excludedEventTypes: [],
+                            sendMechanism: .paltaBrain
                         ),
                         url: URL(string: "https://mock.url")
                     )
@@ -74,7 +74,6 @@ final class ConfigurationServiceTests: XCTestCase {
             targets: [
                 ConfigTarget(
                     name: .paltabrain,
-                    sendMechanism: .paltaBrain,
                     settings: ConfigSettings(
                         eventUploadThreshold: 788,
                         eventUploadMaxBatchSize: 3789,
@@ -83,7 +82,8 @@ final class ConfigurationServiceTests: XCTestCase {
                         minTimeBetweenSessionsMillis: 4393,
                         trackingSessionEvents: false,
                         realtimeEventTypes: [],
-                                    excludedEventTypes: []
+                        excludedEventTypes: [],
+                        sendMechanism: .paltaBrain
                     ),
                     url: URL(string: "https://mock.url")
                 )
@@ -154,7 +154,6 @@ final class ConfigurationServiceTests: XCTestCase {
             targets: [
                 ConfigTarget(
                     name: .paltabrain,
-                    sendMechanism: .paltaBrain,
                     settings: ConfigSettings(
                         eventUploadThreshold: 656,
                         eventUploadMaxBatchSize: 788,
@@ -163,7 +162,8 @@ final class ConfigurationServiceTests: XCTestCase {
                         minTimeBetweenSessionsMillis: 678,
                         trackingSessionEvents: true,
                         realtimeEventTypes: [],
-                                    excludedEventTypes: []
+                        excludedEventTypes: [],
+                        sendMechanism: .paltaBrain
                     ),
                     url: URL(string: "https://url.mock")
                 )

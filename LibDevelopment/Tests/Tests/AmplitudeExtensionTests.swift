@@ -27,7 +27,6 @@ final class AmplitudeExtensionTests: XCTestCase {
     func testApplyTargetWithoutURL() {
         let target = ConfigTarget(
             name: .amplitude,
-            sendMechanism: .paltaBrain,
             settings: ConfigSettings(
                 eventUploadThreshold: 23,
                 eventUploadMaxBatchSize: 67,
@@ -36,7 +35,8 @@ final class AmplitudeExtensionTests: XCTestCase {
                 minTimeBetweenSessionsMillis: 79,
                 trackingSessionEvents: true,
                 realtimeEventTypes: ["real-time"],
-                excludedEventTypes: ["excluded"]
+                excludedEventTypes: ["excluded"],
+                sendMechanism: .paltaBrain
             ),
             url: nil
         )
@@ -57,7 +57,6 @@ final class AmplitudeExtensionTests: XCTestCase {
     func testApplyTargetWithURL() {
         let target = ConfigTarget(
             name: .amplitude,
-            sendMechanism: .paltaBrain,
             settings: ConfigSettings(
                 eventUploadThreshold: 98,
                 eventUploadMaxBatchSize: 234,
@@ -66,7 +65,8 @@ final class AmplitudeExtensionTests: XCTestCase {
                 minTimeBetweenSessionsMillis: 87,
                 trackingSessionEvents: true,
                 realtimeEventTypes: ["real-time"],
-                excludedEventTypes: ["excluded-event"]
+                excludedEventTypes: ["excluded-event"],
+                sendMechanism: .paltaBrain
             ),
             url: URL(string: "http://example.com")
         )

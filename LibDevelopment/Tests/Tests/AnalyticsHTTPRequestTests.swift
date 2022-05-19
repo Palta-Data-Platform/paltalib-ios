@@ -31,7 +31,7 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
     func testSendEvent() {
         let events: [Event] = [.mock()]
         let request = AnalyticsHTTPRequest.sendEvents(
-            URL(string: "https://mock.mock"),
+            URL(string: "https://mock.mock/path"),
             SendEventsPayload(apiKey: "mockKey", events: events, serviceInfo: .init(telemetry: nil))
         )
 
@@ -45,7 +45,7 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
 
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
         XCTAssertEqual(urlRequest?.allHTTPHeaderFields, expectedHeaders)
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://mock.mock"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "https://mock.mock/path"))
         XCTAssertEqual(urlRequest?.timeoutInterval, 30)
         XCTAssertEqual(urlRequest?.cachePolicy, .reloadIgnoringLocalAndRemoteCacheData)
         XCTAssertNotNil(urlRequest?.httpBody)

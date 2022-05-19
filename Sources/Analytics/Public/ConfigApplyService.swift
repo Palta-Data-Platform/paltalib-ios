@@ -48,8 +48,10 @@ final class ConfigApplyService {
         paltaAssemblies: inout [EventQueueAssembly],
         amplitudeInstances: inout [Amplitude]
     ) {
-        switch (target.name, target.sendMechanism, apiKey, amplitudeApiKey) {
-        case (.amplitude, .amplitude, _, let amplitudeApiKey?):
+        switch (target.name, target.settings.sendMechanism, apiKey, amplitudeApiKey) {
+        case
+            (.amplitude, .amplitude, _, let amplitudeApiKey?),
+            (.amplitude, nil, _, let amplitudeApiKey?):
             addAmplitudeTarget(
                 target,
                 apiKey: amplitudeApiKey,
@@ -72,7 +74,9 @@ final class ConfigApplyService {
                 amplitudeInstances: &amplitudeInstances
             )
             
-        case (.paltabrain, .paltaBrain, let apiKey?, _):
+        case
+            (.paltabrain, .paltaBrain, let apiKey?, _),
+            (.paltabrain, nil, let apiKey?, _):
             addPaltaBrainTarget(
                 target,
                 apiKey: apiKey,
@@ -82,6 +86,9 @@ final class ConfigApplyService {
             
         case (.paltabrain, _, nil, _):
             print("PaltaAnalytics: error: API key for palta brain is not set")
+            
+        default:
+            print("PaltaAnalytics: error: unconfigurable target")
         }
     }
     

@@ -25,7 +25,6 @@ final class EventQueueAssemblyTests: XCTestCase {
     func testApplyTarget() {
         let target = ConfigTarget(
             name: .amplitude,
-            sendMechanism: .paltaBrain,
             settings: ConfigSettings(
                 eventUploadThreshold: 98,
                 eventUploadMaxBatchSize: 234,
@@ -34,7 +33,8 @@ final class EventQueueAssemblyTests: XCTestCase {
                 minTimeBetweenSessionsMillis: 87,
                 trackingSessionEvents: true,
                 realtimeEventTypes: ["real-time"],
-                excludedEventTypes: ["excluded-event"]
+                excludedEventTypes: ["excluded-event"],
+                sendMechanism: .paltaBrain
             ),
             url: URL(string: "http://example.com")
         )

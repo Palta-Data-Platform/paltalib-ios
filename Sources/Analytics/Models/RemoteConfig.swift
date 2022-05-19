@@ -14,14 +14,8 @@ struct ConfigTarget: Codable, Equatable {
         case paltabrain
     }
     
-    enum SendMechanism: String, Codable {
-        case amplitude
-        case paltaBrain = "paltabrain"
-    }
-    
     static let defaultAmplitude = ConfigTarget(
         name: .amplitude,
-        sendMechanism: .amplitude,
         settings: ConfigSettings(
             eventUploadThreshold: 30,
             eventUploadMaxBatchSize: 100,
@@ -30,14 +24,14 @@ struct ConfigTarget: Codable, Equatable {
             minTimeBetweenSessionsMillis: 300000,
             trackingSessionEvents: true,
             realtimeEventTypes: [],
-            excludedEventTypes: []
+            excludedEventTypes: [],
+            sendMechanism: .amplitude
         ),
         url: nil
     )
     
     static let defaultPaltaBrain = ConfigTarget(
         name: .paltabrain,
-        sendMechanism: .paltaBrain,
         settings: ConfigSettings(
             eventUploadThreshold: 30,
             eventUploadMaxBatchSize: 100,
@@ -46,18 +40,23 @@ struct ConfigTarget: Codable, Equatable {
             minTimeBetweenSessionsMillis: 300000,
             trackingSessionEvents: true,
             realtimeEventTypes: [],
-            excludedEventTypes: []
+            excludedEventTypes: [],
+            sendMechanism: .paltaBrain
         ),
         url: URL(string: "https://api.paltabrain.com/events-v2")
     )
 
     let name: Name
-    let sendMechanism: SendMechanism
     let settings: ConfigSettings
     let url: URL?
 }
 
 struct ConfigSettings: Codable, Equatable {
+    enum SendMechanism: String, Codable {
+        case amplitude
+        case paltaBrain = "paltabrain"
+    }
+    
     let eventUploadThreshold: Int
     let eventUploadMaxBatchSize: Int
     let eventMaxCount: Int
@@ -66,13 +65,19 @@ struct ConfigSettings: Codable, Equatable {
     let trackingSessionEvents: Bool
     let realtimeEventTypes: Set<String>
     let excludedEventTypes: Set<String>
+    let sendMechanism: SendMechanism?
 }
 
-extension ConfigTarget {
+extension ConfigSettings {
     enum CodingKeys: String, CodingKey {
-        case name
         case sendMechanism = "send_mechanism"
-        case settings
-        case url
+        case eventUploadThreshold
+        case eventUploadMaxBatchSize
+        case eventMaxCount
+        case eventUploadPeriodSeconds
+        case minTimeBetweenSessionsMillis
+        case trackingSessionEvents
+        case realtimeEventTypes
+        case excludedEventTypes
     }
 }

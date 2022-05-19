@@ -141,7 +141,6 @@ final class ConfigApplyServiceTests: XCTestCase {
         let config = RemoteConfig(targets: [
             ConfigTarget(
                 name: .paltabrain,
-                sendMechanism: .amplitude,
                 settings: .init(
                     eventUploadThreshold: 1,
                     eventUploadMaxBatchSize: 1,
@@ -150,7 +149,8 @@ final class ConfigApplyServiceTests: XCTestCase {
                     minTimeBetweenSessionsMillis: 1,
                     trackingSessionEvents: true,
                     realtimeEventTypes: [],
-                    excludedEventTypes: []
+                    excludedEventTypes: [],
+                    sendMechanism: .amplitude
                 ),
                 url: nil
             ),
@@ -193,7 +193,6 @@ final class ConfigApplyServiceTests: XCTestCase {
         let config = RemoteConfig(targets: [
             ConfigTarget(
                 name: .paltabrain,
-                sendMechanism: .paltaBrain,
                 settings: .init(
                     eventUploadThreshold: 1,
                     eventUploadMaxBatchSize: 1,
@@ -202,7 +201,8 @@ final class ConfigApplyServiceTests: XCTestCase {
                     minTimeBetweenSessionsMillis: 1,
                     trackingSessionEvents: true,
                     realtimeEventTypes: [],
-                    excludedEventTypes: []
+                    excludedEventTypes: [],
+                    sendMechanism: .paltaBrain
                 ),
                 url: URL(string: "http://example.com")
             ),
