@@ -19,3 +19,20 @@ extension UserId {
         }
     }
 }
+
+extension UserId: Encodable {
+    private enum CodingKeys: String, CodingKey {
+        case type
+        case value
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        switch self {
+        case .uuid(let uuid):
+            try container.encode(uuid, forKey: .value)
+            try container.encode("merchant-uuid", forKey: .type)
+        }
+    }
+}
