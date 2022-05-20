@@ -434,15 +434,11 @@
 		111158CC27F601FC00A41ADA /* Sources/Core */ = {
 			isa = PBXGroup;
 			children = (
-				111158D527F603D800A41ADA /* HTTPClientImpl.swift */,
-				111158D627F603D800A41ADA /* HTTPRequest.swift */,
-				11115A6727FDB70A00A41ADA /* AnyEncodable.swift */,
-				111159A927F71CDB00A41ADA /* CodableDictionary.swift */,
 				11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */,
-				11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */,
-				11115A9228001FE400A41ADA /* UserDefaults+Codable.swift */,
-				1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */,
-				1154302E282D004A0021ED6F /* ArrayExtension.swift */,
+				11A61ED2283787FE00F88116 /* Networking */,
+				11115A6727FDB70A00A41ADA /* AnyEncodable.swift */,
+				11A61ED32837881600F88116 /* DataStruct */,
+				11A61ED42837881F00F88116 /* Extensions */,
 			);
 			path = Sources/Core;
 			sourceTree = "<group>";
@@ -707,6 +703,34 @@
 				114CF5AC2822679500ADA815 /* PBPurchasePlugin.swift */,
 			);
 			path = PaltaBrain;
+			sourceTree = "<group>";
+		};
+		11A61ED2283787FE00F88116 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				111158D527F603D800A41ADA /* HTTPClientImpl.swift */,
+				111158D627F603D800A41ADA /* HTTPRequest.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		11A61ED32837881600F88116 /* DataStruct */ = {
+			isa = PBXGroup;
+			children = (
+				111159A927F71CDB00A41ADA /* CodableDictionary.swift */,
+				11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */,
+			);
+			path = DataStruct;
+			sourceTree = "<group>";
+		};
+		11A61ED42837881F00F88116 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				11115A9228001FE400A41ADA /* UserDefaults+Codable.swift */,
+				1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */,
+				1154302E282D004A0021ED6F /* ArrayExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		11C60F532818132B004D0185 /* AmplitudeExtension */ = {
