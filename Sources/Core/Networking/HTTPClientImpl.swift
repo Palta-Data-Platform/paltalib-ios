@@ -100,7 +100,7 @@ public final class HTTPClientImpl: HTTPClient {
         }
 
         do {
-            let responseObject = try JSONDecoder().decode(SuccessResponse.self, from: data)
+            let responseObject = try JSONDecoder.default.decode(SuccessResponse.self, from: data)
             return .success(responseObject)
         } catch {
             return .failure(.decodingError(error as? DecodingError))
