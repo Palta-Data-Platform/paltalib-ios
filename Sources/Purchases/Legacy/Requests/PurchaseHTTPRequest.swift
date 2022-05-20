@@ -32,7 +32,7 @@ extension PurchaseHTTPRequest: CodableAutobuildingHTTPRequest {
         ]
     }
 
-    var path: String {
+    var path: String? {
         switch self {
         case .restoreSubscription:
             return "/v1/send-restore-subscription-email"

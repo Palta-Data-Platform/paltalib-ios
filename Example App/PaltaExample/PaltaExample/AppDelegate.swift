@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             paltaAPIKey: "0037c694a811422a88e2a3c5a90510e3"
         )
         
+        PaltaAnalytics.instance.logEvent("app-launch")
+        
         return true
     }
 

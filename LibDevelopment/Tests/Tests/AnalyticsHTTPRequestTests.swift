@@ -31,6 +31,7 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
     func testSendEvent() {
         let events: [Event] = [.mock()]
         let request = AnalyticsHTTPRequest.sendEvents(
+            URL(string: "https://mock.mock/path"),
             SendEventsPayload(apiKey: "mockKey", events: events, serviceInfo: .init(telemetry: nil))
         )
 
@@ -44,6 +45,22 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
 
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
         XCTAssertEqual(urlRequest?.allHTTPHeaderFields, expectedHeaders)
+        XCTAssertEqual(urlRequest?.url, URL(string: "https://mock.mock/path"))
+        XCTAssertEqual(urlRequest?.timeoutInterval, 30)
+        XCTAssertEqual(urlRequest?.cachePolicy, .reloadIgnoringLocalAndRemoteCacheData)
+        XCTAssertNotNil(urlRequest?.httpBody)
+    }
+    
+    func testSendEventWithoutBaseURL() {
+        let events: [Event] = [.mock()]
+        let request = AnalyticsHTTPRequest.sendEvents(
+            nil,
+            SendEventsPayload(apiKey: "mockKey", events: events, serviceInfo: .init(telemetry: nil))
+        )
+
+        let urlRequest = request.urlRequest(headerFields: ["additionalHeader": "additionalHeaderValue"])
+
+        XCTAssertEqual(urlRequest?.httpMethod, "POST")
         XCTAssertEqual(urlRequest?.url, URL(string: "https://api.paltabrain.com/events-v2"))
         XCTAssertEqual(urlRequest?.timeoutInterval, 30)
         XCTAssertEqual(urlRequest?.cachePolicy, .reloadIgnoringLocalAndRemoteCacheData)

@@ -8,7 +8,11 @@
 import Foundation
 import PaltaLibCore
 
-final class EventQueueAssembly {
+final class EventQueueAssembly: FunctionalExtension {
+    var sessionManager: SessionManagerImpl {
+        analyticsCoreAssembly.sessionManager
+    }
+
     private(set) lazy var eventQueueCore = EventQueueCoreImpl(timer: TimerImpl())
 
     private(set) lazy var liveEventQueueCore = EventQueueCoreImpl(timer: ImmediateTimer()).do {

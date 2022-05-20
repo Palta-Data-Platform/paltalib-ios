@@ -87,7 +87,7 @@ final class EventComposerImpl: EventComposer {
 
         let library = Event.Library(
             name: "PaltaBrain",
-            version: "2.1.0" // TODO: Auto update version
+            version: "2.1.3" // TODO: Auto update version
         )
 
         var apiProperties = apiProperties
