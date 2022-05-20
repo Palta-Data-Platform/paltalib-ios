@@ -89,6 +89,8 @@
 		1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4332827E370009DDC41 /* PromoOffer.swift */; };
 		1129A4362827E3C2009DDC41 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4352827E3C2009DDC41 /* Transaction.swift */; };
 		113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */; };
+		113AD63A2837A02E00324D62 /* ServiceMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6382837A01100324D62 /* ServiceMapper.swift */; };
+		113AD63C2837A6DD00324D62 /* ServiceMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63B2837A6DD00324D62 /* ServiceMapperTests.swift */; };
 		114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A72822673100ADA815 /* PurchasePlugin.swift */; };
 		114CF5A92822673500ADA815 /* PaltaPurchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A52822670C00ADA815 /* PaltaPurchases.swift */; };
 		114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */; };
@@ -319,6 +321,8 @@
 		1129A4332827E370009DDC41 /* PromoOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoOffer.swift; sourceTree = "<group>"; };
 		1129A4352827E3C2009DDC41 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsHTTPRequestTests.swift; sourceTree = "<group>"; };
+		113AD6382837A01100324D62 /* ServiceMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMapper.swift; sourceTree = "<group>"; };
+		113AD63B2837A6DD00324D62 /* ServiceMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMapperTests.swift; sourceTree = "<group>"; };
 		114CF5A52822670C00ADA815 /* PaltaPurchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchases.swift; sourceTree = "<group>"; };
 		114CF5A72822673100ADA815 /* PurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePlugin.swift; sourceTree = "<group>"; };
 		114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCPurchasePlugin.swift; sourceTree = "<group>"; };
@@ -482,6 +486,7 @@
 				114CF5A4282266FF00ADA815 /* Public */,
 				114CF5A3282266DE00ADA815 /* Legacy */,
 				11A61EE028378BDE00F88116 /* Data */,
+				113AD63D2837A8F000324D62 /* Logic */,
 			);
 			path = Sources/Purchases;
 			sourceTree = "<group>";
@@ -620,6 +625,7 @@
 				11A61EE128378C0600F88116 /* SubscriptionResponseTests.swift */,
 				11A61EEA2837925600F88116 /* ServiceResponseTests.swift */,
 				113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */,
+				113AD63B2837A6DD00324D62 /* ServiceMapperTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -658,6 +664,14 @@
 				11115A6D27FDB9C000A41ADA /* PurchaseHTTPRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		113AD63D2837A8F000324D62 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				113AD6382837A01100324D62 /* ServiceMapper.swift */,
+			);
+			path = Logic;
 			sourceTree = "<group>";
 		};
 		114CF5A3282266DE00ADA815 /* Legacy */ = {
@@ -1106,6 +1120,7 @@
 				11A61EEC2837925A00F88116 /* ServiceResponseTests.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
 				11A61E842833E0C900F88116 /* AmplitudeExtensionTests.swift in Sources */,
+				113AD63C2837A6DD00324D62 /* ServiceMapperTests.swift in Sources */,
 				11115A8D27FF293800A41ADA /* HTTPClientMock.swift in Sources */,
 				11115A8A27FF27D500A41ADA /* EventSenderTests.swift in Sources */,
 				114D070628075C7C00ACD310 /* RevenueLoggerTests.swift in Sources */,
@@ -1144,6 +1159,7 @@
 			files = (
 				11543025282BEF120021ED6F /* PurchasePluginDelegate.swift in Sources */,
 				1129A4302827E332009DDC41 /* ProductDiscount.swift in Sources */,
+				113AD63A2837A02E00324D62 /* ServiceMapper.swift in Sources */,
 				11115A7127FDBBF500A41ADA /* CancelRequestData.swift in Sources */,
 				114CF5A92822673500ADA815 /* PaltaPurchases.swift in Sources */,
 				1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */,
