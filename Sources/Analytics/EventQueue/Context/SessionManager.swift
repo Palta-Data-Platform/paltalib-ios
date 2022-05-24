@@ -30,14 +30,20 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
 
     var sessionEventLogger: ((String, Int) -> Void)?
 
-    private lazy var session: Session = restoreSession() ?? newSession() {
+    private lazy var session: Session = {
+        lock.lock()
+        defer { lock.unlock() }
+        return restoreSession() ?? newSession()
+    }()
+    {
         didSet {
             saveSession()
         }
     }
 
     private var subscriptionToken: NSObjectProtocol?
-
+    
+    private let lock = NSRecursiveLock()
     private let defaultsKey = "paltaBrainSession"
     private let userDefaults: UserDefaults
     private let notificationCenter: NotificationCenter
@@ -58,12 +64,16 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     func startNewSession() {
+        lock.lock()
         sessionEventLogger?(kAMPSessionEndEvent, session.lastEventTimestamp)
         session = newSession()
+        lock.unlock()
     }
 
     func setSessionId(_ sessionId: Int) {
+        lock.lock()
         session = Session(id: sessionId)
+        lock.unlock()
     }
 
     private func subscribeForNotifications() {
@@ -76,7 +86,9 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     private func onBecomeActive() {
+        lock.lock()
         session = restoreSession() ?? newSession()
+        lock.unlock()
     }
 
     private func newSession() -> Session {
