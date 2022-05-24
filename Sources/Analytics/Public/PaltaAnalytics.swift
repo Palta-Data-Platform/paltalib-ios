@@ -25,6 +25,8 @@ public final class PaltaAnalytics {
             return _amplitudeInstances
         }
     }
+    
+    private let lock = NSRecursiveLock()
 
     private(set) var targets = [Target]()
     
@@ -40,6 +42,7 @@ public final class PaltaAnalytics {
     private var _paltaQueueAssemblies: [EventQueueAssembly] = []
     private var _amplitudeInstances: [Amplitude] = []
 
+    private var isConfigured = false
     private var apiKey: String?
     private var amplitudeApiKey: String?
 
@@ -62,6 +65,12 @@ public final class PaltaAnalytics {
         amplitudeAPIKey: String? = nil,
         paltaAPIKey: String? = nil
     ) {
+        lock.lock()
+        defer { lock.unlock() }
+        
+        guard !isConfigured else { return }
+        
+        self.isConfigured = true
         self.apiKey = paltaAPIKey
         self.amplitudeApiKey = amplitudeAPIKey
 
@@ -87,6 +96,8 @@ public final class PaltaAnalytics {
     }
     
     private func applyRemoteConfig(_ remoteConfig: RemoteConfig) {
+        lock.lock()
+
         let service = ConfigApplyService(
             remoteConfig: remoteConfig,
             apiKey: apiKey,
@@ -100,6 +111,8 @@ public final class PaltaAnalytics {
             paltaAssemblies: &_paltaQueueAssemblies,
             amplitudeInstances: &_amplitudeInstances
         )
+        
+        lock.unlock()
     }
 
     public func setOffline(_ offline: Bool) {
