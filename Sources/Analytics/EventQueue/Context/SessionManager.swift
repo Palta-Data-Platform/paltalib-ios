@@ -30,12 +30,28 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
 
     var sessionEventLogger: ((String, Int) -> Void)?
 
-    private lazy var session: Session = {
-        lock.lock()
-        defer { lock.unlock() }
-        return restoreSession() ?? newSession()
-    }()
-    {
+    private var session: Session {
+        get {
+            lock.lock()
+            defer { lock.unlock() }
+            
+            if let session = _session {
+                return session
+            } else {
+                let session = restoreSession() ?? newSession()
+                _session = session
+                return session
+            }
+        }
+        
+        set {
+            lock.lock()
+            _session = newValue
+            lock.unlock()
+        }
+    }
+
+    private var _session: Session? {
         didSet {
             saveSession()
         }
@@ -108,6 +124,6 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     private func saveSession() {
-        userDefaults.set(session, for: defaultsKey)
+        userDefaults.set(_session, for: defaultsKey)
     }
 }
