@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Service: Decodable {
+struct Service: Decodable, Equatable {
     let quantity: Int
     let actualFrom: Date
     let actualTill: Date

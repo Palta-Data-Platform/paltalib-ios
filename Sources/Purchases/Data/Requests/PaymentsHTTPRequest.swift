@@ -8,7 +8,7 @@
 import Foundation
 import PaltaLibCore
 
-enum PaymentsHTTPRequest {
+enum PaymentsHTTPRequest: Equatable {
     case getServices(UserId)
     case getSubcriptions(UserId, Set<UUID>?)
 }
