@@ -129,9 +129,9 @@ final class ConfigApplyService {
         } else {
             eventQueueAssembly = eventQueueAssemblyProvider.newEventQueueAssembly()
         }
-
-        eventQueueAssembly.apply(target)
+        
         eventQueueAssembly.eventSender.apiToken = apiKey
+        eventQueueAssembly.apply(target)
         
         paltaAssemblies.append(eventQueueAssembly)
     }
