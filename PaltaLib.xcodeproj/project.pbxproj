@@ -88,6 +88,11 @@
 		111A59972840C4840052FCD1 /* SubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59962840C4840052FCD1 /* SubscriptionsService.swift */; };
 		111A599A2840C5A30052FCD1 /* SubscriptionsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59982840C5990052FCD1 /* SubscriptionsServiceTests.swift */; };
 		111A599D2840C60C0052FCD1 /* SubscriptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A599B2840C6000052FCD1 /* SubscriptionMock.swift */; };
+		111A599F2840C8070052FCD1 /* PaidFeaturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A599E2840C8070052FCD1 /* PaidFeaturesService.swift */; };
+		111A59A22840CDBD0052FCD1 /* PaidFeaturesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59A02840CDB80052FCD1 /* PaidFeaturesServiceTests.swift */; };
+		111A59A72840CE410052FCD1 /* FeaturesServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59A32840CDD80052FCD1 /* FeaturesServiceMock.swift */; };
+		111A59A82840CE630052FCD1 /* SubscriptionsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59A52840CE390052FCD1 /* SubscriptionsServiceMock.swift */; };
+		111A59AB2840DCCB0052FCD1 /* FeatureMapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59A92840DCC60052FCD1 /* FeatureMapperMock.swift */; };
 		1129A4302827E332009DDC41 /* ProductDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A42F2827E332009DDC41 /* ProductDiscount.swift */; };
 		1129A4322827E34F009DDC41 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4312827E34F009DDC41 /* Product.swift */; };
 		1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4332827E370009DDC41 /* PromoOffer.swift */; };
@@ -326,6 +331,11 @@
 		111A59962840C4840052FCD1 /* SubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsService.swift; sourceTree = "<group>"; };
 		111A59982840C5990052FCD1 /* SubscriptionsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsServiceTests.swift; sourceTree = "<group>"; };
 		111A599B2840C6000052FCD1 /* SubscriptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionMock.swift; sourceTree = "<group>"; };
+		111A599E2840C8070052FCD1 /* PaidFeaturesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidFeaturesService.swift; sourceTree = "<group>"; };
+		111A59A02840CDB80052FCD1 /* PaidFeaturesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidFeaturesServiceTests.swift; sourceTree = "<group>"; };
+		111A59A32840CDD80052FCD1 /* FeaturesServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesServiceMock.swift; sourceTree = "<group>"; };
+		111A59A52840CE390052FCD1 /* SubscriptionsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsServiceMock.swift; sourceTree = "<group>"; };
+		111A59A92840DCC60052FCD1 /* FeatureMapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureMapperMock.swift; sourceTree = "<group>"; };
 		1129A42F2827E332009DDC41 /* ProductDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDiscount.swift; sourceTree = "<group>"; };
 		1129A4312827E34F009DDC41 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		1129A4332827E370009DDC41 /* PromoOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoOffer.swift; sourceTree = "<group>"; };
@@ -642,6 +652,7 @@
 				113AD63B2837A6DD00324D62 /* FeatureMapperTests.swift */,
 				113AD6412837AC6D00324D62 /* FeaturesServiceTests.swift */,
 				111A59982840C5990052FCD1 /* SubscriptionsServiceTests.swift */,
+				111A59A02840CDB80052FCD1 /* PaidFeaturesServiceTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -670,6 +681,9 @@
 				11A61EAE283515B100F88116 /* EventQueueAssemblyProviderMock.swift */,
 				113AD6432837AD3B00324D62 /* FeatureMock.swift */,
 				111A599B2840C6000052FCD1 /* SubscriptionMock.swift */,
+				111A59A32840CDD80052FCD1 /* FeaturesServiceMock.swift */,
+				111A59A52840CE390052FCD1 /* SubscriptionsServiceMock.swift */,
+				111A59A92840DCC60052FCD1 /* FeatureMapperMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -690,6 +704,7 @@
 				113AD6382837A01100324D62 /* FeatureMapper.swift */,
 				113AD63E2837A9D600324D62 /* FeaturesService.swift */,
 				111A59962840C4840052FCD1 /* SubscriptionsService.swift */,
+				111A599E2840C8070052FCD1 /* PaidFeaturesService.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -1150,8 +1165,10 @@
 				11115A4427FB751E00A41ADA /* EventComposerMock.swift in Sources */,
 				11115A4027FB740B00A41ADA /* EventStorageMock.swift in Sources */,
 				111A599A2840C5A30052FCD1 /* SubscriptionsServiceTests.swift in Sources */,
+				111A59A22840CDBD0052FCD1 /* PaidFeaturesServiceTests.swift in Sources */,
 				111159BF27F773E900A41ADA /* EventMock.swift in Sources */,
 				11115A5327FB7FAD00A41ADA /* EventComposerTests.swift in Sources */,
+				111A59AB2840DCCB0052FCD1 /* FeatureMapperMock.swift in Sources */,
 				11115A6C27FDB88400A41ADA /* AnyEncodableTests.swift in Sources */,
 				11115A3627FB00A500A41ADA /* FileEventStorageTests.swift in Sources */,
 				119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */,
@@ -1169,12 +1186,14 @@
 				11115A4227FB74B000A41ADA /* EventSenderMock.swift in Sources */,
 				11A61EE328378C0D00F88116 /* SubscriptionResponseTests.swift in Sources */,
 				11543034282D02E50021ED6F /* PromoOfferMock.swift in Sources */,
+				111A59A82840CE630052FCD1 /* SubscriptionsServiceMock.swift in Sources */,
 				11543035282D02E80021ED6F /* ProductDiscountMock.swift in Sources */,
 				11543028282BF7B50021ED6F /* PaidFeatureTests.swift in Sources */,
 				11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */,
 				113AD6422837AC6D00324D62 /* FeaturesServiceTests.swift in Sources */,
 				11115A4827FB75CD00A41ADA /* EventQueueCoreMock.swift in Sources */,
 				11A61EB02835161F00F88116 /* EventQueueAssemblyProviderMock.swift in Sources */,
+				111A59A72840CE410052FCD1 /* FeaturesServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1188,6 +1207,7 @@
 				111A5982283FAA520052FCD1 /* PaymentsError.swift in Sources */,
 				11115A7127FDBBF500A41ADA /* CancelRequestData.swift in Sources */,
 				114CF5A92822673500ADA815 /* PaltaPurchases.swift in Sources */,
+				111A599F2840C8070052FCD1 /* PaidFeaturesService.swift in Sources */,
 				113AD6402837AA5B00324D62 /* FeaturesService.swift in Sources */,
 				1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */,
 				11115A7027FDBBF500A41ADA /* RestoreRequestData.swift in Sources */,

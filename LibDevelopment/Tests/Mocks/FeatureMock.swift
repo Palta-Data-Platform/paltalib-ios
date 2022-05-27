@@ -9,13 +9,13 @@ import Foundation
 @testable import PaltaLibPayments
 
 extension Feature {
-    static func mock() -> Feature {
+    static func mock(lastSubscriptionId: UUID? = nil) -> Feature {
         Feature(
             quantity: 1,
             actualFrom: Date(timeIntervalSince1970: 0),
             actualTill: Date(timeIntervalSince1970: 100),
             feature: "sku-mock",
-            lastSubscriptionId: nil
+            lastSubscriptionId: lastSubscriptionId
         )
     }
 }
