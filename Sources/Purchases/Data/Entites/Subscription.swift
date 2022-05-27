@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Subscription: Decodable {
-    enum State: String, Decodable {
+struct Subscription: Decodable, Equatable {
+    enum State: String, Decodable, Equatable {
         case new
         case active
         case cancelled = "canceled"

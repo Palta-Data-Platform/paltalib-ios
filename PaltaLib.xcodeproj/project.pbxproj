@@ -85,6 +85,9 @@
 		11115A9A28003D6900A41ADA /* UserPropertiesKeeperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9828003D6500A41ADA /* UserPropertiesKeeperMock.swift */; };
 		11115A9C280065E300A41ADA /* DeviceInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */; };
 		111A5982283FAA520052FCD1 /* PaymentsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6472837AE8400324D62 /* PaymentsError.swift */; };
+		111A59972840C4840052FCD1 /* SubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59962840C4840052FCD1 /* SubscriptionsService.swift */; };
+		111A599A2840C5A30052FCD1 /* SubscriptionsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59982840C5990052FCD1 /* SubscriptionsServiceTests.swift */; };
+		111A599D2840C60C0052FCD1 /* SubscriptionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A599B2840C6000052FCD1 /* SubscriptionMock.swift */; };
 		1129A4302827E332009DDC41 /* ProductDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A42F2827E332009DDC41 /* ProductDiscount.swift */; };
 		1129A4322827E34F009DDC41 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4312827E34F009DDC41 /* Product.swift */; };
 		1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4332827E370009DDC41 /* PromoOffer.swift */; };
@@ -320,6 +323,9 @@
 		11115A94280023A300A41ADA /* UserPropertiesKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesKeeperTests.swift; sourceTree = "<group>"; };
 		11115A9828003D6500A41ADA /* UserPropertiesKeeperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesKeeperMock.swift; sourceTree = "<group>"; };
 		11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProvider.swift; sourceTree = "<group>"; };
+		111A59962840C4840052FCD1 /* SubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsService.swift; sourceTree = "<group>"; };
+		111A59982840C5990052FCD1 /* SubscriptionsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsServiceTests.swift; sourceTree = "<group>"; };
+		111A599B2840C6000052FCD1 /* SubscriptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionMock.swift; sourceTree = "<group>"; };
 		1129A42F2827E332009DDC41 /* ProductDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDiscount.swift; sourceTree = "<group>"; };
 		1129A4312827E34F009DDC41 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		1129A4332827E370009DDC41 /* PromoOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoOffer.swift; sourceTree = "<group>"; };
@@ -635,6 +641,7 @@
 				113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */,
 				113AD63B2837A6DD00324D62 /* FeatureMapperTests.swift */,
 				113AD6412837AC6D00324D62 /* FeaturesServiceTests.swift */,
+				111A59982840C5990052FCD1 /* SubscriptionsServiceTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -662,6 +669,7 @@
 				11A61E5528338FF400F88116 /* PaidServiceMock.swift */,
 				11A61EAE283515B100F88116 /* EventQueueAssemblyProviderMock.swift */,
 				113AD6432837AD3B00324D62 /* FeatureMock.swift */,
+				111A599B2840C6000052FCD1 /* SubscriptionMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -681,6 +689,7 @@
 			children = (
 				113AD6382837A01100324D62 /* FeatureMapper.swift */,
 				113AD63E2837A9D600324D62 /* FeaturesService.swift */,
+				111A59962840C4840052FCD1 /* SubscriptionsService.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -1120,6 +1129,7 @@
 				113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */,
 				114D06FF2806F62200ACD310 /* IdentityLoggerTests.swift in Sources */,
 				114D070C2808336200ACD310 /* TrackingOptionsProviderTests.swift in Sources */,
+				111A599D2840C60C0052FCD1 /* SubscriptionMock.swift in Sources */,
 				11115A4A27FB7D0000A41ADA /* EventSendErrorTests.swift in Sources */,
 				11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
@@ -1139,6 +1149,7 @@
 				114D070628075C7C00ACD310 /* RevenueLoggerTests.swift in Sources */,
 				11115A4427FB751E00A41ADA /* EventComposerMock.swift in Sources */,
 				11115A4027FB740B00A41ADA /* EventStorageMock.swift in Sources */,
+				111A599A2840C5A30052FCD1 /* SubscriptionsServiceTests.swift in Sources */,
 				111159BF27F773E900A41ADA /* EventMock.swift in Sources */,
 				11115A5327FB7FAD00A41ADA /* EventComposerTests.swift in Sources */,
 				11115A6C27FDB88400A41ADA /* AnyEncodableTests.swift in Sources */,
@@ -1185,6 +1196,7 @@
 				11543015282BCFC80021ED6F /* PaidFeature.swift in Sources */,
 				11A61EDB28378B7500F88116 /* SubscriptionResponse.swift in Sources */,
 				1129A4362827E3C2009DDC41 /* Transaction.swift in Sources */,
+				111A59972840C4840052FCD1 /* SubscriptionsService.swift in Sources */,
 				1129A4322827E34F009DDC41 /* Product.swift in Sources */,
 				114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */,
 				11543017282BD0AE0021ED6F /* PaidFeatures.swift in Sources */,
