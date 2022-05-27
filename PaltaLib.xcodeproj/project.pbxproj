@@ -93,6 +93,8 @@
 		111A59A72840CE410052FCD1 /* FeaturesServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59A32840CDD80052FCD1 /* FeaturesServiceMock.swift */; };
 		111A59A82840CE630052FCD1 /* SubscriptionsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59A52840CE390052FCD1 /* SubscriptionsServiceMock.swift */; };
 		111A59AB2840DCCB0052FCD1 /* FeatureMapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59A92840DCC60052FCD1 /* FeatureMapperMock.swift */; };
+		111A59AD2840E47B0052FCD1 /* WebPaymentsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59AC2840E47B0052FCD1 /* WebPaymentsAssembly.swift */; };
+		111A59B02840E5630052FCD1 /* PaymentsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59AF2840E5630052FCD1 /* PaymentsAssembly.swift */; };
 		1129A4302827E332009DDC41 /* ProductDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A42F2827E332009DDC41 /* ProductDiscount.swift */; };
 		1129A4322827E34F009DDC41 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4312827E34F009DDC41 /* Product.swift */; };
 		1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1129A4332827E370009DDC41 /* PromoOffer.swift */; };
@@ -336,6 +338,8 @@
 		111A59A32840CDD80052FCD1 /* FeaturesServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesServiceMock.swift; sourceTree = "<group>"; };
 		111A59A52840CE390052FCD1 /* SubscriptionsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsServiceMock.swift; sourceTree = "<group>"; };
 		111A59A92840DCC60052FCD1 /* FeatureMapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureMapperMock.swift; sourceTree = "<group>"; };
+		111A59AC2840E47B0052FCD1 /* WebPaymentsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPaymentsAssembly.swift; sourceTree = "<group>"; };
+		111A59AF2840E5630052FCD1 /* PaymentsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsAssembly.swift; sourceTree = "<group>"; };
 		1129A42F2827E332009DDC41 /* ProductDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDiscount.swift; sourceTree = "<group>"; };
 		1129A4312827E34F009DDC41 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		1129A4332827E370009DDC41 /* PromoOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoOffer.swift; sourceTree = "<group>"; };
@@ -698,13 +702,23 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		113AD63D2837A8F000324D62 /* Logic */ = {
+		111A59AE2840E4820052FCD1 /* WebPayments */ = {
 			isa = PBXGroup;
 			children = (
 				113AD6382837A01100324D62 /* FeatureMapper.swift */,
 				113AD63E2837A9D600324D62 /* FeaturesService.swift */,
 				111A59962840C4840052FCD1 /* SubscriptionsService.swift */,
 				111A599E2840C8070052FCD1 /* PaidFeaturesService.swift */,
+				111A59AC2840E47B0052FCD1 /* WebPaymentsAssembly.swift */,
+			);
+			path = WebPayments;
+			sourceTree = "<group>";
+		};
+		113AD63D2837A8F000324D62 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				111A59AF2840E5630052FCD1 /* PaymentsAssembly.swift */,
+				111A59AE2840E4820052FCD1 /* WebPayments */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -1212,6 +1226,8 @@
 				1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */,
 				11115A7027FDBBF500A41ADA /* RestoreRequestData.swift in Sources */,
 				1154301D282BDD2B0021ED6F /* StoreProduct+Product.swift in Sources */,
+				111A59AD2840E47B0052FCD1 /* WebPaymentsAssembly.swift in Sources */,
+				111A59B02840E5630052FCD1 /* PaymentsAssembly.swift in Sources */,
 				1154301B282BD9A90021ED6F /* PurchasePluginResult.swift in Sources */,
 				11543015282BCFC80021ED6F /* PaidFeature.swift in Sources */,
 				11A61EDB28378B7500F88116 /* SubscriptionResponse.swift in Sources */,
