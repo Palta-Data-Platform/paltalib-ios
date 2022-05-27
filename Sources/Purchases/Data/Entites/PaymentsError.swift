@@ -10,6 +10,7 @@ import PaltaLibCore
 
 enum PaymentsError: Error {
     case invalidKey
+    case noUserId
     case serverError(Int)
     case sdkError(SDKError)
     case networkError(URLError)
@@ -63,6 +64,8 @@ extension PaymentsError {
         switch self {
         case .invalidKey:
             print("PaltaLib: Payments: Invalid API key error.")
+        case .noUserId:
+            print("PaltaLib: Payments: Log in user first.")
         case .serverError:
             print("PaltaLib: Payments: Server error. Please try again later.")
         case .sdkError(let error):

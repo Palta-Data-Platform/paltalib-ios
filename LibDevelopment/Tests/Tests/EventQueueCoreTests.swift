@@ -101,14 +101,14 @@ final class EventQueueCoreTests: XCTestCase {
         XCTAssertNil(timerMock.passedInterval)
 
         timerMock.fire()
-        wait(for: [sendIsntCalled], timeout: 0.05)
+        wait(for: [sendIsntCalled], timeout: 0.1)
 
         queue.config = .init(maxBatchSize: 2, uploadInterval: 3, uploadThreshold: 3, maxEvents: 3, maxConcurrentOperations: .max)
 
         XCTAssertEqual(timerMock.passedInterval, 3)
 
         timerMock.fire()
-        wait(for: [sendIsCalled, removeIsntCalled], timeout: 0.05)
+        wait(for: [sendIsCalled, removeIsntCalled], timeout: 0.1)
 
         XCTAssertEqual(sentEvents?.count, 1)
     }
@@ -119,10 +119,10 @@ final class EventQueueCoreTests: XCTestCase {
 
         XCTAssertEqual(timerMock.passedInterval, 3)
 
-        wait(for: [sendIsntCalled], timeout: 0.05)
+        wait(for: [sendIsntCalled], timeout: 0.1)
 
         timerMock.fire()
-        wait(for: [sendIsCalled, removeIsntCalled], timeout: 0.05)
+        wait(for: [sendIsCalled, removeIsntCalled], timeout: 0.1)
 
         XCTAssertEqual(sentEvents?.count, 1)
         XCTAssertEqual(telemetry?.batchLoad, 1 / 2)
@@ -140,10 +140,10 @@ final class EventQueueCoreTests: XCTestCase {
         queue.addEvent(.mock())
         XCTAssertNil(timerMock.passedInterval)
 
-        wait(for: [sendIsntCalled], timeout: 0.05)
+        wait(for: [sendIsntCalled], timeout: 0.1)
 
         timerMock.fire()
-        wait(for: [sendIsCalled, removeIsntCalled], timeout: 0.05)
+        wait(for: [sendIsCalled, removeIsntCalled], timeout: 0.1)
 
         XCTAssertEqual(sentEvents?.count, 2)
         XCTAssertEqual(telemetry?.batchLoad, 2 / 3)
@@ -158,13 +158,13 @@ final class EventQueueCoreTests: XCTestCase {
         queue.addEvent(.mock())
         queue.addEvent(.mock())
 
-        wait(for: [sendIsCalled], timeout: 0.05)
+        wait(for: [sendIsCalled], timeout: 0.1)
 
         XCTAssertEqual(sentEvents?.count, 2)
 
         _sendIsCalled = nil
         timerMock.fire()
-        wait(for: [sendIsCalled, removeIsntCalled], timeout: 0.05)
+        wait(for: [sendIsCalled, removeIsntCalled], timeout: 0.1)
         XCTAssertEqual(sentEvents?.count, 1)
     }
 
@@ -178,7 +178,7 @@ final class EventQueueCoreTests: XCTestCase {
         queue.addEvent(.mock())
 
         sendIsCalled.expectedFulfillmentCount = 2
-        wait(for: [sendIsCalled], timeout: 0.05)
+        wait(for: [sendIsCalled], timeout: 0.1)
 
         XCTAssertEqual(sentEvents?.count, 2)
         XCTAssertEqual(telemetry?.batchLoad, 2 / 3)
@@ -197,7 +197,7 @@ final class EventQueueCoreTests: XCTestCase {
         queue.addEvent(.mock())
 
         sendIsCalled.expectedFulfillmentCount = 2
-        wait(for: [sendIsCalled], timeout: 0.05)
+        wait(for: [sendIsCalled], timeout: 0.1)
 
         XCTAssertEqual(sentEvents?.count, 3)
     }
@@ -211,7 +211,7 @@ final class EventQueueCoreTests: XCTestCase {
 
         XCTAssertEqual(timerMock.passedInterval, 8)
 
-        wait(for: [sendIsntCalled], timeout: 0.05)
+        wait(for: [sendIsntCalled], timeout: 0.1)
 
         timerMock.passedInterval = nil
         queue.addEvents(
@@ -220,7 +220,7 @@ final class EventQueueCoreTests: XCTestCase {
         XCTAssertNil(timerMock.passedInterval)
 
         timerMock.fire()
-        wait(for: [sendIsCalled], timeout: 0.05)
+        wait(for: [sendIsCalled], timeout: 0.1)
 
         XCTAssertEqual(sentEvents?.count, 13)
     }
@@ -232,13 +232,13 @@ final class EventQueueCoreTests: XCTestCase {
             Array(repeating: .mock(), count: 9)
         )
 
-        wait(for: [sendIsntCalled], timeout: 0.05)
+        wait(for: [sendIsntCalled], timeout: 0.1)
 
         queue.addEvents(
             Array(repeating: .mock(), count: 3)
         )
 
-        wait(for: [sendIsCalled], timeout: 0.05)
+        wait(for: [sendIsCalled], timeout: 0.1)
 
         XCTAssertEqual(sentEvents?.count, 12)
     }
@@ -250,7 +250,7 @@ final class EventQueueCoreTests: XCTestCase {
             (0...9).map { Event.mock(timestamp: $0) }
         )
 
-        wait(for: [removeIsCalled], timeout: 0.05)
+        wait(for: [removeIsCalled], timeout: 0.1)
 
         let removedTimestamps = Set(removedEvents?.map { $0.timestamp } ?? [])
         let expectedRemovedTimestamps = Set(0...4)
@@ -259,7 +259,7 @@ final class EventQueueCoreTests: XCTestCase {
 
         timerMock.fire()
 
-        wait(for: [sendIsCalled], timeout: 0.05)
+        wait(for: [sendIsCalled], timeout: 0.1)
 
         XCTAssertEqual(telemetry?.batchLoad, 5 / 300)
         XCTAssertEqual(telemetry?.eventsInBatch, 5)
@@ -275,8 +275,8 @@ final class EventQueueCoreTests: XCTestCase {
             Array(repeating: .mock(), count: 6)
         )
 
-        wait(for: [sendIsCalled], timeout: 0.05)
-        wait(for: [sendIsntCalled], timeout: 0.05)
+        wait(for: [sendIsCalled], timeout: 0.1)
+        wait(for: [sendIsntCalled], timeout: 0.1)
 
         _sendIsCalled = nil
         _sendIsntCalled = nil
@@ -284,7 +284,7 @@ final class EventQueueCoreTests: XCTestCase {
         XCTAssertEqual(completionHandlers.count, 2)
         completionHandlers.forEach { $0() }
 
-        wait(for: [sendIsCalled], timeout: 0.05)
+        wait(for: [sendIsCalled], timeout: 0.1)
     }
 
     func testLongUploadWithTimer() {
@@ -296,8 +296,8 @@ final class EventQueueCoreTests: XCTestCase {
             Array(repeating: .mock(), count: 5)
         )
 
-        wait(for: [sendIsCalled], timeout: 0.05)
-        wait(for: [sendIsntCalled], timeout: 0.05)
+        wait(for: [sendIsCalled], timeout: 0.1)
+        wait(for: [sendIsntCalled], timeout: 0.1)
 
         timerMock.fire()
 
@@ -307,6 +307,6 @@ final class EventQueueCoreTests: XCTestCase {
         XCTAssertEqual(completionHandlers.count, 2)
         completionHandlers.forEach { $0() }
 
-        wait(for: [sendIsCalled], timeout: 0.05)
+        wait(for: [sendIsCalled], timeout: 0.1)
     }
 }
