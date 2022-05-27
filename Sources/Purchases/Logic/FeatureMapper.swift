@@ -1,5 +1,5 @@
 //
-//  ServiceMapper.swift
+//  FeatureMapper.swift
 //  PaltaLibPayments
 //
 //  Created by Vyacheslav Beltyukov on 20/05/2022.
@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol ServiceMapper {
-    func map(_ services: [Service], and subscriptions: [Subscription]) -> [PaidService]
+protocol FeatureMapper {
+    func map(_ features: [Feature], and subscriptions: [Subscription]) -> [PaidFeature]
 }
 
-final class ServiceMapperImpl: ServiceMapper {
-    func map(_ services: [Service], and subscriptions: [Subscription]) -> [PaidService] {
+final class FeatureMapperImpl: FeatureMapper {
+    func map(_ features: [Feature], and subscriptions: [Subscription]) -> [PaidFeature] {
         let subscriptionById = Dictionary
             .init(grouping: subscriptions, by: { $0.id })
             .compactMapValues { $0.first }
         
-        return services.map {
-            PaidService(
+        return features.map {
+            PaidFeature(
                 name: $0.sku,
                 productIdentifier: nil,
                 paymentType: $0.paymentType(subscriptions: subscriptionById),
@@ -32,8 +32,8 @@ final class ServiceMapperImpl: ServiceMapper {
     }
 }
 
-private extension Service {
-    func paymentType(subscriptions: [UUID: Subscription]) -> PaidService.PaymentType {
+private extension Feature {
+    func paymentType(subscriptions: [UUID: Subscription]) -> PaidFeature.PaymentType {
         return .oneOff
     }
     

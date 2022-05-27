@@ -25,12 +25,12 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         purchases.logOut(completion: nil)
     }
     
-    public func getPaidServices(_ completion: @escaping (Result<PaidServices, Error>) -> Void) {
+    public func getPaidFeatures(_ completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
         purchases.getCustomerInfo { customerInfo, error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success(customerInfo?.paidServices ?? PaidServices()))
+                completion(.success(customerInfo?.paidFeatures ?? PaidFeatures()))
             }
         }
     }
@@ -124,7 +124,7 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
                     .success(
                         SuccessfulPurchase(
                             transaction: .inApp,
-                            paidServices: PaidServices()
+                            paidFeatures: PaidFeatures()
                         )
                     )
                 )

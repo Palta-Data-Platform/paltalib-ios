@@ -1,5 +1,5 @@
 //
-//  ServiceResponseTests.swift
+//  FeatureResponseTests.swift
 //  PaltaLibTests
 //
 //  Created by Vyacheslav Beltyukov on 20/05/2022.
@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 @testable import PaltaLibPayments
 
-final class ServiceResponseTests: XCTestCase {
+final class FeatureResponseTests: XCTestCase {
     func testDecode() throws {
         let data = """
 {
@@ -25,18 +25,18 @@ final class ServiceResponseTests: XCTestCase {
 }
 """.data(using: .utf8)!
 
-        let response = try JSONDecoder.default.decode(ServiceResponse.self, from: data)
+        let response = try JSONDecoder.default.decode(FeaturesResponse.self, from: data)
         
-        XCTAssertEqual(response.services.first?.quantity, 234)
-        XCTAssertEqual(response.services.first?.sku, "sku-1")
+        XCTAssertEqual(response.features.first?.quantity, 234)
+        XCTAssertEqual(response.features.first?.sku, "sku-1")
         
         XCTAssertEqual(
-            response.services.first?.actualFrom,
+            response.features.first?.actualFrom,
             Date(timeIntervalSince1970: 1653034925.217)
         )
         
         XCTAssertEqual(
-            response.services.first?.actualTill,
+            response.features.first?.actualTill,
             Date(timeIntervalSince1970: 1655713325.217)
         )
     }

@@ -46,10 +46,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         XCTAssert(payloadString!.contains("\"onlyIds\":"))
     }
     
-    func testGetServices() {
+    func testGetFeatures() {
         let userIdString = "8900f862-0cc4-4d0a-aa12-5b76ea12c574"
         
-        let request = PaymentsHTTPRequest.getServices(
+        let request = PaymentsHTTPRequest.getFeatures(
             .uuid(UUID(uuidString: userIdString)!)
         )
         

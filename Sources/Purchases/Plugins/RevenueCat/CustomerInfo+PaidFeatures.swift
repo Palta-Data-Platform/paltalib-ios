@@ -1,5 +1,5 @@
 //
-//  CustomerInfo+PaidServices.swift
+//  CustomerInfo+PaidFeatures.swift
 //  PaltaLibPayments
 //
 //  Created by Vyacheslav Beltyukov on 13/05/2022.
@@ -9,15 +9,15 @@ import Foundation
 import RevenueCat
 
 extension CustomerInfo {
-    var paidServices: PaidServices {
-        PaidServices(
-            services: subscriptionServices + nonSubscriptionServices
+    var paidFeatures: PaidFeatures {
+        PaidFeatures(
+            features: subscriptionFeatures + nonSubscriptionFeatures
         )
     }
     
-    private var subscriptionServices: [PaidService] {
+    private var subscriptionFeatures: [PaidFeature] {
         entitlements.all.values.map {
-            PaidService(
+            PaidFeature(
                 name: $0.identifier,
                 productIdentifier: $0.productIdentifier,
                 paymentType: .subscription,
@@ -30,9 +30,9 @@ extension CustomerInfo {
         }
     }
     
-    private var nonSubscriptionServices: [PaidService] {
+    private var nonSubscriptionFeatures: [PaidFeature] {
         nonSubscriptionTransactions.map {
-            PaidService(
+            PaidFeature(
                 name: $0.productIdentifier,
                 productIdentifier: $0.productIdentifier,
                 paymentType: .oneOff,
@@ -47,7 +47,7 @@ extension CustomerInfo {
 }
 
 private extension Store {
-    var transactionType: PaidService.TransactionType {
+    var transactionType: PaidFeature.TransactionType {
         switch self {
         case .appStore, .macAppStore:
             return .appStore

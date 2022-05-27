@@ -13,7 +13,7 @@ public protocol PurchasePlugin: AnyObject {
     func logIn(appUserId: UserId)
     func logOut()
     
-    func getPaidServices(_ completion: @escaping (Result<PaidServices, Error>) -> Void)
+    func getPaidFeatures(_ completion: @escaping (Result<PaidFeatures, Error>) -> Void)
     
     func getProducts(
         with productIdentifiers: [String],

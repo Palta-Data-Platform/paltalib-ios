@@ -1,5 +1,5 @@
 //
-//  ServicesServiceTests.swift
+//  FeaturesServiceTests.swift
 //  PaltaLibTests
 //
 //  Created by Vyacheslav Beltyukov on 20/05/2022.
@@ -9,8 +9,8 @@ import Foundation
 import XCTest
 @testable import PaltaLibPayments
 
-final class ServicesServiceTests: XCTestCase {
-    var service: ServicesServiceImpl!
+final class FeaturesServiceTests: XCTestCase {
+    var service: FeaturesServiceImpl!
     var httpMock: HTTPClientMock!
     
     override func setUpWithError() throws {
@@ -22,44 +22,44 @@ final class ServicesServiceTests: XCTestCase {
     
     func testSuccess() {
         let uuid = UUID()
-        let expectedServices = [Service.mock()]
+        let expectedFeatures = [Feature.mock()]
         let completionCalled = expectation(description: "Success called")
         
-        httpMock.result = .success(ServiceResponse(services: expectedServices))
+        httpMock.result = .success(FeaturesResponse(features: expectedFeatures))
         
-        service.getServices(for: .uuid(uuid)) { result in
-            guard case let .success(services) = result else {
+        service.getFeatures(for: .uuid(uuid)) { result in
+            guard case let .success(features) = result else {
                 return
             }
             
-            XCTAssertEqual(services, expectedServices)
+            XCTAssertEqual(features, expectedFeatures)
             
             completionCalled.fulfill()
         }
         
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest), .getServices(.uuid(uuid)))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest), .getFeatures(.uuid(uuid)))
         
         wait(for: [completionCalled], timeout: 0.1)
     }
     
     func testFail() {
         let uuid = UUID()
-        let expectedServices = [Service.mock()]
+        let expectedFeatures = [Feature.mock()]
         let completionCalled = expectation(description: "Fail called")
         
-        httpMock.result = .success(ServiceResponse(services: expectedServices))
+        httpMock.result = .success(FeaturesResponse(features: expectedFeatures))
         
-        service.getServices(for: .uuid(uuid)) { result in
-            guard case let .success(services) = result else {
+        service.getFeatures(for: .uuid(uuid)) { result in
+            guard case let .success(features) = result else {
                 return
             }
             
-            XCTAssertEqual(services, expectedServices)
+            XCTAssertEqual(features, expectedFeatures)
             
             completionCalled.fulfill()
         }
         
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest), .getServices(.uuid(uuid)))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest), .getFeatures(.uuid(uuid)))
         
         wait(for: [completionCalled], timeout: 0.1)
     }

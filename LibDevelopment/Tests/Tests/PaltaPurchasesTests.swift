@@ -48,76 +48,76 @@ final class PaltaPurchasesTests: XCTestCase {
         }
     }
     
-    func testGetPaidServicesSuccess() {
-        let pluginServices = [
-            PaidServices(
-                services: [
-                    PaidService(name: "Service 1", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
-                    PaidService(name: "Service 2", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
-                    PaidService(name: "Service 3", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
+    func testGetPaidFeaturesSuccess() {
+        let pluginFeatures = [
+            PaidFeatures(
+                features: [
+                    PaidFeature(name: "Feature 1", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 3", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
                 ]
             ),
-            PaidServices(),
-            PaidServices(
-                services: [
-                    PaidService(name: "Service 6", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
-                    PaidService(name: "Service 2", startDate: Date(timeIntervalSince1970: 88), endDate: nil),
-                    PaidService(name: "Service 5", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
+            PaidFeatures(),
+            PaidFeatures(
+                features: [
+                    PaidFeature(name: "Feature 6", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 88), endDate: nil),
+                    PaidFeature(name: "Feature 5", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
                 ]
             )
         ]
         
-        assert(mockPlugins.count == pluginServices.count)
+        assert(mockPlugins.count == pluginFeatures.count)
         
-        let expectedServices = PaidServices(
-            services: [
-                PaidService(name: "Service 1", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
-                PaidService(name: "Service 2", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
-                PaidService(name: "Service 3", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
-                PaidService(name: "Service 6", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
-                PaidService(name: "Service 2", startDate: Date(timeIntervalSince1970: 88), endDate: nil),
-                PaidService(name: "Service 5", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
+        let expectedFeatures = PaidFeatures(
+            features: [
+                PaidFeature(name: "Feature 1", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 3", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 6", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 88), endDate: nil),
+                PaidFeature(name: "Feature 5", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
             ]
         )
         
-        let completionCalled = expectation(description: "Get paid services completed successfully")
+        let completionCalled = expectation(description: "Get paid features completed successfully")
         
-        instance.getPaidServices { result in
-            guard case .success(let services) = result else {
+        instance.getPaidFeatures { result in
+            guard case .success(let features) = result else {
                 return
             }
             
-            XCTAssertEqual(services, expectedServices)
+            XCTAssertEqual(features, expectedFeatures)
             
             completionCalled.fulfill()
         }
         
         checkPlugins {
-            $0.getPaidServicesCompletion != nil
+            $0.getPaidFeaturesCompletion != nil
         }
         
         DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { iteration in
-            mockPlugins[iteration].getPaidServicesCompletion?(.success(pluginServices[iteration]))
+            mockPlugins[iteration].getPaidFeaturesCompletion?(.success(pluginFeatures[iteration]))
         }
         
         wait(for: [completionCalled], timeout: 0.1)
     }
     
-    func testGetPaidServicesOneError() {
-        let pluginServices = [
-            PaidServices(
-                services: [
-                    PaidService(name: "Service 1", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
-                    PaidService(name: "Service 2", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
-                    PaidService(name: "Service 3", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
+    func testGetPaidFeaturesOneError() {
+        let pluginFeatures = [
+            PaidFeatures(
+                features: [
+                    PaidFeature(name: "Feature 1", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 3", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
                 ]
             ),
-            PaidServices()
+            PaidFeatures()
         ]
         
-        let completionCalled = expectation(description: "Get paid services completed with fail 1")
+        let completionCalled = expectation(description: "Get paid features completed with fail 1")
         
-        instance.getPaidServices { result in
+        instance.getPaidFeatures { result in
             guard case .failure = result else {
                 return
             }
@@ -126,13 +126,13 @@ final class PaltaPurchasesTests: XCTestCase {
         }
         
         checkPlugins {
-            $0.getPaidServicesCompletion != nil
+            $0.getPaidFeaturesCompletion != nil
         }
         
         DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { iteration in
-            mockPlugins[iteration].getPaidServicesCompletion?(
-                pluginServices.indices.contains(iteration)
-                ? .success(pluginServices[iteration])
+            mockPlugins[iteration].getPaidFeaturesCompletion?(
+                pluginFeatures.indices.contains(iteration)
+                ? .success(pluginFeatures[iteration])
                 : .failure(NSError(domain: "", code: 0))
             )
         }
@@ -140,10 +140,10 @@ final class PaltaPurchasesTests: XCTestCase {
         wait(for: [completionCalled], timeout: 0.1)
     }
     
-    func testGetPaidServicesAllErrors() {
-        let completionCalled = expectation(description: "Get paid services completed with fail 2")
+    func testGetPaidFeaturesAllErrors() {
+        let completionCalled = expectation(description: "Get paid features completed with fail 2")
         
-        instance.getPaidServices { result in
+        instance.getPaidFeatures { result in
             guard case .failure = result else {
                 return
             }
@@ -152,11 +152,11 @@ final class PaltaPurchasesTests: XCTestCase {
         }
         
         checkPlugins {
-            $0.getPaidServicesCompletion != nil
+            $0.getPaidFeaturesCompletion != nil
         }
         
         DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { iteration in
-            mockPlugins[iteration].getPaidServicesCompletion?(.failure(NSError(domain: "", code: 0)))
+            mockPlugins[iteration].getPaidFeaturesCompletion?(.failure(NSError(domain: "", code: 0)))
         }
         
         wait(for: [completionCalled], timeout: 0.1)
@@ -268,7 +268,7 @@ final class PaltaPurchasesTests: XCTestCase {
         XCTAssertNil(mockPlugins[2].purchaseCompletion)
         
         mockPlugins[0].purchaseCompletion?(
-            .success(SuccessfulPurchase(transaction: .inApp, paidServices: PaidServices()))
+            .success(SuccessfulPurchase(transaction: .inApp, paidFeatures: PaidFeatures()))
         )
         
         wait(for: [completionCalled], timeout: 0.1)
@@ -316,7 +316,7 @@ final class PaltaPurchasesTests: XCTestCase {
         XCTAssertNotNil(mockPlugins[2].purchaseCompletion)
         
         mockPlugins[2].purchaseCompletion?(
-            .success(SuccessfulPurchase(transaction: .web, paidServices: PaidServices()))
+            .success(SuccessfulPurchase(transaction: .web, paidFeatures: PaidFeatures()))
         )
         
         wait(for: [completionCalled], timeout: 0.1)

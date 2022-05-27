@@ -1,5 +1,5 @@
 //
-//  PaidService.swift
+//  PaidFeature.swift
 //  PaltaLibPayments
 //
 //  Created by Vyacheslav Beltyukov on 11/05/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PaidService: Hashable {
+public struct PaidFeature: Hashable {
     public enum PaymentType {
         case subscription
         case oneOff
@@ -31,7 +31,7 @@ public struct PaidService: Hashable {
     public let cancellationDate: Date?
 }
 
-extension PaidService {
+extension PaidFeature {
     public var isLifetime: Bool {
         endDate == nil
     }

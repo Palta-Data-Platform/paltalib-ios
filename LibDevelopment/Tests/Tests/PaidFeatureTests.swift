@@ -1,5 +1,5 @@
 //
-//  PaidServiceTests.swift
+//  PaidFeatureTests.swift
 //  PaltaLibPayments
 //
 //  Created by Vyacheslav Beltyukov on 11/05/2022.
@@ -8,55 +8,55 @@
 import XCTest
 @testable import PaltaLibPayments
 
-final class PaidServiceTests: XCTestCase {
+final class PaidFeatureTests: XCTestCase {
     func testLifetime() {
-        let paidService = PaidService(
+        let paidFeature = PaidFeature(
             name: "A name",
             startDate: Date(),
             endDate: nil
         )
         
-        XCTAssert(paidService.isLifetime)
-        XCTAssert(paidService.isActive)
+        XCTAssert(paidFeature.isLifetime)
+        XCTAssert(paidFeature.isActive)
     }
     
     func testNotLifetime() {
-        let paidService = PaidService(
+        let paidFeature = PaidFeature(
             name: "A name",
             startDate: Date(),
             endDate: Date(timeIntervalSinceNow: 12)
         )
         
-        XCTAssertFalse(paidService.isLifetime)
+        XCTAssertFalse(paidFeature.isLifetime)
     }
     
     func testBeforeBegin() {
-        let paidService = PaidService(
+        let paidFeature = PaidFeature(
             name: "A name",
             startDate: Date(timeIntervalSinceNow: 5),
             endDate: Date(timeIntervalSinceNow: 12)
         )
         
-        XCTAssertFalse(paidService.isActive)
+        XCTAssertFalse(paidFeature.isActive)
     }
     
     func testActive() {
-        let paidService = PaidService(
+        let paidFeature = PaidFeature(
             name: "A name",
             startDate: Date(timeIntervalSinceNow: -5),
             endDate: Date(timeIntervalSinceNow: 12)
         )
         
-        XCTAssert(paidService.isActive)
+        XCTAssert(paidFeature.isActive)
     }
     
     func testAfterEnd() {
-        let paidService = PaidService(
+        let paidFeature = PaidFeature(
             name: "A name",
             startDate: Date(timeIntervalSinceNow: -50),
             endDate: Date(timeIntervalSinceNow: -12)
         )
         
-        XCTAssertFalse(paidService.isActive)
+        XCTAssertFalse(paidFeature.isActive)
     }
 }

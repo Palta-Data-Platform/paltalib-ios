@@ -1,5 +1,5 @@
 //
-//  Service.swift
+//  Feature.swift
 //  PaltaLibPayments
 //
 //  Created by Vyacheslav Beltyukov on 20/05/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Service: Decodable, Equatable {
+struct Feature: Decodable, Equatable {
     let quantity: Int
     let actualFrom: Date
     let actualTill: Date

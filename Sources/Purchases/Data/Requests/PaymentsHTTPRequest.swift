@@ -9,15 +9,15 @@ import Foundation
 import PaltaLibCore
 
 enum PaymentsHTTPRequest: Equatable {
-    case getServices(UserId)
+    case getFeatures(UserId)
     case getSubcriptions(UserId, Set<UUID>?)
 }
 
 extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
     var bodyObject: AnyEncodable? {
         switch self {
-        case let .getServices(userId):
-            return GetServicesRequestPayload(customerId: userId).typeErased
+        case let .getFeatures(userId):
+            return GetFeaturesRequestPayload(customerId: userId).typeErased
             
         case let .getSubcriptions(userId, subscriptionIds):
             return GetSubscriptionsRequestPayload(customerId: userId, onlyIds: subscriptionIds).typeErased
@@ -26,7 +26,7 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
     
     var method: HTTPMethod {
         switch self {
-        case .getSubcriptions, .getServices:
+        case .getSubcriptions, .getFeatures:
             return .post
         }
     }
@@ -37,7 +37,7 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
     
     var path: String? {
         switch self {
-        case .getServices:
+        case .getFeatures:
             return "/service-provisioner/get-services"
             
         case .getSubcriptions:

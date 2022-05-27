@@ -9,10 +9,10 @@ import Foundation
 
 public struct SuccessfulPurchase {
     public let transaction: Transaction
-    public let paidServices: PaidServices
+    public let paidFeatures: PaidFeatures
     
-    public init(transaction: Transaction, paidServices: PaidServices) {
+    public init(transaction: Transaction, paidFeatures: PaidFeatures) {
         self.transaction = transaction
-        self.paidServices = paidServices
+        self.paidFeatures = paidFeatures
     }
 }

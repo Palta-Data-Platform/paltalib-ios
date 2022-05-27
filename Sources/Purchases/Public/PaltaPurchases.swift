@@ -40,21 +40,21 @@ public final class PaltaPurchases {
         }
     }
     
-    public func getPaidServices(_ completion: @escaping (Result<PaidServices, Error>) -> Void) {
+    public func getPaidFeatures(_ completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
         checkSetupFinished()
         
-        var services = PaidServices()
+        var features = PaidFeatures()
         var errors: [Error] = []
         let dispatchGroup = DispatchGroup()
         let lock = NSRecursiveLock()
         
         plugins.forEach { plugin in
             dispatchGroup.enter()
-            plugin.getPaidServices { result in
+            plugin.getPaidFeatures { result in
                 lock.lock()
                 switch result {
-                case .success(let pluginServices):
-                    services.merge(with: pluginServices)
+                case .success(let pluginFeatures):
+                    features.merge(with: pluginFeatures)
                     
                 case .failure(let error):
                     errors.append(error)
@@ -68,7 +68,7 @@ public final class PaltaPurchases {
             if let error = errors.first {
                 completion(.failure(error))
             } else {
-                completion(.success(services))
+                completion(.success(features))
             }
         }
     }
