@@ -14,7 +14,8 @@ extension Feature {
             quantity: 1,
             actualFrom: Date(timeIntervalSince1970: 0),
             actualTill: Date(timeIntervalSince1970: 100),
-            sku: "sku-mock"
+            feature: "sku-mock",
+            lastSubscriptionId: nil
         )
     }
 }

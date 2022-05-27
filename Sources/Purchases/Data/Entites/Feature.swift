@@ -11,5 +11,6 @@ struct Feature: Decodable, Equatable {
     let quantity: Int
     let actualFrom: Date
     let actualTill: Date
-    let sku: String
+    let feature: String
+    let lastSubscriptionId: UUID?
 }

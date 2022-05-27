@@ -22,7 +22,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://a.com/subscriptions-tracker/get-subscriptions"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "https://payments.dev.paltabrain.com/subscriptions-tracker/get-subscriptions"))
         XCTAssertEqual(
             payloadString,
             "{\"customerId\":{\"value\":\"\(userIdString.uppercased())\",\"type\":\"merchant-uuid\"}}"
@@ -57,7 +57,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://a.com/service-provisioner/get-services"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "https://payments.dev.paltabrain.com/feature-provisioner/get-features"))
         XCTAssertEqual(
             payloadString,
             "{\"customerId\":{\"value\":\"\(userIdString.uppercased())\",\"type\":\"merchant-uuid\"}}"

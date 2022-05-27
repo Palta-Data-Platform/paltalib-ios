@@ -19,7 +19,7 @@ final class FeatureMapperImpl: FeatureMapper {
         
         return features.map {
             PaidFeature(
-                name: $0.sku,
+                name: $0.feature,
                 productIdentifier: nil,
                 paymentType: $0.paymentType(subscriptions: subscriptionById),
                 transactionType: .web,

@@ -32,13 +32,13 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
     }
     
     var baseURL: URL {
-        URL(string: "https://example.com")!
+        URL(string: "https://payments.dev.paltabrain.com")!
     }
     
     var path: String? {
         switch self {
         case .getFeatures:
-            return "/service-provisioner/get-services"
+            return "/feature-provisioner/get-features"
             
         case .getSubcriptions:
             return "/subscriptions-tracker/get-subscriptions"

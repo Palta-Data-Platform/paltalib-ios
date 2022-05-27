@@ -24,7 +24,8 @@ final class FeatureMapperTests: XCTestCase {
                 quantity: 1,
                 actualFrom: Date(timeIntervalSince1970: 0),
                 actualTill: Date(timeIntervalSince1970: 100),
-                sku: "sku1"
+                feature: "sku1",
+                lastSubscriptionId: nil
             )
         ]
         
@@ -48,7 +49,8 @@ final class FeatureMapperTests: XCTestCase {
                 quantity: 1,
                 actualFrom: Date(timeIntervalSince1970: 0),
                 actualTill: Date(timeIntervalSince1970: 100),
-                sku: "sku1"
+                feature: "sku1",
+                lastSubscriptionId: subscriptionId
             )
         ]
         
@@ -77,7 +79,8 @@ final class FeatureMapperTests: XCTestCase {
                 quantity: 1,
                 actualFrom: Date(timeIntervalSince1970: 0),
                 actualTill: Date(timeIntervalSince1970: 100),
-                sku: "sku1"
+                feature: "sku1",
+                lastSubscriptionId: subscriptionId
             )
         ]
         
