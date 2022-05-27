@@ -34,14 +34,14 @@ final class FeatureMapperImpl: FeatureMapper {
 
 private extension Feature {
     func paymentType(subscriptions: [UUID: Subscription]) -> PaidFeature.PaymentType {
-        return .oneOff
+        lastSubscriptionId.flatMap { subscriptions[$0] } != nil ? .subscription : .oneOff
     }
     
     func isTrial(subscriptions: [UUID: Subscription]) -> Bool {
-        false
+        lastSubscriptionId.flatMap { subscriptions[$0]?.tags.contains(.trial) } ?? false
     }
     
     func cancellationDate(subscriptions: [UUID: Subscription]) -> Date? {
-        nil
+        lastSubscriptionId.flatMap { subscriptions[$0]?.canceledAt }
     }
 }

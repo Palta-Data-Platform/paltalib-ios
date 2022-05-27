@@ -92,7 +92,7 @@ final class FeatureMapperTests: XCTestCase {
                 canceledAt: Date(timeIntervalSince1970: 50),
                 currentPeriodStartAt: Date(),
                 currentPeriodEndAt: Date(),
-                tags: [.trial]
+                tags: []
             )
         ]
         
