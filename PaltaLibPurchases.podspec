@@ -16,6 +16,6 @@ Pod::Spec.new do |spec|
 
   spec.dependency 'PaltaLibCore', '~> 2.1.0'
   spec.dependency 'PaltaLibAttribution'
-  spec.dependency 'RevenueCat', '~> 4.3.0'
+  spec.dependency 'RevenueCat', '~> 4.4.0'
 end
 
