@@ -17,6 +17,20 @@ final class RealPaymentsAssembly: PaymentsAssembly {
         webPaymentsAssembly.paidFeaturesService
     }
     
-    private let coreAssembly = CoreAssembly()
-    private lazy var webPaymentsAssembly = WebPaymentsAssembly(coreAssembly: coreAssembly)
+    private let coreAssembly: CoreAssembly
+    private let webPaymentsAssembly: WebPaymentsAssembly
+    
+    private init(coreAssembly: CoreAssembly, webPaymentsAssembly: WebPaymentsAssembly) {
+        self.coreAssembly = coreAssembly
+        self.webPaymentsAssembly = webPaymentsAssembly
+    }
+}
+
+extension RealPaymentsAssembly {
+    convenience init() {
+        let core = CoreAssembly()
+        let webPayments = WebPaymentsAssembly(coreAssembly: core)
+        
+        self.init(coreAssembly: core, webPaymentsAssembly: webPayments)
+    }
 }
