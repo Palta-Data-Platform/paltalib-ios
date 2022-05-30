@@ -9,27 +9,33 @@ import Foundation
 import PaltaLibCore
 
 final class AnalyticsCoreAssembly {
-    private(set) lazy var trackingOptionsProvider = TrackingOptionsProviderImpl()
-
-    private(set) lazy var userPropertiesKeeper = UserPropertiesKeeperImpl(
-        trackingOptionsProvider: trackingOptionsProvider,
-        deviceInfoProvider: DeviceInfoProviderImpl(),
-        userDefaults: .standard
-    )
-
-    private(set) lazy var sessionManager = SessionManagerImpl(
-        userDefaults: .standard,
-        notificationCenter: .default
-    )
-
-    private(set) lazy var configurationService = ConfigurationService(
-        userDefaults: .standard,
-        httpClient: coreAssembly.httpClient
-    )
-
-    private let coreAssembly: CoreAssembly
-
+    let trackingOptionsProvider: TrackingOptionsProviderImpl
+    let userPropertiesKeeper: UserPropertiesKeeperImpl
+    let sessionManager: SessionManagerImpl
+    let configurationService: ConfigurationService
+    
     init(coreAssembly: CoreAssembly) {
-        self.coreAssembly = coreAssembly
+        let trackingOptionsProvider = TrackingOptionsProviderImpl()
+
+        let userPropertiesKeeper = UserPropertiesKeeperImpl(
+            trackingOptionsProvider: trackingOptionsProvider,
+            deviceInfoProvider: DeviceInfoProviderImpl(),
+            userDefaults: .standard
+        )
+
+        let sessionManager = SessionManagerImpl(
+            userDefaults: .standard,
+            notificationCenter: .default
+        )
+
+        let configurationService = ConfigurationService(
+            userDefaults: .standard,
+            httpClient: coreAssembly.httpClient
+        )
+        
+        self.trackingOptionsProvider = trackingOptionsProvider
+        self.userPropertiesKeeper = userPropertiesKeeper
+        self.sessionManager = sessionManager
+        self.configurationService = configurationService
     }
 }

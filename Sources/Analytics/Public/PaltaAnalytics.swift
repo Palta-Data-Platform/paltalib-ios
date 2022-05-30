@@ -30,14 +30,14 @@ public final class PaltaAnalytics {
 
     private(set) var targets = [Target]()
     
-    private lazy var defaultAmplitudeInstance: Amplitude? = Amplitude
+    private var defaultAmplitudeInstance: Amplitude? = Amplitude
         .instance(withName: ConfigTarget.defaultAmplitude.name.rawValue)
         .do {
             $0.apply(.defaultAmplitude)
             $0.setOffline(true)
         }
     
-    private lazy var defaultPaltaInstance: EventQueueAssembly? = assembly.newEventQueueAssembly()
+    private var defaultPaltaInstance: EventQueueAssembly?
     
     private var _paltaQueueAssemblies: [EventQueueAssembly] = []
     private var _amplitudeInstances: [Amplitude] = []
@@ -45,6 +45,10 @@ public final class PaltaAnalytics {
     private var isConfigured = false
     private var apiKey: String?
     private var amplitudeApiKey: String?
+    
+    init() {
+        defaultPaltaInstance = assembly.newEventQueueAssembly()
+    }
 
     @available(
         *,

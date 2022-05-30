@@ -13,9 +13,14 @@ protocol EventQueueAssemblyProvider {
 }
 
 final class AnalyticsAssembly: EventQueueAssemblyProvider {
-    let coreAssembly = CoreAssembly()
-
-    private(set) lazy var analyticsCoreAssembly = AnalyticsCoreAssembly(coreAssembly: coreAssembly)
+    let coreAssembly: CoreAssembly
+    let analyticsCoreAssembly: AnalyticsCoreAssembly
+    
+    init() {
+        let coreAssembly = CoreAssembly()
+        self.coreAssembly = coreAssembly
+        self.analyticsCoreAssembly = AnalyticsCoreAssembly(coreAssembly: coreAssembly)
+    }
 
     func newEventQueueAssembly() ->  EventQueueAssembly {
         .init(
