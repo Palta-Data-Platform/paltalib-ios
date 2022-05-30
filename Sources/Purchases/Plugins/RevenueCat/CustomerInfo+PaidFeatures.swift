@@ -51,7 +51,7 @@ private extension Store {
         switch self {
         case .appStore, .macAppStore:
             return .appStore
-        case .playStore:
+        case .playStore, .amazon:
             return .googlePlay
         case .stripe, .promotional, .unknownStore:
             return .web
