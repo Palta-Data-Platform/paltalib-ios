@@ -74,7 +74,7 @@ public final class PBPurchasePlugin: PurchasePlugin {
 }
 
 public extension PBPurchasePlugin {
-    convenience init() {
-        self.init(assembly: RealPaymentsAssembly())
+    convenience init(apiKey: String) {
+        self.init(assembly: RealPaymentsAssembly(apiKey: apiKey))
     }
 }

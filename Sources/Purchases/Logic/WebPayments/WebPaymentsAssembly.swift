@@ -17,7 +17,9 @@ final class WebPaymentsAssembly {
 }
 
 extension WebPaymentsAssembly {
-    convenience init(coreAssembly: CoreAssembly) {
+    convenience init(apiKey: String, coreAssembly: CoreAssembly) {
+        coreAssembly.httpClient.mandatoryHeaders = ["x-api-key": apiKey]
+
         let featureMapper = FeatureMapperImpl()
         let featuresService = FeaturesServiceImpl(httpClient: coreAssembly.httpClient)
         let subscriptionsService = SubscriptionsServiceImpl(httpClient: coreAssembly.httpClient)

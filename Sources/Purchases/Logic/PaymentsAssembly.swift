@@ -27,9 +27,9 @@ final class RealPaymentsAssembly: PaymentsAssembly {
 }
 
 extension RealPaymentsAssembly {
-    convenience init() {
+    convenience init(apiKey: String) {
         let core = CoreAssembly()
-        let webPayments = WebPaymentsAssembly(coreAssembly: core)
+        let webPayments = WebPaymentsAssembly(apiKey: apiKey, coreAssembly: core)
         
         self.init(coreAssembly: core, webPaymentsAssembly: webPayments)
     }

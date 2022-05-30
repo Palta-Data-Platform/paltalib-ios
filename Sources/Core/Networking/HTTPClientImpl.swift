@@ -37,7 +37,8 @@ public enum NetworkError: Error {
     }
 }
 
-public protocol HTTPClient {
+public protocol HTTPClient: AnyObject {
+    var mandatoryHeaders: [String: String] { get set }
     func perform<SuccessResponse: Decodable, ErrorResponse: Decodable>(
         _ request: HTTPRequest,
         with completion: @escaping (Result<SuccessResponse, NetworkErrorWithResponse<ErrorResponse>>) -> Void
@@ -45,6 +46,8 @@ public protocol HTTPClient {
 }
 
 public final class HTTPClientImpl: HTTPClient {
+    public var mandatoryHeaders: [String : String] = [:]
+    
     private let urlSession: URLSession
 
     public init(
@@ -57,7 +60,7 @@ public final class HTTPClientImpl: HTTPClient {
         _ request: HTTPRequest,
         with completion: @escaping (Result<SuccessResponse, NetworkErrorWithResponse<ErrorResponse>>) -> Void
     ) {
-        guard let urlRequest = request.urlRequest(headerFields: [:]) else {
+        guard let urlRequest = request.urlRequest(headerFields: mandatoryHeaders) else {
             completion(.failure(.badRequest))
             return
         }
