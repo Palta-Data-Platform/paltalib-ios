@@ -9,6 +9,8 @@ import UIKit
 import Combine
 
 final class PurchasesViewController: UIViewController {
+    private lazy var userView = UserView(viewModel: viewModel as! UserViewModel)
+
     private lazy var stateLabel: UILabel = {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .title3)
@@ -24,7 +26,7 @@ final class PurchasesViewController: UIViewController {
     )
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [stateLabel, subscribeButton])
+        let stackView = UIStackView(arrangedSubviews: [userView, stateLabel, subscribeButton])
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 32
@@ -58,7 +60,7 @@ final class PurchasesViewController: UIViewController {
         view.addSubview(stackView)
 
         NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32)
         ])
