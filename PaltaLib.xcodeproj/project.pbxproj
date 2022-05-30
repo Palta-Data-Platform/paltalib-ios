@@ -20,7 +20,6 @@
 		1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593B27F708E400A41ADA /* RemoteConfig.swift */; };
 		1111596E27F70BF500A41ADA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111592B27F708CA00A41ADA /* Settings.swift */; };
 		1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111593E27F708E400A41ADA /* ConfigurationService.swift */; };
-		1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111591027F7086C00A41ADA /* PurchasesError.swift */; };
 		1111598027F70C1500A41ADA /* PaltaAttribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111595927F7095200A41ADA /* PaltaAttribution.swift */; };
 		1111598127F70C1500A41ADA /* PaltaAttribution+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111595C27F7095200A41ADA /* PaltaAttribution+Configuration.swift */; };
 		1111598227F70C1500A41ADA /* PaltaAppsflyerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111595B27F7095200A41ADA /* PaltaAppsflyerAdapter.swift */; };
@@ -65,14 +64,9 @@
 		11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6027FC8EBC00A41ADA /* SessionManagerMock.swift */; };
 		11115A6927FDB84E00A41ADA /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6727FDB70A00A41ADA /* AnyEncodable.swift */; };
 		11115A6C27FDB88400A41ADA /* AnyEncodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6A27FDB87B00A41ADA /* AnyEncodableTests.swift */; };
-		11115A7027FDBBF500A41ADA /* RestoreRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6327FDB63F00A41ADA /* RestoreRequestData.swift */; };
-		11115A7127FDBBF500A41ADA /* CancelRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6527FDB67300A41ADA /* CancelRequestData.swift */; };
-		11115A7227FDBBF500A41ADA /* PurchaseHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6D27FDB9C000A41ADA /* PurchaseHTTPRequest.swift */; };
-		11115A7527FDBD4000A41ADA /* PurchaseHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7327FDBCD400A41ADA /* PurchaseHTTPRequestTests.swift */; };
 		11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */; };
 		11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */; };
 		11115A7D27FDCDF600A41ADA /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */; };
-		11115A8027FDCF5A00A41ADA /* PurchasesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7E27FDCE0B00A41ADA /* PurchasesAssembly.swift */; };
 		11115A8227FEC60400A41ADA /* EventQueueAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */; };
 		11115A8427FEFFB200A41ADA /* SendEventsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8327FEFFB200A41ADA /* SendEventsPayload.swift */; };
 		11115A8727FF1BCF00A41ADA /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */; };
@@ -263,13 +257,6 @@
 		111158D627F603D800A41ADA /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		111158F827F6FE5600A41ADA /* PaltaLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaltaLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1111590927F7079A00A41ADA /* PaltaLibPayments.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibPayments.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1111591027F7086C00A41ADA /* PurchasesError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchasesError.swift; sourceTree = "<group>"; };
-		1111591127F7086C00A41ADA /* PurchaserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaserInfo.swift; sourceTree = "<group>"; };
-		1111591227F7086C00A41ADA /* PaltaPurchases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaltaPurchases.swift; sourceTree = "<group>"; };
-		1111591327F7086C00A41ADA /* PaltaPurchases+WebSubscriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaPurchases+WebSubscriptions.swift"; sourceTree = "<group>"; };
-		1111591427F7086C00A41ADA /* PurchaserInfo+RevenueCat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PurchaserInfo+RevenueCat.swift"; sourceTree = "<group>"; };
-		1111591527F7086C00A41ADA /* PaltaPurchases+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaPurchases+Configuration.swift"; sourceTree = "<group>"; };
-		1111591627F7086C00A41ADA /* PurchaseInfoListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseInfoListener.swift; sourceTree = "<group>"; };
 		1111592327F7089400A41ADA /* PaltaLibAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1111592B27F708CA00A41ADA /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1111593327F708E400A41ADA /* PaltaAnalytics+Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+Event.swift"; sourceTree = "<group>"; };
@@ -312,16 +299,11 @@
 		11115A5A27FC59E700A41ADA /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		11115A5D27FC789D00A41ADA /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
 		11115A6027FC8EBC00A41ADA /* SessionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerMock.swift; sourceTree = "<group>"; };
-		11115A6327FDB63F00A41ADA /* RestoreRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreRequestData.swift; sourceTree = "<group>"; };
-		11115A6527FDB67300A41ADA /* CancelRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelRequestData.swift; sourceTree = "<group>"; };
 		11115A6727FDB70A00A41ADA /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		11115A6A27FDB87B00A41ADA /* AnyEncodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodableTests.swift; sourceTree = "<group>"; };
-		11115A6D27FDB9C000A41ADA /* PurchaseHTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHTTPRequest.swift; sourceTree = "<group>"; };
-		11115A7327FDBCD400A41ADA /* PurchaseHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHTTPRequestTests.swift; sourceTree = "<group>"; };
 		11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHTTPRequest.swift; sourceTree = "<group>"; };
 		11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHTTPRequestTests.swift; sourceTree = "<group>"; };
 		11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
-		11115A7E27FDCE0B00A41ADA /* PurchasesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesAssembly.swift; sourceTree = "<group>"; };
 		11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueAssembly.swift; sourceTree = "<group>"; };
 		11115A8327FEFFB200A41ADA /* SendEventsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEventsPayload.swift; sourceTree = "<group>"; };
 		11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
@@ -518,7 +500,6 @@
 			children = (
 				11A61ED52837885C00F88116 /* Plugins */,
 				114CF5A4282266FF00ADA815 /* Public */,
-				114CF5A3282266DE00ADA815 /* Legacy */,
 				11A61EE028378BDE00F88116 /* Data */,
 				113AD63D2837A8F000324D62 /* Logic */,
 			);
@@ -649,16 +630,6 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
-		11115A6F27FDBB7700A41ADA /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				11115A6327FDB63F00A41ADA /* RestoreRequestData.swift */,
-				11115A6527FDB67300A41ADA /* CancelRequestData.swift */,
-				11115A6D27FDB9C000A41ADA /* PurchaseHTTPRequest.swift */,
-			);
-			path = Requests;
-			sourceTree = "<group>";
-		};
 		111A59AE2840E4820052FCD1 /* WebPayments */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,7 +683,6 @@
 				111A59BF2840F0B90052FCD1 /* Data */,
 				111A59C02840F0C40052FCD1 /* BusinessLogic */,
 				113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */,
-				11115A7327FDBCD400A41ADA /* PurchaseHTTPRequestTests.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -802,22 +772,6 @@
 				111A59AE2840E4820052FCD1 /* WebPayments */,
 			);
 			path = Logic;
-			sourceTree = "<group>";
-		};
-		114CF5A3282266DE00ADA815 /* Legacy */ = {
-			isa = PBXGroup;
-			children = (
-				11115A6F27FDBB7700A41ADA /* Requests */,
-				1111591227F7086C00A41ADA /* PaltaPurchases.swift */,
-				1111591527F7086C00A41ADA /* PaltaPurchases+Configuration.swift */,
-				1111591327F7086C00A41ADA /* PaltaPurchases+WebSubscriptions.swift */,
-				1111591627F7086C00A41ADA /* PurchaseInfoListener.swift */,
-				1111591127F7086C00A41ADA /* PurchaserInfo.swift */,
-				1111591427F7086C00A41ADA /* PurchaserInfo+RevenueCat.swift */,
-				1111591027F7086C00A41ADA /* PurchasesError.swift */,
-				11115A7E27FDCE0B00A41ADA /* PurchasesAssembly.swift */,
-			);
-			path = Legacy;
 			sourceTree = "<group>";
 		};
 		114CF5A4282266FF00ADA815 /* Public */ = {
@@ -1248,7 +1202,6 @@
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
 				114D07012806F64B00ACD310 /* EventQueueMock.swift in Sources */,
 				11543038282D03280021ED6F /* ProductMock.swift in Sources */,
-				11115A7527FDBD4000A41ADA /* PurchaseHTTPRequestTests.swift in Sources */,
 				11A61EEC2837925A00F88116 /* FeatureResponseTests.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
 				11A61E842833E0C900F88116 /* AmplitudeExtensionTests.swift in Sources */,
@@ -1303,12 +1256,9 @@
 				1129A4302827E332009DDC41 /* ProductDiscount.swift in Sources */,
 				113AD63A2837A02E00324D62 /* FeatureMapper.swift in Sources */,
 				111A5982283FAA520052FCD1 /* PaymentsError.swift in Sources */,
-				11115A7127FDBBF500A41ADA /* CancelRequestData.swift in Sources */,
 				114CF5A92822673500ADA815 /* PaltaPurchases.swift in Sources */,
 				111A599F2840C8070052FCD1 /* PaidFeaturesService.swift in Sources */,
 				113AD6402837AA5B00324D62 /* FeaturesService.swift in Sources */,
-				1111597527F70C0100A41ADA /* PurchasesError.swift in Sources */,
-				11115A7027FDBBF500A41ADA /* RestoreRequestData.swift in Sources */,
 				1154301D282BDD2B0021ED6F /* StoreProduct+Product.swift in Sources */,
 				111A59AD2840E47B0052FCD1 /* WebPaymentsAssembly.swift in Sources */,
 				111A59B02840E5630052FCD1 /* PaymentsAssembly.swift in Sources */,
@@ -1327,12 +1277,10 @@
 				11A61E822833B89B00F88116 /* UserId.swift in Sources */,
 				114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */,
 				11A61ED7283788DD00F88116 /* Feature.swift in Sources */,
-				11115A7227FDBBF500A41ADA /* PurchaseHTTPRequest.swift in Sources */,
 				1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */,
 				11A61EF1283794E300F88116 /* GetSubscriptionsRequestPayload.swift in Sources */,
 				11543019282BD3CA0021ED6F /* SuccessfulPurchase.swift in Sources */,
 				1154303D282E4CD90021ED6F /* CustomerInfo+PaidFeatures.swift in Sources */,
-				11115A8027FDCF5A00A41ADA /* PurchasesAssembly.swift in Sources */,
 				1154301F282BDE450021ED6F /* PromotionalOffer+Offer.swift in Sources */,
 				11A61EEF2837948500F88116 /* PaymentsHTTPRequest.swift in Sources */,
 				11A61ED928378A6F00F88116 /* Subscription.swift in Sources */,
