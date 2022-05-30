@@ -25,23 +25,30 @@ public final class PaltaAnalytics {
             return _amplitudeInstances
         }
     }
+    
+    private let lock = NSRecursiveLock()
 
     private(set) var targets = [Target]()
     
-    private lazy var defaultAmplitudeInstance: Amplitude? = Amplitude
+    private var defaultAmplitudeInstance: Amplitude? = Amplitude
         .instance(withName: ConfigTarget.defaultAmplitude.name.rawValue)
         .do {
             $0.apply(.defaultAmplitude)
             $0.setOffline(true)
         }
     
-    private lazy var defaultPaltaInstance: EventQueueAssembly? = assembly.newEventQueueAssembly()
+    private var defaultPaltaInstance: EventQueueAssembly?
     
     private var _paltaQueueAssemblies: [EventQueueAssembly] = []
     private var _amplitudeInstances: [Amplitude] = []
 
+    private var isConfigured = false
     private var apiKey: String?
     private var amplitudeApiKey: String?
+    
+    init() {
+        defaultPaltaInstance = assembly.newEventQueueAssembly()
+    }
 
     @available(
         *,
@@ -62,9 +69,18 @@ public final class PaltaAnalytics {
         amplitudeAPIKey: String? = nil,
         paltaAPIKey: String? = nil
     ) {
+        lock.lock()
+        defer { lock.unlock() }
+        
+        guard !isConfigured else { return }
+        
+        self.isConfigured = true
         self.apiKey = paltaAPIKey
         self.amplitudeApiKey = amplitudeAPIKey
 
+        if let amplitudeAPIKey = amplitudeAPIKey {
+            defaultAmplitudeInstance?.initializeApiKey(amplitudeAPIKey)
+        }
         assembly.analyticsCoreAssembly.userPropertiesKeeper.generateDeviceId()
         requestRemoteConfigs()
     }
@@ -87,6 +103,8 @@ public final class PaltaAnalytics {
     }
     
     private func applyRemoteConfig(_ remoteConfig: RemoteConfig) {
+        lock.lock()
+
         let service = ConfigApplyService(
             remoteConfig: remoteConfig,
             apiKey: apiKey,
@@ -100,6 +118,8 @@ public final class PaltaAnalytics {
             paltaAssemblies: &_paltaQueueAssemblies,
             amplitudeInstances: &_amplitudeInstances
         )
+        
+        lock.unlock()
     }
 
     public func setOffline(_ offline: Bool) {

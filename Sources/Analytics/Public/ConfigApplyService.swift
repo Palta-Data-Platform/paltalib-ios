@@ -59,7 +59,7 @@ final class ConfigApplyService {
                 amplitudeInstances: &amplitudeInstances
             )
             
-        case (.amplitude, .amplitude, _, nil):
+        case (.amplitude, .amplitude, _, nil), (.amplitude, nil, _, nil):
             print("PaltaAnalytics: error: API key for amplitude is not set")
             
         case (.amplitude, .paltaBrain, _, _):
@@ -109,6 +109,8 @@ final class ConfigApplyService {
         
         amplitudeInstance.initializeApiKey(apiKey)
         amplitudeInstance.apply(target)
+        
+        amplitudeInstance.setOffline(false)
 
         amplitudeInstances.append(amplitudeInstance)
     }
@@ -127,9 +129,9 @@ final class ConfigApplyService {
         } else {
             eventQueueAssembly = eventQueueAssemblyProvider.newEventQueueAssembly()
         }
-
-        eventQueueAssembly.apply(target)
+        
         eventQueueAssembly.eventSender.apiToken = apiKey
+        eventQueueAssembly.apply(target)
         
         paltaAssemblies.append(eventQueueAssembly)
     }

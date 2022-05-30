@@ -9,52 +9,92 @@ import Foundation
 import PaltaLibCore
 
 final class EventQueueAssembly: FunctionalExtension {
-    var sessionManager: SessionManagerImpl {
-        analyticsCoreAssembly.sessionManager
+    let sessionManager: SessionManagerImpl
+
+    let eventQueueCore: EventQueueCoreImpl
+    let liveEventQueueCore: EventQueueCoreImpl
+
+    let eventStorage: EventStorage
+
+    let eventComposer: EventComposerImpl
+    let eventSender: EventSenderImpl
+    let eventQueue: EventQueueImpl
+    
+    let identityLogger: IdentityLogger
+    let revenueLogger: RevenueLogger
+    
+    private init(
+        sessionManager: SessionManagerImpl,
+        eventQueueCore: EventQueueCoreImpl,
+        liveEventQueueCore: EventQueueCoreImpl,
+        eventStorage: EventStorage,
+        eventComposer: EventComposerImpl,
+        eventSender: EventSenderImpl,
+        eventQueue: EventQueueImpl,
+        identityLogger: IdentityLogger,
+        revenueLogger: RevenueLogger
+    ) {
+        self.sessionManager = sessionManager
+        self.eventQueueCore = eventQueueCore
+        self.liveEventQueueCore = liveEventQueueCore
+        self.eventStorage = eventStorage
+        self.eventComposer = eventComposer
+        self.eventSender = eventSender
+        self.eventQueue = eventQueue
+        self.identityLogger = identityLogger
+        self.revenueLogger = revenueLogger
     }
+}
 
-    private(set) lazy var eventQueueCore = EventQueueCoreImpl(timer: TimerImpl())
+extension EventQueueAssembly {
+    convenience init(coreAssembly: CoreAssembly, analyticsCoreAssembly: AnalyticsCoreAssembly) {
+        let eventQueueCore = EventQueueCoreImpl(timer: TimerImpl())
 
-    private(set) lazy var liveEventQueueCore = EventQueueCoreImpl(timer: ImmediateTimer()).do {
-        $0.config = .init(
-            maxBatchSize: 5,
-            uploadInterval: 0,
-            uploadThreshold: 3,
-            maxEvents: 100,
-            maxConcurrentOperations: .max
+        let liveEventQueueCore = EventQueueCoreImpl(timer: ImmediateTimer()).do {
+            $0.config = .init(
+                maxBatchSize: 5,
+                uploadInterval: 0,
+                uploadThreshold: 3,
+                maxEvents: 100,
+                maxConcurrentOperations: .max
+            )
+        }
+
+        let eventStorage: EventStorage = FileEventStorage()
+
+        let eventComposer = EventComposerImpl(
+            sessionIdProvider: analyticsCoreAssembly.sessionManager,
+            userPropertiesProvider: analyticsCoreAssembly.userPropertiesKeeper,
+            deviceInfoProvider: DeviceInfoProviderImpl(),
+            trackingOptionsProvider: analyticsCoreAssembly.trackingOptionsProvider
         )
-    }
 
-    private(set) lazy var eventStorage: EventStorage = FileEventStorage()
+        let eventSender = EventSenderImpl(httpClient: coreAssembly.httpClient)
 
-    private(set) lazy var eventComposer = EventComposerImpl(
-        sessionIdProvider: analyticsCoreAssembly.sessionManager,
-        userPropertiesProvider: analyticsCoreAssembly.userPropertiesKeeper,
-        deviceInfoProvider: DeviceInfoProviderImpl(),
-        trackingOptionsProvider: analyticsCoreAssembly.trackingOptionsProvider
-    )
+        let eventQueue = EventQueueImpl(
+            core: eventQueueCore,
+            liveCore: liveEventQueueCore,
+            storage: eventStorage,
+            sender: eventSender,
+            eventComposer: eventComposer,
+            sessionManager: analyticsCoreAssembly.sessionManager,
+            timer: TimerImpl()
+        )
 
-    private(set) lazy var eventSender = EventSenderImpl(httpClient: coreAssembly.httpClient)
+        let identityLogger = IdentityLogger(eventQueue: eventQueue)
 
-    private(set) lazy var eventQueue = EventQueueImpl(
-        core: eventQueueCore,
-        liveCore: liveEventQueueCore,
-        storage: eventStorage,
-        sender: eventSender,
-        eventComposer: eventComposer,
-        sessionManager: analyticsCoreAssembly.sessionManager,
-        timer: TimerImpl()
-    )
-
-    private(set) lazy var identityLogger = IdentityLogger(eventQueue: eventQueue)
-
-    private(set) lazy var revenueLogger = RevenueLogger(eventQueue: eventQueue)
-
-    private let coreAssembly: CoreAssembly
-    private let analyticsCoreAssembly: AnalyticsCoreAssembly
-
-    init(coreAssembly: CoreAssembly, analyticsCoreAssembly: AnalyticsCoreAssembly) {
-        self.coreAssembly = coreAssembly
-        self.analyticsCoreAssembly = analyticsCoreAssembly
+        let revenueLogger = RevenueLogger(eventQueue: eventQueue)
+        
+        self.init(
+            sessionManager: analyticsCoreAssembly.sessionManager,
+            eventQueueCore: eventQueueCore,
+            liveEventQueueCore: liveEventQueueCore,
+            eventStorage: eventStorage,
+            eventComposer: eventComposer,
+            eventSender: eventSender,
+            eventQueue: eventQueue,
+            identityLogger: identityLogger,
+            revenueLogger: revenueLogger
+        )
     }
 }

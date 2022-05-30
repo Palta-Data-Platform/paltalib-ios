@@ -21,19 +21,27 @@ protocol UserPropertiesKeeper: UserPropertiesProvider {
 final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
     var userId: String? {
         get {
-            userProperties?.userId
+            lock.lock()
+            defer { lock.unlock() }
+            return userProperties?.userId
         }
         set {
+            lock.lock()
             userProperties?.userId = newValue
+            lock.unlock()
         }
     }
 
     var deviceId: String? {
         get {
-            userProperties?.deviceId
+            lock.lock()
+            defer { lock.unlock() }
+            return userProperties?.deviceId
         }
         set {
+            lock.lock()
             userProperties?.deviceId = newValue
+            lock.unlock()
         }
     }
 
@@ -44,6 +52,8 @@ final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
             userDefaults.set(userProperties, for: defaultsKey)
         }
     }
+    
+    private let lock = NSRecursiveLock()
 
     private let defaultsKey = "paltaBrainUserProperties"
     private let trackingOptionsProvider: TrackingOptionsProvider
@@ -61,6 +71,9 @@ final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
     }
 
     func generateDeviceId(forced: Bool = false) {
+        lock.lock()
+        defer { lock.unlock() }
+
         guard deviceId == nil || forced else {
             return
         }
