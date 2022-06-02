@@ -11,6 +11,8 @@ import PaltaLibCore
 final class HTTPClientMock: HTTPClient {
     var request: HTTPRequest?
     var result: Result<Any, Error>?
+    
+    var mandatoryHeaders: [String : String] = [:]
 
     func perform<SuccessResponse: Decodable, ErrorResponse: Decodable>(
         _ request: HTTPRequest,
