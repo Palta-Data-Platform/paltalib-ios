@@ -103,6 +103,7 @@
 		112FCA3A2847C8BE00C8F88A /* CGGeometryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA342847C61A00C8F88A /* CGGeometryExtensions.swift */; };
 		112FCA3C2847C8D400C8F88A /* ScreenMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA3B2847C8D400C8F88A /* ScreenMap.swift */; };
 		112FCA3E2847CAE400C8F88A /* RunLoopObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA3D2847CAE400C8F88A /* RunLoopObserver.swift */; };
+		112FCA422849EAEF00C8F88A /* ScrollTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA412849EAEE00C8F88A /* ScrollTracker.swift */; };
 		113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */; };
 		113AD63A2837A02E00324D62 /* FeatureMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6382837A01100324D62 /* FeatureMapper.swift */; };
 		113AD63C2837A6DD00324D62 /* FeatureMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63B2837A6DD00324D62 /* FeatureMapperTests.swift */; };
@@ -346,6 +347,7 @@
 		112FCA382847C7AC00C8F88A /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		112FCA3B2847C8D400C8F88A /* ScreenMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenMap.swift; sourceTree = "<group>"; };
 		112FCA3D2847CAE400C8F88A /* RunLoopObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunLoopObserver.swift; sourceTree = "<group>"; };
+		112FCA412849EAEE00C8F88A /* ScrollTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTracker.swift; sourceTree = "<group>"; };
 		113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsHTTPRequestTests.swift; sourceTree = "<group>"; };
 		113AD6382837A01100324D62 /* FeatureMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureMapper.swift; sourceTree = "<group>"; };
 		113AD63B2837A6DD00324D62 /* FeatureMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureMapperTests.swift; sourceTree = "<group>"; };
@@ -799,6 +801,7 @@
 				112FCA362847C6EE00C8F88A /* ViewHasher.swift */,
 				112FCA382847C7AC00C8F88A /* UIViewExtensions.swift */,
 				112FCA3D2847CAE400C8F88A /* RunLoopObserver.swift */,
+				112FCA412849EAEE00C8F88A /* ScrollTracker.swift */,
 			);
 			path = Sources/AnalyticsTools;
 			sourceTree = "<group>";
@@ -1419,6 +1422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				112FCA3E2847CAE400C8F88A /* RunLoopObserver.swift in Sources */,
+				112FCA422849EAEF00C8F88A /* ScrollTracker.swift in Sources */,
 				112FCA332847C4E400C8F88A /* TrackableView.swift in Sources */,
 				112FCA3A2847C8BE00C8F88A /* CGGeometryExtensions.swift in Sources */,
 				112FCA3C2847C8D400C8F88A /* ScreenMap.swift in Sources */,
