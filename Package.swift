@@ -34,6 +34,12 @@ let products: [Product] = [
         targets: [
             "PaltaLibCore"
         ]
+    ),
+    .library(
+        name: "AnalyticsTools",
+        targets: [
+            "AnalyticsTools"
+        ]
     )
 ]
 
@@ -72,6 +78,10 @@ let targets: [Target] = [
             "PaltaLibCore"
         ],
         path: "Sources/Analytics"
+    ),
+    .target(
+        name: "AnalyticsTools",
+        path: "Sources/AnalyticsTools"
     )
 ]
 
