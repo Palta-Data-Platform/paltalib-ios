@@ -8,20 +8,26 @@
 import UIKit
 
 public final class ViewTracker {
-    private let tracker: (TrackableView) -> Void
+    private let viewTracker: (TrackableView) -> Void
+    private let groupTracker: (AnyHashable) -> Void
     
     private let threshold: CGFloat = 0.5
     private let trackRateHz: Double = 5
     
     private var previousHash = 0
     private var shownViewIdentifiers: Set<AnyHashable> = []
+    private var shownGroupIdentifiers: Set<AnyHashable> = []
     
     private var timerScheduled = false
     
     private var runLoopObserver: RunLoopObserver?
     
-    public init(tracker: @escaping (TrackableView) -> Void) {
-        self.tracker = tracker
+    public init(
+        viewTracker: @escaping (TrackableView) -> Void,
+        groupTracker: @escaping (AnyHashable) -> Void
+    ) {
+        self.viewTracker = viewTracker
+        self.groupTracker = groupTracker
     }
     
     deinit {
@@ -67,21 +73,25 @@ public final class ViewTracker {
         previousHash = hash
         
         var newShownViewIdentifiers: Set<AnyHashable> = []
+        var newShownGroupIdentifiers: Set<AnyHashable> = []
         let screenMap = ScreenMap()
         
         checkView(
             keyWindow,
             screenMap: screenMap,
-            newShownViewIdentifiers: &newShownViewIdentifiers
+            newShownViewIdentifiers: &newShownViewIdentifiers,
+            newShownGroupIdentifiers: &newShownGroupIdentifiers
         )
         
         shownViewIdentifiers = newShownViewIdentifiers
+        shownGroupIdentifiers = newShownGroupIdentifiers
     }
     
     private func checkView(
         _ view: UIView,
         screenMap: ScreenMap,
-        newShownViewIdentifiers: inout Set<AnyHashable>
+        newShownViewIdentifiers: inout Set<AnyHashable>,
+        newShownGroupIdentifiers: inout Set<AnyHashable>
     ) {
         guard view.isVisibleByAlpha else {
             return
@@ -95,7 +105,8 @@ public final class ViewTracker {
             trackView(
                 trackableView,
                 screenMap: screenMap,
-                newShownViewIdentifiers: &newShownViewIdentifiers
+                newShownViewIdentifiers: &newShownViewIdentifiers,
+                newShownGroupIdentifiers: &newShownGroupIdentifiers
             )
             return
         }
@@ -104,7 +115,8 @@ public final class ViewTracker {
             checkView(
                 $0,
                 screenMap: screenMap,
-                newShownViewIdentifiers: &newShownViewIdentifiers
+                newShownViewIdentifiers: &newShownViewIdentifiers,
+                newShownGroupIdentifiers: &newShownGroupIdentifiers
             )
         }
     }
@@ -112,16 +124,27 @@ public final class ViewTracker {
     private func trackView(
         _ view: TrackableView,
         screenMap: ScreenMap,
-        newShownViewIdentifiers: inout Set<AnyHashable>
+        newShownViewIdentifiers: inout Set<AnyHashable>,
+        newShownGroupIdentifiers: inout Set<AnyHashable>
     ) {
         let isVisible = view.geometricVisibilityPercentage >= threshold
         && (1 - screenMap.overlap(with: view.trackableFrame)) >= threshold
         
-        if isVisible && shownViewIdentifiers.contains(view.identifier) {
-            newShownViewIdentifiers.insert(view.identifier)
-        } else if isVisible {
-            tracker(view)
-            newShownViewIdentifiers.insert(view.identifier)
+        guard isVisible else {
+            return
         }
+        
+        if !shownViewIdentifiers.contains(view.identifier) {
+            viewTracker(view)
+        }
+        
+        view.groupIdentifiers.forEach {
+            if !shownGroupIdentifiers.contains($0), !newShownGroupIdentifiers.contains($0) {
+                groupTracker($0)
+            }
+        }
+        
+        newShownViewIdentifiers.insert(view.identifier)
+        newShownGroupIdentifiers.formUnion(view.groupIdentifiers)
     }
 }
