@@ -8,10 +8,19 @@
 import Foundation
 import PaltaLibCore
 
-final class AnalyticsAssembly {
-    let coreAssembly = CoreAssembly()
+protocol EventQueueAssemblyProvider {
+    func newEventQueueAssembly() ->  EventQueueAssembly
+}
 
-    private(set) lazy var analyticsCoreAssembly = AnalyticsCoreAssembly(coreAssembly: coreAssembly)
+final class AnalyticsAssembly: EventQueueAssemblyProvider {
+    let coreAssembly: CoreAssembly
+    let analyticsCoreAssembly: AnalyticsCoreAssembly
+    
+    init() {
+        let coreAssembly = CoreAssembly()
+        self.coreAssembly = coreAssembly
+        self.analyticsCoreAssembly = AnalyticsCoreAssembly(coreAssembly: coreAssembly)
+    }
 
     func newEventQueueAssembly() ->  EventQueueAssembly {
         .init(

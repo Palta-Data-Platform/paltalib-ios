@@ -48,4 +48,19 @@ extension Amplitude {
             )
         }
     }
+    
+    func apply(_ target: ConfigTarget) {
+        let settings = target.settings
+        trackingSessionEvents = settings.trackingSessionEvents
+        eventMaxCount = Int32(settings.eventMaxCount)
+        eventUploadMaxBatchSize = Int32(settings.eventUploadMaxBatchSize)
+        eventUploadPeriodSeconds = Int32(settings.eventUploadPeriodSeconds)
+        eventUploadThreshold = Int32(settings.eventUploadThreshold)
+        minTimeBetweenSessionsMillis = settings.minTimeBetweenSessionsMillis
+        excludedEvents = settings.excludedEventTypes
+        
+        if let url = target.url {
+            setServerUrl(url.absoluteString)
+        }
+    }
 }

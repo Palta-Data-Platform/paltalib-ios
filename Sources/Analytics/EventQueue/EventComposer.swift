@@ -23,12 +23,6 @@ protocol EventComposer {
 }
 
 final class EventComposerImpl: EventComposer {
-    private lazy var sequenceNumber = UserDefaults.standard.integer(forKey: "sequnce_number") {
-        didSet {
-            UserDefaults.standard.set(sequenceNumber, forKey: "sequnce_number")
-        }
-    }
-
     private let timezoneFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.positivePrefix = "+"
@@ -39,6 +33,8 @@ final class EventComposerImpl: EventComposer {
     private var trackingOptions: AMPTrackingOptions {
         trackingOptionsProvider.trackingOptions
     }
+    
+    private let sequenceNumberProvider = SequenceNumberProvider()
 
     private let sessionIdProvider: SessionIdProvider
     private let userPropertiesProvider: UserPropertiesProvider
@@ -67,10 +63,6 @@ final class EventComposerImpl: EventComposer {
         timestamp: Int?,
         outOfSession: Bool
     ) -> Event {
-        defer {
-            sequenceNumber += 1
-        }
-
         let timestamp = timestamp ?? .currentTimestamp()
 
         let platform = trackingOptions.shouldTrackPlatform() ? "iOS" : nil
@@ -87,7 +79,7 @@ final class EventComposerImpl: EventComposer {
 
         let library = Event.Library(
             name: "PaltaBrain",
-            version: "2.1.0" // TODO: Auto update version
+            version: "2.1.3" // TODO: Auto update version
         )
 
         var apiProperties = apiProperties
@@ -130,7 +122,27 @@ final class EventComposerImpl: EventComposer {
             timezone: timezone,
             library: library,
             uuid: UUID(),
-            sequenceNumber: sequenceNumber
+            sequenceNumber: sequenceNumberProvider.getNewSequenceNumber()
         )
+    }
+}
+
+private class SequenceNumberProvider {
+    private var currentNumber = UserDefaults.standard.integer(forKey: "sequnce_number") {
+        didSet {
+            UserDefaults.standard.set(currentNumber, forKey: "sequnce_number")
+        }
+    }
+    
+    private let lock = NSRecursiveLock()
+
+    func getNewSequenceNumber() -> Int {
+        defer {
+            currentNumber += 1
+            lock.unlock()
+        }
+        
+        lock.lock()
+        return currentNumber
     }
 }

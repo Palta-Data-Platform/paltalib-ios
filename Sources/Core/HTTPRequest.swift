@@ -14,7 +14,7 @@ public protocol HTTPRequest {
 public protocol AutobuildingHTTPRequest: HTTPRequest {
     var method: HTTPMethod { get }
     var baseURL: URL { get }
-    var path: String { get }
+    var path: String? { get }
     var headers: [String: String]? { get }
     var queryParameters: [String: String]? { get }
     var body: Data? { get }
@@ -52,7 +52,10 @@ public extension AutobuildingHTTPRequest {
             return nil
         }
 
-        components.path = path
+        if let path = path {
+            components.path = path
+        }
+
         let queryItems = queryParameters?.map { URLQueryItem(name: $0.0, value: $0.1) }
         components.queryItems = queryItems
 

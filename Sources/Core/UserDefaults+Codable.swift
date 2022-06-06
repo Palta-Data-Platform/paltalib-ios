@@ -12,7 +12,7 @@ public extension UserDefaults {
         data(forKey: key).flatMap { try? JSONDecoder().decode(T.self, from: $0) }
     }
 
-    func set<T: Encodable>(_ object: T, for key: String) {
+    func set<T: Encodable>(_ object: T?, for key: String) {
         set(try? JSONEncoder().encode(object), forKey: key)
     }
 }

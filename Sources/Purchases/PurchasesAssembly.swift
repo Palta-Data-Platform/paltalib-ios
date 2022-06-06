@@ -11,7 +11,7 @@ import PaltaLibAttribution
 import PaltaLibCore
 
 final class PurchasesAssembly {
-    private lazy var coreAssembly = CoreAssembly()
+    private let coreAssembly = CoreAssembly()
 
     private(set) lazy var purchasesInstance = PaltaPurchases(
         purchases: Purchases.shared,

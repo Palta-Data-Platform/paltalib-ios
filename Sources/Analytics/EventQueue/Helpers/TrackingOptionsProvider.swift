@@ -14,10 +14,25 @@ protocol TrackingOptionsProvider {
 
 final class TrackingOptionsProviderImpl: TrackingOptionsProvider {
     var trackingOptions: AMPTrackingOptions {
-        effectiveTrackingOptions
+        lock.lock()
+        defer { lock.unlock() }
+        return effectiveTrackingOptions
+    }
+    
+    var coppaControlEnabled: Bool {
+        get {
+            lock.lock()
+            defer { lock.unlock() }
+            return _coppaControlEnabled
+        }
+        set {
+            lock.lock()
+            _coppaControlEnabled = newValue
+            lock.unlock()
+        }
     }
 
-    var coppaControlEnabled = false {
+    private var _coppaControlEnabled = false {
         didSet {
             updateEffectiveTrackingOptions()
         }
@@ -29,14 +44,17 @@ final class TrackingOptionsProviderImpl: TrackingOptionsProvider {
         }
     }
 
+    private let lock = NSRecursiveLock()
     private lazy var effectiveTrackingOptions = makeEffectiveTrackingOptions()
 
     func setTrackingOptions(_ trackingOptions: AMPTrackingOptions) {
+        lock.lock()
         appliedrackingOptions = trackingOptions
+        lock.unlock()
     }
 
     private func makeEffectiveTrackingOptions() -> AMPTrackingOptions {
-        if coppaControlEnabled {
+        if _coppaControlEnabled {
             return AMPTrackingOptions
                 .copy(of: appliedrackingOptions)
                 .merge(in: AMPTrackingOptions.forCoppaControl())

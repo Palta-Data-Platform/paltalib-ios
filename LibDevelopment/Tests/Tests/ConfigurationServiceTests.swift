@@ -38,7 +38,8 @@ final class ConfigurationServiceTests: XCTestCase {
                             minTimeBetweenSessionsMillis: 4393,
                             trackingSessionEvents: false,
                             realtimeEventTypes: [],
-                                        excludedEventTypes: []
+                                        excludedEventTypes: [],
+                            sendMechanism: .paltaBrain
                         ),
                         url: URL(string: "https://mock.url")
                     )
@@ -81,7 +82,8 @@ final class ConfigurationServiceTests: XCTestCase {
                         minTimeBetweenSessionsMillis: 4393,
                         trackingSessionEvents: false,
                         realtimeEventTypes: [],
-                                    excludedEventTypes: []
+                        excludedEventTypes: [],
+                        sendMechanism: .paltaBrain
                     ),
                     url: URL(string: "https://mock.url")
                 )
@@ -160,7 +162,8 @@ final class ConfigurationServiceTests: XCTestCase {
                         minTimeBetweenSessionsMillis: 678,
                         trackingSessionEvents: true,
                         realtimeEventTypes: [],
-                                    excludedEventTypes: []
+                        excludedEventTypes: [],
+                        sendMechanism: .paltaBrain
                     ),
                     url: URL(string: "https://url.mock")
                 )
