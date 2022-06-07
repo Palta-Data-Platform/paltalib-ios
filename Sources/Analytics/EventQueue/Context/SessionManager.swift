@@ -17,6 +17,7 @@ protocol SessionManager: AnyObject {
     var sessionEventLogger: ((String, Int) -> Void)? { get set }
 
     func refreshSession(with event: Event)
+    func refreshSession(with event: BatchEvent)
     func start()
     func startNewSession()
 }
@@ -72,6 +73,10 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     func refreshSession(with event: Event) {
+        session.lastEventTimestamp = event.timestamp
+    }
+    
+    func refreshSession(with event: BatchEvent) {
         session.lastEventTimestamp = event.timestamp
     }
 

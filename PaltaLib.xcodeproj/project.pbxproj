@@ -103,7 +103,26 @@
 		112FCA3A2847C8BE00C8F88A /* CGGeometryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA342847C61A00C8F88A /* CGGeometryExtensions.swift */; };
 		112FCA3C2847C8D400C8F88A /* ScreenMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA3B2847C8D400C8F88A /* ScreenMap.swift */; };
 		112FCA3E2847CAE400C8F88A /* RunLoopObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA3D2847CAE400C8F88A /* RunLoopObserver.swift */; };
+		112FCA402848B76500C8F88A /* BatchSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA3F2848B76500C8F88A /* BatchSender.swift */; };
 		112FCA422849EAEF00C8F88A /* ScrollTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA412849EAEE00C8F88A /* ScrollTracker.swift */; };
+		113A7989284DF327004C0C5D /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7988284DF327004C0C5D /* EventType.swift */; };
+		113A798B284DF461004C0C5D /* EventCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A798A284DF461004C0C5D /* EventCommon.swift */; };
+		113A798D284E0B78004C0C5D /* EventPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A798C284E0B78004C0C5D /* EventPayload.swift */; };
+		113A798F284E0CCF004C0C5D /* EventHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A798E284E0CCF004C0C5D /* EventHeader.swift */; };
+		113A7991284E39AF004C0C5D /* BatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7990284E39AF004C0C5D /* BatchEvent.swift */; };
+		113A7993284E3A98004C0C5D /* BatchCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7992284E3A98004C0C5D /* BatchCommon.swift */; };
+		113A7995284E3B94004C0C5D /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7994284E3B94004C0C5D /* Batch.swift */; };
+		113A7997284E3C63004C0C5D /* BatchContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7996284E3C63004C0C5D /* BatchContext.swift */; };
+		113A7999284E3C7F004C0C5D /* Event2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7998284E3C7F004C0C5D /* Event2.swift */; };
+		113A799C284E5704004C0C5D /* BatchStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A799B284E5704004C0C5D /* BatchStorage.swift */; };
+		113A799E284E5771004C0C5D /* EventStorage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A799D284E5771004C0C5D /* EventStorage2.swift */; };
+		113A79A0284E57D7004C0C5D /* BatchComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A799F284E57D7004C0C5D /* BatchComposer.swift */; };
+		113A79A2284E591A004C0C5D /* EventQueueCore2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A1284E591A004C0C5D /* EventQueueCore2.swift */; };
+		113A79A4284F5507004C0C5D /* BatchSendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A3284F5507004C0C5D /* BatchSendController.swift */; };
+		113A79A6284F6E13004C0C5D /* EventComposer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A5284F6E13004C0C5D /* EventComposer2.swift */; };
+		113A79A8284F6EB3004C0C5D /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A7284F6EB3004C0C5D /* Timestamp.swift */; };
+		113A79AA284F7341004C0C5D /* EventQueue2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A9284F7341004C0C5D /* EventQueue2.swift */; };
+		113A79AC284F75EF004C0C5D /* ContextHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79AB284F75EF004C0C5D /* ContextHolder.swift */; };
 		113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */; };
 		113AD63A2837A02E00324D62 /* FeatureMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6382837A01100324D62 /* FeatureMapper.swift */; };
 		113AD63C2837A6DD00324D62 /* FeatureMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63B2837A6DD00324D62 /* FeatureMapperTests.swift */; };
@@ -347,7 +366,26 @@
 		112FCA382847C7AC00C8F88A /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		112FCA3B2847C8D400C8F88A /* ScreenMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenMap.swift; sourceTree = "<group>"; };
 		112FCA3D2847CAE400C8F88A /* RunLoopObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunLoopObserver.swift; sourceTree = "<group>"; };
+		112FCA3F2848B76500C8F88A /* BatchSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSender.swift; sourceTree = "<group>"; };
 		112FCA412849EAEE00C8F88A /* ScrollTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTracker.swift; sourceTree = "<group>"; };
+		113A7988284DF327004C0C5D /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		113A798A284DF461004C0C5D /* EventCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCommon.swift; sourceTree = "<group>"; };
+		113A798C284E0B78004C0C5D /* EventPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPayload.swift; sourceTree = "<group>"; };
+		113A798E284E0CCF004C0C5D /* EventHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHeader.swift; sourceTree = "<group>"; };
+		113A7990284E39AF004C0C5D /* BatchEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchEvent.swift; sourceTree = "<group>"; };
+		113A7992284E3A98004C0C5D /* BatchCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchCommon.swift; sourceTree = "<group>"; };
+		113A7994284E3B94004C0C5D /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
+		113A7996284E3C63004C0C5D /* BatchContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchContext.swift; sourceTree = "<group>"; };
+		113A7998284E3C7F004C0C5D /* Event2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event2.swift; sourceTree = "<group>"; };
+		113A799B284E5704004C0C5D /* BatchStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchStorage.swift; sourceTree = "<group>"; };
+		113A799D284E5771004C0C5D /* EventStorage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorage2.swift; sourceTree = "<group>"; };
+		113A799F284E57D7004C0C5D /* BatchComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchComposer.swift; sourceTree = "<group>"; };
+		113A79A1284E591A004C0C5D /* EventQueueCore2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueCore2.swift; sourceTree = "<group>"; };
+		113A79A3284F5507004C0C5D /* BatchSendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSendController.swift; sourceTree = "<group>"; };
+		113A79A5284F6E13004C0C5D /* EventComposer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposer2.swift; sourceTree = "<group>"; };
+		113A79A7284F6EB3004C0C5D /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
+		113A79A9284F7341004C0C5D /* EventQueue2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueue2.swift; sourceTree = "<group>"; };
+		113A79AB284F75EF004C0C5D /* ContextHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextHolder.swift; sourceTree = "<group>"; };
 		113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsHTTPRequestTests.swift; sourceTree = "<group>"; };
 		113AD6382837A01100324D62 /* FeatureMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureMapper.swift; sourceTree = "<group>"; };
 		113AD63B2837A6DD00324D62 /* FeatureMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureMapperTests.swift; sourceTree = "<group>"; };
@@ -626,6 +664,16 @@
 				111159B627F73F8400A41ADA /* EventQueueCore.swift */,
 				11115A3327FAFA7A00A41ADA /* EventStorage.swift */,
 				11115A3B27FB176700A41ADA /* EventSender.swift */,
+				112FCA3F2848B76500C8F88A /* BatchSender.swift */,
+				113A799B284E5704004C0C5D /* BatchStorage.swift */,
+				113A799D284E5771004C0C5D /* EventStorage2.swift */,
+				113A79A3284F5507004C0C5D /* BatchSendController.swift */,
+				113A799F284E57D7004C0C5D /* BatchComposer.swift */,
+				113A79A1284E591A004C0C5D /* EventQueueCore2.swift */,
+				113A79A5284F6E13004C0C5D /* EventComposer2.swift */,
+				113A79A9284F7341004C0C5D /* EventQueue2.swift */,
+				113A79AB284F75EF004C0C5D /* ContextHolder.swift */,
+				113A799A284E3C8E004C0C5D /* Models */,
 				11115A3D27FB18B000A41ADA /* EventComposer.swift */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
 				11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */,
@@ -806,6 +854,22 @@
 			path = Sources/AnalyticsTools;
 			sourceTree = "<group>";
 		};
+		113A799A284E3C8E004C0C5D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				113A7988284DF327004C0C5D /* EventType.swift */,
+				113A798A284DF461004C0C5D /* EventCommon.swift */,
+				113A798C284E0B78004C0C5D /* EventPayload.swift */,
+				113A798E284E0CCF004C0C5D /* EventHeader.swift */,
+				113A7990284E39AF004C0C5D /* BatchEvent.swift */,
+				113A7992284E3A98004C0C5D /* BatchCommon.swift */,
+				113A7994284E3B94004C0C5D /* Batch.swift */,
+				113A7996284E3C63004C0C5D /* BatchContext.swift */,
+				113A7998284E3C7F004C0C5D /* Event2.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		113AD63D2837A8F000324D62 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
@@ -965,6 +1029,7 @@
 				114D06FC2806EEE500ACD310 /* IdentityLogger.swift */,
 				114D0702280757DB00ACD310 /* RevenueLogger.swift */,
 				114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */,
+				113A79A7284F6EB3004C0C5D /* Timestamp.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1368,41 +1433,60 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				113A7991284E39AF004C0C5D /* BatchEvent.swift in Sources */,
 				1111596927F70BE400A41ADA /* PaltaAnalytics+UserProperties.swift in Sources */,
 				11115A4D27FB7E6B00A41ADA /* EventQueue.swift in Sources */,
 				11115A9C280065E300A41ADA /* DeviceInfoProvider.swift in Sources */,
+				113A79AA284F7341004C0C5D /* EventQueue2.swift in Sources */,
 				11115A8227FEC60400A41ADA /* EventQueueAssembly.swift in Sources */,
 				11115A8427FEFFB200A41ADA /* SendEventsPayload.swift in Sources */,
+				113A798D284E0B78004C0C5D /* EventPayload.swift in Sources */,
 				11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */,
 				1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */,
 				114D06E028041BAA00ACD310 /* AnalyticsAssembly.swift in Sources */,
 				11115A8F28001F2300A41ADA /* UserPropertiesKeeper.swift in Sources */,
 				11115A9128001FA800A41ADA /* UserProperties.swift in Sources */,
+				113A7997284E3C63004C0C5D /* BatchContext.swift in Sources */,
 				1111596727F70BE400A41ADA /* PaltaAnalytics+Target.swift in Sources */,
 				11A61EA52834F01300F88116 /* ConfigApplyService.swift in Sources */,
 				11115A5027FB7E6B00A41ADA /* EventStorage.swift in Sources */,
+				113A799C284E5704004C0C5D /* BatchStorage.swift in Sources */,
+				113A7993284E3A98004C0C5D /* BatchCommon.swift in Sources */,
+				113A79A8284F6EB3004C0C5D /* Timestamp.swift in Sources */,
 				1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */,
 				11115A5127FB7E6B00A41ADA /* Event.swift in Sources */,
 				11115A4B27FB7E5700A41ADA /* EventComposer.swift in Sources */,
 				1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */,
+				113A79A4284F5507004C0C5D /* BatchSendController.swift in Sources */,
+				113A79AC284F75EF004C0C5D /* ContextHolder.swift in Sources */,
 				11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */,
 				1111596E27F70BF500A41ADA /* Settings.swift in Sources */,
+				113A79A6284F6E13004C0C5D /* EventComposer2.swift in Sources */,
+				113A79A0284E57D7004C0C5D /* BatchComposer.swift in Sources */,
 				11A61EA72835043600F88116 /* EventQueueAssembly+Config.swift in Sources */,
+				113A7999284E3C7F004C0C5D /* Event2.swift in Sources */,
 				11C60F5228181323004D0185 /* Amplitude+Extensions.swift in Sources */,
 				114D06FD2806EEE500ACD310 /* IdentityLogger.swift in Sources */,
 				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
+				112FCA402848B76500C8F88A /* BatchSender.swift in Sources */,
 				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,
+				113A798B284DF461004C0C5D /* EventCommon.swift in Sources */,
 				11115A4C27FB7E6000A41ADA /* Timer.swift in Sources */,
 				1111596627F70BE400A41ADA /* PaltaAnalytics+Identify.swift in Sources */,
 				11115A5C27FC5A3600A41ADA /* Timestamp.swift in Sources */,
+				113A7995284E3B94004C0C5D /* Batch.swift in Sources */,
 				114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */,
 				114D0703280757DB00ACD310 /* RevenueLogger.swift in Sources */,
+				113A799E284E5771004C0C5D /* EventStorage2.swift in Sources */,
+				113A79A2284E591A004C0C5D /* EventQueueCore2.swift in Sources */,
 				114D0708280814D900ACD310 /* TrackingOptionsProvider.swift in Sources */,
 				11115A5927FC59C900A41ADA /* Session.swift in Sources */,
 				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
+				113A7989284DF327004C0C5D /* EventType.swift in Sources */,
 				11115A4F27FB7E6B00A41ADA /* EventSender.swift in Sources */,
 				11115A5827FC59BC00A41ADA /* SessionManager.swift in Sources */,
 				11115A4E27FB7E6B00A41ADA /* EventQueueCore.swift in Sources */,
+				113A798F284E0CCF004C0C5D /* EventHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
