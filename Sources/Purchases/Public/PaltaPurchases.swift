@@ -10,9 +10,17 @@ import PaltaLibCore
 
 public final class PaltaPurchases {
     public static let instance = PaltaPurchases()
+    
+    public weak var delegate: PaltaPurchasesDelegate?
 
     var setupFinished = false
-    var plugins: [PurchasePlugin] = []
+    var plugins: [PurchasePlugin] = [] {
+        didSet {
+            plugins.forEach {
+                $0.delegate = self
+            }
+        }
+    }
 
     public func setup(with plugins: [PurchasePlugin]) {
         guard !setupFinished else {
@@ -144,5 +152,28 @@ public final class PaltaPurchases {
         if !setupFinished {
             assertionFailure("Setup palta purchases with plugins first!")
         }
+    }
+}
+
+extension PaltaPurchases: PurchasePluginDelegate {
+    public func purchasePlugin(
+        _ plugin: PurchasePlugin,
+        shouldPurchase promoProduct: Product,
+        defermentCallback: @escaping DefermentCallback
+    ) {
+        delegate?.purchases(self, shouldPurchase: promoProduct, defermentCallback: { completion in
+            defermentCallback {
+                switch $0 {
+                case .success(let purchase):
+                    completion(.success(purchase))
+                    
+                case .failure(let error):
+                    completion(.failure(error))
+                    
+                case .notSupported:
+                    completion(.failure(PaymentsError.sdkError(.other(nil))))
+                }
+            }
+        })
     }
 }

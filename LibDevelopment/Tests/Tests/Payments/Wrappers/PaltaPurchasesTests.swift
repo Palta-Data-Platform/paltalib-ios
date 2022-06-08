@@ -12,6 +12,7 @@ import XCTest
 final class PaltaPurchasesTests: XCTestCase {
     var instance: PaltaPurchases!
     var mockPlugins: [PurchasePluginMock] = []
+    var delegateMock: PaltaPurchasesDelegateMock!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -19,6 +20,8 @@ final class PaltaPurchasesTests: XCTestCase {
         mockPlugins = (0...2).map { _ in PurchasePluginMock() }
         instance = PaltaPurchases()
         instance.setup(with: mockPlugins)
+        delegateMock = .init()
+        instance.delegate = delegateMock
     }
     
     func testConfigure() {
@@ -352,6 +355,28 @@ final class PaltaPurchasesTests: XCTestCase {
         checkPlugins {
             $0.restorePurchasesCalled
         }
+    }
+    
+    func testDelegateForwarded() {
+        var callback: ((PurchasePluginResult<SuccessfulPurchase, Error>) -> Void)?
+        mockPlugins[0].delegate?.purchasePlugin(mockPlugins[0], shouldPurchase: ProductMock()) {
+            callback = $0
+        }
+        
+        XCTAssertNotNil(delegateMock.product)
+        
+        let failCalled = expectation(description: "Fail called")
+        delegateMock.callback? {
+            guard case .failure = $0 else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        callback?(.notSupported)
+        
+        wait(for: [failCalled], timeout: 0.1)
     }
     
     private func checkPlugins(line: UInt = #line, file: StaticString = #file, _ check: (PurchasePluginMock) -> Bool) {
