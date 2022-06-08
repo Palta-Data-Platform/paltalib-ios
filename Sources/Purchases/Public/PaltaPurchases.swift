@@ -32,11 +32,28 @@ public final class PaltaPurchases {
         self.plugins = plugins
     }
     
-    public func logIn(appUserId: UserId) {
+    public func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void) {
         checkSetupFinished()
         
+        let group = DispatchGroup()
+        var error: Error?
+        let lock = NSRecursiveLock()
+        
         plugins.forEach {
-            $0.logIn(appUserId: appUserId)
+            group.enter()
+            $0.logIn(appUserId: appUserId) {
+                if case let .failure(err) = $0, error == nil {
+                    lock.lock()
+                    error = err
+                    lock.unlock()
+                }
+                
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            completion(error.map { .failure($0) } ?? .success(()))
         }
     }
     

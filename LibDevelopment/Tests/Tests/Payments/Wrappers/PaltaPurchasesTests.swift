@@ -33,14 +33,53 @@ final class PaltaPurchasesTests: XCTestCase {
         XCTAssertEqual(instance.plugins as? [PurchasePluginMock], plugins)
     }
     
-    func testLogin() {
+    func testLoginSuccess() {
         let userId = UserId.uuid(UUID())
+        let successCalled = expectation(description: "Login success")
         
-        instance.logIn(appUserId: userId)
+        instance.logIn(appUserId: userId) {
+            guard case .success = $0 else {
+                return
+            }
+            
+            successCalled.fulfill()
+        }
         
         checkPlugins {
             $0.logInUserId == userId
         }
+        
+        DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { [mockPlugins] i in
+            mockPlugins[i].logInCompletion?(.success(()))
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
+    }
+    
+    func testLoginFail() {
+        let userId = UserId.uuid(UUID())
+        let failCalled = expectation(description: "Login fail")
+        
+        instance.logIn(appUserId: userId) {
+            guard case .failure = $0 else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        checkPlugins {
+            $0.logInUserId == userId
+        }
+        
+        let failedIndex = Int.random(in: 0..<mockPlugins.count)
+        DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { [mockPlugins] i in
+            mockPlugins[i].logInCompletion?(
+                i == failedIndex ? .success(()) : .failure(PaymentsError.invalidKey)
+            )
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
     }
     
     func testLogOut() {

@@ -17,6 +17,15 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         Purchases.configure(withAPIKey: apiKey)
     }
 
+    public func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void) {
+        purchases.logIn(appUserId.stringValue) { customerInfo, _, error in
+            if customerInfo != nil {
+                completion(.success(()))
+            } else {
+                completion(.failure(error ?? PaymentsError.sdkError(.other(nil))))
+            }
+        }
+    }
     public func logIn(appUserId: UserId) {
         purchases.logIn(appUserId.stringValue, completion: { _, _, _ in })
     }

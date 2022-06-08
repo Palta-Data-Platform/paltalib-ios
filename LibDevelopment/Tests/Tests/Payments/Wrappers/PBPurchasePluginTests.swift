@@ -24,8 +24,17 @@ final class PBPurchasePluginTests: XCTestCase {
     
     func testLogInLogOut() {
         let userId = UserId.uuid(UUID())
+        let successCalled = expectation(description: "Success called")
         
-        plugin.logIn(appUserId: userId)
+        plugin.logIn(appUserId: userId) {
+            guard case .success = $0 else {
+                return
+            }
+            
+            successCalled.fulfill()
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
         
         XCTAssertEqual(plugin.userId, userId)
         
@@ -41,7 +50,7 @@ final class PBPurchasePluginTests: XCTestCase {
         
         let completionCalled = expectation(description: "Success called")
         
-        plugin.logIn(appUserId: userId)
+        plugin.logIn(appUserId: userId, completion: { _ in })
         plugin.getPaidFeatures { result in
             guard case let .success(features) = result else {
                 return
@@ -61,7 +70,7 @@ final class PBPurchasePluginTests: XCTestCase {
         
         let completionCalled = expectation(description: "Fail called")
         
-        plugin.logIn(appUserId: userId)
+        plugin.logIn(appUserId: userId, completion: { _ in })
         plugin.getPaidFeatures { result in
             guard case .failure = result else {
                 return

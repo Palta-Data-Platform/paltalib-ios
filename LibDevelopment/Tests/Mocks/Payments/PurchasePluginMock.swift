@@ -12,6 +12,7 @@ final class PurchasePluginMock: PurchasePlugin {
     var delegate: PurchasePluginDelegate?
     
     var logInUserId: UserId?
+    var logInCompletion: ((Result<(), Error>) -> Void)?
     var logOutCalled = false
     var getPaidFeaturesCompletion: ((Result<PaidFeatures, Error>) -> Void)?
     var getProductsCompletion: ((PurchasePluginResult<[Product], Error>) -> Void)?
@@ -22,8 +23,9 @@ final class PurchasePluginMock: PurchasePlugin {
     var attributes: [String : String]?
     var collectDeviceIdentifiersCalled = false
 
-    func logIn(appUserId: UserId) {
+    func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void) {
         logInUserId = appUserId
+        logInCompletion = completion
     }
 
     func logOut() {

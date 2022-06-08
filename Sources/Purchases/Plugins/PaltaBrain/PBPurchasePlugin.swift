@@ -18,8 +18,9 @@ public final class PBPurchasePlugin: PurchasePlugin {
         self.assembly = assembly
     }
     
-    public func logIn(appUserId: UserId) {
+    public func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void) {
         userId = appUserId
+        completion(.success(()))
     }
     
     public func logOut() {
