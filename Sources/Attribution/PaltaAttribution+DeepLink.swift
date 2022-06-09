@@ -17,3 +17,9 @@ public extension PaltaAttribution {
         public let isDeferred: Bool
     }
 }
+
+public extension PaltaAttribution.DeepLink {
+    var voucherId: String? {
+        clickEvent["deep_link_sub2"] as? String
+    }
+}
