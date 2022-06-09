@@ -15,11 +15,13 @@ public extension PaltaAttribution {
         public let afSub4: String?
         public let afSub5: String?
         public let isDeferred: Bool
-    }
-}
-
-public extension PaltaAttribution.DeepLink {
-    var voucherId: String? {
-        clickEvent["deep_link_sub2"] as? String
+        
+        public var voucherId: String? {
+            guard deeplinkValue == Constants.webSubscriptionsDeeplinkValue else {
+                return nil
+            }
+            
+            return clickEvent[Constants.deepLinkVoucherIdKey] as? String
+        }
     }
 }
