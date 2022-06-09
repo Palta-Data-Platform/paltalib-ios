@@ -91,6 +91,7 @@
 		11115A9728003BD600A41ADA /* UserDefaults+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9228001FE400A41ADA /* UserDefaults+Codable.swift */; };
 		11115A9A28003D6900A41ADA /* UserPropertiesKeeperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9828003D6500A41ADA /* UserPropertiesKeeperMock.swift */; };
 		11115A9C280065E300A41ADA /* DeviceInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */; };
+		113A7A0928520A34004C0C5D /* PaltaPurchasesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7A0828520A34004C0C5D /* PaltaPurchasesDelegate.swift */; };
 		114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */; };
 		114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */; };
 		114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */; };
@@ -281,6 +282,7 @@
 		11115A94280023A300A41ADA /* UserPropertiesKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesKeeperTests.swift; sourceTree = "<group>"; };
 		11115A9828003D6500A41ADA /* UserPropertiesKeeperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesKeeperMock.swift; sourceTree = "<group>"; };
 		11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProvider.swift; sourceTree = "<group>"; };
+		113A7A0828520A34004C0C5D /* PaltaPurchasesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesDelegate.swift; sourceTree = "<group>"; };
 		114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderMock.swift; sourceTree = "<group>"; };
 		114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderTests.swift; sourceTree = "<group>"; };
 		114D06DB28041B5000ACD310 /* AnalyticsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAssembly.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			children = (
 				11115A6F27FDBB7700A41ADA /* Requests */,
 				1111591227F7086C00A41ADA /* PaltaPurchases.swift */,
+				113A7A0828520A34004C0C5D /* PaltaPurchasesDelegate.swift */,
 				1111591527F7086C00A41ADA /* PaltaPurchases+Configuration.swift */,
 				1111591327F7086C00A41ADA /* PaltaPurchases+WebSubscriptions.swift */,
 				1111591627F7086C00A41ADA /* PurchaseInfoListener.swift */,
@@ -919,6 +922,7 @@
 				11115A7027FDBBF500A41ADA /* RestoreRequestData.swift in Sources */,
 				1111597227F70C0100A41ADA /* PurchaseInfoListener.swift in Sources */,
 				1111597727F70C0100A41ADA /* PaltaPurchases+WebSubscriptions.swift in Sources */,
+				113A7A0928520A34004C0C5D /* PaltaPurchasesDelegate.swift in Sources */,
 				11115A7227FDBBF500A41ADA /* PurchaseHTTPRequest.swift in Sources */,
 				1111597327F70C0100A41ADA /* PaltaPurchases.swift in Sources */,
 				1111597127F70C0100A41ADA /* PurchaserInfo+RevenueCat.swift in Sources */,

@@ -15,6 +15,8 @@ public final class PaltaPurchases {
         #warning("TODO: PaltaPurchases should not depend on PaltaAppsflyerAdapter, there should be a way to install components separatly")
         return assembly.purchasesInstance
     }()
+    
+    public weak var delegate: PaltaPurchasesDelegate?
 
     private let purchases: Purchases
     private let appsflyerAdapter: PaltaAppsflyerAdapter

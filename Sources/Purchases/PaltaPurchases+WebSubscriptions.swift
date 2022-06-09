@@ -11,7 +11,7 @@ extension PaltaPurchases {
             RestoreRequestData(email: email, webSubscriptionID: webSubscriptionID)
         )
 
-        httpClient.perform(request) { (result: Result<RestoreResponce, NetworkErrorWithResponse<ErrorResponse>>) in
+        httpClient.perform(request) { (result: Result<WebSubscriptionsResponse, NetworkErrorWithResponse<ErrorResponse>>) in
             switch result {
             case .success:
                 completion(.success(()))
@@ -30,17 +30,29 @@ extension PaltaPurchases {
             CancelRequestData(revenueCatID: revenueCatID, webSubscriptionID: webSubscriptionID)
         )
 
-        #warning("Need to use other success response type")
-        httpClient.perform(request) { [unowned self] (result: Result<RestoreResponce, NetworkErrorWithResponse<ErrorResponse>>) in
+        httpClient.perform(request) { [unowned self] (result: Result<WebSubscriptionsResponse, NetworkErrorWithResponse<ErrorResponse>>) in
             switch result {
-            case .success:
-                self.invalidatePurchaserInfoCache()
-                self.fetchPurchaserInfo { _ in
-                    completion(.success(()))
+            case let .success(response) where response.message == .redirect:
+                guard let url = response.url else {
+                    completion(.failure(.networkError(.decodingError(nil))))
+                    return
                 }
+                
+                delegate?.paltaPurchases(self, needsToOpenURL: url) { [unowned self] in
+                    completeCancel(completion: completion)
+                }
+            case .success:
+                completeCancel(completion: completion)
             case let .failure(error):
                 PaltaPurchases.handleError(error, completion: completion)
             }
+        }
+    }
+    
+    private func completeCancel(completion: @escaping (Result<Void, WebSubscriptionError>) -> Void) {
+        self.invalidatePurchaserInfoCache()
+        self.fetchPurchaserInfo { _ in
+            completion(.success(()))
         }
     }
 
@@ -56,8 +68,14 @@ extension PaltaPurchases {
     }
 }
 
-private struct RestoreResponce: Decodable {
-    let message: String
+private struct WebSubscriptionsResponse: Decodable {
+    enum Message: String, Decodable {
+        case ok = "OK"
+        case redirect = "Redirect"
+    }
+    
+    let message: Message
+    let url: URL?
 }
 
 private struct ErrorResponse: Decodable {
