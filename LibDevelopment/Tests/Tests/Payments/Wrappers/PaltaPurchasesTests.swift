@@ -54,6 +54,8 @@ final class PaltaPurchasesTests: XCTestCase {
         }
         
         wait(for: [successCalled], timeout: 0.1)
+        
+        XCTAssertEqual(instance.userId, userId)
     }
     
     func testLoginFail() {
@@ -80,14 +82,33 @@ final class PaltaPurchasesTests: XCTestCase {
         }
         
         wait(for: [failCalled], timeout: 0.1)
+        
+        XCTAssertNil(instance.userId)
+        
+        checkPlugins {
+            $0.logOutCalled
+        }
     }
     
     func testLogOut() {
+        let loggedIn = expectation(description: "Logged in")
+        instance.logIn(appUserId: .uuid(UUID())) { _ in
+            loggedIn.fulfill()
+        }
+        
+        mockPlugins.forEach {
+            $0.logInCompletion?(.success(()))
+        }
+        
+        wait(for: [loggedIn], timeout: 0.1)
+        
         instance.logOut()
         
         checkPlugins {
             $0.logOutCalled
         }
+        
+        XCTAssertNil(instance.userId)
     }
     
     func testGetPaidFeaturesSuccess() {
@@ -456,7 +477,7 @@ final class PaltaPurchasesTests: XCTestCase {
             failCalled.fulfill()
         }
         
-        DispatchQueue.concurrentPerform(iterations: pluginFeatures.count) { index in
+        DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { index in
             mockPlugins[index].restorePurchasesCompletion?(
                 index != 2 ? .success(pluginFeatures[index]) : .failure(PaymentsError.unknownError)
             )

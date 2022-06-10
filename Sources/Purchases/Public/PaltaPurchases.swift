@@ -11,6 +11,8 @@ import PaltaLibCore
 public final class PaltaPurchases {
     public static let instance = PaltaPurchases()
     
+    public private(set) var userId: UserId?
+    
     public weak var delegate: PaltaPurchasesDelegate?
 
     var setupFinished = false
@@ -37,7 +39,16 @@ public final class PaltaPurchases {
         
         callAndCollect(call: { plugin, callback in
             plugin.logIn(appUserId: appUserId, completion: callback)
-        }, completion: { result in
+        }, completion: { [weak self] result in
+            switch result {
+            case .success:
+                self?.userId = appUserId
+                
+            case .failure:
+                // Some plugins definetly failed, but some may be logged in. Need to logout.
+                self?.logOut()
+            }
+            
             completion(result.map { _ in })
         })
     }
@@ -45,6 +56,7 @@ public final class PaltaPurchases {
     public func logOut() {
         checkSetupFinished()
         
+        userId = nil
         plugins.forEach {
             $0.logOut()
         }
