@@ -38,6 +38,10 @@ extension PaidFeatures {
         featuresByName.values.flatMap { $0 }
     }
     
+    public var activeFeatures: [PaidFeature] {
+        features.filter { $0.isActive }
+    }
+    
     public subscript(_ name: String) -> [PaidFeature] {
         featuresByName[name].map(Array.init) ?? []
     }
