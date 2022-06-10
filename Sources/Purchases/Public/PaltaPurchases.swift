@@ -116,6 +116,30 @@ public final class PaltaPurchases {
         }
     }
     
+    public func setAppsflyerID(_ appsflyerID: String?) {
+        checkSetupFinished()
+        
+        plugins.forEach {
+            $0.setAppsflyerID(appsflyerID)
+        }
+    }
+    
+    public func setAppsflyerAttributes(_ attributes: [String: String]) {
+        checkSetupFinished()
+        
+        plugins.forEach {
+            $0.setAppsflyerAttributes(attributes)
+        }
+    }
+    
+    public func collectDeviceIdentifiers() {
+        checkSetupFinished()
+        
+        plugins.forEach {
+            $0.collectDeviceIdentifiers()
+        }
+    }
+    
     private func start<T>(
         completion: @escaping (Result<T, Error>) -> Void,
         execute: @escaping (PurchasePlugin, @escaping (PurchasePluginResult<T, Error>) -> Void) -> Void

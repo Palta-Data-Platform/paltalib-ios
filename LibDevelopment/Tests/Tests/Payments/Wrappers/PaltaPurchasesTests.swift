@@ -576,6 +576,32 @@ final class PaltaPurchasesTests: XCTestCase {
         wait(for: [failCalled], timeout: 0.1)
     }
     
+    func testSetAppsflyerID() {
+        let id = UUID().uuidString
+        instance.setAppsflyerID(id)
+        
+        checkPlugins {
+            id == $0.appsflyerID
+        }
+    }
+    
+    func testSetAppsflyerAttributes() {
+        let attributes = [UUID().uuidString: UUID().uuidString]
+        instance.setAppsflyerAttributes(attributes)
+        
+        checkPlugins {
+            attributes == $0.attributes
+        }
+    }
+    
+    func testCollectDeviceIdentifiers() {
+        instance.collectDeviceIdentifiers()
+        
+        checkPlugins {
+            $0.collectDeviceIdentifiersCalled
+        }
+    }
+    
     private func checkPlugins(line: UInt = #line, file: StaticString = #file, _ check: (PurchasePluginMock) -> Bool) {
         XCTAssert(!mockPlugins.isEmpty, file: file, line: line)
         
