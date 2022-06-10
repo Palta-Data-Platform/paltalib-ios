@@ -388,12 +388,85 @@ final class PaltaPurchasesTests: XCTestCase {
         wait(for: [completionCalled], timeout: 0.1)
     }
     
-    func testRestore() {
-        instance.restorePurchases()
+    func testRestoreSuccess() {
+        let pluginFeatures = [
+            PaidFeatures(
+                features: [
+                    PaidFeature(name: "Feature 1", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 3", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
+                ]
+            ),
+            PaidFeatures(),
+            PaidFeatures(
+                features: [
+                    PaidFeature(name: "Feature 6", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 88), endDate: nil),
+                    PaidFeature(name: "Feature 5", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
+                ]
+            )
+        ]
         
-        checkPlugins {
-            $0.restorePurchasesCalled
+        assert(mockPlugins.count == pluginFeatures.count)
+        
+        let expectedFeatures = PaidFeatures(
+            features: [
+                PaidFeature(name: "Feature 1", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 3", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 6", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 88), endDate: nil),
+                PaidFeature(name: "Feature 5", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
+            ]
+        )
+        
+        let successCalled = expectation(description: "Restore successful")
+        instance.restorePurchases {
+            guard case .success(let features) = $0 else {
+                return
+            }
+            
+            XCTAssertEqual(features, expectedFeatures)
+            successCalled.fulfill()
         }
+        
+        DispatchQueue.concurrentPerform(iterations: pluginFeatures.count) { index in
+            mockPlugins[index].restorePurchasesCompletion?(.success(pluginFeatures[index]))
+        }
+        
+        mockPlugins.enumerated().forEach {
+            XCTAssertNotNil($1.restorePurchasesCompletion)
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
+    }
+    
+    func testRestoreFailure() {
+        let pluginFeatures = [
+            PaidFeatures(),
+            PaidFeatures()
+        ]
+        
+        let failCalled = expectation(description: "Restore failure")
+        instance.restorePurchases {
+            guard case .failure = $0 else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        DispatchQueue.concurrentPerform(iterations: pluginFeatures.count) { index in
+            mockPlugins[index].restorePurchasesCompletion?(
+                index != 2 ? .success(pluginFeatures[index]) : .failure(PaymentsError.unknownError)
+            )
+        }
+        
+        mockPlugins.enumerated().forEach {
+            XCTAssertNotNil($1.restorePurchasesCompletion)
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
     }
     
     func testDelegateForwarded() {

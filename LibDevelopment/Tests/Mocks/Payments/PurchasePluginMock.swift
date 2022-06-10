@@ -18,7 +18,7 @@ final class PurchasePluginMock: PurchasePlugin {
     var getProductsCompletion: ((PurchasePluginResult<[Product], Error>) -> Void)?
     var getPromotionalOfferCompletion: ((PurchasePluginResult<PromoOffer, Error>) -> Void)?
     var purchaseCompletion: ((PurchasePluginResult<SuccessfulPurchase, Error>) -> Void)?
-    var restorePurchasesCalled = false
+    var restorePurchasesCompletion: ((Result<PaidFeatures, Error>) -> Void)?
     var appsflyerID: String?
     var attributes: [String : String]?
     var collectDeviceIdentifiersCalled = false
@@ -48,8 +48,8 @@ final class PurchasePluginMock: PurchasePlugin {
         purchaseCompletion = completion
     }
     
-    func restorePurchases() {
-        restorePurchasesCalled = true
+    func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
+        restorePurchasesCompletion = completion
     }
     
     func setAppsflyerID(_ appsflyerID: String?) {

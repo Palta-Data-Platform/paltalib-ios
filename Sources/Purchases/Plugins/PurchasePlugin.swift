@@ -33,7 +33,7 @@ public protocol PurchasePlugin: AnyObject {
         _ completion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void
     )
 
-    func restorePurchases()
+    func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void)
     
     func setAppsflyerID(_ appsflyerID: String?)
     func setAppsflyerAttributes(_ attributes: [String: String])

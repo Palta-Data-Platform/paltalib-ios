@@ -106,6 +106,16 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         }
     }
     
+    public func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
+        purchases.restorePurchases { customerInfo, error in
+            if let paidFeatures = customerInfo?.paidFeatures {
+                completion(.success(paidFeatures))
+            } else {
+                completion(.failure(error ?? PaymentsError.unknownError))
+            }
+        }
+    }
+    
     public func restorePurchases() {
         purchases.restorePurchases()
     }

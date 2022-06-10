@@ -61,7 +61,8 @@ public final class PBPurchasePlugin: PurchasePlugin {
         completion(.notSupported)
     }
     
-    public func restorePurchases() {
+    public func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
+        getPaidFeatures(completion)
     }
     
     public func setAppsflyerID(_ appsflyerID: String?) {

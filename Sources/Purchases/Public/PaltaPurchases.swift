@@ -35,26 +35,11 @@ public final class PaltaPurchases {
     public func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void) {
         checkSetupFinished()
         
-        let group = DispatchGroup()
-        var error: Error?
-        let lock = NSRecursiveLock()
-        
-        plugins.forEach {
-            group.enter()
-            $0.logIn(appUserId: appUserId) {
-                if case let .failure(err) = $0, error == nil {
-                    lock.lock()
-                    error = err
-                    lock.unlock()
-                }
-                
-                group.leave()
-            }
-        }
-        
-        group.notify(queue: .main) {
-            completion(error.map { .failure($0) } ?? .success(()))
-        }
+        callAndCollect(call: { plugin, callback in
+            plugin.logIn(appUserId: appUserId, completion: callback)
+        }, completion: { result in
+            completion(result.map { _ in })
+        })
     }
     
     public func logOut() {
@@ -68,33 +53,8 @@ public final class PaltaPurchases {
     public func getPaidFeatures(_ completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
         checkSetupFinished()
         
-        var features = PaidFeatures()
-        var errors: [Error] = []
-        let dispatchGroup = DispatchGroup()
-        let lock = NSRecursiveLock()
-        
-        plugins.forEach { plugin in
-            dispatchGroup.enter()
-            plugin.getPaidFeatures { result in
-                lock.lock()
-                switch result {
-                case .success(let pluginFeatures):
-                    features.merge(with: pluginFeatures)
-                    
-                case .failure(let error):
-                    errors.append(error)
-                }
-                lock.unlock()
-                dispatchGroup.leave()
-            }
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            if let error = errors.first {
-                completion(.failure(error))
-            } else {
-                completion(.success(features))
-            }
+        callAndCollectPaidFeatures(to: completion) { plugin, callback in
+            plugin.getPaidFeatures(callback)
         }
     }
     
@@ -123,11 +83,11 @@ public final class PaltaPurchases {
         }
     }
     
-    public func restorePurchases() {
+    public func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
         checkSetupFinished()
         
-        plugins.forEach {
-            $0.restorePurchases()
+        callAndCollectPaidFeatures(to: completion) { plugin, callback in
+            plugin.restorePurchases(completion: callback)
         }
     }
     
@@ -159,8 +119,7 @@ public final class PaltaPurchases {
             } else if let nextPlugin = self.plugins.nextElement(after: { $0 === plugin }) {
                 self.with(nextPlugin, completion: completion, execute: execute)
             } else {
-                // TODO: Improve error handling
-                completion(.failure(NSError(domain: "", code: 0)))
+                completion(.failure(PaymentsError.sdkError(.noSuitablePlugin)))
             }
         }
     }
@@ -168,6 +127,58 @@ public final class PaltaPurchases {
     private func checkSetupFinished() {
         if !setupFinished {
             assertionFailure("Setup palta purchases with plugins first!")
+        }
+    }
+    
+    private func callAndCollect<T>(
+        call: (PurchasePlugin, @escaping (Result<T, Error>) -> Void) -> Void,
+        completion: @escaping (Result<[T], Error>) -> Void
+    ) {
+        var values: [T] = []
+        var error: Error?
+        
+        let lock = NSRecursiveLock()
+        let group = DispatchGroup()
+        
+        plugins.forEach { plugin in
+            group.enter()
+            call(plugin) { result in
+                lock.lock()
+                
+                switch result {
+                case .success(let value):
+                    values.append(value)
+                    
+                case .failure(let err):
+                    error = error ?? err
+                }
+                
+                lock.unlock()
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(values))
+            }
+        }
+    }
+    
+    private func callAndCollectPaidFeatures(
+        to completion: @escaping (Result<PaidFeatures, Error>) -> Void,
+        call: (PurchasePlugin, @escaping (Result<PaidFeatures, Error>) -> Void) -> Void
+    ) {
+        callAndCollect(call: call) { result in
+            completion(
+                result.map {
+                    $0.reduce(PaidFeatures()) {
+                        $0.merged(with: $1)
+                    }
+                }
+            )
         }
     }
 }
