@@ -15,6 +15,7 @@ extension ProductDiscount {
             price: rc.price,
             numberOfPeriods: rc.numberOfPeriods,
             subscriptionPeriod: SubscriptionPeriod(rc: rc.subscriptionPeriod),
+            localizedPriceString: rc.localizedPriceString,
             originalEntity: rc
         )
     }

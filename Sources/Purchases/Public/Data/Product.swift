@@ -47,6 +47,7 @@ public struct Product {
     public let localizedTitle: String
     public let currencyCode: String?
     public let price: Decimal
+    public let localizedPriceString: String
     
     let originalEntity: Any
     
@@ -78,6 +79,7 @@ extension Product {
         localizedTitle: String,
         currencyCode: String?,
         price: Decimal,
+        localizedPriceString: String,
         originalEntity: Any
     ) {
         self.productType = productType
@@ -86,6 +88,7 @@ extension Product {
         self.localizedTitle = localizedTitle
         self.currencyCode = currencyCode
         self.price = price
+        self.localizedPriceString = localizedPriceString
         self._subscriptionPeriod = nil
         self._introductoryDiscount = nil
         self._discounts = nil
@@ -100,6 +103,7 @@ extension Product {
         localizedTitle: String,
         currencyCode: String?,
         price: Decimal,
+        localizedPriceString: String,
         subscriptionPeriod: SubscriptionPeriod?,
         introductoryDiscount: ProductDiscount?,
         originalEntity: Any
@@ -110,6 +114,7 @@ extension Product {
         self.localizedTitle = localizedTitle
         self.currencyCode = currencyCode
         self.price = price
+        self.localizedPriceString = localizedPriceString
         self._subscriptionPeriod = subscriptionPeriod
         self._introductoryDiscount = introductoryDiscount
         self._discounts = nil
@@ -124,6 +129,7 @@ extension Product {
         localizedTitle: String,
         currencyCode: String?,
         price: Decimal,
+        localizedPriceString: String,
         subscriptionPeriod: SubscriptionPeriod?,
         introductoryDiscount: ProductDiscount?,
         discounts: [ProductDiscount],
@@ -135,6 +141,7 @@ extension Product {
         self.localizedTitle = localizedTitle
         self.currencyCode = currencyCode
         self.price = price
+        self.localizedPriceString = localizedPriceString
         self._subscriptionPeriod = subscriptionPeriod
         self._introductoryDiscount = introductoryDiscount
         self._discounts = discounts

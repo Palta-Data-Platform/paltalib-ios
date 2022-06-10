@@ -16,6 +16,7 @@ extension ProductDiscount {
             price: 0,
             numberOfPeriods: 0,
             subscriptionPeriod: .init(value: 0, unit: .month),
+            localizedPriceString: "",
             originalEntity: 0
         )
     }

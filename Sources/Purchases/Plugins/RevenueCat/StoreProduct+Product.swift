@@ -18,6 +18,7 @@ extension Product {
                 localizedTitle: rc.localizedTitle,
                 currencyCode: rc.currencyCode,
                 price: rc.price,
+                localizedPriceString: rc.localizedPriceString,
                 subscriptionPeriod: rc._subscriptionPeriod,
                 introductoryDiscount: rc._introductoryDiscount,
                 discounts: rc._discounts,
@@ -31,6 +32,7 @@ extension Product {
                 localizedTitle: rc.localizedTitle,
                 currencyCode: rc.currencyCode,
                 price: rc.price,
+                localizedPriceString: rc.localizedPriceString,
                 subscriptionPeriod: rc._subscriptionPeriod,
                 introductoryDiscount: rc._introductoryDiscount,
                 originalEntity: rc
@@ -43,6 +45,7 @@ extension Product {
                 localizedTitle: rc.localizedTitle,
                 currencyCode: rc.currencyCode,
                 price: rc.price,
+                localizedPriceString: rc.localizedPriceString,
                 originalEntity: rc
             )
         }

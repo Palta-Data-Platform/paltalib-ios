@@ -13,6 +13,7 @@ public struct ProductDiscount {
     public let price: Decimal
     public let numberOfPeriods: Int
     public let subscriptionPeriod: SubscriptionPeriod
+    public let localizedPriceString: String
     
     let originalEntity: Any
 }

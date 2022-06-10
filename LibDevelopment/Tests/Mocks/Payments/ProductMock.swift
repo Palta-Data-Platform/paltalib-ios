@@ -17,6 +17,7 @@ extension Product {
             localizedTitle: "",
             currencyCode: nil,
             price: 0,
+            localizedPriceString: "",
             originalEntity: 0
         )
     }
