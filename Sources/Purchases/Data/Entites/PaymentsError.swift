@@ -13,6 +13,7 @@ enum PaymentsError: Error {
     
     case invalidKey
     case noUserId
+    case cancelledByUser
     case serverError(Int)
     case sdkError(SDKError)
     case networkError(URLError)
@@ -75,6 +76,8 @@ extension PaymentsError {
             print("PaltaLib: Payments: SDK error. Please contact developer. \n\(error)")
         case .networkError(let error):
             print("PaltaLib: Payments: Network error. Please try again later. \n\(error)")
+        case .cancelledByUser:
+            print("PaltaLib: Payments: Operation cancelled by user")
         }
     }
 }

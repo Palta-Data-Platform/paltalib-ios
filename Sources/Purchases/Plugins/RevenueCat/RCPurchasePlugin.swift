@@ -135,8 +135,10 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
     private func makeRCCompletionBlock(
         from pluginCompletion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void
     ) -> (StoreTransaction?, CustomerInfo?, Error?, Bool) -> Void {
-        { _, customerInfo, error, _ in
-            if let error = error {
+        { _, customerInfo, error, isCancelled in
+            if isCancelled {
+                pluginCompletion(.failure(PaymentsError.cancelledByUser))
+            } else if let error = error {
                 pluginCompletion(.failure(error))
             } else {
                 pluginCompletion(
