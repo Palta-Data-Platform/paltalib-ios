@@ -114,7 +114,7 @@ final class PBPurchasePluginTests: XCTestCase {
     func testGetOffer() {
         let completionCalled = expectation(description: "Not supported called")
         
-        plugin.getPromotionalOffer(for: ProductDiscountMock(), product: ProductMock()) { result in
+        plugin.getPromotionalOffer(for: ProductDiscountMock(), product: .mock()) { result in
             guard case .notSupported = result else {
                 return
             }
@@ -128,7 +128,7 @@ final class PBPurchasePluginTests: XCTestCase {
     func testPurchase() {
         let completionCalled = expectation(description: "Not supported called")
         
-        plugin.purchase(ProductMock(), with: nil) { result in
+        plugin.purchase(.mock(), with: nil) { result in
             guard case .notSupported = result else {
                 return
             }

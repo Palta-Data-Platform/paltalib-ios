@@ -13,4 +13,8 @@ struct ProductDiscountMock: ProductDiscount {
     var currencyCode: String?
     var price: Decimal = 0
     var numberOfPeriods: Int = 0
+    
+    var hashValue: Int {
+        0
+    }
 }

@@ -12,4 +12,15 @@ public protocol ProductDiscount {
     var currencyCode: String? { get }
     var price: Decimal { get }
     var numberOfPeriods: Int { get }
+    
+    var hashValue: Int { get }
+}
+
+extension Optional where Wrapped == ProductDiscount {
+    func isEqual(to anotherDiscount: ProductDiscount?) -> Bool {
+        self?.offerIdentifier == anotherDiscount?.offerIdentifier
+        && self?.currencyCode == anotherDiscount?.currencyCode
+        && self?.price == anotherDiscount?.price
+        && self?.numberOfPeriods == anotherDiscount?.numberOfPeriods
+    }
 }

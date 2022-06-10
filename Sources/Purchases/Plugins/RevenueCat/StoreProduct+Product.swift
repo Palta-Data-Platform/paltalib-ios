@@ -8,57 +8,60 @@
 import Foundation
 import RevenueCat
 
-struct RCProduct: Product {
-    public var productType: ProductType {
-        ProductType(rc: product.productType)
+extension Product {
+    init(rc: StoreProduct) {
+        if #available(iOS 12.2, *) {
+            self.init(
+                productType: ProductType(rc: rc.productType),
+                productIdentifier: rc.productIdentifier,
+                localizedDescription: rc.localizedDescription,
+                localizedTitle: rc.localizedTitle,
+                currencyCode: rc.currencyCode,
+                price: rc.price,
+                subscriptionPeriod: rc._subscriptionPeriod,
+                introductoryDiscount: rc.introductoryDiscount,
+                discounts: rc.discounts as [ProductDiscount],
+                originalEntity: rc
+            )
+        } else if #available(iOS 11.2, *) {
+            self.init(
+                productType: ProductType(rc: rc.productType),
+                productIdentifier: rc.productIdentifier,
+                localizedDescription: rc.localizedDescription,
+                localizedTitle: rc.localizedTitle,
+                currencyCode: rc.currencyCode,
+                price: rc.price,
+                subscriptionPeriod: rc._subscriptionPeriod,
+                introductoryDiscount: rc.introductoryDiscount,
+                originalEntity: rc
+            )
+        } else {
+            self.init(
+                productType: ProductType(rc: rc.productType),
+                productIdentifier: rc.productIdentifier,
+                localizedDescription: rc.localizedDescription,
+                localizedTitle: rc.localizedTitle,
+                currencyCode: rc.currencyCode,
+                price: rc.price,
+                originalEntity: rc
+            )
+        }
     }
     
-    public var productIdentifier: String {
-        product.productIdentifier
+    var storeProduct: StoreProduct? {
+        originalEntity as? StoreProduct
     }
-    
-    public var localizedDescription: String {
-        product.localizedDescription
-    }
-    
-    public var localizedTitle: String {
-        product.localizedTitle
-    }
-    
-    public var currencyCode: String? {
-        product.currencyCode
-    }
-    
-    public var price: Decimal {
-        product.price
-    }
-    
-    @available(iOS 11.2, *)
-    public var subscriptionPeriod: SubscriptionPeriod? {
-        product.subscriptionPeriod.map {
+}
+
+@available(iOS 11.2, *)
+private extension StoreProduct {
+    var _subscriptionPeriod: SubscriptionPeriod? {
+        subscriptionPeriod.map {
             SubscriptionPeriod(
                 value: $0.value,
                 unit: SubscriptionPeriod.Unit(rc: $0.unit)
             )
         }
-    }
-    
-    @available(iOS 11.2, *)
-    public var introductoryDiscount: ProductDiscount? {
-        product.introductoryDiscount
-    }
-    
-    @available(iOS 12.2, *)
-    public var discounts: [ProductDiscount] {
-        product.discounts as [ProductDiscount]
-    }
-    
-    let product: StoreProduct
-}
-
-extension Product {
-    var storeProduct: StoreProduct? {
-        (self as? RCProduct)?.product
     }
 }
 

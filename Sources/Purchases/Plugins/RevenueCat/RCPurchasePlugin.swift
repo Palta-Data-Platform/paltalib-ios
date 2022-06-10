@@ -49,7 +49,7 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         _ completion: @escaping (PurchasePluginResult<[Product], Error>) -> Void
     ) {
         purchases.getProducts(productIdentifiers) { products in
-            completion(.success(products.map(RCProduct.init)))
+            completion(.success(products.map(Product.init)))
         }
     }
     
@@ -160,7 +160,7 @@ extension RCPurchasePlugin: PurchasesDelegate {
     ) {
         delegate?.purchasePlugin(
             self,
-            shouldPurchase: RCProduct(product: product)
+            shouldPurchase: Product(rc: product)
         ) { [weak self] completion in
             guard let self = self else { return }
             
