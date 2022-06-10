@@ -14,8 +14,9 @@ final class PurchasePluginMock: PurchasePlugin {
     var logInUserId: UserId?
     var logInCompletion: ((Result<(), Error>) -> Void)?
     var logOutCalled = false
+    var getProductsIndentifiers: [String]?
     var getPaidFeaturesCompletion: ((Result<PaidFeatures, Error>) -> Void)?
-    var getProductsCompletion: ((PurchasePluginResult<[Product], Error>) -> Void)?
+    var getProductsCompletion: ((Result<Set<Product>, Error>) -> Void)?
     var getPromotionalOfferCompletion: ((PurchasePluginResult<PromoOffer, Error>) -> Void)?
     var purchaseCompletion: ((PurchasePluginResult<SuccessfulPurchase, Error>) -> Void)?
     var restorePurchasesCompletion: ((Result<PaidFeatures, Error>) -> Void)?
@@ -36,8 +37,9 @@ final class PurchasePluginMock: PurchasePlugin {
         getPaidFeaturesCompletion = completion
     }
     
-    func getProducts(with productIdentifiers: [String], _ completion: @escaping (PurchasePluginResult<[Product], Error>) -> Void) {
+    func getProducts(with productIdentifiers: [String], _ completion: @escaping (Result<Set<Product>, Error>) -> Void) {
         getProductsCompletion = completion
+        getProductsIndentifiers = productIdentifiers
     }
     
     func getPromotionalOffer(for productDiscount: ProductDiscount, product: Product, _ completion: @escaping (PurchasePluginResult<PromoOffer, Error>) -> Void) {

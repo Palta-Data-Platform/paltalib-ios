@@ -70,6 +70,19 @@ public final class PaltaPurchases {
         }
     }
     
+    public func getProducts(
+        with productIdentifiers: [String],
+        completion: @escaping (Result<Set<Product>, Error>) -> Void
+    ) {
+        callAndCollect(call: { plugIn, callback in
+            plugIn.getProducts(with: productIdentifiers, callback)
+        }, completion: { result in
+            completion(
+                result.map { $0.reduce([]) { $0.union($1) } }
+            )
+        })
+    }
+    
     @available(iOS 12.2, *)
     public func getPromotionalOffer(
         for productDiscount: ProductDiscount,

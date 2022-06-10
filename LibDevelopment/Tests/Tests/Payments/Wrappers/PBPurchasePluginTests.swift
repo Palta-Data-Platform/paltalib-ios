@@ -101,9 +101,11 @@ final class PBPurchasePluginTests: XCTestCase {
         let completionCalled = expectation(description: "Not supported called")
         
         plugin.getProducts(with: []) { result in
-            guard case .notSupported = result else {
+            guard case .success(let products) = result else {
                 return
             }
+            
+            XCTAssert(products.isEmpty)
             
             completionCalled.fulfill()
         }

@@ -490,6 +490,70 @@ final class PaltaPurchasesTests: XCTestCase {
         wait(for: [failCalled], timeout: 0.1)
     }
     
+    func testGetProductsSuccess() {
+        let products: [Set<Product>] = [
+            [.mock(productIdentifier: "1")],
+            [.mock(productIdentifier: "2"), .mock(productIdentifier: "1")],
+            [.mock(productIdentifier: "3"), .mock(productIdentifier: "1")]
+        ]
+        
+        let experctedProducts: Set<Product> = [
+            .mock(productIdentifier: "1"),
+            .mock(productIdentifier: "2"),
+            .mock(productIdentifier: "3")
+        ]
+        
+        assert(products.count == mockPlugins.count)
+        
+        let identifiers = ["indetifier"]
+        
+        let successCalled = expectation(description: "Get products successful")
+        instance.getProducts(with: identifiers) {
+            guard case .success(let products) = $0 else {
+                return
+            }
+            
+            XCTAssertEqual(products, experctedProducts)
+            successCalled.fulfill()
+        }
+        
+        DispatchQueue.concurrentPerform(iterations: products.count) { index in
+            mockPlugins[index].getProductsCompletion?(.success(products[index]))
+        }
+        
+        mockPlugins.forEach {
+            XCTAssertNotNil($0.getProductsCompletion)
+            XCTAssertEqual($0.getProductsIndentifiers, identifiers)
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
+    }
+    
+    func testGetProductsFailure() {
+        let products: [Set<Product>] = [
+            [.mock(productIdentifier: "1")],
+            [.mock(productIdentifier: "2"), .mock(productIdentifier: "1")],
+            [.mock(productIdentifier: "3"), .mock(productIdentifier: "1")]
+        ]
+        
+        let failCalled = expectation(description: "Get products failure")
+        instance.getProducts(with: [""]) {
+            guard case .failure = $0 else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { index in
+            mockPlugins[index].getProductsCompletion?(
+                index != 1 ? .success(products[index]) : .failure(PaymentsError.unknownError)
+            )
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+    }
+    
     func testDelegateForwarded() {
         var callback: ((PurchasePluginResult<SuccessfulPurchase, Error>) -> Void)?
         mockPlugins[0].delegate?.purchasePlugin(mockPlugins[0], shouldPurchase: .mock()) {

@@ -40,9 +40,9 @@ public final class PBPurchasePlugin: PurchasePlugin {
     
     public func getProducts(
         with productIdentifiers: [String],
-        _ completion: @escaping (PurchasePluginResult<[Product], Error>) -> Void
+        _ completion: @escaping (Result<Set<Product>, Error>) -> Void
     ) {
-        completion(.notSupported)
+        completion(.success([]))
     }
     
     public func getPromotionalOffer(

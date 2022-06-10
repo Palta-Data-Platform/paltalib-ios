@@ -17,7 +17,7 @@ public protocol PurchasePlugin: AnyObject {
     
     func getProducts(
         with productIdentifiers: [String],
-        _ completion: @escaping (PurchasePluginResult<[Product], Error>) -> Void
+        _ completion: @escaping (Result<Set<Product>, Error>) -> Void
     )
     
     @available(iOS 12.2, *)

@@ -9,10 +9,10 @@ import Foundation
 @testable import PaltaLibPayments
 
 extension Product {
-    static func mock() -> Product {
+    static func mock(productIdentifier: String = "") -> Product {
         .init(
             productType: .nonRenewableSubscription,
-            productIdentifier: "",
+            productIdentifier: productIdentifier,
             localizedDescription: "",
             localizedTitle: "",
             currencyCode: nil,
