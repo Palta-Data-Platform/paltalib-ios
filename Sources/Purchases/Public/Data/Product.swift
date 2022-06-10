@@ -157,20 +157,14 @@ extension Product: Hashable {
         
         if #available(iOS 11.2, *) {
             guard lhs.subscriptionPeriod == rhs.subscriptionPeriod,
-                  lhs.introductoryDiscount.isEqual(to: rhs.introductoryDiscount) else {
+                  lhs.introductoryDiscount == rhs.introductoryDiscount else {
                 return false
             }
         }
         
         if #available(iOS 12.2, *) {
-            guard lhs.discounts.count == rhs.discounts.count else {
+            guard lhs.discounts == rhs.discounts else {
                 return false
-            }
-            
-            for i in lhs.discounts.indices {
-                guard (lhs.discounts[i] as ProductDiscount?).isEqual(to: rhs.discounts[i]) else {
-                    return false
-                }
             }
         }
         

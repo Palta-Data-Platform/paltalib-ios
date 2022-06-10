@@ -228,7 +228,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPromoOfferFirstSuccess() {
         let completionCalled = expectation(description: "Get promo offer completed 1")
         
-        instance.getPromotionalOffer(for: ProductDiscountMock(), product: .mock()) { result in
+        instance.getPromotionalOffer(for: .mock(), product: .mock()) { result in
             guard case .success = result else {
                 return
             }
@@ -248,7 +248,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPromoOfferFirstFail() {
         let completionCalled = expectation(description: "Get promo offer completed 2")
         
-        instance.getPromotionalOffer(for: ProductDiscountMock(), product: .mock()) { result in
+        instance.getPromotionalOffer(for: .mock(), product: .mock()) { result in
             guard case .failure = result else {
                 return
             }
@@ -268,7 +268,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPromoOfferLastSuccess() {
         let completionCalled = expectation(description: "Get promo offer completed 3")
         
-        instance.getPromotionalOffer(for: ProductDiscountMock(), product: .mock()) { result in
+        instance.getPromotionalOffer(for: .mock(), product: .mock()) { result in
             guard case .success = result else {
                 return
             }
@@ -292,7 +292,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPromoOfferNotSupportedEverywhere() {
         let completionCalled = expectation(description: "Get promo offer completed 4")
         
-        instance.getPromotionalOffer(for: ProductDiscountMock(), product: .mock()) { result in
+        instance.getPromotionalOffer(for: .mock(), product: .mock()) { result in
             guard case .failure = result else {
                 return
             }

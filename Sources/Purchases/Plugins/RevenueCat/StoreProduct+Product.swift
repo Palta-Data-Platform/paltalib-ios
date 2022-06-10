@@ -19,8 +19,8 @@ extension Product {
                 currencyCode: rc.currencyCode,
                 price: rc.price,
                 subscriptionPeriod: rc._subscriptionPeriod,
-                introductoryDiscount: rc.introductoryDiscount,
-                discounts: rc.discounts as [ProductDiscount],
+                introductoryDiscount: rc._introductoryDiscount,
+                discounts: rc._discounts,
                 originalEntity: rc
             )
         } else if #available(iOS 11.2, *) {
@@ -32,7 +32,7 @@ extension Product {
                 currencyCode: rc.currencyCode,
                 price: rc.price,
                 subscriptionPeriod: rc._subscriptionPeriod,
-                introductoryDiscount: rc.introductoryDiscount,
+                introductoryDiscount: rc._introductoryDiscount,
                 originalEntity: rc
             )
         } else {
@@ -57,11 +57,19 @@ extension Product {
 private extension StoreProduct {
     var _subscriptionPeriod: SubscriptionPeriod? {
         subscriptionPeriod.map {
-            SubscriptionPeriod(
-                value: $0.value,
-                unit: SubscriptionPeriod.Unit(rc: $0.unit)
-            )
+            SubscriptionPeriod(rc: $0)
         }
+    }
+    
+    var _introductoryDiscount: ProductDiscount? {
+        introductoryDiscount.map(ProductDiscount.init)
+    }
+}
+
+@available(iOS 12.2, *)
+private extension StoreProduct {
+    var _discounts: [ProductDiscount] {
+        discounts.map(ProductDiscount.init)
     }
 }
 
@@ -98,5 +106,11 @@ private extension SubscriptionPeriod.Unit {
         case .day:
             self = .day
         }
+    }
+}
+
+extension SubscriptionPeriod {
+    init(rc: RevenueCat.SubscriptionPeriod) {
+        self.init(value: rc.value, unit: Unit(rc: rc.unit))
     }
 }

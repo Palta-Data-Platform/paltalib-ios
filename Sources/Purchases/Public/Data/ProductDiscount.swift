@@ -7,20 +7,30 @@
 
 import Foundation
 
-public protocol ProductDiscount {
-    var offerIdentifier: String? { get }
-    var currencyCode: String? { get }
-    var price: Decimal { get }
-    var numberOfPeriods: Int { get }
+public struct ProductDiscount {
+    public let offerIdentifier: String?
+    public let currencyCode: String?
+    public let price: Decimal
+    public let numberOfPeriods: Int
+    public let subscriptionPeriod: SubscriptionPeriod
     
-    var hashValue: Int { get }
+    let originalEntity: Any
 }
 
-extension Optional where Wrapped == ProductDiscount {
-    func isEqual(to anotherDiscount: ProductDiscount?) -> Bool {
-        self?.offerIdentifier == anotherDiscount?.offerIdentifier
-        && self?.currencyCode == anotherDiscount?.currencyCode
-        && self?.price == anotherDiscount?.price
-        && self?.numberOfPeriods == anotherDiscount?.numberOfPeriods
+extension ProductDiscount: Hashable {
+    public static func == (lhs: ProductDiscount, rhs: ProductDiscount) -> Bool {
+        lhs.offerIdentifier == rhs.offerIdentifier
+        && lhs.currencyCode == rhs.currencyCode
+        && lhs.price == rhs.price
+        && lhs.numberOfPeriods == rhs.numberOfPeriods
+        && lhs.subscriptionPeriod == rhs.subscriptionPeriod
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        offerIdentifier.hash(into: &hasher)
+        currencyCode.hash(into: &hasher)
+        price.hash(into: &hasher)
+        numberOfPeriods.hash(into: &hasher)
+        subscriptionPeriod.hash(into: &hasher)
     }
 }

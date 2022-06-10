@@ -9,6 +9,6 @@ import RevenueCat
 
 extension PromotionalOffer: PromoOffer {
     public var productDiscount: ProductDiscount {
-        discount
+        ProductDiscount(rc: discount)
     }
 }
