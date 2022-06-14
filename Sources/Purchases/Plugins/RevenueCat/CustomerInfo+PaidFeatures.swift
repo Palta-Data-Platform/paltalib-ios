@@ -23,6 +23,7 @@ extension CustomerInfo {
                 paymentType: .subscription,
                 transactionType: $0.store.transactionType,
                 isTrial: $0.periodType == .trial,
+                willRenew: $0.willRenew,
                 startDate: $0.latestPurchaseDate ?? Date(timeIntervalSince1970: 0),
                 endDate: $0.expirationDate,
                 cancellationDate: $0.unsubscribeDetectedAt
@@ -38,6 +39,7 @@ extension CustomerInfo {
                 paymentType: .oneOff,
                 transactionType: .appStore,
                 isTrial: false,
+                willRenew: false,
                 startDate: $0.purchaseDate,
                 endDate: nil,
                 cancellationDate: nil
