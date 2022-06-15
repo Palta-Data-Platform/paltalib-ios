@@ -754,10 +754,6 @@
 		111159AD27F72D5E00A41ADA /* EventQueue */ = {
 			isa = PBXGroup;
 			children = (
-				11115A3927FB172D00A41ADA /* EventQueue.swift */,
-				111159B627F73F8400A41ADA /* EventQueueCore.swift */,
-				11115A3327FAFA7A00A41ADA /* EventStorage.swift */,
-				11115A3B27FB176700A41ADA /* EventSender.swift */,
 				112FCA3F2848B76500C8F88A /* BatchSender.swift */,
 				113A799B284E5704004C0C5D /* BatchStorage.swift */,
 				113A799D284E5771004C0C5D /* EventStorage2.swift */,
@@ -767,14 +763,11 @@
 				113A79A5284F6E13004C0C5D /* EventComposer2.swift */,
 				113A79A9284F7341004C0C5D /* EventQueue2.swift */,
 				113A79AB284F75EF004C0C5D /* ContextHolder.swift */,
-				113A799A284E3C8E004C0C5D /* Models */,
-				11115A3D27FB18B000A41ADA /* EventComposer.swift */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
-				11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */,
 				1150909A2859D8A9009F53AD /* EventQueue2Assembly.swift */,
-				11A61EA62835043600F88116 /* EventQueueAssembly+Config.swift */,
+				1150909C2859DDB3009F53AD /* Legacy */,
+				113A799A284E3C8E004C0C5D /* Models */,
 				11C60F5628197310004D0185 /* Context */,
-				11C60F5728197329004D0185 /* Helpers */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -1006,6 +999,21 @@
 				11543020282BED820021ED6F /* Data */,
 			);
 			path = Public;
+			sourceTree = "<group>";
+		};
+		1150909C2859DDB3009F53AD /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				11C60F5728197329004D0185 /* Helpers */,
+				11115A3D27FB18B000A41ADA /* EventComposer.swift */,
+				11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */,
+				11115A3927FB172D00A41ADA /* EventQueue.swift */,
+				11A61EA62835043600F88116 /* EventQueueAssembly+Config.swift */,
+				111159B627F73F8400A41ADA /* EventQueueCore.swift */,
+				11115A3327FAFA7A00A41ADA /* EventStorage.swift */,
+				11115A3B27FB176700A41ADA /* EventSender.swift */,
+			);
+			path = Legacy;
 			sourceTree = "<group>";
 		};
 		11543020282BED820021ED6F /* Data */ = {
