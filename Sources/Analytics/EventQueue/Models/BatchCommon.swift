@@ -13,6 +13,6 @@ public protocol BatchCommon {
         batchId: UUID,
         countryCode: String,
         locale: Locale,
-        utcOffset: Int
+        utcOffset: Int64
     )
 }

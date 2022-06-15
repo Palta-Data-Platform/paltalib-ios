@@ -37,6 +37,20 @@
             BlueprintName = "PaltaLibPayments"
             ReferencedContainer = "container:PaltaLib.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "113A79B1284F78DC004C0C5D"
+            BuildableName = "AnalyticsDTOExample.framework"
+            BlueprintName = "AnalyticsDTOExample"
+            ReferencedContainer = "container:PaltaLib.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "113A79C8284F8276004C0C5D"
+            BuildableName = "ProtobufExample.framework"
+            BlueprintName = "ProtobufExample"
+            ReferencedContainer = "container:PaltaLib.xcodeproj">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
