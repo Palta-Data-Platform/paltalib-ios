@@ -32,12 +32,21 @@ final class BatchSendControllerImpl: BatchSendController {
     }
     
     private let lock = NSRecursiveLock()
+    private let batchComposer: BatchComposer
+    private let batchStorage: BatchStorage
     private let batchSender: BatchSender
-    private let stack: Stack
+    private let eventStorage: EventStorage2
     
-    init(batchSender: BatchSender, stack: Stack) {
+    init(
+        batchComposer: BatchComposer,
+        batchStorage: BatchStorage,
+        batchSender: BatchSender,
+        eventStorage: EventStorage2
+    ) {
+        self.batchComposer = batchComposer
+        self.batchStorage = batchStorage
         self.batchSender = batchSender
-        self.stack = stack
+        self.eventStorage = eventStorage
     }
     
     func sendBatch(of events: [BatchEvent]) {
@@ -47,5 +56,25 @@ final class BatchSendControllerImpl: BatchSendController {
         guard _isReady else {
             return
         }
+        
+        let batch = batchComposer.makeBatch(of: events)
+        try! batchStorage.saveBatch(batch)
+        
+        batchSender.sendBatch(batch) { [weak self] result in
+            switch result {
+            case .success:
+                self?.completeBatchSend()
+                
+            case .failure:
+                break
+            }
+        }
+    }
+    
+    private func completeBatchSend() {
+        lock.lock()
+        try! batchStorage.removeBatch()
+        _isReady = true
+        lock.unlock()
     }
 }

@@ -26,21 +26,29 @@ extension EventQueue2Assembly {
         coreAssembly: CoreAssembly,
         analyticsCoreAssembly: AnalyticsCoreAssembly
     ) {
-        let batchSender = BatchSenderImpl()
         let core = EventQueueCore2Impl(timer: TimerImpl())
-        let storage = EventStorage2Impl()
-        let sendController = BatchSendControllerImpl(
-            batchSender: batchSender,
-            stack: stack
-        )
+        let eventStorage = EventStorage2Impl()
+        
         let eventComposer = EventComposer2Impl(
             stack: stack,
             sessionIdProvider: analyticsCoreAssembly.sessionManager
         )
         
+        let contextHolder = ContextHolderImpl()
+        let batchComposer = BatchComposerImpl(stack: stack, contextHolder: contextHolder)
+        let batchStorage = BatchStorageImpl()
+        let batchSender = BatchSenderImpl()
+        
+        let sendController = BatchSendControllerImpl(
+            batchComposer: batchComposer,
+            batchStorage: batchStorage,
+            batchSender: batchSender,
+            eventStorage: eventStorage
+        )
+        
         let eventQueue = EventQueue2Impl(
             core: core,
-            storage: storage,
+            storage: eventStorage,
             sendController: sendController,
             eventComposer: eventComposer,
             sessionManager: analyticsCoreAssembly.sessionManager

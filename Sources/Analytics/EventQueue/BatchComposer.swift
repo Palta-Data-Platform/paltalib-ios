@@ -14,21 +14,19 @@ public struct Stack {
 }
 
 protocol BatchComposer {
-    func makeBatch(of events: [BatchEvent], with context: BatchContext) throws -> Batch
+    func makeBatch(of events: [BatchEvent]) -> Batch
 }
 
 final class BatchComposerImpl: BatchComposer {
     private let stack: Stack
-    private let batchStorage: BatchStorage
-    private let eventStorage: EventStorage2
+    private let contextHolder: ContextHolder
     
-    init(stack: Stack, batchStorage: BatchStorage, eventStorage: EventStorage2) {
+    init(stack: Stack, contextHolder: ContextHolder) {
         self.stack = stack
-        self.batchStorage = batchStorage
-        self.eventStorage = eventStorage
+        self.contextHolder = contextHolder
     }
     
-    func makeBatch(of events: [BatchEvent], with context: BatchContext) throws -> Batch {
+    func makeBatch(of events: [BatchEvent]) -> Batch {
         let common = stack.batchCommon.init(
             instanceId: .init(), // TODO
             batchId: .init(), // TODO
@@ -37,10 +35,7 @@ final class BatchComposerImpl: BatchComposer {
             utcOffset: 0
         )
         
-        let batch = stack.batch.init(common: common, context: context, events: events)
-        
-        events.forEach(eventStorage.removeEvent)
-        try batchStorage.saveBatch(batch)
+        let batch = stack.batch.init(common: common, context: contextHolder.context, events: events)
         
         return batch
     }
