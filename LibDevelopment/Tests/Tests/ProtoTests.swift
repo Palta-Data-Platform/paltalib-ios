@@ -8,14 +8,20 @@
 import Foundation
 import XCTest
 import AnalyticsDTOExample
+import PaltaLibCore
 @testable import PaltaLibAnalytics
 
 final class ProtoTests: XCTestCase {
     func testSend() {
-        let eq: EventQueue2 = {
-            fatalError()
-        }()
-        eq.logEvent(
+        let assembly = EventQueue2Assembly(
+            stack: .default,
+            coreAssembly: CoreAssembly(),
+            analyticsCoreAssembly: AnalyticsCoreAssembly(coreAssembly: CoreAssembly())
+        )
+        
+        assembly.eventQueueCore.config = .init(maxBatchSize: 10, uploadInterval: 5, uploadThreshold: 5, maxEvents: 5)
+        
+        assembly.eventQueue.logEvent(
             PageOpenEvent(
                 header: .init(pora: .init(designID: "")),
                 pageID: "",

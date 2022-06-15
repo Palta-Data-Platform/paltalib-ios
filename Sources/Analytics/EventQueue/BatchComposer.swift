@@ -8,9 +8,22 @@
 import Foundation
 
 public struct Stack {
-    public let batchCommon: BatchCommon.Type
-    public let batch: Batch.Type
-    public let event: BatchEvent.Type
+    let batchCommon: BatchCommon.Type
+    let context: BatchContext.Type
+    let batch: Batch.Type
+    let event: BatchEvent.Type
+    
+    public init(
+        batchCommon: BatchCommon.Type,
+        context: BatchContext.Type,
+        batch: Batch.Type,
+        event: BatchEvent.Type
+    ) {
+        self.batchCommon = batchCommon
+        self.context = context
+        self.batch = batch
+        self.event = event
+    }
 }
 
 protocol BatchComposer {
@@ -35,7 +48,11 @@ final class BatchComposerImpl: BatchComposer {
             utcOffset: 0
         )
         
-        let batch = stack.batch.init(common: common, context: contextHolder.context, events: events)
+        let batch = stack.batch.init(
+            common: common,
+            context: contextHolder.context,
+            events: events
+        )
         
         return batch
     }

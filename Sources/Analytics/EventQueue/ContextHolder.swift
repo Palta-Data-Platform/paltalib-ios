@@ -16,10 +16,6 @@ protocol ContextModifier: ContextHolder {
 }
 
 final class ContextHolderImpl: ContextModifier {
-    static func loadContext() -> BatchContext {
-        fatalError()
-    }
-    
     var context: BatchContext {
         lock.lock()
         defer { lock.unlock() }
@@ -28,7 +24,7 @@ final class ContextHolderImpl: ContextModifier {
             return context
         }
         
-        let context = Self.loadContext()
+        let context = loadContext()
         _context = context
         return context
     }
@@ -36,12 +32,21 @@ final class ContextHolderImpl: ContextModifier {
     private var _context: BatchContext?
     
     private let lock = NSRecursiveLock()
+    private let stack: Stack
+    
+    init(stack: Stack) {
+        self.stack = stack
+    }
     
     func editContext(_ editor: (inout BatchContext) -> Void) {
         lock.lock()
-        var context = _context ?? Self.loadContext()
+        var context = _context ?? loadContext()
         editor(&context)
         _context = context
         lock.unlock()
+    }
+    
+    private func loadContext() -> BatchContext {
+        stack.context.init()
     }
 }

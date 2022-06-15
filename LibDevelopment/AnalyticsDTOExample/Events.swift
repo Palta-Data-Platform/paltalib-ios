@@ -22,15 +22,14 @@ public struct PageOpenEvent: Event2 {
     private let _payload: EventPayloadPageOpen
     
     public init(header: Header, pageID: String, title: String) {
-        _payload = EventPayloadPageOpen.with {
+        self.header = header
+        self._payload = EventPayloadPageOpen.with {
             $0.pageID = pageID
             $0.title = title
         }
     }
     
-    public var header: Header {
-        fatalError()
-    }
+    public let header: Header
     
     public var payload: Payload {
         ProtobufExample.EventPayload.with {

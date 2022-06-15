@@ -8,6 +8,13 @@
 import Foundation
 import PaltaLibCore
 
+struct EventQueue2Config {
+    let maxBatchSize: Int
+    let uploadInterval: TimeInterval
+    let uploadThreshold: Int
+    let maxEvents: Int
+}
+
 protocol EventQueueCore2: AnyObject {
     typealias UploadHandler = (ArraySlice<BatchEvent>, Telemetry) -> Bool
     typealias RemoveHandler = (ArraySlice<BatchEvent>) -> Void
@@ -27,7 +34,7 @@ final class EventQueueCore2Impl: EventQueueCore2, FunctionalExtension {
 
     var isPaused = false
 
-    var config: EventQueueConfig? {
+    var config: EventQueue2Config? {
         didSet {
             onNewEvents()
         }

@@ -41,6 +41,11 @@ public struct Context: BatchContext {
     public var application: Application
     public var device: Device
     
+    public init() {
+        application = Application()
+        device = Device()
+    }
+    
     var message: ProtobufExample.Context {
         ProtobufExample.Context.with {
             $0.application = application.message
