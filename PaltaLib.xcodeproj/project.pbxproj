@@ -167,6 +167,7 @@
 		114D070C2808336200ACD310 /* TrackingOptionsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */; };
 		1150909B2859D8A9009F53AD /* EventQueue2Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150909A2859D8A9009F53AD /* EventQueue2Assembly.swift */; };
 		1150909F2859E499009F53AD /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150909D2859E47D009F53AD /* Stack.swift */; };
+		115090A12859EF8C009F53AD /* BatchSendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115090A02859EF8C009F53AD /* BatchSendRequest.swift */; };
 		11543015282BCFC80021ED6F /* PaidFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543014282BCFC80021ED6F /* PaidFeature.swift */; };
 		11543017282BD0AE0021ED6F /* PaidFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543016282BD0AE0021ED6F /* PaidFeatures.swift */; };
 		11543019282BD3CA0021ED6F /* SuccessfulPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543018282BD3CA0021ED6F /* SuccessfulPurchase.swift */; };
@@ -485,6 +486,7 @@
 		114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProviderTests.swift; sourceTree = "<group>"; };
 		1150909A2859D8A9009F53AD /* EventQueue2Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueue2Assembly.swift; sourceTree = "<group>"; };
 		1150909D2859E47D009F53AD /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		115090A02859EF8C009F53AD /* BatchSendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSendRequest.swift; sourceTree = "<group>"; };
 		11543014282BCFC80021ED6F /* PaidFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidFeature.swift; sourceTree = "<group>"; };
 		11543016282BD0AE0021ED6F /* PaidFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidFeatures.swift; sourceTree = "<group>"; };
 		11543018282BD3CA0021ED6F /* SuccessfulPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessfulPurchase.swift; sourceTree = "<group>"; };
@@ -767,6 +769,7 @@
 				113A79AB284F75EF004C0C5D /* ContextHolder.swift */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
 				1150909A2859D8A9009F53AD /* EventQueue2Assembly.swift */,
+				115090A02859EF8C009F53AD /* BatchSendRequest.swift */,
 				1150909C2859DDB3009F53AD /* Legacy */,
 				113A799A284E3C8E004C0C5D /* Models */,
 				11C60F5628197310004D0185 /* Context */,
@@ -1689,6 +1692,7 @@
 				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
 				112FCA402848B76500C8F88A /* BatchSender.swift in Sources */,
 				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,
+				115090A12859EF8C009F53AD /* BatchSendRequest.swift in Sources */,
 				113A798B284DF461004C0C5D /* EventCommon.swift in Sources */,
 				11115A4C27FB7E6000A41ADA /* Timer.swift in Sources */,
 				1111596627F70BE400A41ADA /* PaltaAnalytics+Identify.swift in Sources */,

@@ -37,7 +37,7 @@ extension EventQueue2Assembly {
         let contextHolder = ContextHolderImpl(stack: stack)
         let batchComposer = BatchComposerImpl(stack: stack, contextHolder: contextHolder)
         let batchStorage = BatchStorageImpl()
-        let batchSender = BatchSenderImpl()
+        let batchSender = BatchSenderImpl(httpClient: coreAssembly.httpClient)
         
         let sendController = BatchSendControllerImpl(
             batchComposer: batchComposer,
