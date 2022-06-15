@@ -13,3 +13,39 @@ protocol BatchSendController {
     
     func sendBatch(of events: [BatchEvent])
 }
+
+final class BatchSendControllerImpl: BatchSendController {
+    var isReady: Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        return _isReady
+    }
+    
+    var isReadyCallback: (() -> Void)?
+    
+    private var _isReady = true {
+        didSet {
+            if _isReady {
+                isReadyCallback?()
+            }
+        }
+    }
+    
+    private let lock = NSRecursiveLock()
+    private let batchSender: BatchSender
+    private let stack: Stack
+    
+    init(batchSender: BatchSender, stack: Stack) {
+        self.batchSender = batchSender
+        self.stack = stack
+    }
+    
+    func sendBatch(of events: [BatchEvent]) {
+        lock.lock()
+        defer { lock.unlock() }
+        
+        guard _isReady else {
+            return
+        }
+    }
+}
