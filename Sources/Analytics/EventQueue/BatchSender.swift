@@ -12,6 +12,7 @@ import PaltaLibCore
 enum BatchSendError: Error {
     case serializationError(Error)
     case networkError(URLError)
+    case notConfigured
 }
 
 protocol BatchSender {
@@ -26,6 +27,9 @@ final class BatchSenderImpl: BatchSender {
             ]
         }
     }
+    
+    var url: URL?
+    
     private let httpClient: HTTPClient
     
     init(httpClient: HTTPClient) {
@@ -33,6 +37,11 @@ final class BatchSenderImpl: BatchSender {
     }
     
     func sendBatch(_ batch: Batch, completion: @escaping (Result<Void, BatchSendError>) -> Void) {
+        guard let url = url else {
+            completion(.failure(.notConfigured))
+            return
+        }
+
         let data: Data
         
         do {
@@ -43,6 +52,7 @@ final class BatchSenderImpl: BatchSender {
         }
         
         let request = BatchSendRequest(
+            url: url,
             sdkName: "IOS-PROTOTYPE",
             sdkVersion: "-1",
             time: .currentTimestamp(),

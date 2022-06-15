@@ -9,6 +9,7 @@ import Foundation
 import PaltaLibCore
 
 struct BatchSendRequest {
+    let url: URL
     let sdkName: String
     let sdkVersion: String
     let time: Int
@@ -21,11 +22,11 @@ extension BatchSendRequest: AutobuildingHTTPRequest {
     }
     
     var baseURL: URL {
-        URL(string: "https://api.paltabrain.com")!
+        url
     }
     
     var path: String? {
-        "/batch-proto"
+        nil
     }
     
     var headers: [String : String]? {
