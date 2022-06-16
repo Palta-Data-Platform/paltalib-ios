@@ -18,6 +18,6 @@ final class SDKInfoProviderImpl: SDKInfoProvider {
     }
     
     var sdkVersion: String {
-        "-1"
+        Bundle(for: type(of: self)).infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
     }
 }
