@@ -111,6 +111,10 @@
 		1137D161285A13AB008CA306 /* SDKInfoProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137D160285A13AB008CA306 /* SDKInfoProviderMock.swift */; };
 		1137D163285A15A3008CA306 /* BatchMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137D162285A15A3008CA306 /* BatchMock.swift */; };
 		1137D165285B2003008CA306 /* SDKInfoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137D164285B2003008CA306 /* SDKInfoProviderTests.swift */; };
+		1137D167285B2211008CA306 /* BatchStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137D166285B2211008CA306 /* BatchStorageTests.swift */; };
+		1137D16A285B25AA008CA306 /* BatchCommonMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137D169285B25AA008CA306 /* BatchCommonMock.swift */; };
+		1137D16C285B25FC008CA306 /* BatchContextMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137D16B285B25FC008CA306 /* BatchContextMock.swift */; };
+		1137D16E285B2642008CA306 /* BatchEventMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137D16D285B2642008CA306 /* BatchEventMock.swift */; };
 		113A7989284DF327004C0C5D /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7988284DF327004C0C5D /* EventType.swift */; };
 		113A798B284DF461004C0C5D /* EventCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A798A284DF461004C0C5D /* EventCommon.swift */; };
 		113A798D284E0B78004C0C5D /* EventPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A798C284E0B78004C0C5D /* EventPayload.swift */; };
@@ -440,6 +444,10 @@
 		1137D160285A13AB008CA306 /* SDKInfoProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKInfoProviderMock.swift; sourceTree = "<group>"; };
 		1137D162285A15A3008CA306 /* BatchMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchMock.swift; sourceTree = "<group>"; };
 		1137D164285B2003008CA306 /* SDKInfoProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKInfoProviderTests.swift; sourceTree = "<group>"; };
+		1137D166285B2211008CA306 /* BatchStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchStorageTests.swift; sourceTree = "<group>"; };
+		1137D169285B25AA008CA306 /* BatchCommonMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchCommonMock.swift; sourceTree = "<group>"; };
+		1137D16B285B25FC008CA306 /* BatchContextMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchContextMock.swift; sourceTree = "<group>"; };
+		1137D16D285B2642008CA306 /* BatchEventMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchEventMock.swift; sourceTree = "<group>"; };
 		113A7988284DF327004C0C5D /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		113A798A284DF461004C0C5D /* EventCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCommon.swift; sourceTree = "<group>"; };
 		113A798C284E0B78004C0C5D /* EventPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPayload.swift; sourceTree = "<group>"; };
@@ -917,7 +925,7 @@
 				114D0709280816D200ACD310 /* TrackingOptionsProviderMock.swift */,
 				11A61EAE283515B100F88116 /* EventQueueAssemblyProviderMock.swift */,
 				1137D160285A13AB008CA306 /* SDKInfoProviderMock.swift */,
-				1137D162285A15A3008CA306 /* BatchMock.swift */,
+				1137D168285B2589008CA306 /* DTO */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -970,8 +978,20 @@
 				1137D1572859FF4B008CA306 /* BatchSendRequestTests.swift */,
 				1137D15E285A1374008CA306 /* BatchSenderTests.swift */,
 				1137D164285B2003008CA306 /* SDKInfoProviderTests.swift */,
+				1137D166285B2211008CA306 /* BatchStorageTests.swift */,
 			);
 			path = New;
+			sourceTree = "<group>";
+		};
+		1137D168285B2589008CA306 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				1137D162285A15A3008CA306 /* BatchMock.swift */,
+				1137D169285B25AA008CA306 /* BatchCommonMock.swift */,
+				1137D16B285B25FC008CA306 /* BatchContextMock.swift */,
+				1137D16D285B2642008CA306 /* BatchEventMock.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		113A799A284E3C8E004C0C5D /* Models */ = {
@@ -1587,6 +1607,7 @@
 				1137D165285B2003008CA306 /* SDKInfoProviderTests.swift in Sources */,
 				1142F93C285890C5005D6337 /* ProtoTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
+				1137D16A285B25AA008CA306 /* BatchCommonMock.swift in Sources */,
 				1137D1592859FF51008CA306 /* BatchSendRequestTests.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
 				1137D163285A15A3008CA306 /* BatchMock.swift in Sources */,
@@ -1603,6 +1624,7 @@
 				113AD6442837AD3B00324D62 /* FeatureMock.swift in Sources */,
 				114D070628075C7C00ACD310 /* RevenueLoggerTests.swift in Sources */,
 				11115A4427FB751E00A41ADA /* EventComposerMock.swift in Sources */,
+				1137D16C285B25FC008CA306 /* BatchContextMock.swift in Sources */,
 				11115A4027FB740B00A41ADA /* EventStorageMock.swift in Sources */,
 				111A59B62840E9870052FCD1 /* PBPurchasePluginTests.swift in Sources */,
 				111A599A2840C5A30052FCD1 /* SubscriptionsServiceTests.swift in Sources */,
@@ -1629,6 +1651,7 @@
 				11115A4227FB74B000A41ADA /* EventSenderMock.swift in Sources */,
 				11A61EE328378C0D00F88116 /* SubscriptionResponseTests.swift in Sources */,
 				11543034282D02E50021ED6F /* PromoOfferMock.swift in Sources */,
+				1137D16E285B2642008CA306 /* BatchEventMock.swift in Sources */,
 				111A59A82840CE630052FCD1 /* SubscriptionsServiceMock.swift in Sources */,
 				111A59B32840E89F0052FCD1 /* PaidFeaturesServiceMock.swift in Sources */,
 				11543035282D02E80021ED6F /* ProductDiscountMock.swift in Sources */,
@@ -1636,6 +1659,7 @@
 				11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */,
 				113AD6422837AC6D00324D62 /* FeaturesServiceTests.swift in Sources */,
 				11115A4827FB75CD00A41ADA /* EventQueueCoreMock.swift in Sources */,
+				1137D167285B2211008CA306 /* BatchStorageTests.swift in Sources */,
 				11A61EB02835161F00F88116 /* EventQueueAssemblyProviderMock.swift in Sources */,
 				111A59A72840CE410052FCD1 /* FeaturesServiceMock.swift in Sources */,
 				1137D15F285A1374008CA306 /* BatchSenderTests.swift in Sources */,

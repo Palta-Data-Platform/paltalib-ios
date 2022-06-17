@@ -8,12 +8,13 @@
 import Foundation
 import PaltaLibAnalytics
 
-struct BatchMock: Batch {
+struct BatchMock: Batch, Equatable {
     let shouldFailSerialize: Bool
-    let data = Data((0...20).map { _ in UInt8.random(in: 0...255) })
+    let data: Data
     
     init(shouldFailSerialize: Bool = false) {
         self.shouldFailSerialize = shouldFailSerialize
+        self.data = Data((0...20).map { _ in UInt8.random(in: 0...255) })
     }
     
     init(common: BatchCommon, context: BatchContext, events: [BatchEvent]) {
@@ -21,7 +22,8 @@ struct BatchMock: Batch {
     }
     
     init(data: Data) throws {
-        self.init()
+        self.shouldFailSerialize = false
+        self.data = data
     }
     
     func serialize() throws -> Data {
