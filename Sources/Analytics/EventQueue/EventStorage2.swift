@@ -15,6 +15,14 @@ protocol EventStorage2 {
 }
 
 final class EventStorage2Impl: EventStorage2 {
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
+    
+//    private let folderURL: URL
+//    private let stack: Stack
+//    private let fileManager: FileManager
+    
+    
     func storeEvent(_ event: BatchEvent) {
         print("Store event")
     }
