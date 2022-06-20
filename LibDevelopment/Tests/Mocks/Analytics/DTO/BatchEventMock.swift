@@ -8,14 +8,15 @@
 import Foundation
 import PaltaLibAnalytics
 
-struct BatchEventMock: BatchEvent {
+struct BatchEventMock: BatchEvent, Equatable {
     var timestamp: Int = 0
     
     let shouldFailSerialize: Bool
-    let data = Data((0...20).map { _ in UInt8.random(in: 0...255) })
+    let data: Data
     
     init(shouldFailSerialize: Bool = false) {
         self.shouldFailSerialize = shouldFailSerialize
+        self.data = Data((0...20).map { _ in UInt8.random(in: 0...255) })
     }
     
     init(common: EventCommon, header: EventHeader, payload: EventPayload) {
@@ -23,7 +24,8 @@ struct BatchEventMock: BatchEvent {
     }
     
     init(data: Data) throws {
-        self.init()
+        self.shouldFailSerialize = false
+        self.data = data
     }
     
     func serialize() throws -> Data {
