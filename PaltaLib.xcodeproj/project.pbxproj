@@ -104,6 +104,8 @@
 		114D0708280814D900ACD310 /* TrackingOptionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */; };
 		114D070A280816D200ACD310 /* TrackingOptionsProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D0709280816D200ACD310 /* TrackingOptionsProviderMock.swift */; };
 		114D070C2808336200ACD310 /* TrackingOptionsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */; };
+		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
+		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A61E842833E0C900F88116 /* AmplitudeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E832833E0C900F88116 /* AmplitudeExtensionTests.swift */; };
@@ -295,6 +297,8 @@
 		114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProvider.swift; sourceTree = "<group>"; };
 		114D0709280816D200ACD310 /* TrackingOptionsProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProviderMock.swift; sourceTree = "<group>"; };
 		114D070B2808336200ACD310 /* TrackingOptionsProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingOptionsProviderTests.swift; sourceTree = "<group>"; };
+		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
+		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
 		11A61E832833E0C900F88116 /* AmplitudeExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeExtensionTests.swift; sourceTree = "<group>"; };
@@ -500,8 +504,10 @@
 			children = (
 				1111595B27F7095200A41ADA /* PaltaAppsflyerAdapter.swift */,
 				1111595927F7095200A41ADA /* PaltaAttribution.swift */,
+				117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */,
 				1111595C27F7095200A41ADA /* PaltaAttribution+Configuration.swift */,
 				1111595A27F7095200A41ADA /* PaltaAttribution+DeepLink.swift */,
+				117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */,
 			);
 			path = Sources/Attribution;
 			sourceTree = "<group>";
@@ -978,8 +984,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1111598327F70C1500A41ADA /* PaltaAttribution+DeepLink.swift in Sources */,
+				117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */,
 				1111598027F70C1500A41ADA /* PaltaAttribution.swift in Sources */,
 				1111598127F70C1500A41ADA /* PaltaAttribution+Configuration.swift in Sources */,
+				117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */,
 				1111598227F70C1500A41ADA /* PaltaAppsflyerAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
