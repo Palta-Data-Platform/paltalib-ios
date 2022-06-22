@@ -71,7 +71,7 @@ extension PaltaPurchases {
 private struct WebSubscriptionsResponse: Decodable {
     enum Message: String, Decodable {
         case ok = "OK"
-        case redirect = "Redirect"
+        case redirect = "REDIRECT"
     }
     
     let message: Message
