@@ -9,14 +9,18 @@ import Foundation
 import PaltaLibAnalytics
 
 struct BatchEventMock: BatchEvent, Equatable {
+    static let failingData = Data((0...20).map { _ in UInt8.random(in: 0...255) })
+    
     var timestamp: Int = 0
     
     let shouldFailSerialize: Bool
     let data: Data
     
-    init(shouldFailSerialize: Bool = false) {
+    init(shouldFailSerialize: Bool = false, shouldFailDeserialize: Bool = false) {
         self.shouldFailSerialize = shouldFailSerialize
-        self.data = Data((0...20).map { _ in UInt8.random(in: 0...255) })
+        self.data = shouldFailDeserialize
+        ? Self.failingData
+        : Data((0...20).map { _ in UInt8.random(in: 0...255) })
     }
     
     init(common: EventCommon, header: EventHeader, payload: EventPayload) {
@@ -24,6 +28,10 @@ struct BatchEventMock: BatchEvent, Equatable {
     }
     
     init(data: Data) throws {
+        guard data != Self.failingData else {
+            throw NSError(domain: "", code: 0)
+        }
+
         self.shouldFailSerialize = false
         self.data = data
     }

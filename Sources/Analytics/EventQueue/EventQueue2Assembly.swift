@@ -27,7 +27,11 @@ extension EventQueue2Assembly {
         analyticsCoreAssembly: AnalyticsCoreAssembly
     ) {
         let core = EventQueueCore2Impl(timer: TimerImpl())
-        let eventStorage = EventStorage2Impl()
+        let eventStorage = EventStorage2Impl(
+            folderURL: URL(string: "")!,
+            stack: stack,
+            fileManager: .default
+        )
         
         let eventComposer = EventComposer2Impl(
             stack: stack,

@@ -45,7 +45,12 @@ final class EventQueue2Impl: EventQueue2 {
             and: incomingEvent.payload
         )
         
-        storage.storeEvent(event)
+        let storableEvent = StorableEvent(
+            event: IdentifiableEvent(id: UUID(), event: event),
+            contextId: UUID()
+        )
+        
+        storage.storeEvent(storableEvent)
         core.addEvent(event)
         
         if !outOfSession {
@@ -63,19 +68,20 @@ final class EventQueue2Impl: EventQueue2 {
             return true
         }
 
-        core.removeHandler = { [weak self] in
+        core.removeHandler = { [weak self] _ in
             guard let self = self else { return }
 
-            $0.forEach(self.storage.removeEvent)
+//            // TODO: Change core to use storable events
+//            $0.forEach(self.storage.removeEvent)
         }
 
         guard !liveQueue else {
             return
         }
-
-        storage.loadEvents { [core] events in
-            core.addEvents(events)
-        }
+        // TODO: Change core to use storable events
+//        storage.loadEvents { [core] events in
+//            core.addEvents(events)
+//        }
     }
 
     private func startSessionManager() {
