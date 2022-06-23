@@ -38,8 +38,9 @@ extension EventQueue2Assembly {
             sessionIdProvider: analyticsCoreAssembly.sessionManager
         )
         
-        let contextHolder = ContextHolderImpl(stack: stack)
-        let batchComposer = BatchComposerImpl(stack: stack, contextHolder: contextHolder)
+//        let contextHolder:  = ContextHolderImpl(stack: stack)
+        let batchComposer: BatchComposer = { fatalError() } ()
+//        BatchComposerImpl(stack: stack, contextHolder: contextHolder)
         
         let batchStorage = BatchStorageImpl(
             folderURL: URL(string: "")!,

@@ -51,7 +51,7 @@ final class EventQueue2Impl: EventQueue2 {
         )
         
         storage.storeEvent(storableEvent)
-        core.addEvent(event)
+        core.addEvent(storableEvent)
         
         if !outOfSession {
             sessionManager.refreshSession(with: event)
@@ -59,29 +59,28 @@ final class EventQueue2Impl: EventQueue2 {
     }
 
     private func setupCore(_ core: EventQueueCore2, liveQueue: Bool) {
-        core.sendHandler = { [weak self] events, _ in
+        core.sendHandler = { [weak self] events, contextId, _ in
             guard let self = self, self.sendController.isReady else {
                 return false
             }
             
-            self.sendController.sendBatch(of: Array(events))
+            self.sendController.sendBatch(of: Array(events), with: contextId)
             return true
         }
 
-        core.removeHandler = { [weak self] _ in
+        core.removeHandler = { [weak self] in
             guard let self = self else { return }
 
-//            // TODO: Change core to use storable events
-//            $0.forEach(self.storage.removeEvent)
+            $0.forEach(self.storage.removeEvent)
         }
 
         guard !liveQueue else {
             return
         }
-        // TODO: Change core to use storable events
-//        storage.loadEvents { [core] events in
-//            core.addEvents(events)
-//        }
+
+        storage.loadEvents { [core] events in
+            core.addEvents(events)
+        }
     }
 
     private func startSessionManager() {

@@ -9,5 +9,13 @@ import Foundation
 import PaltaLibAnalytics
 
 struct BatchContextMock: BatchContext {
+    init() {
+    }
     
+    init(data: Data) throws {
+    }
+    
+    func serialize() throws -> Data {
+        throw NSError()
+    }
 }

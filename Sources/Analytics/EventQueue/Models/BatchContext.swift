@@ -9,4 +9,7 @@ import Foundation
 
 public protocol BatchContext {
     init()
+    init(data: Data) throws
+    
+    func serialize() throws -> Data
 }

@@ -16,14 +16,14 @@ struct EventQueue2Config {
 }
 
 protocol EventQueueCore2: AnyObject {
-    typealias UploadHandler = (ArraySlice<BatchEvent>, Telemetry) -> Bool
-    typealias RemoveHandler = (ArraySlice<BatchEvent>) -> Void
+    typealias UploadHandler = ([BatchEvent], UUID, Telemetry) -> Bool
+    typealias RemoveHandler = (ArraySlice<StorableEvent>) -> Void
 
     var sendHandler: UploadHandler? { get set }
     var removeHandler: RemoveHandler? { get set }
 
-    func addEvent(_ event: BatchEvent)
-    func addEvents(_ events: [BatchEvent])
+    func addEvent(_ event: StorableEvent)
+    func addEvents(_ events: [StorableEvent])
     
     func sendEventsAvailable()
 }
@@ -40,7 +40,7 @@ final class EventQueueCore2Impl: EventQueueCore2, FunctionalExtension {
         }
     }
 
-    private var events: [BatchEvent] = []
+    private var events: [StorableEvent] = []
 
     private var droppedEventsCount = 0
 
@@ -59,14 +59,14 @@ final class EventQueueCore2Impl: EventQueueCore2, FunctionalExtension {
         self.timer = timer
     }
 
-    func addEvent(_ event: BatchEvent) {
+    func addEvent(_ event: StorableEvent) {
         workingQueue.async {
             self.insert(event)
             self.onNewEvents()
         }
     }
 
-    func addEvents(_ events: [BatchEvent]) {
+    func addEvents(_ events: [StorableEvent]) {
         workingQueue.async {
             events.forEach(self.insert)
             self.onNewEvents()
@@ -81,8 +81,10 @@ final class EventQueueCore2Impl: EventQueueCore2, FunctionalExtension {
         }
     }
 
-    private func insert(_ event: BatchEvent) {
-        let index = events.lastIndex(where: { $0.timestamp > event.timestamp }) ?? 0
+    private func insert(_ event: StorableEvent) {
+        let index = events.lastIndex(where: {
+            $0.event.event.timestamp > event.event.event.timestamp
+        }) ?? 0
         events.insert(event, at: index)
     }
 
@@ -139,10 +141,15 @@ final class EventQueueCore2Impl: EventQueueCore2, FunctionalExtension {
             assertionFailure("Flush shouldn't be called unless we have a config")
             return
         }
+        
+        guard let contextId = events.first?.contextId else {
+            return
+        }
 
         let batchSize = config.maxBatchSize
+        let firstIndexWithAnotherContext = events.firstIndex { $0.contextId != contextId } ?? .max
 
-        let range = 0..<min(batchSize, events.count)
+        let range = 0..<min(batchSize, events.count, firstIndexWithAnotherContext)
 
         let telemetry = Telemetry(
             eventsInBatch: range.count,
@@ -150,7 +157,8 @@ final class EventQueueCore2Impl: EventQueueCore2, FunctionalExtension {
             eventsDroppedSinceLastBatch: droppedEventsCount
         )
 
-        let batchFormed = sendHandler?(events[range], telemetry) ?? false
+        let batchEvents = events[range].map { $0.event.event }
+        let batchFormed = sendHandler?(batchEvents, contextId, telemetry) ?? false
         
         guard batchFormed else {
             timerFired = timerWasFired

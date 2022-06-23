@@ -27,19 +27,19 @@ public struct Stack {
 }
 
 protocol BatchComposer {
-    func makeBatch(of events: [BatchEvent]) -> Batch
+    func makeBatch(of events: [BatchEvent], with contextId: UUID) -> Batch
 }
 
 final class BatchComposerImpl: BatchComposer {
     private let stack: Stack
-    private let contextHolder: ContextHolder
+    private let contextProvider: ContextProvider
     
-    init(stack: Stack, contextHolder: ContextHolder) {
+    init(stack: Stack, contextProvider: ContextProvider) {
         self.stack = stack
-        self.contextHolder = contextHolder
+        self.contextProvider = contextProvider
     }
     
-    func makeBatch(of events: [BatchEvent]) -> Batch {
+    func makeBatch(of events: [BatchEvent], with contextId: UUID) -> Batch {
         let common = stack.batchCommon.init(
             instanceId: .init(), // TODO
             batchId: .init(), // TODO
@@ -50,7 +50,7 @@ final class BatchComposerImpl: BatchComposer {
         
         let batch = stack.batch.init(
             common: common,
-            context: contextHolder.context,
+            context: contextProvider.context(with: contextId),
             events: events
         )
         

@@ -11,7 +11,7 @@ protocol BatchSendController {
     var isReady: Bool { get }
     var isReadyCallback: (() -> Void)? { get set }
     
-    func sendBatch(of events: [BatchEvent])
+    func sendBatch(of events: [BatchEvent], with contextId: UUID)
 }
 
 final class BatchSendControllerImpl: BatchSendController {
@@ -49,7 +49,7 @@ final class BatchSendControllerImpl: BatchSendController {
         self.eventStorage = eventStorage
     }
     
-    func sendBatch(of events: [BatchEvent]) {
+    func sendBatch(of events: [BatchEvent], with contextId: UUID) {
         lock.lock()
         defer { lock.unlock() }
         
@@ -57,7 +57,7 @@ final class BatchSendControllerImpl: BatchSendController {
             return
         }
         
-        let batch = batchComposer.makeBatch(of: events)
+        let batch = batchComposer.makeBatch(of: events, with: contextId)
         try! batchStorage.saveBatch(batch)
         
         batchSender.sendBatch(batch) { [weak self] result in

@@ -197,6 +197,8 @@
 		117D9BE828608FDE006F3E2E /* IdentifiableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */; };
 		117D9BEA286090B8006F3E2E /* StorableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE9286090B8006F3E2E /* StorableEventTests.swift */; };
 		117D9BEE2861E311006F3E2E /* EventStorage2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BED2861E311006F3E2E /* EventStorage2Tests.swift */; };
+		117D9BFF2863423C006F3E2E /* CurrentContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */; };
+		117D9C0128634288006F3E2E /* ContextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C0028634288006F3E2E /* ContextStorage.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
@@ -530,6 +532,8 @@
 		117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableEvent.swift; sourceTree = "<group>"; };
 		117D9BE9286090B8006F3E2E /* StorableEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableEventTests.swift; sourceTree = "<group>"; };
 		117D9BED2861E311006F3E2E /* EventStorage2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorage2Tests.swift; sourceTree = "<group>"; };
+		117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContextManager.swift; sourceTree = "<group>"; };
+		117D9C0028634288006F3E2E /* ContextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextStorage.swift; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
@@ -795,7 +799,7 @@
 				113A79A1284E591A004C0C5D /* EventQueueCore2.swift */,
 				113A79A5284F6E13004C0C5D /* EventComposer2.swift */,
 				113A79A9284F7341004C0C5D /* EventQueue2.swift */,
-				113A79AB284F75EF004C0C5D /* ContextHolder.swift */,
+				117D9BFD28634216006F3E2E /* Contexts */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
 				1150909A2859D8A9009F53AD /* EventQueue2Assembly.swift */,
 				115090A02859EF8C009F53AD /* BatchSendRequest.swift */,
@@ -1113,6 +1117,16 @@
 				114CF5AC2822679500ADA815 /* PBPurchasePlugin.swift */,
 			);
 			path = PaltaBrain;
+			sourceTree = "<group>";
+		};
+		117D9BFD28634216006F3E2E /* Contexts */ = {
+			isa = PBXGroup;
+			children = (
+				113A79AB284F75EF004C0C5D /* ContextHolder.swift */,
+				117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */,
+				117D9C0028634288006F3E2E /* ContextStorage.swift */,
+			);
+			path = Contexts;
 			sourceTree = "<group>";
 		};
 		11A61ED2283787FE00F88116 /* Networking */ = {
@@ -1764,6 +1778,7 @@
 				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
 				112FCA402848B76500C8F88A /* BatchSender.swift in Sources */,
 				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,
+				117D9BFF2863423C006F3E2E /* CurrentContextManager.swift in Sources */,
 				115090A12859EF8C009F53AD /* BatchSendRequest.swift in Sources */,
 				113A798B284DF461004C0C5D /* EventCommon.swift in Sources */,
 				11115A4C27FB7E6000A41ADA /* Timer.swift in Sources */,
@@ -1779,6 +1794,7 @@
 				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
 				113A7989284DF327004C0C5D /* EventType.swift in Sources */,
 				11115A4F27FB7E6B00A41ADA /* EventSender.swift in Sources */,
+				117D9C0128634288006F3E2E /* ContextStorage.swift in Sources */,
 				11115A5827FC59BC00A41ADA /* SessionManager.swift in Sources */,
 				11115A4E27FB7E6B00A41ADA /* EventQueueCore.swift in Sources */,
 				113A798F284E0CCF004C0C5D /* EventHeader.swift in Sources */,
