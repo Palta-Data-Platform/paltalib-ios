@@ -199,6 +199,7 @@
 		117D9BEE2861E311006F3E2E /* EventStorage2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BED2861E311006F3E2E /* EventStorage2Tests.swift */; };
 		117D9BFF2863423C006F3E2E /* CurrentContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */; };
 		117D9C0128634288006F3E2E /* ContextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C0028634288006F3E2E /* ContextStorage.swift */; };
+		117D9C0428647C3B006F3E2E /* ContextStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C0228647C16006F3E2E /* ContextStorageTests.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
@@ -534,6 +535,7 @@
 		117D9BED2861E311006F3E2E /* EventStorage2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorage2Tests.swift; sourceTree = "<group>"; };
 		117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContextManager.swift; sourceTree = "<group>"; };
 		117D9C0028634288006F3E2E /* ContextStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextStorage.swift; sourceTree = "<group>"; };
+		117D9C0228647C16006F3E2E /* ContextStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextStorageTests.swift; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
@@ -993,6 +995,7 @@
 				1137D166285B2211008CA306 /* BatchStorageTests.swift */,
 				117D9BE9286090B8006F3E2E /* StorableEventTests.swift */,
 				117D9BED2861E311006F3E2E /* EventStorage2Tests.swift */,
+				117D9C0228647C16006F3E2E /* ContextStorageTests.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -1641,6 +1644,7 @@
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
 				114D07012806F64B00ACD310 /* EventQueueMock.swift in Sources */,
 				11543038282D03280021ED6F /* ProductMock.swift in Sources */,
+				117D9C0428647C3B006F3E2E /* ContextStorageTests.swift in Sources */,
 				11A61EEC2837925A00F88116 /* FeatureResponseTests.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
 				11A61E842833E0C900F88116 /* AmplitudeExtensionTests.swift in Sources */,

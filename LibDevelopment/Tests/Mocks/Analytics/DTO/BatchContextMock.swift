@@ -9,13 +9,20 @@ import Foundation
 import PaltaLibAnalytics
 
 struct BatchContextMock: BatchContext {
+    let initiatedFromData: Bool
+    let data: Data
+    
     init() {
+        self.initiatedFromData = false
+        self.data = Data((0...20).map { _ in UInt8.random(in: 0...255) })
     }
     
     init(data: Data) throws {
+        self.initiatedFromData = true
+        self.data = data
     }
     
     func serialize() throws -> Data {
-        throw NSError()
+        return data
     }
 }
