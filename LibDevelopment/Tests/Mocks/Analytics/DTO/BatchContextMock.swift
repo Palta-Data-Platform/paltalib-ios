@@ -12,6 +12,9 @@ struct BatchContextMock: BatchContext {
     let initiatedFromData: Bool
     let data: Data
     
+    var mockFieldA = 0
+    var mockFieldB = 0
+    
     init() {
         self.initiatedFromData = false
         self.data = Data((0...20).map { _ in UInt8.random(in: 0...255) })
