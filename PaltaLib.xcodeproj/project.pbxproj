@@ -203,6 +203,7 @@
 		117D9C062865A9B1006F3E2E /* CurrentContextManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C052865A9B1006F3E2E /* CurrentContextManagerTests.swift */; };
 		117D9C082865A9E2006F3E2E /* ContextStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C072865A9E2006F3E2E /* ContextStorageMock.swift */; };
 		117D9C0A2865B81E006F3E2E /* StackMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C092865B81E006F3E2E /* StackMock.swift */; };
+		117D9C292869A219006F3E2E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C282869A219006F3E2E /* Stack.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
@@ -542,6 +543,7 @@
 		117D9C052865A9B1006F3E2E /* CurrentContextManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContextManagerTests.swift; sourceTree = "<group>"; };
 		117D9C072865A9E2006F3E2E /* ContextStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextStorageMock.swift; sourceTree = "<group>"; };
 		117D9C092865B81E006F3E2E /* StackMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackMock.swift; sourceTree = "<group>"; };
+		117D9C282869A219006F3E2E /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
@@ -802,11 +804,11 @@
 				1137D15A285A00D9008CA306 /* SDKInfoProvider.swift */,
 				113A799B284E5704004C0C5D /* BatchStorage.swift */,
 				113A799D284E5771004C0C5D /* EventStorage2.swift */,
-				113A79A3284F5507004C0C5D /* BatchSendController.swift */,
 				113A799F284E57D7004C0C5D /* BatchComposer.swift */,
 				113A79A1284E591A004C0C5D /* EventQueueCore2.swift */,
 				113A79A5284F6E13004C0C5D /* EventComposer2.swift */,
 				113A79A9284F7341004C0C5D /* EventQueue2.swift */,
+				113A79A3284F5507004C0C5D /* BatchSendController.swift */,
 				117D9BFD28634216006F3E2E /* Contexts */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
 				1150909A2859D8A9009F53AD /* EventQueue2Assembly.swift */,
@@ -1024,6 +1026,7 @@
 			isa = PBXGroup;
 			children = (
 				113A7988284DF327004C0C5D /* EventType.swift */,
+				117D9C282869A219006F3E2E /* Stack.swift */,
 				113A798A284DF461004C0C5D /* EventCommon.swift */,
 				113A798C284E0B78004C0C5D /* EventPayload.swift */,
 				113A798E284E0CCF004C0C5D /* EventHeader.swift */,
@@ -1777,6 +1780,7 @@
 				113A7993284E3A98004C0C5D /* BatchCommon.swift in Sources */,
 				117D9BE4285C7D5C006F3E2E /* StorableEvent.swift in Sources */,
 				113A79A8284F6EB3004C0C5D /* Timestamp2.swift in Sources */,
+				117D9C292869A219006F3E2E /* Stack.swift in Sources */,
 				1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */,
 				11115A5127FB7E6B00A41ADA /* Event.swift in Sources */,
 				11115A4B27FB7E5700A41ADA /* EventComposer.swift in Sources */,

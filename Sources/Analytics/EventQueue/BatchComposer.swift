@@ -7,25 +7,6 @@
 
 import Foundation
 
-public struct Stack {
-    let batchCommon: BatchCommon.Type
-    let context: BatchContext.Type
-    let batch: Batch.Type
-    let event: BatchEvent.Type
-    
-    public init(
-        batchCommon: BatchCommon.Type,
-        context: BatchContext.Type,
-        batch: Batch.Type,
-        event: BatchEvent.Type
-    ) {
-        self.batchCommon = batchCommon
-        self.context = context
-        self.batch = batch
-        self.event = event
-    }
-}
-
 protocol BatchComposer {
     func makeBatch(of events: [BatchEvent], with contextId: UUID) -> Batch
 }
