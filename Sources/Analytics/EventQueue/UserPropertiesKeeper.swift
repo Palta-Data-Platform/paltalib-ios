@@ -11,6 +11,7 @@ import PaltaLibCore
 protocol UserPropertiesProvider: AnyObject {
     var userId: String? { get }
     var deviceId: String? { get }
+    var instanceId: UUID { get }
 }
 
 protocol UserPropertiesKeeper: UserPropertiesProvider {
@@ -44,6 +45,19 @@ final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
             lock.unlock()
         }
     }
+    
+    var instanceId: UUID {
+        lock.lock()
+        defer { lock.unlock() }
+        
+        if let instanceId = userProperties?.instanceId {
+            return instanceId
+        }
+        
+        let instanceId = uuidGenerator.generateUUID()
+        userProperties?.instanceId = instanceId
+        return instanceId
+    }
 
     var useIDFAasDeviceId = false
 
@@ -56,15 +70,18 @@ final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
     private let lock = NSRecursiveLock()
 
     private let defaultsKey = "paltaBrainUserProperties"
+    private let uuidGenerator: UUIDGenerator
     private let trackingOptionsProvider: TrackingOptionsProvider
     private let deviceInfoProvider: DeviceInfoProvider
     private let userDefaults: UserDefaults
 
     init(
+        uuidGenerator: UUIDGenerator,
         trackingOptionsProvider: TrackingOptionsProvider,
         deviceInfoProvider: DeviceInfoProvider,
         userDefaults: UserDefaults
     ) {
+        self.uuidGenerator = uuidGenerator
         self.trackingOptionsProvider = trackingOptionsProvider
         self.deviceInfoProvider = deviceInfoProvider
         self.userDefaults = userDefaults

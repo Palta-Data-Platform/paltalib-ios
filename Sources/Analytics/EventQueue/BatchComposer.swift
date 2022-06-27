@@ -13,20 +13,32 @@ protocol BatchComposer {
 
 final class BatchComposerImpl: BatchComposer {
     private let stack: Stack
+    private let uuidGenerator: UUIDGenerator
     private let contextProvider: ContextProvider
+    private let userInfoProvider: UserPropertiesProvider
+    private let deviceInfoProvider: DeviceInfoProvider
     
-    init(stack: Stack, contextProvider: ContextProvider) {
+    init(
+        stack: Stack,
+        uuidGenerator: UUIDGenerator,
+        contextProvider: ContextProvider,
+        userInfoProvider: UserPropertiesProvider,
+        deviceInfoProvider: DeviceInfoProvider
+    ) {
         self.stack = stack
+        self.uuidGenerator = uuidGenerator
         self.contextProvider = contextProvider
+        self.userInfoProvider = userInfoProvider
+        self.deviceInfoProvider = deviceInfoProvider
     }
     
     func makeBatch(of events: [BatchEvent], with contextId: UUID) -> Batch {
         let common = stack.batchCommon.init(
-            instanceId: .init(), // TODO
-            batchId: .init(), // TODO
-            countryCode: "",
+            instanceId: userInfoProvider.instanceId,
+            batchId: uuidGenerator.generateUUID(),
+            countryCode: deviceInfoProvider.country ?? "",
             locale: .current,
-            utcOffset: 0
+            utcOffset: Int64(deviceInfoProvider.timezoneOffset)
         )
         
         let batch = stack.batch.init(

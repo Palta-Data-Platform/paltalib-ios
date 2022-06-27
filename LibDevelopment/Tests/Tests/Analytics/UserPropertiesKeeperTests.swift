@@ -10,6 +10,7 @@ import Amplitude
 @testable import PaltaLibAnalytics
 
 final class UserPropertiesKeeperTests: XCTestCase {
+    var uuidGeneratorMock: UUIDGeneratorMock!
     var trackerOptionsMock: TrackingOptionsProviderMock!
     var deviceInfoMock: DeviceInfoProviderMock!
     var userDefaults: UserDefaults!
@@ -19,11 +20,15 @@ final class UserPropertiesKeeperTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
 
+        uuidGeneratorMock = .init()
         trackerOptionsMock = .init()
         deviceInfoMock = .init()
         userDefaults = UserDefaults()
+        
+        uuidGeneratorMock.uuids = [UUID()]
 
         keeper = UserPropertiesKeeperImpl(
+            uuidGenerator: uuidGeneratorMock,
             trackingOptionsProvider: trackerOptionsMock,
             deviceInfoProvider: deviceInfoMock,
             userDefaults: userDefaults
@@ -34,8 +39,10 @@ final class UserPropertiesKeeperTests: XCTestCase {
         let guid = UUID().uuidString
         keeper.userId = "mock-user-id"
         keeper.deviceId = guid
+        let instanceId = keeper.instanceId
 
         keeper = UserPropertiesKeeperImpl(
+            uuidGenerator: uuidGeneratorMock,
             trackingOptionsProvider: trackerOptionsMock,
             deviceInfoProvider: deviceInfoMock,
             userDefaults: userDefaults
@@ -43,6 +50,7 @@ final class UserPropertiesKeeperTests: XCTestCase {
 
         XCTAssertEqual(keeper.userId, "mock-user-id")
         XCTAssertEqual(keeper.deviceId, guid)
+        XCTAssertEqual(keeper.instanceId, instanceId)
     }
 
     func testGenerateDeviceIdWithIDFA() {
@@ -133,5 +141,20 @@ final class UserPropertiesKeeperTests: XCTestCase {
         keeper.generateDeviceId()
 
         XCTAssertEqual(deviceId, keeper.deviceId)
+    }
+    
+    func testConcurrentInstanceId() {
+        var idSet: Set<UUID> = []
+        let lock = NSRecursiveLock()
+        
+        DispatchQueue.concurrentPerform(iterations: 100) { [keeper] _ in
+            let id = keeper!.instanceId
+            
+            lock.lock()
+            idSet.insert(id)
+            lock.unlock()
+        }
+        
+        XCTAssertEqual(idSet.count, 1)
     }
 }

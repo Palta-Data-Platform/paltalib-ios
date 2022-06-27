@@ -47,7 +47,6 @@ final class CurrentContextManagerTests: XCTestCase {
                 context.mockFieldA = index
                 context.mockFieldB = index * 2
             }
-        
         }
         
         let uniqueChecksums = Set(

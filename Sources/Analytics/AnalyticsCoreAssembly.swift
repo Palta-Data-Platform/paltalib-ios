@@ -18,6 +18,7 @@ final class AnalyticsCoreAssembly {
         let trackingOptionsProvider = TrackingOptionsProviderImpl()
 
         let userPropertiesKeeper = UserPropertiesKeeperImpl(
+            uuidGenerator: UUIDGeneratorImpl(),
             trackingOptionsProvider: trackingOptionsProvider,
             deviceInfoProvider: DeviceInfoProviderImpl(),
             userDefaults: .standard

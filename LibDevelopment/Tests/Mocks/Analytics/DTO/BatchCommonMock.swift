@@ -8,7 +8,10 @@
 import Foundation
 import PaltaLibAnalytics
 
-struct BatchCommonMock: BatchCommon {
-    init(instanceId: UUID, batchId: UUID, countryCode: String, locale: Locale, utcOffset: Int64) {
-    }
+struct BatchCommonMock: BatchCommon, Equatable {
+    let instanceId: UUID
+    let batchId: UUID
+    let countryCode: String
+    let locale: Locale
+    let utcOffset: Int64
 }

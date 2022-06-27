@@ -8,7 +8,7 @@
 import Foundation
 import PaltaLibAnalytics
 
-struct BatchContextMock: BatchContext {
+struct BatchContextMock: BatchContext, Equatable {
     let initiatedFromData: Bool
     let data: Data
     
