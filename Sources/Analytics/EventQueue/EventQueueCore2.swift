@@ -74,17 +74,19 @@ final class EventQueueCore2Impl: EventQueueCore2, FunctionalExtension {
     }
     
     func sendEventsAvailable() {
-        if timerFired {
-            flush()
-        } else {
-            flushIfNeededByCount()
+        workingQueue.async { [self] in
+            if timerFired {
+                flush()
+            } else {
+                flushIfNeededByCount()
+            }
         }
     }
 
     private func insert(_ event: StorableEvent) {
-        let index = events.lastIndex(where: {
+        let index = events.firstIndex(where: {
             $0.event.event.timestamp > event.event.event.timestamp
-        }) ?? 0
+        }) ?? events.endIndex
         events.insert(event, at: index)
     }
 
@@ -107,8 +109,9 @@ final class EventQueueCore2Impl: EventQueueCore2, FunctionalExtension {
             return
         }
 
-        let strippedEvents = events.suffix(from: config.maxEvents)
-        events = Array(events.prefix(config.maxEvents))
+        let stripCount = events.count - config.maxEvents
+        let strippedEvents = events.prefix(stripCount)
+        events = Array(events.suffix(config.maxEvents))
 
         droppedEventsCount += strippedEvents.count
         removeHandler?(strippedEvents)
