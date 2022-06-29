@@ -208,7 +208,7 @@ final class EventQueueCore2Tests: XCTestCase {
         queue.config = .init(maxBatchSize: 300, uploadInterval: 8, uploadThreshold: 20, maxEvents: 30)
 
         queue.addEvents(
-            Array(repeating: .mock(contextId: contextId), count: 10)
+            .mock(count: 10, contextId: contextId)
         )
 
         XCTAssertEqual(timerMock.passedInterval, 8)
@@ -217,7 +217,7 @@ final class EventQueueCore2Tests: XCTestCase {
 
         timerMock.passedInterval = nil
         queue.addEvents(
-            Array(repeating: .mock(contextId: contextId), count: 3)
+            .mock(count: 3, contextId: contextId)
         )
         XCTAssertNil(timerMock.passedInterval)
 
@@ -233,13 +233,13 @@ final class EventQueueCore2Tests: XCTestCase {
         queue.config = .init(maxBatchSize: 300, uploadInterval: 8, uploadThreshold: 10, maxEvents: 30)
 
         queue.addEvents(
-            Array(repeating: .mock(contextId: contextId), count: 9)
+            .mock(count: 9, contextId: contextId)
         )
 
         wait(for: [sendIsntCalled], timeout: 0.1)
 
         queue.addEvents(
-            Array(repeating: .mock(contextId: contextId), count: 3)
+            .mock(count: 3, contextId: contextId)
         )
 
         wait(for: [sendIsCalled], timeout: 0.1)
@@ -248,6 +248,7 @@ final class EventQueueCore2Tests: XCTestCase {
     }
 
     func testBatchAddWithOverflow() {
+        warmUpExpectations(removeIsCalled)
         let contextId = UUID()
         queue.config = .init(maxBatchSize: 300, uploadInterval: 8, uploadThreshold: 10, maxEvents: 5)
 
@@ -294,8 +295,8 @@ final class EventQueueCore2Tests: XCTestCase {
         
         XCTAssertEqual(contextId, contextId1)
         XCTAssertEqual(
-            sentEvents as? [BatchEventMock],
-            events[0...2].map { $0.event.event } as? [BatchEventMock]
+            Set(sentEvents?.values.compactMap { $0 as? BatchEventMock } ?? []),
+            Set(events[0...2].map { $0.event.event } as? [BatchEventMock] ?? [])
         )
     }
     
@@ -321,8 +322,8 @@ final class EventQueueCore2Tests: XCTestCase {
         
         XCTAssertEqual(contextId, contextId1)
         XCTAssertEqual(
-            sentEvents as? [BatchEventMock],
-            events[0...1].map { $0.event.event } as? [BatchEventMock]
+            Set(sentEvents?.values.compactMap { $0 as? BatchEventMock } ?? []),
+            Set(events[0...1].map { $0.event.event } as? [BatchEventMock] ?? [])
         )
     }
     

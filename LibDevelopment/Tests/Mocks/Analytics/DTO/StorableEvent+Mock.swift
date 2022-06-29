@@ -19,3 +19,11 @@ extension StorableEvent {
         )
     }
 }
+
+extension Array where Element == StorableEvent {
+    static func mock(count: Int, contextId: UUID = UUID()) -> [StorableEvent] {
+        (0..<count).map { _ in
+            .mock(contextId: contextId)
+        }
+    }
+}
