@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol BatchSendController {
+protocol BatchSendController: AnyObject {
     var isReady: Bool { get }
     var isReadyCallback: (() -> Void)? { get set }
     

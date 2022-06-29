@@ -20,21 +20,25 @@ final class EventQueue2Impl: EventQueue2 {
     private let sendController: BatchSendController
     private let eventComposer: EventComposer2
     private let sessionManager: SessionManager
+    private let contextProvider: CurrentContextProvider
 
     init(
         core: EventQueueCore2,
         storage: EventStorage2,
         sendController: BatchSendController,
         eventComposer: EventComposer2,
-        sessionManager: SessionManager
+        sessionManager: SessionManager,
+        contextProvider: CurrentContextProvider
     ) {
         self.core = core
         self.storage = storage
         self.sendController = sendController
         self.eventComposer = eventComposer
         self.sessionManager = sessionManager
+        self.contextProvider = contextProvider
 
         setupCore(core, liveQueue: false)
+        setupSendController()
         startSessionManager()
     }
     
@@ -47,7 +51,7 @@ final class EventQueue2Impl: EventQueue2 {
         
         let storableEvent = StorableEvent(
             event: IdentifiableEvent(id: UUID(), event: event),
-            contextId: UUID()
+            contextId: contextProvider.currentContextId
         )
         
         storage.storeEvent(storableEvent)
@@ -55,6 +59,12 @@ final class EventQueue2Impl: EventQueue2 {
         
         if !outOfSession {
             sessionManager.refreshSession(with: event)
+        }
+    }
+    
+    private func setupSendController() {
+        sendController.isReadyCallback = { [core] in
+            core.sendEventsAvailable()
         }
     }
 
@@ -84,21 +94,6 @@ final class EventQueue2Impl: EventQueue2 {
     }
 
     private func startSessionManager() {
-//        sessionManager.sessionEventLogger = { [weak self] eventName, timestamp in
-//            guard let self = self, self.trackingSessionEvents else {
-//                return
-//            }
-//
-//            self.logEvent(
-//                eventType: eventName,
-//                eventProperties: [:],
-//                apiProperties: ["special": eventName],
-//                groups: [:],
-//                timestamp: timestamp,
-//                outOfSession: true
-//            )
-//        }
-
         sessionManager.start()
     }
 }

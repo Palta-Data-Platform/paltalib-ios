@@ -66,7 +66,8 @@ extension EventQueue2Assembly {
             storage: eventStorage,
             sendController: sendController,
             eventComposer: eventComposer,
-            sessionManager: analyticsCoreAssembly.sessionManager
+            sessionManager: analyticsCoreAssembly.sessionManager,
+            contextProvider: { fatalError() }()
         )
         
         self.init(eventQueue: eventQueue, eventQueueCore: core, batchSender: batchSender)

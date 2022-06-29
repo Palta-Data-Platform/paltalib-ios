@@ -214,6 +214,12 @@
 		117D9C3B286B33C2006F3E2E /* EventTypeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C3A286B33C2006F3E2E /* EventTypeMock.swift */; };
 		117D9C3D286B33FA006F3E2E /* EventHeadeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C3C286B33FA006F3E2E /* EventHeadeMock.swift */; };
 		117D9C3F286B3429006F3E2E /* EventPayloadMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C3E286B3429006F3E2E /* EventPayloadMock.swift */; };
+		117D9C43286C4CC1006F3E2E /* EventQueue2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C42286C4CC1006F3E2E /* EventQueue2Tests.swift */; };
+		117D9C45286C4D16006F3E2E /* EventQueue2CoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C44286C4D16006F3E2E /* EventQueue2CoreMock.swift */; };
+		117D9C47286C4E26006F3E2E /* EventStorage2Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C46286C4E26006F3E2E /* EventStorage2Mock.swift */; };
+		117D9C49286C4EB2006F3E2E /* BatchSendControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C48286C4EB2006F3E2E /* BatchSendControllerMock.swift */; };
+		117D9C4B286C4F6A006F3E2E /* EventComposer2Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C4A286C4F6A006F3E2E /* EventComposer2Mock.swift */; };
+		117D9C4D286C52AC006F3E2E /* CurrentContextProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C4C286C52AC006F3E2E /* CurrentContextProviderMock.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
@@ -564,6 +570,12 @@
 		117D9C3A286B33C2006F3E2E /* EventTypeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypeMock.swift; sourceTree = "<group>"; };
 		117D9C3C286B33FA006F3E2E /* EventHeadeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHeadeMock.swift; sourceTree = "<group>"; };
 		117D9C3E286B3429006F3E2E /* EventPayloadMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPayloadMock.swift; sourceTree = "<group>"; };
+		117D9C42286C4CC1006F3E2E /* EventQueue2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueue2Tests.swift; sourceTree = "<group>"; };
+		117D9C44286C4D16006F3E2E /* EventQueue2CoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueue2CoreMock.swift; sourceTree = "<group>"; };
+		117D9C46286C4E26006F3E2E /* EventStorage2Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorage2Mock.swift; sourceTree = "<group>"; };
+		117D9C48286C4EB2006F3E2E /* BatchSendControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSendControllerMock.swift; sourceTree = "<group>"; };
+		117D9C4A286C4F6A006F3E2E /* EventComposer2Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposer2Mock.swift; sourceTree = "<group>"; };
+		117D9C4C286C52AC006F3E2E /* CurrentContextProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContextProviderMock.swift; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
@@ -972,6 +984,11 @@
 				117D9C072865A9E2006F3E2E /* ContextStorageMock.swift */,
 				117D9C2F2869A731006F3E2E /* UUIDGeneratorMock.swift */,
 				117D9C322869A799006F3E2E /* ContextProviderMock.swift */,
+				117D9C44286C4D16006F3E2E /* EventQueue2CoreMock.swift */,
+				117D9C46286C4E26006F3E2E /* EventStorage2Mock.swift */,
+				117D9C48286C4EB2006F3E2E /* BatchSendControllerMock.swift */,
+				117D9C4A286C4F6A006F3E2E /* EventComposer2Mock.swift */,
+				117D9C4C286C52AC006F3E2E /* CurrentContextProviderMock.swift */,
 				1137D168285B2589008CA306 /* DTO */,
 			);
 			path = Analytics;
@@ -1033,6 +1050,7 @@
 				117D9C2C2869A4E1006F3E2E /* BatchComposerTests.swift */,
 				117D9C342869CA25006F3E2E /* EventQueueCore2Tests.swift */,
 				117D9C38286B252B006F3E2E /* EventComposer2Tests.swift */,
+				117D9C42286C4CC1006F3E2E /* EventQueue2Tests.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -1683,6 +1701,7 @@
 				1137D1592859FF51008CA306 /* BatchSendRequestTests.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
 				1137D163285A15A3008CA306 /* BatchMock.swift in Sources */,
+				117D9C45286C4D16006F3E2E /* EventQueue2CoreMock.swift in Sources */,
 				117D9C082865A9E2006F3E2E /* ContextStorageMock.swift in Sources */,
 				11115A96280023B200A41ADA /* UserPropertiesKeeperTests.swift in Sources */,
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
@@ -1698,6 +1717,7 @@
 				117D9BEE2861E311006F3E2E /* EventStorage2Tests.swift in Sources */,
 				113AD6442837AD3B00324D62 /* FeatureMock.swift in Sources */,
 				114D070628075C7C00ACD310 /* RevenueLoggerTests.swift in Sources */,
+				117D9C4D286C52AC006F3E2E /* CurrentContextProviderMock.swift in Sources */,
 				11115A4427FB751E00A41ADA /* EventComposerMock.swift in Sources */,
 				117D9C0A2865B81E006F3E2E /* StackMock.swift in Sources */,
 				1137D16C285B25FC008CA306 /* BatchContextMock.swift in Sources */,
@@ -1705,10 +1725,12 @@
 				111A59B62840E9870052FCD1 /* PBPurchasePluginTests.swift in Sources */,
 				111A599A2840C5A30052FCD1 /* SubscriptionsServiceTests.swift in Sources */,
 				111A59A22840CDBD0052FCD1 /* PaidFeaturesServiceTests.swift in Sources */,
+				117D9C43286C4CC1006F3E2E /* EventQueue2Tests.swift in Sources */,
 				111159BF27F773E900A41ADA /* EventMock.swift in Sources */,
 				117D9C332869A799006F3E2E /* ContextProviderMock.swift in Sources */,
 				117D9C39286B252B006F3E2E /* EventComposer2Tests.swift in Sources */,
 				11115A5327FB7FAD00A41ADA /* EventComposerTests.swift in Sources */,
+				117D9C49286C4EB2006F3E2E /* BatchSendControllerMock.swift in Sources */,
 				1137D161285A13AB008CA306 /* SDKInfoProviderMock.swift in Sources */,
 				111A59AB2840DCCB0052FCD1 /* FeatureMapperMock.swift in Sources */,
 				11115A6C27FDB88400A41ADA /* AnyEncodableTests.swift in Sources */,
@@ -1733,6 +1755,7 @@
 				117D9C2E2869A4E5006F3E2E /* BatchComposerTests.swift in Sources */,
 				11543034282D02E50021ED6F /* PromoOfferMock.swift in Sources */,
 				1137D16E285B2642008CA306 /* BatchEventMock.swift in Sources */,
+				117D9C4B286C4F6A006F3E2E /* EventComposer2Mock.swift in Sources */,
 				117D9C062865A9B1006F3E2E /* CurrentContextManagerTests.swift in Sources */,
 				111A59A82840CE630052FCD1 /* SubscriptionsServiceMock.swift in Sources */,
 				111A59B32840E89F0052FCD1 /* PaidFeaturesServiceMock.swift in Sources */,
@@ -1747,6 +1770,7 @@
 				1137D167285B2211008CA306 /* BatchStorageTests.swift in Sources */,
 				117D9C312869A734006F3E2E /* UUIDGeneratorMock.swift in Sources */,
 				11A61EB02835161F00F88116 /* EventQueueAssemblyProviderMock.swift in Sources */,
+				117D9C47286C4E26006F3E2E /* EventStorage2Mock.swift in Sources */,
 				111A59A72840CE410052FCD1 /* FeaturesServiceMock.swift in Sources */,
 				1137D15F285A1374008CA306 /* BatchSenderTests.swift in Sources */,
 			);
