@@ -21,6 +21,7 @@ final class ProtoTests: XCTestCase {
         
         assembly.eventQueueCore.config = .init(maxBatchSize: 10, uploadInterval: 5, uploadThreshold: 5, maxEvents: 5)
         assembly.batchSender.apiToken = "0037c694a811422a88e2a3c5a90510e3"
+        assembly.batchSender.url = URL(string: "")
         
         assembly.eventQueue.logEvent(
             PageOpenEvent(
