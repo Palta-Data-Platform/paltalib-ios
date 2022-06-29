@@ -9,7 +9,7 @@ import Foundation
 
 protocol EventStorage2 {
     func storeEvent(_ event: StorableEvent)
-    func removeEvent(_ event: StorableEvent)
+    func removeEvent(with id: UUID)
 
     func loadEvents(_ completion: @escaping ([StorableEvent]) -> Void)
 }
@@ -32,7 +32,7 @@ final class EventStorage2Impl: EventStorage2 {
     }
     
     func storeEvent(_ event: StorableEvent) {
-        let url = url(for: event)
+        let url = url(for: event.event.id)
         workingQueue.async {
             do {
                 let data = try event.serialize()
@@ -43,8 +43,8 @@ final class EventStorage2Impl: EventStorage2 {
         }
     }
     
-    func removeEvent(_ event: StorableEvent) {
-        let url = url(for: event)
+    func removeEvent(with id: UUID) {
+        let url = url(for: id)
         workingQueue.async { [fileManager] in
             do {
                 try fileManager.removeItem(at: url)
@@ -76,7 +76,7 @@ final class EventStorage2Impl: EventStorage2 {
     }
     #endif
     
-    private func url(for event: StorableEvent) -> URL {
-        folderURL.appendingPathComponent("\(event.event.id).\(event.contextId).event")
+    private func url(for id: UUID) -> URL {
+        folderURL.appendingPathComponent("\(id).event")
     }
 }

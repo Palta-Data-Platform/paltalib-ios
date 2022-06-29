@@ -58,7 +58,8 @@ extension EventQueue2Assembly {
             batchComposer: batchComposer,
             batchStorage: batchStorage,
             batchSender: batchSender,
-            eventStorage: eventStorage
+            eventStorage: eventStorage,
+            timer: TimerImpl()
         )
         
         let eventQueue = EventQueue2Impl(

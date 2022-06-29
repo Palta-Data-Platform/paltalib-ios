@@ -55,7 +55,7 @@ final class EventStorage2Tests: XCTestCase {
         storage.addBarrier { [fileManager, testURL] in
             XCTAssert(
                 fileManager!.fileExists(
-                    atPath: testURL!.appendingPathComponent("\(event.event.id).\(event.contextId).event").path)
+                    atPath: testURL!.appendingPathComponent("\(event.event.id).event").path)
             )
             
             barrierCalled.fulfill()
@@ -98,7 +98,7 @@ final class EventStorage2Tests: XCTestCase {
         storage.addBarrier(barrierCalled1.fulfill)
         wait(for: [barrierCalled1], timeout: 0.1)
         
-        storage.removeEvent(event)
+        storage.removeEvent(with: event.event.id)
         
         let barrierCalled2 = expectation(description: "Barrier called 2")
         

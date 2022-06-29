@@ -89,19 +89,19 @@ final class EventQueue2Tests: XCTestCase {
     
     func testSendWhenAvailable() {
         let contextId = UUID()
-        let events = Array(repeating: BatchEventMock(), count: 5)
+        let events = [UUID(): BatchEventMock()]
         sendControllerMock.isReady = true
         
         let result = coreMock.sendHandler?(events, contextId, .mock())
         
         XCTAssertEqual(result, true)
-        XCTAssertEqual(sendControllerMock.sentEvents as? [BatchEventMock], events)
+        XCTAssertEqual(sendControllerMock.sentEvents as? [UUID: BatchEventMock], events)
         XCTAssertEqual(sendControllerMock.contextId, contextId)
     }
     
     func testSendWhenNotAvailable() {
         let contextId = UUID()
-        let events = Array(repeating: BatchEventMock(), count: 5)
+        let events = [UUID(): BatchEventMock()]
         sendControllerMock.isReady = false
         
         let result = coreMock.sendHandler?(events, contextId, .mock())
@@ -122,6 +122,6 @@ final class EventQueue2Tests: XCTestCase {
 
         coreMock.removeHandler?(ArraySlice(eventsToRemove))
 
-        XCTAssertEqual(storageMock.removedEvents.map { $0.event.id }, eventsToRemove.map { $0.event.id })
+        XCTAssertEqual(storageMock.removedIds, eventsToRemove.map { $0.event.id })
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import PaltaLibAnalytics
 
-struct BatchEventMock: BatchEvent, Equatable {
+struct BatchEventMock: BatchEvent, Hashable {
     static func == (lhs: BatchEventMock, rhs: BatchEventMock) -> Bool {
         lhs.data == rhs.data
     }
@@ -63,5 +63,10 @@ struct BatchEventMock: BatchEvent, Equatable {
         } else {
             return data
         }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        shouldFailSerialize.hash(into: &hasher)
+        data.hash(into: &hasher)
     }
 }

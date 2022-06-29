@@ -12,10 +12,10 @@ final class BatchSendControllerMock: BatchSendController {
     var isReady: Bool = false
     var isReadyCallback: (() -> Void)?
     
-    var sentEvents: [BatchEvent]?
+    var sentEvents: [UUID: BatchEvent]?
     var contextId: UUID?
     
-    func sendBatch(of events: [BatchEvent], with contextId: UUID) {
+    func sendBatch(of events: [UUID: BatchEvent], with contextId: UUID) {
         self.sentEvents = events
         self.contextId = contextId
     }

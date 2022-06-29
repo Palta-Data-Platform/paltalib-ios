@@ -16,7 +16,7 @@ struct EventQueue2Config {
 }
 
 protocol EventQueueCore2: AnyObject {
-    typealias UploadHandler = ([BatchEvent], UUID, Telemetry) -> Bool
+    typealias UploadHandler = ([UUID: BatchEvent], UUID, Telemetry) -> Bool
     typealias RemoveHandler = (ArraySlice<StorableEvent>) -> Void
 
     var sendHandler: UploadHandler? { get set }
@@ -160,7 +160,8 @@ final class EventQueueCore2Impl: EventQueueCore2, FunctionalExtension {
             eventsDroppedSinceLastBatch: droppedEventsCount
         )
 
-        let batchEvents = events[range].map { $0.event.event }
+        let batchEvents = Dictionary(grouping: events[range], by: { $0.event.id })
+            .compactMapValues { $0.first?.event.event }
         let batchFormed = sendHandler?(batchEvents, contextId, telemetry) ?? false
         
         guard batchFormed else {

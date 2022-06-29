@@ -74,14 +74,16 @@ final class EventQueue2Impl: EventQueue2 {
                 return false
             }
             
-            self.sendController.sendBatch(of: Array(events), with: contextId)
+            self.sendController.sendBatch(of: events, with: contextId)
             return true
         }
 
         core.removeHandler = { [weak self] in
             guard let self = self else { return }
 
-            $0.forEach(self.storage.removeEvent)
+            $0.forEach {
+                self.storage.removeEvent(with: $0.event.id)
+            }
         }
 
         guard !liveQueue else {

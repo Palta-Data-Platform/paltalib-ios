@@ -61,7 +61,7 @@ final class EventQueueCore2Tests: XCTestCase {
     private var _removeIsCalled: XCTestExpectation?
     private var _removeIsntCalled: XCTestExpectation?
 
-    private var sentEvents: [BatchEvent]?
+    private var sentEvents: [UUID: BatchEvent]?
     private var contextId: UUID?
     private var telemetry: Telemetry?
     private var removedEvents: [StorableEvent]?
@@ -83,7 +83,7 @@ final class EventQueueCore2Tests: XCTestCase {
         _removeIsntCalled = nil
 
         queue.sendHandler = { [unowned self] events, contextId, telemetry in
-            sentEvents = Array(events)
+            sentEvents = events
             self.telemetry = telemetry
             self.contextId = contextId
             _sendIsCalled?.fulfill()

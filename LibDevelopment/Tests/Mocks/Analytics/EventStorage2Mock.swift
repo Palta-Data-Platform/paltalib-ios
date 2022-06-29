@@ -10,15 +10,15 @@ import Foundation
 
 final class EventStorage2Mock: EventStorage2 {
     var storedEvents: [StorableEvent] = []
-    var removedEvents: [StorableEvent] = []
+    var removedIds: [UUID] = []
     var loadedEvents: [StorableEvent] = []
     
     func storeEvent(_ event: StorableEvent) {
         storedEvents.append(event)
     }
     
-    func removeEvent(_ event: StorableEvent) {
-        removedEvents.append(event)
+    func removeEvent(with id: UUID) {
+        removedIds.append(id)
     }
     
     func loadEvents(_ completion: @escaping ([StorableEvent]) -> Void) {
