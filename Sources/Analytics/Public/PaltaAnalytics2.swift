@@ -26,8 +26,4 @@ public class PaltaAnalytics2 {
     init(assembly: AnalyticsAssembly2) {
         self.assembly = assembly
     }
-    
-    func setAPIKey(_ apiKey: String) {
-        
-    }
 }

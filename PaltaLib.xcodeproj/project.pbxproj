@@ -226,6 +226,10 @@
 		117D9C55286C5B21006F3E2E /* BatchSenderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C54286C5B21006F3E2E /* BatchSenderMock.swift */; };
 		117D9C58286CE26A006F3E2E /* PaltaAnalytics2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C56286CE22E006F3E2E /* PaltaAnalytics2.swift */; };
 		117D9C5B286D70A1006F3E2E /* AnalyticsAssembly2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C59286CE2AF006F3E2E /* AnalyticsAssembly2.swift */; };
+		117D9C5E286D7A94006F3E2E /* ConfigApplyService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C5C286D7A3D006F3E2E /* ConfigApplyService2.swift */; };
+		117D9C60286D7E12006F3E2E /* PaltaAnalytics2+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C5F286D7E12006F3E2E /* PaltaAnalytics2+Configure.swift */; };
+		117D9C62286D7E33006F3E2E /* PaltaAnalytics2+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C61286D7E33006F3E2E /* PaltaAnalytics2+Events.swift */; };
+		117D9C64286D7EDB006F3E2E /* PaltaAnalytics2+Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C63286D7EDB006F3E2E /* PaltaAnalytics2+Context.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
@@ -588,6 +592,10 @@
 		117D9C54286C5B21006F3E2E /* BatchSenderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSenderMock.swift; sourceTree = "<group>"; };
 		117D9C56286CE22E006F3E2E /* PaltaAnalytics2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAnalytics2.swift; sourceTree = "<group>"; };
 		117D9C59286CE2AF006F3E2E /* AnalyticsAssembly2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAssembly2.swift; sourceTree = "<group>"; };
+		117D9C5C286D7A3D006F3E2E /* ConfigApplyService2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigApplyService2.swift; sourceTree = "<group>"; };
+		117D9C5F286D7E12006F3E2E /* PaltaAnalytics2+Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics2+Configure.swift"; sourceTree = "<group>"; };
+		117D9C61286D7E33006F3E2E /* PaltaAnalytics2+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics2+Events.swift"; sourceTree = "<group>"; };
+		117D9C63286D7EDB006F3E2E /* PaltaAnalytics2+Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics2+Context.swift"; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
@@ -781,7 +789,11 @@
 				1111593827F708E400A41ADA /* PaltaAnalytics+Identify.swift */,
 				1111593927F708E400A41ADA /* PaltaAnalytics+UserProperties.swift */,
 				11A61EA42834F01300F88116 /* ConfigApplyService.swift */,
+				117D9C5C286D7A3D006F3E2E /* ConfigApplyService2.swift */,
 				117D9C56286CE22E006F3E2E /* PaltaAnalytics2.swift */,
+				117D9C5F286D7E12006F3E2E /* PaltaAnalytics2+Configure.swift */,
+				117D9C61286D7E33006F3E2E /* PaltaAnalytics2+Events.swift */,
+				117D9C63286D7EDB006F3E2E /* PaltaAnalytics2+Context.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -1868,7 +1880,9 @@
 				113A79A8284F6EB3004C0C5D /* Timestamp2.swift in Sources */,
 				117D9C292869A219006F3E2E /* Stack.swift in Sources */,
 				1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */,
+				117D9C62286D7E33006F3E2E /* PaltaAnalytics2+Events.swift in Sources */,
 				11115A5127FB7E6B00A41ADA /* Event.swift in Sources */,
+				117D9C64286D7EDB006F3E2E /* PaltaAnalytics2+Context.swift in Sources */,
 				11115A4B27FB7E5700A41ADA /* EventComposer.swift in Sources */,
 				1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */,
 				113A79A4284F5507004C0C5D /* BatchSendController.swift in Sources */,
@@ -1884,6 +1898,7 @@
 				114D06FD2806EEE500ACD310 /* IdentityLogger.swift in Sources */,
 				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
 				112FCA402848B76500C8F88A /* BatchSender.swift in Sources */,
+				117D9C5E286D7A94006F3E2E /* ConfigApplyService2.swift in Sources */,
 				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,
 				117D9BFF2863423C006F3E2E /* CurrentContextManager.swift in Sources */,
 				115090A12859EF8C009F53AD /* BatchSendRequest.swift in Sources */,
@@ -1892,6 +1907,7 @@
 				1111596627F70BE400A41ADA /* PaltaAnalytics+Identify.swift in Sources */,
 				11115A5C27FC5A3600A41ADA /* Timestamp.swift in Sources */,
 				113A7995284E3B94004C0C5D /* Batch.swift in Sources */,
+				117D9C60286D7E12006F3E2E /* PaltaAnalytics2+Configure.swift in Sources */,
 				114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */,
 				114D0703280757DB00ACD310 /* RevenueLogger.swift in Sources */,
 				113A799E284E5771004C0C5D /* EventStorage2.swift in Sources */,
