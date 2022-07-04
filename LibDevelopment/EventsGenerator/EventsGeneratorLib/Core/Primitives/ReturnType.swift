@@ -1,0 +1,29 @@
+//
+//  ReturnType.swift
+//  EventsGenerator
+//
+//  Created by Vyacheslav Beltyukov on 01/07/2022.
+//
+
+import Foundation
+
+struct ReturnType {
+    let name: String
+    let isOptional: Bool
+    
+    init(name: String, isOptional: Bool = false) {
+        self.name = name
+        self.isOptional = isOptional
+    }
+    
+    init<T>(type: T.Type) {
+        self.name = "\(T.self)"
+        self.isOptional = false
+    }
+}
+
+extension ReturnType {
+    var stringValue: String {
+        "\(name)\(isOptional ? "?" : "")"
+    }
+}
