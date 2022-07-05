@@ -18,6 +18,8 @@
 		1119CCDF2874484400C7B4C4 /* ContextTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCDE2874484400C7B4C4 /* ContextTemplateBuilder.swift */; };
 		1119CCE1287448ED00C7B4C4 /* SchemaValue+Yaml.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE0287448ED00C7B4C4 /* SchemaValue+Yaml.swift */; };
 		1119CCE328744E5600C7B4C4 /* YAMLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE228744E5600C7B4C4 /* YAMLParserTests.swift */; };
+		1119CCE52874563300C7B4C4 /* YAMLBasedEventsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE42874563300C7B4C4 /* YAMLBasedEventsGenerator.swift */; };
+		1119CCE72874579A00C7B4C4 /* End2EndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE62874579A00C7B4C4 /* End2EndTests.swift */; };
 		114C166B286F136300DE78F6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C166A286F136300DE78F6 /* main.swift */; };
 		114C1685286F139600DE78F6 /* EventsGeneratorLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */; };
 		114C169C286F13BB00DE78F6 /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C168D286F13BB00DE78F6 /* Visibility.swift */; };
@@ -75,6 +77,8 @@
 		1119CCDE2874484400C7B4C4 /* ContextTemplateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTemplateBuilder.swift; sourceTree = "<group>"; };
 		1119CCE0287448ED00C7B4C4 /* SchemaValue+Yaml.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SchemaValue+Yaml.swift"; sourceTree = "<group>"; };
 		1119CCE228744E5600C7B4C4 /* YAMLParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAMLParserTests.swift; sourceTree = "<group>"; };
+		1119CCE42874563300C7B4C4 /* YAMLBasedEventsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAMLBasedEventsGenerator.swift; sourceTree = "<group>"; };
+		1119CCE62874579A00C7B4C4 /* End2EndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = End2EndTests.swift; sourceTree = "<group>"; };
 		114C1667286F136300DE78F6 /* EventsGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EventsGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		114C166A286F136300DE78F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EventsGeneratorLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				1119CCC92874245700C7B4C4 /* StringExtensions.swift */,
+				1119CCE42874563300C7B4C4 /* YAMLBasedEventsGenerator.swift */,
 				1119CCD72874459D00C7B4C4 /* YAMLParser.swift */,
 				1119CCDE2874484400C7B4C4 /* ContextTemplateBuilder.swift */,
 				1119CCE0287448ED00C7B4C4 /* SchemaValue+Yaml.swift */,
@@ -197,6 +202,7 @@
 				119F492A2872D78000340213 /* MethodTests.swift */,
 				119F492C2872DB5600340213 /* PropertyTests.swift */,
 				1119CCE228744E5600C7B4C4 /* YAMLParserTests.swift */,
+				1119CCE62874579A00C7B4C4 /* End2EndTests.swift */,
 				114C16AD286F175C00DE78F6 /* Examples */,
 			);
 			path = EventsGeneratorLibTests;
@@ -397,6 +403,7 @@
 				1119CCC82873399400C7B4C4 /* ContextTemplate.swift in Sources */,
 				1119CCCE28743BC100C7B4C4 /* TemplateGenerator.swift in Sources */,
 				1119CCD82874459D00C7B4C4 /* YAMLParser.swift in Sources */,
+				1119CCE52874563300C7B4C4 /* YAMLBasedEventsGenerator.swift in Sources */,
 				114C16A6286F13BB00DE78F6 /* Class.swift in Sources */,
 				1119CCDF2874484400C7B4C4 /* ContextTemplateBuilder.swift in Sources */,
 				114C16A7286F13BB00DE78F6 /* Enum.swift in Sources */,
@@ -422,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1119CCE72874579A00C7B4C4 /* End2EndTests.swift in Sources */,
 				119F492D2872DB5600340213 /* PropertyTests.swift in Sources */,
 				119F492B2872D78000340213 /* MethodTests.swift in Sources */,
 				114C16AA286F140800DE78F6 /* StructTests.swift in Sources */,

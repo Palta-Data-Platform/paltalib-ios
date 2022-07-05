@@ -28,7 +28,6 @@ final class ContextTests: GenerationTests {
         let generator = TemplateGenerator(template: contextTemplate, folderURL: folderURL)
         try generator.generate()
         
-        print(folderURL!)
         let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("Context.swift"))
         let exampleData = try loadExampleData(with: "ContextExample")
         
