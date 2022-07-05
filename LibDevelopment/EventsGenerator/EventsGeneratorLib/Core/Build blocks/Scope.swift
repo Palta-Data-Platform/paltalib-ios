@@ -31,6 +31,14 @@ extension Scope {
         
         for statement in statements {
             result += "\n\(statement.stringValue(for: identLevel + 1))"
+            
+            if statement is Scope, result.trimmingCharacters(in: .whitespaces).last != "\n" {
+                result += "\n"
+            }
+        }
+        
+        if result.last == "\n" {
+            result.removeLast()
         }
         
         result += "\n\(identSpaces(level: identLevel))}"

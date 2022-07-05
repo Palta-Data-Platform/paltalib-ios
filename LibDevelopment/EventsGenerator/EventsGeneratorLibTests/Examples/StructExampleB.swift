@@ -10,6 +10,7 @@ private struct AStruct {
     fileprivate init(string: String?) throws {
         self.string = string ?? ""
     }
+
     internal func doNothing() {
     }
 }

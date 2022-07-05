@@ -79,6 +79,7 @@ internal var int: Int {
     set {
         _ = newValue
     }
+
     get {
         return 0
     }

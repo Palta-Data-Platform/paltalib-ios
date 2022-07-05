@@ -39,10 +39,10 @@ final class ClassTests: GenerationTests {
                 statements: [classs]
             )
         
-        let genratedData = try Data(contentsOf: folderURL.appendingPathComponent("1.swift"))
+        let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("1.swift"))
         let exampleData = try loadExampleData(with: "ClassExampleA")
         
-        XCTAssertEqual(genratedData, exampleData)
+        XCTAssertEqual(generatedData, exampleData)
     }
     
     func testB() throws {

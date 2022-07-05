@@ -22,10 +22,10 @@ final class StructTests: GenerationTests {
                 statements: [structt]
             )
         
-        let genratedData = try Data(contentsOf: folderURL.appendingPathComponent("1.swift"))
+        let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("1.swift"))
         let exampleData = try loadExampleData(with: "StructExampleA")
         
-        XCTAssertEqual(genratedData, exampleData)
+        XCTAssertEqual(generatedData, exampleData)
     }
     
     func testB() throws {
@@ -53,9 +53,9 @@ final class StructTests: GenerationTests {
                 statements: [structt]
             )
         
-        let genratedData = try Data(contentsOf: folderURL.appendingPathComponent("1.swift"))
+        let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("1.swift"))
         let exampleData = try loadExampleData(with: "StructExampleB")
         
-        XCTAssertEqual(genratedData, exampleData)
+        XCTAssertEqual(generatedData, exampleData)
     }
 }
