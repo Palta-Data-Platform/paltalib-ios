@@ -149,6 +149,16 @@
 			path = SchemaModel;
 			sourceTree = "<group>";
 		};
+		1119CCE828745D5700C7B4C4 /* YAML */ = {
+			isa = PBXGroup;
+			children = (
+				1119CCD72874459D00C7B4C4 /* YAMLParser.swift */,
+				1119CCDE2874484400C7B4C4 /* ContextTemplateBuilder.swift */,
+				1119CCE0287448ED00C7B4C4 /* SchemaValue+Yaml.swift */,
+			);
+			path = YAML;
+			sourceTree = "<group>";
+		};
 		114C165E286F136300DE78F6 = {
 			isa = PBXGroup;
 			children = (
@@ -182,9 +192,7 @@
 			children = (
 				1119CCC92874245700C7B4C4 /* StringExtensions.swift */,
 				1119CCE42874563300C7B4C4 /* YAMLBasedEventsGenerator.swift */,
-				1119CCD72874459D00C7B4C4 /* YAMLParser.swift */,
-				1119CCDE2874484400C7B4C4 /* ContextTemplateBuilder.swift */,
-				1119CCE0287448ED00C7B4C4 /* SchemaValue+Yaml.swift */,
+				1119CCE828745D5700C7B4C4 /* YAML */,
 				1119CCD32874454300C7B4C4 /* Templates */,
 				1119CCD42874454F00C7B4C4 /* SchemaModel */,
 				114C168B286F13BB00DE78F6 /* Core */,
