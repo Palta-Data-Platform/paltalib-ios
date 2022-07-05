@@ -13,6 +13,7 @@ final class YAMLParserTests: XCTestCase {
     func testContext() throws {
         let exampleTemplate = ContextTemplate(elements: [
             .init(
+                protoPrefix: "Context",
                 entityName: "Application",
                 properties: [
                     ("appId", .string),
@@ -22,6 +23,7 @@ final class YAMLParserTests: XCTestCase {
             ),
             
                 .init(
+                    protoPrefix: "Context",
                     entityName: "Appsflyer",
                     properties: [
                         ("appsflyerId", .string),
@@ -30,6 +32,7 @@ final class YAMLParserTests: XCTestCase {
                 ),
             
                 .init(
+                    protoPrefix: "Context",
                     entityName: "Device",
                     properties: [
                         ("deviceBrand", .string),
@@ -39,6 +42,7 @@ final class YAMLParserTests: XCTestCase {
                 ),
             
                 .init(
+                    protoPrefix: "Context",
                     entityName: "Identify",
                     properties: [
                         ("gaid", .string),
@@ -48,6 +52,7 @@ final class YAMLParserTests: XCTestCase {
                 ),
             
                 .init(
+                    protoPrefix: "Context",
                     entityName: "Os",
                     properties: [
                         ("osName", .string),
@@ -56,6 +61,7 @@ final class YAMLParserTests: XCTestCase {
                 ),
             
                 .init(
+                    protoPrefix: "Context",
                     entityName: "User",
                     properties: [
                         ("userId", .string)

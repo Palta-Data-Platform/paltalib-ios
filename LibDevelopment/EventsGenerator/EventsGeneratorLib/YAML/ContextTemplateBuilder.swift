@@ -19,13 +19,14 @@ struct ContextTemplateBuilder {
             throw YAMLParser.Error.invalidStructure
         }
         
-        let elementTemplates: [ContextElementTemplate] = try elements
+        let elementTemplates: [SubEntityTemplate] = try elements
             .map { key, value in
                 guard case .string(let name) = key, case .dictionary(let dict) = value else {
                     throw YAMLParser.Error.invalidStructure
                 }
                 
-                return ContextElementTemplate(
+                return SubEntityTemplate(
+                    protoPrefix: "Context",
                     entityName: name,
                     properties: try properties(from: dict["properties"])
                 )

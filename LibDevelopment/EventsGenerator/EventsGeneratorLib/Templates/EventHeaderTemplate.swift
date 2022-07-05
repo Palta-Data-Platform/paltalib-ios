@@ -1,23 +1,23 @@
 //
-//  ContextTemplate.swift
+//  EventHeaderTemplate.swift
 //  EventsGeneratorLib
 //
-//  Created by Vyacheslav Beltyukov on 04/07/2022.
+//  Created by Vyacheslav Beltyukov on 05/07/2022.
 //
 
 import Foundation
 
-struct ContextTemplate: Equatable {
+struct EventHeaderTemplate: Equatable {
     let elements: [SubEntityTemplate]
 }
 
-extension ContextTemplate: Template {
+extension EventHeaderTemplate: Template {
     var filename: String {
-        "Context"
+        "EventHeader"
     }
     
     var imports: [String] {
-        ["Foundation", "PaltaAnlyticsTransport"]
+        ["Foundation", "PaltaAnlyticsTransport", "PaltaLibAnalytics"]
     }
     
     var statements: [Statement] {
@@ -25,10 +25,10 @@ extension ContextTemplate: Template {
     }
 }
 
-extension ContextTemplate {
+extension EventHeaderTemplate {
     private var subentitiesExtension: Scope {
         Extension(
-            type: "Context",
+            type: "Header",
             statements: elements.map { $0.makeStruct() }
         )
     }
@@ -36,8 +36,8 @@ extension ContextTemplate {
     private var baseStruct: Struct {
         Struct(
             visibility: .public,
-            name: "Context",
-            conformances: ["BatchContext"],
+            name: "Header",
+            conformances: ["PaltaLibAnalytics.EventHeader"],
             properties: contextProperties + [messageProperty],
             inits: inits,
             methods: methods
@@ -50,7 +50,7 @@ extension ContextTemplate {
         }
         
         let dataInitStatements = [
-            "let proto = try PaltaAnlyticsTransport.Context(serializedData: data)"
+            "let proto = try PaltaAnlyticsTransport.EventHeader(serializedData: data)"
         ]
         + elements.map {
             "\($0.swiftEntityName.startLowercase) = \($0.swiftEntityName)(message: proto.\($0.protoEntityName.startLowercase))"
@@ -114,3 +114,4 @@ extension ContextTemplate {
         }
     }
 }
+

@@ -14,11 +14,13 @@ final class ContextTests: GenerationTests {
         let contextTemplate = ContextTemplate(
             elements: [
                 .init(
+                    protoPrefix: "Context",
                     entityName: "Application",
                     properties: [("appID", .string), ("appVersion", .string)]
                 ),
                 
                 .init(
+                    protoPrefix: "Context",
                     entityName: "Device",
                     properties: [("deviceBrand", .string), ("deviceModel", .string)]
                 )

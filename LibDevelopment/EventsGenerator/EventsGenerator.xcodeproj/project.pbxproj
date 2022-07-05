@@ -20,6 +20,8 @@
 		1119CCE328744E5600C7B4C4 /* YAMLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE228744E5600C7B4C4 /* YAMLParserTests.swift */; };
 		1119CCE52874563300C7B4C4 /* YAMLBasedEventsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE42874563300C7B4C4 /* YAMLBasedEventsGenerator.swift */; };
 		1119CCE72874579A00C7B4C4 /* End2EndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE62874579A00C7B4C4 /* End2EndTests.swift */; };
+		1119CCEE287461A500C7B4C4 /* EventHeaderTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCED287461A500C7B4C4 /* EventHeaderTemplate.swift */; };
+		1119CCF02874628E00C7B4C4 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCEF2874628E00C7B4C4 /* HeaderTests.swift */; };
 		114C166B286F136300DE78F6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C166A286F136300DE78F6 /* main.swift */; };
 		114C1685286F139600DE78F6 /* EventsGeneratorLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */; };
 		114C169C286F13BB00DE78F6 /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C168D286F13BB00DE78F6 /* Visibility.swift */; };
@@ -41,7 +43,7 @@
 		119F49292872CD4200340213 /* ClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F49282872CD4200340213 /* ClassTests.swift */; };
 		119F492B2872D78000340213 /* MethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F492A2872D78000340213 /* MethodTests.swift */; };
 		119F492D2872DB5600340213 /* PropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F492C2872DB5600340213 /* PropertyTests.swift */; };
-		119F492F28730EBE00340213 /* ContextElementTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F492E28730EBE00340213 /* ContextElementTemplate.swift */; };
+		119F492F28730EBE00340213 /* SubEntityTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F492E28730EBE00340213 /* SubEntityTemplate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		1119CCE228744E5600C7B4C4 /* YAMLParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAMLParserTests.swift; sourceTree = "<group>"; };
 		1119CCE42874563300C7B4C4 /* YAMLBasedEventsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAMLBasedEventsGenerator.swift; sourceTree = "<group>"; };
 		1119CCE62874579A00C7B4C4 /* End2EndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = End2EndTests.swift; sourceTree = "<group>"; };
+		1119CCED287461A500C7B4C4 /* EventHeaderTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHeaderTemplate.swift; sourceTree = "<group>"; };
+		1119CCEF2874628E00C7B4C4 /* HeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTests.swift; sourceTree = "<group>"; };
 		114C1667286F136300DE78F6 /* EventsGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EventsGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		114C166A286F136300DE78F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EventsGeneratorLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,7 +106,7 @@
 		119F49282872CD4200340213 /* ClassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTests.swift; sourceTree = "<group>"; };
 		119F492A2872D78000340213 /* MethodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodTests.swift; sourceTree = "<group>"; };
 		119F492C2872DB5600340213 /* PropertyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTests.swift; sourceTree = "<group>"; };
-		119F492E28730EBE00340213 /* ContextElementTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextElementTemplate.swift; sourceTree = "<group>"; };
+		119F492E28730EBE00340213 /* SubEntityTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubEntityTemplate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,8 +139,9 @@
 		1119CCD32874454300C7B4C4 /* Templates */ = {
 			isa = PBXGroup;
 			children = (
-				119F492E28730EBE00340213 /* ContextElementTemplate.swift */,
+				119F492E28730EBE00340213 /* SubEntityTemplate.swift */,
 				1119CCC72873399400C7B4C4 /* ContextTemplate.swift */,
+				1119CCED287461A500C7B4C4 /* EventHeaderTemplate.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				119F49282872CD4200340213 /* ClassTests.swift */,
 				119F49262872CA0D00340213 /* GenerationTests.swift */,
 				1119CCCF28743CB300C7B4C4 /* ContextTests.swift */,
+				1119CCEF2874628E00C7B4C4 /* HeaderTests.swift */,
 				119F492A2872D78000340213 /* MethodTests.swift */,
 				119F492C2872DB5600340213 /* PropertyTests.swift */,
 				1119CCE228744E5600C7B4C4 /* YAMLParserTests.swift */,
@@ -423,10 +429,11 @@
 				114C16A5286F13BB00DE78F6 /* Init.swift in Sources */,
 				1119CCCC28743B2F00C7B4C4 /* Extension.swift in Sources */,
 				114C169C286F13BB00DE78F6 /* Visibility.swift in Sources */,
-				119F492F28730EBE00340213 /* ContextElementTemplate.swift in Sources */,
+				119F492F28730EBE00340213 /* SubEntityTemplate.swift in Sources */,
 				114C16A1286F13BB00DE78F6 /* Scope.swift in Sources */,
 				114C16A2286F13BB00DE78F6 /* Scopes.swift in Sources */,
 				114C16A3286F13BB00DE78F6 /* Property.swift in Sources */,
+				1119CCEE287461A500C7B4C4 /* EventHeaderTemplate.swift in Sources */,
 				114C169F286F13BB00DE78F6 /* Statement.swift in Sources */,
 				114C16A4286F13BB00DE78F6 /* Method.swift in Sources */,
 				1119CCCA2874245700C7B4C4 /* StringExtensions.swift in Sources */,
@@ -441,6 +448,7 @@
 				119F492D2872DB5600340213 /* PropertyTests.swift in Sources */,
 				119F492B2872D78000340213 /* MethodTests.swift in Sources */,
 				114C16AA286F140800DE78F6 /* StructTests.swift in Sources */,
+				1119CCF02874628E00C7B4C4 /* HeaderTests.swift in Sources */,
 				119F49272872CA0D00340213 /* GenerationTests.swift in Sources */,
 				119F49292872CD4200340213 /* ClassTests.swift in Sources */,
 				1119CCE328744E5600C7B4C4 /* YAMLParserTests.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ContextElementTemplate.swift
+//  SubEntityTemplate.swift
 //  EventsGeneratorLib
 //
 //  Created by Vyacheslav Beltyukov on 04/07/2022.
@@ -7,9 +7,11 @@
 
 import Foundation
 
-struct ContextElementTemplate: Equatable {
-    static func == (lhs: ContextElementTemplate, rhs: ContextElementTemplate) -> Bool {
-        guard lhs.entityName == rhs.entityName, lhs.properties.count == rhs.properties.count else {
+struct SubEntityTemplate: Equatable {
+    static func == (lhs: SubEntityTemplate, rhs: SubEntityTemplate) -> Bool {
+        guard lhs.entityName == rhs.entityName,
+              lhs.protoPrefix == rhs.protoPrefix,
+                lhs.properties.count == rhs.properties.count else {
             return false
         }
         
@@ -18,18 +20,19 @@ struct ContextElementTemplate: Equatable {
         }
     }
     
+    let protoPrefix: String
     let entityName: String
     let properties: [(String, SchemaValue)]
 }
 
-extension ContextElementTemplate {
+extension SubEntityTemplate {
     var swiftEntityName: String {
         entityName
 //        entityName.replacingOccurrences(of: "Context", with: "")
     }
     
     var protoEntityName: String {
-        "Context" + entityName
+        protoPrefix + entityName
     }
     
     func makeStruct() -> Struct {
