@@ -15,26 +15,26 @@ final class YAMLParserTests: XCTestCase {
             .init(
                 entityName: "Application",
                 properties: [
-                    ("app_id", .string),
-                    ("app_platform", .string),
-                    ("app_version", .string)
+                    ("appId", .string),
+                    ("appPlatform", .string),
+                    ("appVersion", .string)
                 ]
             ),
             
                 .init(
                     entityName: "Appsflyer",
                     properties: [
-                        ("appsflyer_id", .string),
-                        ("appsflyer_media_source", .string)
+                        ("appsflyerId", .string),
+                        ("appsflyerMediaSource", .string)
                     ]
                 ),
             
                 .init(
                     entityName: "Device",
                     properties: [
-                        ("device_brand", .string),
-                        ("device_carrier", .string),
-                        ("device_model", .string)
+                        ("deviceBrand", .string),
+                        ("deviceCarrier", .string),
+                        ("deviceModel", .string)
                     ]
                 ),
             
@@ -50,15 +50,15 @@ final class YAMLParserTests: XCTestCase {
                 .init(
                     entityName: "Os",
                     properties: [
-                        ("os_name", .string),
-                        ("os_version", .string)
+                        ("osName", .string),
+                        ("osVersion", .string)
                     ]
                 ),
             
                 .init(
                     entityName: "User",
                     properties: [
-                        ("user_id", .string)
+                        ("userId", .string)
                     ]
                 )
         ])

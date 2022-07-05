@@ -16,9 +16,6 @@ final class End2EndTests: GenerationTests {
         let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("Context.swift"))
         let exampleData = try loadExampleData(with: "ContextExampleE2E")
         
-//        print(folderURL!)
-//        try replaceExampleData(with: generatedData, for: "ContextExampleE2E")
-        
         XCTAssertEqual(generatedData, exampleData)
     }
     
