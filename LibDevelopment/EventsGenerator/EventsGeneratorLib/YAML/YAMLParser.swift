@@ -19,7 +19,8 @@ final class YAMLParser {
         let yaml = try parseYAML(at: url)
         
         return [
-            try ContextTemplateBuilder(yaml: yaml[.string("context")]).contextTemplate()
+            try ContextTemplateBuilder(yaml: yaml[.string("context")]).contextTemplate(),
+            try EventHeaderTemplateBuilder(yaml: yaml[.string("header")]).eventHeader()
         ]
     }
     

@@ -11,7 +11,7 @@ import XCTest
 
 final class YAMLParserTests: XCTestCase {
     func testContext() throws {
-        let exampleTemplate = ContextTemplate(elements: [
+        let expectedTemplate = ContextTemplate(elements: [
             .init(
                 protoPrefix: "Context",
                 entityName: "Application",
@@ -71,7 +71,23 @@ final class YAMLParserTests: XCTestCase {
         
         let actualTemplate = try readTemplate(of: ContextTemplate.self)
         
-        XCTAssertEqual(actualTemplate, exampleTemplate)
+        XCTAssertEqual(actualTemplate, expectedTemplate)
+    }
+    
+    func testEventHeader() throws {
+        let expectedTemplate = EventHeaderTemplate(
+            elements: [
+                .init(
+                    protoPrefix: "EventHeader",
+                    entityName: "Parent",
+                    properties: [("parent_elements", .array(.string))]
+                )
+            ]
+        )
+        
+        let actualTemplate = try readTemplate(of: EventHeaderTemplate.self)
+        
+        XCTAssertEqual(actualTemplate, expectedTemplate)
     }
     
     private func readTemplate<T: Template>(of type: T.Type) throws -> T? {

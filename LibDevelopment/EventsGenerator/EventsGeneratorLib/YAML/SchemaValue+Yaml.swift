@@ -9,13 +9,16 @@ import Foundation
 import Yaml
 
 extension SchemaValue {
-    init(yaml: Yaml, skipRepeated: Bool = false) throws {
+    init(yaml: Yaml, skipRepeatedCheck: Bool = false) throws {
         guard case .dictionary(let dict) = yaml, case .string(let type) = dict[.string("type")] else {
             throw YAMLParser.Error.invalidStructure
         }
         
-        if case .bool(let isRepeated) = dict[.string("is_repeated")], isRepeated, !skipRepeated {
-            self = try SchemaValue(yaml: yaml, skipRepeated: true)
+        print(dict)
+        
+        if case .bool(let isRepeated) = dict[.string("is_repeated")], isRepeated, !skipRepeatedCheck {
+            self = try .array(SchemaValue(yaml: yaml, skipRepeatedCheck: true))
+            return
         }
 
         switch type {
