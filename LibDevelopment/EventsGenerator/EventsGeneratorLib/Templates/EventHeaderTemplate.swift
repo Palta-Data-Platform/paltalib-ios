@@ -53,7 +53,7 @@ extension EventHeaderTemplate {
             "let proto = try PaltaAnlyticsTransport.EventHeader(serializedData: data)"
         ]
         + elements.map {
-            "\($0.swiftEntityName.startLowercase) = \($0.swiftEntityName)(message: proto.\($0.protoEntityName.startLowercase))"
+            "\($0.swiftEntityName.startLowercase) = \($0.swiftEntityName)(message: proto.\($0.swiftEntityName.startLowercase.camelCaseToSnakeCase))"
         }
         
         return [

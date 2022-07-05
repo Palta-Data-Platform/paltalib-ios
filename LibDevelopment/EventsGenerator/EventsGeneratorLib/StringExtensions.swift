@@ -35,12 +35,39 @@ extension String {
         
         return copy
     }
+    
+    var camelCaseToSnakeCase: String {
+        let upperCaseIndices = allIndicies(where: {
+            return CharacterSet.uppercaseLetters.contains($0.unicodeScalars.first!) || CharacterSet.decimalDigits.contains($0.unicodeScalars.first!)
+        }).reversed()
+        
+        var copy = self
+        let lowercased = self.lowercased()
+        
+        upperCaseIndices.forEach { index in
+            guard index != startIndex else {
+                return
+            }
+            
+            copy.remove(at: index)
+            copy.insert(lowercased[index], at: index)
+            copy.insert("_", at: index)
+        }
+        
+        return copy
+    }
 }
 
 extension String {
     func allIndicies(of element: Element) -> [Index] {
+        allIndicies {
+            $0 == element
+        }
+    }
+    
+    func allIndicies(where filter: (Element) -> Bool) -> [Index] {
         indices.filter {
-            self[$0] == element
+            filter(self[$0])
         }
     }
 }
