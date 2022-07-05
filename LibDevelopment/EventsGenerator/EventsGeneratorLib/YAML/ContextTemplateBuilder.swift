@@ -54,7 +54,7 @@ struct ContextTemplateBuilder {
                     throw YAMLParser.Error.invalidStructure
                 }
                 
-                return (name.snakeCaseToCamelCase, type)
+                return (name, type)
             }
             .sorted(by: {
                 $0.0 < $1.0

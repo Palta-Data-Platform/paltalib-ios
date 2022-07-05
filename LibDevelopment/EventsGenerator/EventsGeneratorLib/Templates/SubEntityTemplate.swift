@@ -37,12 +37,12 @@ extension SubEntityTemplate {
     
     func makeStruct() -> Struct {
         let initArguments = properties.map {
-            ($0, $1.type)
+            ($0.snakeCaseToCamelCase, $1.type)
         }
         
         let initStatementsAssign = properties
             .map {
-                "message.\($0) = \($1.converterToProto($0))"
+                "message.\($0) = \($1.converterToProto($0.snakeCaseToCamelCase))"
             }
         
         let initt = Init(

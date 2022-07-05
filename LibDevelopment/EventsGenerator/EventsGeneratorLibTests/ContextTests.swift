@@ -16,13 +16,13 @@ final class ContextTests: GenerationTests {
                 .init(
                     protoPrefix: "Context",
                     entityName: "Application",
-                    properties: [("appID", .string), ("appVersion", .string)]
+                    properties: [("appID", .string), ("app_version", .string)]
                 ),
                 
                 .init(
                     protoPrefix: "Context",
                     entityName: "Device",
-                    properties: [("deviceBrand", .string), ("deviceModel", .string)]
+                    properties: [("device_brand", .string), ("device_model", .string)]
                 )
             ]
         )

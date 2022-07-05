@@ -16,7 +16,7 @@ final class HeaderTests: GenerationTests {
                 .init(
                     protoPrefix: "EventHeader",
                     entityName: "Parent",
-                    properties: [("parentElements", .array(.string))]
+                    properties: [("parent_elements", .array(.string))]
                 )
             ]
         )
@@ -26,9 +26,6 @@ final class HeaderTests: GenerationTests {
         
         let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("EventHeader.swift"))
         let exampleData = try loadExampleData(with: "EventHeaderExample")
-        
-        print(folderURL!)
-        try replaceExampleData(with: generatedData, for: "EventHeaderExample")
         
         XCTAssertEqual(generatedData, exampleData)
     }

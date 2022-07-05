@@ -40,12 +40,12 @@ public struct Context: BatchContext {
 
     public init(data: Data) {
         let proto = try PaltaAnlyticsTransport.Context(serializedData: data)
-        application = Application(message: proto.contextApplication
-        appsflyer = Appsflyer(message: proto.contextAppsflyer
-        device = Device(message: proto.contextDevice
-        identify = Identify(message: proto.contextIdentify
-        os = Os(message: proto.contextOs
-        user = User(message: proto.contextUser
+        application = Application(message: proto.contextApplication)
+        appsflyer = Appsflyer(message: proto.contextAppsflyer)
+        device = Device(message: proto.contextDevice)
+        identify = Identify(message: proto.contextIdentify)
+        os = Os(message: proto.contextOs)
+        user = User(message: proto.contextUser)
     }
 
     public func serialize() throws -> Data {
@@ -59,9 +59,9 @@ extension Context {
 
         public init(appId: String, appPlatform: String, appVersion: String) {
             message = .init()
-            message.appId = appId
-            message.appPlatform = appPlatform
-            message.appVersion = appVersion
+            message.app_id = appId
+            message.app_platform = appPlatform
+            message.app_version = appVersion
         }
     }
 
@@ -70,8 +70,8 @@ extension Context {
 
         public init(appsflyerId: String, appsflyerMediaSource: String) {
             message = .init()
-            message.appsflyerId = appsflyerId
-            message.appsflyerMediaSource = appsflyerMediaSource
+            message.appsflyer_id = appsflyerId
+            message.appsflyer_media_source = appsflyerMediaSource
         }
     }
 
@@ -80,9 +80,9 @@ extension Context {
 
         public init(deviceBrand: String, deviceCarrier: String, deviceModel: String) {
             message = .init()
-            message.deviceBrand = deviceBrand
-            message.deviceCarrier = deviceCarrier
-            message.deviceModel = deviceModel
+            message.device_brand = deviceBrand
+            message.device_carrier = deviceCarrier
+            message.device_model = deviceModel
         }
     }
 
@@ -102,8 +102,8 @@ extension Context {
 
         public init(osName: String, osVersion: String) {
             message = .init()
-            message.osName = osName
-            message.osVersion = osVersion
+            message.os_name = osName
+            message.os_version = osVersion
         }
     }
 
@@ -112,7 +112,7 @@ extension Context {
 
         public init(userId: String) {
             message = .init()
-            message.userId = userId
+            message.user_id = userId
         }
     }
 }

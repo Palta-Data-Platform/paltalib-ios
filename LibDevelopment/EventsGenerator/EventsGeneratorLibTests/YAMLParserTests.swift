@@ -16,9 +16,9 @@ final class YAMLParserTests: XCTestCase {
                 protoPrefix: "Context",
                 entityName: "Application",
                 properties: [
-                    ("appId", .string),
-                    ("appPlatform", .string),
-                    ("appVersion", .string)
+                    ("app_id", .string),
+                    ("app_platform", .string),
+                    ("app_version", .string)
                 ]
             ),
             
@@ -26,8 +26,8 @@ final class YAMLParserTests: XCTestCase {
                     protoPrefix: "Context",
                     entityName: "Appsflyer",
                     properties: [
-                        ("appsflyerId", .string),
-                        ("appsflyerMediaSource", .string)
+                        ("appsflyer_id", .string),
+                        ("appsflyer_media_source", .string)
                     ]
                 ),
             
@@ -35,9 +35,9 @@ final class YAMLParserTests: XCTestCase {
                     protoPrefix: "Context",
                     entityName: "Device",
                     properties: [
-                        ("deviceBrand", .string),
-                        ("deviceCarrier", .string),
-                        ("deviceModel", .string)
+                        ("device_brand", .string),
+                        ("device_carrier", .string),
+                        ("device_model", .string)
                     ]
                 ),
             
@@ -55,8 +55,8 @@ final class YAMLParserTests: XCTestCase {
                     protoPrefix: "Context",
                     entityName: "Os",
                     properties: [
-                        ("osName", .string),
-                        ("osVersion", .string)
+                        ("os_name", .string),
+                        ("os_version", .string)
                     ]
                 ),
             
@@ -64,7 +64,7 @@ final class YAMLParserTests: XCTestCase {
                     protoPrefix: "Context",
                     entityName: "User",
                     properties: [
-                        ("userId", .string)
+                        ("user_id", .string)
                     ]
                 )
         ])
