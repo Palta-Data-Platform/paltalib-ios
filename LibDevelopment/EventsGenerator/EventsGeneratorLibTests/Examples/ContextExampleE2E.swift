@@ -40,12 +40,12 @@ public struct Context: BatchContext {
 
     public init(data: Data) {
         let proto = try PaltaAnlyticsTransport.Context(serializedData: data)
-        application = Application(message: proto.contextApplication)
-        appsflyer = Appsflyer(message: proto.contextAppsflyer)
-        device = Device(message: proto.contextDevice)
-        identify = Identify(message: proto.contextIdentify)
-        os = Os(message: proto.contextOs)
-        user = User(message: proto.contextUser)
+        application = Application(message: proto.application)
+        appsflyer = Appsflyer(message: proto.appsflyer)
+        device = Device(message: proto.device)
+        identify = Identify(message: proto.identify)
+        os = Os(message: proto.os)
+        user = User(message: proto.user)
     }
 
     public func serialize() throws -> Data {
