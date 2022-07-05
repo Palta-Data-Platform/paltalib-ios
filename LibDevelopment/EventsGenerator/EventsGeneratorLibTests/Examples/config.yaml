@@ -1,0 +1,289 @@
+base:
+  context_properties:
+    instance_id:
+      id: 1
+      type: string
+    batch_id:
+      id: 2
+      type: string
+    event_count:
+      id: 3
+      type: integer
+    first_event_ts:
+      id: 4
+      type: timestamp
+    last_event_ts:
+      id: 5
+      type: timestamp
+    client_upload_ts:
+      id: 6
+      type: timestamp
+    server_upload_ts:
+      id: 7
+      type: timestamp
+    sdk_name:
+      id: 8
+      type: string
+    sdk_version:
+      id: 9
+      type: string
+    continent_code:
+      id: 10
+      type: string
+    country_code:
+      id: 11
+      type: string
+    subdivision_codes:
+      id: 12
+      type: string
+      is_repeated: true
+    city_name:
+      id: 13
+      type: string
+    city_geoname_id:
+      id: 14
+      type: integer
+    locale:
+      id: 15
+      type: string
+  event_properties:
+    instance_id:
+      id: 1
+      type: string
+    batch_id:
+      id: 2
+      type: string
+    batch_event_seq_num:
+      id: 3
+      type: integer
+    event_type:
+      id: 4
+      type: string
+    event_ts:
+      id: 5
+      type: timestamp
+    event_ts_local:
+      id: 6
+      type: timestamp
+    client_event_ts:
+      id: 7
+      type: timestamp
+    client_upload_ts:
+      id: 8
+      type: timestamp
+    server_upload_ts:
+      id: 9
+      type: timestamp
+    sdk_name:
+      id: 10
+      type: string
+    sdk_version:
+      id: 11
+      type: string
+    session_id:
+      id: 12
+      type: integer
+    session_event_seq_num:
+      id: 13
+      type: integer
+    continent_code:
+      id: 14
+      type: string
+    country_code:
+      id: 15
+      type: string
+    subdivision_codes:
+      id: 16
+      type: string
+      is_repeated: true
+    city_name:
+      id: 17
+      type: string
+    city_geoname_id:
+      id: 18
+      type: integer
+    locale:
+      id: 19
+      type: string
+context:
+  Application:
+    id: 1
+    description: Application context
+    properties:
+      app_id:
+        id: 1
+        type: string
+        description: Application ID
+      app_version:
+        id: 2
+        type: string
+        description: Application version
+      app_platform:
+        id: 3
+        type: string
+        description: Application platform (iOS, Android, Web, MobileWeb, etc.)
+  Device:
+    id: 2
+    description: Device context
+    properties:
+      device_brand:
+        id: 1
+        type: string
+        description: Brand of device manufacturer
+      device_model:
+        id: 2
+        type: string
+        description: Specific device model
+      device_carrier:
+        id: 3
+        type: string
+        description: Mobile device carrier or network
+  Identify:
+    id: 3
+    description: Identifiers context
+    properties:
+      idfa:
+        id: 1
+        type: string
+        description: Apple Identifier for Advertisers
+      idfv:
+        id: 2
+        type: string
+        description: Apple Identifier for Vendors
+      gaid:
+        id: 3
+        type: string
+        description: Google Advertising Identifier
+  Os:
+    id: 4
+    description: Operating system context
+    properties:
+      os_name:
+        id: 1
+        type: string
+        description: Operating system name
+      os_version:
+        id: 2
+        type: string
+        description: Operating system version
+  Appsflyer:
+    id: 5
+    description: Appsflyer context
+    properties:
+      appsflyer_id:
+        id: 1
+        type: string
+      appsflyer_media_source:
+        id: 2
+        type: string
+  User:
+    id: 6
+    description: User context
+    properties:
+      user_id:
+        id: 1
+        type: string
+        description: User Identifier
+header:
+  Parent:
+    id: 1
+    properties:
+      parent_elements:
+        id: 1
+        type: string
+        is_repeated: true
+enum:
+  Result:
+    id: 1
+    description: Test result
+    values:
+      RESULT_SUCCESS:
+        id: 1
+        description: Action was finished successfully
+      RESULT_SKIP:
+        id: 2
+        description: Action was skipped
+      RESULT_ERROR:
+        id: 3
+        description: Error occured during execution
+event:
+  SessionStart:
+    id: 1
+  OnboardingStart:
+    id: 2
+  OnboardingFinish:
+    id: 3
+  PageOpen:
+    id: 4
+    properties:
+      page_id:
+        id: 1
+        type: string
+  PermissionsRequest:
+    id: 5
+    properties:
+      is_granted:
+        id: 1
+        type: boolean
+      type:
+        id: 2
+        type: string
+  EdgeCase:
+    id: 6
+    properties:
+      prop_boolean:
+        id: 1
+        type: boolean
+      prop_decimal_1:
+        id: 2
+        type: decimal
+        decimal:
+          precision: 20
+          scale: 5
+      prop_decimal_2:
+        id: 3
+        type: decimal
+        decimal:
+          precision: 10
+          scale: 0
+      prop_enum:
+        id: 4
+        type: enum
+        enum: Result
+      prop_integer:
+        id: 5
+        type: integer
+      prop_string:
+        id: 6
+        type: string
+      prop_timestamp:
+        id: 7
+        type: timestamp
+      prop_boolean_array:
+        id: 8
+        type: boolean
+        is_repeated: true
+      prop_decimal_array:
+        id: 9
+        type: decimal
+        decimal:
+          precision: 20
+          scale: 5
+        is_repeated: true
+      prop_enum_array:
+        id: 10
+        type: enum
+        enum: Result
+        is_repeated: true
+      prop_integer_array:
+        id: 11
+        type: integer
+        is_repeated: true
+      prop_string_array:
+        id: 12
+        type: string
+        is_repeated: true
+      prop_timestamp_array:
+        id: 13
+        type: timestamp
+        is_repeated: true

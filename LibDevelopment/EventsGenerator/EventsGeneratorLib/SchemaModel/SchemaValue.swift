@@ -7,13 +7,14 @@
 
 import Foundation
 
-enum SchemaValue {
+indirect enum SchemaValue: Equatable {
     case bool
     case decimal
     case `enum`(String)
     case integer
     case string
     case timestamp
+    case array(SchemaValue)
 }
 
 extension SchemaValue {
@@ -31,6 +32,8 @@ extension SchemaValue {
             return ReturnType(type: String.self)
         case .timestamp:
             return ReturnType(type: Int.self)
+        case .array(let element):
+            return ReturnType(name: "[\(element.type.stringValue)]")
         }
     }
     
@@ -44,6 +47,8 @@ extension SchemaValue {
             return "\(varName).rawValue"
         case .integer, .timestamp:
             return "Int64(\(varName))"
+        case .array(let element):
+            return "\(varName).map { \(element.converterToProto("$0")) }"
         }
     }
 }

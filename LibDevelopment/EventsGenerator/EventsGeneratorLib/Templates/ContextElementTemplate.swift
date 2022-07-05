@@ -7,7 +7,17 @@
 
 import Foundation
 
-struct ContextElementTemplate {
+struct ContextElementTemplate: Equatable {
+    static func == (lhs: ContextElementTemplate, rhs: ContextElementTemplate) -> Bool {
+        guard lhs.entityName == rhs.entityName, lhs.properties.count == rhs.properties.count else {
+            return false
+        }
+        
+        return lhs.properties.enumerated().allSatisfy { index, element in
+            element.0 == rhs.properties[index].0 && element.1 == rhs.properties[index].1
+        }
+    }
+    
     let entityName: String
     let properties: [(String, SchemaValue)]
 }

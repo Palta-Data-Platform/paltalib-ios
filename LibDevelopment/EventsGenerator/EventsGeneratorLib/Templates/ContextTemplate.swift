@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ContextTemplate {
+struct ContextTemplate: Equatable {
     let elements: [ContextElementTemplate]
 }
 
