@@ -109,6 +109,32 @@ final class YAMLParserTests: XCTestCase {
         XCTAssertEqual(actualTemplate, expectedTemplate)
     }
     
+    func testEvents() throws {
+        let expectedTemplate = SingleEventTemplate(
+            id: 6,
+            name: "EdgeCase",
+            properties: [
+                .init(name: "prop_boolean", type: .bool),
+                .init(name: "prop_boolean_array", type: .array(.bool)),
+                .init(name: "prop_decimal_1", type: .decimal),
+                .init(name: "prop_decimal_2", type: .decimal),
+                .init(name: "prop_decimal_array", type: .array(.decimal)),
+                .init(name: "prop_enum", type: .enum("Result")),
+                .init(name: "prop_enum_array", type: .array(.enum("Result"))),
+                .init(name: "prop_integer", type: .integer),
+                .init(name: "prop_integer_array", type: .array(.integer)),
+                .init(name: "prop_string", type: .string),
+                .init(name: "prop_string_array", type: .array(.string)),
+                .init(name: "prop_timestamp", type: .timestamp),
+                .init(name: "prop_timestamp_array", type: .array(.timestamp))
+            ]
+        )
+        
+        let actualTemplate = try readTemplate(of: EventsTemplate.self)?.events.first(where: { $0.id == 6 })
+        
+        XCTAssertEqual(actualTemplate, expectedTemplate)
+    }
+    
     private func readTemplate<T: Template>(of type: T.Type) throws -> T? {
         let yamlURL = Bundle
             .init(

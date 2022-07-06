@@ -32,6 +32,7 @@
 		1119CD0228757C6200C7B4C4 /* SingleEventTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD0128757C6200C7B4C4 /* SingleEventTemplate.swift */; };
 		1119CD042875802400C7B4C4 /* EventsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD032875802400C7B4C4 /* EventsTemplate.swift */; };
 		1119CD0628759F2400C7B4C4 /* EventsTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD0528759F2400C7B4C4 /* EventsTemplateTests.swift */; };
+		1119CD082875A0DB00C7B4C4 /* EventsTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD072875A0DB00C7B4C4 /* EventsTemplateBuilder.swift */; };
 		114C166B286F136300DE78F6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C166A286F136300DE78F6 /* main.swift */; };
 		114C1685286F139600DE78F6 /* EventsGeneratorLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */; };
 		114C169C286F13BB00DE78F6 /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C168D286F13BB00DE78F6 /* Visibility.swift */; };
@@ -103,6 +104,7 @@
 		1119CD0128757C6200C7B4C4 /* SingleEventTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventTemplate.swift; sourceTree = "<group>"; };
 		1119CD032875802400C7B4C4 /* EventsTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTemplate.swift; sourceTree = "<group>"; };
 		1119CD0528759F2400C7B4C4 /* EventsTemplateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTemplateTests.swift; sourceTree = "<group>"; };
+		1119CD072875A0DB00C7B4C4 /* EventsTemplateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTemplateBuilder.swift; sourceTree = "<group>"; };
 		114C1667286F136300DE78F6 /* EventsGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EventsGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		114C166A286F136300DE78F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EventsGeneratorLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +187,7 @@
 				1119CCDE2874484400C7B4C4 /* ContextTemplateBuilder.swift */,
 				1119CCF12874664F00C7B4C4 /* EventHeaderTemplateBuilder.swift */,
 				1119CCF9287493D900C7B4C4 /* EnumsTemplateBuilder.swift */,
+				1119CD072875A0DB00C7B4C4 /* EventsTemplateBuilder.swift */,
 				1119CCE0287448ED00C7B4C4 /* SchemaValue+Yaml.swift */,
 			);
 			path = YAML;
@@ -457,6 +460,7 @@
 				1119CCF22874664F00C7B4C4 /* EventHeaderTemplateBuilder.swift in Sources */,
 				1119CCE1287448ED00C7B4C4 /* SchemaValue+Yaml.swift in Sources */,
 				114C169E286F13BB00DE78F6 /* ReturnType.swift in Sources */,
+				1119CD082875A0DB00C7B4C4 /* EventsTemplateBuilder.swift in Sources */,
 				114C16A8286F13BB00DE78F6 /* Struct.swift in Sources */,
 				114C16A0286F13BB00DE78F6 /* CodeGenerator.swift in Sources */,
 				1119CCFE287578A100C7B4C4 /* Typealias.swift in Sources */,

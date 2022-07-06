@@ -14,8 +14,6 @@ extension SchemaValue {
             throw YAMLParser.Error.invalidStructure
         }
         
-        print(dict)
-        
         if case .bool(let isRepeated) = dict[.string("is_repeated")], isRepeated, !skipRepeatedCheck {
             self = try .array(SchemaValue(yaml: yaml, skipRepeatedCheck: true))
             return
@@ -46,7 +44,7 @@ extension SchemaValue {
     }
     
     private static func getEnum(from dict: [Yaml: Yaml]) throws -> SchemaValue {
-        guard case .string(let name) = dict[.string("name")] else {
+        guard case .string(let name) = dict[.string("enum")] else {
             throw YAMLParser.Error.invalidStructure
         }
         

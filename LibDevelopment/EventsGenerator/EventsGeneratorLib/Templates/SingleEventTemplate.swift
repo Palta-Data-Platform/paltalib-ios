@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct SingleEventTemplate {
-    struct Prop {
+struct SingleEventTemplate: Equatable {
+    struct Prop: Equatable {
         let name: String
         let type: SchemaValue
     }
