@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EnumsTemplate {
+struct EnumsTemplate: Equatable {
     let enums: [SingleEnumTemplate]
 }
 

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct SingleEnumTemplate {
-    struct Case {
+struct SingleEnumTemplate: Equatable {
+    struct Case: Equatable {
         let id: Int
         let name: String
     }

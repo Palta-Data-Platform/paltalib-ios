@@ -90,6 +90,25 @@ final class YAMLParserTests: XCTestCase {
         XCTAssertEqual(actualTemplate, expectedTemplate)
     }
     
+    func testEnums() throws {
+        let expectedTemplate = EnumsTemplate(
+            enums: [
+                .init(
+                    name: "Result",
+                    cases: [
+                        .init(id: 1, name: "success"),
+                        .init(id: 2, name: "skip"),
+                        .init(id: 3, name: "error")
+                    ]
+                )
+            ]
+        )
+        
+        let actualTemplate = try readTemplate(of: EnumsTemplate.self)
+        
+        XCTAssertEqual(actualTemplate, expectedTemplate)
+    }
+    
     private func readTemplate<T: Template>(of type: T.Type) throws -> T? {
         let yamlURL = Bundle
             .init(
