@@ -31,6 +31,15 @@ final class End2EndTests: GenerationTests {
         XCTAssertEqual(generatedData, exampleData)
     }
     
+    func testEnums() throws {
+        try generateFiles()
+        
+        let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("Enums.swift"))
+        let exampleData = try loadExampleData(with: "EnumsE2E")
+        
+        XCTAssertEqual(generatedData, exampleData)
+    }
+    
     private func generateFiles() throws {
         let yamlURL = Bundle
             .init(
