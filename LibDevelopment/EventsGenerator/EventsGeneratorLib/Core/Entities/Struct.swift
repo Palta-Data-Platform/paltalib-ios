@@ -11,6 +11,7 @@ struct Struct {
     let visibility: Visibility
     let name: String
     let conformances: [String]
+    let aliases: [Typealias]
     let properties: [Property]
     let inits: [Init]
     let methods: [Method]
@@ -19,6 +20,7 @@ struct Struct {
         visibility: Visibility,
         name: String,
         conformances: [String] = [],
+        aliases: [Typealias] = [],
         properties: [Property] = [],
         inits: [Init] = [],
         methods: [Method] = []
@@ -26,6 +28,7 @@ struct Struct {
         self.visibility = visibility
         self.name = name
         self.conformances = conformances
+        self.aliases = aliases
         self.properties = properties
         self.inits = inits
         self.methods = methods

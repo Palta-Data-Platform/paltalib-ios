@@ -29,6 +29,7 @@ extension ContextTemplate {
     private var subentitiesExtension: Scope {
         Extension(
             type: "Context",
+            conformances: [],
             statements: elements.map { $0.makeStruct() }
         )
     }

@@ -27,3 +27,9 @@ extension ReturnType {
         "\(name)\(isOptional ? "?" : "")"
     }
 }
+
+extension ReturnType: ExpressibleByStringLiteral {
+    init(stringLiteral value: StringLiteralType) {
+        self.init(name: value)
+    }
+}

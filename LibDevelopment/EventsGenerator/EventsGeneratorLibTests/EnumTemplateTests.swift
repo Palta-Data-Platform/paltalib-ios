@@ -10,7 +10,7 @@ import XCTest
 @testable import EventsGeneratorLib
 
 final class EnumTemplateTests: GenerationTests {
-    func testContext() throws {
+    func testEnums() throws {
         let enumsTemplate = EnumsTemplate(
             enums: [
                 .init(

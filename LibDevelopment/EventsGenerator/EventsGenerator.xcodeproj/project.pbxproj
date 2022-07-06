@@ -29,6 +29,9 @@
 		1119CCFA287493D900C7B4C4 /* EnumsTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCF9287493D900C7B4C4 /* EnumsTemplateBuilder.swift */; };
 		1119CCFE287578A100C7B4C4 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCFD287578A100C7B4C4 /* Typealias.swift */; };
 		1119CD002875792400C7B4C4 /* TypealiasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCFF2875792400C7B4C4 /* TypealiasTests.swift */; };
+		1119CD0228757C6200C7B4C4 /* SingleEventTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD0128757C6200C7B4C4 /* SingleEventTemplate.swift */; };
+		1119CD042875802400C7B4C4 /* EventsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD032875802400C7B4C4 /* EventsTemplate.swift */; };
+		1119CD0628759F2400C7B4C4 /* EventsTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD0528759F2400C7B4C4 /* EventsTemplateTests.swift */; };
 		114C166B286F136300DE78F6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C166A286F136300DE78F6 /* main.swift */; };
 		114C1685286F139600DE78F6 /* EventsGeneratorLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */; };
 		114C169C286F13BB00DE78F6 /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C168D286F13BB00DE78F6 /* Visibility.swift */; };
@@ -97,6 +100,9 @@
 		1119CCF9287493D900C7B4C4 /* EnumsTemplateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumsTemplateBuilder.swift; sourceTree = "<group>"; };
 		1119CCFD287578A100C7B4C4 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		1119CCFF2875792400C7B4C4 /* TypealiasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypealiasTests.swift; sourceTree = "<group>"; };
+		1119CD0128757C6200C7B4C4 /* SingleEventTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEventTemplate.swift; sourceTree = "<group>"; };
+		1119CD032875802400C7B4C4 /* EventsTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTemplate.swift; sourceTree = "<group>"; };
+		1119CD0528759F2400C7B4C4 /* EventsTemplateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTemplateTests.swift; sourceTree = "<group>"; };
 		114C1667286F136300DE78F6 /* EventsGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EventsGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		114C166A286F136300DE78F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EventsGeneratorLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +164,8 @@
 				1119CCF528748D9E00C7B4C4 /* EnumsTemplate.swift */,
 				1119CCC72873399400C7B4C4 /* ContextTemplate.swift */,
 				1119CCED287461A500C7B4C4 /* EventHeaderTemplate.swift */,
+				1119CD0128757C6200C7B4C4 /* SingleEventTemplate.swift */,
+				1119CD032875802400C7B4C4 /* EventsTemplate.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -237,6 +245,7 @@
 				1119CCE62874579A00C7B4C4 /* End2EndTests.swift */,
 				1119CCF72874925600C7B4C4 /* EnumTemplateTests.swift */,
 				1119CCFF2875792400C7B4C4 /* TypealiasTests.swift */,
+				1119CD0528759F2400C7B4C4 /* EventsTemplateTests.swift */,
 				114C16AD286F175C00DE78F6 /* Examples */,
 			);
 			path = EventsGeneratorLibTests;
@@ -436,6 +445,7 @@
 			files = (
 				114C169D286F13BB00DE78F6 /* Ident.swift in Sources */,
 				1119CCC82873399400C7B4C4 /* ContextTemplate.swift in Sources */,
+				1119CD0228757C6200C7B4C4 /* SingleEventTemplate.swift in Sources */,
 				1119CCCE28743BC100C7B4C4 /* TemplateGenerator.swift in Sources */,
 				1119CCD82874459D00C7B4C4 /* YAMLParser.swift in Sources */,
 				1119CCE52874563300C7B4C4 /* YAMLBasedEventsGenerator.swift in Sources */,
@@ -450,6 +460,7 @@
 				114C16A8286F13BB00DE78F6 /* Struct.swift in Sources */,
 				114C16A0286F13BB00DE78F6 /* CodeGenerator.swift in Sources */,
 				1119CCFE287578A100C7B4C4 /* Typealias.swift in Sources */,
+				1119CD042875802400C7B4C4 /* EventsTemplate.swift in Sources */,
 				1119CCC628732EBE00C7B4C4 /* SchemaValue.swift in Sources */,
 				114C16A5286F13BB00DE78F6 /* Init.swift in Sources */,
 				1119CCCC28743B2F00C7B4C4 /* Extension.swift in Sources */,
@@ -478,6 +489,7 @@
 				1119CCF02874628E00C7B4C4 /* HeaderTests.swift in Sources */,
 				119F49272872CA0D00340213 /* GenerationTests.swift in Sources */,
 				1119CCF82874925600C7B4C4 /* EnumTemplateTests.swift in Sources */,
+				1119CD0628759F2400C7B4C4 /* EventsTemplateTests.swift in Sources */,
 				119F49292872CD4200340213 /* ClassTests.swift in Sources */,
 				1119CCE328744E5600C7B4C4 /* YAMLParserTests.swift in Sources */,
 				1119CCD028743CB300C7B4C4 /* ContextTests.swift in Sources */,

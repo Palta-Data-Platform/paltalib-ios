@@ -29,6 +29,7 @@ extension EventHeaderTemplate {
     private var subentitiesExtension: Scope {
         Extension(
             type: "Header",
+            conformances: [],
             statements: elements.map { $0.makeStruct() }
         )
     }
