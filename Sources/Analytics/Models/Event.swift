@@ -32,6 +32,8 @@ struct Event: Codable, Hashable {
         case timezone
         case insertId = "insert_id"
         case sequenceNumber = "event_id"
+        case idfa
+        case idfv
     }
 
     let eventType: String
@@ -56,4 +58,6 @@ struct Event: Codable, Hashable {
     let timezone: String
     let insertId: UUID
     let sequenceNumber: Int
+    let idfa: String?
+    let idfv: String?
 }

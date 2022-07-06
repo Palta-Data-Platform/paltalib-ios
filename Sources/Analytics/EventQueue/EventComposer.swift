@@ -79,14 +79,6 @@ final class EventComposerImpl: EventComposer {
 
         var apiProperties = apiProperties
 
-        if trackingOptions.shouldTrackIDFA() {
-            apiProperties["ios_idfa"] = deviceInfoProvider.idfa
-        }
-
-        if trackingOptions.shouldTrackIDFV() {
-            apiProperties["ios_idfv"] = deviceInfoProvider.idfv
-        }
-
         if
             let trackingOptions = trackingOptions.getApiPropertiesTrackingOption() as? [String: Any],
            !trackingOptions.isEmpty
@@ -116,7 +108,9 @@ final class EventComposerImpl: EventComposer {
             language: language,
             timezone: timezone,
             insertId: UUID(),
-            sequenceNumber: sequenceNumberProvider.getNewSequenceNumber()
+            sequenceNumber: sequenceNumberProvider.getNewSequenceNumber(),
+            idfa: trackingOptions.shouldTrackIDFA() ? deviceInfoProvider.idfa : nil,
+            idfv: trackingOptions.shouldTrackIDFV() ? deviceInfoProvider.idfv : nil
         )
     }
 }

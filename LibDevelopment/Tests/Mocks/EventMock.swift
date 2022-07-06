@@ -34,7 +34,9 @@ extension Event {
             language: nil,
             timezone: "GMT+X",
             insertId: uuid,
-            sequenceNumber: 0
+            sequenceNumber: 0,
+            idfa: nil,
+            idfv: nil
         )
     }
 }
