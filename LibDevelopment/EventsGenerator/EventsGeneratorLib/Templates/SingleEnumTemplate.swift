@@ -18,12 +18,40 @@ struct SingleEnumTemplate: Equatable {
 }
 
 extension SingleEnumTemplate {
+    private var rawValueProp: Property {
+        Property(
+            visibility: .public,
+            name: "rawValue",
+            returnType: ReturnType(type: UInt64.self)
+        )
+    }
+    
+    private var casesProps: [Property] {
+        cases.map {
+            Property(
+                visibility: .public,
+                isStatic: true,
+                name: $0.name,
+                returnType: ReturnType(name: name),
+                defaultValue: "\(name)(rawValue: \($0.id))"
+            )
+        }
+    }
+    
+    private var initt: Init {
+        Init(
+            visibility: .public,
+            arguments: [("rawValue", ReturnType(type: UInt64.self))],
+            statements: ["self.rawValue = rawValue"]
+        )
+    }
+    
     var statement: Statement {
-        Enum(
+        Struct(
             visibility: .public,
             name: name,
-            rawType: "UInt64",
-            cases: cases.map { .init(name: $0.name, rawValue: "\($0.id)") }
+            properties: casesProps + [rawValueProp],
+            inits: [initt]
         )
     }
 }
