@@ -9,6 +9,7 @@ import Foundation
 
 struct Property {
     let visibility: Visibility
+    let isStatic: Bool
     let name: String
     let isMutable: Bool
     let returnType: ReturnType
@@ -20,6 +21,7 @@ struct Property {
     
     init(
         visibility: Visibility,
+        isStatic: Bool = false,
         name: String,
         isMutable: Bool = false,
         returnType: ReturnType,
@@ -30,6 +32,7 @@ struct Property {
         defaultValue: Statement? = nil
     ) {
         self.visibility = visibility
+        self.isStatic = isStatic
         self.name = name
         self.isMutable = isMutable
         self.returnType = returnType
@@ -62,11 +65,15 @@ extension Property: Statement {
     }
     
     private var baseString: String {
-        "\(visibility) \(varLet) \(name): \(returnType.stringValue)"
+        "\(visibility)\(staticModifier) \(varLet) \(name): \(returnType.stringValue)"
     }
     
     private var defaultValueString: String? {
         defaultValue.map { " = \($0.stringValue(for: 0))" }
+    }
+    
+    private var staticModifier: String {
+        isStatic ? " static" : ""
     }
     
     private var inScopeStatements: [Statement] {

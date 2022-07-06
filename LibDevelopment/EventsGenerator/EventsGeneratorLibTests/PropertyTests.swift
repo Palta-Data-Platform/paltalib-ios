@@ -107,4 +107,17 @@ private let int: Int = 0
         
         XCTAssertEqual(stringValue, expectedString)
     }
+    
+    func testStatic() {
+        let property = Property(visibility: .public, isStatic: true, name: "prop", returnType: ReturnType(type: String.self))
+        
+        let stringValue = property.stringValue(for: 0)
+        
+        let expectedString = """
+public static let prop: String
+
+"""
+        
+        XCTAssertEqual(stringValue, expectedString)
+    }
 }
