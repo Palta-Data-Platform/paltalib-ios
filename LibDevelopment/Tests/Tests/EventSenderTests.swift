@@ -43,7 +43,15 @@ final class EventSenderTests: XCTestCase {
             httpClientMock.request as? AnalyticsHTTPRequest,
             AnalyticsHTTPRequest.sendEvents(
                 URL(string: "http://mock.com"),
-                SendEventsPayload(apiKey: "mockToken", events: events, serviceInfo: .init(telemetry: .mock()))
+                SendEventsPayload(
+                    apiKey: "mockToken",
+                    events: events,
+                    serviceInfo: .init(
+                        uploadTime: .currentTimestamp(),
+                        library: .init(name: "PaltaBrain", version: "2.1.5"),
+                        telemetry: .mock()
+                    )
+                )
             )
         )
     }

@@ -77,7 +77,6 @@ final class EventComposerTests: XCTestCase {
         XCTAssertEqual(event.carrier, "undefinedCarrier")
         XCTAssertEqual(event.language, "Sakovian")
         XCTAssertEqual(event.country, "Sakovia")
-        XCTAssertEqual(event.library.name, "PaltaBrain")
     }
 
     func testDefaultTimestamp() {

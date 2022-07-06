@@ -77,11 +77,6 @@ final class EventComposerImpl: EventComposer {
         let timezone = "GMT\(timezoneFormatter.string(from: deviceInfoProvider.timezoneOffset as NSNumber) ?? "")"
         let sessionId = !outOfSession ? sessionIdProvider.sessionId : -1
 
-        let library = Event.Library(
-            name: "PaltaBrain",
-            version: "2.1.3" // TODO: Auto update version
-        )
-
         var apiProperties = apiProperties
 
         if trackingOptions.shouldTrackIDFA() {
@@ -120,8 +115,7 @@ final class EventComposerImpl: EventComposer {
             country: country,
             language: language,
             timezone: timezone,
-            library: library,
-            uuid: UUID(),
+            insertId: UUID(),
             sequenceNumber: sequenceNumberProvider.getNewSequenceNumber()
         )
     }

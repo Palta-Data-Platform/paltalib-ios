@@ -15,6 +15,19 @@ struct SendEventsPayload: Encodable, Equatable {
     }
 
     struct ServiceInfo: Encodable, Equatable {
+        struct Library: Codable, Hashable {
+            let name: String
+            let version: String
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case uploadTime = "client_upload_time"
+            case library
+            case telemetry
+        }
+        
+        let uploadTime: Int
+        let library: Library
         let telemetry: Telemetry?
     }
 

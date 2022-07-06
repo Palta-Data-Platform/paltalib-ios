@@ -21,7 +21,7 @@ struct Event: Codable, Hashable {
         case userId = "user_id"
         case deviceId = "device_id"
         case platform
-        case appVersion = "version_name"
+        case appVersion = "app_version"
         case osName = "os_name"
         case osVersion = "os_version"
         case deviceModel = "device_model"
@@ -30,14 +30,8 @@ struct Event: Codable, Hashable {
         case country
         case language
         case timezone
-        case library
-        case uuid
-        case sequenceNumber = "sequence_number"
-    }
-
-    struct Library: Codable, Hashable {
-        let name: String
-        let version: String
+        case insertId = "insert_id"
+        case sequenceNumber = "event_id"
     }
 
     let eventType: String
@@ -60,7 +54,6 @@ struct Event: Codable, Hashable {
     let country: String?
     let language: String?
     let timezone: String
-    let library: Library
-    let uuid: UUID
+    let insertId: UUID
     let sequenceNumber: Int
 }

@@ -93,6 +93,6 @@ final class FileEventStorage: EventStorage {
     }
 
     private func url(for event: Event) -> URL {
-        folderURL.appendingPathComponent("\(event.uuid).event")
+        folderURL.appendingPathComponent("\(event.insertId).event")
     }
 }
