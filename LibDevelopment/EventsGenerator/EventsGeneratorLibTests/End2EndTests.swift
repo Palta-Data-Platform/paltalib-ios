@@ -37,6 +37,15 @@ final class End2EndTests: GenerationTests {
         XCTAssertEqual(generatedData, exampleData)
     }
     
+    func testEvents() throws {
+        try generateFiles()
+        
+        let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("Events.swift"))
+        let exampleData = try loadExampleData(with: "EventsE2E")
+        
+        XCTAssertEqual(generatedData, exampleData)
+    }
+    
     private func generateFiles() throws {
         let yamlURL = Bundle
             .init(

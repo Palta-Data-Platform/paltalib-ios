@@ -67,8 +67,18 @@ extension Init: Scope {
     }
     
     private var params: String {
-        arguments
+        let manyArguments = arguments.count > 3
+        let delimiter = manyArguments ? ",\n" : ", "
+        
+        var result = arguments
             .map { "\($0): \($1.stringValue)" }
-            .joined(separator: ", ")
+            .joined(separator: delimiter)
+        
+        if manyArguments {
+            result.insert("\n", at: result.startIndex)
+            result.append("\n")
+        }
+        
+        return result
     }
 }

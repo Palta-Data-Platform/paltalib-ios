@@ -68,7 +68,7 @@ extension SingleEventTemplate {
     
     private var initt: Init {
         let arguments = [("header", ReturnType(name: "EventHeader"))] + properties.map {
-            ($0.name, $0.type.type)
+            ($0.name.snakeCaseToCamelCase, $0.type.type)
         }
                           
         let statements: [Statement] = [

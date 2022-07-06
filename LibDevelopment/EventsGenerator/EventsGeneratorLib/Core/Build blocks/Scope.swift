@@ -23,7 +23,7 @@ extension Scope {
     func stringValue(for identLevel: Int) -> String {
         var result = identSpaces(level: identLevel)
         
-        if let prefix = `prefix` {
+        if let prefix = multilineCheckedPrefix(for: identLevel) {
             result += "\(prefix) "
         }
         
@@ -48,5 +48,25 @@ extension Scope {
         }
         
         return result
+    }
+    
+    private func multilineCheckedPrefix(for identLevel: Int) -> String? {
+        guard let prefix = `prefix` else {
+            return nil
+        }
+        
+        var strings = prefix.components(separatedBy: "\n")
+        
+        guard strings.count > 2 else {
+            return prefix
+        }
+        
+        for i in 1..<(strings.count-1) {
+            strings[i] = identSpaces(level: identLevel + 1) + strings[i]
+        }
+        
+        strings[strings.endIndex - 1] = identSpaces(level: identLevel) + strings[strings.endIndex - 1]
+        
+        return strings.joined(separator: "\n")
     }
 }
