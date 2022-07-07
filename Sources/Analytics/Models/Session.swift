@@ -10,5 +10,5 @@ import Foundation
 struct Session: Codable {
     var id: Int
 
-    var lastEventTimestamp: Int = .currentTimestamp()
+    var lastEventTimestamp: Int = currentTimestamp()
 }

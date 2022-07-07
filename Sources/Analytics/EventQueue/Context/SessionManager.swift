@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import Amplitude
 
 protocol SessionIdProvider {
     var sessionId: Int { get }
@@ -16,7 +15,6 @@ protocol SessionIdProvider {
 protocol SessionManager: AnyObject {
     var sessionEventLogger: ((String, Int) -> Void)? { get set }
 
-    func refreshSession(with event: Event)
     func refreshSession(with event: BatchEvent)
     func start()
     func startNewSession()
@@ -71,10 +69,6 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
 
         subscribeForNotifications()
     }
-
-    func refreshSession(with event: Event) {
-        session.lastEventTimestamp = event.timestamp
-    }
     
     func refreshSession(with event: BatchEvent) {
         session.lastEventTimestamp = event.timestamp
@@ -86,7 +80,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
 
     func startNewSession() {
         lock.lock()
-        sessionEventLogger?(kAMPSessionEndEvent, session.lastEventTimestamp)
+//        sessionEventLogger?(kAMPSessionEndEvent, session.lastEventTimestamp)
         session = newSession()
         lock.unlock()
     }
@@ -113,14 +107,14 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     private func newSession() -> Session {
-        sessionEventLogger?(kAMPSessionStartEvent, .currentTimestamp())
-        return Session(id: .currentTimestamp())
+//        sessionEventLogger?(kAMPSessionStartEvent, currentTimestamp())
+        return Session(id: currentTimestamp())
     }
 
     private func restoreSession() -> Session? {
         guard
             let session: Session = userDefaults.object(for: defaultsKey),
-            Int.currentTimestamp() - session.lastEventTimestamp < maxSessionAge
+            currentTimestamp() - session.lastEventTimestamp < maxSessionAge
         else {
             return nil
         }

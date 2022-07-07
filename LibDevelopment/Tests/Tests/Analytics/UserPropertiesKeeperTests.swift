@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Amplitude
 @testable import PaltaLibAnalytics
 
 final class UserPropertiesKeeperTests: XCTestCase {
