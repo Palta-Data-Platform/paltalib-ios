@@ -33,9 +33,10 @@ extension Event {
             country: nil,
             language: nil,
             timezone: "GMT+X",
-            library: Library(name: "", version: ""),
-            uuid: uuid,
-            sequenceNumber: 0
+            insertId: uuid,
+            sequenceNumber: 0,
+            idfa: nil,
+            idfv: nil
         )
     }
 }

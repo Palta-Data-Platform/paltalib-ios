@@ -17,6 +17,15 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         Purchases.configure(withAPIKey: apiKey)
     }
 
+    public func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void) {
+        purchases.logIn(appUserId.stringValue) { customerInfo, _, error in
+            if customerInfo != nil {
+                completion(.success(()))
+            } else {
+                completion(.failure(error ?? PaymentsError.sdkError(.other(nil))))
+            }
+        }
+    }
     public func logIn(appUserId: UserId) {
         purchases.logIn(appUserId.stringValue, completion: { _, _, _ in })
     }
@@ -37,10 +46,10 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
     
     public func getProducts(
         with productIdentifiers: [String],
-        _ completion: @escaping (PurchasePluginResult<[Product], Error>) -> Void
+        _ completion: @escaping (Result<Set<Product>, Error>) -> Void
     ) {
         purchases.getProducts(productIdentifiers) { products in
-            completion(.success(products.map(RCProduct.init)))
+            completion(.success(Set(products.map(Product.init))))
         }
     }
     
@@ -97,6 +106,16 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         }
     }
     
+    public func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
+        purchases.restorePurchases { customerInfo, error in
+            if let paidFeatures = customerInfo?.paidFeatures {
+                completion(.success(paidFeatures))
+            } else {
+                completion(.failure(error ?? PaymentsError.unknownError))
+            }
+        }
+    }
+    
     public func restorePurchases() {
         purchases.restorePurchases()
     }
@@ -116,8 +135,10 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
     private func makeRCCompletionBlock(
         from pluginCompletion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void
     ) -> (StoreTransaction?, CustomerInfo?, Error?, Bool) -> Void {
-        { _, customerInfo, error, _ in
-            if let error = error {
+        { _, customerInfo, error, isCancelled in
+            if isCancelled {
+                pluginCompletion(.failure(PaymentsError.cancelledByUser))
+            } else if let error = error {
                 pluginCompletion(.failure(error))
             } else {
                 pluginCompletion(
@@ -141,7 +162,7 @@ extension RCPurchasePlugin: PurchasesDelegate {
     ) {
         delegate?.purchasePlugin(
             self,
-            shouldPurchase: RCProduct(product: product)
+            shouldPurchase: Product(rc: product)
         ) { [weak self] completion in
             guard let self = self else { return }
             

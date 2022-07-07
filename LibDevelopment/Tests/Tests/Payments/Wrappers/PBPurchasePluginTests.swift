@@ -24,8 +24,17 @@ final class PBPurchasePluginTests: XCTestCase {
     
     func testLogInLogOut() {
         let userId = UserId.uuid(UUID())
+        let successCalled = expectation(description: "Success called")
         
-        plugin.logIn(appUserId: userId)
+        plugin.logIn(appUserId: userId) {
+            guard case .success = $0 else {
+                return
+            }
+            
+            successCalled.fulfill()
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
         
         XCTAssertEqual(plugin.userId, userId)
         
@@ -41,7 +50,7 @@ final class PBPurchasePluginTests: XCTestCase {
         
         let completionCalled = expectation(description: "Success called")
         
-        plugin.logIn(appUserId: userId)
+        plugin.logIn(appUserId: userId, completion: { _ in })
         plugin.getPaidFeatures { result in
             guard case let .success(features) = result else {
                 return
@@ -61,7 +70,7 @@ final class PBPurchasePluginTests: XCTestCase {
         
         let completionCalled = expectation(description: "Fail called")
         
-        plugin.logIn(appUserId: userId)
+        plugin.logIn(appUserId: userId, completion: { _ in })
         plugin.getPaidFeatures { result in
             guard case .failure = result else {
                 return
@@ -92,9 +101,11 @@ final class PBPurchasePluginTests: XCTestCase {
         let completionCalled = expectation(description: "Not supported called")
         
         plugin.getProducts(with: []) { result in
-            guard case .notSupported = result else {
+            guard case .success(let products) = result else {
                 return
             }
+            
+            XCTAssert(products.isEmpty)
             
             completionCalled.fulfill()
         }
@@ -105,7 +116,7 @@ final class PBPurchasePluginTests: XCTestCase {
     func testGetOffer() {
         let completionCalled = expectation(description: "Not supported called")
         
-        plugin.getPromotionalOffer(for: ProductDiscountMock(), product: ProductMock()) { result in
+        plugin.getPromotionalOffer(for: .mock(), product: .mock()) { result in
             guard case .notSupported = result else {
                 return
             }
@@ -119,7 +130,7 @@ final class PBPurchasePluginTests: XCTestCase {
     func testPurchase() {
         let completionCalled = expectation(description: "Not supported called")
         
-        plugin.purchase(ProductMock(), with: nil) { result in
+        plugin.purchase(.mock(), with: nil) { result in
             guard case .notSupported = result else {
                 return
             }

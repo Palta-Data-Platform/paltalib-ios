@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.source_files = 'Sources/Purchases/**/*.swift'
   spec.exclude_files = 'Sources/Purchases/Legacy/**'
 
-  spec.dependency 'PaltaLibCore', '~> 2.1.0'
+  spec.dependency 'PaltaLibCore', '>= 2.1.0'
   spec.dependency 'PaltaLibAttribution'
   spec.dependency 'RevenueCat', '~> 4.4.0'
 end

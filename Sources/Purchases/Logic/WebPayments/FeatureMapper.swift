@@ -24,6 +24,7 @@ final class FeatureMapperImpl: FeatureMapper {
                 paymentType: $0.paymentType(subscriptions: subscriptionById),
                 transactionType: .web,
                 isTrial: $0.isTrial(subscriptions: subscriptionById),
+                willRenew: false, // TODO: Use API data
                 startDate: $0.actualFrom,
                 endDate: $0.actualTill,
                 cancellationDate: $0.cancellationDate(subscriptions: subscriptionById)

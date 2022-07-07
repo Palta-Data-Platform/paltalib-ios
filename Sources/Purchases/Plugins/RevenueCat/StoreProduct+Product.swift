@@ -8,57 +8,71 @@
 import Foundation
 import RevenueCat
 
-struct RCProduct: Product {
-    public var productType: ProductType {
-        ProductType(rc: product.productType)
-    }
-    
-    public var productIdentifier: String {
-        product.productIdentifier
-    }
-    
-    public var localizedDescription: String {
-        product.localizedDescription
-    }
-    
-    public var localizedTitle: String {
-        product.localizedTitle
-    }
-    
-    public var currencyCode: String? {
-        product.currencyCode
-    }
-    
-    public var price: Decimal {
-        product.price
-    }
-    
-    @available(iOS 11.2, *)
-    public var subscriptionPeriod: SubscriptionPeriod? {
-        product.subscriptionPeriod.map {
-            SubscriptionPeriod(
-                value: $0.value,
-                unit: SubscriptionPeriod.Unit(rc: $0.unit)
+extension Product {
+    init(rc: StoreProduct) {
+        if #available(iOS 12.2, *) {
+            self.init(
+                productType: ProductType(rc: rc.productType),
+                productIdentifier: rc.productIdentifier,
+                localizedDescription: rc.localizedDescription,
+                localizedTitle: rc.localizedTitle,
+                currencyCode: rc.currencyCode,
+                price: rc.price,
+                localizedPriceString: rc.localizedPriceString,
+                subscriptionPeriod: rc._subscriptionPeriod,
+                introductoryDiscount: rc._introductoryDiscount,
+                discounts: rc._discounts,
+                originalEntity: rc
+            )
+        } else if #available(iOS 11.2, *) {
+            self.init(
+                productType: ProductType(rc: rc.productType),
+                productIdentifier: rc.productIdentifier,
+                localizedDescription: rc.localizedDescription,
+                localizedTitle: rc.localizedTitle,
+                currencyCode: rc.currencyCode,
+                price: rc.price,
+                localizedPriceString: rc.localizedPriceString,
+                subscriptionPeriod: rc._subscriptionPeriod,
+                introductoryDiscount: rc._introductoryDiscount,
+                originalEntity: rc
+            )
+        } else {
+            self.init(
+                productType: ProductType(rc: rc.productType),
+                productIdentifier: rc.productIdentifier,
+                localizedDescription: rc.localizedDescription,
+                localizedTitle: rc.localizedTitle,
+                currencyCode: rc.currencyCode,
+                price: rc.price,
+                localizedPriceString: rc.localizedPriceString,
+                originalEntity: rc
             )
         }
     }
     
-    @available(iOS 11.2, *)
-    public var introductoryDiscount: ProductDiscount? {
-        product.introductoryDiscount
+    var storeProduct: StoreProduct? {
+        originalEntity as? StoreProduct
     }
-    
-    @available(iOS 12.2, *)
-    public var discounts: [ProductDiscount] {
-        product.discounts as [ProductDiscount]
-    }
-    
-    let product: StoreProduct
 }
 
-extension Product {
-    var storeProduct: StoreProduct? {
-        (self as? RCProduct)?.product
+@available(iOS 11.2, *)
+private extension StoreProduct {
+    var _subscriptionPeriod: SubscriptionPeriod? {
+        subscriptionPeriod.map {
+            SubscriptionPeriod(rc: $0)
+        }
+    }
+    
+    var _introductoryDiscount: ProductDiscount? {
+        introductoryDiscount.map(ProductDiscount.init)
+    }
+}
+
+@available(iOS 12.2, *)
+private extension StoreProduct {
+    var _discounts: [ProductDiscount] {
+        discounts.map(ProductDiscount.init)
     }
 }
 
@@ -95,5 +109,11 @@ private extension SubscriptionPeriod.Unit {
         case .day:
             self = .day
         }
+    }
+}
+
+extension SubscriptionPeriod {
+    init(rc: RevenueCat.SubscriptionPeriod) {
+        self.init(value: rc.value, unit: Unit(rc: rc.unit))
     }
 }

@@ -9,8 +9,11 @@ import Foundation
 import PaltaLibCore
 
 enum PaymentsError: Error {
+    static let unknownError: PaymentsError = .sdkError(.other(nil))
+    
     case invalidKey
     case noUserId
+    case cancelledByUser
     case serverError(Int)
     case sdkError(SDKError)
     case networkError(URLError)
@@ -19,6 +22,7 @@ enum PaymentsError: Error {
 enum SDKError: Error {
     case protocolError
     case validationError
+    case noSuitablePlugin
     case decodingError(DecodingError?)
     case other(Error?)
 }
@@ -72,6 +76,8 @@ extension PaymentsError {
             print("PaltaLib: Payments: SDK error. Please contact developer. \n\(error)")
         case .networkError(let error):
             print("PaltaLib: Payments: Network error. Please try again later. \n\(error)")
+        case .cancelledByUser:
+            print("PaltaLib: Payments: Operation cancelled by user")
         }
     }
 }

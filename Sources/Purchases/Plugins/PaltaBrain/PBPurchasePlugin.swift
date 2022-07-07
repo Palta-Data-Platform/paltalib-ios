@@ -18,8 +18,9 @@ public final class PBPurchasePlugin: PurchasePlugin {
         self.assembly = assembly
     }
     
-    public func logIn(appUserId: UserId) {
+    public func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void) {
         userId = appUserId
+        completion(.success(()))
     }
     
     public func logOut() {
@@ -39,9 +40,9 @@ public final class PBPurchasePlugin: PurchasePlugin {
     
     public func getProducts(
         with productIdentifiers: [String],
-        _ completion: @escaping (PurchasePluginResult<[Product], Error>) -> Void
+        _ completion: @escaping (Result<Set<Product>, Error>) -> Void
     ) {
-        completion(.notSupported)
+        completion(.success([]))
     }
     
     public func getPromotionalOffer(
@@ -60,7 +61,8 @@ public final class PBPurchasePlugin: PurchasePlugin {
         completion(.notSupported)
     }
     
-    public func restorePurchases() {
+    public func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
+        getPaidFeatures(completion)
     }
     
     public func setAppsflyerID(_ appsflyerID: String?) {

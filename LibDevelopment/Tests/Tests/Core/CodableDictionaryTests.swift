@@ -148,12 +148,14 @@ final class CodableDictionaryTests: XCTestCase {
             "string": "aString",
             "null": NSNull(),
             "dictionary": ["key": "value"],
-            "array": [3]
+            "array": [3],
+            "date": Date(timeIntervalSince1970: 1)
         ]
 
         let codableDictionary = CodableDictionary(originalDictionary)
 
         let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .millisecondsSince1970
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
 
         let outputString = try String(data: encoder.encode(codableDictionary), encoding: .utf8)
@@ -164,6 +166,7 @@ final class CodableDictionaryTests: XCTestCase {
             3
           ],
           "boolNSNumber" : true,
+          "date" : 1000,
           "dictionary" : {
             "key" : "value"
           },

@@ -6,11 +6,18 @@
 //
 
 import Foundation
-import PaltaLibPayments
+@testable import PaltaLibPayments
 
-struct ProductDiscountMock: ProductDiscount {
-    var offerIdentifier: String?
-    var currencyCode: String?
-    var price: Decimal = 0
-    var numberOfPeriods: Int = 0
+extension ProductDiscount {
+    static func mock() -> ProductDiscount {
+        .init(
+            offerIdentifier: nil,
+            currencyCode: nil,
+            price: 0,
+            numberOfPeriods: 0,
+            subscriptionPeriod: .init(value: 0, unit: .month),
+            localizedPriceString: "",
+            originalEntity: 0
+        )
+    }
 }

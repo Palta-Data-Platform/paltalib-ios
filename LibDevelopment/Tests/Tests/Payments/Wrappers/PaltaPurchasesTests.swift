@@ -12,6 +12,7 @@ import XCTest
 final class PaltaPurchasesTests: XCTestCase {
     var instance: PaltaPurchases!
     var mockPlugins: [PurchasePluginMock] = []
+    var delegateMock: PaltaPurchasesDelegateMock!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -19,6 +20,8 @@ final class PaltaPurchasesTests: XCTestCase {
         mockPlugins = (0...2).map { _ in PurchasePluginMock() }
         instance = PaltaPurchases()
         instance.setup(with: mockPlugins)
+        delegateMock = .init()
+        instance.delegate = delegateMock
     }
     
     func testConfigure() {
@@ -30,22 +33,82 @@ final class PaltaPurchasesTests: XCTestCase {
         XCTAssertEqual(instance.plugins as? [PurchasePluginMock], plugins)
     }
     
-    func testLogin() {
+    func testLoginSuccess() {
         let userId = UserId.uuid(UUID())
+        let successCalled = expectation(description: "Login success")
         
-        instance.logIn(appUserId: userId)
+        instance.logIn(appUserId: userId) {
+            guard case .success = $0 else {
+                return
+            }
+            
+            successCalled.fulfill()
+        }
         
         checkPlugins {
             $0.logInUserId == userId
         }
+        
+        DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { [mockPlugins] i in
+            mockPlugins[i].logInCompletion?(.success(()))
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
+        
+        XCTAssertEqual(instance.userId, userId)
+    }
+    
+    func testLoginFail() {
+        let userId = UserId.uuid(UUID())
+        let failCalled = expectation(description: "Login fail")
+        
+        instance.logIn(appUserId: userId) {
+            guard case .failure = $0 else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        checkPlugins {
+            $0.logInUserId == userId
+        }
+        
+        let failedIndex = Int.random(in: 0..<mockPlugins.count)
+        DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { [mockPlugins] i in
+            mockPlugins[i].logInCompletion?(
+                i == failedIndex ? .success(()) : .failure(PaymentsError.invalidKey)
+            )
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+        
+        XCTAssertNil(instance.userId)
+        
+        checkPlugins {
+            $0.logOutCalled
+        }
     }
     
     func testLogOut() {
+        let loggedIn = expectation(description: "Logged in")
+        instance.logIn(appUserId: .uuid(UUID())) { _ in
+            loggedIn.fulfill()
+        }
+        
+        mockPlugins.forEach {
+            $0.logInCompletion?(.success(()))
+        }
+        
+        wait(for: [loggedIn], timeout: 0.1)
+        
         instance.logOut()
         
         checkPlugins {
             $0.logOutCalled
         }
+        
+        XCTAssertNil(instance.userId)
     }
     
     func testGetPaidFeaturesSuccess() {
@@ -165,7 +228,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPromoOfferFirstSuccess() {
         let completionCalled = expectation(description: "Get promo offer completed 1")
         
-        instance.getPromotionalOffer(for: ProductDiscountMock(), product: ProductMock()) { result in
+        instance.getPromotionalOffer(for: .mock(), product: .mock()) { result in
             guard case .success = result else {
                 return
             }
@@ -185,7 +248,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPromoOfferFirstFail() {
         let completionCalled = expectation(description: "Get promo offer completed 2")
         
-        instance.getPromotionalOffer(for: ProductDiscountMock(), product: ProductMock()) { result in
+        instance.getPromotionalOffer(for: .mock(), product: .mock()) { result in
             guard case .failure = result else {
                 return
             }
@@ -205,7 +268,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPromoOfferLastSuccess() {
         let completionCalled = expectation(description: "Get promo offer completed 3")
         
-        instance.getPromotionalOffer(for: ProductDiscountMock(), product: ProductMock()) { result in
+        instance.getPromotionalOffer(for: .mock(), product: .mock()) { result in
             guard case .success = result else {
                 return
             }
@@ -229,7 +292,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPromoOfferNotSupportedEverywhere() {
         let completionCalled = expectation(description: "Get promo offer completed 4")
         
-        instance.getPromotionalOffer(for: ProductDiscountMock(), product: ProductMock()) { result in
+        instance.getPromotionalOffer(for: .mock(), product: .mock()) { result in
             guard case .failure = result else {
                 return
             }
@@ -253,7 +316,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPurchaseFirstSuccess() {
         let completionCalled = expectation(description: "Get purchase completed 1")
         
-        instance.purchase(ProductMock(), with: nil) { result in
+        instance.purchase(.mock(), with: nil) { result in
             guard case .success(let purchase) = result else {
                 return
             }
@@ -277,7 +340,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPurchaseFirstFail() {
         let completionCalled = expectation(description: "Get purchase completed 2")
 
-        instance.purchase(ProductMock(), with: nil) { result in
+        instance.purchase(.mock(), with: nil) { result in
             guard case .failure = result else {
                 return
             }
@@ -297,7 +360,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPurchaseLastSuccess() {
         let completionCalled = expectation(description: "Get purchase completed 3")
         
-        instance.purchase(ProductMock(), with: nil) { result in
+        instance.purchase(.mock(), with: nil) { result in
             guard case .success(let purchase) = result else {
                 return
             }
@@ -325,7 +388,7 @@ final class PaltaPurchasesTests: XCTestCase {
     func testPurchaseNotSupportedEverywhere() {
         let completionCalled = expectation(description: "Get purchase completed 4")
         
-        instance.purchase(ProductMock(), with: nil) { result in
+        instance.purchase(.mock(), with: nil) { result in
             guard case .failure = result else {
                 return
             }
@@ -346,11 +409,196 @@ final class PaltaPurchasesTests: XCTestCase {
         wait(for: [completionCalled], timeout: 0.1)
     }
     
-    func testRestore() {
-        instance.restorePurchases()
+    func testRestoreSuccess() {
+        let pluginFeatures = [
+            PaidFeatures(
+                features: [
+                    PaidFeature(name: "Feature 1", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 3", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
+                ]
+            ),
+            PaidFeatures(),
+            PaidFeatures(
+                features: [
+                    PaidFeature(name: "Feature 6", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                    PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 88), endDate: nil),
+                    PaidFeature(name: "Feature 5", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
+                ]
+            )
+        ]
+        
+        assert(mockPlugins.count == pluginFeatures.count)
+        
+        let expectedFeatures = PaidFeatures(
+            features: [
+                PaidFeature(name: "Feature 1", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 3", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 6", startDate: Date(timeIntervalSince1970: 0), endDate: nil),
+                PaidFeature(name: "Feature 2", startDate: Date(timeIntervalSince1970: 88), endDate: nil),
+                PaidFeature(name: "Feature 5", startDate: Date(timeIntervalSince1970: 0), endDate: nil)
+            ]
+        )
+        
+        let successCalled = expectation(description: "Restore successful")
+        instance.restorePurchases {
+            guard case .success(let features) = $0 else {
+                return
+            }
+            
+            XCTAssertEqual(features, expectedFeatures)
+            successCalled.fulfill()
+        }
+        
+        DispatchQueue.concurrentPerform(iterations: pluginFeatures.count) { index in
+            mockPlugins[index].restorePurchasesCompletion?(.success(pluginFeatures[index]))
+        }
+        
+        mockPlugins.enumerated().forEach {
+            XCTAssertNotNil($1.restorePurchasesCompletion)
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
+    }
+    
+    func testRestoreFailure() {
+        let pluginFeatures = [
+            PaidFeatures(),
+            PaidFeatures()
+        ]
+        
+        let failCalled = expectation(description: "Restore failure")
+        instance.restorePurchases {
+            guard case .failure = $0 else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { index in
+            mockPlugins[index].restorePurchasesCompletion?(
+                index != 2 ? .success(pluginFeatures[index]) : .failure(PaymentsError.unknownError)
+            )
+        }
+        
+        mockPlugins.enumerated().forEach {
+            XCTAssertNotNil($1.restorePurchasesCompletion)
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+    }
+    
+    func testGetProductsSuccess() {
+        let products: [Set<Product>] = [
+            [.mock(productIdentifier: "1")],
+            [.mock(productIdentifier: "2"), .mock(productIdentifier: "1")],
+            [.mock(productIdentifier: "3"), .mock(productIdentifier: "1")]
+        ]
+        
+        let experctedProducts: Set<Product> = [
+            .mock(productIdentifier: "1"),
+            .mock(productIdentifier: "2"),
+            .mock(productIdentifier: "3")
+        ]
+        
+        assert(products.count == mockPlugins.count)
+        
+        let identifiers = ["indetifier"]
+        
+        let successCalled = expectation(description: "Get products successful")
+        instance.getProducts(with: identifiers) {
+            guard case .success(let products) = $0 else {
+                return
+            }
+            
+            XCTAssertEqual(products, experctedProducts)
+            successCalled.fulfill()
+        }
+        
+        DispatchQueue.concurrentPerform(iterations: products.count) { index in
+            mockPlugins[index].getProductsCompletion?(.success(products[index]))
+        }
+        
+        mockPlugins.forEach {
+            XCTAssertNotNil($0.getProductsCompletion)
+            XCTAssertEqual($0.getProductsIndentifiers, identifiers)
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
+    }
+    
+    func testGetProductsFailure() {
+        let products: [Set<Product>] = [
+            [.mock(productIdentifier: "1")],
+            [.mock(productIdentifier: "2"), .mock(productIdentifier: "1")],
+            [.mock(productIdentifier: "3"), .mock(productIdentifier: "1")]
+        ]
+        
+        let failCalled = expectation(description: "Get products failure")
+        instance.getProducts(with: [""]) {
+            guard case .failure = $0 else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        DispatchQueue.concurrentPerform(iterations: mockPlugins.count) { index in
+            mockPlugins[index].getProductsCompletion?(
+                index != 1 ? .success(products[index]) : .failure(PaymentsError.unknownError)
+            )
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+    }
+    
+    func testDelegateForwarded() {
+        var callback: ((PurchasePluginResult<SuccessfulPurchase, Error>) -> Void)?
+        mockPlugins[0].delegate?.purchasePlugin(mockPlugins[0], shouldPurchase: .mock()) {
+            callback = $0
+        }
+        
+        XCTAssertNotNil(delegateMock.product)
+        
+        let failCalled = expectation(description: "Fail called")
+        delegateMock.callback? {
+            guard case .failure = $0 else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        callback?(.notSupported)
+        
+        wait(for: [failCalled], timeout: 0.1)
+    }
+    
+    func testSetAppsflyerID() {
+        let id = UUID().uuidString
+        instance.setAppsflyerID(id)
         
         checkPlugins {
-            $0.restorePurchasesCalled
+            id == $0.appsflyerID
+        }
+    }
+    
+    func testSetAppsflyerAttributes() {
+        let attributes = [UUID().uuidString: UUID().uuidString]
+        instance.setAppsflyerAttributes(attributes)
+        
+        checkPlugins {
+            attributes == $0.attributes
+        }
+    }
+    
+    func testCollectDeviceIdentifiers() {
+        instance.collectDeviceIdentifiers()
+        
+        checkPlugins {
+            $0.collectDeviceIdentifiersCalled
         }
     }
     

@@ -10,9 +10,19 @@ import PaltaLibCore
 
 public final class PaltaPurchases {
     public static let instance = PaltaPurchases()
+    
+    public private(set) var userId: UserId?
+    
+    public weak var delegate: PaltaPurchasesDelegate?
 
     var setupFinished = false
-    var plugins: [PurchasePlugin] = []
+    var plugins: [PurchasePlugin] = [] {
+        didSet {
+            plugins.forEach {
+                $0.delegate = self
+            }
+        }
+    }
 
     public func setup(with plugins: [PurchasePlugin]) {
         guard !setupFinished else {
@@ -24,17 +34,29 @@ public final class PaltaPurchases {
         self.plugins = plugins
     }
     
-    public func logIn(appUserId: UserId) {
+    public func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void) {
         checkSetupFinished()
         
-        plugins.forEach {
-            $0.logIn(appUserId: appUserId)
-        }
+        callAndCollect(call: { plugin, callback in
+            plugin.logIn(appUserId: appUserId, completion: callback)
+        }, completion: { [weak self] result in
+            switch result {
+            case .success:
+                self?.userId = appUserId
+                
+            case .failure:
+                // Some plugins definetly failed, but some may be logged in. Need to logout.
+                self?.logOut()
+            }
+            
+            completion(result.map { _ in })
+        })
     }
     
     public func logOut() {
         checkSetupFinished()
         
+        userId = nil
         plugins.forEach {
             $0.logOut()
         }
@@ -43,34 +65,22 @@ public final class PaltaPurchases {
     public func getPaidFeatures(_ completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
         checkSetupFinished()
         
-        var features = PaidFeatures()
-        var errors: [Error] = []
-        let dispatchGroup = DispatchGroup()
-        let lock = NSRecursiveLock()
-        
-        plugins.forEach { plugin in
-            dispatchGroup.enter()
-            plugin.getPaidFeatures { result in
-                lock.lock()
-                switch result {
-                case .success(let pluginFeatures):
-                    features.merge(with: pluginFeatures)
-                    
-                case .failure(let error):
-                    errors.append(error)
-                }
-                lock.unlock()
-                dispatchGroup.leave()
-            }
+        callAndCollectPaidFeatures(to: completion) { plugin, callback in
+            plugin.getPaidFeatures(callback)
         }
-        
-        dispatchGroup.notify(queue: .main) {
-            if let error = errors.first {
-                completion(.failure(error))
-            } else {
-                completion(.success(features))
-            }
-        }
+    }
+    
+    public func getProducts(
+        with productIdentifiers: [String],
+        completion: @escaping (Result<Set<Product>, Error>) -> Void
+    ) {
+        callAndCollect(call: { plugIn, callback in
+            plugIn.getProducts(with: productIdentifiers, callback)
+        }, completion: { result in
+            completion(
+                result.map { $0.reduce([]) { $0.union($1) } }
+            )
+        })
     }
     
     @available(iOS 12.2, *)
@@ -98,11 +108,35 @@ public final class PaltaPurchases {
         }
     }
     
-    public func restorePurchases() {
+    public func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
+        checkSetupFinished()
+        
+        callAndCollectPaidFeatures(to: completion) { plugin, callback in
+            plugin.restorePurchases(completion: callback)
+        }
+    }
+    
+    public func setAppsflyerID(_ appsflyerID: String?) {
         checkSetupFinished()
         
         plugins.forEach {
-            $0.restorePurchases()
+            $0.setAppsflyerID(appsflyerID)
+        }
+    }
+    
+    public func setAppsflyerAttributes(_ attributes: [String: String]) {
+        checkSetupFinished()
+        
+        plugins.forEach {
+            $0.setAppsflyerAttributes(attributes)
+        }
+    }
+    
+    public func collectDeviceIdentifiers() {
+        checkSetupFinished()
+        
+        plugins.forEach {
+            $0.collectDeviceIdentifiers()
         }
     }
     
@@ -134,8 +168,7 @@ public final class PaltaPurchases {
             } else if let nextPlugin = self.plugins.nextElement(after: { $0 === plugin }) {
                 self.with(nextPlugin, completion: completion, execute: execute)
             } else {
-                // TODO: Improve error handling
-                completion(.failure(NSError(domain: "", code: 0)))
+                completion(.failure(PaymentsError.sdkError(.noSuitablePlugin)))
             }
         }
     }
@@ -144,5 +177,80 @@ public final class PaltaPurchases {
         if !setupFinished {
             assertionFailure("Setup palta purchases with plugins first!")
         }
+    }
+    
+    private func callAndCollect<T>(
+        call: (PurchasePlugin, @escaping (Result<T, Error>) -> Void) -> Void,
+        completion: @escaping (Result<[T], Error>) -> Void
+    ) {
+        var values: [T] = []
+        var error: Error?
+        
+        let lock = NSRecursiveLock()
+        let group = DispatchGroup()
+        
+        plugins.forEach { plugin in
+            group.enter()
+            call(plugin) { result in
+                lock.lock()
+                
+                switch result {
+                case .success(let value):
+                    values.append(value)
+                    
+                case .failure(let err):
+                    error = error ?? err
+                }
+                
+                lock.unlock()
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(values))
+            }
+        }
+    }
+    
+    private func callAndCollectPaidFeatures(
+        to completion: @escaping (Result<PaidFeatures, Error>) -> Void,
+        call: (PurchasePlugin, @escaping (Result<PaidFeatures, Error>) -> Void) -> Void
+    ) {
+        callAndCollect(call: call) { result in
+            completion(
+                result.map {
+                    $0.reduce(PaidFeatures()) {
+                        $0.merged(with: $1)
+                    }
+                }
+            )
+        }
+    }
+}
+
+extension PaltaPurchases: PurchasePluginDelegate {
+    public func purchasePlugin(
+        _ plugin: PurchasePlugin,
+        shouldPurchase promoProduct: Product,
+        defermentCallback: @escaping DefermentCallback
+    ) {
+        delegate?.purchases(self, shouldPurchase: promoProduct, defermentCallback: { completion in
+            defermentCallback {
+                switch $0 {
+                case .success(let purchase):
+                    completion(.success(purchase))
+                    
+                case .failure(let error):
+                    completion(.failure(error))
+                    
+                case .notSupported:
+                    completion(.failure(PaymentsError.sdkError(.other(nil))))
+                }
+            }
+        })
     }
 }

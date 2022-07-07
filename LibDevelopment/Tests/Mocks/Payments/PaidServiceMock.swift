@@ -16,6 +16,7 @@ extension PaidFeature {
             paymentType: .subscription,
             transactionType: .appStore,
             isTrial: false,
+            willRenew: false,
             startDate: startDate,
             endDate: endDate,
             cancellationDate: nil

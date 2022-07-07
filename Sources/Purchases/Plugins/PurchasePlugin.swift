@@ -10,14 +10,14 @@ import Foundation
 public protocol PurchasePlugin: AnyObject {
     var delegate: PurchasePluginDelegate? { get set }
 
-    func logIn(appUserId: UserId)
+    func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void)
     func logOut()
     
     func getPaidFeatures(_ completion: @escaping (Result<PaidFeatures, Error>) -> Void)
     
     func getProducts(
         with productIdentifiers: [String],
-        _ completion: @escaping (PurchasePluginResult<[Product], Error>) -> Void
+        _ completion: @escaping (Result<Set<Product>, Error>) -> Void
     )
     
     @available(iOS 12.2, *)
@@ -33,7 +33,7 @@ public protocol PurchasePlugin: AnyObject {
         _ completion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void
     )
 
-    func restorePurchases()
+    func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void)
     
     func setAppsflyerID(_ appsflyerID: String?)
     func setAppsflyerAttributes(_ attributes: [String: String])

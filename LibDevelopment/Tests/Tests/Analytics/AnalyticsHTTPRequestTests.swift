@@ -32,7 +32,15 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
         let events: [Event] = [.mock()]
         let request = AnalyticsHTTPRequest.sendEvents(
             URL(string: "https://mock.mock/path"),
-            SendEventsPayload(apiKey: "mockKey", events: events, serviceInfo: .init(telemetry: nil))
+            SendEventsPayload(
+                apiKey: "mockKey",
+                events: events,
+                serviceInfo: .init(
+                    uploadTime: .currentTimestamp(),
+                    library: .init(name: "PaltaBrain", version: "2.1.5"),
+                    telemetry: .mock()
+                )
+            )
         )
 
         let expectedHeaders = [
@@ -55,7 +63,15 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
         let events: [Event] = [.mock()]
         let request = AnalyticsHTTPRequest.sendEvents(
             nil,
-            SendEventsPayload(apiKey: "mockKey", events: events, serviceInfo: .init(telemetry: nil))
+            SendEventsPayload(
+                apiKey: "mockKey",
+                events: events,
+                serviceInfo: .init(
+                    uploadTime: .currentTimestamp(),
+                    library: .init(name: "PaltaBrain", version: "2.1.5"),
+                    telemetry: nil
+                )
+            )
         )
 
         let urlRequest = request.urlRequest(headerFields: ["additionalHeader": "additionalHeaderValue"])

@@ -23,6 +23,7 @@ final class AnalyticsCoreAssembly {
             deviceInfoProvider: DeviceInfoProviderImpl(),
             userDefaults: .standard
         )
+        userPropertiesKeeper.generateDeviceId()
 
         let sessionManager = SessionManagerImpl(
             userDefaults: .standard,

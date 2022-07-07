@@ -25,6 +25,7 @@ public struct PaidFeature: Hashable {
     public let paymentType: PaymentType
     public let transactionType: TransactionType
     public let isTrial: Bool
+    public let willRenew: Bool
     
     public let startDate: Date
     public let endDate: Date?

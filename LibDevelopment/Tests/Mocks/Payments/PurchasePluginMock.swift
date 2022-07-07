@@ -12,18 +12,21 @@ final class PurchasePluginMock: PurchasePlugin {
     var delegate: PurchasePluginDelegate?
     
     var logInUserId: UserId?
+    var logInCompletion: ((Result<(), Error>) -> Void)?
     var logOutCalled = false
+    var getProductsIndentifiers: [String]?
     var getPaidFeaturesCompletion: ((Result<PaidFeatures, Error>) -> Void)?
-    var getProductsCompletion: ((PurchasePluginResult<[Product], Error>) -> Void)?
+    var getProductsCompletion: ((Result<Set<Product>, Error>) -> Void)?
     var getPromotionalOfferCompletion: ((PurchasePluginResult<PromoOffer, Error>) -> Void)?
     var purchaseCompletion: ((PurchasePluginResult<SuccessfulPurchase, Error>) -> Void)?
-    var restorePurchasesCalled = false
+    var restorePurchasesCompletion: ((Result<PaidFeatures, Error>) -> Void)?
     var appsflyerID: String?
     var attributes: [String : String]?
     var collectDeviceIdentifiersCalled = false
 
-    func logIn(appUserId: UserId) {
+    func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void) {
         logInUserId = appUserId
+        logInCompletion = completion
     }
 
     func logOut() {
@@ -34,8 +37,9 @@ final class PurchasePluginMock: PurchasePlugin {
         getPaidFeaturesCompletion = completion
     }
     
-    func getProducts(with productIdentifiers: [String], _ completion: @escaping (PurchasePluginResult<[Product], Error>) -> Void) {
+    func getProducts(with productIdentifiers: [String], _ completion: @escaping (Result<Set<Product>, Error>) -> Void) {
         getProductsCompletion = completion
+        getProductsIndentifiers = productIdentifiers
     }
     
     func getPromotionalOffer(for productDiscount: ProductDiscount, product: Product, _ completion: @escaping (PurchasePluginResult<PromoOffer, Error>) -> Void) {
@@ -46,8 +50,8 @@ final class PurchasePluginMock: PurchasePlugin {
         purchaseCompletion = completion
     }
     
-    func restorePurchases() {
-        restorePurchasesCalled = true
+    func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
+        restorePurchasesCompletion = completion
     }
     
     func setAppsflyerID(_ appsflyerID: String?) {
