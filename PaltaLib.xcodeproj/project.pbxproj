@@ -717,11 +717,11 @@
 			isa = PBXGroup;
 			children = (
 				113A7988284DF327004C0C5D /* EventType.swift */,
-				117D9C282869A219006F3E2E /* Stack.swift */,
 				113A798A284DF461004C0C5D /* EventCommon.swift */,
 				113A798C284E0B78004C0C5D /* EventPayload.swift */,
 				113A798E284E0CCF004C0C5D /* EventHeader.swift */,
 				113A7990284E39AF004C0C5D /* BatchEvent.swift */,
+				117D9C282869A219006F3E2E /* Stack.swift */,
 				113A7992284E3A98004C0C5D /* BatchCommon.swift */,
 				113A7994284E3B94004C0C5D /* Batch.swift */,
 				113A7996284E3C63004C0C5D /* BatchContext.swift */,
@@ -784,24 +784,14 @@
 		111159AD27F72D5E00A41ADA /* EventQueue */ = {
 			isa = PBXGroup;
 			children = (
-				112FCA3F2848B76500C8F88A /* BatchSender.swift */,
-				1137D15A285A00D9008CA306 /* SDKInfoProvider.swift */,
-				113A799B284E5704004C0C5D /* BatchStorage.swift */,
+				1150909A2859D8A9009F53AD /* EventQueueAssembly.swift */,
+				113A79A9284F7341004C0C5D /* EventQueue.swift */,
 				113A799D284E5771004C0C5D /* EventStorage.swift */,
-				113A799F284E57D7004C0C5D /* BatchComposer.swift */,
-				117D9C2A2869A253006F3E2E /* UUIDGenerator.swift */,
 				113A79A1284E591A004C0C5D /* EventQueueCore.swift */,
 				113A79A5284F6E13004C0C5D /* EventComposer.swift */,
-				113A79A9284F7341004C0C5D /* EventQueue.swift */,
-				11115A8E28001F2300A41ADA /* UserPropertiesKeeper.swift */,
-				113A79A3284F5507004C0C5D /* BatchSendController.swift */,
+				1119CD6C2876F32200C7B4C4 /* Batch */,
 				117D9BFD28634216006F3E2E /* Contexts */,
-				111159B827F73F9000A41ADA /* Timer.swift */,
-				1150909A2859D8A9009F53AD /* EventQueueAssembly.swift */,
-				115090A02859EF8C009F53AD /* BatchSendRequest.swift */,
 				11C60F5728197329004D0185 /* Helpers */,
-				113A799A284E3C8E004C0C5D /* Models */,
-				11C60F5628197310004D0185 /* Context */,
 			);
 			path = EventQueue;
 			sourceTree = "<group>";
@@ -825,6 +815,18 @@
 				111A59C32840F1460052FCD1 /* Payments */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		1119CD6C2876F32200C7B4C4 /* Batch */ = {
+			isa = PBXGroup;
+			children = (
+				112FCA3F2848B76500C8F88A /* BatchSender.swift */,
+				113A799B284E5704004C0C5D /* BatchStorage.swift */,
+				113A799F284E57D7004C0C5D /* BatchComposer.swift */,
+				115090A02859EF8C009F53AD /* BatchSendRequest.swift */,
+				113A79A3284F5507004C0C5D /* BatchSendController.swift */,
+			);
+			path = Batch;
 			sourceTree = "<group>";
 		};
 		111A59AE2840E4820052FCD1 /* WebPayments */ = {
@@ -1001,13 +1003,6 @@
 			path = DTO;
 			sourceTree = "<group>";
 		};
-		113A799A284E3C8E004C0C5D /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		113A79B3284F78DC004C0C5D /* LibDevelopment/AnalyticsDTOExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -1178,17 +1173,14 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		11C60F5628197310004D0185 /* Context */ = {
-			isa = PBXGroup;
-			children = (
-				11115A5427FC4FA200A41ADA /* SessionManager.swift */,
-			);
-			path = Context;
-			sourceTree = "<group>";
-		};
 		11C60F5728197329004D0185 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				11115A5427FC4FA200A41ADA /* SessionManager.swift */,
+				11115A8E28001F2300A41ADA /* UserPropertiesKeeper.swift */,
+				111159B827F73F9000A41ADA /* Timer.swift */,
+				1137D15A285A00D9008CA306 /* SDKInfoProvider.swift */,
+				117D9C2A2869A253006F3E2E /* UUIDGenerator.swift */,
 				11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */,
 				113A79A7284F6EB3004C0C5D /* Timestamp.swift */,
 			);
