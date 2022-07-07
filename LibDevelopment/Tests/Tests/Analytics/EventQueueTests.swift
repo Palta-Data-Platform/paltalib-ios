@@ -1,5 +1,5 @@
 //
-//  EventQueue2Tests.swift
+//  EventQueueTests.swift
 //  PaltaLibTests
 //
 //  Created by Vyacheslav Beltyukov on 29/06/2022.
@@ -10,15 +10,15 @@ import XCTest
 @testable import PaltaLibAnalytics
 import AnalyticsDTOExample
 
-final class EventQueue2Tests: XCTestCase {
-    private var coreMock: EventQueue2CoreMock!
-    private var storageMock: EventStorage2Mock!
+final class EventQueueTests: XCTestCase {
+    private var coreMock: EventQueueCoreMock!
+    private var storageMock: EventStorageMock!
     private var sendControllerMock: BatchSendControllerMock!
-    private var eventComposerMock: EventComposer2Mock!
+    private var eventComposerMock: EventComposerMock!
     private var sessionManagerMock: SessionManagerMock!
     private var contextProviderMock: CurrentContextProviderMock!
     
-    private var eventQueue: EventQueue2Impl!
+    private var eventQueue: EventQueueImpl!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -30,7 +30,7 @@ final class EventQueue2Tests: XCTestCase {
         sendControllerMock = .init()
         contextProviderMock = .init()
         
-        eventQueue = EventQueue2Impl(
+        eventQueue = EventQueueImpl(
             core: coreMock,
             storage: storageMock,
             sendController: sendControllerMock,

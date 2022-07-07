@@ -1,5 +1,5 @@
 //
-//  PaltaAnalytics2.swift
+//  PaltaAnalytics.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 29/06/2022.
@@ -7,23 +7,23 @@
 
 import Foundation
 
-public class PaltaAnalytics2 {
+public class PaltaAnalytics {
     public static func initiate(with stack: Stack) {
-        _shared = PaltaAnalytics2(assembly: AnalyticsAssembly2(stack: stack))
+        _shared = PaltaAnalytics(assembly: AnalyticsAssembly(stack: stack))
     }
     
-    public static var shared: PaltaAnalytics2 {
+    public static var shared: PaltaAnalytics {
         guard let configuredInstance = _shared else {
             fatalError("Attempt to access PaltaAnalytics without setting up")
         }
         return configuredInstance
     }
     
-    private static var _shared: PaltaAnalytics2?
+    private static var _shared: PaltaAnalytics?
     
-    let assembly: AnalyticsAssembly2
+    let assembly: AnalyticsAssembly
     
-    init(assembly: AnalyticsAssembly2) {
+    init(assembly: AnalyticsAssembly) {
         self.assembly = assembly
     }
 }

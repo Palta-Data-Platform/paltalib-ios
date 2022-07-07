@@ -1,5 +1,5 @@
 //
-//  EventStorage2Mock.swift
+//  EventStorageMock.swift
 //  PaltaLibTests
 //
 //  Created by Vyacheslav Beltyukov on 29/06/2022.
@@ -8,7 +8,7 @@
 import Foundation
 @testable import PaltaLibAnalytics
 
-final class EventStorage2Mock: EventStorage2 {
+final class EventStorageMock: EventStorage {
     var storedEvents: [StorableEvent] = []
     var removedIds: [UUID] = []
     var loadedEvents: [StorableEvent] = []

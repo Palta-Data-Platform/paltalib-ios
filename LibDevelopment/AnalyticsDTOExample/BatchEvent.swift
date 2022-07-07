@@ -12,14 +12,14 @@ import ProtobufExample
 extension PaltaLibAnalytics.EventCommon {
     var message: ProtobufExample.EventCommon {
         var msg = ProtobufExample.EventCommon()
-//        msg.eventType = even
+        msg.eventType = eventType.intValue
         msg.eventTs = Int64(timestamp)
         msg.sessionID = Int64(sessionId)
         return msg
     }
 }
 
-extension Event: BatchEvent {
+extension ProtobufExample.Event: BatchEvent {
     public init(data: Data) throws {
         try self.init(serializedData: data)
     }

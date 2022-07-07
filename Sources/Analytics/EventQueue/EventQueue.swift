@@ -1,5 +1,5 @@
 //
-//  EventQueue2.swift
+//  EventQueue.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 07/06/2022.
@@ -7,26 +7,26 @@
 
 import Foundation
 
-protocol EventQueue2 {
-    func logEvent<Event: Event2>(_ incomingEvent: Event, outOfSession: Bool)
+protocol EventQueue {
+    func logEvent<E: Event>(_ incomingEvent: E, outOfSession: Bool)
 }
 
-final class EventQueue2Impl: EventQueue2 {
+final class EventQueueImpl: EventQueue {
     var trackingSessionEvents = true
 //    var liveEventTypes: Set<String> = []
 
-    private let core: EventQueueCore2
-    private let storage: EventStorage2
+    private let core: EventQueueCore
+    private let storage: EventStorage
     private let sendController: BatchSendController
-    private let eventComposer: EventComposer2
+    private let eventComposer: EventComposer
     private let sessionManager: SessionManager
     private let contextProvider: CurrentContextProvider
 
     init(
-        core: EventQueueCore2,
-        storage: EventStorage2,
+        core: EventQueueCore,
+        storage: EventStorage,
         sendController: BatchSendController,
-        eventComposer: EventComposer2,
+        eventComposer: EventComposer,
         sessionManager: SessionManager,
         contextProvider: CurrentContextProvider
     ) {
@@ -42,9 +42,9 @@ final class EventQueue2Impl: EventQueue2 {
         startSessionManager()
     }
     
-    func logEvent<Event: Event2>(_ incomingEvent: Event, outOfSession: Bool) {
+    func logEvent<E: Event>(_ incomingEvent: E, outOfSession: Bool) {
         let event = eventComposer.composeEvent(
-            of: incomingEvent.type.boxed,
+            of: incomingEvent.type,
             with: incomingEvent.header,
             and: incomingEvent.payload
         )
@@ -68,7 +68,7 @@ final class EventQueue2Impl: EventQueue2 {
         }
     }
 
-    private func setupCore(_ core: EventQueueCore2, liveQueue: Bool) {
+    private func setupCore(_ core: EventQueueCore, liveQueue: Bool) {
         core.sendHandler = { [weak self] events, contextId, _ in
             guard let self = self, self.sendController.isReady else {
                 return false

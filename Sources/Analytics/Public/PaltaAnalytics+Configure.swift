@@ -1,5 +1,5 @@
 //
-//  PaltaAnalytics2+Configure.swift
+//  PaltaAnalytics+Configure.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 30/06/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension PaltaAnalytics2 {
+public extension PaltaAnalytics {
     func setAPIKey(_ apiKey: String) {
         assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey) { result in
             switch result {
@@ -22,7 +22,7 @@ public extension PaltaAnalytics2 {
     }
     
     private func apply(_ config: RemoteConfig, apiKey: String) {
-        ConfigApplyService2(
+        ConfigApplyService(
             remoteConfig: config,
             apiKey: apiKey,
             eventQueueAssembly: assembly.eventQueueAssembly

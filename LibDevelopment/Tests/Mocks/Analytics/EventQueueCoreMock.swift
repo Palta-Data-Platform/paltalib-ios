@@ -1,5 +1,5 @@
 //
-//  EventQueue2CoreMock.swift
+//  EventQueueCoreMock.swift
 //  PaltaLibTests
 //
 //  Created by Vyacheslav Beltyukov on 29/06/2022.
@@ -8,7 +8,7 @@
 import Foundation
 @testable import PaltaLibAnalytics
 
-final class EventQueue2CoreMock: EventQueueCore2 {
+final class EventQueueCoreMock: EventQueueCore {
     var sendHandler: UploadHandler?
     var removeHandler: RemoveHandler?
     

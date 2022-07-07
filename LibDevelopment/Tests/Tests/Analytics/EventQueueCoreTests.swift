@@ -1,5 +1,5 @@
 //
-//  EventQueueCore2Tests.swift
+//  EventQueueCoreTests.swift
 //  PaltaLibTests
 //
 //  Created by Vyacheslav Beltyukov on 27/06/2022.
@@ -9,9 +9,9 @@ import Foundation
 import XCTest
 @testable import PaltaLibAnalytics
 
-final class EventQueueCore2Tests: XCTestCase {
+final class EventQueueCoreTests: XCTestCase {
     private var timerMock: TimerMock!
-    private var queue: EventQueueCore2Impl!
+    private var queue: EventQueueCoreImpl!
 
     private var sendIsCalled: XCTestExpectation {
         if let value = _sendIsCalled {
@@ -72,7 +72,7 @@ final class EventQueueCore2Tests: XCTestCase {
         try super.setUpWithError()
 
         timerMock = TimerMock()
-        queue = EventQueueCore2Impl(timer: timerMock)
+        queue = EventQueueCoreImpl(timer: timerMock)
         sentEvents = nil
         removedEvents = nil
         sendResult = true

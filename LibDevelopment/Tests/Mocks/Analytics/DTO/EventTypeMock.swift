@@ -9,5 +9,7 @@ import Foundation
 import PaltaLibAnalytics
 
 struct EventTypeMock: EventType {
-    
+    var intValue: Int64 {
+        0
+    }
 }

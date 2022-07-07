@@ -1,5 +1,5 @@
 //
-//  EventComposer2.swift
+//  EventComposer.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 07/06/2022.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-protocol EventComposer2 {
+protocol EventComposer {
     func composeEvent(
-        of type: EventTypeBox,
+        of type: EventType,
         with header: EventHeader,
         and payload: EventPayload
     ) -> BatchEvent
 }
 
-final class EventComposer2Impl: EventComposer2 {
+final class EventComposerImpl: EventComposer {
     private let stack: Stack
     private let sessionIdProvider: SessionIdProvider
     
@@ -25,7 +25,7 @@ final class EventComposer2Impl: EventComposer2 {
     }
     
     func composeEvent(
-        of type: EventTypeBox,
+        of type: EventType,
         with header: EventHeader,
         and payload: EventPayload
     ) -> BatchEvent {

@@ -1,6 +1,6 @@
 import Foundation
 
-extension PaltaAnalytics2 {
+extension PaltaAnalytics {
     public struct Target {
 
         let name: String
@@ -22,7 +22,7 @@ extension PaltaAnalytics2 {
 
 // MARK: - Equatable
 
-extension PaltaAnalytics2.Target: Equatable {
+extension PaltaAnalytics.Target: Equatable {
 
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.name == rhs.name

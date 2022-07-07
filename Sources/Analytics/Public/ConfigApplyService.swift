@@ -1,5 +1,5 @@
 //
-//  ConfigApplyService2.swift
+//  ConfigApplyService.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 30/06/2022.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-final class ConfigApplyService2 {
+final class ConfigApplyService {
     private let remoteConfig: RemoteConfig
     private let apiKey: String
-    private let eventQueueAssembly: EventQueue2Assembly
+    private let eventQueueAssembly: EventQueueAssembly
     
-    init(remoteConfig: RemoteConfig, apiKey: String, eventQueueAssembly: EventQueue2Assembly) {
+    init(remoteConfig: RemoteConfig, apiKey: String, eventQueueAssembly: EventQueueAssembly) {
         self.remoteConfig = remoteConfig
         self.apiKey = apiKey
         self.eventQueueAssembly = eventQueueAssembly

@@ -1,5 +1,5 @@
 //
-//  EventQueue2Assembly.swift
+//  EventQueueAssembly.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 15/06/2022.
@@ -8,15 +8,15 @@
 import Foundation
 import PaltaLibCore
 
-final class EventQueue2Assembly {
-    let eventQueue: EventQueue2Impl
-    let eventQueueCore: EventQueueCore2Impl
+final class EventQueueAssembly {
+    let eventQueue: EventQueueImpl
+    let eventQueueCore: EventQueueCoreImpl
     let batchSender: BatchSenderImpl
     let contextModifier: ContextModifier
     
     init(
-        eventQueue: EventQueue2Impl,
-        eventQueueCore: EventQueueCore2Impl,
+        eventQueue: EventQueueImpl,
+        eventQueueCore: EventQueueCoreImpl,
         batchSender: BatchSenderImpl,
         contextModifier: ContextModifier
     ) {
@@ -27,7 +27,7 @@ final class EventQueue2Assembly {
     }
 }
 
-extension EventQueue2Assembly {
+extension EventQueueAssembly {
     convenience init(
         stack: Stack,
         coreAssembly: CoreAssembly,
@@ -46,16 +46,16 @@ extension EventQueue2Assembly {
         
         // Core
         
-        let core = EventQueueCore2Impl(timer: TimerImpl())
+        let core = EventQueueCoreImpl(timer: TimerImpl())
         
-        let eventComposer = EventComposer2Impl(
+        let eventComposer = EventComposerImpl(
             stack: stack,
             sessionIdProvider: analyticsCoreAssembly.sessionManager
         )
         
         // Storages
         
-        let eventStorage = EventStorage2Impl(
+        let eventStorage = EventStorageImpl(
             folderURL: workingUrl,
             stack: stack,
             fileManager: .default
@@ -104,7 +104,7 @@ extension EventQueue2Assembly {
         
         // EventQueue
         
-        let eventQueue = EventQueue2Impl(
+        let eventQueue = EventQueueImpl(
             core: core,
             storage: eventStorage,
             sendController: sendController,

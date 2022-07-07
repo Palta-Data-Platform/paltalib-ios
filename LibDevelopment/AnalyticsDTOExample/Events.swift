@@ -9,12 +9,14 @@ import PaltaLibAnalytics
 import ProtobufExample
 
 extension Int: EventType {
-    
+    public var intValue: Int64 {
+        Int64(self)
+    }
 }
 
 extension ProtobufExample.EventPayload: PaltaLibAnalytics.EventPayload {}
 
-public struct PageOpenEvent: Event2 {
+public struct PageOpenEvent: PaltaLibAnalytics.Event {
     public typealias Header = AnalyticsDTOExample.Header
     public typealias Payload = ProtobufExample.EventPayload
     public typealias EventType = Int

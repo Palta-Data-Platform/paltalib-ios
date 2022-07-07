@@ -1,5 +1,5 @@
 //
-//  EventStorage2.swift
+//  EventStorage.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 06/06/2022.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol EventStorage2 {
+protocol EventStorage {
     func storeEvent(_ event: StorableEvent)
     func removeEvent(with id: UUID)
 
     func loadEvents(_ completion: @escaping ([StorableEvent]) -> Void)
 }
 
-final class EventStorage2Impl: EventStorage2 {
+final class EventStorageImpl: EventStorage {
     private let folderURL: URL
     private let stack: Stack
     private let fileManager: FileManager

@@ -1,5 +1,5 @@
 //
-//  Event2.swift
+//  Event.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 06/06/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Event2 {
+public protocol Event {
     associatedtype Header: EventHeader
     associatedtype Payload: EventPayload
     associatedtype EventType: PaltaLibAnalytics.EventType

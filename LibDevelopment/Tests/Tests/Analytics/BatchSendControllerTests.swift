@@ -13,7 +13,7 @@ final class BatchSendControllerTests: XCTestCase {
     private var composerMock: BatchComposerMock!
     private var storageMock: BatchStorageMock!
     private var senderMock: BatchSenderMock!
-    private var eventStorageMock: EventStorage2Mock!
+    private var eventStorageMock: EventStorageMock!
     private var timerMock: TimerMock!
     
     private var controller: BatchSendControllerImpl!

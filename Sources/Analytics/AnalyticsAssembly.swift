@@ -1,5 +1,5 @@
 //
-//  AnalyticsAssembly2.swift
+//  AnalyticsAssembly.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 29/06/2022.
@@ -8,15 +8,15 @@
 import Foundation
 import PaltaLibCore
 
-final class AnalyticsAssembly2 {
+final class AnalyticsAssembly {
     let coreAssembly: CoreAssembly
     let analyticsCoreAssembly: AnalyticsCoreAssembly
-    let eventQueueAssembly: EventQueue2Assembly
+    let eventQueueAssembly: EventQueueAssembly
     
     init(
         coreAssembly: CoreAssembly,
         analyticsCoreAssembly: AnalyticsCoreAssembly,
-        eventQueueAssembly: EventQueue2Assembly
+        eventQueueAssembly: EventQueueAssembly
     ) {
         self.coreAssembly = coreAssembly
         self.analyticsCoreAssembly = analyticsCoreAssembly
@@ -24,11 +24,11 @@ final class AnalyticsAssembly2 {
     }
 }
 
-extension AnalyticsAssembly2 {
+extension AnalyticsAssembly {
     convenience init(stack: Stack) {
         let coreAssembly = CoreAssembly()
         let analyticsCoreAssembly = AnalyticsCoreAssembly(coreAssembly: coreAssembly)
-        let eventQueueAssembly = EventQueue2Assembly(
+        let eventQueueAssembly = EventQueueAssembly(
             stack: stack,
             coreAssembly: coreAssembly,
             analyticsCoreAssembly: analyticsCoreAssembly

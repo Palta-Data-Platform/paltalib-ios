@@ -35,14 +35,14 @@ final class BatchSendControllerImpl: BatchSendController {
     private let batchComposer: BatchComposer
     private let batchStorage: BatchStorage
     private let batchSender: BatchSender
-    private let eventStorage: EventStorage2
+    private let eventStorage: EventStorage
     private let timer: Timer
     
     init(
         batchComposer: BatchComposer,
         batchStorage: BatchStorage,
         batchSender: BatchSender,
-        eventStorage: EventStorage2,
+        eventStorage: EventStorage,
         timer: Timer
     ) {
         self.batchComposer = batchComposer

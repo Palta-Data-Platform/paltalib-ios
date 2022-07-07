@@ -97,17 +97,16 @@
 		113A7993284E3A98004C0C5D /* BatchCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7992284E3A98004C0C5D /* BatchCommon.swift */; };
 		113A7995284E3B94004C0C5D /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7994284E3B94004C0C5D /* Batch.swift */; };
 		113A7997284E3C63004C0C5D /* BatchContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7996284E3C63004C0C5D /* BatchContext.swift */; };
-		113A7999284E3C7F004C0C5D /* Event2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7998284E3C7F004C0C5D /* Event2.swift */; };
+		113A7999284E3C7F004C0C5D /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7998284E3C7F004C0C5D /* Event.swift */; };
 		113A799C284E5704004C0C5D /* BatchStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A799B284E5704004C0C5D /* BatchStorage.swift */; };
-		113A799E284E5771004C0C5D /* EventStorage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A799D284E5771004C0C5D /* EventStorage2.swift */; };
+		113A799E284E5771004C0C5D /* EventStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A799D284E5771004C0C5D /* EventStorage.swift */; };
 		113A79A0284E57D7004C0C5D /* BatchComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A799F284E57D7004C0C5D /* BatchComposer.swift */; };
-		113A79A2284E591A004C0C5D /* EventQueueCore2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A1284E591A004C0C5D /* EventQueueCore2.swift */; };
+		113A79A2284E591A004C0C5D /* EventQueueCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A1284E591A004C0C5D /* EventQueueCore.swift */; };
 		113A79A4284F5507004C0C5D /* BatchSendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A3284F5507004C0C5D /* BatchSendController.swift */; };
-		113A79A6284F6E13004C0C5D /* EventComposer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A5284F6E13004C0C5D /* EventComposer2.swift */; };
-		113A79A8284F6EB3004C0C5D /* Timestamp2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A7284F6EB3004C0C5D /* Timestamp2.swift */; };
-		113A79AA284F7341004C0C5D /* EventQueue2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A9284F7341004C0C5D /* EventQueue2.swift */; };
+		113A79A6284F6E13004C0C5D /* EventComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A5284F6E13004C0C5D /* EventComposer.swift */; };
+		113A79A8284F6EB3004C0C5D /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A7284F6EB3004C0C5D /* Timestamp.swift */; };
+		113A79AA284F7341004C0C5D /* EventQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A9284F7341004C0C5D /* EventQueue.swift */; };
 		113A79AC284F75EF004C0C5D /* ContextHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79AB284F75EF004C0C5D /* ContextHolder.swift */; };
-		113A79BA284F7932004C0C5D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79B9284F7932004C0C5D /* File.swift */; };
 		113A79C1284F7FBC004C0C5D /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 113A79C0284F7FBC004C0C5D /* SwiftProtobuf */; };
 		113A79C3284F7FF2004C0C5D /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79C2284F7FF2004C0C5D /* Context.swift */; };
 		113A79D0284F8317004C0C5D /* config.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79BB284F7DF9004C0C5D /* config.pb.swift */; };
@@ -142,7 +141,7 @@
 		114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */; };
 		114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */; };
 		114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */; };
-		1150909B2859D8A9009F53AD /* EventQueue2Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150909A2859D8A9009F53AD /* EventQueue2Assembly.swift */; };
+		1150909B2859D8A9009F53AD /* EventQueueAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150909A2859D8A9009F53AD /* EventQueueAssembly.swift */; };
 		1150909F2859E499009F53AD /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150909D2859E47D009F53AD /* Stack.swift */; };
 		115090A12859EF8C009F53AD /* BatchSendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115090A02859EF8C009F53AD /* BatchSendRequest.swift */; };
 		11543015282BCFC80021ED6F /* PaidFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543014282BCFC80021ED6F /* PaidFeature.swift */; };
@@ -163,7 +162,7 @@
 		117D9BE4285C7D5C006F3E2E /* StorableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE3285C7D5C006F3E2E /* StorableEvent.swift */; };
 		117D9BE828608FDE006F3E2E /* IdentifiableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */; };
 		117D9BEA286090B8006F3E2E /* StorableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE9286090B8006F3E2E /* StorableEventTests.swift */; };
-		117D9BEE2861E311006F3E2E /* EventStorage2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BED2861E311006F3E2E /* EventStorage2Tests.swift */; };
+		117D9BEE2861E311006F3E2E /* EventStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BED2861E311006F3E2E /* EventStorageTests.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		117D9BFF2863423C006F3E2E /* CurrentContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */; };
@@ -177,28 +176,28 @@
 		117D9C2E2869A4E5006F3E2E /* BatchComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C2C2869A4E1006F3E2E /* BatchComposerTests.swift */; };
 		117D9C312869A734006F3E2E /* UUIDGeneratorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C2F2869A731006F3E2E /* UUIDGeneratorMock.swift */; };
 		117D9C332869A799006F3E2E /* ContextProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C322869A799006F3E2E /* ContextProviderMock.swift */; };
-		117D9C352869CA25006F3E2E /* EventQueueCore2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C342869CA25006F3E2E /* EventQueueCore2Tests.swift */; };
+		117D9C352869CA25006F3E2E /* EventQueueCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C342869CA25006F3E2E /* EventQueueCoreTests.swift */; };
 		117D9C372869CAE5006F3E2E /* StorableEvent+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C362869CAE5006F3E2E /* StorableEvent+Mock.swift */; };
-		117D9C39286B252B006F3E2E /* EventComposer2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C38286B252B006F3E2E /* EventComposer2Tests.swift */; };
+		117D9C39286B252B006F3E2E /* EventComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C38286B252B006F3E2E /* EventComposerTests.swift */; };
 		117D9C3B286B33C2006F3E2E /* EventTypeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C3A286B33C2006F3E2E /* EventTypeMock.swift */; };
 		117D9C3D286B33FA006F3E2E /* EventHeadeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C3C286B33FA006F3E2E /* EventHeadeMock.swift */; };
 		117D9C3F286B3429006F3E2E /* EventPayloadMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C3E286B3429006F3E2E /* EventPayloadMock.swift */; };
-		117D9C43286C4CC1006F3E2E /* EventQueue2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C42286C4CC1006F3E2E /* EventQueue2Tests.swift */; };
-		117D9C45286C4D16006F3E2E /* EventQueue2CoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C44286C4D16006F3E2E /* EventQueue2CoreMock.swift */; };
-		117D9C47286C4E26006F3E2E /* EventStorage2Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C46286C4E26006F3E2E /* EventStorage2Mock.swift */; };
+		117D9C43286C4CC1006F3E2E /* EventQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C42286C4CC1006F3E2E /* EventQueueTests.swift */; };
+		117D9C45286C4D16006F3E2E /* EventQueueCoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C44286C4D16006F3E2E /* EventQueueCoreMock.swift */; };
+		117D9C47286C4E26006F3E2E /* EventStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C46286C4E26006F3E2E /* EventStorageMock.swift */; };
 		117D9C49286C4EB2006F3E2E /* BatchSendControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C48286C4EB2006F3E2E /* BatchSendControllerMock.swift */; };
-		117D9C4B286C4F6A006F3E2E /* EventComposer2Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C4A286C4F6A006F3E2E /* EventComposer2Mock.swift */; };
+		117D9C4B286C4F6A006F3E2E /* EventComposerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C4A286C4F6A006F3E2E /* EventComposerMock.swift */; };
 		117D9C4D286C52AC006F3E2E /* CurrentContextProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C4C286C52AC006F3E2E /* CurrentContextProviderMock.swift */; };
 		117D9C4F286C59CA006F3E2E /* BatchSendControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C4E286C59CA006F3E2E /* BatchSendControllerTests.swift */; };
 		117D9C51286C5A2A006F3E2E /* BatchComposerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C50286C5A2A006F3E2E /* BatchComposerMock.swift */; };
 		117D9C53286C5A95006F3E2E /* BatchStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C52286C5A95006F3E2E /* BatchStorageMock.swift */; };
 		117D9C55286C5B21006F3E2E /* BatchSenderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C54286C5B21006F3E2E /* BatchSenderMock.swift */; };
-		117D9C58286CE26A006F3E2E /* PaltaAnalytics2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C56286CE22E006F3E2E /* PaltaAnalytics2.swift */; };
-		117D9C5B286D70A1006F3E2E /* AnalyticsAssembly2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C59286CE2AF006F3E2E /* AnalyticsAssembly2.swift */; };
-		117D9C5E286D7A94006F3E2E /* ConfigApplyService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C5C286D7A3D006F3E2E /* ConfigApplyService2.swift */; };
-		117D9C60286D7E12006F3E2E /* PaltaAnalytics2+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C5F286D7E12006F3E2E /* PaltaAnalytics2+Configure.swift */; };
-		117D9C62286D7E33006F3E2E /* PaltaAnalytics2+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C61286D7E33006F3E2E /* PaltaAnalytics2+Events.swift */; };
-		117D9C64286D7EDB006F3E2E /* PaltaAnalytics2+Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C63286D7EDB006F3E2E /* PaltaAnalytics2+Context.swift */; };
+		117D9C58286CE26A006F3E2E /* PaltaAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C56286CE22E006F3E2E /* PaltaAnalytics.swift */; };
+		117D9C5B286D70A1006F3E2E /* AnalyticsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C59286CE2AF006F3E2E /* AnalyticsAssembly.swift */; };
+		117D9C5E286D7A94006F3E2E /* ConfigApplyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C5C286D7A3D006F3E2E /* ConfigApplyService.swift */; };
+		117D9C60286D7E12006F3E2E /* PaltaAnalytics+Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C5F286D7E12006F3E2E /* PaltaAnalytics+Configure.swift */; };
+		117D9C62286D7E33006F3E2E /* PaltaAnalytics+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C61286D7E33006F3E2E /* PaltaAnalytics+Events.swift */; };
+		117D9C64286D7EDB006F3E2E /* PaltaAnalytics+Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C63286D7EDB006F3E2E /* PaltaAnalytics+Context.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
@@ -430,18 +429,17 @@
 		113A7992284E3A98004C0C5D /* BatchCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchCommon.swift; sourceTree = "<group>"; };
 		113A7994284E3B94004C0C5D /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
 		113A7996284E3C63004C0C5D /* BatchContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchContext.swift; sourceTree = "<group>"; };
-		113A7998284E3C7F004C0C5D /* Event2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event2.swift; sourceTree = "<group>"; };
+		113A7998284E3C7F004C0C5D /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		113A799B284E5704004C0C5D /* BatchStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchStorage.swift; sourceTree = "<group>"; };
-		113A799D284E5771004C0C5D /* EventStorage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorage2.swift; sourceTree = "<group>"; };
+		113A799D284E5771004C0C5D /* EventStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorage.swift; sourceTree = "<group>"; };
 		113A799F284E57D7004C0C5D /* BatchComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchComposer.swift; sourceTree = "<group>"; };
-		113A79A1284E591A004C0C5D /* EventQueueCore2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueCore2.swift; sourceTree = "<group>"; };
+		113A79A1284E591A004C0C5D /* EventQueueCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueCore.swift; sourceTree = "<group>"; };
 		113A79A3284F5507004C0C5D /* BatchSendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSendController.swift; sourceTree = "<group>"; };
-		113A79A5284F6E13004C0C5D /* EventComposer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposer2.swift; sourceTree = "<group>"; };
-		113A79A7284F6EB3004C0C5D /* Timestamp2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp2.swift; sourceTree = "<group>"; };
-		113A79A9284F7341004C0C5D /* EventQueue2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueue2.swift; sourceTree = "<group>"; };
+		113A79A5284F6E13004C0C5D /* EventComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposer.swift; sourceTree = "<group>"; };
+		113A79A7284F6EB3004C0C5D /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
+		113A79A9284F7341004C0C5D /* EventQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueue.swift; sourceTree = "<group>"; };
 		113A79AB284F75EF004C0C5D /* ContextHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextHolder.swift; sourceTree = "<group>"; };
 		113A79B2284F78DC004C0C5D /* AnalyticsDTOExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnalyticsDTOExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		113A79B9284F7932004C0C5D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		113A79BB284F7DF9004C0C5D /* config.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.pb.swift; sourceTree = "<group>"; };
 		113A79BD284F7E01004C0C5D /* config.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = config.proto; sourceTree = "<group>"; };
 		113A79C2284F7FF2004C0C5D /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
@@ -471,7 +469,7 @@
 		114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderMock.swift; sourceTree = "<group>"; };
 		114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderTests.swift; sourceTree = "<group>"; };
 		114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCoreAssembly.swift; sourceTree = "<group>"; };
-		1150909A2859D8A9009F53AD /* EventQueue2Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueue2Assembly.swift; sourceTree = "<group>"; };
+		1150909A2859D8A9009F53AD /* EventQueueAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueAssembly.swift; sourceTree = "<group>"; };
 		1150909D2859E47D009F53AD /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		115090A02859EF8C009F53AD /* BatchSendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSendRequest.swift; sourceTree = "<group>"; };
 		11543014282BCFC80021ED6F /* PaidFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidFeature.swift; sourceTree = "<group>"; };
@@ -492,7 +490,7 @@
 		117D9BE3285C7D5C006F3E2E /* StorableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableEvent.swift; sourceTree = "<group>"; };
 		117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableEvent.swift; sourceTree = "<group>"; };
 		117D9BE9286090B8006F3E2E /* StorableEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableEventTests.swift; sourceTree = "<group>"; };
-		117D9BED2861E311006F3E2E /* EventStorage2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorage2Tests.swift; sourceTree = "<group>"; };
+		117D9BED2861E311006F3E2E /* EventStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorageTests.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContextManager.swift; sourceTree = "<group>"; };
@@ -506,28 +504,28 @@
 		117D9C2C2869A4E1006F3E2E /* BatchComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchComposerTests.swift; sourceTree = "<group>"; };
 		117D9C2F2869A731006F3E2E /* UUIDGeneratorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDGeneratorMock.swift; sourceTree = "<group>"; };
 		117D9C322869A799006F3E2E /* ContextProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextProviderMock.swift; sourceTree = "<group>"; };
-		117D9C342869CA25006F3E2E /* EventQueueCore2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueCore2Tests.swift; sourceTree = "<group>"; };
+		117D9C342869CA25006F3E2E /* EventQueueCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueCoreTests.swift; sourceTree = "<group>"; };
 		117D9C362869CAE5006F3E2E /* StorableEvent+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StorableEvent+Mock.swift"; sourceTree = "<group>"; };
-		117D9C38286B252B006F3E2E /* EventComposer2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposer2Tests.swift; sourceTree = "<group>"; };
+		117D9C38286B252B006F3E2E /* EventComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposerTests.swift; sourceTree = "<group>"; };
 		117D9C3A286B33C2006F3E2E /* EventTypeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTypeMock.swift; sourceTree = "<group>"; };
 		117D9C3C286B33FA006F3E2E /* EventHeadeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHeadeMock.swift; sourceTree = "<group>"; };
 		117D9C3E286B3429006F3E2E /* EventPayloadMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPayloadMock.swift; sourceTree = "<group>"; };
-		117D9C42286C4CC1006F3E2E /* EventQueue2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueue2Tests.swift; sourceTree = "<group>"; };
-		117D9C44286C4D16006F3E2E /* EventQueue2CoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueue2CoreMock.swift; sourceTree = "<group>"; };
-		117D9C46286C4E26006F3E2E /* EventStorage2Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorage2Mock.swift; sourceTree = "<group>"; };
+		117D9C42286C4CC1006F3E2E /* EventQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueTests.swift; sourceTree = "<group>"; };
+		117D9C44286C4D16006F3E2E /* EventQueueCoreMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueCoreMock.swift; sourceTree = "<group>"; };
+		117D9C46286C4E26006F3E2E /* EventStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorageMock.swift; sourceTree = "<group>"; };
 		117D9C48286C4EB2006F3E2E /* BatchSendControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSendControllerMock.swift; sourceTree = "<group>"; };
-		117D9C4A286C4F6A006F3E2E /* EventComposer2Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposer2Mock.swift; sourceTree = "<group>"; };
+		117D9C4A286C4F6A006F3E2E /* EventComposerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventComposerMock.swift; sourceTree = "<group>"; };
 		117D9C4C286C52AC006F3E2E /* CurrentContextProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContextProviderMock.swift; sourceTree = "<group>"; };
 		117D9C4E286C59CA006F3E2E /* BatchSendControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSendControllerTests.swift; sourceTree = "<group>"; };
 		117D9C50286C5A2A006F3E2E /* BatchComposerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchComposerMock.swift; sourceTree = "<group>"; };
 		117D9C52286C5A95006F3E2E /* BatchStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchStorageMock.swift; sourceTree = "<group>"; };
 		117D9C54286C5B21006F3E2E /* BatchSenderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSenderMock.swift; sourceTree = "<group>"; };
-		117D9C56286CE22E006F3E2E /* PaltaAnalytics2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAnalytics2.swift; sourceTree = "<group>"; };
-		117D9C59286CE2AF006F3E2E /* AnalyticsAssembly2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAssembly2.swift; sourceTree = "<group>"; };
-		117D9C5C286D7A3D006F3E2E /* ConfigApplyService2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigApplyService2.swift; sourceTree = "<group>"; };
-		117D9C5F286D7E12006F3E2E /* PaltaAnalytics2+Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics2+Configure.swift"; sourceTree = "<group>"; };
-		117D9C61286D7E33006F3E2E /* PaltaAnalytics2+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics2+Events.swift"; sourceTree = "<group>"; };
-		117D9C63286D7EDB006F3E2E /* PaltaAnalytics2+Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics2+Context.swift"; sourceTree = "<group>"; };
+		117D9C56286CE22E006F3E2E /* PaltaAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAnalytics.swift; sourceTree = "<group>"; };
+		117D9C59286CE2AF006F3E2E /* AnalyticsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAssembly.swift; sourceTree = "<group>"; };
+		117D9C5C286D7A3D006F3E2E /* ConfigApplyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigApplyService.swift; sourceTree = "<group>"; };
+		117D9C5F286D7E12006F3E2E /* PaltaAnalytics+Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+Configure.swift"; sourceTree = "<group>"; };
+		117D9C61286D7E33006F3E2E /* PaltaAnalytics+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+Events.swift"; sourceTree = "<group>"; };
+		117D9C63286D7EDB006F3E2E /* PaltaAnalytics+Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+Context.swift"; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
@@ -695,7 +693,7 @@
 				1111593A27F708E400A41ADA /* Models */,
 				1111593C27F708E400A41ADA /* Services */,
 				1111592B27F708CA00A41ADA /* Settings.swift */,
-				117D9C59286CE2AF006F3E2E /* AnalyticsAssembly2.swift */,
+				117D9C59286CE2AF006F3E2E /* AnalyticsAssembly.swift */,
 				114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */,
 			);
 			path = Sources/Analytics;
@@ -706,11 +704,11 @@
 			children = (
 				1111593427F708E400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift */,
 				1111593727F708E400A41ADA /* PaltaAnalytics+Target.swift */,
-				117D9C5C286D7A3D006F3E2E /* ConfigApplyService2.swift */,
-				117D9C56286CE22E006F3E2E /* PaltaAnalytics2.swift */,
-				117D9C5F286D7E12006F3E2E /* PaltaAnalytics2+Configure.swift */,
-				117D9C61286D7E33006F3E2E /* PaltaAnalytics2+Events.swift */,
-				117D9C63286D7EDB006F3E2E /* PaltaAnalytics2+Context.swift */,
+				117D9C5C286D7A3D006F3E2E /* ConfigApplyService.swift */,
+				117D9C56286CE22E006F3E2E /* PaltaAnalytics.swift */,
+				117D9C5F286D7E12006F3E2E /* PaltaAnalytics+Configure.swift */,
+				117D9C61286D7E33006F3E2E /* PaltaAnalytics+Events.swift */,
+				117D9C63286D7EDB006F3E2E /* PaltaAnalytics+Context.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -727,7 +725,7 @@
 				113A7992284E3A98004C0C5D /* BatchCommon.swift */,
 				113A7994284E3B94004C0C5D /* Batch.swift */,
 				113A7996284E3C63004C0C5D /* BatchContext.swift */,
-				113A7998284E3C7F004C0C5D /* Event2.swift */,
+				113A7998284E3C7F004C0C5D /* Event.swift */,
 				117D9BE3285C7D5C006F3E2E /* StorableEvent.swift */,
 				117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */,
 				11115A5627FC503A00A41ADA /* Session.swift */,
@@ -789,17 +787,17 @@
 				112FCA3F2848B76500C8F88A /* BatchSender.swift */,
 				1137D15A285A00D9008CA306 /* SDKInfoProvider.swift */,
 				113A799B284E5704004C0C5D /* BatchStorage.swift */,
-				113A799D284E5771004C0C5D /* EventStorage2.swift */,
+				113A799D284E5771004C0C5D /* EventStorage.swift */,
 				113A799F284E57D7004C0C5D /* BatchComposer.swift */,
 				117D9C2A2869A253006F3E2E /* UUIDGenerator.swift */,
-				113A79A1284E591A004C0C5D /* EventQueueCore2.swift */,
-				113A79A5284F6E13004C0C5D /* EventComposer2.swift */,
-				113A79A9284F7341004C0C5D /* EventQueue2.swift */,
+				113A79A1284E591A004C0C5D /* EventQueueCore.swift */,
+				113A79A5284F6E13004C0C5D /* EventComposer.swift */,
+				113A79A9284F7341004C0C5D /* EventQueue.swift */,
 				11115A8E28001F2300A41ADA /* UserPropertiesKeeper.swift */,
 				113A79A3284F5507004C0C5D /* BatchSendController.swift */,
 				117D9BFD28634216006F3E2E /* Contexts */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
-				1150909A2859D8A9009F53AD /* EventQueue2Assembly.swift */,
+				1150909A2859D8A9009F53AD /* EventQueueAssembly.swift */,
 				115090A02859EF8C009F53AD /* BatchSendRequest.swift */,
 				11C60F5728197329004D0185 /* Helpers */,
 				113A799A284E3C8E004C0C5D /* Models */,
@@ -865,13 +863,13 @@
 				1137D164285B2003008CA306 /* SDKInfoProviderTests.swift */,
 				1137D166285B2211008CA306 /* BatchStorageTests.swift */,
 				117D9BE9286090B8006F3E2E /* StorableEventTests.swift */,
-				117D9BED2861E311006F3E2E /* EventStorage2Tests.swift */,
+				117D9BED2861E311006F3E2E /* EventStorageTests.swift */,
 				117D9C0228647C16006F3E2E /* ContextStorageTests.swift */,
 				117D9C052865A9B1006F3E2E /* CurrentContextManagerTests.swift */,
 				117D9C2C2869A4E1006F3E2E /* BatchComposerTests.swift */,
-				117D9C342869CA25006F3E2E /* EventQueueCore2Tests.swift */,
-				117D9C38286B252B006F3E2E /* EventComposer2Tests.swift */,
-				117D9C42286C4CC1006F3E2E /* EventQueue2Tests.swift */,
+				117D9C342869CA25006F3E2E /* EventQueueCoreTests.swift */,
+				117D9C38286B252B006F3E2E /* EventComposerTests.swift */,
+				117D9C42286C4CC1006F3E2E /* EventQueueTests.swift */,
 				117D9C4E286C59CA006F3E2E /* BatchSendControllerTests.swift */,
 			);
 			path = Analytics;
@@ -931,10 +929,10 @@
 				117D9C072865A9E2006F3E2E /* ContextStorageMock.swift */,
 				117D9C2F2869A731006F3E2E /* UUIDGeneratorMock.swift */,
 				117D9C322869A799006F3E2E /* ContextProviderMock.swift */,
-				117D9C44286C4D16006F3E2E /* EventQueue2CoreMock.swift */,
-				117D9C46286C4E26006F3E2E /* EventStorage2Mock.swift */,
+				117D9C44286C4D16006F3E2E /* EventQueueCoreMock.swift */,
+				117D9C46286C4E26006F3E2E /* EventStorageMock.swift */,
 				117D9C48286C4EB2006F3E2E /* BatchSendControllerMock.swift */,
-				117D9C4A286C4F6A006F3E2E /* EventComposer2Mock.swift */,
+				117D9C4A286C4F6A006F3E2E /* EventComposerMock.swift */,
 				117D9C50286C5A2A006F3E2E /* BatchComposerMock.swift */,
 				117D9C52286C5A95006F3E2E /* BatchStorageMock.swift */,
 				117D9C54286C5B21006F3E2E /* BatchSenderMock.swift */,
@@ -1013,7 +1011,6 @@
 		113A79B3284F78DC004C0C5D /* LibDevelopment/AnalyticsDTOExample */ = {
 			isa = PBXGroup;
 			children = (
-				113A79B9284F7932004C0C5D /* File.swift */,
 				113A79C2284F7FF2004C0C5D /* Context.swift */,
 				1150909D2859E47D009F53AD /* Stack.swift */,
 				113A79D7284F837B004C0C5D /* EventCommon.swift */,
@@ -1193,7 +1190,7 @@
 			isa = PBXGroup;
 			children = (
 				11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */,
-				113A79A7284F6EB3004C0C5D /* Timestamp2.swift */,
+				113A79A7284F6EB3004C0C5D /* Timestamp.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1590,7 +1587,7 @@
 				117D9C3B286B33C2006F3E2E /* EventTypeMock.swift in Sources */,
 				1137D1592859FF51008CA306 /* BatchSendRequestTests.swift in Sources */,
 				1137D163285A15A3008CA306 /* BatchMock.swift in Sources */,
-				117D9C45286C4D16006F3E2E /* EventQueue2CoreMock.swift in Sources */,
+				117D9C45286C4D16006F3E2E /* EventQueueCoreMock.swift in Sources */,
 				117D9C082865A9E2006F3E2E /* ContextStorageMock.swift in Sources */,
 				11115A96280023B200A41ADA /* UserPropertiesKeeperTests.swift in Sources */,
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
@@ -1602,7 +1599,7 @@
 				113AD63C2837A6DD00324D62 /* FeatureMapperTests.swift in Sources */,
 				113A7A072850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift in Sources */,
 				11115A8D27FF293800A41ADA /* HTTPClientMock.swift in Sources */,
-				117D9BEE2861E311006F3E2E /* EventStorage2Tests.swift in Sources */,
+				117D9BEE2861E311006F3E2E /* EventStorageTests.swift in Sources */,
 				113AD6442837AD3B00324D62 /* FeatureMock.swift in Sources */,
 				117D9C4D286C52AC006F3E2E /* CurrentContextProviderMock.swift in Sources */,
 				117D9C4F286C59CA006F3E2E /* BatchSendControllerTests.swift in Sources */,
@@ -1611,9 +1608,9 @@
 				111A59B62840E9870052FCD1 /* PBPurchasePluginTests.swift in Sources */,
 				111A599A2840C5A30052FCD1 /* SubscriptionsServiceTests.swift in Sources */,
 				111A59A22840CDBD0052FCD1 /* PaidFeaturesServiceTests.swift in Sources */,
-				117D9C43286C4CC1006F3E2E /* EventQueue2Tests.swift in Sources */,
+				117D9C43286C4CC1006F3E2E /* EventQueueTests.swift in Sources */,
 				117D9C332869A799006F3E2E /* ContextProviderMock.swift in Sources */,
-				117D9C39286B252B006F3E2E /* EventComposer2Tests.swift in Sources */,
+				117D9C39286B252B006F3E2E /* EventComposerTests.swift in Sources */,
 				117D9C53286C5A95006F3E2E /* BatchStorageMock.swift in Sources */,
 				117D9C49286C4EB2006F3E2E /* BatchSendControllerMock.swift in Sources */,
 				1137D161285A13AB008CA306 /* SDKInfoProviderMock.swift in Sources */,
@@ -1635,11 +1632,11 @@
 				117D9C2E2869A4E5006F3E2E /* BatchComposerTests.swift in Sources */,
 				11543034282D02E50021ED6F /* PromoOfferMock.swift in Sources */,
 				1137D16E285B2642008CA306 /* BatchEventMock.swift in Sources */,
-				117D9C4B286C4F6A006F3E2E /* EventComposer2Mock.swift in Sources */,
+				117D9C4B286C4F6A006F3E2E /* EventComposerMock.swift in Sources */,
 				117D9C062865A9B1006F3E2E /* CurrentContextManagerTests.swift in Sources */,
 				111A59A82840CE630052FCD1 /* SubscriptionsServiceMock.swift in Sources */,
 				111A59B32840E89F0052FCD1 /* PaidFeaturesServiceMock.swift in Sources */,
-				117D9C352869CA25006F3E2E /* EventQueueCore2Tests.swift in Sources */,
+				117D9C352869CA25006F3E2E /* EventQueueCoreTests.swift in Sources */,
 				11543035282D02E80021ED6F /* ProductDiscountMock.swift in Sources */,
 				117D9C3F286B3429006F3E2E /* EventPayloadMock.swift in Sources */,
 				117D9BEA286090B8006F3E2E /* StorableEventTests.swift in Sources */,
@@ -1648,7 +1645,7 @@
 				113AD6422837AC6D00324D62 /* FeaturesServiceTests.swift in Sources */,
 				1137D167285B2211008CA306 /* BatchStorageTests.swift in Sources */,
 				117D9C312869A734006F3E2E /* UUIDGeneratorMock.swift in Sources */,
-				117D9C47286C4E26006F3E2E /* EventStorage2Mock.swift in Sources */,
+				117D9C47286C4E26006F3E2E /* EventStorageMock.swift in Sources */,
 				111A59A72840CE410052FCD1 /* FeaturesServiceMock.swift in Sources */,
 				1137D15F285A1374008CA306 /* BatchSenderTests.swift in Sources */,
 			);
@@ -1700,8 +1697,8 @@
 			files = (
 				113A7991284E39AF004C0C5D /* BatchEvent.swift in Sources */,
 				11115A9C280065E300A41ADA /* DeviceInfoProvider.swift in Sources */,
-				113A79AA284F7341004C0C5D /* EventQueue2.swift in Sources */,
-				1150909B2859D8A9009F53AD /* EventQueue2Assembly.swift in Sources */,
+				113A79AA284F7341004C0C5D /* EventQueue.swift in Sources */,
+				1150909B2859D8A9009F53AD /* EventQueueAssembly.swift in Sources */,
 				117D9BE828608FDE006F3E2E /* IdentifiableEvent.swift in Sources */,
 				113A798D284E0B78004C0C5D /* EventPayload.swift in Sources */,
 				11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */,
@@ -1714,36 +1711,36 @@
 				113A7993284E3A98004C0C5D /* BatchCommon.swift in Sources */,
 				117D9C2B2869A253006F3E2E /* UUIDGenerator.swift in Sources */,
 				117D9BE4285C7D5C006F3E2E /* StorableEvent.swift in Sources */,
-				113A79A8284F6EB3004C0C5D /* Timestamp2.swift in Sources */,
+				113A79A8284F6EB3004C0C5D /* Timestamp.swift in Sources */,
 				117D9C292869A219006F3E2E /* Stack.swift in Sources */,
 				1111596F27F70BF500A41ADA /* ConfigurationService.swift in Sources */,
-				117D9C62286D7E33006F3E2E /* PaltaAnalytics2+Events.swift in Sources */,
-				117D9C64286D7EDB006F3E2E /* PaltaAnalytics2+Context.swift in Sources */,
+				117D9C62286D7E33006F3E2E /* PaltaAnalytics+Events.swift in Sources */,
+				117D9C64286D7EDB006F3E2E /* PaltaAnalytics+Context.swift in Sources */,
 				113A79A4284F5507004C0C5D /* BatchSendController.swift in Sources */,
-				117D9C5B286D70A1006F3E2E /* AnalyticsAssembly2.swift in Sources */,
+				117D9C5B286D70A1006F3E2E /* AnalyticsAssembly.swift in Sources */,
 				113A79AC284F75EF004C0C5D /* ContextHolder.swift in Sources */,
 				11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */,
 				1111596E27F70BF500A41ADA /* Settings.swift in Sources */,
-				113A79A6284F6E13004C0C5D /* EventComposer2.swift in Sources */,
+				113A79A6284F6E13004C0C5D /* EventComposer.swift in Sources */,
 				113A79A0284E57D7004C0C5D /* BatchComposer.swift in Sources */,
-				113A7999284E3C7F004C0C5D /* Event2.swift in Sources */,
+				113A7999284E3C7F004C0C5D /* Event.swift in Sources */,
 				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
 				112FCA402848B76500C8F88A /* BatchSender.swift in Sources */,
-				117D9C5E286D7A94006F3E2E /* ConfigApplyService2.swift in Sources */,
+				117D9C5E286D7A94006F3E2E /* ConfigApplyService.swift in Sources */,
 				117D9BFF2863423C006F3E2E /* CurrentContextManager.swift in Sources */,
 				115090A12859EF8C009F53AD /* BatchSendRequest.swift in Sources */,
 				113A798B284DF461004C0C5D /* EventCommon.swift in Sources */,
 				11115A4C27FB7E6000A41ADA /* Timer.swift in Sources */,
 				113A7995284E3B94004C0C5D /* Batch.swift in Sources */,
-				117D9C60286D7E12006F3E2E /* PaltaAnalytics2+Configure.swift in Sources */,
+				117D9C60286D7E12006F3E2E /* PaltaAnalytics+Configure.swift in Sources */,
 				114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */,
-				113A799E284E5771004C0C5D /* EventStorage2.swift in Sources */,
-				113A79A2284E591A004C0C5D /* EventQueueCore2.swift in Sources */,
+				113A799E284E5771004C0C5D /* EventStorage.swift in Sources */,
+				113A79A2284E591A004C0C5D /* EventQueueCore.swift in Sources */,
 				11115A5927FC59C900A41ADA /* Session.swift in Sources */,
 				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
 				113A7989284DF327004C0C5D /* EventType.swift in Sources */,
 				117D9C0128634288006F3E2E /* ContextStorage.swift in Sources */,
-				117D9C58286CE26A006F3E2E /* PaltaAnalytics2.swift in Sources */,
+				117D9C58286CE26A006F3E2E /* PaltaAnalytics.swift in Sources */,
 				11115A5827FC59BC00A41ADA /* SessionManager.swift in Sources */,
 				113A798F284E0CCF004C0C5D /* EventHeader.swift in Sources */,
 			);
@@ -1788,7 +1785,6 @@
 				113A79D8284F837B004C0C5D /* EventCommon.swift in Sources */,
 				113A79E4284F8F69004C0C5D /* Header.swift in Sources */,
 				113A79E2284F8A4D004C0C5D /* BatchCommon.swift in Sources */,
-				113A79BA284F7932004C0C5D /* File.swift in Sources */,
 				113A79DE284F83DA004C0C5D /* BatchEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

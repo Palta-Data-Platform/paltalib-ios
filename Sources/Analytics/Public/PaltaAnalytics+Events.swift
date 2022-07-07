@@ -7,8 +7,8 @@
 
 import Foundation
 
-public extension PaltaAnalytics2 {
-    func log<E: Event2>(_ event: E, outOfSession: Bool = false) {
+public extension PaltaAnalytics {
+    func log<E: Event>(_ event: E, outOfSession: Bool = false) {
         assembly.eventQueueAssembly.eventQueue.logEvent(event, outOfSession: outOfSession)
     }
 }

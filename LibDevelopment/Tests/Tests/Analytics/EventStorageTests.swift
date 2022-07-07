@@ -1,5 +1,5 @@
 //
-//  EventStorage2Tests.swift
+//  EventStorageTests.swift
 //  PaltaLibTests
 //
 //  Created by Vyacheslav Beltyukov on 21/06/2022.
@@ -9,12 +9,12 @@ import Foundation
 import XCTest
 @testable import PaltaLibAnalytics
 
-final class EventStorage2Tests: XCTestCase {
+final class EventStorageTests: XCTestCase {
     private var stackMock: Stack!
     private var fileManager: FileManager!
     private var testURL: URL!
     
-    private var storage: EventStorage2Impl!
+    private var storage: EventStorageImpl!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -31,7 +31,7 @@ final class EventStorage2Tests: XCTestCase {
         
         try fileManager.createDirectory(at: testURL, withIntermediateDirectories: true)
         
-        storage = EventStorage2Impl(
+        storage = EventStorageImpl(
             folderURL: testURL,
             stack: stackMock,
             fileManager: fileManager

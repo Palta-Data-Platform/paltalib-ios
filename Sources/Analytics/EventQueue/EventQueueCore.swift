@@ -1,5 +1,5 @@
 //
-//  EventQueueCore2.swift
+//  EventQueueCore.swift
 //  PaltaLibAnalytics
 //
 //  Created by Vyacheslav Beltyukov on 06/06/2022.
@@ -8,14 +8,14 @@
 import Foundation
 import PaltaLibCore
 
-struct EventQueue2Config {
+struct EventQueueConfig {
     let maxBatchSize: Int
     let uploadInterval: TimeInterval
     let uploadThreshold: Int
     let maxEvents: Int
 }
 
-protocol EventQueueCore2: AnyObject {
+protocol EventQueueCore: AnyObject {
     typealias UploadHandler = ([UUID: BatchEvent], UUID, Telemetry) -> Bool
     typealias RemoveHandler = (ArraySlice<StorableEvent>) -> Void
 
@@ -28,13 +28,13 @@ protocol EventQueueCore2: AnyObject {
     func sendEventsAvailable()
 }
 
-final class EventQueueCore2Impl: EventQueueCore2, FunctionalExtension {
+final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     var sendHandler: UploadHandler?
     var removeHandler: RemoveHandler?
 
     var isPaused = false
 
-    var config: EventQueue2Config? {
+    var config: EventQueueConfig? {
         didSet {
             onNewEvents()
         }
