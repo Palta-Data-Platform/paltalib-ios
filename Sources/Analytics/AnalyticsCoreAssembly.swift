@@ -9,17 +9,13 @@ import Foundation
 import PaltaLibCore
 
 final class AnalyticsCoreAssembly {
-    let trackingOptionsProvider: TrackingOptionsProviderImpl
     let userPropertiesKeeper: UserPropertiesKeeperImpl
     let sessionManager: SessionManagerImpl
     let configurationService: ConfigurationService
     
     init(coreAssembly: CoreAssembly) {
-        let trackingOptionsProvider = TrackingOptionsProviderImpl()
-
         let userPropertiesKeeper = UserPropertiesKeeperImpl(
             uuidGenerator: UUIDGeneratorImpl(),
-            trackingOptionsProvider: trackingOptionsProvider,
             deviceInfoProvider: DeviceInfoProviderImpl(),
             userDefaults: .standard
         )
@@ -35,7 +31,6 @@ final class AnalyticsCoreAssembly {
             httpClient: coreAssembly.httpClient
         )
         
-        self.trackingOptionsProvider = trackingOptionsProvider
         self.userPropertiesKeeper = userPropertiesKeeper
         self.sessionManager = sessionManager
         self.configurationService = configurationService

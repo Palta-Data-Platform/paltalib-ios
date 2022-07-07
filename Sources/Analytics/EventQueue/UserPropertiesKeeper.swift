@@ -71,18 +71,15 @@ final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
 
     private let defaultsKey = "paltaBrainUserProperties"
     private let uuidGenerator: UUIDGenerator
-    private let trackingOptionsProvider: TrackingOptionsProvider
     private let deviceInfoProvider: DeviceInfoProvider
     private let userDefaults: UserDefaults
 
     init(
         uuidGenerator: UUIDGenerator,
-        trackingOptionsProvider: TrackingOptionsProvider,
         deviceInfoProvider: DeviceInfoProvider,
         userDefaults: UserDefaults
     ) {
         self.uuidGenerator = uuidGenerator
-        self.trackingOptionsProvider = trackingOptionsProvider
         self.deviceInfoProvider = deviceInfoProvider
         self.userDefaults = userDefaults
     }
@@ -95,19 +92,6 @@ final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
             return
         }
 
-        if
-            useIDFAasDeviceId,
-            trackingOptionsProvider.trackingOptions.shouldTrackIDFA(),
-            let idfa = deviceInfoProvider.idfa
-        {
-            deviceId = idfa
-        } else if
-            trackingOptionsProvider.trackingOptions.shouldTrackIDFV(),
-            let idfv = deviceInfoProvider.idfv
-        {
-            deviceId = idfv
-        } else {
-            deviceId = "\(UUID().uuidString)R"
-        }
+        deviceId = uuidGenerator.generateUUID().uuidString
     }
 }

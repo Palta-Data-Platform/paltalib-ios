@@ -116,7 +116,8 @@ final class SessionManagerTests: XCTestCase {
     }
 
     func testRefresh() throws {
-        let event = Event.mock(timestamp: 123)
+        var event = BatchEventMock()
+        event.timestamp = .random(in: 0...100)
 
         sessionManager.refreshSession(with: event)
 

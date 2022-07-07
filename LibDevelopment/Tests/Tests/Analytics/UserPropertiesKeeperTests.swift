@@ -11,7 +11,6 @@ import Amplitude
 
 final class UserPropertiesKeeperTests: XCTestCase {
     var uuidGeneratorMock: UUIDGeneratorMock!
-    var trackerOptionsMock: TrackingOptionsProviderMock!
     var deviceInfoMock: DeviceInfoProviderMock!
     var userDefaults: UserDefaults!
 
@@ -21,7 +20,6 @@ final class UserPropertiesKeeperTests: XCTestCase {
         try super.setUpWithError()
 
         uuidGeneratorMock = .init()
-        trackerOptionsMock = .init()
         deviceInfoMock = .init()
         userDefaults = UserDefaults()
         
@@ -29,7 +27,6 @@ final class UserPropertiesKeeperTests: XCTestCase {
 
         keeper = UserPropertiesKeeperImpl(
             uuidGenerator: uuidGeneratorMock,
-            trackingOptionsProvider: trackerOptionsMock,
             deviceInfoProvider: deviceInfoMock,
             userDefaults: userDefaults
         )
@@ -43,7 +40,6 @@ final class UserPropertiesKeeperTests: XCTestCase {
 
         keeper = UserPropertiesKeeperImpl(
             uuidGenerator: uuidGeneratorMock,
-            trackingOptionsProvider: trackerOptionsMock,
             deviceInfoProvider: deviceInfoMock,
             userDefaults: userDefaults
         )
@@ -53,84 +49,12 @@ final class UserPropertiesKeeperTests: XCTestCase {
         XCTAssertEqual(keeper.instanceId, instanceId)
     }
 
-    func testGenerateDeviceIdWithIDFA() {
-        deviceInfoMock.idfa = "IDFA"
-        deviceInfoMock.idfv = "IDFV"
-
-        keeper.useIDFAasDeviceId = true
-        keeper.generateDeviceId(forced: true)
-
-        XCTAssertEqual(keeper.deviceId, "IDFA")
-    }
-
-    func testGenerateDeviceIdWithIDFADisabled() {
-        deviceInfoMock.idfa = "IDFA"
-        deviceInfoMock.idfv = "IDFV"
-
-        keeper.generateDeviceId(forced: true)
-
-        XCTAssertEqual(keeper.deviceId, "IDFV")
-    }
-
-    func testGenerateDeviceIdWithNoIDFA() {
-        deviceInfoMock.idfa = nil
-        deviceInfoMock.idfv = "IDFV"
-
-        keeper.useIDFAasDeviceId = true
-        keeper.generateDeviceId(forced: true)
-
-        XCTAssertEqual(keeper.deviceId, "IDFV")
-    }
-
-    func testGenerateDeviceIdIgnoreIDFA() {
-        deviceInfoMock.idfa = "IDFA"
-        deviceInfoMock.idfv = "IDFV"
-        trackerOptionsMock.trackingOptions = AMPTrackingOptions().disableIDFA()
-
-        keeper.useIDFAasDeviceId = true
-        keeper.generateDeviceId(forced: true)
-
-        XCTAssertEqual(keeper.deviceId, "IDFV")
-    }
-
-    func testGenerateDeviceIdIgnoreIDFV() {
-        deviceInfoMock.idfa = "IDFA"
-        deviceInfoMock.idfv = "IDFV"
-        trackerOptionsMock.trackingOptions = AMPTrackingOptions().disableIDFV()
-
-        keeper.useIDFAasDeviceId = true
-        keeper.generateDeviceId(forced: true)
-
-        XCTAssertEqual(keeper.deviceId, "IDFA")
-    }
-
-    func testGenerateDeviceIdIgnoreIDFA_IDFV() {
-        deviceInfoMock.idfa = "IDFA"
-        deviceInfoMock.idfv = "IDFV"
-        trackerOptionsMock.trackingOptions = AMPTrackingOptions().disableIDFV().disableIDFA()
-
-        keeper.useIDFAasDeviceId = true
-        keeper.generateDeviceId(forced: true)
-
-        XCTAssertNotEqual(keeper.deviceId, "IDFA")
-        XCTAssertNotEqual(keeper.deviceId, "IDFV")
-
-        XCTAssertEqual(keeper.deviceId?.count, 37)
-        XCTAssertEqual(keeper.deviceId?.last, "R")
-    }
-
     func testGenerateDeviceIdNoIDFA_IDFV() {
-        deviceInfoMock.idfa = nil
-        deviceInfoMock.idfv = nil
-
-        keeper.useIDFAasDeviceId = true
+        let id = UUID()
+        uuidGeneratorMock.uuids = [id]
         keeper.generateDeviceId(forced: true)
-
-        XCTAssertNotEqual(keeper.deviceId, "IDFA")
-        XCTAssertNotEqual(keeper.deviceId, "IDFV")
-
-        XCTAssertEqual(keeper.deviceId?.count, 37)
-        XCTAssertEqual(keeper.deviceId?.last, "R")
+        
+        XCTAssertEqual(keeper.deviceId, id.uuidString)
     }
 
     func testSoftGenerateId() {

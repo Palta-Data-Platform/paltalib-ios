@@ -1,4 +1,4 @@
-extension PaltaAnalytics {
+extension PaltaAnalytics2 {
 
     public struct ConfigurationOptions {
 
