@@ -57,9 +57,7 @@ final class EventComposerTests: XCTestCase {
         XCTAssertEqual(event.eventType, "someType")
         XCTAssertEqual(event.eventProperties, ["prop": "A"])
         XCTAssertEqual(event.apiProperties, [
-            "api": "B",
-            "ios_idfa": "idfa=",
-            "ios_idfv": "idfv="
+            "api": "B"
         ])
         XCTAssertEqual(event.groups, ["group": "C"])
         XCTAssertEqual(event.userProperties, ["user": "D"])
@@ -77,7 +75,6 @@ final class EventComposerTests: XCTestCase {
         XCTAssertEqual(event.carrier, "undefinedCarrier")
         XCTAssertEqual(event.language, "Sakovian")
         XCTAssertEqual(event.country, "Sakovia")
-        XCTAssertEqual(event.library.name, "PaltaBrain")
     }
 
     func testDefaultTimestamp() {
@@ -192,11 +189,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
-
-        XCTAssertEqual(
-            event.apiProperties,
-            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
-        )
+        XCTAssertNotNil(event.idfv)
+        XCTAssertNotNil(event.idfa)
     }
 
     func testDisableCountryTracking() {
@@ -227,10 +221,12 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
+        XCTAssertNotNil(event.idfv)
+        XCTAssertNotNil(event.idfa)
 
         XCTAssertEqual(
             event.apiProperties,
-            ["ios_idfa": "idfa=", "ios_idfv": "idfv=", "tracking_options": ["country": false]]
+            ["tracking_options": ["country": false]]
         )
     }
 
@@ -262,11 +258,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
-
-        XCTAssertEqual(
-            event.apiProperties,
-            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
-        )
+        XCTAssertNotNil(event.idfv)
+        XCTAssertNotNil(event.idfa)
     }
 
     func testDisableOsNameTracking() {
@@ -297,11 +290,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
-
-        XCTAssertEqual(
-            event.apiProperties,
-            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
-        )
+        XCTAssertNotNil(event.idfv)
+        XCTAssertNotNil(event.idfa)
     }
 
     func testDisableOsVersionTracking() {
@@ -332,11 +322,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
-
-        XCTAssertEqual(
-            event.apiProperties,
-            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
-        )
+        XCTAssertNotNil(event.idfv)
+        XCTAssertNotNil(event.idfa)
     }
 
     func testDisableAppVersionTracking() {
@@ -367,11 +354,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
-
-        XCTAssertEqual(
-            event.apiProperties,
-            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
-        )
+        XCTAssertNotNil(event.idfv)
+        XCTAssertNotNil(event.idfa)
     }
 
     func testDisableDeviceModelTracking() {
@@ -402,11 +386,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
-
-        XCTAssertEqual(
-            event.apiProperties,
-            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
-        )
+        XCTAssertNotNil(event.idfv)
+        XCTAssertNotNil(event.idfa)
     }
 
     func testDisableDeviceManufacturerTracking() {
@@ -437,11 +418,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
-
-        XCTAssertEqual(
-            event.apiProperties,
-            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
-        )
+        XCTAssertNotNil(event.idfv)
+        XCTAssertNotNil(event.idfa)
     }
 
     func testDisableCarrierTracking() {
@@ -472,11 +450,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNil(event.carrier)
-
-        XCTAssertEqual(
-            event.apiProperties,
-            ["ios_idfa": "idfa=", "ios_idfv": "idfv="]
-        )
+        XCTAssertNotNil(event.idfv)
+        XCTAssertNotNil(event.idfa)
     }
 
     func testDisableIDFA() {
@@ -507,11 +482,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
-
-        XCTAssertEqual(
-            event.apiProperties,
-            ["ios_idfv": "idfv="]
-        )
+        XCTAssertNotNil(event.idfv)
+        XCTAssertNil(event.idfa)
     }
 
     func testDisableIDFV() {
@@ -542,11 +514,8 @@ final class EventComposerTests: XCTestCase {
         XCTAssertNotNil(event.deviceModel)
         XCTAssertNotNil(event.deviceManufacturer)
         XCTAssertNotNil(event.carrier)
-
-        XCTAssertEqual(
-            event.apiProperties,
-            ["ios_idfa": "idfa="]
-        )
+        XCTAssertNil(event.idfv)
+        XCTAssertNotNil(event.idfa)
     }
 
     func testOutOfSession() {

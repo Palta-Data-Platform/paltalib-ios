@@ -51,7 +51,15 @@ final class EventSenderImpl: EventSender {
 
         let request = AnalyticsHTTPRequest.sendEvents(
             baseURL,
-            SendEventsPayload(apiKey: apiToken, events: events, serviceInfo: .init(telemetry: telemetry))
+            SendEventsPayload(
+                apiKey: apiToken,
+                events: events,
+                serviceInfo: .init(
+                    uploadTime: .currentTimestamp(),
+                    library: .init(name: "PaltaBrain", version: "2.1.5"), // TODO: Auto update version
+                    telemetry: telemetry
+                )
+            )
         )
 
         httpClient.perform(request) { (result: Result<EmptyResponse, NetworkErrorWithoutResponse>) in

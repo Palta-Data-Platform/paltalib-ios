@@ -87,6 +87,14 @@ public extension AutobuildingHTTPRequest {
 
 public extension AutobuildingHTTPRequest where Self: CodableAutobuildingHTTPRequest {
     var body: Data? {
-        bodyObject.flatMap { try? JSONEncoder().encode($0) }
+        bodyObject.flatMap {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .custom { date, encoder in
+                var container = encoder.singleValueContainer()
+                try container.encode(date.description)
+            }
+            
+            return try? encoder.encode($0)
+        }
     }
 }

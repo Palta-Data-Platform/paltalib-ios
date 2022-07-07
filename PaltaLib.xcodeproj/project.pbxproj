@@ -146,6 +146,8 @@
 		11543038282D03280021ED6F /* ProductMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543036282D02F20021ED6F /* ProductMock.swift */; };
 		1154303A282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543039282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift */; };
 		1154303D282E4CD90021ED6F /* CustomerInfo+PaidFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154303B282E4AF30021ED6F /* CustomerInfo+PaidFeatures.swift */; };
+		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
+		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
@@ -393,6 +395,8 @@
 		11543039282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreProductDiscount+ProductDiscount.swift"; sourceTree = "<group>"; };
 		1154303B282E4AF30021ED6F /* CustomerInfo+PaidFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerInfo+PaidFeatures.swift"; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
+		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
+		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
 		11A61E5528338FF400F88116 /* PaidServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidServiceMock.swift; sourceTree = "<group>"; };
@@ -610,8 +614,10 @@
 			children = (
 				1111595B27F7095200A41ADA /* PaltaAppsflyerAdapter.swift */,
 				1111595927F7095200A41ADA /* PaltaAttribution.swift */,
+				117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */,
 				1111595C27F7095200A41ADA /* PaltaAttribution+Configuration.swift */,
 				1111595A27F7095200A41ADA /* PaltaAttribution+DeepLink.swift */,
+				117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */,
 			);
 			path = Sources/Attribution;
 			sourceTree = "<group>";
@@ -1419,8 +1425,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1111598327F70C1500A41ADA /* PaltaAttribution+DeepLink.swift in Sources */,
+				117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */,
 				1111598027F70C1500A41ADA /* PaltaAttribution.swift in Sources */,
 				1111598127F70C1500A41ADA /* PaltaAttribution+Configuration.swift in Sources */,
+				117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */,
 				1111598227F70C1500A41ADA /* PaltaAppsflyerAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

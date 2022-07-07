@@ -81,7 +81,7 @@ public final class PaltaAnalytics {
         if let amplitudeAPIKey = amplitudeAPIKey {
             defaultAmplitudeInstance?.initializeApiKey(amplitudeAPIKey)
         }
-        assembly.analyticsCoreAssembly.userPropertiesKeeper.generateDeviceId()
+
         requestRemoteConfigs()
     }
     

@@ -7,6 +7,6 @@ protocol AnalyticsModelInterface: AnyObject {
 
 final class AnalyticsViewModel: AnalyticsModelInterface {
     public func logTestEvent() {
-        PaltaAnalytics.instance.logEvent("test_button_tapped")
+        PaltaAnalytics.instance.logEvent("test_button_tapped", withEventProperties: ["date": Date()])
     }
 }

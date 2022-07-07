@@ -79,6 +79,7 @@ extension CodableDictionary {
         case double(Double)
         case string(String)
         case boolean(Bool)
+        case date(Date)
         case null
         case dictionary(CodableDictionary)
         case array([Content])
@@ -99,6 +100,8 @@ extension CodableDictionary {
                 return codableDictionary.asDictonary
             case .array(let array):
                 return array.map { $0.value }
+            case .date(let date):
+                return date
             }
         }
 
@@ -143,6 +146,8 @@ extension CodableDictionary {
                 self = .integer(number.int64Value)
             } else if let number = value as? NSNumber, CFNumberGetType(number as CFNumber).isDouble {
                 self = .double(number.doubleValue)
+            } else if let date = value as? Date {
+                self = .date(date)
             } else if value is NSNull  {
                 self = .null
             } else if let string = value as? String {
@@ -179,6 +184,9 @@ extension CodableDictionary {
             case .boolean(let bool):
                 var container = encoder.singleValueContainer()
                 try container.encode(bool)
+            case .date(let date):
+                var container = encoder.singleValueContainer()
+                try container.encode(date)
             case .null:
                 var container = encoder.singleValueContainer()
                 try container.encodeNil()
