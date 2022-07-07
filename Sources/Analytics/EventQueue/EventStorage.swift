@@ -23,8 +23,15 @@ final class FileEventStorage: EventStorage {
         appropriateFor: nil,
         create: true
     ).appendingPathComponent("PaltaBrainEvents")
-
-    private let encoder = JSONEncoder()
+    
+    private let encoder: JSONEncoder = {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .custom { date, encoder in
+            var container = encoder.singleValueContainer()
+            try container.encode(date.description)
+        }
+        return encoder
+    }()
     private let decoder = JSONDecoder()
 
     private let workingQueue = DispatchQueue(label: "com.paltabrain.EventStorage", attributes: .concurrent)
