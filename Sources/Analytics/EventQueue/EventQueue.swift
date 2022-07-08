@@ -12,9 +12,6 @@ protocol EventQueue {
 }
 
 final class EventQueueImpl: EventQueue {
-    var trackingSessionEvents = true
-//    var liveEventTypes: Set<String> = []
-
     private let core: EventQueueCore
     private let storage: EventStorage
     private let sendController: BatchSendController

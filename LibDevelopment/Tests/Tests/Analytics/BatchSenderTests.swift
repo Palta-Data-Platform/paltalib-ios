@@ -12,7 +12,6 @@ import PaltaLibCore
 
 final class BatchSenderTests: XCTestCase {
     private var httpMock: HTTPClientMock!
-    private var infoProviderMock: SDKInfoProviderMock!
     
     private var sender: BatchSenderImpl!
     
@@ -25,9 +24,8 @@ final class BatchSenderTests: XCTestCase {
         mockedTimestamp = 25
         
         httpMock = .init()
-        infoProviderMock = .init()
         
-        sender = BatchSenderImpl(httpClient: httpMock, sdkInfoProvider: infoProviderMock)
+        sender = BatchSenderImpl(httpClient: httpMock)
         
         sender.apiToken = apiToken
         sender.url = url
@@ -69,8 +67,6 @@ final class BatchSenderTests: XCTestCase {
         let request = httpMock.request as? BatchSendRequest
         
         XCTAssertNotNil(request)
-        XCTAssertEqual(request?.sdkVersion, infoProviderMock.sdkVersion)
-        XCTAssertEqual(request?.sdkName, infoProviderMock.sdkName)
         XCTAssertEqual(request?.time, 25)
         XCTAssertEqual(request?.url, url)
         XCTAssertEqual(request?.data, batch.data)

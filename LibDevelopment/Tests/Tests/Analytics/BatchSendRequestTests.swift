@@ -14,8 +14,6 @@ final class BatchSendRequestTests: XCTestCase {
         let data = Data((0...20).map { _ in UInt8.random(in: UInt8.min...UInt8.max) })
         let request = BatchSendRequest(
             url: URL(string: "ftp://mock.url/path")!,
-            sdkName: "MOCK-SDK",
-            sdkVersion: "MOCK-VERSION",
             time: 878,
             data: data
         )
@@ -27,8 +25,6 @@ final class BatchSendRequestTests: XCTestCase {
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,
             [
-                "X-SDK-Name": "MOCK-SDK",
-                "X-SDK-Version": "MOCK-VERSION",
                 "X-Client-Upload-TS": "878",
                 "DEFAULT_HEADER": "DEFAULT_HEADER_VALUE",
                 "Content-Type": "application/protobuf"

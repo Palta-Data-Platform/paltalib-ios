@@ -25,7 +25,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
         session.id
     }
 
-    var maxSessionAge: Int = 5 * 60 * 1000
+    var maxSessionAge: Int = 5 * 60
 
     var sessionEventLogger: ((String, Int) -> Void)?
 

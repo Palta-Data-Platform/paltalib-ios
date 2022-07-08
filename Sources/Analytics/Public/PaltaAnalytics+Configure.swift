@@ -25,7 +25,7 @@ public extension PaltaAnalytics {
         ConfigApplyService(
             remoteConfig: config,
             apiKey: apiKey,
-            eventQueueAssembly: assembly.eventQueueAssembly
+            assembly: assembly
         ).apply()
     }
 }

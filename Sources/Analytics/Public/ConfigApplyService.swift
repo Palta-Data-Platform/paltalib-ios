@@ -10,23 +10,26 @@ import Foundation
 final class ConfigApplyService {
     private let remoteConfig: RemoteConfig
     private let apiKey: String
-    private let eventQueueAssembly: EventQueueAssembly
+    private let assembly: AnalyticsAssembly
     
-    init(remoteConfig: RemoteConfig, apiKey: String, eventQueueAssembly: EventQueueAssembly) {
+    init(remoteConfig: RemoteConfig, apiKey: String, assembly: AnalyticsAssembly) {
         self.remoteConfig = remoteConfig
         self.apiKey = apiKey
-        self.eventQueueAssembly = eventQueueAssembly
+        self.assembly = assembly
     }
     
     func apply() {
-        eventQueueAssembly.eventQueue.trackingSessionEvents = true
-        eventQueueAssembly.eventQueueCore.config = .init(
-            maxBatchSize: 100,
-            uploadInterval: 30,
-            uploadThreshold: 40,
-            maxEvents: 1000
-        )
-        eventQueueAssembly.batchSender.url = URL(string: "")
+        assembly.analyticsCoreAssembly.sessionManager.maxSessionAge = remoteConfig.minTimeBetweenSessions
+        
+        let eventQueueAssembly = assembly.eventQueueAssembly
+        eventQueueAssembly.batchSender.url = remoteConfig.url
         eventQueueAssembly.batchSender.apiToken = apiKey
+        
+        eventQueueAssembly.eventQueueCore.config = .init(
+            maxBatchSize: remoteConfig.eventUploadMaxBatchSize,
+            uploadInterval: TimeInterval(remoteConfig.eventUploadPeriod),
+            uploadThreshold: remoteConfig.eventUploadThreshold,
+            maxEvents: remoteConfig.eventMaxCount
+        )
     }
 }

@@ -88,8 +88,7 @@ extension EventQueueAssembly {
         )
         
         let batchSender = BatchSenderImpl(
-            httpClient: coreAssembly.httpClient,
-            sdkInfoProvider: analyticsCoreAssembly.sdkInfoProvider
+            httpClient: coreAssembly.httpClient
         )
         
         let sendController = BatchSendControllerImpl(

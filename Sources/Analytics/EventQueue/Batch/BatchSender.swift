@@ -33,11 +33,9 @@ final class BatchSenderImpl: BatchSender {
     var url: URL?
     
     private let httpClient: HTTPClient
-    private let sdkInfoProvider: SDKInfoProvider
     
-    init(httpClient: HTTPClient, sdkInfoProvider: SDKInfoProvider) {
+    init(httpClient: HTTPClient) {
         self.httpClient = httpClient
-        self.sdkInfoProvider = sdkInfoProvider
     }
     
     func sendBatch(_ batch: Batch, completion: @escaping (Result<(), BatchSendError>) -> Void) {
@@ -57,8 +55,6 @@ final class BatchSenderImpl: BatchSender {
         
         let request = BatchSendRequest(
             url: url,
-            sdkName: sdkInfoProvider.sdkName,
-            sdkVersion: sdkInfoProvider.sdkVersion,
             time: currentTimestamp(),
             data: data
         )

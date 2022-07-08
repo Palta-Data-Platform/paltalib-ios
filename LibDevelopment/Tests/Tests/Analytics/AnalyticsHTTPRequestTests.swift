@@ -22,7 +22,7 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
 
         XCTAssertEqual(urlRequest?.httpMethod, "GET")
         XCTAssertEqual(urlRequest?.allHTTPHeaderFields, expectedHeaders)
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.paltabrain.com/v1/config"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.paltabrain.com/v2/config"))
         XCTAssertEqual(urlRequest?.timeoutInterval, 10)
         XCTAssertEqual(urlRequest?.cachePolicy, .reloadIgnoringLocalAndRemoteCacheData)
         XCTAssertNil(urlRequest?.httpBody)
