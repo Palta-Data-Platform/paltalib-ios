@@ -27,7 +27,7 @@ extension AnalyticsHTTPRequest: CodableAutobuildingHTTPRequest {
     var path: String? {
         switch self {
         case .remoteConfig:
-            return "/v1/config"
+            return "/v2/config"
         }
     }
 

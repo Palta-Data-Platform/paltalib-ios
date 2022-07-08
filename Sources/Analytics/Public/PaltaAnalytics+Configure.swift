@@ -14,7 +14,7 @@ public extension PaltaAnalytics {
             case .success(let config):
                 self.apply(config, apiKey: apiKey)
                 
-            case .failure(let error):
+            case .failure:
                 print("PaltaLib: Analytics: Failed to load remote config. Using default instead")
                 self.apply(.default, apiKey: apiKey)
             }

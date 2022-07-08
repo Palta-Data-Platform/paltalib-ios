@@ -26,9 +26,7 @@ protocol BatchSender {
 final class BatchSenderImpl: BatchSender {
     var apiToken: String? {
         didSet {
-            httpClient.mandatoryHeaders = [
-                "X-API-Key": apiToken ?? ""
-            ]
+            httpClient.mandatoryHeaders["X-API-Key"] = apiToken ?? ""
         }
     }
     

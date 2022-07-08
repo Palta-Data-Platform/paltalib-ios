@@ -10,8 +10,6 @@ import PaltaLibCore
 
 struct BatchSendRequest {
     let url: URL
-    let sdkName: String
-    let sdkVersion: String
     let time: Int
     let data: Data
 }
@@ -31,8 +29,6 @@ extension BatchSendRequest: AutobuildingHTTPRequest {
     
     var headers: [String : String]? {
         [
-            "X-SDK-Name": sdkName,
-            "X-SDK-Version": sdkVersion,
             "X-Client-Upload-TS": "\(time)",
             "Content-Type": "application/protobuf"
         ]

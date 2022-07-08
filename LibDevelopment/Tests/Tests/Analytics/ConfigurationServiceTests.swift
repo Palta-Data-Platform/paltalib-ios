@@ -27,23 +27,12 @@ final class ConfigurationServiceTests: XCTestCase {
     func testRequestConfigSuccessWithoutCache() {
         httpClientMock.result = .success(
             RemoteConfig(
-                targets: [
-                    ConfigTarget(
-                        name: .paltabrain,
-                        settings: ConfigSettings(
-                            eventUploadThreshold: 788,
-                            eventUploadMaxBatchSize: 3789,
-                            eventMaxCount: 1228,
-                            eventUploadPeriodSeconds: 4429,
-                            minTimeBetweenSessionsMillis: 4393,
-                            trackingSessionEvents: false,
-                            realtimeEventTypes: [],
-                                        excludedEventTypes: [],
-                            sendMechanism: .paltaBrain
-                        ),
-                        url: URL(string: "https://mock.url")
-                    )
-                ]
+                eventUploadThreshold: 12,
+                eventUploadMaxBatchSize: 13,
+                eventMaxCount: 1228,
+                eventUploadPeriod: 15,
+                minTimeBetweenSessions: 16,
+                url: URL(string: "https://mock.url")!
             )
         )
 
@@ -54,8 +43,8 @@ final class ConfigurationServiceTests: XCTestCase {
                 return
             }
 
-            XCTAssertEqual(config.targets.first?.url, URL(string: "https://mock.url"))
-            XCTAssertEqual(config.targets.first?.settings.eventMaxCount, 1228)
+            XCTAssertEqual(config.url, URL(string: "https://mock.url"))
+            XCTAssertEqual(config.eventMaxCount, 1228)
 
             successCalled.fulfill()
         }
@@ -71,23 +60,12 @@ final class ConfigurationServiceTests: XCTestCase {
         cacheConfig()
 
         let remoteConfig = RemoteConfig(
-            targets: [
-                ConfigTarget(
-                    name: .paltabrain,
-                    settings: ConfigSettings(
-                        eventUploadThreshold: 788,
-                        eventUploadMaxBatchSize: 3789,
-                        eventMaxCount: 1228,
-                        eventUploadPeriodSeconds: 4429,
-                        minTimeBetweenSessionsMillis: 4393,
-                        trackingSessionEvents: false,
-                        realtimeEventTypes: [],
-                        excludedEventTypes: [],
-                        sendMechanism: .paltaBrain
-                    ),
-                    url: URL(string: "https://mock.url")
-                )
-            ]
+            eventUploadThreshold: 788,
+            eventUploadMaxBatchSize: 3789,
+            eventMaxCount: 1228,
+            eventUploadPeriod: 4429,
+            minTimeBetweenSessions: 4393,
+            url: URL(string: "https://mock.url")!
         )
 
         httpClientMock.result = .success(remoteConfig)
@@ -99,8 +77,8 @@ final class ConfigurationServiceTests: XCTestCase {
                 return
             }
 
-            XCTAssertEqual(config.targets.first?.url, URL(string: "https://mock.url"))
-            XCTAssertEqual(config.targets.first?.settings.eventMaxCount, 1228)
+            XCTAssertEqual(config.url, URL(string: "https://mock.url"))
+            XCTAssertEqual(config.eventMaxCount, 1228)
 
             successCalled.fulfill()
         }
@@ -140,8 +118,8 @@ final class ConfigurationServiceTests: XCTestCase {
                 return
             }
 
-            XCTAssertEqual(config.targets.first?.url, URL(string: "https://url.mock"))
-            XCTAssertEqual(config.targets.first?.settings.minTimeBetweenSessionsMillis, 678)
+            XCTAssertEqual(config.url, URL(string: "https://url.mock"))
+            XCTAssertEqual(config.minTimeBetweenSessions, 678)
 
             successCalled.fulfill()
         }
@@ -151,24 +129,14 @@ final class ConfigurationServiceTests: XCTestCase {
 
     private func cacheConfig() {
         let cachedConfig = RemoteConfig(
-            targets: [
-                ConfigTarget(
-                    name: .paltabrain,
-                    settings: ConfigSettings(
-                        eventUploadThreshold: 656,
-                        eventUploadMaxBatchSize: 788,
-                        eventMaxCount: 434,
-                        eventUploadPeriodSeconds: 0,
-                        minTimeBetweenSessionsMillis: 678,
-                        trackingSessionEvents: true,
-                        realtimeEventTypes: [],
-                        excludedEventTypes: [],
-                        sendMechanism: .paltaBrain
-                    ),
-                    url: URL(string: "https://url.mock")
-                )
-            ]
+            eventUploadThreshold: 656,
+            eventUploadMaxBatchSize: 788,
+            eventMaxCount: 434,
+            eventUploadPeriod: 0,
+            minTimeBetweenSessions: 678,
+            url: URL(string: "https://url.mock")!
         )
+
         userDefaults.set(cachedConfig, for: "paltaBrainRemoteConfig")
     }
 }

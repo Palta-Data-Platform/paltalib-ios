@@ -9,6 +9,7 @@ import Foundation
 import PaltaLibCore
 
 final class AnalyticsCoreAssembly {
+    let sdkInfoProvider: SDKInfoProvider = SDKInfoProviderImpl()
     let userPropertiesKeeper: UserPropertiesKeeperImpl
     let sessionManager: SessionManagerImpl
     let configurationService: ConfigurationService
@@ -34,5 +35,8 @@ final class AnalyticsCoreAssembly {
         self.userPropertiesKeeper = userPropertiesKeeper
         self.sessionManager = sessionManager
         self.configurationService = configurationService
+        
+        coreAssembly.httpClient.mandatoryHeaders["X-SDK-Name"] = sdkInfoProvider.sdkName
+        coreAssembly.httpClient.mandatoryHeaders["X-SDK-Version"] = sdkInfoProvider.sdkVersion
     }
 }

@@ -52,6 +52,7 @@
 		11115A9728003BD600A41ADA /* UserDefaults+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9228001FE400A41ADA /* UserDefaults+Codable.swift */; };
 		11115A9A28003D6900A41ADA /* UserPropertiesKeeperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9828003D6500A41ADA /* UserPropertiesKeeperMock.swift */; };
 		11115A9C280065E300A41ADA /* DeviceInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */; };
+		1119CD7628771E0600C7B4C4 /* PaltaLibEvents.h in Headers */ = {isa = PBXBuildFile; fileRef = 1119CD7528771E0600C7B4C4 /* PaltaLibEvents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		111A5982283FAA520052FCD1 /* PaymentsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6472837AE8400324D62 /* PaymentsError.swift */; };
 		111A59972840C4840052FCD1 /* SubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59962840C4840052FCD1 /* SubscriptionsService.swift */; };
 		111A599A2840C5A30052FCD1 /* SubscriptionsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111A59982840C5990052FCD1 /* SubscriptionsServiceTests.swift */; };
@@ -200,6 +201,7 @@
 		117D9C64286D7EDB006F3E2E /* PaltaAnalytics+Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9C63286D7EDB006F3E2E /* PaltaAnalytics+Context.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
+		119A1D21287835B9006D53A3 /* RemoteConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119A1D20287835B9006D53A3 /* RemoteConfigTests.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
 		11A61E822833B89B00F88116 /* UserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E812833B89B00F88116 /* UserId.swift */; };
 		11A61ED7283788DD00F88116 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61ED6283788DD00F88116 /* Feature.swift */; };
@@ -385,6 +387,8 @@
 		11115A94280023A300A41ADA /* UserPropertiesKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesKeeperTests.swift; sourceTree = "<group>"; };
 		11115A9828003D6500A41ADA /* UserPropertiesKeeperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPropertiesKeeperMock.swift; sourceTree = "<group>"; };
 		11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProvider.swift; sourceTree = "<group>"; };
+		1119CD7328771E0600C7B4C4 /* PaltaLibEvents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibEvents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1119CD7528771E0600C7B4C4 /* PaltaLibEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaltaLibEvents.h; sourceTree = "<group>"; };
 		111A59962840C4840052FCD1 /* SubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsService.swift; sourceTree = "<group>"; };
 		111A59982840C5990052FCD1 /* SubscriptionsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsServiceTests.swift; sourceTree = "<group>"; };
 		111A599B2840C6000052FCD1 /* SubscriptionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionMock.swift; sourceTree = "<group>"; };
@@ -529,6 +533,7 @@
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
+		119A1D20287835B9006D53A3 /* RemoteConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigTests.swift; sourceTree = "<group>"; };
 		11A61E5528338FF400F88116 /* PaidServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidServiceMock.swift; sourceTree = "<group>"; };
 		11A61E812833B89B00F88116 /* UserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserId.swift; sourceTree = "<group>"; };
 		11A61EAB2835073D00F88116 /* ConfigApplyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigApplyServiceTests.swift; sourceTree = "<group>"; };
@@ -595,6 +600,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1119CD7028771E0600C7B4C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		112FCA242847C43800C8F88A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -634,6 +646,7 @@
 				111158F927F6FE5600A41ADA /* LibDevelopment/Tests */,
 				113A79B3284F78DC004C0C5D /* LibDevelopment/AnalyticsDTOExample */,
 				113A79CA284F8276004C0C5D /* LibDevelopment/ProtobufExample */,
+				1119CD7428771E0600C7B4C4 /* Sources/PaltaLibEvents */,
 				111158BD27F6014D00A41ADA /* Products */,
 				1111598427F70C3700A41ADA /* Frameworks */,
 			);
@@ -650,6 +663,7 @@
 				112FCA272847C43800C8F88A /* AnalyticsTools.framework */,
 				113A79B2284F78DC004C0C5D /* AnalyticsDTOExample.framework */,
 				113A79C9284F8276004C0C5D /* ProtobufExample.framework */,
+				1119CD7328771E0600C7B4C4 /* PaltaLibEvents.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -829,6 +843,14 @@
 			path = Batch;
 			sourceTree = "<group>";
 		};
+		1119CD7428771E0600C7B4C4 /* Sources/PaltaLibEvents */ = {
+			isa = PBXGroup;
+			children = (
+				1119CD7528771E0600C7B4C4 /* PaltaLibEvents.h */,
+			);
+			path = Sources/PaltaLibEvents;
+			sourceTree = "<group>";
+		};
 		111A59AE2840E4820052FCD1 /* WebPayments */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,6 +895,7 @@
 				117D9C38286B252B006F3E2E /* EventComposerTests.swift */,
 				117D9C42286C4CC1006F3E2E /* EventQueueTests.swift */,
 				117D9C4E286C59CA006F3E2E /* BatchSendControllerTests.swift */,
+				119A1D20287835B9006D53A3 /* RemoteConfigTests.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -1218,6 +1241,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1119CD6E28771E0600C7B4C4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1119CD7628771E0600C7B4C4 /* PaltaLibEvents.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		112FCA222847C43800C8F88A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1354,6 +1385,24 @@
 			productReference = 1111595227F7093500A41ADA /* PaltaLibAttribution.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		1119CD7228771E0600C7B4C4 /* PaltaLibEvents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1119CD7728771E0600C7B4C4 /* Build configuration list for PBXNativeTarget "PaltaLibEvents" */;
+			buildPhases = (
+				1119CD6E28771E0600C7B4C4 /* Headers */,
+				1119CD6F28771E0600C7B4C4 /* Sources */,
+				1119CD7028771E0600C7B4C4 /* Frameworks */,
+				1119CD7128771E0600C7B4C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PaltaLibEvents;
+			productName = PaltaLibEvents;
+			productReference = 1119CD7328771E0600C7B4C4 /* PaltaLibEvents.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		112FCA262847C43800C8F88A /* AnalyticsTools */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 112FCA2D2847C43800C8F88A /* Build configuration list for PBXNativeTarget "AnalyticsTools" */;
@@ -1442,6 +1491,9 @@
 					1111595127F7093500A41ADA = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
+					1119CD7228771E0600C7B4C4 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 					112FCA262847C43800C8F88A = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -1480,6 +1532,7 @@
 				113A79B1284F78DC004C0C5D /* AnalyticsDTOExample */,
 				113A79C8284F8276004C0C5D /* ProtobufExample */,
 				111158F727F6FE5600A41ADA /* PaltaLibTests */,
+				1119CD7228771E0600C7B4C4 /* PaltaLibEvents */,
 			);
 		};
 /* End PBXProject section */
@@ -1515,6 +1568,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1111595027F7093500A41ADA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1119CD7128771E0600C7B4C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1604,6 +1664,7 @@
 				117D9C332869A799006F3E2E /* ContextProviderMock.swift in Sources */,
 				117D9C39286B252B006F3E2E /* EventComposerTests.swift in Sources */,
 				117D9C53286C5A95006F3E2E /* BatchStorageMock.swift in Sources */,
+				119A1D21287835B9006D53A3 /* RemoteConfigTests.swift in Sources */,
 				117D9C49286C4EB2006F3E2E /* BatchSendControllerMock.swift in Sources */,
 				1137D161285A13AB008CA306 /* SDKInfoProviderMock.swift in Sources */,
 				111A59AB2840DCCB0052FCD1 /* FeatureMapperMock.swift in Sources */,
@@ -1748,6 +1809,13 @@
 				1111598127F70C1500A41ADA /* PaltaAttribution+Configuration.swift in Sources */,
 				117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */,
 				1111598227F70C1500A41ADA /* PaltaAppsflyerAdapter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1119CD6F28771E0600C7B4C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2286,6 +2354,65 @@
 			};
 			name = Release;
 		};
+		1119CD7828771E0600C7B4C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.PaltaLibEvents;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1119CD7928771E0600C7B4C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.palta.PaltaLibEvents;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		112FCA2B2847C43800C8F88A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2519,6 +2646,15 @@
 			buildConfigurations = (
 				1111595727F7093500A41ADA /* Debug */,
 				1111595827F7093500A41ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1119CD7728771E0600C7B4C4 /* Build configuration list for PBXNativeTarget "PaltaLibEvents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1119CD7828771E0600C7B4C4 /* Debug */,
+				1119CD7928771E0600C7B4C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
