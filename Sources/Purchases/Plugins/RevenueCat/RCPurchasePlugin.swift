@@ -60,7 +60,7 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         _ completion: @escaping (PurchasePluginResult<PromoOffer, Error>) -> Void
     ) {
         guard
-            let productDiscount = productDiscount as? StoreProductDiscount,
+            let productDiscount = productDiscount.originalEntity as? StoreProductDiscount,
             let product = product.storeProduct
         else {
             completion(.notSupported)
