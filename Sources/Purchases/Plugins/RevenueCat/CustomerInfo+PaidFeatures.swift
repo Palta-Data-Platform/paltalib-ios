@@ -32,7 +32,7 @@ extension CustomerInfo {
     }
     
     private var nonSubscriptionFeatures: [PaidFeature] {
-        nonSubscriptionTransactions.map {
+        nonSubscriptions.map {
             PaidFeature(
                 name: $0.productIdentifier,
                 productIdentifier: $0.productIdentifier,

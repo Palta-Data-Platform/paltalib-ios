@@ -121,15 +121,15 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
     }
     
     public func setAppsflyerID(_ appsflyerID: String?) {
-        purchases.setAppsflyerID(appsflyerID)
+        purchases.attribution.setAppsflyerID(appsflyerID)
     }
     
     public func setAppsflyerAttributes(_ attributes: [String: String]) {
-        purchases.setAttributes(attributes)
+        purchases.attribution.setAttributes(attributes)
     }
     
     public func collectDeviceIdentifiers() {
-        purchases.collectDeviceIdentifiers()
+        purchases.attribution.collectDeviceIdentifiers()
     }
     
     @available(iOS 14.0, *)
