@@ -8,7 +8,7 @@
 import Foundation
 import PaltaLibCore
 
-public final class PaltaPurchases {
+public final class PaltaPurchases: PaltaPurchasesProtocol {
     public static let instance = PaltaPurchases()
     
     public private(set) var userId: UserId?
@@ -138,6 +138,19 @@ public final class PaltaPurchases {
         plugins.forEach {
             $0.collectDeviceIdentifiers()
         }
+    }
+    
+    @available(iOS 14.0, *)
+    public func presentCodeRedemptionUI() {
+        var iterator = plugins.makeIterator()
+        
+        while let plugin = iterator.next() {
+            if case .success = plugin.presentCodeRedemptionUI() {
+                return
+            }
+        }
+        
+        print("PaltaLib: Purchases: Error: No plugin could present code redemption UI")
     }
     
     private func start<T>(

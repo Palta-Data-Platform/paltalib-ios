@@ -60,7 +60,7 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         _ completion: @escaping (PurchasePluginResult<PromoOffer, Error>) -> Void
     ) {
         guard
-            let productDiscount = productDiscount as? StoreProductDiscount,
+            let productDiscount = productDiscount.originalEntity as? StoreProductDiscount,
             let product = product.storeProduct
         else {
             completion(.notSupported)
@@ -121,15 +121,21 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
     }
     
     public func setAppsflyerID(_ appsflyerID: String?) {
-        purchases.setAppsflyerID(appsflyerID)
+        purchases.attribution.setAppsflyerID(appsflyerID)
     }
     
     public func setAppsflyerAttributes(_ attributes: [String: String]) {
-        purchases.setAttributes(attributes)
+        purchases.attribution.setAttributes(attributes)
     }
     
     public func collectDeviceIdentifiers() {
-        purchases.collectDeviceIdentifiers()
+        purchases.attribution.collectDeviceIdentifiers()
+    }
+    
+    @available(iOS 14.0, *)
+    public func presentCodeRedemptionUI() -> PurchasePluginResult<(), Error> {
+        purchases.presentCodeRedemptionSheet()
+        return .success(())
     }
     
     private func makeRCCompletionBlock(

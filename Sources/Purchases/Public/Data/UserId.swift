@@ -9,6 +9,7 @@ import Foundation
 
 public enum UserId: Equatable {
     case uuid(UUID)
+    case string(String)
 }
 
 extension UserId {
@@ -16,6 +17,8 @@ extension UserId {
         switch self {
         case .uuid(let uuid):
             return uuid.uuidString
+        case .string(let string):
+            return string
         }
     }
 }
@@ -33,6 +36,9 @@ extension UserId: Encodable {
         case .uuid(let uuid):
             try container.encode(uuid, forKey: .value)
             try container.encode("merchant-uuid", forKey: .type)
+        case .string(let string):
+            try container.encode(string, forKey: .value)
+            try container.encode("merchant-str", forKey: .type)
         }
     }
 }

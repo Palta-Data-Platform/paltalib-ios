@@ -602,6 +602,18 @@ final class PaltaPurchasesTests: XCTestCase {
         }
     }
     
+    func testPresentCodeRedemptionUI() {
+        mockPlugins[0].codeRedemptionResult = .notSupported
+        mockPlugins[1].codeRedemptionResult = .success(())
+        mockPlugins[2].codeRedemptionResult = .failure(NSError(domain: "", code: 0))
+        
+        instance.presentCodeRedemptionUI()
+        
+        XCTAssert(mockPlugins[0].codeRedemptionCalled)
+        XCTAssert(mockPlugins[1].codeRedemptionCalled)
+        XCTAssertFalse(mockPlugins[2].codeRedemptionCalled)
+    }
+    
     private func checkPlugins(line: UInt = #line, file: StaticString = #file, _ check: (PurchasePluginMock) -> Bool) {
         XCTAssert(!mockPlugins.isEmpty, file: file, line: line)
         

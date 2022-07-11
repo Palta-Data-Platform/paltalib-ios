@@ -65,6 +65,10 @@ public final class PBPurchasePlugin: PurchasePlugin {
         getPaidFeatures(completion)
     }
     
+    public func presentCodeRedemptionUI() -> PurchasePluginResult<(), Error> {
+        return .notSupported
+    }
+    
     public func setAppsflyerID(_ appsflyerID: String?) {
     }
     
