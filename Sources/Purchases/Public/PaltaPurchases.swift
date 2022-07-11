@@ -8,7 +8,7 @@
 import Foundation
 import PaltaLibCore
 
-public final class PaltaPurchases {
+public final class PaltaPurchases: PaltaPurchasesProtocol {
     public static let instance = PaltaPurchases()
     
     public private(set) var userId: UserId?
