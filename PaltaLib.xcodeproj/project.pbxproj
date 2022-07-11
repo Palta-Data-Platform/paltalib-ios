@@ -151,6 +151,7 @@
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A31AAD287C054A00A32D69 /* PaltaPurchasesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AAC287C054A00A32D69 /* PaltaPurchasesProtocol.swift */; };
+		11A31AB0287C0F4A00A32D69 /* UserIdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AAE287C0F3700A32D69 /* UserIdTests.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
 		11A61E822833B89B00F88116 /* UserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E812833B89B00F88116 /* UserId.swift */; };
 		11A61E842833E0C900F88116 /* AmplitudeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E832833E0C900F88116 /* AmplitudeExtensionTests.swift */; };
@@ -401,6 +402,7 @@
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
 		11A31AAC287C054A00A32D69 /* PaltaPurchasesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesProtocol.swift; sourceTree = "<group>"; };
+		11A31AAE287C0F3700A32D69 /* UserIdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdTests.swift; sourceTree = "<group>"; };
 		11A61E5528338FF400F88116 /* PaidServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidServiceMock.swift; sourceTree = "<group>"; };
 		11A61E812833B89B00F88116 /* UserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserId.swift; sourceTree = "<group>"; };
 		11A61E832833E0C900F88116 /* AmplitudeExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeExtensionTests.swift; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 				11543029282C19FC0021ED6F /* PaidServicesTests.swift */,
 				11A61EE128378C0600F88116 /* SubscriptionResponseTests.swift */,
 				11A61EEA2837925600F88116 /* FeatureResponseTests.swift */,
+				11A31AAE287C0F3700A32D69 /* UserIdTests.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1286,6 +1289,7 @@
 				114D06FF2806F62200ACD310 /* IdentityLoggerTests.swift in Sources */,
 				114D070C2808336200ACD310 /* TrackingOptionsProviderTests.swift in Sources */,
 				111A599D2840C60C0052FCD1 /* SubscriptionMock.swift in Sources */,
+				11A31AB0287C0F4A00A32D69 /* UserIdTests.swift in Sources */,
 				11115A4A27FB7D0000A41ADA /* EventSendErrorTests.swift in Sources */,
 				11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,

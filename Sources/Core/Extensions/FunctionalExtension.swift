@@ -17,3 +17,5 @@ public extension FunctionalExtension {
 }
 
 extension NSObject: FunctionalExtension {}
+
+extension JSONEncoder: FunctionalExtension {}
