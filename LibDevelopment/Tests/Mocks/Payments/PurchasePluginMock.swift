@@ -23,6 +23,8 @@ final class PurchasePluginMock: PurchasePlugin {
     var appsflyerID: String?
     var attributes: [String : String]?
     var collectDeviceIdentifiersCalled = false
+    var codeRedemptionCalled = false
+    var codeRedemptionResult: PurchasePluginResult<(), Error>?
 
     func logIn(appUserId: UserId, completion: @escaping (Result<(), Error>) -> Void) {
         logInUserId = appUserId
@@ -64,6 +66,11 @@ final class PurchasePluginMock: PurchasePlugin {
     
     func collectDeviceIdentifiers() {
         collectDeviceIdentifiersCalled = true
+    }
+    
+    func presentCodeRedemptionUI() -> PurchasePluginResult<(), Error> {
+        codeRedemptionCalled = true
+        return codeRedemptionResult ?? .notSupported
     }
 }
 

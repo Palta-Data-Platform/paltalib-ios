@@ -35,6 +35,9 @@ public protocol PurchasePlugin: AnyObject {
 
     func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void)
     
+    @available(iOS 14.0, *)
+    func presentCodeRedemptionUI() -> PurchasePluginResult<(), Error>
+    
     func setAppsflyerID(_ appsflyerID: String?)
     func setAppsflyerAttributes(_ attributes: [String: String])
     func collectDeviceIdentifiers()

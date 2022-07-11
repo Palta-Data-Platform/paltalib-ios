@@ -140,6 +140,19 @@ public final class PaltaPurchases: PaltaPurchasesProtocol {
         }
     }
     
+    @available(iOS 14.0, *)
+    public func presentCodeRedemptionUI() {
+        var iterator = plugins.makeIterator()
+        
+        while let plugin = iterator.next() {
+            if case .success = plugin.presentCodeRedemptionUI() {
+                return
+            }
+        }
+        
+        print("PaltaLib: Purchases: Error: No plugin could present code redemption UI")
+    }
+    
     private func start<T>(
         completion: @escaping (Result<T, Error>) -> Void,
         execute: @escaping (PurchasePlugin, @escaping (PurchasePluginResult<T, Error>) -> Void) -> Void

@@ -132,6 +132,12 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         purchases.collectDeviceIdentifiers()
     }
     
+    @available(iOS 14.0, *)
+    public func presentCodeRedemptionUI() -> PurchasePluginResult<(), Error> {
+        purchases.presentCodeRedemptionSheet()
+        return .success(())
+    }
+    
     private func makeRCCompletionBlock(
         from pluginCompletion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void
     ) -> (StoreTransaction?, CustomerInfo?, Error?, Bool) -> Void {
