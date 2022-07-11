@@ -12,6 +12,7 @@ protocol EventQueue {
 }
 
 final class EventQueueImpl: EventQueue {
+    private let stack: Stack
     private let core: EventQueueCore
     private let storage: EventStorage
     private let sendController: BatchSendController
@@ -20,6 +21,7 @@ final class EventQueueImpl: EventQueue {
     private let contextProvider: CurrentContextProvider
 
     init(
+        stack: Stack,
         core: EventQueueCore,
         storage: EventStorage,
         sendController: BatchSendController,
@@ -27,6 +29,7 @@ final class EventQueueImpl: EventQueue {
         sessionManager: SessionManager,
         contextProvider: CurrentContextProvider
     ) {
+        self.stack = stack
         self.core = core
         self.storage = storage
         self.sendController = sendController
@@ -40,10 +43,24 @@ final class EventQueueImpl: EventQueue {
     }
     
     func logEvent<E: Event>(_ incomingEvent: E, outOfSession: Bool) {
-        let event = eventComposer.composeEvent(
+        logEvent(
             of: incomingEvent.type,
             with: incomingEvent.header,
-            and: incomingEvent.payload
+            and: incomingEvent.payload,
+            outOfSession: outOfSession
+        )
+    }
+    
+    private func logEvent(
+        of type: EventType,
+        with header: EventHeader,
+        and payload: EventPayload,
+        outOfSession: Bool
+    ) {
+        let event = eventComposer.composeEvent(
+            of: type,
+            with: header,
+            and: payload
         )
         
         let storableEvent = StorableEvent(
@@ -94,6 +111,19 @@ final class EventQueueImpl: EventQueue {
 
     private func startSessionManager() {
         sessionManager.start()
+        
+        sessionManager.sessionStartLogger = { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            self.logEvent(
+                of: self.stack.sessionStartEventType,
+                with: self.stack.eventHeader.init(),
+                and: self.stack.sessionStartEventPayload.init(),
+                outOfSession: true
+            )
+        }
     }
 }
 

@@ -13,6 +13,9 @@ extension Stack {
         batchCommon: BatchCommonMock.self,
         context: BatchContextMock.self,
         batch: BatchMock.self,
-        event: BatchEventMock.self
+        event: BatchEventMock.self,
+        sessionStartEventType: 1,
+        eventHeader: EventHeaderMock.self,
+        sessionStartEventPayload: EventPayloadMock.self
     )
 }

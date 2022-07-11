@@ -102,6 +102,7 @@ extension EventQueueAssembly {
         // EventQueue
         
         let eventQueue = EventQueueImpl(
+            stack: stack,
             core: core,
             storage: eventStorage,
             sendController: sendController,

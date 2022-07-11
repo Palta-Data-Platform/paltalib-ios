@@ -10,7 +10,7 @@ import Foundation
 
 final class SessionManagerMock: SessionManager, SessionIdProvider {
     var sessionId: Int = -1
-    var sessionEventLogger: ((String, Int) -> Void)?
+    var sessionStartLogger: (() -> Void)?
 
     var refreshSessionCalled = false
     var startCalled = false

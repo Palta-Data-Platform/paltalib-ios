@@ -13,7 +13,7 @@ protocol SessionIdProvider {
 }
 
 protocol SessionManager: AnyObject {
-    var sessionEventLogger: ((String, Int) -> Void)? { get set }
+    var sessionStartLogger: (() -> Void)? { get set }
 
     func refreshSession(with event: BatchEvent)
     func start()
@@ -27,7 +27,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
 
     var maxSessionAge: Int = 5 * 60
 
-    var sessionEventLogger: ((String, Int) -> Void)?
+    var sessionStartLogger: (() -> Void)?
 
     private var session: Session {
         get {
@@ -80,7 +80,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
 
     func startNewSession() {
         lock.lock()
-//        sessionEventLogger?(kAMPSessionEndEvent, session.lastEventTimestamp)
+        sessionStartLogger?()
         session = newSession()
         lock.unlock()
     }
@@ -107,7 +107,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     private func newSession() -> Session {
-//        sessionEventLogger?(kAMPSessionStartEvent, currentTimestamp())
+        sessionStartLogger?()
         return Session(id: currentTimestamp())
     }
 

@@ -19,12 +19,7 @@ final class EventStorageTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
-        stackMock = Stack(
-            batchCommon: BatchCommonMock.self,
-            context: BatchContextMock.self,
-            batch: BatchMock.self,
-            event: BatchEventMock.self
-        )
+        stackMock = .mock
         
         fileManager = FileManager()
         testURL = fileManager.temporaryDirectory.appendingPathComponent(UUID().uuidString)

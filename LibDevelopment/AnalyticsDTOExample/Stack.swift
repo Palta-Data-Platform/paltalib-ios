@@ -13,6 +13,9 @@ public extension Stack {
         batchCommon: ProtobufExample.BatchCommon.self,
         context: Context.self,
         batch: ProtobufExample.Batch.self,
-        event: ProtobufExample.Event.self
+        event: ProtobufExample.Event.self,
+        sessionStartEventType: 1,
+        eventHeader: Header.self,
+        sessionStartEventPayload: EventPayload.self
     )
 }

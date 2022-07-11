@@ -22,9 +22,13 @@ public struct Header: PaltaLibAnalytics.EventHeader {
     
     let message: ProtobufExample.EventHeader
     
-    public init(pora: Pora) {
+    public init(pora: Pora = Pora()) {
         message = EventHeader.with {
             $0.pora = pora.message
         }
+    }
+    
+    public init() {
+        message = EventHeader()
     }
 }

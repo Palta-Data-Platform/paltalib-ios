@@ -11,6 +11,10 @@ public protocol EventPayload {
     
 }
 
+public protocol SessionStartEventPayload: EventPayload {
+    init()
+}
+
 struct EventPayloadBox {
     private let internalBox: EventPayloadBoxInternalProtocol
     

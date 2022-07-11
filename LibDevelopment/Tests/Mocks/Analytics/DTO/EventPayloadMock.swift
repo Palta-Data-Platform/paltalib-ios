@@ -8,6 +8,6 @@
 import Foundation
 import PaltaLibAnalytics
 
-struct EventPayloadMock: EventPayload, Equatable {
+struct EventPayloadMock: SessionStartEventPayload, Equatable {
     
 }

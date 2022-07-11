@@ -31,6 +31,7 @@ final class EventQueueTests: XCTestCase {
         contextProviderMock = .init()
         
         eventQueue = EventQueueImpl(
+            stack: .mock,
             core: coreMock,
             storage: storageMock,
             sendController: sendControllerMock,
@@ -68,6 +69,7 @@ final class EventQueueTests: XCTestCase {
         storageMock.loadedEvents = Array(repeating: .mock(), count: 30)
 
         eventQueue = .init(
+            stack: .mock,
             core: coreMock,
             storage: storageMock,
             sendController: sendControllerMock,
@@ -85,6 +87,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertNotNil(coreMock.removeHandler)
         XCTAssertNotNil(sendControllerMock.isReadyCallback)
         XCTAssert(sessionManagerMock.startCalled)
+        XCTAssertNotNil(sessionManagerMock.sessionStartLogger)
     }
     
     func testSendWhenAvailable() {
@@ -123,5 +126,13 @@ final class EventQueueTests: XCTestCase {
         coreMock.removeHandler?(ArraySlice(eventsToRemove))
 
         XCTAssertEqual(storageMock.removedIds, eventsToRemove.map { $0.event.id })
+    }
+    
+    func testSessionStartLogger() {
+        sessionManagerMock.sessionStartLogger?()
+        
+        XCTAssertEqual(coreMock.addedEvents.count, 1)
+        XCTAssertEqual(storageMock.storedEvents.count, 1)
+        XCTAssertFalse(sessionManagerMock.refreshSessionCalled)
     }
 }

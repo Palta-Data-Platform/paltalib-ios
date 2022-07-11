@@ -33,7 +33,7 @@ final class SessionManagerTests: XCTestCase {
         let newSessionLogged = expectation(description: "New session logged")
         newSessionLogged.isInverted = true
 
-        sessionManager.sessionEventLogger = { _, _ in
+        sessionManager.sessionStartLogger = {
             newSessionLogged.fulfill()
         }
         sessionManager.start()
@@ -45,9 +45,7 @@ final class SessionManagerTests: XCTestCase {
     func testNoSavedSession() {
         let newSessionLogged = expectation(description: "New session logged")
 
-        sessionManager.sessionEventLogger = { eventName, timestamp in
-            XCTAssertEqual(eventName, "")
-            XCTAssert(abs(currentTimestamp() - timestamp) < 2)
+        sessionManager.sessionStartLogger = {
             newSessionLogged.fulfill()
         }
         sessionManager.start()
@@ -62,9 +60,7 @@ final class SessionManagerTests: XCTestCase {
 
         let newSessionLogged = expectation(description: "New session logged")
 
-        sessionManager.sessionEventLogger = { eventName, timestamp in
-            XCTAssertEqual(eventName, "")
-            XCTAssert(abs(currentTimestamp() - timestamp) < 2)
+        sessionManager.sessionStartLogger = {
             newSessionLogged.fulfill()
         }
         sessionManager.start()
@@ -75,9 +71,7 @@ final class SessionManagerTests: XCTestCase {
     func testAppBecomeActive() {
         let newSessionLogged = expectation(description: "New session logged")
 
-        sessionManager.sessionEventLogger = { eventName, timestamp in
-            XCTAssertEqual(eventName, "")
-            XCTAssert(abs(currentTimestamp() - timestamp) < 2)
+        sessionManager.sessionStartLogger = {
             newSessionLogged.fulfill()
         }
 
@@ -96,22 +90,13 @@ final class SessionManagerTests: XCTestCase {
         let sessionEventLogged = expectation(description: "New session logged")
         sessionEventLogged.expectedFulfillmentCount = 2
 
-        var eventNames: [String] = []
-        var eventTimes: [Int] = []
-
-        sessionManager.sessionEventLogger = {
-            eventNames.append($0)
-            eventTimes.append($1)
+        sessionManager.sessionStartLogger = {
             sessionEventLogged.fulfill()
         }
 
         sessionManager.startNewSession()
 
         wait(for: [sessionEventLogged], timeout: 0.05)
-
-        XCTAssertEqual(eventNames, ["", ""])
-//        XCTAssertEqual(eventTimes[0], lastSessionTimestamp)
-//        XCTAssert(abs(currentTimestamp() - eventTimes[1]) < 4)
     }
 
     func testRefresh() throws {

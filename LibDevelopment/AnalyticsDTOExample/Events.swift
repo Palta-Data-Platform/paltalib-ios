@@ -14,7 +14,7 @@ extension Int: EventType {
     }
 }
 
-extension ProtobufExample.EventPayload: PaltaLibAnalytics.EventPayload {}
+extension ProtobufExample.EventPayload: PaltaLibAnalytics.SessionStartEventPayload {}
 
 public struct PageOpenEvent: PaltaLibAnalytics.Event {
     public typealias Header = AnalyticsDTOExample.Header
