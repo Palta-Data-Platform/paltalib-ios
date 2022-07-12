@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-@testable import EventsGeneratorLib
+@testable import EventsGeneratorStatic
 
 final class EnumTemplateTests: GenerationTests {
     func testEnums() throws {

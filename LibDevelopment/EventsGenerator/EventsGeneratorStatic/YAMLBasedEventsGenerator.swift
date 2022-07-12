@@ -7,16 +7,16 @@
 
 import Foundation
 
-final class YAMLBasedEventsGenerator {
+public final class YAMLBasedEventsGenerator {
     private let yamlURL: URL
     private let codeURL: URL
     
-    init(yamlURL: URL, codeURL: URL) {
+    public init(yamlURL: URL, codeURL: URL) {
         self.yamlURL = yamlURL
         self.codeURL = codeURL
     }
     
-    func generate() throws {
+    public func generate() throws {
         let templates = try YAMLParser().convertYamlToTemplates(at: yamlURL)
         
         try templates.forEach {

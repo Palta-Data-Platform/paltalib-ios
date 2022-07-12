@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import EventsGeneratorLib
+@testable import EventsGeneratorStatic
 import XCTest
 
 final class ContextTests: GenerationTests {

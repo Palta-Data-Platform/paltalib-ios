@@ -7,63 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1119CCC628732EBE00C7B4C4 /* SchemaValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCC528732EBE00C7B4C4 /* SchemaValue.swift */; };
-		1119CCC82873399400C7B4C4 /* ContextTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCC72873399400C7B4C4 /* ContextTemplate.swift */; };
-		1119CCCA2874245700C7B4C4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCC92874245700C7B4C4 /* StringExtensions.swift */; };
-		1119CCCC28743B2F00C7B4C4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCCB28743B2F00C7B4C4 /* Extension.swift */; };
-		1119CCCE28743BC100C7B4C4 /* TemplateGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCCD28743BC100C7B4C4 /* TemplateGenerator.swift */; };
 		1119CCD028743CB300C7B4C4 /* ContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCCF28743CB300C7B4C4 /* ContextTests.swift */; };
-		1119CCD82874459D00C7B4C4 /* YAMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCD72874459D00C7B4C4 /* YAMLParser.swift */; };
-		1119CCDB287445F200C7B4C4 /* Yaml in Frameworks */ = {isa = PBXBuildFile; productRef = 1119CCDA287445F200C7B4C4 /* Yaml */; };
-		1119CCDF2874484400C7B4C4 /* ContextTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCDE2874484400C7B4C4 /* ContextTemplateBuilder.swift */; };
-		1119CCE1287448ED00C7B4C4 /* SchemaValue+Yaml.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE0287448ED00C7B4C4 /* SchemaValue+Yaml.swift */; };
 		1119CCE328744E5600C7B4C4 /* YAMLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE228744E5600C7B4C4 /* YAMLParserTests.swift */; };
-		1119CCE52874563300C7B4C4 /* YAMLBasedEventsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE42874563300C7B4C4 /* YAMLBasedEventsGenerator.swift */; };
 		1119CCE72874579A00C7B4C4 /* End2EndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE62874579A00C7B4C4 /* End2EndTests.swift */; };
-		1119CCEE287461A500C7B4C4 /* EventHeaderTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCED287461A500C7B4C4 /* EventHeaderTemplate.swift */; };
 		1119CCF02874628E00C7B4C4 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCEF2874628E00C7B4C4 /* HeaderTests.swift */; };
-		1119CCF22874664F00C7B4C4 /* EventHeaderTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCF12874664F00C7B4C4 /* EventHeaderTemplateBuilder.swift */; };
-		1119CCF428748C5600C7B4C4 /* SingleEnumTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCF328748C5600C7B4C4 /* SingleEnumTemplate.swift */; };
-		1119CCF628748D9E00C7B4C4 /* EnumsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCF528748D9E00C7B4C4 /* EnumsTemplate.swift */; };
 		1119CCF82874925600C7B4C4 /* EnumTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCF72874925600C7B4C4 /* EnumTemplateTests.swift */; };
-		1119CCFA287493D900C7B4C4 /* EnumsTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCF9287493D900C7B4C4 /* EnumsTemplateBuilder.swift */; };
-		1119CCFE287578A100C7B4C4 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCFD287578A100C7B4C4 /* Typealias.swift */; };
 		1119CD002875792400C7B4C4 /* TypealiasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCFF2875792400C7B4C4 /* TypealiasTests.swift */; };
-		1119CD0228757C6200C7B4C4 /* SingleEventTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD0128757C6200C7B4C4 /* SingleEventTemplate.swift */; };
-		1119CD042875802400C7B4C4 /* EventsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD032875802400C7B4C4 /* EventsTemplate.swift */; };
 		1119CD0628759F2400C7B4C4 /* EventsTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD0528759F2400C7B4C4 /* EventsTemplateTests.swift */; };
-		1119CD082875A0DB00C7B4C4 /* EventsTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD072875A0DB00C7B4C4 /* EventsTemplateBuilder.swift */; };
 		114C166B286F136300DE78F6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C166A286F136300DE78F6 /* main.swift */; };
-		114C1685286F139600DE78F6 /* EventsGeneratorLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */; };
-		114C169C286F13BB00DE78F6 /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C168D286F13BB00DE78F6 /* Visibility.swift */; };
-		114C169D286F13BB00DE78F6 /* Ident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C168E286F13BB00DE78F6 /* Ident.swift */; };
-		114C169E286F13BB00DE78F6 /* ReturnType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C168F286F13BB00DE78F6 /* ReturnType.swift */; };
-		114C169F286F13BB00DE78F6 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1690286F13BB00DE78F6 /* Statement.swift */; };
-		114C16A0286F13BB00DE78F6 /* CodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1691286F13BB00DE78F6 /* CodeGenerator.swift */; };
-		114C16A1286F13BB00DE78F6 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1693286F13BB00DE78F6 /* Scope.swift */; };
-		114C16A2286F13BB00DE78F6 /* Scopes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1694286F13BB00DE78F6 /* Scopes.swift */; };
-		114C16A3286F13BB00DE78F6 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1695286F13BB00DE78F6 /* Property.swift */; };
-		114C16A4286F13BB00DE78F6 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1696286F13BB00DE78F6 /* Method.swift */; };
-		114C16A5286F13BB00DE78F6 /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1697286F13BB00DE78F6 /* Init.swift */; };
-		114C16A6286F13BB00DE78F6 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1699286F13BB00DE78F6 /* Class.swift */; };
-		114C16A7286F13BB00DE78F6 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C169A286F13BB00DE78F6 /* Enum.swift */; };
-		114C16A8286F13BB00DE78F6 /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C169B286F13BB00DE78F6 /* Struct.swift */; };
 		114C16AA286F140800DE78F6 /* StructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C16A9286F140800DE78F6 /* StructTests.swift */; };
 		114C16AE286F175C00DE78F6 /* Examples in Resources */ = {isa = PBXBuildFile; fileRef = 114C16AD286F175C00DE78F6 /* Examples */; };
 		119F49272872CA0D00340213 /* GenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F49262872CA0D00340213 /* GenerationTests.swift */; };
 		119F49292872CD4200340213 /* ClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F49282872CD4200340213 /* ClassTests.swift */; };
 		119F492B2872D78000340213 /* MethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F492A2872D78000340213 /* MethodTests.swift */; };
 		119F492D2872DB5600340213 /* PropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F492C2872DB5600340213 /* PropertyTests.swift */; };
-		119F492F28730EBE00340213 /* SubEntityTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F492E28730EBE00340213 /* SubEntityTemplate.swift */; };
+		11A31AB8287D6A5300A32D69 /* Yaml in Frameworks */ = {isa = PBXBuildFile; productRef = 11A31AB7287D6A5300A32D69 /* Yaml */; };
+		11A31AC8287D882E00A32D69 /* YAMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCD72874459D00C7B4C4 /* YAMLParser.swift */; };
+		11A31AC9287D882E00A32D69 /* EventsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD032875802400C7B4C4 /* EventsTemplate.swift */; };
+		11A31ACA287D882E00A32D69 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C169A286F13BB00DE78F6 /* Enum.swift */; };
+		11A31ACB287D882E00A32D69 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCFD287578A100C7B4C4 /* Typealias.swift */; };
+		11A31ACC287D882E00A32D69 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCC92874245700C7B4C4 /* StringExtensions.swift */; };
+		11A31ACD287D882E00A32D69 /* EventsTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD072875A0DB00C7B4C4 /* EventsTemplateBuilder.swift */; };
+		11A31ACE287D882E00A32D69 /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C169B286F13BB00DE78F6 /* Struct.swift */; };
+		11A31ACF287D882E00A32D69 /* ContextTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCDE2874484400C7B4C4 /* ContextTemplateBuilder.swift */; };
+		11A31AD0287D882E00A32D69 /* SingleEnumTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCF328748C5600C7B4C4 /* SingleEnumTemplate.swift */; };
+		11A31AD1287D882E00A32D69 /* EnumsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCF528748D9E00C7B4C4 /* EnumsTemplate.swift */; };
+		11A31AD2287D882E00A32D69 /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1696286F13BB00DE78F6 /* Method.swift */; };
+		11A31AD3287D882E00A32D69 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCCB28743B2F00C7B4C4 /* Extension.swift */; };
+		11A31AD4287D882E00A32D69 /* EventHeaderTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCF12874664F00C7B4C4 /* EventHeaderTemplateBuilder.swift */; };
+		11A31AD5287D882E00A32D69 /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1697286F13BB00DE78F6 /* Init.swift */; };
+		11A31AD6287D882E00A32D69 /* EventHeaderTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCED287461A500C7B4C4 /* EventHeaderTemplate.swift */; };
+		11A31AD7287D882E00A32D69 /* SchemaValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCC528732EBE00C7B4C4 /* SchemaValue.swift */; };
+		11A31AD8287D882E00A32D69 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1699286F13BB00DE78F6 /* Class.swift */; };
+		11A31AD9287D882E00A32D69 /* Ident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C168E286F13BB00DE78F6 /* Ident.swift */; };
+		11A31ADA287D882E00A32D69 /* SchemaValue+Yaml.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE0287448ED00C7B4C4 /* SchemaValue+Yaml.swift */; };
+		11A31ADB287D882E00A32D69 /* ContextTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCC72873399400C7B4C4 /* ContextTemplate.swift */; };
+		11A31ADC287D882E00A32D69 /* TemplateGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCCD28743BC100C7B4C4 /* TemplateGenerator.swift */; };
+		11A31ADD287D882E00A32D69 /* Scopes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1694286F13BB00DE78F6 /* Scopes.swift */; };
+		11A31ADE287D882E00A32D69 /* YAMLBasedEventsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCE42874563300C7B4C4 /* YAMLBasedEventsGenerator.swift */; };
+		11A31ADF287D882E00A32D69 /* EnumsTemplateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CCF9287493D900C7B4C4 /* EnumsTemplateBuilder.swift */; };
+		11A31AE0287D882E00A32D69 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1693286F13BB00DE78F6 /* Scope.swift */; };
+		11A31AE1287D882E00A32D69 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1695286F13BB00DE78F6 /* Property.swift */; };
+		11A31AE2287D882E00A32D69 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1690286F13BB00DE78F6 /* Statement.swift */; };
+		11A31AE3287D882E00A32D69 /* SingleEventTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119CD0128757C6200C7B4C4 /* SingleEventTemplate.swift */; };
+		11A31AE4287D882E00A32D69 /* ReturnType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C168F286F13BB00DE78F6 /* ReturnType.swift */; };
+		11A31AE5287D882E00A32D69 /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C168D286F13BB00DE78F6 /* Visibility.swift */; };
+		11A31AE6287D882E00A32D69 /* SubEntityTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F492E28730EBE00340213 /* SubEntityTemplate.swift */; };
+		11A31AE7287D882E00A32D69 /* CodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114C1691286F13BB00DE78F6 /* CodeGenerator.swift */; };
+		11A31AEA287D884300A32D69 /* libEventsGeneratorStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11A31ABF287D881100A32D69 /* libEventsGeneratorStatic.a */; };
+		11A31AEC287D889A00A32D69 /* Yaml in Frameworks */ = {isa = PBXBuildFile; productRef = 11A31AEB287D889A00A32D69 /* Yaml */; };
+		11A31AEF287D8B4000A32D69 /* libEventsGeneratorStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11A31ABF287D881100A32D69 /* libEventsGeneratorStatic.a */; };
+		11A31AF1287D8B4300A32D69 /* Yaml in Frameworks */ = {isa = PBXBuildFile; productRef = 11A31AF0287D8B4300A32D69 /* Yaml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		114C1686286F139600DE78F6 /* PBXContainerItemProxy */ = {
+		11A31AE8287D883D00A32D69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 114C165F286F136300DE78F6 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 114C1675286F138400DE78F6;
-			remoteInfo = EventsGeneratorLib;
+			remoteGlobalIDString = 11A31ABE287D881100A32D69;
+			remoteInfo = EventsGeneratorStatic;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -107,7 +110,6 @@
 		1119CD072875A0DB00C7B4C4 /* EventsTemplateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTemplateBuilder.swift; sourceTree = "<group>"; };
 		114C1667286F136300DE78F6 /* EventsGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EventsGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		114C166A286F136300DE78F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EventsGeneratorLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		114C1681286F139600DE78F6 /* EventsGeneratorLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsGeneratorLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		114C168D286F13BB00DE78F6 /* Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
 		114C168E286F13BB00DE78F6 /* Ident.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ident.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		119F492A2872D78000340213 /* MethodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodTests.swift; sourceTree = "<group>"; };
 		119F492C2872DB5600340213 /* PropertyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTests.swift; sourceTree = "<group>"; };
 		119F492E28730EBE00340213 /* SubEntityTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubEntityTemplate.swift; sourceTree = "<group>"; };
+		11A31ABF287D881100A32D69 /* libEventsGeneratorStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEventsGeneratorStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,14 +139,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		114C1673286F138400DE78F6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1119CCDB287445F200C7B4C4 /* Yaml in Frameworks */,
+				11A31AEA287D884300A32D69 /* libEventsGeneratorStatic.a in Frameworks */,
+				11A31AB8287D6A5300A32D69 /* Yaml in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +148,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				114C1685286F139600DE78F6 /* EventsGeneratorLib.framework in Frameworks */,
+				11A31AEF287D8B4000A32D69 /* libEventsGeneratorStatic.a in Frameworks */,
+				11A31AF1287D8B4300A32D69 /* Yaml in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11A31ABD287D881100A32D69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11A31AEC287D889A00A32D69 /* Yaml in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,9 +203,10 @@
 			isa = PBXGroup;
 			children = (
 				114C1669286F136300DE78F6 /* EventsGenerator */,
-				114C1677286F138400DE78F6 /* EventsGeneratorLib */,
 				114C1682286F139600DE78F6 /* EventsGeneratorLibTests */,
+				11A31AC0287D881100A32D69 /* EventsGeneratorStatic */,
 				114C1668286F136300DE78F6 /* Products */,
+				11A31AB5287D6A4F00A32D69 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,8 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				114C1667286F136300DE78F6 /* EventsGenerator */,
-				114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */,
 				114C1681286F139600DE78F6 /* EventsGeneratorLibTests.xctest */,
+				11A31ABF287D881100A32D69 /* libEventsGeneratorStatic.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,19 +226,6 @@
 				114C166A286F136300DE78F6 /* main.swift */,
 			);
 			path = EventsGenerator;
-			sourceTree = "<group>";
-		};
-		114C1677286F138400DE78F6 /* EventsGeneratorLib */ = {
-			isa = PBXGroup;
-			children = (
-				1119CCC92874245700C7B4C4 /* StringExtensions.swift */,
-				1119CCE42874563300C7B4C4 /* YAMLBasedEventsGenerator.swift */,
-				1119CCE828745D5700C7B4C4 /* YAML */,
-				1119CCD32874454300C7B4C4 /* Templates */,
-				1119CCD42874454F00C7B4C4 /* SchemaModel */,
-				114C168B286F13BB00DE78F6 /* Core */,
-			);
-			path = EventsGeneratorLib;
 			sourceTree = "<group>";
 		};
 		114C1682286F139600DE78F6 /* EventsGeneratorLibTests */ = {
@@ -301,10 +295,30 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		11A31AB5287D6A4F00A32D69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		11A31AC0287D881100A32D69 /* EventsGeneratorStatic */ = {
+			isa = PBXGroup;
+			children = (
+				1119CCC92874245700C7B4C4 /* StringExtensions.swift */,
+				1119CCE42874563300C7B4C4 /* YAMLBasedEventsGenerator.swift */,
+				1119CCE828745D5700C7B4C4 /* YAML */,
+				1119CCD32874454300C7B4C4 /* Templates */,
+				1119CCD42874454F00C7B4C4 /* SchemaModel */,
+				114C168B286F13BB00DE78F6 /* Core */,
+			);
+			path = EventsGeneratorStatic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		114C1671286F138400DE78F6 /* Headers */ = {
+		11A31ABB287D881100A32D69 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -325,32 +339,15 @@
 			buildRules = (
 			);
 			dependencies = (
+				11A31AE9287D883D00A32D69 /* PBXTargetDependency */,
 			);
 			name = EventsGenerator;
+			packageProductDependencies = (
+				11A31AB7287D6A5300A32D69 /* Yaml */,
+			);
 			productName = EventsGenerator;
 			productReference = 114C1667286F136300DE78F6 /* EventsGenerator */;
 			productType = "com.apple.product-type.tool";
-		};
-		114C1675286F138400DE78F6 /* EventsGeneratorLib */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 114C167A286F138400DE78F6 /* Build configuration list for PBXNativeTarget "EventsGeneratorLib" */;
-			buildPhases = (
-				114C1671286F138400DE78F6 /* Headers */,
-				114C1672286F138400DE78F6 /* Sources */,
-				114C1673286F138400DE78F6 /* Frameworks */,
-				114C1674286F138400DE78F6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = EventsGeneratorLib;
-			packageProductDependencies = (
-				1119CCDA287445F200C7B4C4 /* Yaml */,
-			);
-			productName = EventsGeneratorLib;
-			productReference = 114C1676286F138400DE78F6 /* EventsGeneratorLib.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 		114C1680286F139600DE78F6 /* EventsGeneratorLibTests */ = {
 			isa = PBXNativeTarget;
@@ -363,12 +360,35 @@
 			buildRules = (
 			);
 			dependencies = (
-				114C1687286F139600DE78F6 /* PBXTargetDependency */,
 			);
 			name = EventsGeneratorLibTests;
+			packageProductDependencies = (
+				11A31AF0287D8B4300A32D69 /* Yaml */,
+			);
 			productName = EventsGeneratorLibTests;
 			productReference = 114C1681286F139600DE78F6 /* EventsGeneratorLibTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		11A31ABE287D881100A32D69 /* EventsGeneratorStatic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11A31AC5287D881100A32D69 /* Build configuration list for PBXNativeTarget "EventsGeneratorStatic" */;
+			buildPhases = (
+				11A31ABB287D881100A32D69 /* Headers */,
+				11A31ABC287D881100A32D69 /* Sources */,
+				11A31ABD287D881100A32D69 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11A31AEE287D889E00A32D69 /* PBXTargetDependency */,
+			);
+			name = EventsGeneratorStatic;
+			packageProductDependencies = (
+				11A31AEB287D889A00A32D69 /* Yaml */,
+			);
+			productName = EventsGeneratorStatic;
+			productReference = 11A31ABF287D881100A32D69 /* libEventsGeneratorStatic.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -383,12 +403,12 @@
 					114C1666286F136300DE78F6 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
-					114C1675286F138400DE78F6 = {
-						CreatedOnToolsVersion = 13.3.1;
-					};
 					114C1680286F139600DE78F6 = {
 						CreatedOnToolsVersion = 13.3.1;
 						LastSwiftMigration = 1330;
+					};
+					11A31ABE287D881100A32D69 = {
+						CreatedOnToolsVersion = 13.3.1;
 					};
 				};
 			};
@@ -409,20 +429,13 @@
 			projectRoot = "";
 			targets = (
 				114C1666286F136300DE78F6 /* EventsGenerator */,
-				114C1675286F138400DE78F6 /* EventsGeneratorLib */,
 				114C1680286F139600DE78F6 /* EventsGeneratorLibTests */,
+				11A31ABE287D881100A32D69 /* EventsGeneratorStatic */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		114C1674286F138400DE78F6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		114C167F286F139600DE78F6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,45 +452,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				114C166B286F136300DE78F6 /* main.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		114C1672286F138400DE78F6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				114C169D286F13BB00DE78F6 /* Ident.swift in Sources */,
-				1119CCC82873399400C7B4C4 /* ContextTemplate.swift in Sources */,
-				1119CD0228757C6200C7B4C4 /* SingleEventTemplate.swift in Sources */,
-				1119CCCE28743BC100C7B4C4 /* TemplateGenerator.swift in Sources */,
-				1119CCD82874459D00C7B4C4 /* YAMLParser.swift in Sources */,
-				1119CCE52874563300C7B4C4 /* YAMLBasedEventsGenerator.swift in Sources */,
-				114C16A6286F13BB00DE78F6 /* Class.swift in Sources */,
-				1119CCF428748C5600C7B4C4 /* SingleEnumTemplate.swift in Sources */,
-				1119CCDF2874484400C7B4C4 /* ContextTemplateBuilder.swift in Sources */,
-				1119CCFA287493D900C7B4C4 /* EnumsTemplateBuilder.swift in Sources */,
-				114C16A7286F13BB00DE78F6 /* Enum.swift in Sources */,
-				1119CCF22874664F00C7B4C4 /* EventHeaderTemplateBuilder.swift in Sources */,
-				1119CCE1287448ED00C7B4C4 /* SchemaValue+Yaml.swift in Sources */,
-				114C169E286F13BB00DE78F6 /* ReturnType.swift in Sources */,
-				1119CD082875A0DB00C7B4C4 /* EventsTemplateBuilder.swift in Sources */,
-				114C16A8286F13BB00DE78F6 /* Struct.swift in Sources */,
-				114C16A0286F13BB00DE78F6 /* CodeGenerator.swift in Sources */,
-				1119CCFE287578A100C7B4C4 /* Typealias.swift in Sources */,
-				1119CD042875802400C7B4C4 /* EventsTemplate.swift in Sources */,
-				1119CCC628732EBE00C7B4C4 /* SchemaValue.swift in Sources */,
-				114C16A5286F13BB00DE78F6 /* Init.swift in Sources */,
-				1119CCCC28743B2F00C7B4C4 /* Extension.swift in Sources */,
-				114C169C286F13BB00DE78F6 /* Visibility.swift in Sources */,
-				119F492F28730EBE00340213 /* SubEntityTemplate.swift in Sources */,
-				114C16A1286F13BB00DE78F6 /* Scope.swift in Sources */,
-				114C16A2286F13BB00DE78F6 /* Scopes.swift in Sources */,
-				114C16A3286F13BB00DE78F6 /* Property.swift in Sources */,
-				1119CCEE287461A500C7B4C4 /* EventHeaderTemplate.swift in Sources */,
-				114C169F286F13BB00DE78F6 /* Statement.swift in Sources */,
-				1119CCF628748D9E00C7B4C4 /* EnumsTemplate.swift in Sources */,
-				114C16A4286F13BB00DE78F6 /* Method.swift in Sources */,
-				1119CCCA2874245700C7B4C4 /* StringExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,13 +474,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		11A31ABC287D881100A32D69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11A31AE1287D882E00A32D69 /* Property.swift in Sources */,
+				11A31ACC287D882E00A32D69 /* StringExtensions.swift in Sources */,
+				11A31AC9287D882E00A32D69 /* EventsTemplate.swift in Sources */,
+				11A31ACF287D882E00A32D69 /* ContextTemplateBuilder.swift in Sources */,
+				11A31ADF287D882E00A32D69 /* EnumsTemplateBuilder.swift in Sources */,
+				11A31AD5287D882E00A32D69 /* Init.swift in Sources */,
+				11A31AE3287D882E00A32D69 /* SingleEventTemplate.swift in Sources */,
+				11A31AE2287D882E00A32D69 /* Statement.swift in Sources */,
+				11A31AE7287D882E00A32D69 /* CodeGenerator.swift in Sources */,
+				11A31ADA287D882E00A32D69 /* SchemaValue+Yaml.swift in Sources */,
+				11A31AD0287D882E00A32D69 /* SingleEnumTemplate.swift in Sources */,
+				11A31ACA287D882E00A32D69 /* Enum.swift in Sources */,
+				11A31AD1287D882E00A32D69 /* EnumsTemplate.swift in Sources */,
+				11A31ACE287D882E00A32D69 /* Struct.swift in Sources */,
+				11A31AD4287D882E00A32D69 /* EventHeaderTemplateBuilder.swift in Sources */,
+				11A31AD9287D882E00A32D69 /* Ident.swift in Sources */,
+				11A31ADD287D882E00A32D69 /* Scopes.swift in Sources */,
+				11A31AD2287D882E00A32D69 /* Method.swift in Sources */,
+				11A31AD6287D882E00A32D69 /* EventHeaderTemplate.swift in Sources */,
+				11A31AE0287D882E00A32D69 /* Scope.swift in Sources */,
+				11A31AD8287D882E00A32D69 /* Class.swift in Sources */,
+				11A31AE6287D882E00A32D69 /* SubEntityTemplate.swift in Sources */,
+				11A31ADC287D882E00A32D69 /* TemplateGenerator.swift in Sources */,
+				11A31AD3287D882E00A32D69 /* Extension.swift in Sources */,
+				11A31AE5287D882E00A32D69 /* Visibility.swift in Sources */,
+				11A31AC8287D882E00A32D69 /* YAMLParser.swift in Sources */,
+				11A31ACD287D882E00A32D69 /* EventsTemplateBuilder.swift in Sources */,
+				11A31AE4287D882E00A32D69 /* ReturnType.swift in Sources */,
+				11A31AD7287D882E00A32D69 /* SchemaValue.swift in Sources */,
+				11A31ADB287D882E00A32D69 /* ContextTemplate.swift in Sources */,
+				11A31ACB287D882E00A32D69 /* Typealias.swift in Sources */,
+				11A31ADE287D882E00A32D69 /* YAMLBasedEventsGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		114C1687286F139600DE78F6 /* PBXTargetDependency */ = {
+		11A31AE9287D883D00A32D69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 114C1675286F138400DE78F6 /* EventsGeneratorLib */;
-			targetProxy = 114C1686286F139600DE78F6 /* PBXContainerItemProxy */;
+			target = 11A31ABE287D881100A32D69 /* EventsGeneratorStatic */;
+			targetProxy = 11A31AE8287D883D00A32D69 /* PBXContainerItemProxy */;
+		};
+		11A31AEE287D889E00A32D69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 11A31AED287D889E00A32D69 /* Yaml */;
 		};
 /* End PBXTargetDependency section */
 
@@ -642,64 +659,6 @@
 			};
 			name = Release;
 		};
-		114C167B286F138400DE78F6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.palta.EventsGeneratorLib;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		114C167C286F138400DE78F6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.palta.EventsGeneratorLib;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		114C1689286F139600DE78F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -743,6 +702,28 @@
 			};
 			name = Release;
 		};
+		11A31AC6287D881100A32D69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		11A31AC7287D881100A32D69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -764,20 +745,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		114C167A286F138400DE78F6 /* Build configuration list for PBXNativeTarget "EventsGeneratorLib" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				114C167B286F138400DE78F6 /* Debug */,
-				114C167C286F138400DE78F6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		114C1688286F139600DE78F6 /* Build configuration list for PBXNativeTarget "EventsGeneratorLibTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				114C1689286F139600DE78F6 /* Debug */,
 				114C168A286F139600DE78F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11A31AC5287D881100A32D69 /* Build configuration list for PBXNativeTarget "EventsGeneratorStatic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11A31AC6287D881100A32D69 /* Debug */,
+				11A31AC7287D881100A32D69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -796,7 +777,22 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1119CCDA287445F200C7B4C4 /* Yaml */ = {
+		11A31AB7287D6A5300A32D69 /* Yaml */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1119CCD9287445F200C7B4C4 /* XCRemoteSwiftPackageReference "YamlSwift" */;
+			productName = Yaml;
+		};
+		11A31AEB287D889A00A32D69 /* Yaml */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1119CCD9287445F200C7B4C4 /* XCRemoteSwiftPackageReference "YamlSwift" */;
+			productName = Yaml;
+		};
+		11A31AED287D889E00A32D69 /* Yaml */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1119CCD9287445F200C7B4C4 /* XCRemoteSwiftPackageReference "YamlSwift" */;
+			productName = Yaml;
+		};
+		11A31AF0287D8B4300A32D69 /* Yaml */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1119CCD9287445F200C7B4C4 /* XCRemoteSwiftPackageReference "YamlSwift" */;
 			productName = Yaml;

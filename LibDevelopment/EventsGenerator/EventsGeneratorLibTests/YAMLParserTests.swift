@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-@testable import EventsGeneratorLib
+@testable import EventsGeneratorStatic
 
 final class YAMLParserTests: XCTestCase {
     func testContext() throws {

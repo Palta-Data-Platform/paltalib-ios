@@ -6,11 +6,11 @@
 //
 
 import XCTest
-@testable import EventsGeneratorLib
+@testable import EventsGeneratorStatic
 
 final class MethodTests: XCTestCase {
     func testEmptyVoid() {
-        let method = EventsGeneratorLib.Method(
+        let method = EventsGeneratorStatic.Method(
             visibility: .public,
             name: "doSomething",
             statements: ["print(\"Hello world\")", "print(\"Again\")"]
@@ -29,7 +29,7 @@ public func doSomething() {
     }
     
     func testParameters() {
-        let method = EventsGeneratorLib.Method(
+        let method = EventsGeneratorStatic.Method(
             visibility: .public,
             name: "make",
             arguments: [
@@ -53,7 +53,7 @@ public func make(_ x: Int, and y: String?, z: Bool = false) {
     }
     
     func testThrowsVoid() {
-        let method = EventsGeneratorLib.Method(
+        let method = EventsGeneratorStatic.Method(
             visibility: .internal,
             throws: true,
             name: "make"
@@ -70,7 +70,7 @@ internal func make() throws {
     }
     
     func testThrowsReturnValue() {
-        let method = EventsGeneratorLib.Method(
+        let method = EventsGeneratorStatic.Method(
             visibility: .internal,
             throws: true,
             name: "make",
@@ -88,7 +88,7 @@ internal func make() throws -> Int {
     }
     
     func testReturnValue() {
-        let method = EventsGeneratorLib.Method(
+        let method = EventsGeneratorStatic.Method(
             visibility: .internal,
             throws: false,
             name: "make",
@@ -106,7 +106,7 @@ internal func make() -> String? {
     }
     
     func testOverride() {
-        let method = EventsGeneratorLib.Method(
+        let method = EventsGeneratorStatic.Method(
             visibility: .public,
             isOverride: true,
             name: "make"

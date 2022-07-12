@@ -6,11 +6,11 @@
 //
 
 import XCTest
-@testable import EventsGeneratorLib
+@testable import EventsGeneratorStatic
 
 final class PropertyTests: XCTestCase {
     func testSimpleLet() {
-        let property = EventsGeneratorLib.Property(
+        let property = EventsGeneratorStatic.Property(
             visibility: .internal,
             name: "int",
             isMutable: false,
@@ -25,7 +25,7 @@ final class PropertyTests: XCTestCase {
     }
     
     func testSimpleVar() {
-        let property = EventsGeneratorLib.Property(
+        let property = EventsGeneratorStatic.Property(
             visibility: .internal,
             name: "int",
             isMutable: true,
@@ -40,7 +40,7 @@ final class PropertyTests: XCTestCase {
     }
     
     func testGetter() {
-        let property = EventsGeneratorLib.Property(
+        let property = EventsGeneratorStatic.Property(
             visibility: .internal,
             name: "int",
             isMutable: true,
@@ -63,7 +63,7 @@ internal var int: Int {
     }
     
     func testGetterSetter() {
-        let property = EventsGeneratorLib.Property(
+        let property = EventsGeneratorStatic.Property(
             visibility: .internal,
             name: "int",
             isMutable: true,
@@ -91,7 +91,7 @@ internal var int: Int {
     }
     
     func testDefaultValue() {
-        let property = EventsGeneratorLib.Property(
+        let property = EventsGeneratorStatic.Property(
             visibility: .private,
             name: "int",
             returnType: ReturnType(type: Int.self),
