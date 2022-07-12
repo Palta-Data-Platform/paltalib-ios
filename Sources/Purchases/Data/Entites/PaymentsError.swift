@@ -8,8 +8,8 @@
 import Foundation
 import PaltaLibCore
 
-enum PaymentsError: Error {
-    static let unknownError: PaymentsError = .sdkError(.other(nil))
+public enum PaymentsError: Error {
+    public static let unknownError: PaymentsError = .sdkError(.other(nil))
     
     case invalidKey
     case noUserId
@@ -19,7 +19,7 @@ enum PaymentsError: Error {
     case networkError(URLError)
 }
 
-enum SDKError: Error {
+public enum SDKError: Error {
     case protocolError
     case validationError
     case noSuitablePlugin
