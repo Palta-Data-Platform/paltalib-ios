@@ -7,10 +7,10 @@
 
 import Foundation
 import PaltaLibAnalytics
-import ProtobufExample
+import PaltaAnlyticsTransport
 
 
 
-//extension ProtobufExample.EventCommon: PaltaLibAnalytics.EventCommon {
+//extension PaltaAnlyticsTransport.EventCommon: PaltaLibAnalytics.EventCommon {
 //    
 //}

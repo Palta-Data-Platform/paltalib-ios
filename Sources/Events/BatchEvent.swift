@@ -7,11 +7,11 @@
 
 import Foundation
 import PaltaLibAnalytics
-import ProtobufExample
+import PaltaAnlyticsTransport
 
 extension PaltaLibAnalytics.EventCommon {
-    var message: ProtobufExample.EventCommon {
-        var msg = ProtobufExample.EventCommon()
+    var message: PaltaAnlyticsTransport.EventCommon {
+        var msg = PaltaAnlyticsTransport.EventCommon()
         msg.eventType = eventType.intValue
         msg.eventTs = Int64(timestamp)
         msg.sessionID = Int64(sessionId)
@@ -19,7 +19,7 @@ extension PaltaLibAnalytics.EventCommon {
     }
 }
 
-extension ProtobufExample.Event: BatchEvent {
+extension PaltaAnlyticsTransport.Event: BatchEvent {
     public init(data: Data) throws {
         try self.init(serializedData: data)
     }
@@ -39,7 +39,7 @@ extension ProtobufExample.Event: BatchEvent {
     ) {
         guard
             let header = header as? Header,
-            let payload = payload as? ProtobufExample.EventPayload
+            let payload = payload as? PaltaAnlyticsTransport.EventPayload
         else {
             assertionFailure("Mixing up different protobufs")
             self = .init()

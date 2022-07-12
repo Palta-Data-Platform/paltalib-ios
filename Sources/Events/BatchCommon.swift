@@ -7,9 +7,9 @@
 
 import Foundation
 import PaltaLibAnalytics
-import ProtobufExample
+import PaltaAnlyticsTransport
 
-extension ProtobufExample.BatchCommon: PaltaLibAnalytics.BatchCommon {
+extension PaltaAnlyticsTransport.BatchCommon: PaltaLibAnalytics.BatchCommon {
     public init(
         instanceId: UUID,
         batchId: UUID,

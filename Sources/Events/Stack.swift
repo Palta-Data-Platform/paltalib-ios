@@ -6,16 +6,16 @@
 //
 
 import PaltaLibAnalytics
-import ProtobufExample
+import PaltaAnlyticsTransport
 
 public extension Stack {
     static let `default` = Stack(
-        batchCommon: ProtobufExample.BatchCommon.self,
+        batchCommon: PaltaAnlyticsTransport.BatchCommon.self,
         context: Context.self,
-        batch: ProtobufExample.Batch.self,
-        event: ProtobufExample.Event.self,
+        batch: PaltaAnlyticsTransport.Batch.self,
+        event: PaltaAnlyticsTransport.Event.self,
         sessionStartEventType: 1,
-        eventHeader: Header.self,
+        eventHeader: EventHeader.self,
         sessionStartEventPayload: EventPayload.self
     )
 }

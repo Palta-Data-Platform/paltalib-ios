@@ -7,18 +7,18 @@
 
 import Foundation
 import PaltaLibAnalytics
-import ProtobufExample
+import PaltaAnlyticsTransport
 
-extension ProtobufExample.Batch: PaltaLibAnalytics.Batch {
+extension PaltaAnlyticsTransport.Batch: PaltaLibAnalytics.Batch {
     public init(
         common: PaltaLibAnalytics.BatchCommon,
         context: PaltaLibAnalytics.BatchContext,
         events: [BatchEvent]
     ) {
         guard
-            let common = common as? ProtobufExample.BatchCommon,
+            let common = common as? PaltaAnlyticsTransport.BatchCommon,
             let context = (context as? Context)?.message,
-            let events = events as? [ProtobufExample.Event]
+            let events = events as? [PaltaAnlyticsTransport.Event]
         else {
             assertionFailure()
             self = .init()
