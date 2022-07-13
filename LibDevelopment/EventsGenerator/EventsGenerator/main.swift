@@ -27,8 +27,18 @@ func shell(_ command: String) -> String {
     return output
 }
 
-let curerentURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+let currentURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+
+let configFolderURL = currentURL.appendingPathComponent("config")
+let configURL = configFolderURL.appendingPathComponent("config.yaml")
+let eventsURL = currentURL.appendingPathComponent("Pods/PaltaLibEvents")
 
 shell("tar -xzvf config.tar.gz")
 
-try YAMLBasedEventsGenerator(yamlURL: curerentURL.appendingPathComponent("config.yaml"), codeURL: curerentURL).generate()
+shell("protoc --swift_out=. config/config.proto")
+
+shell("mv config/config.pb.swift Pods/PaltaLibEventsTransport/Sources/EventsTransport/config.pb.swift")
+
+try YAMLBasedEventsGenerator(yamlURL: configURL, codeURL: eventsURL).generate()
+
+shell("rm -rf \(configFolderURL.path)")
