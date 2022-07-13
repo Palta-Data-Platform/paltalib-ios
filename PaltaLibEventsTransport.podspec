@@ -12,4 +12,6 @@ Pod::Spec.new do |spec|
   spec.swift_versions        = '5.3'
   spec.source_files = 'Sources/EventsTransport/**/*.swift'
   spec.module_name = 'PaltaAnlyticsTransport'
+  
+  spec.dependency 'SwiftProtobuf', '~> 1.19.0'
 end
