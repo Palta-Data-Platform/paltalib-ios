@@ -9,9 +9,9 @@ public struct Result {
 
     public static let error: Result = Result(rawValue: 3)
 
-    public let rawValue: UInt64
+    public let rawValue: Int64
 
-    public init(rawValue: UInt64) {
+    public init(rawValue: Int64) {
         self.rawValue = rawValue
     }
 }

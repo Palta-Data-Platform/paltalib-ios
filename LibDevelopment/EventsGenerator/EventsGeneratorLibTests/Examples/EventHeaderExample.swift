@@ -4,12 +4,12 @@ import Foundation
 import PaltaAnlyticsTransport
 import PaltaLibAnalytics
 
-public struct Header: PaltaLibAnalytics.EventHeader {
+public struct EventHeader: PaltaLibAnalytics.EventHeader {
     public var parent: Parent
 
-    internal var message: Context {
+    internal var message: PaltaAnlyticsTransport.EventHeader {
         get {
-            PaltaAnlyticsTransport.Context.with {
+            PaltaAnlyticsTransport.EventHeader.with {
                 $0.parent = parent.message
             }
         }
@@ -19,7 +19,7 @@ public struct Header: PaltaLibAnalytics.EventHeader {
         parent = Parent()
     }
 
-    public init(data: Data) {
+    public init(data: Data) throws {
         let proto = try PaltaAnlyticsTransport.EventHeader(serializedData: data)
         parent = Parent(message: proto.parent)
     }
@@ -29,13 +29,17 @@ public struct Header: PaltaLibAnalytics.EventHeader {
     }
 }
 
-extension Header {
+extension EventHeader {
     public struct Parent {
         internal var message: EventHeaderParent
 
-        public init(parentElements: [String]) {
+        public init(message: EventHeaderParent) {
+            self.message = message
+        }
+
+        public init(parentElements: [String] = []) {
             message = .init()
-            message.parent_elements = parentElements.map { $0 }
+            message.parentElements = parentElements.map { $0 }
         }
     }
 }

@@ -37,7 +37,7 @@ final class StructTests: GenerationTests {
                 .init(
                     visibility: .fileprivate,
                     throws: true,
-                    arguments: [("string", ReturnType(name: "String", isOptional: true))],
+                    arguments: [Init.Argument(label: "string", type: ReturnType(name: "String", isOptional: true))],
                     statements: ["self.string = string ?? \"\""]
                 )
             ],

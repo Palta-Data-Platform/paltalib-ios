@@ -61,7 +61,12 @@ final class ClassTests: GenerationTests {
                 )
             ],
             inits: [
-                .init(visibility: .internal, isConvenience: true, arguments: [("int", ReturnType(name: "Int", isOptional: true))], statements: ["self.int = int"])
+                .init(
+                    visibility: .internal,
+                    isConvenience: true,
+                    arguments: [Init.Argument(label: "int", type: ReturnType(name: "Int", isOptional: true))],
+                    statements: ["self.int = int"]
+                )
             ]
         )
         
@@ -96,7 +101,12 @@ final class ClassTests: GenerationTests {
                 )
             ],
             inits: [
-                .init(visibility: .internal, isRequired: true, arguments: [("int", ReturnType(name: "Int", isOptional: true))], statements: ["self.int = int"])
+                .init(
+                    visibility: .internal,
+                    isRequired: true,
+                    arguments: [Init.Argument(label: "int", type: ReturnType(name: "Int", isOptional: true))],
+                    statements: ["self.int = int"]
+                )
             ]
         )
         

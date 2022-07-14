@@ -1,6 +1,7 @@
 //  
 
 import Foundation
+import PaltaLibAnalytics
 import PaltaAnlyticsTransport
 
 public struct Context: BatchContext {
@@ -8,7 +9,7 @@ public struct Context: BatchContext {
 
     public var device: Device
 
-    internal var message: Context {
+    internal var message: PaltaAnlyticsTransport.Context {
         get {
             PaltaAnlyticsTransport.Context.with {
                 $0.application = application.message
@@ -22,7 +23,7 @@ public struct Context: BatchContext {
         device = Device()
     }
 
-    public init(data: Data) {
+    public init(data: Data) throws {
         let proto = try PaltaAnlyticsTransport.Context(serializedData: data)
         application = Application(message: proto.application)
         device = Device(message: proto.device)
@@ -37,20 +38,28 @@ extension Context {
     public struct Application {
         internal var message: ContextApplication
 
-        public init(appID: String, appVersion: String) {
+        public init(message: ContextApplication) {
+            self.message = message
+        }
+
+        public init(appID: String = "", appVersion: String = "") {
             message = .init()
             message.appID = appID
-            message.app_version = appVersion
+            message.appVersion = appVersion
         }
     }
 
     public struct Device {
         internal var message: ContextDevice
 
-        public init(deviceBrand: String, deviceModel: String) {
+        public init(message: ContextDevice) {
+            self.message = message
+        }
+
+        public init(deviceBrand: String = "", deviceModel: String = "") {
             message = .init()
-            message.device_brand = deviceBrand
-            message.device_model = deviceModel
+            message.deviceBrand = deviceBrand
+            message.deviceModel = deviceModel
         }
     }
 }

@@ -1,6 +1,7 @@
 //  
 
 import Foundation
+import PaltaLibAnalytics
 import PaltaAnlyticsTransport
 
 public struct Context: BatchContext {
@@ -16,7 +17,7 @@ public struct Context: BatchContext {
 
     public var user: User
 
-    internal var message: Context {
+    internal var message: PaltaAnlyticsTransport.Context {
         get {
             PaltaAnlyticsTransport.Context.with {
                 $0.application = application.message
@@ -38,7 +39,7 @@ public struct Context: BatchContext {
         user = User()
     }
 
-    public init(data: Data) {
+    public init(data: Data) throws {
         let proto = try PaltaAnlyticsTransport.Context(serializedData: data)
         application = Application(message: proto.application)
         appsflyer = Appsflyer(message: proto.appsflyer)
@@ -57,39 +58,55 @@ extension Context {
     public struct Application {
         internal var message: ContextApplication
 
-        public init(appId: String, appPlatform: String, appVersion: String) {
+        public init(message: ContextApplication) {
+            self.message = message
+        }
+
+        public init(appID: String = "", appPlatform: String = "", appVersion: String = "") {
             message = .init()
-            message.app_id = appId
-            message.app_platform = appPlatform
-            message.app_version = appVersion
+            message.appID = appID
+            message.appPlatform = appPlatform
+            message.appVersion = appVersion
         }
     }
 
     public struct Appsflyer {
         internal var message: ContextAppsflyer
 
-        public init(appsflyerId: String, appsflyerMediaSource: String) {
+        public init(message: ContextAppsflyer) {
+            self.message = message
+        }
+
+        public init(appsflyerID: String = "", appsflyerMediaSource: String = "") {
             message = .init()
-            message.appsflyer_id = appsflyerId
-            message.appsflyer_media_source = appsflyerMediaSource
+            message.appsflyerID = appsflyerID
+            message.appsflyerMediaSource = appsflyerMediaSource
         }
     }
 
     public struct Device {
         internal var message: ContextDevice
 
-        public init(deviceBrand: String, deviceCarrier: String, deviceModel: String) {
+        public init(message: ContextDevice) {
+            self.message = message
+        }
+
+        public init(deviceBrand: String = "", deviceCarrier: String = "", deviceModel: String = "") {
             message = .init()
-            message.device_brand = deviceBrand
-            message.device_carrier = deviceCarrier
-            message.device_model = deviceModel
+            message.deviceBrand = deviceBrand
+            message.deviceCarrier = deviceCarrier
+            message.deviceModel = deviceModel
         }
     }
 
     public struct Identify {
         internal var message: ContextIdentify
 
-        public init(gaid: String, idfa: String, idfv: String) {
+        public init(message: ContextIdentify) {
+            self.message = message
+        }
+
+        public init(gaid: String = "", idfa: String = "", idfv: String = "") {
             message = .init()
             message.gaid = gaid
             message.idfa = idfa
@@ -100,19 +117,27 @@ extension Context {
     public struct Os {
         internal var message: ContextOs
 
-        public init(osName: String, osVersion: String) {
+        public init(message: ContextOs) {
+            self.message = message
+        }
+
+        public init(osName: String = "", osVersion: String = "") {
             message = .init()
-            message.os_name = osName
-            message.os_version = osVersion
+            message.osName = osName
+            message.osVersion = osVersion
         }
     }
 
     public struct User {
         internal var message: ContextUser
 
-        public init(userId: String) {
+        public init(message: ContextUser) {
+            self.message = message
+        }
+
+        public init(userID: String = "") {
             message = .init()
-            message.user_id = userId
+            message.userID = userID
         }
     }
 }

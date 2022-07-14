@@ -3,13 +3,10 @@
 import PaltaLibAnalytics
 import PaltaAnlyticsTransport
 
-extension Int: EventType {
-}
-
-extension PaltaAnlyticsTransport.EventPayload: PaltaLibAnalytics.EventPayload {
-}
-
-public struct PageOpenEvent: Event {
+public struct PageOpenEvent: PaltaLibAnalytics.Event {
+    public typealias Header = PaltaEvents.EventHeader
+    public typealias Payload = PaltaAnlyticsTransport.EventPayload
+    public typealias EventType = Int
     public let header: EventHeader
 
     public var payload: Payload {

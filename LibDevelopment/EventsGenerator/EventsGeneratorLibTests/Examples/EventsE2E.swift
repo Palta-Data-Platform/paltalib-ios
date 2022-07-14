@@ -3,13 +3,10 @@
 import PaltaLibAnalytics
 import PaltaAnlyticsTransport
 
-extension Int: EventType {
-}
-
-extension PaltaAnlyticsTransport.EventPayload: PaltaLibAnalytics.EventPayload {
-}
-
-public struct EdgeCaseEvent: Event {
+public struct EdgeCaseEvent: PaltaLibAnalytics.Event {
+    public typealias Header = PaltaEvents.EventHeader
+    public typealias Payload = PaltaAnlyticsTransport.EventPayload
+    public typealias EventType = Int
     public let header: EventHeader
 
     public var payload: Payload {
@@ -32,9 +29,9 @@ public struct EdgeCaseEvent: Event {
         header: EventHeader,
         propBoolean: Bool,
         propBooleanArray: [Bool],
-        propDecimal1: NSDecimal,
-        propDecimal2: NSDecimal,
-        propDecimalArray: [NSDecimal],
+        propDecimal1: Decimal,
+        propDecimal2: Decimal,
+        propDecimalArray: [Decimal],
         propEnum: Result,
         propEnumArray: [Result],
         propInteger: Int,
@@ -46,24 +43,27 @@ public struct EdgeCaseEvent: Event {
     ) {
         self.header = header
         self._payload = EventPayloadEdgeCase.with {
-            $0.prop_boolean = propBoolean
-            $0.prop_boolean_array = propBooleanArray
-            $0.prop_decimal_1 = propDecimal1
-            $0.prop_decimal_2 = propDecimal2
-            $0.prop_decimal_array = propDecimalArray
-            $0.prop_enum = propEnum
-            $0.prop_enum_array = propEnumArray
-            $0.prop_integer = propInteger
-            $0.prop_integer_array = propIntegerArray
-            $0.prop_string = propString
-            $0.prop_string_array = propStringArray
-            $0.prop_timestamp = propTimestamp
-            $0.prop_timestamp_array = propTimestampArray
+            $0.propBoolean = propBoolean
+            $0.propBooleanArray = propBooleanArray.map { $0 }
+            $0.propDecimal1 = String(describing: propDecimal1)
+            $0.propDecimal2 = String(describing: propDecimal2)
+            $0.propDecimalArray = propDecimalArray.map { String(describing: $0) }
+            $0.propEnum = propEnum.rawValue
+            $0.propEnumArray = propEnumArray.map { $0.rawValue }
+            $0.propInteger = Int64(propInteger)
+            $0.propIntegerArray = propIntegerArray.map { Int64($0) }
+            $0.propString = propString
+            $0.propStringArray = propStringArray.map { $0 }
+            $0.propTimestamp = Int64(propTimestamp)
+            $0.propTimestampArray = propTimestampArray.map { Int64($0) }
         }
     }
 }
 
-public struct OnboardingFinishEvent: Event {
+public struct OnboardingFinishEvent: PaltaLibAnalytics.Event {
+    public typealias Header = PaltaEvents.EventHeader
+    public typealias Payload = PaltaAnlyticsTransport.EventPayload
+    public typealias EventType = Int
     public let header: EventHeader
 
     public var payload: Payload {
@@ -84,12 +84,15 @@ public struct OnboardingFinishEvent: Event {
 
     public init(header: EventHeader) {
         self.header = header
-        self._payload = EventPayloadOnboardingFinish.with {
+        self._payload = EventPayloadOnboardingFinish.with { _ in
         }
     }
 }
 
-public struct OnboardingStartEvent: Event {
+public struct OnboardingStartEvent: PaltaLibAnalytics.Event {
+    public typealias Header = PaltaEvents.EventHeader
+    public typealias Payload = PaltaAnlyticsTransport.EventPayload
+    public typealias EventType = Int
     public let header: EventHeader
 
     public var payload: Payload {
@@ -110,12 +113,15 @@ public struct OnboardingStartEvent: Event {
 
     public init(header: EventHeader) {
         self.header = header
-        self._payload = EventPayloadOnboardingStart.with {
+        self._payload = EventPayloadOnboardingStart.with { _ in
         }
     }
 }
 
-public struct PageOpenEvent: Event {
+public struct PageOpenEvent: PaltaLibAnalytics.Event {
+    public typealias Header = PaltaEvents.EventHeader
+    public typealias Payload = PaltaAnlyticsTransport.EventPayload
+    public typealias EventType = Int
     public let header: EventHeader
 
     public var payload: Payload {
@@ -134,15 +140,18 @@ public struct PageOpenEvent: Event {
 
     private let _payload: EventPayloadPageOpen
 
-    public init(header: EventHeader, pageId: String) {
+    public init(header: EventHeader, pageID: String) {
         self.header = header
         self._payload = EventPayloadPageOpen.with {
-            $0.page_id = pageId
+            $0.pageID = pageID
         }
     }
 }
 
-public struct PermissionsRequestEvent: Event {
+public struct PermissionsRequestEvent: PaltaLibAnalytics.Event {
+    public typealias Header = PaltaEvents.EventHeader
+    public typealias Payload = PaltaAnlyticsTransport.EventPayload
+    public typealias EventType = Int
     public let header: EventHeader
 
     public var payload: Payload {
@@ -164,13 +173,16 @@ public struct PermissionsRequestEvent: Event {
     public init(header: EventHeader, isGranted: Bool, type: String) {
         self.header = header
         self._payload = EventPayloadPermissionsRequest.with {
-            $0.is_granted = isGranted
+            $0.isGranted = isGranted
             $0.type = type
         }
     }
 }
 
-public struct SessionStartEvent: Event {
+public struct SessionStartEvent: PaltaLibAnalytics.Event {
+    public typealias Header = PaltaEvents.EventHeader
+    public typealias Payload = PaltaAnlyticsTransport.EventPayload
+    public typealias EventType = Int
     public let header: EventHeader
 
     public var payload: Payload {
@@ -191,7 +203,7 @@ public struct SessionStartEvent: Event {
 
     public init(header: EventHeader) {
         self.header = header
-        self._payload = EventPayloadSessionStart.with {
+        self._payload = EventPayloadSessionStart.with { _ in
         }
     }
 }
