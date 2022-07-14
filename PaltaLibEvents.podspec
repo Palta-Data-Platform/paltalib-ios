@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.static_framework      = true
   spec.ios.deployment_target = '10.0'
   spec.swift_versions        = '5.3'
-  spec.source_files = 'Sources/Events/**/*.swift'
+  spec.source_files = 'Sources/Events/**/*.{swift,m}'
   spec.module_name = 'PaltaEvents'
   
   spec.dependency 'PaltaLibAnalytics'

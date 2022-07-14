@@ -23,3 +23,11 @@ public extension Stack {
 extension EventPayloadSessionStart: PaltaLibAnalytics.SessionStartEventPayload {
     
 }
+
+@objc(PBEventsWiring)
+private class EventsWiring: NSObject {
+    @objc
+    func wireStack() {
+        PaltaAnalytics.initiate(with: .default)
+    }
+}
