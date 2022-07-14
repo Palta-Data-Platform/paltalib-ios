@@ -23,7 +23,7 @@ extension SchemaValue {
         case .bool:
             return ReturnType(type: Bool.self)
         case .decimal:
-            return ReturnType(type: Decimal.self)
+            return ReturnType(name: "Decimal")
         case .enum(let enumName):
             return ReturnType(name: enumName)
         case .integer:
@@ -34,6 +34,25 @@ extension SchemaValue {
             return ReturnType(type: Int.self)
         case .array(let element):
             return ReturnType(name: "[\(element.type.stringValue)]")
+        }
+    }
+    
+    var defaultValue: String {
+        switch self {
+        case .bool:
+            return "false"
+        case .decimal:
+            return "0"
+        case .enum(let name):
+            return "\(name)(rawValue: 0)"
+        case .integer:
+            return "0"
+        case .string:
+            return "\"\""
+        case .timestamp:
+            return "0"
+        case .array:
+            return "[]"
         }
     }
     

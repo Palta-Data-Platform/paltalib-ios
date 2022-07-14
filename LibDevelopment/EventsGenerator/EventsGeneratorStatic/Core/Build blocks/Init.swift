@@ -8,12 +8,23 @@
 import Foundation
 
 struct Init {
+    struct Argument {
+        let label: String
+        let type: ReturnType
+        let defaultValue: String?
+        
+        init(label: String, type: ReturnType, defaultValue: String? = nil) {
+            self.label = label
+            self.type = type
+            self.defaultValue = defaultValue
+        }
+    }
     let visibility: Visibility
     let isConvenience: Bool
     let isOverride: Bool
     let isRequired: Bool
     let `throws`: Bool
-    let arguments: [(String, ReturnType)]
+    let arguments: [Argument]
     
     let statements: [Statement]
     
@@ -23,7 +34,7 @@ struct Init {
         isOverride: Bool = false,
         isRequired: Bool = false,
         throws: Bool = false,
-        arguments: [(String, ReturnType)] = [],
+        arguments: [Argument] = [],
         statements: [Statement] = []
     ) {
         self.visibility = visibility
@@ -71,7 +82,7 @@ extension Init: Scope {
         let delimiter = manyArguments ? ",\n" : ", "
         
         var result = arguments
-            .map { "\($0): \($1.stringValue)" }
+            .map { "\($0.label): \($0.type.stringValue)\($0.defaultValue.map { " = \($0)" } ?? "")" }
             .joined(separator: delimiter)
         
         if manyArguments {

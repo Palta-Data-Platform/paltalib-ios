@@ -45,7 +45,8 @@ extension Struct: Scope {
     }
     
     var statements: [Statement] {
-        properties.sorted(by: { $0.visibility.order < $1.visibility.order })
+        aliases
+        + properties.sorted(by: { $0.visibility.order < $1.visibility.order })
         + inits
         + methods.sorted(by: { $0.visibility.order < $1.visibility.order })
     }

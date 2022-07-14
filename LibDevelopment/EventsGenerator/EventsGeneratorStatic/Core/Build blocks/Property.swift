@@ -54,6 +54,7 @@ extension Property: Statement {
         } else {
             return BaseScope(
                 prefix: firstString,
+                postBrace: nil,
                 suffix: "\n",
                 statements: inScopeStatements
             ).stringValue(for: identLevel)

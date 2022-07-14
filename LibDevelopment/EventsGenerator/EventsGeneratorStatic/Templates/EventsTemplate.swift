@@ -21,15 +21,6 @@ extension EventsTemplate: Template {
     }
     
     var statements: [Statement] {
-        conformanceDeclarations + events.map { $0.statement }
-    }
-}
-
-extension EventsTemplate {
-    private var conformanceDeclarations: [Statement] {
-        [
-            Extension(type: "Int", conformances: ["EventType"], statements: []),
-            Extension(type: "PaltaAnlyticsTransport.EventPayload", conformances: ["PaltaLibAnalytics.EventPayload"], statements: [])
-        ]
+        events.map { $0.statement }
     }
 }

@@ -23,7 +23,7 @@ extension SingleEventTemplate {
         Struct(
             visibility: .public,
             name: "\(name)Event",
-            conformances: ["Event"],
+            conformances: ["PaltaLibAnalytics.Event"],
             aliases: aliases,
             properties: [headerProp, payloadProp, typeProp, payloadPrivateProp],
             inits: [initt]
@@ -38,6 +38,7 @@ extension SingleEventTemplate {
         let getter = Getter(statements: [
             BaseScope(
                 prefix: "PaltaAnlyticsTransport.EventPayload.with",
+                postBrace: nil,
                 suffix: nil,
                 statements: ["$0.event\(id) = _payload"]
             )
@@ -67,17 +68,18 @@ extension SingleEventTemplate {
     }
     
     private var initt: Init {
-        let arguments = [("header", ReturnType(name: "EventHeader"))] + properties.map {
-            ($0.name.snakeCaseToCamelCase, $0.type.type)
+        let arguments = [Init.Argument(label: "header", type: ReturnType(name: "EventHeader"))] + properties.map {
+            Init.Argument(label: $0.name.snakeCaseToCamelCase, type: $0.type.type)
         }
                           
         let statements: [Statement] = [
             "self.header = header",
             BaseScope(
                 prefix: "self._payload = EventPayload\(name).with",
+                postBrace: properties.isEmpty ? " _ in" : nil,
                 suffix: nil,
                 statements: properties.map {
-                    "$0.\($0.name.startLowercase) = \($0.name.startLowercase.snakeCaseToCamelCase)"
+                    "$0.\($0.name.snakeCaseToCamelCase) = \($0.type.converterToProto($0.name.startLowercase.snakeCaseToCamelCase))"
                 }
             )
         ]

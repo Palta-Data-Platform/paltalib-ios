@@ -38,7 +38,7 @@ extension PaltaAnlyticsTransport.Event: BatchEvent {
         payload: PaltaLibAnalytics.EventPayload
     ) {
         guard
-            let header = header as? Header,
+            let header = header as? EventHeader,
             let payload = payload as? PaltaAnlyticsTransport.EventPayload
         else {
             assertionFailure("Mixing up different protobufs")
@@ -52,4 +52,13 @@ extension PaltaAnlyticsTransport.Event: BatchEvent {
         self.header = header.message
         self.payload = payload
     }
+}
+
+extension Int: EventType {
+    public var intValue: Int64 {
+        Int64(self)
+    }
+}
+
+extension PaltaAnlyticsTransport.EventPayload: PaltaLibAnalytics.EventPayload {
 }

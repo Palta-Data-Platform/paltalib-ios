@@ -17,23 +17,21 @@ extension String {
     }
     
     var snakeCaseToCamelCase: String {
-        let underscoreIndecies = allIndicies(of: "_").reversed()
-        
-        var copy = self
-        let uppercased = self.uppercased()
-        
-        underscoreIndecies.forEach { index in
-            let nextIndex = self.index(after: index)
-            
-            guard indices.contains(nextIndex), index != startIndex else {
-                return
+        self
+            .components(separatedBy: "_")
+            .enumerated()
+            .map { index, string in
+                guard index > 0 else {
+                    return string
+                }
+                
+                if string == "id" {
+                    return "ID"
+                } else {
+                    return string.capitalized
+                }
             }
-            
-            copy.replaceSubrange(nextIndex...nextIndex, with: uppercased[nextIndex...nextIndex])
-            copy.remove(at: index)
-        }
-        
-        return copy
+            .joined(separator: "")
     }
     
     var camelCaseToSnakeCase: String {

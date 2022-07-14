@@ -17,7 +17,7 @@ extension ContextTemplate: Template {
     }
     
     var imports: [String] {
-        ["Foundation", "PaltaAnlyticsTransport"]
+        ["Foundation", "PaltaLibAnalytics", "PaltaAnlyticsTransport"]
     }
     
     var statements: [Statement] {
@@ -66,9 +66,10 @@ extension ContextTemplate {
             
             Init(
                 visibility: .public,
-                arguments: [("data", ReturnType(type: Data.self))],
+                throws: true,
+                arguments: [Init.Argument(label: "data", type: ReturnType(type: Data.self))],
                 statements: dataInitStatements
-            ),
+            )
         ]
     }
     
@@ -91,6 +92,7 @@ extension ContextTemplate {
         
         let messageGetterStatement = BaseScope(
             prefix: "PaltaAnlyticsTransport.Context.with",
+            postBrace: nil,
             suffix: nil,
             statements: messageInnerStatements
         )
@@ -99,7 +101,7 @@ extension ContextTemplate {
             visibility: .internal,
             name: "message",
             isMutable: true,
-            returnType: ReturnType(name: "Context"),
+            returnType: ReturnType(name: "PaltaAnlyticsTransport.Context"),
             getter: Getter(statements: [messageGetterStatement])
         )
     }

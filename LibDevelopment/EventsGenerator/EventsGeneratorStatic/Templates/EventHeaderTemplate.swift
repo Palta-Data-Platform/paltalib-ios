@@ -28,7 +28,7 @@ extension EventHeaderTemplate: Template {
 extension EventHeaderTemplate {
     private var subentitiesExtension: Scope {
         Extension(
-            type: "Header",
+            type: "EventHeader",
             conformances: [],
             statements: elements.map { $0.makeStruct() }
         )
@@ -37,7 +37,7 @@ extension EventHeaderTemplate {
     private var baseStruct: Struct {
         Struct(
             visibility: .public,
-            name: "Header",
+            name: "EventHeader",
             conformances: ["PaltaLibAnalytics.EventHeader"],
             properties: contextProperties + [messageProperty],
             inits: inits,
@@ -66,7 +66,8 @@ extension EventHeaderTemplate {
             
             Init(
                 visibility: .public,
-                arguments: [("data", ReturnType(type: Data.self))],
+                throws: true,
+                arguments: [Init.Argument(label: "data", type: ReturnType(type: Data.self))],
                 statements: dataInitStatements
             ),
         ]
@@ -90,7 +91,8 @@ extension EventHeaderTemplate {
         }
         
         let messageGetterStatement = BaseScope(
-            prefix: "PaltaAnlyticsTransport.Context.with",
+            prefix: "PaltaAnlyticsTransport.EventHeader.with",
+            postBrace: nil,
             suffix: nil,
             statements: messageInnerStatements
         )
@@ -99,7 +101,7 @@ extension EventHeaderTemplate {
             visibility: .internal,
             name: "message",
             isMutable: true,
-            returnType: ReturnType(name: "Context"),
+            returnType: ReturnType(name: "PaltaAnlyticsTransport.EventHeader"),
             getter: Getter(statements: [messageGetterStatement])
         )
     }

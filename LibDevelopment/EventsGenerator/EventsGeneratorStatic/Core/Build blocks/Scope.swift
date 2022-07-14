@@ -9,12 +9,19 @@ import Foundation
 
 protocol Scope: Statement {
     var prefix: String? { get }
+    var postBrace: String? { get }
     var suffix: String? { get }
     var statements: [Statement] { get }
 }
 
+extension Scope {
+    var postBrace: String? { nil }
+    var suffix: String? { nil }
+}
+
 struct BaseScope: Scope {
     let prefix: String?
+    let postBrace: String?
     let suffix: String?
     let statements: [Statement]
 }
@@ -27,7 +34,7 @@ extension Scope {
             result += "\(prefix) "
         }
         
-        result += "{"
+        result += "{\(postBrace ?? "")"
         
         for statement in statements {
             result += "\n\(statement.stringValue(for: identLevel + 1))"

@@ -37,18 +37,24 @@ extension SubEntityTemplate {
     
     func makeStruct() -> Struct {
         let initArguments = properties.map {
-            ($0.snakeCaseToCamelCase, $1.type)
+            Init.Argument(label: $0.snakeCaseToCamelCase, type: $1.type, defaultValue: $1.defaultValue)
         }
         
         let initStatementsAssign = properties
             .map {
-                "message.\($0) = \($1.converterToProto($0.snakeCaseToCamelCase))"
+                "message.\($0.snakeCaseToCamelCase) = \($1.converterToProto($0.snakeCaseToCamelCase))"
             }
         
-        let initt = Init(
+        let initWithArgs = Init(
             visibility: .public,
             arguments: initArguments,
             statements: ["message = .init()"] + initStatementsAssign
+        )
+        
+        let initWithMsg = Init(
+            visibility: .public,
+            arguments: [.init(label: "message", type: ReturnType(name: protoEntityName))],
+            statements: ["self.message = message"]
         )
         
         return Struct(
@@ -62,7 +68,7 @@ extension SubEntityTemplate {
                     returnType: ReturnType(name: protoEntityName)
                 )
             ],
-            inits: [initt]
+            inits: [initWithMsg, initWithArgs]
         )
     }
 }

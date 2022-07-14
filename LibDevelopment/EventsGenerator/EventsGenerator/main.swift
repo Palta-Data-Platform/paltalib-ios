@@ -31,14 +31,16 @@ let currentURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
 
 let configFolderURL = currentURL.appendingPathComponent("config")
 let configURL = configFolderURL.appendingPathComponent("config.yaml")
-let eventsURL = currentURL.appendingPathComponent("Pods/PaltaLibEvents")
+let eventsURL = currentURL.appendingPathComponent("Pods/PaltaLibEvents/Sources/Events")
 
 shell("tar -xzvf config.tar.gz")
 
-shell("protoc --swift_out=. config/config.proto")
+shell("protoc --swift_out=. config/config.proto --swift_opt=Visibility=Public")
 
-shell("mv config/config.pb.swift Pods/PaltaLibEventsTransport/Sources/EventsTransport/config.pb.swift")
+shell("mv -f config/config.pb.swift Pods/PaltaLibEventsTransport/Sources/EventsTransport/config.pb.swift")
+
+shell("chmod -R +w Pods/PaltaLibEvents/Sources/Events/")
 
 try YAMLBasedEventsGenerator(yamlURL: configURL, codeURL: eventsURL).generate()
 
-shell("rm -rf \(configFolderURL.path)")
+//shell("rm -rf \(configFolderURL.path)")

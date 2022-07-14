@@ -22,7 +22,7 @@ extension SingleEnumTemplate {
         Property(
             visibility: .public,
             name: "rawValue",
-            returnType: ReturnType(type: UInt64.self)
+            returnType: ReturnType(type: Int64.self)
         )
     }
     
@@ -41,7 +41,7 @@ extension SingleEnumTemplate {
     private var initt: Init {
         Init(
             visibility: .public,
-            arguments: [("rawValue", ReturnType(type: UInt64.self))],
+            arguments: [Init.Argument(label: "rawValue", type: ReturnType(type: Int64.self))],
             statements: ["self.rawValue = rawValue"]
         )
     }
