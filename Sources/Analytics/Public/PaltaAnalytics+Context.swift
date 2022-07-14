@@ -8,7 +8,7 @@
 import Foundation
 
 public extension PaltaAnalytics {
-    func editContext<C: BatchContext>(_ modifier: (inout C) -> Void) {
+    func _editContext<C: BatchContext>(_ modifier: (inout C) -> Void) {
         assembly.eventQueueAssembly.contextModifier.editContext(modifier)
     }
 }
