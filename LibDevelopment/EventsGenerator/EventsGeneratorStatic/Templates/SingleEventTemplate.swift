@@ -68,8 +68,15 @@ extension SingleEventTemplate {
     }
     
     private var initt: Init {
-        let arguments = [Init.Argument(label: "header", type: ReturnType(name: "EventHeader"))] + properties.map {
-            Init.Argument(label: $0.name.snakeCaseToCamelCase, type: $0.type.type)
+        let arguments = [
+            Init.Argument(label: "header", type: ReturnType(name: "EventHeader"), defaultValue: ".init()")
+        ]
+        + properties.map {
+            Init.Argument(
+                label: $0.name.snakeCaseToCamelCase,
+                type: $0.type.type,
+                defaultValue: $0.type.defaultValue
+            )
         }
                           
         let statements: [Statement] = [

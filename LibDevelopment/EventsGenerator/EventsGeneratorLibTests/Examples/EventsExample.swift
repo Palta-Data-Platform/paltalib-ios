@@ -25,7 +25,7 @@ public struct PageOpenEvent: PaltaLibAnalytics.Event {
 
     private let _payload: EventPayloadPageOpen
 
-    public init(header: EventHeader, pageID: String, title: String) {
+    public init(header: EventHeader = .init(), pageID: String = "", title: String = "") {
         self.header = header
         self._payload = EventPayloadPageOpen.with {
             $0.pageID = pageID

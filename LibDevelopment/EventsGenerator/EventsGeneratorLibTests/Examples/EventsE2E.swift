@@ -26,20 +26,20 @@ public struct EdgeCaseEvent: PaltaLibAnalytics.Event {
     private let _payload: EventPayloadEdgeCase
 
     public init(
-        header: EventHeader,
-        propBoolean: Bool,
-        propBooleanArray: [Bool],
-        propDecimal1: Decimal,
-        propDecimal2: Decimal,
-        propDecimalArray: [Decimal],
-        propEnum: Result,
-        propEnumArray: [Result],
-        propInteger: Int,
-        propIntegerArray: [Int],
-        propString: String,
-        propStringArray: [String],
-        propTimestamp: Int,
-        propTimestampArray: [Int]
+        header: EventHeader = .init(),
+        propBoolean: Bool = false,
+        propBooleanArray: [Bool] = [],
+        propDecimal1: Decimal = 0,
+        propDecimal2: Decimal = 0,
+        propDecimalArray: [Decimal] = [],
+        propEnum: Result = Result(rawValue: 0),
+        propEnumArray: [Result] = [],
+        propInteger: Int = 0,
+        propIntegerArray: [Int] = [],
+        propString: String = "",
+        propStringArray: [String] = [],
+        propTimestamp: Int = 0,
+        propTimestampArray: [Int] = []
     ) {
         self.header = header
         self._payload = EventPayloadEdgeCase.with {
@@ -82,7 +82,7 @@ public struct OnboardingFinishEvent: PaltaLibAnalytics.Event {
 
     private let _payload: EventPayloadOnboardingFinish
 
-    public init(header: EventHeader) {
+    public init(header: EventHeader = .init()) {
         self.header = header
         self._payload = EventPayloadOnboardingFinish.with { _ in
         }
@@ -111,7 +111,7 @@ public struct OnboardingStartEvent: PaltaLibAnalytics.Event {
 
     private let _payload: EventPayloadOnboardingStart
 
-    public init(header: EventHeader) {
+    public init(header: EventHeader = .init()) {
         self.header = header
         self._payload = EventPayloadOnboardingStart.with { _ in
         }
@@ -140,7 +140,7 @@ public struct PageOpenEvent: PaltaLibAnalytics.Event {
 
     private let _payload: EventPayloadPageOpen
 
-    public init(header: EventHeader, pageID: String) {
+    public init(header: EventHeader = .init(), pageID: String = "") {
         self.header = header
         self._payload = EventPayloadPageOpen.with {
             $0.pageID = pageID
@@ -170,7 +170,7 @@ public struct PermissionsRequestEvent: PaltaLibAnalytics.Event {
 
     private let _payload: EventPayloadPermissionsRequest
 
-    public init(header: EventHeader, isGranted: Bool, type: String) {
+    public init(header: EventHeader = .init(), isGranted: Bool = false, type: String = "") {
         self.header = header
         self._payload = EventPayloadPermissionsRequest.with {
             $0.isGranted = isGranted
@@ -201,7 +201,7 @@ public struct SessionStartEvent: PaltaLibAnalytics.Event {
 
     private let _payload: EventPayloadSessionStart
 
-    public init(header: EventHeader) {
+    public init(header: EventHeader = .init()) {
         self.header = header
         self._payload = EventPayloadSessionStart.with { _ in
         }
