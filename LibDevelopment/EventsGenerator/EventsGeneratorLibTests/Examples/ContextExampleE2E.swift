@@ -58,7 +58,7 @@ extension Context {
     public struct Application {
         internal var message: ContextApplication
 
-        public init(message: ContextApplication) {
+        fileprivate init(message: ContextApplication) {
             self.message = message
         }
 
@@ -73,7 +73,7 @@ extension Context {
     public struct Appsflyer {
         internal var message: ContextAppsflyer
 
-        public init(message: ContextAppsflyer) {
+        fileprivate init(message: ContextAppsflyer) {
             self.message = message
         }
 
@@ -87,7 +87,7 @@ extension Context {
     public struct Device {
         internal var message: ContextDevice
 
-        public init(message: ContextDevice) {
+        fileprivate init(message: ContextDevice) {
             self.message = message
         }
 
@@ -102,7 +102,7 @@ extension Context {
     public struct Identify {
         internal var message: ContextIdentify
 
-        public init(message: ContextIdentify) {
+        fileprivate init(message: ContextIdentify) {
             self.message = message
         }
 
@@ -117,7 +117,7 @@ extension Context {
     public struct Os {
         internal var message: ContextOs
 
-        public init(message: ContextOs) {
+        fileprivate init(message: ContextOs) {
             self.message = message
         }
 
@@ -131,7 +131,7 @@ extension Context {
     public struct User {
         internal var message: ContextUser
 
-        public init(message: ContextUser) {
+        fileprivate init(message: ContextUser) {
             self.message = message
         }
 

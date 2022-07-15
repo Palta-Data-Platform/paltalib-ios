@@ -38,7 +38,7 @@ extension Context {
     public struct Application {
         internal var message: ContextApplication
 
-        public init(message: ContextApplication) {
+        fileprivate init(message: ContextApplication) {
             self.message = message
         }
 
@@ -52,7 +52,7 @@ extension Context {
     public struct Device {
         internal var message: ContextDevice
 
-        public init(message: ContextDevice) {
+        fileprivate init(message: ContextDevice) {
             self.message = message
         }
 

@@ -33,7 +33,7 @@ extension EventHeader {
     public struct Parent {
         internal var message: EventHeaderParent
 
-        public init(message: EventHeaderParent) {
+        fileprivate init(message: EventHeaderParent) {
             self.message = message
         }
 

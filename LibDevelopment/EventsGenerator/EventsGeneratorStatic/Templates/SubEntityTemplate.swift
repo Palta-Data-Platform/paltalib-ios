@@ -52,7 +52,7 @@ extension SubEntityTemplate {
         )
         
         let initWithMsg = Init(
-            visibility: .public,
+            visibility: .fileprivate,
             arguments: [.init(label: "message", type: ReturnType(name: protoEntityName))],
             statements: ["self.message = message"]
         )
