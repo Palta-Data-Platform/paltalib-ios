@@ -10,7 +10,7 @@ import Foundation
 
 final class DeviceInfoProviderMock: DeviceInfoProvider {
     var osVersion: String = "undefinedVersion"
-    var appVersion: String?
+    var appVersion: String = "version-mock" 
     var deviceModel: String = "undefinedModel"
     var carrier: String = "undefinedCarrier"
     var country: String?
