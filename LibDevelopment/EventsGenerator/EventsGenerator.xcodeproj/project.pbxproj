@@ -58,6 +58,7 @@
 		11A31AEC287D889A00A32D69 /* Yaml in Frameworks */ = {isa = PBXBuildFile; productRef = 11A31AEB287D889A00A32D69 /* Yaml */; };
 		11A31AEF287D8B4000A32D69 /* libEventsGeneratorStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11A31ABF287D881100A32D69 /* libEventsGeneratorStatic.a */; };
 		11A31AF1287D8B4300A32D69 /* Yaml in Frameworks */ = {isa = PBXBuildFile; productRef = 11A31AF0287D8B4300A32D69 /* Yaml */; };
+		11A31AF5288056C900A32D69 /* ContextReservedFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AF4288056C900A32D69 /* ContextReservedFields.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,7 @@
 		119F492C2872DB5600340213 /* PropertyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTests.swift; sourceTree = "<group>"; };
 		119F492E28730EBE00340213 /* SubEntityTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubEntityTemplate.swift; sourceTree = "<group>"; };
 		11A31ABF287D881100A32D69 /* libEventsGeneratorStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEventsGeneratorStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		11A31AF4288056C900A32D69 /* ContextReservedFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextReservedFields.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				1119CCED287461A500C7B4C4 /* EventHeaderTemplate.swift */,
 				1119CD0128757C6200C7B4C4 /* SingleEventTemplate.swift */,
 				1119CD032875802400C7B4C4 /* EventsTemplate.swift */,
+				11A31AF4288056C900A32D69 /* ContextReservedFields.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 			files = (
 				11A31AE1287D882E00A32D69 /* Property.swift in Sources */,
 				11A31ACC287D882E00A32D69 /* StringExtensions.swift in Sources */,
+				11A31AF5288056C900A32D69 /* ContextReservedFields.swift in Sources */,
 				11A31AC9287D882E00A32D69 /* EventsTemplate.swift in Sources */,
 				11A31ACF287D882E00A32D69 /* ContextTemplateBuilder.swift in Sources */,
 				11A31ADF287D882E00A32D69 /* EnumsTemplateBuilder.swift in Sources */,

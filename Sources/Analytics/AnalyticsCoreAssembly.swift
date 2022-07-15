@@ -13,6 +13,7 @@ final class AnalyticsCoreAssembly {
     let userPropertiesKeeper: UserPropertiesKeeperImpl
     let sessionManager: SessionManagerImpl
     let configurationService: ConfigurationService
+    let deviceInfoProvider: DeviceInfoProvider
     
     init(coreAssembly: CoreAssembly) {
         let userPropertiesKeeper = UserPropertiesKeeperImpl(
@@ -35,6 +36,7 @@ final class AnalyticsCoreAssembly {
         self.userPropertiesKeeper = userPropertiesKeeper
         self.sessionManager = sessionManager
         self.configurationService = configurationService
+        self.deviceInfoProvider = DeviceInfoProviderImpl()
         
         coreAssembly.httpClient.mandatoryHeaders["X-SDK-Name"] = sdkInfoProvider.sdkName
         coreAssembly.httpClient.mandatoryHeaders["X-SDK-Version"] = sdkInfoProvider.sdkVersion

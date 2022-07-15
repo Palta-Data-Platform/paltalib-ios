@@ -16,6 +16,6 @@ final class DeviceInfoProviderMock: DeviceInfoProvider {
     var country: String?
     var language: String?
     var timezoneOffset: Int = 0
-    var idfa: String? = "idfa="
-    var idfv: String? = "idfv="
+    var idfa: String = "idfa="
+    var idfv: String = "idfv="
 }

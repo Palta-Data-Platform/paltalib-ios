@@ -109,19 +109,6 @@
 		113A79AA284F7341004C0C5D /* EventQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79A9284F7341004C0C5D /* EventQueue.swift */; };
 		113A79AC284F75EF004C0C5D /* ContextHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79AB284F75EF004C0C5D /* ContextHolder.swift */; };
 		113A79C1284F7FBC004C0C5D /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 113A79C0284F7FBC004C0C5D /* SwiftProtobuf */; };
-		113A79C3284F7FF2004C0C5D /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79C2284F7FF2004C0C5D /* Context.swift */; };
-		113A79D0284F8317004C0C5D /* config.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79BB284F7DF9004C0C5D /* config.pb.swift */; };
-		113A79D1284F831A004C0C5D /* config.proto in Sources */ = {isa = PBXBuildFile; fileRef = 113A79BD284F7E01004C0C5D /* config.proto */; };
-		113A79D2284F8327004C0C5D /* ProtobufExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113A79C9284F8276004C0C5D /* ProtobufExample.framework */; };
-		113A79D3284F8327004C0C5D /* ProtobufExample.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 113A79C9284F8276004C0C5D /* ProtobufExample.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113A79D8284F837B004C0C5D /* EventCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79D7284F837B004C0C5D /* EventCommon.swift */; };
-		113A79D9284F83B9004C0C5D /* PaltaLibAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1111592327F7089400A41ADA /* PaltaLibAnalytics.framework */; platformFilter = ios; };
-		113A79DA284F83B9004C0C5D /* PaltaLibAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1111592327F7089400A41ADA /* PaltaLibAnalytics.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		113A79DE284F83DA004C0C5D /* BatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79DD284F83DA004C0C5D /* BatchEvent.swift */; };
-		113A79E0284F892B004C0C5D /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79DF284F892B004C0C5D /* Batch.swift */; };
-		113A79E2284F8A4D004C0C5D /* BatchCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79E1284F8A4D004C0C5D /* BatchCommon.swift */; };
-		113A79E4284F8F69004C0C5D /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79E3284F8F69004C0C5D /* Header.swift */; };
-		113A79E6284F9309004C0C5D /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A79E5284F9309004C0C5D /* Events.swift */; };
 		113A7A052850AB00004C0C5D /* PaltaPurchasesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7A042850AB00004C0C5D /* PaltaPurchasesDelegate.swift */; };
 		113A7A072850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7A062850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift */; };
 		113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */; };
@@ -130,8 +117,6 @@
 		113AD6402837AA5B00324D62 /* FeaturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63E2837A9D600324D62 /* FeaturesService.swift */; };
 		113AD6422837AC6D00324D62 /* FeaturesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6412837AC6D00324D62 /* FeaturesServiceTests.swift */; };
 		113AD6442837AD3B00324D62 /* FeatureMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6432837AD3B00324D62 /* FeatureMock.swift */; };
-		1142F93C285890C5005D6337 /* ProtoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1142F93A285890C0005D6337 /* ProtoTests.swift */; };
-		1142F9462858BD45005D6337 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 1142F9452858BD45005D6337 /* SwiftProtobuf */; };
 		114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A72822673100ADA815 /* PurchasePlugin.swift */; };
 		114CF5A92822673500ADA815 /* PaltaPurchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A52822670C00ADA815 /* PaltaPurchases.swift */; };
 		114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */; };
@@ -143,7 +128,6 @@
 		114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */; };
 		114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */; };
 		1150909B2859D8A9009F53AD /* EventQueueAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150909A2859D8A9009F53AD /* EventQueueAssembly.swift */; };
-		1150909F2859E499009F53AD /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150909D2859E47D009F53AD /* Stack.swift */; };
 		115090A12859EF8C009F53AD /* BatchSendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115090A02859EF8C009F53AD /* BatchSendRequest.swift */; };
 		11543015282BCFC80021ED6F /* PaidFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543014282BCFC80021ED6F /* PaidFeature.swift */; };
 		11543017282BD0AE0021ED6F /* PaidFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543016282BD0AE0021ED6F /* PaidFeatures.swift */; };
@@ -204,6 +188,7 @@
 		119A1D21287835B9006D53A3 /* RemoteConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119A1D20287835B9006D53A3 /* RemoteConfigTests.swift */; };
 		11A31AAD287C054A00A32D69 /* PaltaPurchasesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AAC287C054A00A32D69 /* PaltaPurchasesProtocol.swift */; };
 		11A31AB0287C0F4A00A32D69 /* UserIdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AAE287C0F3700A32D69 /* UserIdTests.swift */; };
+		11A31AF72881736200A32D69 /* PaltaAnalytics+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AF62881736200A32D69 /* PaltaAnalytics+DeviceInfo.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
 		11A61E822833B89B00F88116 /* UserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E812833B89B00F88116 /* UserId.swift */; };
 		11A61ED7283788DD00F88116 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61ED6283788DD00F88116 /* Feature.swift */; };
@@ -272,34 +257,6 @@
 			remoteGlobalIDString = 1111590827F7079A00A41ADA;
 			remoteInfo = PaltaLibPayments;
 		};
-		113A79D4284F8327004C0C5D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 113A79C8284F8276004C0C5D;
-			remoteInfo = ProtobufExample;
-		};
-		113A79DB284F83B9004C0C5D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1111592227F7089400A41ADA;
-			remoteInfo = PaltaLibAnalytics;
-		};
-		1142F93D28589456005D6337 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 113A79B1284F78DC004C0C5D;
-			remoteInfo = AnalyticsDTOExample;
-		};
-		1142F93F28589456005D6337 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 111158B327F6014D00A41ADA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 113A79C8284F8276004C0C5D;
-			remoteInfo = ProtobufExample;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -332,18 +289,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				1111599027F70C4200A41ADA /* PaltaLibCore.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		113A79D6284F8327004C0C5D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				113A79DA284F83B9004C0C5D /* PaltaLibAnalytics.framework in Embed Frameworks */,
-				113A79D3284F8327004C0C5D /* ProtobufExample.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,11 +390,9 @@
 		113A79A7284F6EB3004C0C5D /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		113A79A9284F7341004C0C5D /* EventQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueue.swift; sourceTree = "<group>"; };
 		113A79AB284F75EF004C0C5D /* ContextHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextHolder.swift; sourceTree = "<group>"; };
-		113A79B2284F78DC004C0C5D /* AnalyticsDTOExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AnalyticsDTOExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		113A79BB284F7DF9004C0C5D /* config.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.pb.swift; sourceTree = "<group>"; };
 		113A79BD284F7E01004C0C5D /* config.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = config.proto; sourceTree = "<group>"; };
 		113A79C2284F7FF2004C0C5D /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
-		113A79C9284F8276004C0C5D /* ProtobufExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtobufExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		113A79D7284F837B004C0C5D /* EventCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCommon.swift; sourceTree = "<group>"; };
 		113A79DD284F83DA004C0C5D /* BatchEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchEvent.swift; sourceTree = "<group>"; };
 		113A79DF284F892B004C0C5D /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
@@ -465,7 +408,6 @@
 		113AD6412837AC6D00324D62 /* FeaturesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesServiceTests.swift; sourceTree = "<group>"; };
 		113AD6432837AD3B00324D62 /* FeatureMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureMock.swift; sourceTree = "<group>"; };
 		113AD6472837AE8400324D62 /* PaymentsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsError.swift; sourceTree = "<group>"; };
-		1142F93A285890C0005D6337 /* ProtoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtoTests.swift; sourceTree = "<group>"; };
 		114CF5A52822670C00ADA815 /* PaltaPurchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchases.swift; sourceTree = "<group>"; };
 		114CF5A72822673100ADA815 /* PurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePlugin.swift; sourceTree = "<group>"; };
 		114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCPurchasePlugin.swift; sourceTree = "<group>"; };
@@ -538,6 +480,7 @@
 		119A1D20287835B9006D53A3 /* RemoteConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigTests.swift; sourceTree = "<group>"; };
 		11A31AAC287C054A00A32D69 /* PaltaPurchasesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesProtocol.swift; sourceTree = "<group>"; };
 		11A31AAE287C0F3700A32D69 /* UserIdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdTests.swift; sourceTree = "<group>"; };
+		11A31AF62881736200A32D69 /* PaltaAnalytics+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+DeviceInfo.swift"; sourceTree = "<group>"; };
 		11A61E5528338FF400F88116 /* PaidServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidServiceMock.swift; sourceTree = "<group>"; };
 		11A61E812833B89B00F88116 /* UserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserId.swift; sourceTree = "<group>"; };
 		11A61EAB2835073D00F88116 /* ConfigApplyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigApplyServiceTests.swift; sourceTree = "<group>"; };
@@ -618,23 +561,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		113A79AF284F78DC004C0C5D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				113A79D9284F83B9004C0C5D /* PaltaLibAnalytics.framework in Frameworks */,
-				113A79D2284F8327004C0C5D /* ProtobufExample.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		113A79C6284F8276004C0C5D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1142F9462858BD45005D6337 /* SwiftProtobuf in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -665,8 +591,6 @@
 				1111592327F7089400A41ADA /* PaltaLibAnalytics.framework */,
 				1111595227F7093500A41ADA /* PaltaLibAttribution.framework */,
 				112FCA272847C43800C8F88A /* AnalyticsTools.framework */,
-				113A79B2284F78DC004C0C5D /* AnalyticsDTOExample.framework */,
-				113A79C9284F8276004C0C5D /* ProtobufExample.framework */,
 				1119CD7328771E0600C7B4C4 /* PaltaLibEvents.framework */,
 			);
 			name = Products;
@@ -727,6 +651,7 @@
 				117D9C5F286D7E12006F3E2E /* PaltaAnalytics+Configure.swift */,
 				117D9C61286D7E33006F3E2E /* PaltaAnalytics+Events.swift */,
 				117D9C63286D7EDB006F3E2E /* PaltaAnalytics+Context.swift */,
+				11A31AF62881736200A32D69 /* PaltaAnalytics+DeviceInfo.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -820,7 +745,6 @@
 				111A59BB2840F0210052FCD1 /* Core */,
 				111A59BC2840F0370052FCD1 /* Analytics */,
 				111A59BD2840F0610052FCD1 /* Payments */,
-				1142F93A285890C0005D6337 /* ProtoTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1262,20 +1186,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		113A79AD284F78DC004C0C5D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		113A79C4284F8276004C0C5D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1311,8 +1221,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				1142F93E28589456005D6337 /* PBXTargetDependency */,
-				1142F94028589456005D6337 /* PBXTargetDependency */,
 				1111599527F70C5700A41ADA /* PBXTargetDependency */,
 				1111599727F70C5700A41ADA /* PBXTargetDependency */,
 				1111599927F70C5700A41ADA /* PBXTargetDependency */,
@@ -1427,49 +1335,6 @@
 			productReference = 112FCA272847C43800C8F88A /* AnalyticsTools.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		113A79B1284F78DC004C0C5D /* AnalyticsDTOExample */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 113A79B6284F78DC004C0C5D /* Build configuration list for PBXNativeTarget "AnalyticsDTOExample" */;
-			buildPhases = (
-				113A79AD284F78DC004C0C5D /* Headers */,
-				113A79AE284F78DC004C0C5D /* Sources */,
-				113A79AF284F78DC004C0C5D /* Frameworks */,
-				113A79B0284F78DC004C0C5D /* Resources */,
-				113A79D6284F8327004C0C5D /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				113A79D5284F8327004C0C5D /* PBXTargetDependency */,
-				113A79DC284F83B9004C0C5D /* PBXTargetDependency */,
-			);
-			name = AnalyticsDTOExample;
-			productName = AnalyticsDTOExample;
-			productReference = 113A79B2284F78DC004C0C5D /* AnalyticsDTOExample.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		113A79C8284F8276004C0C5D /* ProtobufExample */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 113A79CD284F8276004C0C5D /* Build configuration list for PBXNativeTarget "ProtobufExample" */;
-			buildPhases = (
-				113A79C4284F8276004C0C5D /* Headers */,
-				113A79C5284F8276004C0C5D /* Sources */,
-				113A79C6284F8276004C0C5D /* Frameworks */,
-				113A79C7284F8276004C0C5D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1142F942285898D2005D6337 /* PBXTargetDependency */,
-			);
-			name = ProtobufExample;
-			packageProductDependencies = (
-				1142F9452858BD45005D6337 /* SwiftProtobuf */,
-			);
-			productName = ProtobufExample;
-			productReference = 113A79C9284F8276004C0C5D /* ProtobufExample.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1503,13 +1368,6 @@
 					112FCA262847C43800C8F88A = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
-					113A79B1284F78DC004C0C5D = {
-						CreatedOnToolsVersion = 13.3.1;
-						LastSwiftMigration = 1330;
-					};
-					113A79C8284F8276004C0C5D = {
-						CreatedOnToolsVersion = 13.3.1;
-					};
 				};
 			};
 			buildConfigurationList = 111158B627F6014D00A41ADA /* Build configuration list for PBXProject "PaltaLib" */;
@@ -1535,8 +1393,6 @@
 				1111592227F7089400A41ADA /* PaltaLibAnalytics */,
 				1111595127F7093500A41ADA /* PaltaLibAttribution */,
 				112FCA262847C43800C8F88A /* AnalyticsTools */,
-				113A79B1284F78DC004C0C5D /* AnalyticsDTOExample */,
-				113A79C8284F8276004C0C5D /* ProtobufExample */,
 				111158F727F6FE5600A41ADA /* PaltaLibTests */,
 				1119CD7228771E0600C7B4C4 /* PaltaLibEvents */,
 			);
@@ -1594,20 +1450,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		113A79B0284F78DC004C0C5D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		113A79C7284F8276004C0C5D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1640,7 +1482,6 @@
 				11A31AB0287C0F4A00A32D69 /* UserIdTests.swift in Sources */,
 				11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */,
 				1137D165285B2003008CA306 /* SDKInfoProviderTests.swift in Sources */,
-				1142F93C285890C5005D6337 /* ProtoTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
 				1137D16A285B25AA008CA306 /* BatchCommonMock.swift in Sources */,
 				117D9C3B286B33C2006F3E2E /* EventTypeMock.swift in Sources */,
@@ -1779,6 +1620,7 @@
 				117D9C64286D7EDB006F3E2E /* PaltaAnalytics+Context.swift in Sources */,
 				113A79A4284F5507004C0C5D /* BatchSendController.swift in Sources */,
 				117D9C5B286D70A1006F3E2E /* AnalyticsAssembly.swift in Sources */,
+				11A31AF72881736200A32D69 /* PaltaAnalytics+DeviceInfo.swift in Sources */,
 				113A79AC284F75EF004C0C5D /* ContextHolder.swift in Sources */,
 				11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */,
 				1111596E27F70BF500A41ADA /* Settings.swift in Sources */,
@@ -1842,30 +1684,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		113A79AE284F78DC004C0C5D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				113A79E6284F9309004C0C5D /* Events.swift in Sources */,
-				1150909F2859E499009F53AD /* Stack.swift in Sources */,
-				113A79C3284F7FF2004C0C5D /* Context.swift in Sources */,
-				113A79E0284F892B004C0C5D /* Batch.swift in Sources */,
-				113A79D8284F837B004C0C5D /* EventCommon.swift in Sources */,
-				113A79E4284F8F69004C0C5D /* Header.swift in Sources */,
-				113A79E2284F8A4D004C0C5D /* BatchCommon.swift in Sources */,
-				113A79DE284F83DA004C0C5D /* BatchEvent.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		113A79C5284F8276004C0C5D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				113A79D1284F831A004C0C5D /* config.proto in Sources */,
-				113A79D0284F8317004C0C5D /* config.pb.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1907,31 +1725,6 @@
 			isa = PBXTargetDependency;
 			target = 1111590827F7079A00A41ADA /* PaltaLibPayments */;
 			targetProxy = 1111599827F70C5700A41ADA /* PBXContainerItemProxy */;
-		};
-		113A79D5284F8327004C0C5D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 113A79C8284F8276004C0C5D /* ProtobufExample */;
-			targetProxy = 113A79D4284F8327004C0C5D /* PBXContainerItemProxy */;
-		};
-		113A79DC284F83B9004C0C5D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = 1111592227F7089400A41ADA /* PaltaLibAnalytics */;
-			targetProxy = 113A79DB284F83B9004C0C5D /* PBXContainerItemProxy */;
-		};
-		1142F93E28589456005D6337 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 113A79B1284F78DC004C0C5D /* AnalyticsDTOExample */;
-			targetProxy = 1142F93D28589456005D6337 /* PBXContainerItemProxy */;
-		};
-		1142F94028589456005D6337 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 113A79C8284F8276004C0C5D /* ProtobufExample */;
-			targetProxy = 1142F93F28589456005D6337 /* PBXContainerItemProxy */;
-		};
-		1142F942285898D2005D6337 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 1142F941285898D2005D6337 /* SwiftProtobuf */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2480,127 +2273,6 @@
 			};
 			name = Release;
 		};
-		113A79B7284F78DC004C0C5D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.palta.AnalyticsDTOExample;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		113A79B8284F78DC004C0C5D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.palta.AnalyticsDTOExample;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		113A79CE284F8276004C0C5D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.palta.ProtobufExample;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		113A79CF284F8276004C0C5D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.palta.ProtobufExample;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2676,24 +2348,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		113A79B6284F78DC004C0C5D /* Build configuration list for PBXNativeTarget "AnalyticsDTOExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				113A79B7284F78DC004C0C5D /* Debug */,
-				113A79B8284F78DC004C0C5D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		113A79CD284F8276004C0C5D /* Build configuration list for PBXNativeTarget "ProtobufExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				113A79CE284F8276004C0C5D /* Debug */,
-				113A79CF284F8276004C0C5D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -2730,16 +2384,6 @@
 			productName = AppsFlyerLib;
 		};
 		113A79C0284F7FBC004C0C5D /* SwiftProtobuf */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 113A79BF284F7FBC004C0C5D /* XCRemoteSwiftPackageReference "swift-protobuf" */;
-			productName = SwiftProtobuf;
-		};
-		1142F941285898D2005D6337 /* SwiftProtobuf */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 113A79BF284F7FBC004C0C5D /* XCRemoteSwiftPackageReference "swift-protobuf" */;
-			productName = SwiftProtobuf;
-		};
-		1142F9452858BD45005D6337 /* SwiftProtobuf */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 113A79BF284F7FBC004C0C5D /* XCRemoteSwiftPackageReference "swift-protobuf" */;
 			productName = SwiftProtobuf;

@@ -28,7 +28,6 @@ struct SubEntityTemplate: Equatable {
 extension SubEntityTemplate {
     var swiftEntityName: String {
         entityName
-//        entityName.replacingOccurrences(of: "Context", with: "")
     }
     
     var protoEntityName: String {
@@ -36,8 +35,9 @@ extension SubEntityTemplate {
     }
     
     func makeStruct() -> Struct {
+        let argumentProvider = ContextReservedFields()
         let initArguments = properties.map {
-            Init.Argument(label: $0.snakeCaseToCamelCase, type: $1.type, defaultValue: $1.defaultValue)
+            argumentProvider.initArgument(for: $0, in: swiftEntityName)
         }
         
         let initStatementsAssign = properties

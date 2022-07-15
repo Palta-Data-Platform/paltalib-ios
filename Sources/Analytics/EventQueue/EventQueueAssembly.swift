@@ -84,7 +84,7 @@ extension EventQueueAssembly {
             uuidGenerator: UUIDGeneratorImpl(),
             contextProvider: contextStorage,
             userInfoProvider: analyticsCoreAssembly.userPropertiesKeeper,
-            deviceInfoProvider: DeviceInfoProviderImpl()
+            deviceInfoProvider: analyticsCoreAssembly.deviceInfoProvider
         )
         
         let batchSender = BatchSenderImpl(

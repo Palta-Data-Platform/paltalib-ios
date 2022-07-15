@@ -42,7 +42,7 @@ extension Context {
             self.message = message
         }
 
-        public init(appID: String = "", appVersion: String = "") {
+        public init(appID: String = "", appVersion: String = PaltaAnalytics.deviceInfoProvider.appVersion) {
             message = .init()
             message.appID = appID
             message.appVersion = appVersion
@@ -56,7 +56,7 @@ extension Context {
             self.message = message
         }
 
-        public init(deviceBrand: String = "", deviceModel: String = "") {
+        public init(deviceBrand: String = "Apple", deviceModel: String = PaltaAnalytics.deviceInfoProvider.deviceModel) {
             message = .init()
             message.deviceBrand = deviceBrand
             message.deviceModel = deviceModel

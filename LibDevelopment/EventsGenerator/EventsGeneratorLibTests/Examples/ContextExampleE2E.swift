@@ -62,7 +62,7 @@ extension Context {
             self.message = message
         }
 
-        public init(appID: String = "", appPlatform: String = "", appVersion: String = "") {
+        public init(appID: String = "", appPlatform: String = "iOS", appVersion: String = PaltaAnalytics.deviceInfoProvider.appVersion) {
             message = .init()
             message.appID = appID
             message.appPlatform = appPlatform
@@ -91,7 +91,7 @@ extension Context {
             self.message = message
         }
 
-        public init(deviceBrand: String = "", deviceCarrier: String = "", deviceModel: String = "") {
+        public init(deviceBrand: String = "Apple", deviceCarrier: String = PaltaAnalytics.deviceInfoProvider.carrier, deviceModel: String = PaltaAnalytics.deviceInfoProvider.deviceModel) {
             message = .init()
             message.deviceBrand = deviceBrand
             message.deviceCarrier = deviceCarrier
@@ -106,7 +106,7 @@ extension Context {
             self.message = message
         }
 
-        public init(gaid: String = "", idfa: String = "", idfv: String = "") {
+        public init(gaid: String = "", idfa: String = PaltaAnalytics.deviceInfoProvider.idfa, idfv: String = PaltaAnalytics.deviceInfoProvider.idfv) {
             message = .init()
             message.gaid = gaid
             message.idfa = idfa
@@ -121,7 +121,7 @@ extension Context {
             self.message = message
         }
 
-        public init(osName: String = "", osVersion: String = "") {
+        public init(osName: String = "iOS", osVersion: String = PaltaAnalytics.deviceInfoProvider.osVersion) {
             message = .init()
             message.osName = osName
             message.osVersion = osVersion
