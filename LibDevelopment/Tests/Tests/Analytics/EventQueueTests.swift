@@ -7,8 +7,8 @@
 
 import Foundation
 import XCTest
+import PaltaLibAnalyticsModel
 @testable import PaltaLibAnalytics
-import AnalyticsDTOExample
 
 final class EventQueueTests: XCTestCase {
     private var coreMock: EventQueueCoreMock!
@@ -42,7 +42,7 @@ final class EventQueueTests: XCTestCase {
     }
     
     func testAddEvent() {
-        let event = PageOpenEvent(header: .init(pora: .init(designID: "")), pageID: "", title: "")
+        let event = EventMock()
         eventQueue.logEvent(event, outOfSession: false)
 
         XCTAssert(coreMock.addedEvents.first?.event.event is BatchEventMock)
@@ -59,7 +59,7 @@ final class EventQueueTests: XCTestCase {
     }
 
     func testAddOutOfSessionEvent() {
-        let event = PageOpenEvent(header: .init(pora: .init(designID: "")), pageID: "", title: "")
+        let event = EventMock()
         eventQueue.logEvent(event, outOfSession: true)
 
         XCTAssertFalse(sessionManagerMock.refreshSessionCalled)

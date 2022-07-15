@@ -7,6 +7,7 @@
 
 import Foundation
 import PaltaLibAnalytics
+import PaltaLibAnalyticsModel
 
 struct BatchEventMock: BatchEvent, Hashable {
     static func == (lhs: BatchEventMock, rhs: BatchEventMock) -> Bool {

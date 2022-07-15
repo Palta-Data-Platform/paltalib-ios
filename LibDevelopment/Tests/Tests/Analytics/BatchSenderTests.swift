@@ -8,6 +8,7 @@
 import Foundation
 import XCTest
 import PaltaLibCore
+import PaltaLibAnalyticsModel
 @testable import PaltaLibAnalytics
 
 final class BatchSenderTests: XCTestCase {

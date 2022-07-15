@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 struct StorableEvent {
     private struct Container: Codable {

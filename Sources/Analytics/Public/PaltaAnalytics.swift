@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 public class PaltaAnalytics {
     public static func initiate(with stack: Stack) {

@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import PaltaLibAnalytics
+import PaltaLibAnalyticsModel
 import PaltaAnlyticsTransport
 
-extension PaltaLibAnalytics.EventCommon {
+extension PaltaLibAnalyticsModel.EventCommon {
     var message: PaltaAnlyticsTransport.EventCommon {
         var msg = PaltaAnlyticsTransport.EventCommon()
         msg.eventType = eventType.intValue
@@ -33,9 +33,9 @@ extension PaltaAnlyticsTransport.Event: BatchEvent {
     }
     
     public init(
-        common: PaltaLibAnalytics.EventCommon,
-        header: PaltaLibAnalytics.EventHeader,
-        payload: PaltaLibAnalytics.EventPayload
+        common: PaltaLibAnalyticsModel.EventCommon,
+        header: PaltaLibAnalyticsModel.EventHeader,
+        payload: PaltaLibAnalyticsModel.EventPayload
     ) {
         guard
             let header = header as? EventHeader,
@@ -60,5 +60,5 @@ extension Int: EventType {
     }
 }
 
-extension PaltaAnlyticsTransport.EventPayload: PaltaLibAnalytics.EventPayload {
+extension PaltaAnlyticsTransport.EventPayload: PaltaLibAnalyticsModel.EventPayload {
 }

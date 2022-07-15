@@ -17,7 +17,7 @@ extension EventsTemplate: Template {
     }
     
     var imports: [String] {
-        ["PaltaLibAnalytics", "PaltaAnlyticsTransport"]
+        ["PaltaLibAnalyticsModel", "PaltaAnlyticsTransport"]
     }
     
     var statements: [Statement] {

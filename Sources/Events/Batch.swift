@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import PaltaLibAnalytics
+import PaltaLibAnalyticsModel
 import PaltaAnlyticsTransport
 
-extension PaltaAnlyticsTransport.Batch: PaltaLibAnalytics.Batch {
+extension PaltaAnlyticsTransport.Batch: PaltaLibAnalyticsModel.Batch {
     public init(
-        common: PaltaLibAnalytics.BatchCommon,
-        context: PaltaLibAnalytics.BatchContext,
+        common: PaltaLibAnalyticsModel.BatchCommon,
+        context: PaltaLibAnalyticsModel.BatchContext,
         events: [BatchEvent]
     ) {
         guard

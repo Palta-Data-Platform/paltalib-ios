@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 protocol BatchComposer {
     func makeBatch(of events: [BatchEvent], with contextId: UUID) -> Batch

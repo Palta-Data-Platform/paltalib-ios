@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 public extension PaltaAnalytics {
     func _editContext<C: BatchContext>(_ modifier: (inout C) -> Void) {

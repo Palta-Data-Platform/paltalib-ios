@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 protocol ContextModifier {
     func editContext<Context: BatchContext>(_ editor: (inout Context) -> Void)

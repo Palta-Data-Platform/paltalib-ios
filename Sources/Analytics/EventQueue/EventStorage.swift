@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 protocol EventStorage {
     func storeEvent(_ event: StorableEvent)

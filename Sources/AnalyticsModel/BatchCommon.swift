@@ -1,6 +1,6 @@
 //
 //  BatchCommon.swift
-//  PaltaLibAnalytics
+//  PaltaLibAnalyticsModel
 //
 //  Created by Vyacheslav Beltyukov on 06/06/2022.
 //

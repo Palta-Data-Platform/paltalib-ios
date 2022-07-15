@@ -1,15 +1,10 @@
 //
-//  BatchCommon.swift
-//  AnalyticsDTOExample
-//
-//  Created by Vyacheslav Beltyukov on 07/06/2022.
-//
 
 import Foundation
-import PaltaLibAnalytics
+import PaltaLibAnalyticsModel
 import PaltaAnlyticsTransport
 
-extension PaltaAnlyticsTransport.BatchCommon: PaltaLibAnalytics.BatchCommon {
+extension PaltaAnlyticsTransport.BatchCommon: PaltaLibAnalyticsModel.BatchCommon {
     public init(
         instanceId: UUID,
         batchId: UUID,

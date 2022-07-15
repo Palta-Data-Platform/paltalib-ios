@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 import PaltaLibAnalytics
 
 struct BatchMock: Batch, Equatable {

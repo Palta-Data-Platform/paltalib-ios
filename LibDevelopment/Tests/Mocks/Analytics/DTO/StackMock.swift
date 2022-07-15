@@ -7,6 +7,13 @@
 
 import Foundation
 import PaltaLibAnalytics
+import PaltaLibAnalyticsModel
+
+extension Int: EventType {
+    public var intValue: Int64 {
+        1
+    }
+}
 
 extension Stack {
     static let mock = Stack(

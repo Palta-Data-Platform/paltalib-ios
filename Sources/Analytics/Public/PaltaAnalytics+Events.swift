@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 public extension PaltaAnalytics {
     func log<E: Event>(_ event: E, outOfSession: Bool = false) {

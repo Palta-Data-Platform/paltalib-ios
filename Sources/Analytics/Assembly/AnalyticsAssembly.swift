@@ -7,6 +7,7 @@
 
 import Foundation
 import PaltaLibCore
+import PaltaLibAnalyticsModel
 
 final class AnalyticsAssembly {
     let coreAssembly: CoreAssembly

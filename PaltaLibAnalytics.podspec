@@ -14,6 +14,6 @@ Pod::Spec.new do |spec|
   spec.source_files = 'Sources/Analytics/**/*.swift'
 
   spec.dependency 'PaltaLibCore', '~> 2.2.1'
-  spec.dependency 'Amplitude', '~> 8.5.0'
+  spec.dependency 'PaltaLibAnalyticsModel', '1.0.0'
 end
 

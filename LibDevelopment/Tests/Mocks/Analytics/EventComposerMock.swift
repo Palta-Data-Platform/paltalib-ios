@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 @testable import PaltaLibAnalytics
 
 final class EventComposerMock: EventComposer {

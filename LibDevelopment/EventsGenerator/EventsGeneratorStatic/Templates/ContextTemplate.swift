@@ -17,7 +17,7 @@ extension ContextTemplate: Template {
     }
     
     var imports: [String] {
-        ["Foundation", "PaltaLibAnalytics", "PaltaAnlyticsTransport"]
+        ["Foundation", "PaltaLibAnalytics", "PaltaLibAnalyticsModel", "PaltaAnlyticsTransport"]
     }
     
     var statements: [Statement] {

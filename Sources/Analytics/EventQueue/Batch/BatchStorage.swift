@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 protocol BatchStorage {
     func loadBatch() throws -> Batch?

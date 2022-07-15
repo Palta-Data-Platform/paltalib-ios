@@ -1,11 +1,7 @@
 //
-//  Stack.swift
-//  AnalyticsDTOExample
-//
-//  Created by Vyacheslav Beltyukov on 15/06/2022.
-//
 
 import PaltaLibAnalytics
+import PaltaLibAnalyticsModel
 import PaltaAnlyticsTransport
 
 public extension Stack {
@@ -20,7 +16,7 @@ public extension Stack {
     )
 }
 
-extension EventPayloadSessionStart: PaltaLibAnalytics.SessionStartEventPayload {
+extension EventPayloadSessionStart: PaltaLibAnalyticsModel.SessionStartEventPayload {
     
 }
 

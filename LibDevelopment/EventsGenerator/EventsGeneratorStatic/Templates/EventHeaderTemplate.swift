@@ -17,7 +17,7 @@ extension EventHeaderTemplate: Template {
     }
     
     var imports: [String] {
-        ["Foundation", "PaltaAnlyticsTransport", "PaltaLibAnalytics"]
+        ["Foundation", "PaltaAnlyticsTransport", "PaltaLibAnalyticsModel"]
     }
     
     var statements: [Statement] {
@@ -38,7 +38,7 @@ extension EventHeaderTemplate {
         Struct(
             visibility: .public,
             name: "EventHeader",
-            conformances: ["PaltaLibAnalytics.EventHeader"],
+            conformances: ["PaltaLibAnalyticsModel.EventHeader"],
             properties: contextProperties + [messageProperty],
             inits: inits,
             methods: methods

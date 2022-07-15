@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 struct IdentifiableEvent {
     let id: UUID

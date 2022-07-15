@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import PaltaLibCore
+import PaltaLibAnalyticsModel
 
 enum BatchSendError: Error {
     case serializationError(Error)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 protocol ContextStorage {
     func saveContext(_ context: BatchContext, with id: UUID) throws

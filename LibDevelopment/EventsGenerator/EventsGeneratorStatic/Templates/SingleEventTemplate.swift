@@ -23,7 +23,7 @@ extension SingleEventTemplate {
         Struct(
             visibility: .public,
             name: "\(name)Event",
-            conformances: ["PaltaLibAnalytics.Event"],
+            conformances: ["PaltaLibAnalyticsModel.Event"],
             aliases: aliases,
             properties: [headerProp, payloadProp, typeProp, payloadPrivateProp],
             inits: [initt]

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 protocol EventQueue {
     func logEvent<E: Event>(_ incomingEvent: E, outOfSession: Bool)

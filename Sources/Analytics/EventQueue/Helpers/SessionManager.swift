@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import PaltaLibAnalyticsModel
 
 protocol SessionIdProvider {
     var sessionId: Int { get }
