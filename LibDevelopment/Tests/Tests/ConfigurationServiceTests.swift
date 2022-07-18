@@ -62,7 +62,7 @@ final class ConfigurationServiceTests: XCTestCase {
 
         XCTAssertEqual(httpClientMock.request as? AnalyticsHTTPRequest, .remoteConfig("API_KEY_MCK"))
 
-        wait(for: [successCalled], timeout: 0.01)
+        wait(for: [successCalled], timeout: 0.05)
 
         XCTAssertNotNil(userDefaults.object(for: "paltaBrainRemoteConfig") as RemoteConfig?)
     }
@@ -107,7 +107,7 @@ final class ConfigurationServiceTests: XCTestCase {
 
         XCTAssertEqual(httpClientMock.request as? AnalyticsHTTPRequest, .remoteConfig("API_KEY_MCK"))
 
-        wait(for: [successCalled], timeout: 0.01)
+        wait(for: [successCalled], timeout: 0.05)
 
         XCTAssertEqual(userDefaults.object(for: "paltaBrainRemoteConfig"), remoteConfig)
     }
@@ -125,7 +125,7 @@ final class ConfigurationServiceTests: XCTestCase {
             failCalled.fulfill()
         }
 
-        wait(for: [failCalled], timeout: 0.01)
+        wait(for: [failCalled], timeout: 0.05)
     }
 
     func testRequestConfigErrorWithCache() {
@@ -146,7 +146,7 @@ final class ConfigurationServiceTests: XCTestCase {
             successCalled.fulfill()
         }
 
-        wait(for: [successCalled], timeout: 0.01)
+        wait(for: [successCalled], timeout: 0.05)
     }
 
     private func cacheConfig() {

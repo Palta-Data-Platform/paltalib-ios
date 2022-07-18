@@ -51,12 +51,14 @@ extension EventQueueAssembly {
         let eventQueueCore = EventQueueCoreImpl(timer: TimerImpl())
 
         let liveEventQueueCore = EventQueueCoreImpl(timer: ImmediateTimer()).do {
-            $0.config = .init(
-                maxBatchSize: 5,
-                uploadInterval: 0,
-                uploadThreshold: 3,
-                maxEvents: 100,
-                maxConcurrentOperations: .max
+            $0.apply(
+                EventQueueConfig(
+                    maxBatchSize: 5,
+                    uploadInterval: 0,
+                    uploadThreshold: 3,
+                    maxEvents: 100,
+                    maxConcurrentOperations: .max
+                )
             )
         }
 

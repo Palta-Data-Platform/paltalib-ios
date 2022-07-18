@@ -50,7 +50,7 @@ final class TimerTests: XCTestCase {
             timerIsntFired.fulfill()
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             token.cancel()
         }
 

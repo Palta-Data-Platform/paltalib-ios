@@ -120,7 +120,7 @@ final class EventQueueTests: XCTestCase {
 
         XCTAssertEqual(senderMock.sentEvents, eventsToSend)
         XCTAssertEqual(senderMock.sentTelemetry, .mock())
-        wait(for: [sendCompleted], timeout: 0.01)
+        wait(for: [sendCompleted], timeout: 0.05)
         XCTAssertEqual(storageMock.removedEvents, eventsToSend)
     }
 
@@ -132,7 +132,7 @@ final class EventQueueTests: XCTestCase {
         liveCoreMock.sendHandler?(ArraySlice(eventsToSend), .mock(), sendCompleted.fulfill)
 
         XCTAssertEqual(senderMock.sentEvents, eventsToSend)
-        wait(for: [sendCompleted], timeout: 0.01)
+        wait(for: [sendCompleted], timeout: 0.05)
         XCTAssertEqual(storageMock.removedEvents, eventsToSend)
     }
 
@@ -158,7 +158,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(coreMock.addedEvents, eventsToSend)
 
         timerMock.fire()
-        wait(for: [sendCompleted], timeout: 0.01)
+        wait(for: [sendCompleted], timeout: 0.05)
         XCTAssert(storageMock.removedEvents.isEmpty)
     }
 
