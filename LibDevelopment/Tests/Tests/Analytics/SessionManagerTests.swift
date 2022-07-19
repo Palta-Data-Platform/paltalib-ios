@@ -99,15 +99,35 @@ final class SessionManagerTests: XCTestCase {
         wait(for: [sessionEventLogged], timeout: 0.05)
     }
 
-    func testRefresh() throws {
-        var event = BatchEventMock()
-        event.timestamp = .random(in: 0...100)
-
-        sessionManager.refreshSession(with: event)
+    func testRefreshSessionValid() throws {
+        let initialSessionId = sessionManager.sessionId
+        sessionManager.maxSessionAge = 100
+        mockedTimestamp = initialSessionId + 5
+        
+        sessionManager.refreshSession(with: 0)
 
         let session = try userDefaults
             .data(forKey: "paltaBrainSession")
             .map { try JSONDecoder().decode(Session.self, from: $0) }
-        XCTAssertEqual(session?.lastEventTimestamp, event.timestamp)
+        
+        XCTAssertEqual(sessionManager.sessionId, initialSessionId)
+        XCTAssertEqual(session?.id, initialSessionId)
+        XCTAssertEqual(session?.lastEventTimestamp, 0)
+    }
+    
+    func testRefreshSessionInvalid() throws {
+        let initialSessionId = sessionManager.sessionId
+        sessionManager.maxSessionAge = 100
+        mockedTimestamp = initialSessionId + 105
+        
+        sessionManager.refreshSession(with: 0)
+
+        let session = try userDefaults
+            .data(forKey: "paltaBrainSession")
+            .map { try JSONDecoder().decode(Session.self, from: $0) }
+        
+        XCTAssertNotEqual(sessionManager.sessionId, initialSessionId)
+        XCTAssertNotEqual(session?.id, initialSessionId)
+        XCTAssertEqual(session?.lastEventTimestamp, mockedTimestamp)
     }
 }

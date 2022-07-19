@@ -34,8 +34,8 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     var removeHandler: RemoveHandler?
 
     var isPaused = false
-
-    var config: EventQueueConfig? {
+    
+    private(set) var config: EventQueueConfig? {
         didSet {
             onNewEvents()
         }
@@ -84,6 +84,18 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         }
     }
 
+    func apply(_ config: EventQueueConfig) {
+        workingQueue.async {
+            self.config = config
+        }
+    }
+    
+    #if DEBUG
+    func addBarrier(_ block: @escaping () -> Void) {
+        workingQueue.async(flags: .barrier, execute: block)
+    }
+    #endif
+
     private func insert(_ event: StorableEvent) {
         let index = events.firstIndex(where: {
             $0.event.event.timestamp > event.event.event.timestamp
@@ -123,9 +135,9 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
             return
         }
 
-        timerToken = timer.scheduleTimer(timeInterval: config.uploadInterval, on: workingQueue) { [unowned self] in
-            timerFired = true
-            flush()
+        timerToken = timer.scheduleTimer(timeInterval: config.uploadInterval, on: workingQueue) { [weak self] in
+            self?.timerFired = true
+            self?.flush()
         }
     }
 

@@ -58,6 +58,10 @@ final class EventQueueImpl: EventQueue {
         and payload: EventPayload,
         outOfSession: Bool
     ) {
+        if !outOfSession {
+            sessionManager.refreshSession(with: currentTimestamp())
+        }
+
         let event = eventComposer.composeEvent(
             of: type,
             with: header,
@@ -71,10 +75,6 @@ final class EventQueueImpl: EventQueue {
         
         storage.storeEvent(storableEvent)
         core.addEvent(storableEvent)
-        
-        if !outOfSession {
-            sessionManager.refreshSession(with: event)
-        }
     }
     
     private func setupSendController() {
