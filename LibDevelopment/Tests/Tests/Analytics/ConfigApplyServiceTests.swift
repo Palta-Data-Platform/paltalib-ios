@@ -35,6 +35,8 @@ final class ConfigApplyServiceTests: XCTestCase {
         let amplitude = Amplitude()
         let palta = assemblyProvider.newEventQueueAssembly()
         
+        let coreConfigApplied = expectation(description: "Core config applied")
+        
         defaultAmplitudeInstance = amplitude
         defaultPaltaInstance = palta
         
@@ -51,6 +53,9 @@ final class ConfigApplyServiceTests: XCTestCase {
             paltaAssemblies: &paltaQueueAssemblies,
             amplitudeInstances: &amplitudeInstances
         )
+        
+        palta.eventQueueCore.addBarrier(coreConfigApplied.fulfill)
+        wait(for: [coreConfigApplied], timeout: 0.1)
         
         XCTAssertNil(defaultAmplitudeInstance)
         XCTAssertNil(defaultPaltaInstance)
@@ -107,6 +112,8 @@ final class ConfigApplyServiceTests: XCTestCase {
         let amplitude = Amplitude()
         let palta = assemblyProvider.newEventQueueAssembly()
         
+        let coreConfigApplied = expectation(description: "Core config applied")
+        
         defaultAmplitudeInstance = amplitude
         defaultPaltaInstance = palta
         
@@ -123,6 +130,9 @@ final class ConfigApplyServiceTests: XCTestCase {
             paltaAssemblies: &paltaQueueAssemblies,
             amplitudeInstances: &amplitudeInstances
         )
+        
+        palta.eventQueueCore.addBarrier(coreConfigApplied.fulfill)
+        wait(for: [coreConfigApplied], timeout: 0.1)
         
         XCTAssertNil(defaultAmplitudeInstance)
         XCTAssertNil(defaultPaltaInstance)
@@ -213,6 +223,8 @@ final class ConfigApplyServiceTests: XCTestCase {
         let amplitude = Amplitude()
         let palta = assemblyProvider.newEventQueueAssembly()
         
+        let coreConfigApplied = expectation(description: "Core config applied")
+        
         defaultAmplitudeInstance = amplitude
         defaultPaltaInstance = palta
         
@@ -229,6 +241,9 @@ final class ConfigApplyServiceTests: XCTestCase {
             paltaAssemblies: &paltaQueueAssemblies,
             amplitudeInstances: &amplitudeInstances
         )
+        
+        palta.eventQueueCore.addBarrier(coreConfigApplied.fulfill)
+        wait(for: [coreConfigApplied], timeout: 0.1)
         
         XCTAssertNil(defaultAmplitudeInstance)
         XCTAssertNil(defaultPaltaInstance)

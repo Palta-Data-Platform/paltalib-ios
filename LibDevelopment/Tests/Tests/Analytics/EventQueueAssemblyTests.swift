@@ -41,6 +41,10 @@ final class EventQueueAssemblyTests: XCTestCase {
         
         assembly.apply(target)
         
+        let configApplied = expectation(description: "Config applied")
+        assembly.eventQueueCore.addBarrier(configApplied.fulfill)
+        wait(for: [configApplied], timeout: 0.1)
+        
         XCTAssertEqual(assembly.eventQueueCore.config?.uploadThreshold, 98)
         XCTAssertEqual(assembly.eventQueueCore.config?.maxBatchSize, 234)
         XCTAssertEqual(assembly.eventQueueCore.config?.maxEvents, 12)

@@ -9,21 +9,24 @@ import Foundation
 
 extension EventQueueAssembly {
     func apply(_ target: ConfigTarget) {
-        eventQueueCore.config = .init(
+        let normalConfig = EventQueueConfig(
             maxBatchSize: target.settings.eventUploadMaxBatchSize,
             uploadInterval: TimeInterval(target.settings.eventUploadPeriodSeconds),
             uploadThreshold: target.settings.eventUploadThreshold,
             maxEvents: target.settings.eventMaxCount,
             maxConcurrentOperations: 5
         )
-
-        liveEventQueueCore.config = .init(
+        
+        let liveConfig = EventQueueConfig(
             maxBatchSize: target.settings.eventUploadMaxBatchSize,
             uploadInterval: 0,
             uploadThreshold: 0,
             maxEvents: target.settings.eventMaxCount,
             maxConcurrentOperations: .max
         )
+        
+        eventQueueCore.apply(normalConfig)
+        liveEventQueueCore.apply(liveConfig)
 
         eventQueue.trackingSessionEvents = target.settings.trackingSessionEvents
         eventQueue.liveEventTypes = target.settings.realtimeEventTypes

@@ -119,6 +119,8 @@
 		114CF5B028226F5600ADA815 /* PaltaPurchasesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AE28226F5300ADA815 /* PaltaPurchasesTests.swift */; };
 		114CF5B228226F6900ADA815 /* PurchasePluginMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5B128226F6900ADA815 /* PurchasePluginMock.swift */; };
 		114CF5B72823C83000ADA815 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 114CF5B62823C83000ADA815 /* RevenueCat */; };
+		11418B322885754C00694505 /* Difference in Frameworks */ = {isa = PBXBuildFile; productRef = 11418B312885754C00694505 /* Difference */; };
+		11418B372885757400694505 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11418B352885755D00694505 /* TestHelpers.swift */; };
 		114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */; };
 		114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */; };
 		114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */; };
@@ -369,6 +371,7 @@
 		114CF5AC2822679500ADA815 /* PBPurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBPurchasePlugin.swift; sourceTree = "<group>"; };
 		114CF5AE28226F5300ADA815 /* PaltaPurchasesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesTests.swift; sourceTree = "<group>"; };
 		114CF5B128226F6900ADA815 /* PurchasePluginMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePluginMock.swift; sourceTree = "<group>"; };
+		11418B352885755D00694505 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderMock.swift; sourceTree = "<group>"; };
 		114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderTests.swift; sourceTree = "<group>"; };
 		114D06DB28041B5000ACD310 /* AnalyticsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAssembly.swift; sourceTree = "<group>"; };
@@ -441,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1111599A27F70CB000A41ADA /* PaltaLibAnalytics.framework in Frameworks */,
+				11418B322885754C00694505 /* Difference in Frameworks */,
 				1111599B27F70CB000A41ADA /* PaltaLibAttribution.framework in Frameworks */,
 				1111599C27F70CB000A41ADA /* PaltaLibPayments.framework in Frameworks */,
 				111158FC27F6FE5600A41ADA /* PaltaLibCore.framework in Frameworks */,
@@ -529,6 +533,7 @@
 			children = (
 				11115A3727FB16C800A41ADA /* Tests */,
 				11115A3827FB16D000A41ADA /* Mocks */,
+				11418B352885755D00694505 /* TestHelpers.swift */,
 			);
 			path = LibDevelopment/Tests;
 			sourceTree = "<group>";
@@ -1042,6 +1047,8 @@
 			dependencies = (
 			);
 			name = PaltaLibCore;
+			packageProductDependencies = (
+			);
 			productName = Core;
 			productReference = 111158CB27F601FC00A41ADA /* PaltaLibCore.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1057,12 +1064,16 @@
 			buildRules = (
 			);
 			dependencies = (
+				11418B342885755000694505 /* PBXTargetDependency */,
 				1111599527F70C5700A41ADA /* PBXTargetDependency */,
 				1111599727F70C5700A41ADA /* PBXTargetDependency */,
 				1111599927F70C5700A41ADA /* PBXTargetDependency */,
 				111158FE27F6FE5600A41ADA /* PBXTargetDependency */,
 			);
 			name = PaltaLibTests;
+			packageProductDependencies = (
+				11418B312885754C00694505 /* Difference */,
+			);
 			productName = PaltaLibTests;
 			productReference = 111158F827F6FE5600A41ADA /* PaltaLibTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1199,6 +1210,7 @@
 				1111599F27F716A900A41ADA /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 				111159A527F7179A00A41ADA /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
 				114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				11418B2E2885753400694505 /* XCRemoteSwiftPackageReference "Difference" */,
 			);
 			productRefGroup = 111158BD27F6014D00A41ADA /* Products */;
 			projectDirPath = "";
@@ -1342,6 +1354,7 @@
 				11115A4827FB75CD00A41ADA /* EventQueueCoreMock.swift in Sources */,
 				11A61EB02835161F00F88116 /* EventQueueAssemblyProviderMock.swift in Sources */,
 				111A59A72840CE410052FCD1 /* FeaturesServiceMock.swift in Sources */,
+				11418B372885757400694505 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1497,6 +1510,10 @@
 			isa = PBXTargetDependency;
 			target = 1111590827F7079A00A41ADA /* PaltaLibPayments */;
 			targetProxy = 1111599827F70C5700A41ADA /* PBXContainerItemProxy */;
+		};
+		11418B342885755000694505 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 11418B332885755000694505 /* Difference */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2079,6 +2096,14 @@
 				minimumVersion = 4.3.0;
 			};
 		};
+		11418B2E2885753400694505 /* XCRemoteSwiftPackageReference "Difference" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzysztofzablocki/Difference.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2096,6 +2121,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */;
 			productName = RevenueCat;
+        };
+		11418B312885754C00694505 /* Difference */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11418B2E2885753400694505 /* XCRemoteSwiftPackageReference "Difference" */;
+			productName = Difference;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

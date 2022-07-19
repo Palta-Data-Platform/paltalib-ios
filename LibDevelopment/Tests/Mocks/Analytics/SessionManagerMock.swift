@@ -16,7 +16,7 @@ final class SessionManagerMock: SessionManager, SessionIdProvider {
     var startCalled = false
     var startNewSessionCalled = false
 
-    func refreshSession(with event: Event) {
+    func refreshSession(with timestamp: Int) {
         refreshSessionCalled = true
     }
 
