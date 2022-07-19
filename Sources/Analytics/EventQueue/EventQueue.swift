@@ -68,6 +68,10 @@ final class EventQueueImpl: EventQueue {
         guard !excludedEvents.contains(eventType) else {
             return
         }
+        
+        if !outOfSession {
+            sessionManager.refreshSession(with: timestamp ?? .currentTimestamp())
+        }
 
         let event = eventComposer.composeEvent(
             eventType: eventType,
@@ -86,10 +90,6 @@ final class EventQueueImpl: EventQueue {
             liveCore.addEvent(event)
         } else {
             core.addEvent(event)
-        }
-
-        if !outOfSession {
-            sessionManager.refreshSession(with: event)
         }
     }
 

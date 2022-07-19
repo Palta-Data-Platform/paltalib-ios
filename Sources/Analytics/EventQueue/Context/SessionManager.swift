@@ -16,7 +16,7 @@ protocol SessionIdProvider {
 protocol SessionManager: AnyObject {
     var sessionEventLogger: ((String, Int) -> Void)? { get set }
 
-    func refreshSession(with event: Event)
+    func refreshSession(with timestamp: Int)
     func start()
     func startNewSession()
 }
@@ -71,8 +71,13 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
         subscribeForNotifications()
     }
 
-    func refreshSession(with event: Event) {
-        session.lastEventTimestamp = event.timestamp
+    func refreshSession(with timestamp: Int) {
+        if isSessionValid(session) {
+            session.lastEventTimestamp = timestamp
+        } else {
+            startNewSession()
+        }
+        
     }
 
     func start() {
@@ -115,7 +120,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     private func restoreSession() -> Session? {
         guard
             let session: Session = userDefaults.object(for: defaultsKey),
-            Int.currentTimestamp() - session.lastEventTimestamp < maxSessionAge
+            isSessionValid(session)
         else {
             return nil
         }
@@ -125,5 +130,9 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
 
     private func saveSession() {
         userDefaults.set(_session, for: defaultsKey)
+    }
+    
+    private func isSessionValid(_ session: Session) -> Bool {
+        Int.currentTimestamp() - session.lastEventTimestamp < maxSessionAge
     }
 }

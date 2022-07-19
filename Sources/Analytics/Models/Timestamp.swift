@@ -8,7 +8,17 @@
 import Foundation
 
 extension Int {
+    #if DEBUG
+    static var timestampMock: Int?
+    #endif
+    
     static func currentTimestamp() -> Int {
-        Int(Date().timeIntervalSince1970 * 1000)
+        #if DEBUG
+        if let timestampMock = timestampMock {
+            return timestampMock
+        }
+        #endif
+        
+        return Int(Date().timeIntervalSince1970 * 1000)
     }
 }
