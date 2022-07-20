@@ -19,6 +19,23 @@ func currentTimestamp() -> Int {
     #endif
 }
 
+private var appStartTimestamp: Int!
+private var appStartClock: Int!
+
 private func realCurrentTimestamp() -> Int {
-    Int((Date().timeIntervalSince1970 * 1000).rounded())
+    appStartTimestamp + getClock() - appStartClock
+}
+
+private func getClock() -> Int {
+    let nanosecs = clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW)
+    return Int(nanosecs / 1_000_000)
+}
+
+@objc(PBTimeKeeper)
+private class TimeKeeper: NSObject {
+    @objc
+    class func recordTime() {
+        appStartTimestamp = Int((Date().timeIntervalSince1970 * 1000).rounded())
+        appStartClock = getClock()
+    }
 }

@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = '10.0'
   spec.swift_versions        = '5.3'
 
-  spec.source_files = 'Sources/Analytics/**/*.swift'
+  spec.source_files = 'Sources/Analytics/**/*.{swift,m}'
 
   spec.dependency 'PaltaLibCore', '~> 2.2.1'
   spec.dependency 'PaltaLibAnalyticsModel', '1.0.0'
