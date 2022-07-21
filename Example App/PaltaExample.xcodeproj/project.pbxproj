@@ -31,7 +31,6 @@
 		114CF59E2821920200ADA815 /* PurchasesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewModel.swift; sourceTree = "<group>"; };
 		114CF5A02821920F00ADA815 /* PurchasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewController.swift; sourceTree = "<group>"; };
 		118369462844AA130028CED9 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
-		11850BF52809B1D900B6D05F /* Palta */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Palta; path = ../..; sourceTree = "<group>"; };
 		7F3B88D42745382C000A6D46 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
 		7FB35FDA272973C900A656E1 /* PaltaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaltaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB35FDD272973C900A656E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,7 +103,6 @@
 		7FB35FD1272973C900A656E1 = {
 			isa = PBXGroup;
 			children = (
-				7FB35FF62729756000A656E1 /* Packages */,
 				7FB35FDC272973C900A656E1 /* PaltaExample */,
 				7FB35FDB272973C900A656E1 /* Products */,
 				7FB35FFB2729767500A656E1 /* Frameworks */,
@@ -133,14 +131,6 @@
 				7FB35FE6272973C900A656E1 /* PaltaExample.xcdatamodeld */,
 			);
 			path = PaltaExample;
-			sourceTree = "<group>";
-		};
-		7FB35FF62729756000A656E1 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				11850BF52809B1D900B6D05F /* Palta */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 		7FB35FFB2729767500A656E1 /* Frameworks */ = {
