@@ -9,3 +9,4 @@ node_modules
 *.xcuserstate
 xcuserdata
 UserInterfaceState.xcuserstate
+/Example App/Pods

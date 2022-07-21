@@ -12,10 +12,7 @@
 		114CF59F2821920200ADA815 /* PurchasesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF59E2821920200ADA815 /* PurchasesViewModel.swift */; };
 		114CF5A12821920F00ADA815 /* PurchasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A02821920F00ADA815 /* PurchasesViewController.swift */; };
 		118369472844AA130028CED9 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118369462844AA130028CED9 /* UserView.swift */; };
-		11850BF72809B67900B6D05F /* PaltaLibAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 11850BF62809B67900B6D05F /* PaltaLibAnalytics */; };
-		11850BF92809B67900B6D05F /* PaltaLibAttribution in Frameworks */ = {isa = PBXBuildFile; productRef = 11850BF82809B67900B6D05F /* PaltaLibAttribution */; };
-		11850BFB2809B67900B6D05F /* PaltaLibCore in Frameworks */ = {isa = PBXBuildFile; productRef = 11850BFA2809B67900B6D05F /* PaltaLibCore */; };
-		11850BFD2809B67900B6D05F /* PaltaLibPurchases in Frameworks */ = {isa = PBXBuildFile; productRef = 11850BFC2809B67900B6D05F /* PaltaLibPurchases */; };
+		188EF9C944003AB4D112E300 /* Pods_PaltaExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0022A0D53D957A0C019C5D8B /* Pods_PaltaExample.framework */; };
 		7F3B88D52745382C000A6D46 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3B88D42745382C000A6D46 /* SwitchView.swift */; };
 		7FB35FDE272973C900A656E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB35FDD272973C900A656E1 /* AppDelegate.swift */; };
 		7FB35FE0272973C900A656E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB35FDF272973C900A656E1 /* SceneDelegate.swift */; };
@@ -27,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0022A0D53D957A0C019C5D8B /* Pods_PaltaExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaltaExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		002AB426BEC946836EB1AD63 /* Pods-PaltaExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaltaExample.debug.xcconfig"; path = "Target Support Files/Pods-PaltaExample/Pods-PaltaExample.debug.xcconfig"; sourceTree = "<group>"; };
 		114CF59A2821536400ADA815 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		114CF59C2821539C00ADA815 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		114CF59E2821920200ADA815 /* PurchasesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewModel.swift; sourceTree = "<group>"; };
@@ -43,6 +42,7 @@
 		7FB35FEE272973CB00A656E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FE10A7D27316E6E003081CF /* AnalyticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
 		7FE10A7E27316E6E003081CF /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
+		BA053798A89E7C4D40B29D9D /* Pods-PaltaExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaltaExample.release.xcconfig"; path = "Target Support Files/Pods-PaltaExample/Pods-PaltaExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,10 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11850BFD2809B67900B6D05F /* PaltaLibPurchases in Frameworks */,
-				11850BF72809B67900B6D05F /* PaltaLibAnalytics in Frameworks */,
-				11850BF92809B67900B6D05F /* PaltaLibAttribution in Frameworks */,
-				11850BFB2809B67900B6D05F /* PaltaLibCore in Frameworks */,
+				188EF9C944003AB4D112E300 /* Pods_PaltaExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +65,15 @@
 				118369462844AA130028CED9 /* UserView.swift */,
 			);
 			path = Purchases;
+			sourceTree = "<group>";
+		};
+		6CA3782E75A65DF0C7FF7C38 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				002AB426BEC946836EB1AD63 /* Pods-PaltaExample.debug.xcconfig */,
+				BA053798A89E7C4D40B29D9D /* Pods-PaltaExample.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		7F3B88D12745380B000A6D46 /* Common */ = {
@@ -102,6 +108,7 @@
 				7FB35FDC272973C900A656E1 /* PaltaExample */,
 				7FB35FDB272973C900A656E1 /* Products */,
 				7FB35FFB2729767500A656E1 /* Frameworks */,
+				6CA3782E75A65DF0C7FF7C38 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,6 +146,7 @@
 		7FB35FFB2729767500A656E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0022A0D53D957A0C019C5D8B /* Pods_PaltaExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -169,21 +177,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FB35FF1272973CB00A656E1 /* Build configuration list for PBXNativeTarget "PaltaExample" */;
 			buildPhases = (
+				3A957173CA60ACEAA7448791 /* [CP] Check Pods Manifest.lock */,
 				7FB35FD6272973C900A656E1 /* Sources */,
 				7FB35FD7272973C900A656E1 /* Frameworks */,
 				7FB35FD8272973C900A656E1 /* Resources */,
+				E269534AB5407DC820D3919C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PaltaExample;
-			packageProductDependencies = (
-				11850BF62809B67900B6D05F /* PaltaLibAnalytics */,
-				11850BF82809B67900B6D05F /* PaltaLibAttribution */,
-				11850BFA2809B67900B6D05F /* PaltaLibCore */,
-				11850BFC2809B67900B6D05F /* PaltaLibPurchases */,
-			);
 			productName = PaltaExample;
 			productReference = 7FB35FDA272973C900A656E1 /* PaltaExample.app */;
 			productType = "com.apple.product-type.application";
@@ -232,6 +236,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3A957173CA60ACEAA7448791 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PaltaExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E269534AB5407DC820D3919C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PaltaExample/Pods-PaltaExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PaltaExample/Pods-PaltaExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PaltaExample/Pods-PaltaExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7FB35FD6272973C900A656E1 /* Sources */ = {
@@ -384,6 +430,7 @@
 		};
 		7FB35FF2272973CB00A656E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 002AB426BEC946836EB1AD63 /* Pods-PaltaExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -411,6 +458,7 @@
 		};
 		7FB35FF3272973CB00A656E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA053798A89E7C4D40B29D9D /* Pods-PaltaExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -458,25 +506,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		11850BF62809B67900B6D05F /* PaltaLibAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PaltaLibAnalytics;
-		};
-		11850BF82809B67900B6D05F /* PaltaLibAttribution */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PaltaLibAttribution;
-		};
-		11850BFA2809B67900B6D05F /* PaltaLibCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PaltaLibCore;
-		};
-		11850BFC2809B67900B6D05F /* PaltaLibPurchases */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PaltaLibPurchases;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		7FB35FE6272973C900A656E1 /* PaltaExample.xcdatamodeld */ = {
