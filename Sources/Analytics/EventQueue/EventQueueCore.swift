@@ -109,14 +109,6 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         flushIfNeededByCount()
     }
 
-    private func onOperationsCountReduced() {
-        if timerFired {
-            flush()
-        } else {
-            flushIfNeededByCount()
-        }
-    }
-
     private func stripEventsIfNeeded() {
         guard let config = config, events.count > config.maxEvents else {
             return
@@ -137,6 +129,7 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
 
         timerToken = timer.scheduleTimer(timeInterval: config.uploadInterval, on: workingQueue) { [weak self] in
             self?.timerFired = true
+            self?.timerToken = nil
             self?.flush()
         }
     }
@@ -191,4 +184,3 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         }
     }
 }
-
