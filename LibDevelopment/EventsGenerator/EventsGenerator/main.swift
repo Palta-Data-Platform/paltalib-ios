@@ -43,4 +43,4 @@ shell("chmod -R +w Pods/PaltaLibEvents/Sources/Events/")
 
 try YAMLBasedEventsGenerator(yamlURL: configURL, codeURL: eventsURL).generate()
 
-shell("rm -rf \(configFolderURL.path)")
+shell("rm -rf config")

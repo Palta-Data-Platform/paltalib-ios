@@ -109,7 +109,7 @@
 		1119CD032875802400C7B4C4 /* EventsTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTemplate.swift; sourceTree = "<group>"; };
 		1119CD0528759F2400C7B4C4 /* EventsTemplateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTemplateTests.swift; sourceTree = "<group>"; };
 		1119CD072875A0DB00C7B4C4 /* EventsTemplateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTemplateBuilder.swift; sourceTree = "<group>"; };
-		114C1667286F136300DE78F6 /* EventsGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EventsGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
+		114C1667286F136300DE78F6 /* eventgen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eventgen; sourceTree = BUILT_PRODUCTS_DIR; };
 		114C166A286F136300DE78F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		114C1681286F139600DE78F6 /* EventsGeneratorLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsGeneratorLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		114C168D286F13BB00DE78F6 /* Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
@@ -216,7 +216,7 @@
 		114C1668286F136300DE78F6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				114C1667286F136300DE78F6 /* EventsGenerator */,
+				114C1667286F136300DE78F6 /* eventgen */,
 				114C1681286F139600DE78F6 /* EventsGeneratorLibTests.xctest */,
 				11A31ABF287D881100A32D69 /* libEventsGeneratorStatic.a */,
 			);
@@ -349,7 +349,7 @@
 				11A31AB7287D6A5300A32D69 /* Yaml */,
 			);
 			productName = EventsGenerator;
-			productReference = 114C1667286F136300DE78F6 /* EventsGenerator */;
+			productReference = 114C1667286F136300DE78F6 /* eventgen */;
 			productType = "com.apple.product-type.tool";
 		};
 		114C1680286F139600DE78F6 /* EventsGeneratorLibTests */ = {
@@ -649,7 +649,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = eventgen;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -658,7 +658,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = eventgen;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
