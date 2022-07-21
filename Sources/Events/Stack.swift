@@ -12,7 +12,7 @@ public extension Stack {
         event: PaltaAnlyticsTransport.Event.self,
         sessionStartEventType: 1,
         eventHeader: EventHeader.self,
-        sessionStartEventPayload: EventPayloadSessionStart.self
+        sessionStartEventPayloadProvider: { SessionStartEvent().payload }
     )
 }
 

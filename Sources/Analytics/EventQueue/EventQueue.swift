@@ -121,7 +121,7 @@ final class EventQueueImpl: EventQueue {
             self.logEvent(
                 of: self.stack.sessionStartEventType,
                 with: self.stack.eventHeader.init(),
-                and: self.stack.sessionStartEventPayload.init(),
+                and: self.stack.sessionStartEventPayloadProvider(),
                 outOfSession: true
             )
         }

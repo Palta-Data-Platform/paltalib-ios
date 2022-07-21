@@ -8,6 +8,8 @@
 import Foundation
 
 public struct Stack {
+    public typealias SessionStartEventPayloadProvider = () -> EventPayload
+
     public let batchCommon: BatchCommon.Type
     public let context: BatchContext.Type
     public let batch: Batch.Type
@@ -15,7 +17,7 @@ public struct Stack {
     
     public let sessionStartEventType: EventType
     public let eventHeader: EventHeader.Type
-    public let sessionStartEventPayload: SessionStartEventPayload.Type
+    public let sessionStartEventPayloadProvider: SessionStartEventPayloadProvider
     
     public init(
         batchCommon: BatchCommon.Type,
@@ -24,7 +26,7 @@ public struct Stack {
         event: BatchEvent.Type,
         sessionStartEventType: EventType,
         eventHeader: EventHeader.Type,
-        sessionStartEventPayload: SessionStartEventPayload.Type
+        sessionStartEventPayloadProvider: @escaping SessionStartEventPayloadProvider
     ) {
         self.batchCommon = batchCommon
         self.context = context
@@ -32,6 +34,6 @@ public struct Stack {
         self.event = event
         self.sessionStartEventType = sessionStartEventType
         self.eventHeader = eventHeader
-        self.sessionStartEventPayload = sessionStartEventPayload
+        self.sessionStartEventPayloadProvider = sessionStartEventPayloadProvider
     }
 }
