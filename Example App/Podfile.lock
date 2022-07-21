@@ -23,11 +23,11 @@ PODS:
   - SwiftProtobuf (1.19.0)
 
 DEPENDENCIES:
-  - PaltaLibAnalytics (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `feature/protobuf`)
-  - PaltaLibAnalyticsModel (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `feature/protobuf`)
+  - PaltaLibAnalytics (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, commit `fbc94e3d0df3f57de867014a595836891ab40168`)
+  - PaltaLibAnalyticsModel (from `../`)
   - PaltaLibCore (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `develop`)
-  - PaltaLibEvents (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `feature/protobuf`)
-  - PaltaLibEventsTransport (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `feature/protobuf`)
+  - PaltaLibEvents (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, commit `fbc94e3d0df3f57de867014a595836891ab40168`)
+  - PaltaLibEventsTransport (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, commit `fbc94e3d0df3f57de867014a595836891ab40168`)
   - PaltaLibPurchases (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `develop`)
 
 SPEC REPOS:
@@ -39,19 +39,18 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   PaltaLibAnalytics:
-    :branch: feature/protobuf
+    :commit: fbc94e3d0df3f57de867014a595836891ab40168
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibAnalyticsModel:
-    :branch: feature/protobuf
-    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
+    :path: "../"
   PaltaLibCore:
     :branch: develop
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibEvents:
-    :branch: feature/protobuf
+    :commit: fbc94e3d0df3f57de867014a595836891ab40168
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibEventsTransport:
-    :branch: feature/protobuf
+    :commit: fbc94e3d0df3f57de867014a595836891ab40168
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibPurchases:
     :branch: develop
@@ -59,19 +58,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   PaltaLibAnalytics:
-    :commit: ee855a9240e8603cd01fcc0668b8306fc8336c55
-    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
-  PaltaLibAnalyticsModel:
-    :commit: ee855a9240e8603cd01fcc0668b8306fc8336c55
+    :commit: fbc94e3d0df3f57de867014a595836891ab40168
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibCore:
     :commit: 3fa521c5b59f447e791ff752779ec5c1a06f9517
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibEvents:
-    :commit: ee855a9240e8603cd01fcc0668b8306fc8336c55
+    :commit: fbc94e3d0df3f57de867014a595836891ab40168
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibEventsTransport:
-    :commit: ee855a9240e8603cd01fcc0668b8306fc8336c55
+    :commit: fbc94e3d0df3f57de867014a595836891ab40168
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibPurchases:
     :commit: 3fa521c5b59f447e791ff752779ec5c1a06f9517
@@ -89,6 +85,6 @@ SPEC CHECKSUMS:
   RevenueCat: 5009a82afee178848de97cf2d712be1015a5d33c
   SwiftProtobuf: 6ef3f0e422ef90d6605ca20b21a94f6c1324d6b3
 
-PODFILE CHECKSUM: f351fcc6c9584be570564cd3d9425cc26e63d738
+PODFILE CHECKSUM: 406db52ddd6bfb822450cbba845cdee60978b84f
 
 COCOAPODS: 1.11.3
