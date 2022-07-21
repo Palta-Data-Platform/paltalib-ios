@@ -9,15 +9,29 @@ import Foundation
 import PaltaLibAnalyticsModel
 
 public class PaltaAnalytics {
+    private static var stack: Stack?
+    private static let lock = NSRecursiveLock()
+
     public static func initiate(with stack: Stack) {
-        _shared = PaltaAnalytics(assembly: AnalyticsAssembly(stack: stack))
+        self.stack = stack
     }
     
     public static var shared: PaltaAnalytics {
-        guard let configuredInstance = _shared else {
+        lock.lock()
+        defer { lock.unlock() }
+
+        if let configuredInstance = _shared {
+            return configuredInstance
+        }
+        
+        guard let stack = stack else {
             fatalError("Attempt to access PaltaAnalytics without setting up")
         }
-        return configuredInstance
+        
+        let shared = PaltaAnalytics(assembly: AnalyticsAssembly(stack: stack))
+        _shared = shared
+        
+        return shared
     }
     
     private static var _shared: PaltaAnalytics?
