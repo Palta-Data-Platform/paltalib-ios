@@ -1,59 +1,94 @@
 PODS:
-  - Amplitude (8.5.0)
   - AppsFlyerFramework (6.4.4):
     - AppsFlyerFramework/Main (= 6.4.4)
   - AppsFlyerFramework/Main (6.4.4)
   - PaltaLibAnalytics (2.1.5):
-    - Amplitude (~> 8.5.0)
+    - PaltaLibAnalyticsModel (= 1.0.0)
     - PaltaLibCore (~> 2.2.1)
+  - PaltaLibAnalyticsModel (1.0.0)
   - PaltaLibAttribution (2.1.0):
     - AppsFlyerFramework (~> 6.4.2)
     - PaltaLibCore
   - PaltaLibCore (2.2.1)
+  - PaltaLibEvents (0.0.1):
+    - PaltaLibAnalytics
+    - PaltaLibEventsTransport
+  - PaltaLibEventsTransport (0.0.1):
+    - SwiftProtobuf (~> 1.19.0)
   - PaltaLibPurchases (3.0.0):
     - PaltaLibAttribution
     - PaltaLibCore (>= 2.1.0)
     - RevenueCat (~> 4.7.0)
   - RevenueCat (4.7.0)
+  - SwiftProtobuf (1.19.0)
 
 DEPENDENCIES:
-  - PaltaLibAnalytics (~> 2.1.5)
+  - PaltaLibAnalytics (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `feature/protobuf`)
+  - PaltaLibAnalyticsModel (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `feature/protobuf`)
   - PaltaLibCore (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `develop`)
+  - PaltaLibEvents (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `feature/protobuf`)
+  - PaltaLibEventsTransport (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `feature/protobuf`)
   - PaltaLibPurchases (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `develop`)
 
 SPEC REPOS:
   trunk:
-    - Amplitude
     - AppsFlyerFramework
-    - PaltaLibAnalytics
     - PaltaLibAttribution
     - RevenueCat
+    - SwiftProtobuf
 
 EXTERNAL SOURCES:
+  PaltaLibAnalytics:
+    :branch: feature/protobuf
+    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
+  PaltaLibAnalyticsModel:
+    :branch: feature/protobuf
+    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibCore:
     :branch: develop
+    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
+  PaltaLibEvents:
+    :branch: feature/protobuf
+    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
+  PaltaLibEventsTransport:
+    :branch: feature/protobuf
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibPurchases:
     :branch: develop
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
 
 CHECKOUT OPTIONS:
+  PaltaLibAnalytics:
+    :commit: ee855a9240e8603cd01fcc0668b8306fc8336c55
+    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
+  PaltaLibAnalyticsModel:
+    :commit: ee855a9240e8603cd01fcc0668b8306fc8336c55
+    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibCore:
     :commit: 3fa521c5b59f447e791ff752779ec5c1a06f9517
+    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
+  PaltaLibEvents:
+    :commit: ee855a9240e8603cd01fcc0668b8306fc8336c55
+    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
+  PaltaLibEventsTransport:
+    :commit: ee855a9240e8603cd01fcc0668b8306fc8336c55
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
   PaltaLibPurchases:
     :commit: 3fa521c5b59f447e791ff752779ec5c1a06f9517
     :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
 
 SPEC CHECKSUMS:
-  Amplitude: ef9ed339ddd33c9183edf63fa4bbaa86cf873321
   AppsFlyerFramework: 6ea252ecb04cf443550576922cddb95b35c958ed
-  PaltaLibAnalytics: 6e8b8ce5af7522cedd5fe66d03151a3158efceb5
+  PaltaLibAnalytics: 85350595e0712be68fbaaf22720559162cc942bd
+  PaltaLibAnalyticsModel: 510ef85732c38b8a2573c9fe2aeeff7adffd1b9a
   PaltaLibAttribution: 90259869a9acaac73ee83dcaced3b4ddcbb7656c
   PaltaLibCore: 1591d5784f2c9d01115bccb5f6e81dc8d51efa52
+  PaltaLibEvents: d0a0f9e52b0d7d3a508cf5f90ff52396b3f878de
+  PaltaLibEventsTransport: 8aab9692950e1d6201991f17fbb7a06d85d4c915
   PaltaLibPurchases: 907e6c3e3f8ff86a96c3a64cbeb6effa29aa912a
   RevenueCat: 5009a82afee178848de97cf2d712be1015a5d33c
+  SwiftProtobuf: 6ef3f0e422ef90d6605ca20b21a94f6c1324d6b3
 
-PODFILE CHECKSUM: a07526e24785361c8ba8fa6f896c1f376bb3fbc7
+PODFILE CHECKSUM: f351fcc6c9584be570564cd3d9425cc26e63d738
 
 COCOAPODS: 1.11.3

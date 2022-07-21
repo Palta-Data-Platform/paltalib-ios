@@ -4,18 +4,16 @@
 import UIKit
 import CoreData
 import PaltaLibAnalytics
+import PaltaEvents
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        PaltaAnalytics.instance.configure(
-            name: "PaltaExample",
-            amplitudeAPIKey: "AMPLITUDE",
-            paltaAPIKey: "0037c694a811422a88e2a3c5a90510e3"
-        )
+        PaltaAnalytics.shared.setAPIKey("0037c694a811422a88e2a3c5a90510e3")
         
-        PaltaAnalytics.instance.logEvent("app-launch")
+        PaltaAnalytics.shared.log(
+            PageOpenEvent(header: .init(), pageID: "launch")
+        )
         
         return true
     }
