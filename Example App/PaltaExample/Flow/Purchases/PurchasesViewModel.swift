@@ -75,7 +75,10 @@ final class PurchasesViewModel: PurchasesViewModelInterface {
     }
     
     private func getPurchases(with userId: UUID) {
-        PaltaPurchases.instance.logIn(appUserId: .uuid(userId))
+        PaltaPurchases.instance.logIn(appUserId: .uuid(userId)) { _ in
+            
+        }
+        
         PaltaPurchases.instance.getPaidFeatures { [weak self] result in
             switch result {
             case .success(let features):
