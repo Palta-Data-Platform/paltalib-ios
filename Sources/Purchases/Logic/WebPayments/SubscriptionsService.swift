@@ -17,9 +17,11 @@ protocol SubscriptionsService {
 }
 
 final class SubscriptionsServiceImpl: SubscriptionsService {
+    private let environment: Environment
     private let httpClient: HTTPClient
     
-    init(httpClient: HTTPClient) {
+    init(environment: Environment, httpClient: HTTPClient) {
+        self.environment = environment
         self.httpClient = httpClient
     }
     
@@ -28,7 +30,7 @@ final class SubscriptionsServiceImpl: SubscriptionsService {
         for userId: UserId,
         completion: @escaping (Result<[Subscription], PaymentsError>) -> Void
     ) {
-        let request = PaymentsHTTPRequest.getSubcriptions(userId, ids)
+        let request = PaymentsHTTPRequest.getSubcriptions(environment, userId, ids)
         
         httpClient.perform(request) { (result: Result<SubscriptionResponse, NetworkErrorWithoutResponse>) in
             switch result {

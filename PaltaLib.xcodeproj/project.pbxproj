@@ -112,6 +112,8 @@
 		113AD6402837AA5B00324D62 /* FeaturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63E2837A9D600324D62 /* FeaturesService.swift */; };
 		113AD6422837AC6D00324D62 /* FeaturesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6412837AC6D00324D62 /* FeaturesServiceTests.swift */; };
 		113AD6442837AD3B00324D62 /* FeatureMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6432837AD3B00324D62 /* FeatureMock.swift */; };
+		11418B322885754C00694505 /* Difference in Frameworks */ = {isa = PBXBuildFile; productRef = 11418B312885754C00694505 /* Difference */; };
+		11418B372885757400694505 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11418B352885755D00694505 /* TestHelpers.swift */; };
 		114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A72822673100ADA815 /* PurchasePlugin.swift */; };
 		114CF5A92822673500ADA815 /* PaltaPurchases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A52822670C00ADA815 /* PaltaPurchases.swift */; };
 		114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */; };
@@ -119,8 +121,6 @@
 		114CF5B028226F5600ADA815 /* PaltaPurchasesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5AE28226F5300ADA815 /* PaltaPurchasesTests.swift */; };
 		114CF5B228226F6900ADA815 /* PurchasePluginMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5B128226F6900ADA815 /* PurchasePluginMock.swift */; };
 		114CF5B72823C83000ADA815 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 114CF5B62823C83000ADA815 /* RevenueCat */; };
-		11418B322885754C00694505 /* Difference in Frameworks */ = {isa = PBXBuildFile; productRef = 11418B312885754C00694505 /* Difference */; };
-		11418B372885757400694505 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11418B352885755D00694505 /* TestHelpers.swift */; };
 		114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */; };
 		114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */; };
 		114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */; };
@@ -154,6 +154,7 @@
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A31AAD287C054A00A32D69 /* PaltaPurchasesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AAC287C054A00A32D69 /* PaltaPurchasesProtocol.swift */; };
 		11A31AB0287C0F4A00A32D69 /* UserIdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AAE287C0F3700A32D69 /* UserIdTests.swift */; };
+		11A3ECE1289ACF5600D747E9 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECE0289ACF5600D747E9 /* Environment.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
 		11A61E822833B89B00F88116 /* UserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E812833B89B00F88116 /* UserId.swift */; };
 		11A61E842833E0C900F88116 /* AmplitudeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E832833E0C900F88116 /* AmplitudeExtensionTests.swift */; };
@@ -365,13 +366,13 @@
 		113AD6412837AC6D00324D62 /* FeaturesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesServiceTests.swift; sourceTree = "<group>"; };
 		113AD6432837AD3B00324D62 /* FeatureMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureMock.swift; sourceTree = "<group>"; };
 		113AD6472837AE8400324D62 /* PaymentsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsError.swift; sourceTree = "<group>"; };
+		11418B352885755D00694505 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		114CF5A52822670C00ADA815 /* PaltaPurchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchases.swift; sourceTree = "<group>"; };
 		114CF5A72822673100ADA815 /* PurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePlugin.swift; sourceTree = "<group>"; };
 		114CF5AA2822677900ADA815 /* RCPurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCPurchasePlugin.swift; sourceTree = "<group>"; };
 		114CF5AC2822679500ADA815 /* PBPurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBPurchasePlugin.swift; sourceTree = "<group>"; };
 		114CF5AE28226F5300ADA815 /* PaltaPurchasesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesTests.swift; sourceTree = "<group>"; };
 		114CF5B128226F6900ADA815 /* PurchasePluginMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePluginMock.swift; sourceTree = "<group>"; };
-		11418B352885755D00694505 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderMock.swift; sourceTree = "<group>"; };
 		114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderTests.swift; sourceTree = "<group>"; };
 		114D06DB28041B5000ACD310 /* AnalyticsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAssembly.swift; sourceTree = "<group>"; };
@@ -406,6 +407,7 @@
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
 		11A31AAC287C054A00A32D69 /* PaltaPurchasesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesProtocol.swift; sourceTree = "<group>"; };
 		11A31AAE287C0F3700A32D69 /* UserIdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdTests.swift; sourceTree = "<group>"; };
+		11A3ECE0289ACF5600D747E9 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		11A61E5528338FF400F88116 /* PaidServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidServiceMock.swift; sourceTree = "<group>"; };
 		11A61E812833B89B00F88116 /* UserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserId.swift; sourceTree = "<group>"; };
 		11A61E832833E0C900F88116 /* AmplitudeExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeExtensionTests.swift; sourceTree = "<group>"; };
@@ -937,6 +939,7 @@
 		11A61EDF28378BD200F88116 /* Entites */ = {
 			isa = PBXGroup;
 			children = (
+				11A3ECE0289ACF5600D747E9 /* Environment.swift */,
 				11A61ED6283788DD00F88116 /* Feature.swift */,
 				11A61ED828378A6F00F88116 /* Subscription.swift */,
 				113AD6472837AE8400324D62 /* PaymentsError.swift */,
@@ -1386,6 +1389,7 @@
 				11A61EDD28378BAA00F88116 /* FeaturesResponse.swift in Sources */,
 				114CF5AD2822679500ADA815 /* PBPurchasePlugin.swift in Sources */,
 				11A61EF3283795D500F88116 /* GetFeaturesRequestPayload.swift in Sources */,
+				11A3ECE1289ACF5600D747E9 /* Environment.swift in Sources */,
 				11A61E822833B89B00F88116 /* UserId.swift in Sources */,
 				114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */,
 				11A61ED7283788DD00F88116 /* Feature.swift in Sources */,
@@ -1513,7 +1517,6 @@
 		};
 		11418B342885755000694505 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 11418B332885755000694505 /* Difference */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2088,20 +2091,20 @@
 				minimumVersion = 6.5.4;
 			};
 		};
-		114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.3.0;
-			};
-		};
 		11418B2E2885753400694505 /* XCRemoteSwiftPackageReference "Difference" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzysztofzablocki/Difference.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
+			};
+		};
+		114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -2117,15 +2120,15 @@
 			package = 111159A527F7179A00A41ADA /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
 			productName = AppsFlyerLib;
 		};
-		114CF5B62823C83000ADA815 /* RevenueCat */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */;
-			productName = RevenueCat;
-        };
 		11418B312885754C00694505 /* Difference */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 11418B2E2885753400694505 /* XCRemoteSwiftPackageReference "Difference" */;
 			productName = Difference;
+		};
+		114CF5B62823C83000ADA815 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

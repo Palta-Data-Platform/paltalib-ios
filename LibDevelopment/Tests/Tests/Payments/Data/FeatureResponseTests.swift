@@ -17,8 +17,8 @@ final class FeatureResponseTests: XCTestCase {
   "features": [
     {
       "quantity": 234,
-      "actualFrom": "2022-03-27T08:14:56.217Z",
-      "actualTill": "2022-04-27T08:14:56.217Z",
+      "actualFrom": "2022-03-27T08:14:56.217000+00:00",
+      "actualTill": "2022-04-27T08:14:56.217000+00:00",
       "lastSubscriptionId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "feature": "sku-1"
     }
@@ -54,8 +54,8 @@ final class FeatureResponseTests: XCTestCase {
   "features": [
     {
       "quantity": 234,
-      "actualFrom": "2022-03-27T08:14:56.217Z",
-      "actualTill": "2022-04-27T08:14:56.217Z",
+      "actualFrom": "2022-03-27T08:14:56.217000+00:00",
+      "actualTill": "2022-04-27T08:14:56.217000+00:00",
       "feature": "sku-1"
     }
   ]
