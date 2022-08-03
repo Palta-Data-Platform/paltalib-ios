@@ -50,12 +50,14 @@ extension EventHeaderTemplate {
             "\($0.swiftEntityName.startLowercase) = \($0.swiftEntityName)()"
         }
         
-        let dataInitStatements = [
+        let dataInitStatements = !elements.isEmpty
+        ? [
             "let proto = try PaltaAnlyticsTransport.EventHeader(serializedData: data)"
         ]
         + elements.map {
             "\($0.swiftEntityName.startLowercase) = \($0.swiftEntityName)(message: proto.\($0.swiftEntityName.startLowercase.camelCaseToSnakeCase))"
         }
+        : []
         
         return [
             Init(
@@ -92,7 +94,7 @@ extension EventHeaderTemplate {
         
         let messageGetterStatement = BaseScope(
             prefix: "PaltaAnlyticsTransport.EventHeader.with",
-            postBrace: nil,
+            postBrace: elements.isEmpty ? " _ in" : nil,
             suffix: nil,
             statements: messageInnerStatements
         )
