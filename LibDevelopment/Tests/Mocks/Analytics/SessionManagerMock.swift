@@ -11,7 +11,7 @@ import PaltaLibAnalyticsModel
 
 final class SessionManagerMock: SessionManager, SessionIdProvider {
     var sessionId: Int = -1
-    var sessionStartLogger: (() -> Void)?
+    var sessionStartLogger: ((Int) -> Void)?
 
     var refreshSessionCalled = false
     var startCalled = false
@@ -24,10 +24,4 @@ final class SessionManagerMock: SessionManager, SessionIdProvider {
     func start() {
         startCalled = true
     }
-
-    func startNewSession() {
-        startNewSessionCalled = true
-    }
-
-
 }

@@ -12,7 +12,9 @@ protocol EventComposer {
     func composeEvent(
         of type: EventType,
         with header: EventHeader,
-        and payload: EventPayload
+        and payload: EventPayload,
+        timestamp: Int?,
+        outOfSession: Bool
     ) -> BatchEvent
 }
 
@@ -28,12 +30,14 @@ final class EventComposerImpl: EventComposer {
     func composeEvent(
         of type: EventType,
         with header: EventHeader,
-        and payload: EventPayload
+        and payload: EventPayload,
+        timestamp: Int?,
+        outOfSession: Bool
     ) -> BatchEvent {
         let common = EventCommon(
             eventType: type,
-            timestamp: currentTimestamp(),
-            sessionId: sessionIdProvider.sessionId
+            timestamp: timestamp ?? currentTimestamp(),
+            sessionId: outOfSession ? -1 : sessionIdProvider.sessionId
         )
         
         return stack.event.init(common: common, header: header, payload: payload)

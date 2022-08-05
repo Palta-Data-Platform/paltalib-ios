@@ -33,7 +33,7 @@ final class SessionManagerTests: XCTestCase {
         let newSessionLogged = expectation(description: "New session logged")
         newSessionLogged.isInverted = true
 
-        sessionManager.sessionStartLogger = {
+        sessionManager.sessionStartLogger = { _ in
             newSessionLogged.fulfill()
         }
         sessionManager.start()
@@ -44,13 +44,18 @@ final class SessionManagerTests: XCTestCase {
 
     func testNoSavedSession() {
         let newSessionLogged = expectation(description: "New session logged")
+        
+        mockedTimestamp = 890
 
-        sessionManager.sessionStartLogger = {
+        sessionManager.sessionStartLogger = { timestamp in
+            XCTAssertEqual(timestamp, 890)
             newSessionLogged.fulfill()
         }
         sessionManager.start()
 
         wait(for: [newSessionLogged], timeout: 0.05)
+        
+        XCTAssertEqual(sessionManager.sessionId, 890)
     }
 
     func testExpiredSession() throws {
@@ -59,8 +64,11 @@ final class SessionManagerTests: XCTestCase {
         userDefaults.set(try JSONEncoder().encode(session), forKey: "paltaBrainSession")
 
         let newSessionLogged = expectation(description: "New session logged")
+        
+        mockedTimestamp = 10_000_000
 
-        sessionManager.sessionStartLogger = {
+        sessionManager.sessionStartLogger = { timestamp in
+            XCTAssertEqual(timestamp, 10_000_000)
             newSessionLogged.fulfill()
         }
         sessionManager.start()
@@ -70,33 +78,17 @@ final class SessionManagerTests: XCTestCase {
 
     func testAppBecomeActive() {
         let newSessionLogged = expectation(description: "New session logged")
+        
+        mockedTimestamp = 25088
 
-        sessionManager.sessionStartLogger = {
+        sessionManager.sessionStartLogger = { timestamp in
+            XCTAssertEqual(timestamp, 25088)
             newSessionLogged.fulfill()
         }
 
         notificationCenter.post(name: UIApplication.didBecomeActiveNotification, object: nil)
 
         wait(for: [newSessionLogged], timeout: 0.05)
-    }
-
-    func testCreateNewSession() {
-        let lastSessionTimestamp = currentTimestamp() - 1000
-        var session = Session(id: 22)
-        session.lastEventTimestamp = lastSessionTimestamp
-        userDefaults.set(try! JSONEncoder().encode(session), forKey: "paltaBrainSession")
-        sessionManager.start()
-
-        let sessionEventLogged = expectation(description: "New session logged")
-        sessionEventLogged.expectedFulfillmentCount = 2
-
-        sessionManager.sessionStartLogger = {
-            sessionEventLogged.fulfill()
-        }
-
-        sessionManager.startNewSession()
-
-        wait(for: [sessionEventLogged], timeout: 0.05)
     }
 
     func testRefreshSessionValid() throws {
@@ -117,8 +109,8 @@ final class SessionManagerTests: XCTestCase {
     
     func testRefreshSessionInvalid() throws {
         let initialSessionId = sessionManager.sessionId
-        sessionManager.maxSessionAge = 100
-        mockedTimestamp = initialSessionId + 105
+        sessionManager.maxSessionAge = 1
+        mockedTimestamp = initialSessionId + 1005
         
         sessionManager.refreshSession(with: 0)
 

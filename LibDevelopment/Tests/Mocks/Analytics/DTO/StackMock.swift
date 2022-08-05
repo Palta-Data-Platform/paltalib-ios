@@ -23,6 +23,6 @@ extension Stack {
         event: BatchEventMock.self,
         sessionStartEventType: 1,
         eventHeader: EventHeaderMock.self,
-        sessionStartEventPayload: EventPayloadMock.self
+        sessionStartEventPayloadProvider: { EventPayloadMock() }
     )
 }

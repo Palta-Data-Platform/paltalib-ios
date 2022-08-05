@@ -48,6 +48,7 @@ final class EventQueueImpl: EventQueue {
             of: incomingEvent.type,
             with: incomingEvent.header,
             and: incomingEvent.payload,
+            timestamp: nil,
             outOfSession: outOfSession
         )
     }
@@ -56,6 +57,7 @@ final class EventQueueImpl: EventQueue {
         of type: EventType,
         with header: EventHeader,
         and payload: EventPayload,
+        timestamp: Int?,
         outOfSession: Bool
     ) {
         if !outOfSession {
@@ -65,7 +67,9 @@ final class EventQueueImpl: EventQueue {
         let event = eventComposer.composeEvent(
             of: type,
             with: header,
-            and: payload
+            and: payload,
+            timestamp: timestamp,
+            outOfSession: outOfSession
         )
         
         let storableEvent = StorableEvent(
@@ -111,9 +115,7 @@ final class EventQueueImpl: EventQueue {
     }
 
     private func startSessionManager() {
-        sessionManager.start()
-        
-        sessionManager.sessionStartLogger = { [weak self] in
+        sessionManager.sessionStartLogger = { [weak self] timestamp in
             guard let self = self else {
                 return
             }
@@ -122,9 +124,12 @@ final class EventQueueImpl: EventQueue {
                 of: self.stack.sessionStartEventType,
                 with: self.stack.eventHeader.init(),
                 and: self.stack.sessionStartEventPayloadProvider(),
+                timestamp: timestamp,
                 outOfSession: true
             )
         }
+        
+        sessionManager.start()
     }
 }
 

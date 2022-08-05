@@ -14,12 +14,11 @@ protocol SessionIdProvider {
 }
 
 protocol SessionManager: AnyObject {
-    var sessionStartLogger: (() -> Void)? { get set }
+    var sessionStartLogger: ((Int) -> Void)? { get set }
 
     func refreshSession(with timestamp: Int)
 
     func start()
-    func startNewSession()
 }
 
 final class SessionManagerImpl: SessionManager, SessionIdProvider {
@@ -29,7 +28,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
 
     var maxSessionAge: Int = 5 * 60
 
-    var sessionStartLogger: (() -> Void)?
+    var sessionStartLogger: ((Int) -> Void)?
 
     private var session: Session {
         get {
@@ -39,9 +38,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
             if let session = _session {
                 return session
             } else {
-                let session = restoreSession() ?? newSession()
-                _session = session
-                return session
+                return loadSession()
             }
         }
         
@@ -73,28 +70,19 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     func refreshSession(with timestamp: Int) {
+        lock.lock()
         if isSessionValid(session) {
             session.lastEventTimestamp = timestamp
         } else {
-            startNewSession()
+            let timestamp = currentTimestamp()
+            sessionStartLogger?(timestamp)
+            session = Session(id: timestamp)
         }
+        lock.unlock()
     }
 
     func start() {
-        onBecomeActive()
-    }
-
-    func startNewSession() {
-        lock.lock()
-        sessionStartLogger?()
-        session = newSession()
-        lock.unlock()
-    }
-
-    func setSessionId(_ sessionId: Int) {
-        lock.lock()
-        session = Session(id: sessionId)
-        lock.unlock()
+        loadSession()
     }
 
     private func subscribeForNotifications() {
@@ -107,25 +95,26 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     private func onBecomeActive() {
+        loadSession()
+    }
+
+    @discardableResult
+    private func loadSession() -> Session {
         lock.lock()
-        session = restoreSession() ?? newSession()
-        lock.unlock()
-    }
-
-    private func newSession() -> Session {
-        sessionStartLogger?()
-        return Session(id: currentTimestamp())
-    }
-
-    private func restoreSession() -> Session? {
-        guard
+        defer { lock.unlock() }
+        if
             let session: Session = userDefaults.object(for: defaultsKey),
             isSessionValid(session)
-        else {
-            return nil
+        {
+            self.session = session
+            return session
+        } else {
+            let timestamp = currentTimestamp()
+            sessionStartLogger?(timestamp)
+            let session = Session(id: timestamp)
+            self.session = session
+            return session
         }
-
-        return session
     }
 
     private func saveSession() {
@@ -133,6 +122,6 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
     
     private func isSessionValid(_ session: Session) -> Bool {
-        currentTimestamp() - session.lastEventTimestamp < maxSessionAge
+        currentTimestamp() - session.lastEventTimestamp < (maxSessionAge * 1000)
     }
 }
