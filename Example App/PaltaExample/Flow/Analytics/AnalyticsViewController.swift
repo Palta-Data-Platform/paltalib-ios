@@ -18,6 +18,24 @@ class AnalyticsViewController: UIViewController {
         color: .systemBlue,
         action: viewModel.logTestEvent
     )
+    
+    private lazy var changeContextButton = Button(
+        title: "Change context",
+        color: .systemBrown,
+        action: viewModel.logTestEvent
+    )
+    
+    private lazy var loadTestButton = Button(
+        title: "Load test",
+        color: .systemRed,
+        action: viewModel.logTestEvent
+    )
+    
+    private lazy var buttonsStack = UIStackView(arrangedSubviews: [testLogButton, changeContextButton, loadTestButton]).do {
+        $0.axis = .vertical
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.spacing = 24
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +49,11 @@ class AnalyticsViewController: UIViewController {
     }
     
     private func configureTestButton() {
-        view.addSubview(testLogButton)
+        view.addSubview(buttonsStack)
         NSLayoutConstraint.activate([
-            testLogButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            testLogButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            testLogButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 0)
+            buttonsStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            buttonsStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            buttonsStack.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 0)
         ])
     }
 }
