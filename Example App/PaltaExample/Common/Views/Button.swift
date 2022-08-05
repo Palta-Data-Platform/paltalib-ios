@@ -7,11 +7,19 @@
 
 import UIKit
 
-final class Button: UIButton {
-    private static let pressedBackground = UIGraphicsImageRenderer(size: CGSize(width: 1, height: 1)).image { context in
-        UIColor.systemGray4.setFill()
-        context.cgContext.fill(.infinite)
+private extension UIImage {
+    static func image(of color: UIColor) -> UIImage {
+        let bounds = CGRect(origin: .zero, size: .init(width: 1, height: 1))
+        return UIGraphicsImageRenderer(bounds: bounds).image { context in
+            color.setFill()
+            context.cgContext.fill(bounds)
+        }
     }
+}
+
+final class Button: UIButton {
+    private static let pressedBackground = UIImage.image(of: .systemGray3)
+    
     private let action: () -> Void
 
     init(title: String, color: UIColor, action: @escaping () -> Void) {
@@ -20,14 +28,14 @@ final class Button: UIButton {
         super.init(frame: .zero)
 
         setTitle(title, for: .normal)
-        layer.borderColor = color.cgColor
-        layer.borderWidth = 2.0
-        setTitleColor(color, for: .normal)
+        setTitleColor(.white, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 16
         clipsToBounds = true
         addTarget(self, action: #selector(onAction), for: .touchUpInside)
 
+        setBackgroundImage(.image(of: color), for: .normal)
+        setBackgroundImage(.image(of: color.withAlphaComponent(0.3)), for: .disabled)
         setBackgroundImage(Button.pressedBackground, for: .highlighted)
 
         heightAnchor.constraint(equalToConstant: 60).isActive = true

@@ -17,7 +17,7 @@ final class FeaturesServiceTests: XCTestCase {
         try super.setUpWithError()
         
         httpMock = .init()
-        service = .init(httpClient: httpMock)
+        service = .init(environment: .dev, httpClient: httpMock)
     }
     
     func testSuccess() {
@@ -37,7 +37,7 @@ final class FeaturesServiceTests: XCTestCase {
             completionCalled.fulfill()
         }
         
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest), .getFeatures(.uuid(uuid)))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest), .getFeatures(.dev, .uuid(uuid)))
         
         wait(for: [completionCalled], timeout: 0.1)
     }
@@ -59,8 +59,40 @@ final class FeaturesServiceTests: XCTestCase {
             completionCalled.fulfill()
         }
         
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest), .getFeatures(.uuid(uuid)))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest), .getFeatures(.dev, .uuid(uuid)))
         
         wait(for: [completionCalled], timeout: 0.1)
+    }
+    
+    func testDevEnvironment() {
+        service = FeaturesServiceImpl(environment: .dev, httpClient: httpMock)
+        
+        service.getFeatures(for: .uuid(.init())) { _ in }
+        
+        guard
+            let request = httpMock.request as? PaymentsHTTPRequest,
+                case let .getFeatures(env, _) = request
+        else {
+            XCTAssert(false)
+            return
+        }
+        
+        XCTAssertEqual(env, .dev)
+    }
+    
+    func testProdEnvironment() {
+        service = FeaturesServiceImpl(environment: .prod, httpClient: httpMock)
+        
+        service.getFeatures(for: .uuid(.init())) { _ in }
+        
+        guard
+            let request = httpMock.request as? PaymentsHTTPRequest,
+                case let .getFeatures(env, _) = request
+        else {
+            XCTAssert(false)
+            return
+        }
+        
+        XCTAssertEqual(env, .prod)
     }
 }

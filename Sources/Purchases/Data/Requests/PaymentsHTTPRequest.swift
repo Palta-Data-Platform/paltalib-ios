@@ -9,17 +9,25 @@ import Foundation
 import PaltaLibCore
 
 enum PaymentsHTTPRequest: Equatable {
-    case getFeatures(UserId)
-    case getSubcriptions(UserId, Set<UUID>?)
+    case getFeatures(Environment, UserId)
+    case getSubcriptions(Environment, UserId, Set<UUID>?)
 }
 
 extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
+    var environment: Environment {
+        switch self {
+        case .getFeatures(let environemt, _):
+            return environemt
+        case .getSubcriptions(let environemt, _, _):
+            return environemt
+        }
+    }
     var bodyObject: AnyEncodable? {
         switch self {
-        case let .getFeatures(userId):
+        case let .getFeatures(_, userId):
             return GetFeaturesRequestPayload(customerId: userId).typeErased
             
-        case let .getSubcriptions(userId, subscriptionIds):
+        case let .getSubcriptions(_, userId, subscriptionIds):
             return GetSubscriptionsRequestPayload(customerId: userId, onlyIds: subscriptionIds).typeErased
         }
     }
@@ -32,7 +40,12 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
     }
     
     var baseURL: URL {
-        URL(string: "https://payments.dev.paltabrain.com")!
+        switch environment {
+        case .prod:
+            return URL(string: "https://api.payments.paltabrain.com")!
+        case .dev:
+            return URL(string: "https://api.payments.dev.paltabrain.com")!
+        }
     }
     
     var path: String? {

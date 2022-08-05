@@ -23,7 +23,7 @@ struct Subscription: Decodable, Equatable {
     let id: UUID
     let state: State
     let createdAt: Date
-    let canceledAt: Date
+    let canceledAt: Date?
     let currentPeriodStartAt: Date
     let currentPeriodEndAt: Date
     let tags: [Tag]

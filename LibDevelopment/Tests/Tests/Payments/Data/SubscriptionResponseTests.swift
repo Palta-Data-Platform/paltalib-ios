@@ -19,10 +19,10 @@ final class SubscriptionResponseTests: XCTestCase {
     {
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "state": "new",
-      "createdAt": "2022-04-20T08:22:05.226Z",
-      "canceledAt": "2022-05-20T08:22:05.226Z",
-      "currentPeriodStartAt": "2022-06-20T08:22:05.226Z",
-      "currentPeriodEndAt": "2022-07-20T08:22:05.226Z",
+      "createdAt": "2022-04-20T08:22:05.226000+00:00",
+      "canceledAt": "2022-05-20T08:22:05.226000+00:00",
+      "currentPeriodStartAt": "2022-06-20T08:22:05.226000+00:00",
+      "currentPeriodEndAt": "2022-07-20T08:22:05.226000+00:00",
       "tags": [
         "trial",
         "unknown-tag"
@@ -31,19 +31,19 @@ final class SubscriptionResponseTests: XCTestCase {
     {
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "state": "active",
-      "createdAt": "2022-04-20T08:22:05.226Z",
-      "canceledAt": "2022-05-20T08:22:05.226Z",
-      "currentPeriodStartAt": "2022-06-20T08:22:05.226Z",
-      "currentPeriodEndAt": "2022-07-20T08:22:05.226Z",
+      "createdAt": "2022-04-20T08:22:05.226000+00:00",
+      "canceledAt": "2022-05-20T08:22:05.226000+00:00",
+      "currentPeriodStartAt": "2022-06-20T08:22:05.226000+00:00",
+      "currentPeriodEndAt": "2022-07-20T08:22:05.226000+00:00",
       "tags": []
     },
     {
       "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       "state": "canceled",
-      "createdAt": "2022-04-20T08:22:05.226Z",
-      "canceledAt": "2022-05-20T08:22:05.226Z",
-      "currentPeriodStartAt": "2022-06-20T08:22:05.226Z",
-      "currentPeriodEndAt": "2022-07-20T08:22:05.226Z",
+      "createdAt": "2022-04-20T08:22:05.226000+00:00",
+      "canceledAt": "2022-05-20T08:22:05.226000+00:00",
+      "currentPeriodStartAt": "2022-06-20T08:22:05.226000+00:00",
+      "currentPeriodEndAt": "2022-07-20T08:22:05.226000+00:00",
       "tags": []
     }
   ]

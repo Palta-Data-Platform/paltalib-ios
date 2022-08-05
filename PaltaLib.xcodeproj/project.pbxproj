@@ -191,6 +191,7 @@
 		11A31AF72881736200A32D69 /* PaltaAnalytics+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AF62881736200A32D69 /* PaltaAnalytics+DeviceInfo.swift */; };
 		11A31B0528818AF300A32D69 /* PaltaLibAnalyticsModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11A31AFE28818A1A00A32D69 /* PaltaLibAnalyticsModel.framework */; };
 		11A31B0628818AF300A32D69 /* PaltaLibAnalyticsModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11A31AFE28818A1A00A32D69 /* PaltaLibAnalyticsModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11A3ECE1289ACF5600D747E9 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECE0289ACF5600D747E9 /* Environment.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
 		11A61E822833B89B00F88116 /* UserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E812833B89B00F88116 /* UserId.swift */; };
 		11A61ED7283788DD00F88116 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61ED6283788DD00F88116 /* Feature.swift */; };
@@ -488,6 +489,7 @@
 		11A31AAE287C0F3700A32D69 /* UserIdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdTests.swift; sourceTree = "<group>"; };
 		11A31AF62881736200A32D69 /* PaltaAnalytics+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+DeviceInfo.swift"; sourceTree = "<group>"; };
 		11A31AFE28818A1A00A32D69 /* PaltaLibAnalyticsModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibAnalyticsModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11A3ECE0289ACF5600D747E9 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		11A61E5528338FF400F88116 /* PaidServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidServiceMock.swift; sourceTree = "<group>"; };
 		11A61E812833B89B00F88116 /* UserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserId.swift; sourceTree = "<group>"; };
 		11A61EAB2835073D00F88116 /* ConfigApplyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigApplyServiceTests.swift; sourceTree = "<group>"; };
@@ -1096,6 +1098,7 @@
 		11A61EDF28378BD200F88116 /* Entites */ = {
 			isa = PBXGroup;
 			children = (
+				11A3ECE0289ACF5600D747E9 /* Environment.swift */,
 				11A61ED6283788DD00F88116 /* Feature.swift */,
 				11A61ED828378A6F00F88116 /* Subscription.swift */,
 				113AD6472837AE8400324D62 /* PaymentsError.swift */,
@@ -1623,6 +1626,7 @@
 				11A61EDD28378BAA00F88116 /* FeaturesResponse.swift in Sources */,
 				114CF5AD2822679500ADA815 /* PBPurchasePlugin.swift in Sources */,
 				11A61EF3283795D500F88116 /* GetFeaturesRequestPayload.swift in Sources */,
+				11A3ECE1289ACF5600D747E9 /* Environment.swift in Sources */,
 				11A61E822833B89B00F88116 /* UserId.swift in Sources */,
 				114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */,
 				11A61ED7283788DD00F88116 /* Feature.swift in Sources */,
@@ -1775,6 +1779,8 @@
 		};
 		11418B342885755000694505 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+            target = 11A31AFD28818A1A00A32D69 /* PaltaLibAnalyticsModel */;
+            targetProxy = 11A31B1328818DFB00A32D69 /* PBXContainerItemProxy */;
 		};
 		11A31B0828818AF300A32D69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2492,17 +2498,25 @@
 		113A79BF284F7FBC004C0C5D /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-protobuf/";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
+            requirement = {
+                kind = upToNextMajorVersion;
+                minimumVersion = 1.0.0;
+            };
+        };
 		11418B2E2885753400694505 /* XCRemoteSwiftPackageReference "Difference" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzysztofzablocki/Difference.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
+			};
+		};
+		114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
 			};
 		};
 		114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {

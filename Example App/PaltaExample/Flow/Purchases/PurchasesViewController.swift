@@ -24,9 +24,23 @@ final class PurchasesViewController: UIViewController {
         color: .systemMint,
         action: viewModel.subscribe
     )
+    
+    private lazy var buyLifetimeButton = Button(
+        title: "Buy lifetime",
+        color: .cyan,
+        action: viewModel.buyLifetime
+    )
+    
+    private lazy var buyPeriodButton = Button(
+        title: "Buy period",
+        color: .systemTeal,
+        action: viewModel.buyPeriod
+    )
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [userView, stateLabel, subscribeButton])
+        let stackView = UIStackView(
+            arrangedSubviews: [userView, stateLabel, subscribeButton, buyLifetimeButton, buyPeriodButton]
+        )
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.spacing = 32
@@ -73,6 +87,14 @@ final class PurchasesViewController: UIViewController {
 
         viewModel.isSubscribeButtonActivePublisher
             .assign(to: \.isEnabled, on: subscribeButton)
+            .store(in: &cancels)
+        
+        viewModel.isBuyLifetimeButtonActivePublisher
+            .assign(to: \.isEnabled, on: buyLifetimeButton)
+            .store(in: &cancels)
+        
+        viewModel.isBuyPeriodButtonActivePublisher
+            .assign(to: \.isEnabled, on: buyPeriodButton)
             .store(in: &cancels)
     }
 }

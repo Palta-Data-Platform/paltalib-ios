@@ -80,7 +80,7 @@ public final class PBPurchasePlugin: PurchasePlugin {
 }
 
 public extension PBPurchasePlugin {
-    convenience init(apiKey: String) {
-        self.init(assembly: RealPaymentsAssembly(apiKey: apiKey))
+    convenience init(apiKey: String, environment: Environment = .prod) {
+        self.init(assembly: RealPaymentsAssembly(apiKey: apiKey, environment: environment))
     }
 }

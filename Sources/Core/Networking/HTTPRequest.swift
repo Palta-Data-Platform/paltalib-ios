@@ -86,6 +86,10 @@ public extension AutobuildingHTTPRequest {
 }
 
 public extension AutobuildingHTTPRequest where Self: CodableAutobuildingHTTPRequest {
+    var headers: [String : String]? {
+        ["Content-Type": "application/json"]
+    }
+    
     var body: Data? {
         bodyObject.flatMap {
             let encoder = JSONEncoder()
