@@ -106,7 +106,14 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     private func onNewEvents() {
         stripEventsIfNeeded()
         scheduleTimerIfNeeded()
-        flushIfNeededByCount()
+        
+        let flushedByCount = flushIfNeededByCount()
+        
+        guard !flushedByCount else {
+            return
+        }
+        
+        _ = flushIfMultipleContexts()
     }
 
     private func stripEventsIfNeeded() {
@@ -134,12 +141,26 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         }
     }
 
-    private func flushIfNeededByCount() {
+    private func flushIfNeededByCount() -> Bool {
         guard let config = config, events.count >= config.uploadThreshold else {
-            return
+            return false
         }
 
         flush()
+        return true
+    }
+    
+    private func flushIfMultipleContexts() -> Bool {
+        guard
+            config != nil,
+            let firstContextId = events.first?.contextId,
+            !events.allSatisfy({ $0.contextId == firstContextId })
+        else {
+            return false
+        }
+        
+        flush()
+        return true
     }
 
     private func flush() {

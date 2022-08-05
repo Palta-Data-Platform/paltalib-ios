@@ -473,6 +473,36 @@ final class EventQueueCoreTests: XCTestCase {
         wait(for: [sendIsntCalled], timeout: 0.1)
     }
     
+    func testFlushByMultipleContexts() {
+        let contextId1 = UUID()
+        let contextId2 = UUID()
+        let contextId3 = UUID()
+        
+        let events: [StorableEvent] = [
+            .mock(timestamp: 0, contextId: contextId1),
+            .mock(timestamp: 1, contextId: contextId1),
+            .mock(timestamp: 2, contextId: contextId1),
+            .mock(timestamp: 3, contextId: contextId2),
+            .mock(timestamp: 4, contextId: contextId2),
+            .mock(timestamp: 5, contextId: contextId3)
+        ]
+        
+        queue.apply(
+            .init(maxBatchSize: 200, uploadInterval: 100, uploadThreshold: 200, maxEvents: 100)
+        )
+        waitForQueue()
+        
+        queue.addEvents(events)
+        
+        wait(for: [sendIsCalled], timeout: 0.1)
+        
+        XCTAssertEqual(contextId, contextId1)
+        XCTAssertEqual(
+            Set(sentEvents?.values.compactMap { $0 as? BatchEventMock } ?? []),
+            Set(events[0...2].map { $0.event.event } as? [BatchEventMock] ?? [])
+        )
+    }
+    
     private func warmUpExpectations(_ expectations: XCTestExpectation...) {
         // Do nothing. Lazy properties are initiated by this call
     }
