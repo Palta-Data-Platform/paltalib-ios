@@ -22,13 +22,13 @@ class AnalyticsViewController: UIViewController {
     private lazy var changeContextButton = Button(
         title: "Change context",
         color: .systemBrown,
-        action: viewModel.logTestEvent
+        action: viewModel.changeContext
     )
     
     private lazy var loadTestButton = Button(
         title: "Load test",
         color: .systemRed,
-        action: viewModel.logTestEvent
+        action: viewModel.loadTest
     )
     
     private lazy var buttonsStack = UIStackView(arrangedSubviews: [testLogButton, changeContextButton, loadTestButton]).do {

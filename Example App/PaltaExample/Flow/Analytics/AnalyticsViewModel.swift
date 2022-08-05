@@ -4,27 +4,43 @@ import PaltaEvents
 
 protocol AnalyticsModelInterface: AnyObject {
     func logTestEvent()
+    func changeContext()
+    func loadTest()
 }
 
 final class AnalyticsViewModel: AnalyticsModelInterface {
-    public func logTestEvent() {
+    private var counter = 0
+    
+    func logTestEvent() {
+        counter += 1
         PaltaAnalytics.shared.log(
-            EdgeCaseEvent(
-                header: .init(),
-                propBoolean: true,
-                propBooleanArray: [false, true],
-                propDecimal1: 0.5,
-                propDecimal2: 0.888,
-                propDecimalArray: [0.1, 0.2, 0.3],
-                propEnum: .skip,
-                propEnumArray: [.error, .success],
-                propInteger: 25,
-                propIntegerArray: [0, 1, 2],
-                propString: "aString",
-                propStringArray: ["03", "02", "01"],
-                propTimestamp: 200,
-                propTimestampArray: [200, 300, 400]
-            )
+            PageOpenEvent(pageID: "\(counter)")
         )
+    }
+    
+    func changeContext() {
+        PaltaAnalytics.shared.editContext { context in
+            context.appsflyer = .init(appsflyerID: UUID().uuidString)
+        }
+    }
+    
+    func loadTest() {
+        DispatchQueue.global().async {
+            DispatchQueue.concurrentPerform(iterations: 5) { _ in
+                for _ in 1...1000 {
+                    PaltaAnalytics.shared.log(PageOpenEvent(pageID: UUID().uuidString))
+                }
+            }
+        }
+        
+        DispatchQueue.global().async {
+            DispatchQueue.concurrentPerform(iterations: 3) { _ in
+                for _ in 1...500 {
+                    PaltaAnalytics.shared.editContext { context in
+                        context.appsflyer = .init(appsflyerID: UUID().uuidString)
+                    }
+                }
+            }
+        }
     }
 }
