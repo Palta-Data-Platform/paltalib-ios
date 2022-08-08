@@ -2,6 +2,7 @@
 
 import Foundation
 import PaltaLibAnalytics
+import PaltaLibAnalyticsModel
 import PaltaAnlyticsTransport
 
 public struct Context: BatchContext {
@@ -42,9 +43,14 @@ extension Context {
             self.message = message
         }
 
-        public init(appID: String = "", appVersion: String = PaltaAnalytics.deviceInfoProvider.appVersion) {
+        public init(appID: String? = nil, appVersion: String = PaltaAnalytics.deviceInfoProvider.appVersion) {
             message = .init()
-            message.appID = appID
+            
+
+            if let appID = appID {
+                message.appID = appID
+            }
+
             message.appVersion = appVersion
         }
     }

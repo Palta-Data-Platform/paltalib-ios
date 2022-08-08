@@ -31,7 +31,7 @@ extension SingleEventTemplate {
     }
     
     private var headerProp: Property {
-        Property(visibility: .public, name: "header", returnType: ReturnType(name: "EventHeader"))
+        Property(visibility: .public, name: "header", returnType: ReturnType(name: "EventHeader", isOptional: true))
     }
     
     private var payloadProp: Property {
@@ -69,13 +69,22 @@ extension SingleEventTemplate {
     
     private var initt: Init {
         let arguments = [
-            Init.Argument(label: "header", type: ReturnType(name: "EventHeader"), defaultValue: ".init()")
+            Init.Argument(label: "header", type: ReturnType(name: "EventHeader", isOptional: true), defaultValue: "nil")
         ]
         + properties.map {
             Init.Argument(
                 label: $0.name.snakeCaseToCamelCase,
-                type: $0.type.type,
-                defaultValue: $0.type.defaultValue
+                type: $0.type.type.makeOptional(),
+                defaultValue: "nil"
+            )
+        }
+        
+        let assignStatements = properties.map {
+            If(
+                conditions: [.unwrap($0.name.snakeCaseToCamelCase)],
+                statements: [
+                    "$0.\($0.name.snakeCaseToCamelCase) = \($0.type.converterToProto($0.name.startLowercase.snakeCaseToCamelCase))"
+                ]
             )
         }
                           
@@ -85,9 +94,7 @@ extension SingleEventTemplate {
                 prefix: "self._payload = EventPayload\(name).with",
                 postBrace: properties.isEmpty ? " _ in" : nil,
                 suffix: nil,
-                statements: properties.map {
-                    "$0.\($0.name.snakeCaseToCamelCase) = \($0.type.converterToProto($0.name.startLowercase.snakeCaseToCamelCase))"
-                }
+                statements: assignStatements
             )
         ]
         

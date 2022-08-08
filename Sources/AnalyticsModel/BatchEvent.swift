@@ -10,7 +10,7 @@ import Foundation
 public protocol BatchEvent {
     var timestamp: Int { get }
 
-    init(common: EventCommon, header: EventHeader, payload: EventPayload)
+    init(common: EventCommon, header: EventHeader?, payload: EventPayload)
     init(data: Data) throws
     
     func serialize() throws -> Data

@@ -20,10 +20,11 @@ final class ContextReservedFields {
     ]
     
     func initArgument(for field: (String, SchemaValue), in entityName: String) -> Init.Argument {
+        let defaultValue = handlers[entityName]?.defaultValue(for: field.0, and: field.1)
         return .init(
             label: field.0.snakeCaseToCamelCase,
-            type: field.1.type,
-            defaultValue: handlers[entityName]?.defaultValue(for: field.0, and: field.1) ?? field.1.defaultValue
+            type: defaultValue != nil ? field.1.type :  field.1.type.makeOptional(),
+            defaultValue: defaultValue ?? "nil"
         )
     }
 }

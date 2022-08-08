@@ -13,7 +13,7 @@ final class EventMock: Event {
     typealias Payload = EventPayloadMock
     typealias EventType = Int
     
-    var header: EventHeaderMock {
+    var header: EventHeaderMock? {
         EventHeaderMock()
     }
     

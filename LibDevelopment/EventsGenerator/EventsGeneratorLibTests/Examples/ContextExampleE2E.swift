@@ -2,6 +2,7 @@
 
 import Foundation
 import PaltaLibAnalytics
+import PaltaLibAnalyticsModel
 import PaltaAnlyticsTransport
 
 public struct Context: BatchContext {
@@ -62,9 +63,14 @@ extension Context {
             self.message = message
         }
 
-        public init(appID: String = "", appPlatform: String = "iOS", appVersion: String = PaltaAnalytics.deviceInfoProvider.appVersion) {
+        public init(appID: String? = nil, appPlatform: String = "iOS", appVersion: String = PaltaAnalytics.deviceInfoProvider.appVersion) {
             message = .init()
-            message.appID = appID
+            
+
+            if let appID = appID {
+                message.appID = appID
+            }
+
             message.appPlatform = appPlatform
             message.appVersion = appVersion
         }
@@ -77,10 +83,19 @@ extension Context {
             self.message = message
         }
 
-        public init(appsflyerID: String = "", appsflyerMediaSource: String = "") {
+        public init(appsflyerID: String? = nil, appsflyerMediaSource: String? = nil) {
             message = .init()
-            message.appsflyerID = appsflyerID
-            message.appsflyerMediaSource = appsflyerMediaSource
+            
+
+            if let appsflyerID = appsflyerID {
+                message.appsflyerID = appsflyerID
+            }
+
+            
+
+            if let appsflyerMediaSource = appsflyerMediaSource {
+                message.appsflyerMediaSource = appsflyerMediaSource
+            }
         }
     }
 
@@ -106,9 +121,14 @@ extension Context {
             self.message = message
         }
 
-        public init(gaid: String = "", idfa: String = PaltaAnalytics.deviceInfoProvider.idfa, idfv: String = PaltaAnalytics.deviceInfoProvider.idfv) {
+        public init(gaid: String? = nil, idfa: String = PaltaAnalytics.deviceInfoProvider.idfa, idfv: String = PaltaAnalytics.deviceInfoProvider.idfv) {
             message = .init()
-            message.gaid = gaid
+            
+
+            if let gaid = gaid {
+                message.gaid = gaid
+            }
+
             message.idfa = idfa
             message.idfv = idfv
         }
@@ -135,9 +155,13 @@ extension Context {
             self.message = message
         }
 
-        public init(userID: String = "") {
+        public init(userID: String? = nil) {
             message = .init()
-            message.userID = userID
+            
+
+            if let userID = userID {
+                message.userID = userID
+            }
         }
     }
 }

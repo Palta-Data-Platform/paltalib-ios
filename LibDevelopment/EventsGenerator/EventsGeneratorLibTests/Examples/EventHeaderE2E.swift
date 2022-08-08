@@ -2,9 +2,9 @@
 
 import Foundation
 import PaltaAnlyticsTransport
-import PaltaLibAnalytics
+import PaltaLibAnalyticsModel
 
-public struct EventHeader: PaltaLibAnalytics.EventHeader {
+public struct EventHeader: PaltaLibAnalyticsModel.EventHeader {
     public var parent: Parent
 
     internal var message: PaltaAnlyticsTransport.EventHeader {
@@ -37,9 +37,13 @@ extension EventHeader {
             self.message = message
         }
 
-        public init(parentElements: [String] = []) {
+        public init(parentElements: [String]? = nil) {
             message = .init()
-            message.parentElements = parentElements.map { $0 }
+            
+
+            if let parentElements = parentElements {
+                message.parentElements = parentElements.map { $0 }
+            }
         }
     }
 }

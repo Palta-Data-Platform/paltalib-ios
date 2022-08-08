@@ -1,13 +1,13 @@
 //  
 
-import PaltaLibAnalytics
+import PaltaLibAnalyticsModel
 import PaltaAnlyticsTransport
 
-public struct PageOpenEvent: PaltaLibAnalytics.Event {
+public struct PageOpenEvent: PaltaLibAnalyticsModel.Event {
     public typealias Header = PaltaEvents.EventHeader
     public typealias Payload = PaltaAnlyticsTransport.EventPayload
     public typealias EventType = Int
-    public let header: EventHeader
+    public let header: EventHeader?
 
     public var payload: Payload {
         get {
@@ -25,11 +25,16 @@ public struct PageOpenEvent: PaltaLibAnalytics.Event {
 
     private let _payload: EventPayloadPageOpen
 
-    public init(header: EventHeader = .init(), pageID: String = "", title: String = "") {
+    public init(header: EventHeader? = nil, pageID: String? = nil, title: String? = nil) {
         self.header = header
         self._payload = EventPayloadPageOpen.with {
-            $0.pageID = pageID
-            $0.title = title
+            if let pageID = pageID {
+                $0.pageID = pageID
+            }
+
+            if let title = title {
+                $0.title = title
+            }
         }
     }
 }

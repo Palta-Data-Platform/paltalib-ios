@@ -55,7 +55,7 @@ final class EventQueueImpl: EventQueue {
     
     private func logEvent(
         of type: EventType,
-        with header: EventHeader,
+        with header: EventHeader?,
         and payload: EventPayload,
         timestamp: Int?,
         outOfSession: Bool
@@ -122,7 +122,7 @@ final class EventQueueImpl: EventQueue {
             
             self.logEvent(
                 of: self.stack.sessionStartEventType,
-                with: self.stack.eventHeader.init(),
+                with: nil,
                 and: self.stack.sessionStartEventPayloadProvider(),
                 timestamp: timestamp,
                 outOfSession: true

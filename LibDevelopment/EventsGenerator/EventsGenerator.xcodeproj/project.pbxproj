@@ -59,6 +59,8 @@
 		11A31AEF287D8B4000A32D69 /* libEventsGeneratorStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11A31ABF287D881100A32D69 /* libEventsGeneratorStatic.a */; };
 		11A31AF1287D8B4300A32D69 /* Yaml in Frameworks */ = {isa = PBXBuildFile; productRef = 11A31AF0287D8B4300A32D69 /* Yaml */; };
 		11A31AF5288056C900A32D69 /* ContextReservedFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AF4288056C900A32D69 /* ContextReservedFields.swift */; };
+		11A3ECE628A0E9A500D747E9 /* If.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECE528A0E9A500D747E9 /* If.swift */; };
+		11A3ECE828A0EB4900D747E9 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECE728A0EB4900D747E9 /* ArrayExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +136,8 @@
 		119F492E28730EBE00340213 /* SubEntityTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubEntityTemplate.swift; sourceTree = "<group>"; };
 		11A31ABF287D881100A32D69 /* libEventsGeneratorStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEventsGeneratorStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A31AF4288056C900A32D69 /* ContextReservedFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextReservedFields.swift; sourceTree = "<group>"; };
+		11A3ECE528A0E9A500D747E9 /* If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = If.swift; sourceTree = "<group>"; };
+		11A3ECE728A0EB4900D747E9 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,8 +259,10 @@
 			isa = PBXGroup;
 			children = (
 				1119CCCD28743BC100C7B4C4 /* TemplateGenerator.swift */,
+				11A3ECE728A0EB4900D747E9 /* ArrayExtensions.swift */,
 				114C168C286F13BB00DE78F6 /* Primitives */,
 				114C1691286F13BB00DE78F6 /* CodeGenerator.swift */,
+				11A3ECE428A0E99200D747E9 /* ControlFlow */,
 				114C1692286F13BB00DE78F6 /* Build blocks */,
 				114C1698286F13BB00DE78F6 /* Entities */,
 			);
@@ -316,6 +322,14 @@
 				114C168B286F13BB00DE78F6 /* Core */,
 			);
 			path = EventsGeneratorStatic;
+			sourceTree = "<group>";
+		};
+		11A3ECE428A0E99200D747E9 /* ControlFlow */ = {
+			isa = PBXGroup;
+			children = (
+				11A3ECE528A0E9A500D747E9 /* If.swift */,
+			);
+			path = ControlFlow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,6 +511,7 @@
 				11A31AD1287D882E00A32D69 /* EnumsTemplate.swift in Sources */,
 				11A31ACE287D882E00A32D69 /* Struct.swift in Sources */,
 				11A31AD4287D882E00A32D69 /* EventHeaderTemplateBuilder.swift in Sources */,
+				11A3ECE828A0EB4900D747E9 /* ArrayExtensions.swift in Sources */,
 				11A31AD9287D882E00A32D69 /* Ident.swift in Sources */,
 				11A31ADD287D882E00A32D69 /* Scopes.swift in Sources */,
 				11A31AD2287D882E00A32D69 /* Method.swift in Sources */,
@@ -509,6 +524,7 @@
 				11A31AE5287D882E00A32D69 /* Visibility.swift in Sources */,
 				11A31AC8287D882E00A32D69 /* YAMLParser.swift in Sources */,
 				11A31ACD287D882E00A32D69 /* EventsTemplateBuilder.swift in Sources */,
+				11A3ECE628A0E9A500D747E9 /* If.swift in Sources */,
 				11A31AE4287D882E00A32D69 /* ReturnType.swift in Sources */,
 				11A31AD7287D882E00A32D69 /* SchemaValue.swift in Sources */,
 				11A31ADB287D882E00A32D69 /* ContextTemplate.swift in Sources */,

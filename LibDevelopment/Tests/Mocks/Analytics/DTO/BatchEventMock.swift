@@ -36,7 +36,7 @@ struct BatchEventMock: BatchEvent, Hashable {
         : Data((0...20).map { _ in UInt8.random(in: 0...255) })
     }
     
-    init(common: EventCommon, header: EventHeader, payload: EventPayload) {
+    init(common: EventCommon, header: EventHeader?, payload: EventPayload) {
         self.common = common
         self.header = header as? EventHeaderMock
         self.payload = payload as? EventPayloadMock

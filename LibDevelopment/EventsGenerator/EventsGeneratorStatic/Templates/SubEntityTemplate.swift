@@ -40,10 +40,24 @@ extension SubEntityTemplate {
             argumentProvider.initArgument(for: $0, in: swiftEntityName)
         }
         
-        let initStatementsAssign = properties
-            .map {
-                "message.\($0.snakeCaseToCamelCase) = \($1.converterToProto($0.snakeCaseToCamelCase))"
+        let initStatementsAssign: [Statement] = zip(properties, initArguments)
+            .map { (property, initArg) -> [Statement] in
+                let (name, type) = property
+                let assignment = "message.\(name.snakeCaseToCamelCase) = \(type.converterToProto(name.snakeCaseToCamelCase))"
+                
+                if initArg.type.isOptional {
+                    return [
+                        "\n",
+                        If(
+                            conditions: [.unwrap(name.snakeCaseToCamelCase)],
+                            statements: [assignment]
+                        )
+                    ]
+                } else {
+                    return [assignment]
+                }
             }
+            .flatMap { $0 }
         
         let initWithArgs = Init(
             visibility: .public,

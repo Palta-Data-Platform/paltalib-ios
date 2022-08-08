@@ -20,6 +20,10 @@ struct ReturnType {
         self.name = "\(T.self)"
         self.isOptional = false
     }
+    
+    func makeOptional() -> ReturnType {
+        ReturnType(name: name, isOptional: true)
+    }
 }
 
 extension ReturnType {

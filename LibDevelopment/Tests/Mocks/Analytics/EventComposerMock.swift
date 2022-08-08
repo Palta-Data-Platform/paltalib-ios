@@ -18,7 +18,7 @@ final class EventComposerMock: EventComposer {
     
     func composeEvent(
         of type: EventType,
-        with header: EventHeader,
+        with header: EventHeader?,
         and payload: EventPayload,
         timestamp: Int?,
         outOfSession: Bool

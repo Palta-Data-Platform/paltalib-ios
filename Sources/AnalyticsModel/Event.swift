@@ -12,7 +12,7 @@ public protocol Event {
     associatedtype Payload: EventPayload
     associatedtype EventType: PaltaLibAnalyticsModel.EventType
     
-    var header: Header { get }
+    var header: Header? { get }
     var payload: Payload { get }
     var type: EventType { get }
 }

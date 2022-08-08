@@ -11,7 +11,7 @@ import PaltaLibAnalyticsModel
 protocol EventComposer {
     func composeEvent(
         of type: EventType,
-        with header: EventHeader,
+        with header: EventHeader?,
         and payload: EventPayload,
         timestamp: Int?,
         outOfSession: Bool
@@ -29,7 +29,7 @@ final class EventComposerImpl: EventComposer {
     
     func composeEvent(
         of type: EventType,
-        with header: EventHeader,
+        with header: EventHeader?,
         and payload: EventPayload,
         timestamp: Int?,
         outOfSession: Bool
