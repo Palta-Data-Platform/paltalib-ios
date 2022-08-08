@@ -4,8 +4,7 @@
 target 'PaltaExample' do
   use_frameworks!
 
-  pod 'PaltaLibAnalytics', '~> 2.1.5'
-  pod 'PaltaLibPurchases', :git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :branch => 'develop'
-  pod 'PaltaLibCore', :git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :branch => 'develop'
+  pod 'PaltaLibAnalytics', '~> 2.1.6'
+  pod 'PaltaLibPurchases', '3.0.0'
 
 end
