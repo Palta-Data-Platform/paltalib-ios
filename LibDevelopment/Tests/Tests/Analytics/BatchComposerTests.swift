@@ -45,7 +45,7 @@ final class BatchComposerTests: XCTestCase {
         
         contextProvider.context = context
         deviceInfoProvider.country = "GB"
-        deviceInfoProvider.timezoneOffset = 898
+        deviceInfoProvider.timezoneOffsetSeconds = 898
         uuidGenerator.uuids = [batchId]
         
         let batch = composer.makeBatch(of: events, with: contextId) as? BatchMock

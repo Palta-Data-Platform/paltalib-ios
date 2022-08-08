@@ -39,7 +39,7 @@ final class BatchComposerImpl: BatchComposer {
             batchId: uuidGenerator.generateUUID(),
             countryCode: deviceInfoProvider.country ?? "",
             locale: .current,
-            utcOffset: Int64(deviceInfoProvider.timezoneOffset)
+            utcOffset: Int64(deviceInfoProvider.timezoneOffsetSeconds)
         )
         
         let batch = stack.batch.init(

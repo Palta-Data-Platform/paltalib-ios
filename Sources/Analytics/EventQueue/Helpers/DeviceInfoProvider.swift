@@ -18,7 +18,7 @@ public protocol DeviceInfoProvider {
     var carrier: String { get }
     var country: String? { get }
     var language: String? { get }
-    var timezoneOffset: Int { get }
+    var timezoneOffsetSeconds: Int { get }
     var idfa: String { get }
     var idfv: String { get }
 }
@@ -48,8 +48,8 @@ final class DeviceInfoProviderImpl: DeviceInfoProvider {
         Locale.current.languageCode
     }
 
-    var timezoneOffset: Int {
-        TimeZone.current.secondsFromGMT() / 3600
+    var timezoneOffsetSeconds: Int {
+        TimeZone.current.secondsFromGMT()
     }
 
     var idfa: String {

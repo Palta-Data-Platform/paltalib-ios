@@ -35,6 +35,6 @@ final class DeviceInfoProviderTests: XCTestCase {
     }
 
     func testTimezone() {
-        XCTAssert((-12...12).contains(infoProvider.timezoneOffset))
+        XCTAssert((-12*3600...12*3600).contains(infoProvider.timezoneOffsetSeconds))
     }
 }
