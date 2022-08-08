@@ -71,13 +71,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
 
     func refreshSession(with timestamp: Int) {
         lock.lock()
-        if isSessionValid(session) {
-            session.lastEventTimestamp = timestamp
-        } else {
-            let timestamp = currentTimestamp()
-            sessionStartLogger?(timestamp)
-            session = Session(id: timestamp)
-        }
+        session.lastEventTimestamp = timestamp
         lock.unlock()
     }
 
