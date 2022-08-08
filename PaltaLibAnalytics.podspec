@@ -13,7 +13,7 @@ Pod::Spec.new do |spec|
 
   spec.source_files = 'Sources/Analytics/**/*.{swift,m}'
 
-  spec.dependency 'PaltaLibCore', '~> 2.2.1'
+  spec.dependency 'PaltaLibCore', '>= 2.2.1'
   spec.dependency 'PaltaLibAnalyticsModel', '1.0.0'
 end
 
