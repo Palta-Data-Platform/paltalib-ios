@@ -79,7 +79,7 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
             if timerFired {
                 flush()
             } else {
-                flushIfNeededByCount()
+                flushByCountOrContexts()
             }
         }
     }
@@ -106,14 +106,7 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     private func onNewEvents() {
         stripEventsIfNeeded()
         scheduleTimerIfNeeded()
-        
-        let flushedByCount = flushIfNeededByCount()
-        
-        guard !flushedByCount else {
-            return
-        }
-        
-        _ = flushIfMultipleContexts()
+        flushByCountOrContexts()
     }
 
     private func stripEventsIfNeeded() {
@@ -161,6 +154,16 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         
         flush()
         return true
+    }
+    
+    private func flushByCountOrContexts() {
+        let flushedByCount = flushIfNeededByCount()
+        
+        guard !flushedByCount else {
+            return
+        }
+        
+        _ = flushIfMultipleContexts()
     }
 
     private func flush() {

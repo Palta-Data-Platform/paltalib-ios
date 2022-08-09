@@ -8,8 +8,8 @@
 import Foundation
 
 public extension PaltaAnalytics {
-    func setAPIKey(_ apiKey: String) {
-        assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey) { result in
+    func setAPIKey(_ apiKey: String, and baseURL: URL? = nil) {
+        assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey, host: baseURL) { result in
             switch result {
             case .success(let config):
                 self.apply(config, apiKey: apiKey)

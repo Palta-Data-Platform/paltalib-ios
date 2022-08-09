@@ -25,6 +25,7 @@ final class ConfigurationServiceTests: XCTestCase {
     }
 
     func testRequestConfigSuccessWithoutCache() {
+        let host = URL(string: "http://test.something")
         httpClientMock.result = .success(
             RemoteConfig(
                 eventUploadThreshold: 12,
@@ -38,7 +39,7 @@ final class ConfigurationServiceTests: XCTestCase {
 
         let successCalled = expectation(description: "Success called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: host) { result in
             guard case let .success(config) = result else {
                 return
             }
@@ -49,7 +50,10 @@ final class ConfigurationServiceTests: XCTestCase {
             successCalled.fulfill()
         }
 
-        XCTAssertEqual(httpClientMock.request as? AnalyticsHTTPRequest, .remoteConfig("API_KEY_MCK"))
+        XCTAssertEqual(
+            httpClientMock.request as? GetConfigRequest,
+            GetConfigRequest(host: host, apiKey: "API_KEY_MCK")
+        )
 
         wait(for: [successCalled], timeout: 0.05)
 
@@ -72,7 +76,7 @@ final class ConfigurationServiceTests: XCTestCase {
 
         let successCalled = expectation(description: "Success called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: nil) { result in
             guard case let .success(config) = result else {
                 return
             }
@@ -82,8 +86,11 @@ final class ConfigurationServiceTests: XCTestCase {
 
             successCalled.fulfill()
         }
-
-        XCTAssertEqual(httpClientMock.request as? AnalyticsHTTPRequest, .remoteConfig("API_KEY_MCK"))
+        
+        XCTAssertEqual(
+            httpClientMock.request as? GetConfigRequest,
+            GetConfigRequest(host: nil, apiKey: "API_KEY_MCK")
+        )
 
         wait(for: [successCalled], timeout: 0.05)
 
@@ -95,7 +102,7 @@ final class ConfigurationServiceTests: XCTestCase {
 
         let failCalled = expectation(description: "Fail called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: nil) { result in
             guard case .failure = result else {
                 return
             }
@@ -113,7 +120,7 @@ final class ConfigurationServiceTests: XCTestCase {
 
         let successCalled = expectation(description: "Success called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: nil) { result in
             guard case let .success(config) = result else {
                 return
             }

@@ -38,7 +38,7 @@
 		11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6027FC8EBC00A41ADA /* SessionManagerMock.swift */; };
 		11115A6927FDB84E00A41ADA /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6727FDB70A00A41ADA /* AnyEncodable.swift */; };
 		11115A6C27FDB88400A41ADA /* AnyEncodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A6A27FDB87B00A41ADA /* AnyEncodableTests.swift */; };
-		11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */; };
+		11115A7727FDC6B800A41ADA /* GetConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7627FDC6B800A41ADA /* GetConfigRequest.swift */; };
 		11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */; };
 		11115A7D27FDCDF600A41ADA /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */; };
 		11115A8727FF1BCF00A41ADA /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */; };
@@ -338,7 +338,7 @@
 		11115A6027FC8EBC00A41ADA /* SessionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerMock.swift; sourceTree = "<group>"; };
 		11115A6727FDB70A00A41ADA /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		11115A6A27FDB87B00A41ADA /* AnyEncodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodableTests.swift; sourceTree = "<group>"; };
-		11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHTTPRequest.swift; sourceTree = "<group>"; };
+		11115A7627FDC6B800A41ADA /* GetConfigRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConfigRequest.swift; sourceTree = "<group>"; };
 		11115A7827FDC9B400A41ADA /* AnalyticsHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHTTPRequestTests.swift; sourceTree = "<group>"; };
 		11115A7B27FDCDC400A41ADA /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
 		11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
@@ -703,7 +703,7 @@
 		1111593F27F708E400A41ADA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				11115A7627FDC6B800A41ADA /* AnalyticsHTTPRequest.swift */,
+				11115A7627FDC6B800A41ADA /* GetConfigRequest.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1663,7 +1663,7 @@
 				113A79A4284F5507004C0C5D /* BatchSendController.swift in Sources */,
 				117D9C5B286D70A1006F3E2E /* AnalyticsAssembly.swift in Sources */,
 				11A31AF72881736200A32D69 /* PaltaAnalytics+DeviceInfo.swift in Sources */,
-				11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */,
+				11115A7727FDC6B800A41ADA /* GetConfigRequest.swift in Sources */,
 				113A79A6284F6E13004C0C5D /* EventComposer.swift in Sources */,
 				113A79A0284E57D7004C0C5D /* BatchComposer.swift in Sources */,
 				112FCA402848B76500C8F88A /* BatchSender.swift in Sources */,
@@ -1779,8 +1779,8 @@
 		};
 		11418B342885755000694505 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-            target = 11A31AFD28818A1A00A32D69 /* PaltaLibAnalyticsModel */;
-            targetProxy = 11A31B1328818DFB00A32D69 /* PBXContainerItemProxy */;
+			target = 11A31AFD28818A1A00A32D69 /* PaltaLibAnalyticsModel */;
+			targetProxy = 11A31B1328818DFB00A32D69 /* PBXContainerItemProxy */;
 		};
 		11A31B0828818AF300A32D69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2498,25 +2498,17 @@
 		113A79BF284F7FBC004C0C5D /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-protobuf/";
-            requirement = {
-                kind = upToNextMajorVersion;
-                minimumVersion = 1.0.0;
-            };
-        };
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		11418B2E2885753400694505 /* XCRemoteSwiftPackageReference "Difference" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzysztofzablocki/Difference.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
-			};
-		};
-		114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.3.0;
 			};
 		};
 		114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
