@@ -3,12 +3,14 @@
 
 target 'PaltaExample' do
   use_frameworks!
+<<<<<<< HEAD
   
   pod 'PaltaLibEvents', :git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :commit => 'fbc94e3d0df3f57de867014a595836891ab40168'
   pod 'PaltaLibAnalytics',  :git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :commit => 'fbc94e3d0df3f57de867014a595836891ab40168'
   pod 'PaltaLibAnalyticsModel', :path => '../' #:git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :commit => 'b989586b08310df5ea415aed41df581ccc5d12d9'
   pod 'PaltaLibEventsTransport', :git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :commit => 'fbc94e3d0df3f57de867014a595836891ab40168'
-  pod 'PaltaLibPurchases', :git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :branch => 'develop'
   pod 'PaltaLibCore', :git => 'https://github.com/Palta-Data-Platform/paltalib-ios.git', :branch => 'develop'
+
+  pod 'PaltaLibPurchases', '3.0.0'
 
 end
