@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'PaltaLibAttribution'
-  spec.version               = '2.1.0'
+  spec.version               = '2.1.1'
   spec.license               = 'MIT'
   spec.summary               = 'PaltaLib iOS SDK - Attribution'
   spec.homepage              = 'https://github.com/Palta-Data-Platform/paltalib-ios'
@@ -14,5 +14,5 @@ Pod::Spec.new do |spec|
   spec.source_files = 'Sources/Attribution/**/*.swift'
 
   spec.dependency 'PaltaLibCore'
-  spec.dependency 'AppsFlyerFramework', '~> 6.4.2'
+  spec.dependency 'AppsFlyerFramework', '~> 6.8.0'
 end
