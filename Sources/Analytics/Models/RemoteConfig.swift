@@ -6,7 +6,6 @@ struct RemoteConfig: Codable, Equatable {
     let eventMaxCount: Int
     let eventUploadPeriod: Int
     let minTimeBetweenSessions: Int
-    let url: URL
 }
 
 extension RemoteConfig {
@@ -15,7 +14,6 @@ extension RemoteConfig {
         eventUploadMaxBatchSize: 100,
         eventMaxCount: 1000,
         eventUploadPeriod: 30,
-        minTimeBetweenSessions: 300,
-        url: URL(string: "https://api.paltabrain.com/batch-proto")!
+        minTimeBetweenSessions: 300
     )
 }

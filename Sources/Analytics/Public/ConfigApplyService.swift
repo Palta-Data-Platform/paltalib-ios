@@ -10,11 +10,13 @@ import Foundation
 final class ConfigApplyService {
     private let remoteConfig: RemoteConfig
     private let apiKey: String
+    private let baseURL: URL?
     private let assembly: AnalyticsAssembly
     
-    init(remoteConfig: RemoteConfig, apiKey: String, assembly: AnalyticsAssembly) {
+    init(remoteConfig: RemoteConfig, apiKey: String, baseURL: URL?, assembly: AnalyticsAssembly) {
         self.remoteConfig = remoteConfig
         self.apiKey = apiKey
+        self.baseURL = baseURL
         self.assembly = assembly
     }
     
@@ -22,7 +24,7 @@ final class ConfigApplyService {
         assembly.analyticsCoreAssembly.sessionManager.maxSessionAge = remoteConfig.minTimeBetweenSessions
         
         let eventQueueAssembly = assembly.eventQueueAssembly
-        eventQueueAssembly.batchSender.url = remoteConfig.url
+        eventQueueAssembly.batchSender.baseURL = baseURL
         eventQueueAssembly.batchSender.apiToken = apiKey
         
         eventQueueAssembly.eventQueueCore.apply(

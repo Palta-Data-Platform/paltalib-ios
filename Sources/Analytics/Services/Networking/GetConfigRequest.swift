@@ -19,7 +19,7 @@ extension GetConfigRequest: AutobuildingHTTPRequest {
     }
 
     var baseURL: URL {
-        host ?? URL(string: "https://api.paltabrain.com")!
+        host ?? Constants.defaultBaseURL
     }
 
     var path: String? {

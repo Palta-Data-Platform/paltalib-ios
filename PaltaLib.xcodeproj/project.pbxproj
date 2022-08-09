@@ -192,6 +192,7 @@
 		11A31B0528818AF300A32D69 /* PaltaLibAnalyticsModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11A31AFE28818A1A00A32D69 /* PaltaLibAnalyticsModel.framework */; };
 		11A31B0628818AF300A32D69 /* PaltaLibAnalyticsModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11A31AFE28818A1A00A32D69 /* PaltaLibAnalyticsModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		11A3ECE1289ACF5600D747E9 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECE0289ACF5600D747E9 /* Environment.swift */; };
+		11A3ECEC28A2429B00D747E9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECE928A2428F00D747E9 /* Constants.swift */; };
 		11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E5528338FF400F88116 /* PaidServiceMock.swift */; };
 		11A61E822833B89B00F88116 /* UserId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61E812833B89B00F88116 /* UserId.swift */; };
 		11A61ED7283788DD00F88116 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61ED6283788DD00F88116 /* Feature.swift */; };
@@ -490,6 +491,7 @@
 		11A31AF62881736200A32D69 /* PaltaAnalytics+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAnalytics+DeviceInfo.swift"; sourceTree = "<group>"; };
 		11A31AFE28818A1A00A32D69 /* PaltaLibAnalyticsModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaltaLibAnalyticsModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A3ECE0289ACF5600D747E9 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		11A3ECE928A2428F00D747E9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		11A61E5528338FF400F88116 /* PaidServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidServiceMock.swift; sourceTree = "<group>"; };
 		11A61E812833B89B00F88116 /* UserId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserId.swift; sourceTree = "<group>"; };
 		11A61EAB2835073D00F88116 /* ConfigApplyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigApplyServiceTests.swift; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 				1111593A27F708E400A41ADA /* Models */,
 				1111593C27F708E400A41ADA /* Services */,
 				11A31AF8288189B800A32D69 /* Assembly */,
+				11A3ECE928A2428F00D747E9 /* Constants.swift */,
 			);
 			path = Sources/Analytics;
 			sourceTree = "<group>";
@@ -1679,6 +1682,7 @@
 				1111596C27F70BEA00A41ADA /* RemoteConfig.swift in Sources */,
 				117D9C0128634288006F3E2E /* ContextStorage.swift in Sources */,
 				117D9C58286CE26A006F3E2E /* PaltaAnalytics.swift in Sources */,
+				11A3ECEC28A2429B00D747E9 /* Constants.swift in Sources */,
 				11115A5827FC59BC00A41ADA /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

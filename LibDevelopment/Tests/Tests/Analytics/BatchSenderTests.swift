@@ -29,26 +29,11 @@ final class BatchSenderTests: XCTestCase {
         sender = BatchSenderImpl(httpClient: httpMock)
         
         sender.apiToken = apiToken
-        sender.url = url
+        sender.baseURL = url
     }
     
     func testTokenPassed() {
         XCTAssertEqual(httpMock.mandatoryHeaders, ["X-API-Key": apiToken])
-    }
-    
-    func testNoURL() {
-        sender.url = nil
-        let failCalled = expectation(description: "Fail called")
-        
-        sender.sendBatch(BatchMock()) { result in
-            guard case .failure(let error) = result, case .notConfigured = error else {
-                return
-            }
-            
-            failCalled.fulfill()
-        }
-        
-        wait(for: [failCalled], timeout: 0.1)
     }
     
     func testSuccess() {
@@ -69,7 +54,7 @@ final class BatchSenderTests: XCTestCase {
         
         XCTAssertNotNil(request)
         XCTAssertEqual(request?.time, 25)
-        XCTAssertEqual(request?.url, url)
+        XCTAssertEqual(request?.host, url)
         XCTAssertEqual(request?.data, batch.data)
         
         wait(for: [successCalled], timeout: 0.1)

@@ -21,7 +21,6 @@ final class RemoteConfigTests: XCTestCase {
         XCTAssertEqual(config.eventUploadThreshold, 3094)
         XCTAssertEqual(config.eventUploadMaxBatchSize, 1289)
         XCTAssertEqual(config.eventMaxCount, 335)
-        XCTAssertEqual(config.url, URL(string: "http://hello.me"))
         XCTAssertEqual(config.minTimeBetweenSessions, 124)
     }
 }

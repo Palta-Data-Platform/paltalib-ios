@@ -31,7 +31,7 @@ final class BatchSenderImpl: BatchSender {
         }
     }
     
-    var url: URL?
+    var baseURL: URL?
     
     private let httpClient: HTTPClient
     
@@ -40,11 +40,6 @@ final class BatchSenderImpl: BatchSender {
     }
     
     func sendBatch(_ batch: Batch, completion: @escaping (Result<(), BatchSendError>) -> Void) {
-        guard let url = url else {
-            completion(.failure(.notConfigured))
-            return
-        }
-
         let data: Data
         
         do {
@@ -55,7 +50,7 @@ final class BatchSenderImpl: BatchSender {
         }
         
         let request = BatchSendRequest(
-            url: url,
+            host: baseURL,
             time: currentTimestamp(),
             data: data
         )

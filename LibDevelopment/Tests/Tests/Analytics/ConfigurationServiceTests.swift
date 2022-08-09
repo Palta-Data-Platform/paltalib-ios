@@ -32,8 +32,7 @@ final class ConfigurationServiceTests: XCTestCase {
                 eventUploadMaxBatchSize: 13,
                 eventMaxCount: 1228,
                 eventUploadPeriod: 15,
-                minTimeBetweenSessions: 16,
-                url: URL(string: "https://mock.url")!
+                minTimeBetweenSessions: 16
             )
         )
 
@@ -44,7 +43,6 @@ final class ConfigurationServiceTests: XCTestCase {
                 return
             }
 
-            XCTAssertEqual(config.url, URL(string: "https://mock.url"))
             XCTAssertEqual(config.eventMaxCount, 1228)
 
             successCalled.fulfill()
@@ -68,8 +66,7 @@ final class ConfigurationServiceTests: XCTestCase {
             eventUploadMaxBatchSize: 3789,
             eventMaxCount: 1228,
             eventUploadPeriod: 4429,
-            minTimeBetweenSessions: 4393,
-            url: URL(string: "https://mock.url")!
+            minTimeBetweenSessions: 4393
         )
 
         httpClientMock.result = .success(remoteConfig)
@@ -81,7 +78,6 @@ final class ConfigurationServiceTests: XCTestCase {
                 return
             }
 
-            XCTAssertEqual(config.url, URL(string: "https://mock.url"))
             XCTAssertEqual(config.eventMaxCount, 1228)
 
             successCalled.fulfill()
@@ -125,7 +121,6 @@ final class ConfigurationServiceTests: XCTestCase {
                 return
             }
 
-            XCTAssertEqual(config.url, URL(string: "https://url.mock"))
             XCTAssertEqual(config.minTimeBetweenSessions, 678)
 
             successCalled.fulfill()
@@ -140,8 +135,7 @@ final class ConfigurationServiceTests: XCTestCase {
             eventUploadMaxBatchSize: 788,
             eventMaxCount: 434,
             eventUploadPeriod: 0,
-            minTimeBetweenSessions: 678,
-            url: URL(string: "https://url.mock")!
+            minTimeBetweenSessions: 678
         )
 
         userDefaults.set(cachedConfig, for: "paltaBrainRemoteConfig")

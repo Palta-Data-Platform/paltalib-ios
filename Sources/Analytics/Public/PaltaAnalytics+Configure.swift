@@ -12,19 +12,20 @@ public extension PaltaAnalytics {
         assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey, host: baseURL) { result in
             switch result {
             case .success(let config):
-                self.apply(config, apiKey: apiKey)
+                self.apply(config, apiKey: apiKey, baseURL: baseURL)
                 
             case .failure:
                 print("PaltaLib: Analytics: Failed to load remote config. Using default instead")
-                self.apply(.default, apiKey: apiKey)
+                self.apply(.default, apiKey: apiKey, baseURL: baseURL)
             }
         }
     }
     
-    private func apply(_ config: RemoteConfig, apiKey: String) {
+    private func apply(_ config: RemoteConfig, apiKey: String, baseURL: URL?) {
         ConfigApplyService(
             remoteConfig: config,
             apiKey: apiKey,
+            baseURL: baseURL,
             assembly: assembly
         ).apply()
     }

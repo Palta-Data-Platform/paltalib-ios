@@ -9,7 +9,7 @@ import Foundation
 import PaltaLibCore
 
 struct BatchSendRequest {
-    let url: URL
+    let host: URL?
     let time: Int
     let data: Data
 }
@@ -20,11 +20,11 @@ extension BatchSendRequest: AutobuildingHTTPRequest {
     }
     
     var baseURL: URL {
-        url
+        host ?? Constants.defaultBaseURL
     }
     
     var path: String? {
-        nil
+        "/batch-send"
     }
     
     var headers: [String : String]? {
