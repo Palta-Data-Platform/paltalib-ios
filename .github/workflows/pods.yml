@@ -10,6 +10,9 @@ on:
           - Analytics
           - Attribution
           - Purchases
+          - Events
+          - EventsTransport
+          - AnalyticsModel
     
 jobs:
   build:
