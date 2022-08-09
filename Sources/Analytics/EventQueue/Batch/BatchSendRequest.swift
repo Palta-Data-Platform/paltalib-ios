@@ -24,7 +24,7 @@ extension BatchSendRequest: AutobuildingHTTPRequest {
     }
     
     var path: String? {
-        "/batch-send"
+        "/v1/paltabrain"
     }
     
     var headers: [String : String]? {
