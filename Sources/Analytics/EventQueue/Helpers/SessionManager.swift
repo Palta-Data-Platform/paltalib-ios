@@ -26,7 +26,14 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
         session.id
     }
 
-    var maxSessionAge: Int = 5 * 60
+    var maxSessionAge: Int {
+        get {
+            userDefaults.object(for: "maxSessionAge") ?? 5 * 60
+        }
+        set {
+            userDefaults.set(newValue, for: "maxSessionAge")
+        }
+    }
 
     var sessionStartLogger: ((Int) -> Void)?
 
