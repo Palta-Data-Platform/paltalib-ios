@@ -35,5 +35,7 @@ final class ConfigApplyService {
                 maxEvents: remoteConfig.eventMaxCount
             )
         )
+        
+        eventQueueAssembly.batchSendController.configurationFinished()
     }
 }

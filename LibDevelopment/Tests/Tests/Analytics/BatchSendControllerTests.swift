@@ -37,6 +37,8 @@ final class BatchSendControllerTests: XCTestCase {
     }
     
     func testSuccessfulSend() {
+        controller.configurationFinished()
+
         let isReadyCalled = expectation(description: "Is Ready called")
         controller.isReadyCallback = isReadyCalled.fulfill
         
@@ -63,6 +65,8 @@ final class BatchSendControllerTests: XCTestCase {
     }
     
     func testSequentalSend() {
+        controller.configurationFinished()
+
         let isReadyNotCalled = expectation(description: "Is Ready called")
         isReadyNotCalled.isInverted = true
         controller.isReadyCallback = isReadyNotCalled.fulfill
@@ -91,6 +95,8 @@ final class BatchSendControllerTests: XCTestCase {
     }
     
     func testUnknownError() {
+        controller.configurationFinished()
+
         let isReadyCalled = expectation(description: "Is Ready called")
         controller.isReadyCallback = isReadyCalled.fulfill
         
@@ -109,6 +115,8 @@ final class BatchSendControllerTests: XCTestCase {
     }
     
     func testSerializationError() {
+        controller.configurationFinished()
+
         let isReadyCalled = expectation(description: "Is Ready called")
         controller.isReadyCallback = isReadyCalled.fulfill
         
@@ -127,6 +135,8 @@ final class BatchSendControllerTests: XCTestCase {
     }
     
     func testServerError() {
+        controller.configurationFinished()
+
         let isReadyCalled = expectation(description: "Is Ready called")
         controller.isReadyCallback = isReadyCalled.fulfill
         
@@ -152,6 +162,8 @@ final class BatchSendControllerTests: XCTestCase {
     }
     
     func testNoInternet() {
+        controller.configurationFinished()
+
         let isReadyCalled = expectation(description: "Is Ready called")
         controller.isReadyCallback = isReadyCalled.fulfill
         
@@ -177,6 +189,8 @@ final class BatchSendControllerTests: XCTestCase {
     }
     
     func testTimeoutError() {
+        controller.configurationFinished()
+
         let isReadyCalled = expectation(description: "Is Ready called")
         controller.isReadyCallback = isReadyCalled.fulfill
         
@@ -202,6 +216,8 @@ final class BatchSendControllerTests: XCTestCase {
     }
     
     func testURLError() {
+        controller.configurationFinished()
+
         let isReadyCalled = expectation(description: "Is Ready called")
         controller.isReadyCallback = isReadyCalled.fulfill
         
@@ -227,6 +243,8 @@ final class BatchSendControllerTests: XCTestCase {
     }
     
     func testNotConfiguredError() {
+        controller.configurationFinished()
+
         let isReadyCalled = expectation(description: "Is Ready called")
         controller.isReadyCallback = isReadyCalled.fulfill
         
@@ -252,6 +270,8 @@ final class BatchSendControllerTests: XCTestCase {
     }
     
     func testMaxRetry() {
+        controller.configurationFinished()
+
         let isReadyCalled = expectation(description: "Is Ready called")
         controller.isReadyCallback = isReadyCalled.fulfill
         
@@ -286,13 +306,7 @@ final class BatchSendControllerTests: XCTestCase {
         storageMock.batchToLoad = BatchMock()
         senderMock.result = .failure(.noInternet)
         
-        controller = BatchSendControllerImpl(
-            batchComposer: composerMock,
-            batchStorage: storageMock,
-            batchSender: senderMock,
-            eventStorage: eventStorageMock,
-            timer: timerMock
-        )
+        controller.configurationFinished()
         
         XCTAssertFalse(controller.isReady)
         XCTAssertNil(composerMock.events)
@@ -309,5 +323,26 @@ final class BatchSendControllerTests: XCTestCase {
         
         XCTAssert(storageMock.batchRemoved)
         XCTAssert(controller.isReady)
+    }
+    
+    func testNoSendWithoutConfig() {
+        let isReadyCalled = expectation(description: "Is Ready called")
+        isReadyCalled.isInverted = true
+        controller.isReadyCallback = isReadyCalled.fulfill
+        
+        XCTAssertFalse(controller.isReady)
+        
+        let contextId = UUID()
+        let events = [UUID(): BatchEventMock()]
+        
+        senderMock.result = .success(())
+        
+        controller.sendBatch(of: events, with: contextId)
+        
+        wait(for: [isReadyCalled], timeout: 0.1)
+        
+        XCTAssertNil(senderMock.batch)
+        XCTAssertFalse(storageMock.batchRemoved)
+        XCTAssertFalse(controller.isReady)
     }
 }

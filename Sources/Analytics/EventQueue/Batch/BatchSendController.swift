@@ -24,7 +24,7 @@ final class BatchSendControllerImpl: BatchSendController {
     
     var isReadyCallback: (() -> Void)?
     
-    private var _isReady = true {
+    private var _isReady = false {
         didSet {
             if _isReady {
                 isReadyCallback?()
@@ -51,8 +51,6 @@ final class BatchSendControllerImpl: BatchSendController {
         self.batchSender = batchSender
         self.eventStorage = eventStorage
         self.timer = timer
-        
-        checkForUnsentBatch()
     }
     
     func sendBatch(of events: [UUID: BatchEvent], with contextId: UUID) {
@@ -79,6 +77,10 @@ final class BatchSendControllerImpl: BatchSendController {
         }
         
         send(batch)
+    }
+    
+    func configurationFinished() {
+        checkForUnsentBatch()
     }
     
     private func completeBatchSend() {
@@ -135,6 +137,7 @@ final class BatchSendControllerImpl: BatchSendController {
     private func checkForUnsentBatch() {
         do {
             guard let batch = try batchStorage.loadBatch() else {
+                _isReady = true
                 return
             }
             

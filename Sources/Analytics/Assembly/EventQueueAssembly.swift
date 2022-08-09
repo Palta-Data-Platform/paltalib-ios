@@ -12,17 +12,20 @@ import PaltaLibAnalyticsModel
 final class EventQueueAssembly {
     let eventQueue: EventQueueImpl
     let eventQueueCore: EventQueueCoreImpl
+    let batchSendController: BatchSendControllerImpl
     let batchSender: BatchSenderImpl
     let contextModifier: ContextModifier
     
     init(
         eventQueue: EventQueueImpl,
         eventQueueCore: EventQueueCoreImpl,
+        batchSendController: BatchSendControllerImpl,
         batchSender: BatchSenderImpl,
         contextModifier: ContextModifier
     ) {
         self.eventQueue = eventQueue
         self.eventQueueCore = eventQueueCore
+        self.batchSendController = batchSendController
         self.batchSender = batchSender
         self.contextModifier = contextModifier
     }
@@ -115,6 +118,7 @@ extension EventQueueAssembly {
         self.init(
             eventQueue: eventQueue,
             eventQueueCore: core,
+            batchSendController: sendController,
             batchSender: batchSender,
             contextModifier: currentContextManager
         )
