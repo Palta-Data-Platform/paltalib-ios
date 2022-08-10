@@ -61,6 +61,9 @@
 		11A31AF5288056C900A32D69 /* ContextReservedFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AF4288056C900A32D69 /* ContextReservedFields.swift */; };
 		11A3ECE628A0E9A500D747E9 /* If.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECE528A0E9A500D747E9 /* If.swift */; };
 		11A3ECE828A0EB4900D747E9 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECE728A0EB4900D747E9 /* ArrayExtensions.swift */; };
+		11A3ECEE28A3965B00D747E9 /* BatchTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECED28A3965B00D747E9 /* BatchTemplate.swift */; };
+		11A3ECF028A3978000D747E9 /* Guard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECEF28A3978000D747E9 /* Guard.swift */; };
+		11A3ECF228A39A6900D747E9 /* StaticGenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF128A39A6900D747E9 /* StaticGenTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +141,9 @@
 		11A31AF4288056C900A32D69 /* ContextReservedFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextReservedFields.swift; sourceTree = "<group>"; };
 		11A3ECE528A0E9A500D747E9 /* If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = If.swift; sourceTree = "<group>"; };
 		11A3ECE728A0EB4900D747E9 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		11A3ECED28A3965B00D747E9 /* BatchTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchTemplate.swift; sourceTree = "<group>"; };
+		11A3ECEF28A3978000D747E9 /* Guard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guard.swift; sourceTree = "<group>"; };
+		11A3ECF128A39A6900D747E9 /* StaticGenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticGenTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +187,7 @@
 				1119CD0128757C6200C7B4C4 /* SingleEventTemplate.swift */,
 				1119CD032875802400C7B4C4 /* EventsTemplate.swift */,
 				11A31AF4288056C900A32D69 /* ContextReservedFields.swift */,
+				11A3ECED28A3965B00D747E9 /* BatchTemplate.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -249,6 +256,7 @@
 				1119CCE62874579A00C7B4C4 /* End2EndTests.swift */,
 				1119CCF72874925600C7B4C4 /* EnumTemplateTests.swift */,
 				1119CCFF2875792400C7B4C4 /* TypealiasTests.swift */,
+				11A3ECF128A39A6900D747E9 /* StaticGenTests.swift */,
 				1119CD0528759F2400C7B4C4 /* EventsTemplateTests.swift */,
 				114C16AD286F175C00DE78F6 /* Examples */,
 			);
@@ -328,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				11A3ECE528A0E9A500D747E9 /* If.swift */,
+				11A3ECEF28A3978000D747E9 /* Guard.swift */,
 			);
 			path = ControlFlow;
 			sourceTree = "<group>";
@@ -479,6 +488,7 @@
 				1119CD002875792400C7B4C4 /* TypealiasTests.swift in Sources */,
 				1119CCE72874579A00C7B4C4 /* End2EndTests.swift in Sources */,
 				119F492D2872DB5600340213 /* PropertyTests.swift in Sources */,
+				11A3ECF228A39A6900D747E9 /* StaticGenTests.swift in Sources */,
 				119F492B2872D78000340213 /* MethodTests.swift in Sources */,
 				114C16AA286F140800DE78F6 /* StructTests.swift in Sources */,
 				1119CCF02874628E00C7B4C4 /* HeaderTests.swift in Sources */,
@@ -503,12 +513,14 @@
 				11A31ADF287D882E00A32D69 /* EnumsTemplateBuilder.swift in Sources */,
 				11A31AD5287D882E00A32D69 /* Init.swift in Sources */,
 				11A31AE3287D882E00A32D69 /* SingleEventTemplate.swift in Sources */,
+				11A3ECEE28A3965B00D747E9 /* BatchTemplate.swift in Sources */,
 				11A31AE2287D882E00A32D69 /* Statement.swift in Sources */,
 				11A31AE7287D882E00A32D69 /* CodeGenerator.swift in Sources */,
 				11A31ADA287D882E00A32D69 /* SchemaValue+Yaml.swift in Sources */,
 				11A31AD0287D882E00A32D69 /* SingleEnumTemplate.swift in Sources */,
 				11A31ACA287D882E00A32D69 /* Enum.swift in Sources */,
 				11A31AD1287D882E00A32D69 /* EnumsTemplate.swift in Sources */,
+				11A3ECF028A3978000D747E9 /* Guard.swift in Sources */,
 				11A31ACE287D882E00A32D69 /* Struct.swift in Sources */,
 				11A31AD4287D882E00A32D69 /* EventHeaderTemplateBuilder.swift in Sources */,
 				11A3ECE828A0EB4900D747E9 /* ArrayExtensions.swift in Sources */,

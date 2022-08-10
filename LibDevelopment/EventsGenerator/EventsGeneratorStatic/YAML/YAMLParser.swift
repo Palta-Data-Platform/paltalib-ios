@@ -22,7 +22,9 @@ final class YAMLParser {
             try ContextTemplateBuilder(yaml: yaml[.string("context")]).contextTemplate(),
             try EventHeaderTemplateBuilder(yaml: yaml[.string("header")]).eventHeader(),
             try EnumsTemplateBuilder(yaml: yaml[.string("enum")]).enums(),
-            try EventsTemplateBuilder(yaml: yaml[.string("event")]).eventsTemplate()
+            try EventsTemplateBuilder(yaml: yaml[.string("event")]).eventsTemplate(),
+            // Static templates
+            BatchTemplate()
         ]
     }
     

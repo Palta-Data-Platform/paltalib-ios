@@ -12,6 +12,7 @@ struct If {
         case unwrap(String)
         case equality(String, String)
         case statement(Statement)
+        case cast(String, ReturnType)
     }
     
     let conditions: [Condition]
@@ -35,6 +36,8 @@ extension If.Condition {
             
         case .statement(let statement):
             return statement.stringValue(for: 0).trimmingCharacters(in: .newlines)
+        case .cast(let varName, let type):
+            return "let \(varName) = \(varName) as? \(type.stringValue)"
         }
     }
 }
