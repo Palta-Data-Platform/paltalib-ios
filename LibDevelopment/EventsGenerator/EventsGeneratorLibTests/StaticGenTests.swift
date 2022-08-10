@@ -56,4 +56,16 @@ final class StaticGenTests: GenerationTests {
         
         XCTAssertEqual(generatedData, exampleData)
     }
+    
+    func testStack() throws {
+        let template = StackTemplate()
+        
+        let generator = TemplateGenerator(template: template, folderURL: folderURL)
+        try generator.generate()
+        
+        let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("Stack.swift"))
+        let exampleData = try loadExampleData(with: "StackExample")
+        
+        XCTAssertEqual(generatedData, exampleData)
+    }
 }

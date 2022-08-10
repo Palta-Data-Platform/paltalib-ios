@@ -10,6 +10,15 @@ import XCTest
 @testable import EventsGeneratorStatic
 
 final class End2EndTests: GenerationTests {
+    func testCount() throws {
+        try generateFiles()
+        
+        XCTAssertEqual(
+            try FileManager.default.contentsOfDirectory(atPath: folderURL.path).count,
+            9
+        )
+    }
+    
     func testContext() throws {
         try generateFiles()
         

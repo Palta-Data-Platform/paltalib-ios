@@ -67,6 +67,8 @@
 		11A3ECF428A3AF3300D747E9 /* BatchCommonTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF328A3AF3300D747E9 /* BatchCommonTemplate.swift */; };
 		11A3ECF628A3B11E00D747E9 /* BatchEventTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF528A3B11E00D747E9 /* BatchEventTemplate.swift */; };
 		11A3ECF828A3C10A00D747E9 /* ContextHelperTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF728A3C10A00D747E9 /* ContextHelperTemplate.swift */; };
+		11A3ECFA28A3C34300D747E9 /* StackTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF928A3C34300D747E9 /* StackTemplate.swift */; };
+		11A3ECFC28A401A000D747E9 /* MultilineCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECFB28A401A000D747E9 /* MultilineCall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +152,8 @@
 		11A3ECF328A3AF3300D747E9 /* BatchCommonTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchCommonTemplate.swift; sourceTree = "<group>"; };
 		11A3ECF528A3B11E00D747E9 /* BatchEventTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchEventTemplate.swift; sourceTree = "<group>"; };
 		11A3ECF728A3C10A00D747E9 /* ContextHelperTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextHelperTemplate.swift; sourceTree = "<group>"; };
+		11A3ECF928A3C34300D747E9 /* StackTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackTemplate.swift; sourceTree = "<group>"; };
+		11A3ECFB28A401A000D747E9 /* MultilineCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineCall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +201,7 @@
 				11A3ECF528A3B11E00D747E9 /* BatchEventTemplate.swift */,
 				11A3ECF328A3AF3300D747E9 /* BatchCommonTemplate.swift */,
 				11A3ECF728A3C10A00D747E9 /* ContextHelperTemplate.swift */,
+				11A3ECF928A3C34300D747E9 /* StackTemplate.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				114C1694286F13BB00DE78F6 /* Scopes.swift */,
 				114C1695286F13BB00DE78F6 /* Property.swift */,
 				114C1696286F13BB00DE78F6 /* Method.swift */,
+				11A3ECFB28A401A000D747E9 /* MultilineCall.swift */,
 				114C1697286F13BB00DE78F6 /* Init.swift */,
 			);
 			path = "Build blocks";
@@ -539,6 +545,7 @@
 				11A31AD2287D882E00A32D69 /* Method.swift in Sources */,
 				11A31AD6287D882E00A32D69 /* EventHeaderTemplate.swift in Sources */,
 				11A31AE0287D882E00A32D69 /* Scope.swift in Sources */,
+				11A3ECFC28A401A000D747E9 /* MultilineCall.swift in Sources */,
 				11A31AD8287D882E00A32D69 /* Class.swift in Sources */,
 				11A31AE6287D882E00A32D69 /* SubEntityTemplate.swift in Sources */,
 				11A31ADC287D882E00A32D69 /* TemplateGenerator.swift in Sources */,
@@ -553,6 +560,7 @@
 				11A31ADB287D882E00A32D69 /* ContextTemplate.swift in Sources */,
 				11A31ACB287D882E00A32D69 /* Typealias.swift in Sources */,
 				11A31ADE287D882E00A32D69 /* YAMLBasedEventsGenerator.swift in Sources */,
+				11A3ECFA28A3C34300D747E9 /* StackTemplate.swift in Sources */,
 				11A3ECF428A3AF3300D747E9 /* BatchCommonTemplate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

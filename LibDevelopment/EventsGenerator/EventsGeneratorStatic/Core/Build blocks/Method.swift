@@ -22,6 +22,7 @@ struct Method {
         }
     }
     
+    let isObjc: Bool
     let visibility: Visibility
     let isOverride: Bool
     let `throws`: Bool
@@ -31,6 +32,7 @@ struct Method {
     let returnValue: ReturnType?
     
     init(
+        isObjc: Bool = false,
         visibility: Visibility,
         isOverride: Bool = false,
         throws: Bool = false,
@@ -39,6 +41,7 @@ struct Method {
         statements: [Statement] = [],
         returnValue: ReturnType? = nil
     ) {
+        self.isObjc = isObjc
         self.visibility = visibility
         self.isOverride = isOverride
         self.throws = `throws`
@@ -57,7 +60,7 @@ extension Method.Argument {
 
 extension Method: Scope {
     var prefix: String? {
-        "\(beforeParams)(\(params))\(afterParams)"
+        "\(isObjc ? "@objc\n" : "")\(beforeParams)(\(params))\(afterParams)"
     }
     
     var suffix: String? {

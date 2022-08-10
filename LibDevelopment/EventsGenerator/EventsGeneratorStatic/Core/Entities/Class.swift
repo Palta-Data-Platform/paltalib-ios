@@ -15,6 +15,7 @@ struct Class {
     let conformances: [String]?
     let properties: [Property]
     let inits: [Init]
+    let methods: [Method]
     
     init(
         visibility: Visibility,
@@ -22,8 +23,9 @@ struct Class {
         isFinal: Bool = true,
         inheritance: String? = nil,
         conformances: [String]? = nil,
-        properties: [Property],
-        inits: [Init] = []
+        properties: [Property] = [],
+        inits: [Init] = [],
+        methods: [Method] = []
     ) {
         self.visibility = visibility
         self.name = name
@@ -32,6 +34,7 @@ struct Class {
         self.conformances = conformances
         self.properties = properties
         self.inits = inits
+        self.methods = methods
     }
 }
 
@@ -47,6 +50,7 @@ extension Class: Scope {
     var statements: [Statement] {
         properties.sorted(by: { $0.visibility.order < $1.visibility.order })
         + inits
+        + methods
     }
     
     private var finalString: String {

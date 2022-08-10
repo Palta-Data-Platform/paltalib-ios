@@ -64,7 +64,7 @@ extension Scope {
         
         var strings = prefix.components(separatedBy: "\n")
         
-        guard strings.count > 2 else {
+        guard strings.count > 1 else {
             return prefix
         }
         

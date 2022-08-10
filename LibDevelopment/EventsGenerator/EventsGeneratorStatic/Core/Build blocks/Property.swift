@@ -47,6 +47,9 @@ struct Property {
 extension Property: Statement {
     func stringValue(for identLevel: Int) -> String {
         let inScopeStatements = self.inScopeStatements
+        let defaultValueString = defaultValue.map {
+            " = \($0.stringValue(for: identLevel).trimmingCharacters(in: .whitespaces))"
+        }
         let firstString = "\(baseString)\(defaultValueString ?? "")"
         
         if inScopeStatements.isEmpty {
@@ -67,10 +70,6 @@ extension Property: Statement {
     
     private var baseString: String {
         "\(visibility)\(staticModifier) \(varLet) \(name): \(returnType.stringValue)"
-    }
-    
-    private var defaultValueString: String? {
-        defaultValue.map { " = \($0.stringValue(for: 0))" }
     }
     
     private var staticModifier: String {

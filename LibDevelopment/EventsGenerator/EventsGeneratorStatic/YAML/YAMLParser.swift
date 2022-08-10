@@ -27,7 +27,8 @@ final class YAMLParser {
             BatchTemplate(),
             BatchCommonTemplate(),
             BatchEventTemplate(),
-            ContextHelperTemplate()
+            ContextHelperTemplate(),
+            StackTemplate()
         ]
     }
     
