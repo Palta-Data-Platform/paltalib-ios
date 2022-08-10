@@ -16,7 +16,7 @@ struct StackTemplate: Template {
         [
             "PaltaLibAnalytics",
             "PaltaLibAnalyticsModel",
-            "PaltaAnalyticsTransport"
+            "PaltaAnlyticsTransport"
         ]
     }
     
