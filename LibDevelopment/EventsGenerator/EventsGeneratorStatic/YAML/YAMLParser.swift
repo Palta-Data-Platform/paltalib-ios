@@ -25,7 +25,8 @@ final class YAMLParser {
             try EventsTemplateBuilder(yaml: yaml[.string("event")]).eventsTemplate(),
             // Static templates
             BatchTemplate(),
-            BatchCommonTemplate()
+            BatchCommonTemplate(),
+            BatchEventTemplate()
         ]
     }
     
