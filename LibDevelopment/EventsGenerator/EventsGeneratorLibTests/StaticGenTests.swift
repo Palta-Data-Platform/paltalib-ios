@@ -20,4 +20,16 @@ final class StaticGenTests: GenerationTests {
         
         XCTAssertEqual(generatedData, exampleData)
     }
+    
+    func testBatchCommon() throws {
+        let template = BatchCommonTemplate()
+        
+        let generator = TemplateGenerator(template: template, folderURL: folderURL)
+        try generator.generate()
+        
+        let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("BatchCommon.swift"))
+        let exampleData = try loadExampleData(with: "BatchCommonExample")
+        
+        XCTAssertEqual(generatedData, exampleData)
+    }
 }

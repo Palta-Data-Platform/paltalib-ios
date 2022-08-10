@@ -64,6 +64,7 @@
 		11A3ECEE28A3965B00D747E9 /* BatchTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECED28A3965B00D747E9 /* BatchTemplate.swift */; };
 		11A3ECF028A3978000D747E9 /* Guard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECEF28A3978000D747E9 /* Guard.swift */; };
 		11A3ECF228A39A6900D747E9 /* StaticGenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF128A39A6900D747E9 /* StaticGenTests.swift */; };
+		11A3ECF428A3AF3300D747E9 /* BatchCommonTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF328A3AF3300D747E9 /* BatchCommonTemplate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +145,7 @@
 		11A3ECED28A3965B00D747E9 /* BatchTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchTemplate.swift; sourceTree = "<group>"; };
 		11A3ECEF28A3978000D747E9 /* Guard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guard.swift; sourceTree = "<group>"; };
 		11A3ECF128A39A6900D747E9 /* StaticGenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticGenTests.swift; sourceTree = "<group>"; };
+		11A3ECF328A3AF3300D747E9 /* BatchCommonTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchCommonTemplate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 				1119CD032875802400C7B4C4 /* EventsTemplate.swift */,
 				11A31AF4288056C900A32D69 /* ContextReservedFields.swift */,
 				11A3ECED28A3965B00D747E9 /* BatchTemplate.swift */,
+				11A3ECF328A3AF3300D747E9 /* BatchCommonTemplate.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				11A31ADB287D882E00A32D69 /* ContextTemplate.swift in Sources */,
 				11A31ACB287D882E00A32D69 /* Typealias.swift in Sources */,
 				11A31ADE287D882E00A32D69 /* YAMLBasedEventsGenerator.swift in Sources */,
+				11A3ECF428A3AF3300D747E9 /* BatchCommonTemplate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

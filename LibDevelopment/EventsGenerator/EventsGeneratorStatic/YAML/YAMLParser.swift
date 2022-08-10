@@ -24,7 +24,8 @@ final class YAMLParser {
             try EnumsTemplateBuilder(yaml: yaml[.string("enum")]).enums(),
             try EventsTemplateBuilder(yaml: yaml[.string("event")]).eventsTemplate(),
             // Static templates
-            BatchTemplate()
+            BatchTemplate(),
+            BatchCommonTemplate()
         ]
     }
     
