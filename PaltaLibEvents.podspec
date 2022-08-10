@@ -14,5 +14,5 @@ Pod::Spec.new do |spec|
   spec.module_name = 'PaltaEvents'
   
   spec.dependency 'PaltaLibAnalytics', '3.0.0-beta'
-  spec.dependency 'PaltaLibEventsTransport'
+  spec.dependency 'PaltaLibEventsTransport', '1.0.0-beta'
 end
