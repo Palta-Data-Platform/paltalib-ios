@@ -44,4 +44,16 @@ final class StaticGenTests: GenerationTests {
         
         XCTAssertEqual(generatedData, exampleData)
     }
+    
+    func testContextHelper() throws {
+        let template = ContextHelperTemplate()
+        
+        let generator = TemplateGenerator(template: template, folderURL: folderURL)
+        try generator.generate()
+        
+        let generatedData = try Data(contentsOf: folderURL.appendingPathComponent("ContextHelper.swift"))
+        let exampleData = try loadExampleData(with: "ContextHelperExample")
+        
+        XCTAssertEqual(generatedData, exampleData)
+    }
 }

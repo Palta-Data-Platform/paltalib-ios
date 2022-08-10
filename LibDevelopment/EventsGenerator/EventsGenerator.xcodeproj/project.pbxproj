@@ -66,6 +66,7 @@
 		11A3ECF228A39A6900D747E9 /* StaticGenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF128A39A6900D747E9 /* StaticGenTests.swift */; };
 		11A3ECF428A3AF3300D747E9 /* BatchCommonTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF328A3AF3300D747E9 /* BatchCommonTemplate.swift */; };
 		11A3ECF628A3B11E00D747E9 /* BatchEventTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF528A3B11E00D747E9 /* BatchEventTemplate.swift */; };
+		11A3ECF828A3C10A00D747E9 /* ContextHelperTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECF728A3C10A00D747E9 /* ContextHelperTemplate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		11A3ECF128A39A6900D747E9 /* StaticGenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticGenTests.swift; sourceTree = "<group>"; };
 		11A3ECF328A3AF3300D747E9 /* BatchCommonTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchCommonTemplate.swift; sourceTree = "<group>"; };
 		11A3ECF528A3B11E00D747E9 /* BatchEventTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchEventTemplate.swift; sourceTree = "<group>"; };
+		11A3ECF728A3C10A00D747E9 /* ContextHelperTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextHelperTemplate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 				11A3ECED28A3965B00D747E9 /* BatchTemplate.swift */,
 				11A3ECF528A3B11E00D747E9 /* BatchEventTemplate.swift */,
 				11A3ECF328A3AF3300D747E9 /* BatchCommonTemplate.swift */,
+				11A3ECF728A3C10A00D747E9 /* ContextHelperTemplate.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				11A31ACF287D882E00A32D69 /* ContextTemplateBuilder.swift in Sources */,
 				11A31ADF287D882E00A32D69 /* EnumsTemplateBuilder.swift in Sources */,
 				11A31AD5287D882E00A32D69 /* Init.swift in Sources */,
+				11A3ECF828A3C10A00D747E9 /* ContextHelperTemplate.swift in Sources */,
 				11A31AE3287D882E00A32D69 /* SingleEventTemplate.swift in Sources */,
 				11A3ECEE28A3965B00D747E9 /* BatchTemplate.swift in Sources */,
 				11A31AE2287D882E00A32D69 /* Statement.swift in Sources */,
