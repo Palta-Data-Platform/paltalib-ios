@@ -1,9 +1,6 @@
 //
-
-import PaltaLibAnalytics
-
-public extension PaltaAnalytics {
-    func editContext(_ editor: (inout Context) -> Void) {
-        _editContext(editor)
-    }
-}
+// THIS IS AN EMPTY PLACEHOLDER
+// FOR ANALYTICS CONTEXT CODE
+// TO BE GENERATED ACCORDING TO
+// EVENT SCHEMA
+//
