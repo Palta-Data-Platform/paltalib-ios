@@ -3,9 +3,12 @@
 
 target 'PaltaExample' do
   use_frameworks!
-
+  
+  # Palta SDKs
   pod 'PaltaLibAnalytics', '~> 2.1.6'
   pod 'PaltaLibPurchases', '3.0.0'
+  
+  # Helper libraries
   pod 'SnapKit'
 
 end
