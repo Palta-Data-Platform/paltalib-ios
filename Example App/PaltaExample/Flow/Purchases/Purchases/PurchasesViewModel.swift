@@ -15,6 +15,7 @@ protocol PurchasesViewModelInterface {
     var isSubscribeButtonActivePublisher: AnyPublisher<Bool, Never> { get }
     var isBuyLifetimeButtonActivePublisher: AnyPublisher<Bool, Never> { get }
     var isBuyPeriodButtonActivePublisher: AnyPublisher<Bool, Never> { get }
+    var isButtonActive: AnyPublisher<Bool, Never> { get }
 
     func subscribe()
     func buyLifetime()
@@ -62,7 +63,7 @@ final class PurchasesViewModel: PurchasesViewModelInterface {
             .eraseToAnyPublisher()
     }
     
-    private var isButtonActive: AnyPublisher<Bool, Never> {
+    var isButtonActive: AnyPublisher<Bool, Never> {
         Publishers
             .CombineLatest($state, $userId)
             .map {

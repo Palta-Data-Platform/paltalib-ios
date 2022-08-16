@@ -19,27 +19,19 @@ final class PurchasesViewController: UIViewController {
         return label
     }()
 
-    private lazy var subscribeButton = Button(
-        title: "Subscribe",
-        color: .systemMint,
-        action: viewModel.subscribe
-    )
-    
-    private lazy var buyLifetimeButton = Button(
-        title: "Buy lifetime",
-        color: .cyan,
-        action: viewModel.buyLifetime
-    )
-    
-    private lazy var buyPeriodButton = Button(
-        title: "Buy period",
-        color: .systemTeal,
-        action: viewModel.buyPeriod
-    )
+    private lazy var buyButton = Button(
+        title: "Buy something",
+        color: .systemMint
+    ) { [unowned self] in
+        navigationController?.pushViewController(
+            AvailablePurchasesViewController(),
+            animated: true
+        )
+    }
 
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [userView, stateLabel, subscribeButton, buyLifetimeButton, buyPeriodButton]
+            arrangedSubviews: [userView, stateLabel, buyButton]
         )
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -85,16 +77,8 @@ final class PurchasesViewController: UIViewController {
             .assign(to: \.text, on: stateLabel)
             .store(in: &cancels)
 
-        viewModel.isSubscribeButtonActivePublisher
-            .assign(to: \.isEnabled, on: subscribeButton)
-            .store(in: &cancels)
-        
-        viewModel.isBuyLifetimeButtonActivePublisher
-            .assign(to: \.isEnabled, on: buyLifetimeButton)
-            .store(in: &cancels)
-        
-        viewModel.isBuyPeriodButtonActivePublisher
-            .assign(to: \.isEnabled, on: buyPeriodButton)
+        viewModel.isButtonActive
+            .assign(to: \.isEnabled, on: buyButton)
             .store(in: &cancels)
     }
 }

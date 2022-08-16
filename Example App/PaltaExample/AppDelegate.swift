@@ -4,6 +4,7 @@
 import UIKit
 import CoreData
 import PaltaLibAnalytics
+import PaltaLibPurchases
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             amplitudeAPIKey: "AMPLITUDE",
             paltaAPIKey: "0037c694a811422a88e2a3c5a90510e3"
         )
+        
+        PaltaPurchases.instance.setup(with: [
+            RCPurchasePlugin(apiKey: "appl_XLKhpPFayETZEchAVBKynvTNkAr"),
+            PBPurchasePlugin(apiKey: "a87f9d0ef2d341ea931d0ca626193e34", environment: .prod)
+        ])
         
         PaltaAnalytics.instance.logEvent("app-launch")
         
