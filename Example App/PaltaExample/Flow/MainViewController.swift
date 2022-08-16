@@ -48,10 +48,9 @@ final class MainViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(stackView)
 
-        NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32)
-        ])
+        stackView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
+        }
     }
 }

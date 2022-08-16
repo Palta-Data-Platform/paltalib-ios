@@ -64,12 +64,11 @@ final class PurchasesViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(stackView)
-
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32)
-        ])
+        
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(64)
+            $0.leading.trailing.equalToSuperview().inset(16)
+        }
     }
 
     private func setupBindings() {

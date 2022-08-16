@@ -32,10 +32,10 @@ class AnalyticsViewController: UIViewController {
     
     private func configureTestButton() {
         view.addSubview(testLogButton)
-        NSLayoutConstraint.activate([
-            testLogButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            testLogButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            testLogButton.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 0)
-        ])
+        
+        testLogButton.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
+        }
     }
 }

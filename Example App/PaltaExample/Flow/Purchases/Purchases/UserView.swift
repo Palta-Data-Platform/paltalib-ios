@@ -62,15 +62,10 @@ final class UserView: UIView {
     private func setupUI() {
         addSubview(stackView)
         
-        NSLayoutConstraint.activate(
-            [
-                stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                stackView.topAnchor.constraint(equalTo: topAnchor),
-                stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-                heightAnchor.constraint(equalToConstant: 44)
-            ]
-        )
+        stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.height.equalTo(44)
+        }
     }
     
     private func setupBindings() {
