@@ -56,6 +56,11 @@ extension AvailablePurchasesViewController: UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Purchase", for: indexPath) as! AvailablePurchaseCell
         cell.item = viewModel.items[indexPath.row]
+        
+        cell.buyHandler = { [viewModel] in
+            viewModel.buy($0)
+        }
+        
         return cell
     }
 }

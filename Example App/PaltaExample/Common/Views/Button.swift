@@ -21,6 +21,12 @@ final class Button: UIButton {
     private static let pressedBackground = UIImage.image(of: .systemGray3)
     
     private let action: () -> Void
+    
+    override var intrinsicContentSize: CGSize {
+        var size = super.intrinsicContentSize
+        size.height = 60
+        return size
+    }
 
     init(title: String, color: UIColor, action: @escaping () -> Void) {
         self.action = action
@@ -37,8 +43,6 @@ final class Button: UIButton {
         setBackgroundImage(.image(of: color), for: .normal)
         setBackgroundImage(.image(of: color.withAlphaComponent(0.3)), for: .disabled)
         setBackgroundImage(Button.pressedBackground, for: .highlighted)
-
-        heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
     required init?(coder: NSCoder) {

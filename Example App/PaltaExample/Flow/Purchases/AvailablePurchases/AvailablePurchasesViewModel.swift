@@ -9,10 +9,12 @@ import Foundation
 import PaltaLibPurchases
 
 final class AvailablePurchasesViewModel {
-    struct Item {
+    struct Item: Equatable {
         let name: String
         let period: String
         let price: String
+        
+        fileprivate let product: Product
     }
     
     private let productIdentifiers: [String] = [
@@ -26,6 +28,17 @@ final class AvailablePurchasesViewModel {
     
     init() {
         fetchProducts()
+    }
+    
+    func buy(_ item: Item) {
+        PaltaPurchases.instance.purchase(item.product, with: nil) { [weak self] result in
+            switch result {
+            case .success:
+                self?.items.removeAll(where: { $0 == item })
+            case .failure(let error):
+                print("Unable to purchase: \(error)")
+            }
+        }
     }
     
     private func fetchProducts() {
@@ -44,7 +57,8 @@ final class AvailablePurchasesViewModel {
             Item(
                 name: $0.localizedTitle,
                 period: $0.subscriptionPeriod.map { $0.displayTitle } ?? "Lifetime",
-                price: $0.localizedPriceString
+                price: $0.localizedPriceString,
+                product: $0
             )
         }
     }

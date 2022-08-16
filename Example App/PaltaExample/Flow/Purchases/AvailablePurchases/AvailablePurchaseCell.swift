@@ -11,11 +11,15 @@ import PaltaLibCore
 import SnapKit
 
 final class AvailablePurchaseCell: UITableViewCell {
-    var item: AvailablePurchasesViewModel.Item? {
+    typealias Item = AvailablePurchasesViewModel.Item
+    
+    var item: Item? {
         didSet {
             update()
         }
     }
+    
+    var buyHandler: ((Item) -> Void)?
     
     private let nameLabel = UILabel().do {
         $0.numberOfLines = 2
@@ -32,6 +36,13 @@ final class AvailablePurchaseCell: UITableViewCell {
         $0.textAlignment = .right
     }
     
+    private lazy var buyButton = Button(title: "Buy", color: .systemBlue) { [weak self] in
+        guard let self = self, let item = self.item else {
+            return
+        }
+        self.buyHandler?(item)
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -46,6 +57,7 @@ final class AvailablePurchaseCell: UITableViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(periodLabel)
         contentView.addSubview(priceLabel)
+        contentView.addSubview(buyButton)
         
         nameLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16)
@@ -60,8 +72,15 @@ final class AvailablePurchaseCell: UITableViewCell {
         
         priceLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(16)
             $0.leading.greaterThanOrEqualTo(nameLabel.snp.trailing)
+        }
+        
+        buyButton.snp.makeConstraints {
+            $0.height.equalTo(32)
+            $0.width.equalTo(44)
+            $0.centerY.equalTo(priceLabel)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.leading.equalTo(priceLabel.snp.trailing).offset(8)
         }
     }
     
