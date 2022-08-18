@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'PaltaLibEventsTransport'
-  spec.version               = '1.0.0-beta'
+  spec.version               = '1.0.0'
   spec.license               = 'MIT'
   spec.summary               = 'PaltaLib iOS SDK - Template for event schema generation'
   spec.homepage              = 'https://github.com/Palta-Data-Platform/paltalib-ios'
