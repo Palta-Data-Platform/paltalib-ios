@@ -22,7 +22,7 @@ final class BatchSendRequestTests: XCTestCase {
         let urlRequest = request.urlRequest(headerFields: ["DEFAULT_HEADER": "DEFAULT_HEADER_VALUE"])
         
         XCTAssertNotNil(urlRequest)
-        XCTAssertEqual(urlRequest?.url, URL(string: "ftp://mock.url/batch-send"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "ftp://mock.url/v1/paltabrain"))
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,
             [
