@@ -10,6 +10,30 @@ import XCTest
 @testable import PaltaLibPayments
 
 final class PaymentsHTTPRequestTests: XCTestCase {
+    func testGetShowcase() {
+        let userId = UUID()
+        
+        let request = PaymentsHTTPRequest.getShowcase(
+            .prod,
+            .uuid(userId),
+            nil
+        )
+        
+        let urlRequest = request.urlRequest(headerFields: ["aHeader": "aValue"])
+        let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
+        
+        XCTAssertEqual(urlRequest?.httpMethod, "POST")
+        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.paltabrain.com/showcase/get-price-points"))
+        XCTAssertEqual(
+            payloadString,
+            "{\"platformCode\":\"ios\",\"customerId\":{\"value\":\"\(userId.uuidString)\",\"type\":\"merchant-uuid\"}}"
+        )
+        XCTAssertEqual(
+            urlRequest?.allHTTPHeaderFields,
+            ["Content-Type": "application/json", "aHeader": "aValue"]
+        )
+    }
+    
     func testGetSubscriptionsNoIDs() {
         let userIdString = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
         

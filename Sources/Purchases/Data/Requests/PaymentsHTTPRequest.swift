@@ -11,6 +11,7 @@ import PaltaLibCore
 enum PaymentsHTTPRequest: Equatable {
     case getFeatures(Environment, UserId)
     case getSubcriptions(Environment, UserId, Set<UUID>?)
+    case getShowcase(Environment, UserId, String?)
 }
 
 extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
@@ -20,6 +21,8 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
             return environemt
         case .getSubcriptions(let environemt, _, _):
             return environemt
+        case .getShowcase(let environment, _, _):
+            return environment
         }
     }
     var bodyObject: AnyEncodable? {
@@ -29,12 +32,15 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
             
         case let .getSubcriptions(_, userId, subscriptionIds):
             return GetSubscriptionsRequestPayload(customerId: userId, onlyIds: subscriptionIds).typeErased
+            
+        case let .getShowcase(_, userId, countryCode):
+            return GetShowcaseRequestPayload(customerId: userId, countryCode: countryCode).typeErased
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .getSubcriptions, .getFeatures:
+        case .getSubcriptions, .getFeatures, .getShowcase:
             return .post
         }
     }
@@ -55,6 +61,9 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
             
         case .getSubcriptions:
             return "/subscriptions-tracker/get-subscriptions"
+            
+        case .getShowcase:
+            return "/showcase/get-price-points"
         }
     }
 }
