@@ -14,6 +14,8 @@ public enum PaymentsError: Error {
     case invalidKey
     case noUserId
     case cancelledByUser
+    case timedOut
+    case storeKitError(Error?)
     case serverError(Int)
     case sdkError(SDKError)
     case networkError(URLError)
@@ -78,6 +80,10 @@ extension PaymentsError {
             print("PaltaLib: Payments: Network error. Please try again later. \n\(error)")
         case .cancelledByUser:
             print("PaltaLib: Payments: Operation cancelled by user")
+        case .storeKitError(let error):
+            print("PaltaLib: Payments: Error occured within StoreKit\(error.map { ":\n\($0)" } ?? "")")
+        case .timedOut:
+            print("PaltaLib: Payments: Operation timed out")
         }
     }
 }

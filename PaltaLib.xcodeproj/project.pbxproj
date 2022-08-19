@@ -158,6 +158,8 @@
 		11A2F32F28AE78B100FDCA7D /* ShowcaseServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A2F32428AE342000FDCA7D /* ShowcaseServiceImpl.swift */; };
 		11A2F33228AE81E000FDCA7D /* ShowcaseServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A2F33028AE80B300FDCA7D /* ShowcaseServiceTests.swift */; };
 		11A2F33428AE873200FDCA7D /* ShowcaseResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A2F33328AE873200FDCA7D /* ShowcaseResponseTests.swift */; };
+		11A2F33728AE8B1F00FDCA7D /* AppstoreProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A2F33528AE89B400FDCA7D /* AppstoreProductService.swift */; };
+		11A2F33B28AF858600FDCA7D /* AppstoreProductMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A2F33A28AF858600FDCA7D /* AppstoreProductMapper.swift */; };
 		11A31AAD287C054A00A32D69 /* PaltaPurchasesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AAC287C054A00A32D69 /* PaltaPurchasesProtocol.swift */; };
 		11A31AB0287C0F4A00A32D69 /* UserIdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AAE287C0F3700A32D69 /* UserIdTests.swift */; };
 		11A3ECE1289ACF5600D747E9 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A3ECE0289ACF5600D747E9 /* Environment.swift */; };
@@ -417,6 +419,8 @@
 		11A2F32C28AE69BA00FDCA7D /* GetShowcaseRequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetShowcaseRequestPayload.swift; sourceTree = "<group>"; };
 		11A2F33028AE80B300FDCA7D /* ShowcaseServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseServiceTests.swift; sourceTree = "<group>"; };
 		11A2F33328AE873200FDCA7D /* ShowcaseResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseResponseTests.swift; sourceTree = "<group>"; };
+		11A2F33528AE89B400FDCA7D /* AppstoreProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreProductService.swift; sourceTree = "<group>"; };
+		11A2F33A28AF858600FDCA7D /* AppstoreProductMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreProductMapper.swift; sourceTree = "<group>"; };
 		11A31AAC287C054A00A32D69 /* PaltaPurchasesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesProtocol.swift; sourceTree = "<group>"; };
 		11A31AAE287C0F3700A32D69 /* UserIdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdTests.swift; sourceTree = "<group>"; };
 		11A3ECE0289ACF5600D747E9 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -903,6 +907,8 @@
 			isa = PBXGroup;
 			children = (
 				11A2F32428AE342000FDCA7D /* ShowcaseServiceImpl.swift */,
+				11A2F33528AE89B400FDCA7D /* AppstoreProductService.swift */,
+				11A2F33A28AF858600FDCA7D /* AppstoreProductMapper.swift */,
 			);
 			path = Showcase;
 			sourceTree = "<group>";
@@ -1416,6 +1422,7 @@
 				11543017282BD0AE0021ED6F /* PaidFeatures.swift in Sources */,
 				11A2F32E28AE69DF00FDCA7D /* GetShowcaseRequestPayload.swift in Sources */,
 				11A31AAD287C054A00A32D69 /* PaltaPurchasesProtocol.swift in Sources */,
+				11A2F33728AE8B1F00FDCA7D /* AppstoreProductService.swift in Sources */,
 				1154303A282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift in Sources */,
 				11A61EDD28378BAA00F88116 /* FeaturesResponse.swift in Sources */,
 				114CF5AD2822679500ADA815 /* PBPurchasePlugin.swift in Sources */,
@@ -1423,6 +1430,7 @@
 				11A2F32B28AE3BDD00FDCA7D /* PricePoint.swift in Sources */,
 				11A3ECE1289ACF5600D747E9 /* Environment.swift in Sources */,
 				11A61E822833B89B00F88116 /* UserId.swift in Sources */,
+				11A2F33B28AF858600FDCA7D /* AppstoreProductMapper.swift in Sources */,
 				114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */,
 				11A61ED7283788DD00F88116 /* Feature.swift in Sources */,
 				1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */,
@@ -1803,7 +1811,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1834,7 +1842,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
