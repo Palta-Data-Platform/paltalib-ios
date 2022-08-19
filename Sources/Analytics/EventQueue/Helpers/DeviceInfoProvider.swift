@@ -37,7 +37,21 @@ final class DeviceInfoProviderImpl: DeviceInfoProvider {
     }
 
     var carrier: String {
-        CTTelephonyNetworkInfo().subscriberCellularProvider?.carrierName ?? "Unknown"
+        let defaultValue = "Unknown"
+        if #available(iOS 12.0, *) {
+            let carriersString = CTTelephonyNetworkInfo()
+                .serviceSubscriberCellularProviders?
+                .compactMap { $0.value.carrierName }
+                .joined(separator: ",")
+            ?? ""
+            
+            return carriersString.isEmpty ? defaultValue : carriersString
+        } else {
+            return CTTelephonyNetworkInfo()
+                .subscriberCellularProvider?
+                .carrierName
+            ?? defaultValue
+        }
     }
 
     var country: String? {
