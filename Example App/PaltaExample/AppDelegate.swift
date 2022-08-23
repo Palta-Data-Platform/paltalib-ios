@@ -12,8 +12,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PaltaAnalytics.instance.configure(
             name: "PaltaExample",
             amplitudeAPIKey: "AMPLITUDE",
-            paltaAPIKey: "0037c694a811422a88e2a3c5a90510e3"
+            paltaAPIKey: "9ccb3ba886444f0e842186b2a3135aa6",
+            host: URL(string: "https://telemetry.zing.paltabrain.com")
         )
+        
+        PaltaAnalytics.instance.setUserId("slava")
         
         PaltaAnalytics.instance.logEvent("app-launch")
         
