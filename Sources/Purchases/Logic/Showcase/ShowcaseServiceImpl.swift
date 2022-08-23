@@ -8,7 +8,7 @@
 import PaltaLibCore
 
 protocol ShowcaseService {
-    func getProductIds(for userId: UserId, _ completion: @escaping (Result<Set<String>, PaymentsError>) -> Void)
+    func getProductIds(for userId: UserId, _ completion: @escaping (Result<[PricePoint], PaymentsError>) -> Void)
 }
 
 final class ShowcaseServiceImpl: ShowcaseService {
@@ -20,12 +20,12 @@ final class ShowcaseServiceImpl: ShowcaseService {
         self.httpClient = httpClient
     }
     
-    func getProductIds(for userId: UserId, _ completion: @escaping (Result<Set<String>, PaymentsError>) -> Void) {
+    func getProductIds(for userId: UserId, _ completion: @escaping (Result<[PricePoint], PaymentsError>) -> Void) {
         httpClient
             .perform(PaymentsHTTPRequest.getShowcase(environment, userId, nil)) { (result: Result<ShowcaseResponse, NetworkErrorWithoutResponse>) in
             completion(
                 result
-                    .map { Set($0.pricePoints.map { $0.appStoreId }) }
+                    .map { $0.pricePoints }
                     .mapError { PaymentsError(networkError: $0) }
             )
         }

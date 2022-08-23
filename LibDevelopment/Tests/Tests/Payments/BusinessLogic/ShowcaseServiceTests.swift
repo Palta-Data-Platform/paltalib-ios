@@ -23,25 +23,26 @@ final class ShowcaseServiceTests: XCTestCase {
     
     func testSuccess() {
         let uuid = UUID()
-        let expectedProductIds: Set<String> = ["id1", "id2"]
+        let expectedPricePoints = [
+            PricePoint(ident: "ident1", appStoreId: "id1", priority: 3),
+            PricePoint(ident: "ident2", appStoreId: "id2", priority: 5)
+        ]
+        
         let completionCalled = expectation(description: "Success called")
         
         httpMock.result = .success(
             ShowcaseResponse(
                 status: "ok",
-                pricePoints: [
-                    PricePoint(ident: "ident1", appStoreId: "id1"),
-                    PricePoint(ident: "ident2", appStoreId: "id2")
-                ]
+                pricePoints: expectedPricePoints
             )
         )
         
         service.getProductIds(for: .uuid(uuid)) { result in
-            guard case let .success(productIds) = result else {
+            guard case let .success(pricepoints) = result else {
                 return
             }
             
-            XCTAssertEqual(productIds, expectedProductIds)
+            XCTAssertEqual(pricepoints, expectedPricePoints)
             
             completionCalled.fulfill()
         }

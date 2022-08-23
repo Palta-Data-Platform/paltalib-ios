@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct PricePoint: Decodable {
+struct PricePoint: Decodable, Equatable {
     let ident: String
     let appStoreId: String
+    let priority: Int?
 }

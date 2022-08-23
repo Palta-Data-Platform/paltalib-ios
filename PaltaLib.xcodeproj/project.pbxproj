@@ -182,6 +182,11 @@
 		11A61EEF2837948500F88116 /* PaymentsHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61EEE2837948500F88116 /* PaymentsHTTPRequest.swift */; };
 		11A61EF1283794E300F88116 /* GetSubscriptionsRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61EF0283794E300F88116 /* GetSubscriptionsRequestPayload.swift */; };
 		11A61EF3283795D500F88116 /* GetFeaturesRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A61EF2283795D500F88116 /* GetFeaturesRequestPayload.swift */; };
+		11BE6BAA28AFB4C0006EA904 /* ShowcaseFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE6BA928AFB4C0006EA904 /* ShowcaseFlow.swift */; };
+		11BE6BC128B3C3FC006EA904 /* ShowcaseFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE6BC028B3C3FC006EA904 /* ShowcaseFlowTests.swift */; };
+		11BE6BC328B3C45C006EA904 /* ShowcaseServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE6BC228B3C45C006EA904 /* ShowcaseServiceMock.swift */; };
+		11BE6BC528B3C4AF006EA904 /* AppstoreProductServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE6BC428B3C4AF006EA904 /* AppstoreProductServiceMock.swift */; };
+		11BE6BC728B3C554006EA904 /* PricePointMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE6BC628B3C554006EA904 /* PricePointMock.swift */; };
 		11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4C2816A835004D0185 /* Telemetry.swift */; };
 		11C60F502816D598004D0185 /* TelemetryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4E2816D585004D0185 /* TelemetryMock.swift */; };
 		11C60F5228181323004D0185 /* Amplitude+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F5128181323004D0185 /* Amplitude+Extensions.swift */; };
@@ -443,6 +448,11 @@
 		11A61EEE2837948500F88116 /* PaymentsHTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsHTTPRequest.swift; sourceTree = "<group>"; };
 		11A61EF0283794E300F88116 /* GetSubscriptionsRequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubscriptionsRequestPayload.swift; sourceTree = "<group>"; };
 		11A61EF2283795D500F88116 /* GetFeaturesRequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeaturesRequestPayload.swift; sourceTree = "<group>"; };
+		11BE6BA928AFB4C0006EA904 /* ShowcaseFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseFlow.swift; sourceTree = "<group>"; };
+		11BE6BC028B3C3FC006EA904 /* ShowcaseFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseFlowTests.swift; sourceTree = "<group>"; };
+		11BE6BC228B3C45C006EA904 /* ShowcaseServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseServiceMock.swift; sourceTree = "<group>"; };
+		11BE6BC428B3C4AF006EA904 /* AppstoreProductServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreProductServiceMock.swift; sourceTree = "<group>"; };
+		11BE6BC628B3C554006EA904 /* PricePointMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricePointMock.swift; sourceTree = "<group>"; };
 		11C60F4C2816A835004D0185 /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
 		11C60F4E2816D585004D0185 /* TelemetryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryMock.swift; sourceTree = "<group>"; };
 		11C60F5128181323004D0185 /* Amplitude+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Amplitude+Extensions.swift"; sourceTree = "<group>"; };
@@ -780,6 +790,7 @@
 				111A59982840C5990052FCD1 /* SubscriptionsServiceTests.swift */,
 				111A59A02840CDB80052FCD1 /* PaidFeaturesServiceTests.swift */,
 				11A2F33028AE80B300FDCA7D /* ShowcaseServiceTests.swift */,
+				11BE6BC028B3C3FC006EA904 /* ShowcaseFlowTests.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -828,6 +839,9 @@
 				111A59B12840E89C0052FCD1 /* PaidFeaturesServiceMock.swift */,
 				111A59B92840E9C50052FCD1 /* PaymentsAssemblyMock.swift */,
 				113A7A062850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift */,
+				11BE6BC228B3C45C006EA904 /* ShowcaseServiceMock.swift */,
+				11BE6BC428B3C4AF006EA904 /* AppstoreProductServiceMock.swift */,
+				11BE6BC628B3C554006EA904 /* PricePointMock.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -909,6 +923,7 @@
 				11A2F32428AE342000FDCA7D /* ShowcaseServiceImpl.swift */,
 				11A2F33528AE89B400FDCA7D /* AppstoreProductService.swift */,
 				11A2F33A28AF858600FDCA7D /* AppstoreProductMapper.swift */,
+				11BE6BA928AFB4C0006EA904 /* ShowcaseFlow.swift */,
 			);
 			path = Showcase;
 			sourceTree = "<group>";
@@ -1332,6 +1347,7 @@
 			files = (
 				114D070A280816D200ACD310 /* TrackingOptionsProviderMock.swift in Sources */,
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
+				11BE6BC528B3C4AF006EA904 /* AppstoreProductServiceMock.swift in Sources */,
 				113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */,
 				114D06FF2806F62200ACD310 /* IdentityLoggerTests.swift in Sources */,
 				114D070C2808336200ACD310 /* TrackingOptionsProviderTests.swift in Sources */,
@@ -1342,6 +1358,7 @@
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
 				11115A96280023B200A41ADA /* UserPropertiesKeeperTests.swift in Sources */,
+				11BE6BC328B3C45C006EA904 /* ShowcaseServiceMock.swift in Sources */,
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
 				114D07012806F64B00ACD310 /* EventQueueMock.swift in Sources */,
 				11543038282D03280021ED6F /* ProductMock.swift in Sources */,
@@ -1380,9 +1397,11 @@
 				1154302B282C1A760021ED6F /* PaidServicesTests.swift in Sources */,
 				11A61E572833902D00F88116 /* PaidServiceMock.swift in Sources */,
 				11115A4227FB74B000A41ADA /* EventSenderMock.swift in Sources */,
+				11BE6BC728B3C554006EA904 /* PricePointMock.swift in Sources */,
 				11A61EE328378C0D00F88116 /* SubscriptionResponseTests.swift in Sources */,
 				11543034282D02E50021ED6F /* PromoOfferMock.swift in Sources */,
 				111A59A82840CE630052FCD1 /* SubscriptionsServiceMock.swift in Sources */,
+				11BE6BC128B3C3FC006EA904 /* ShowcaseFlowTests.swift in Sources */,
 				111A59B32840E89F0052FCD1 /* PaidFeaturesServiceMock.swift in Sources */,
 				11543035282D02E80021ED6F /* ProductDiscountMock.swift in Sources */,
 				11543028282BF7B50021ED6F /* PaidFeatureTests.swift in Sources */,
@@ -1425,6 +1444,7 @@
 				11A2F33728AE8B1F00FDCA7D /* AppstoreProductService.swift in Sources */,
 				1154303A282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift in Sources */,
 				11A61EDD28378BAA00F88116 /* FeaturesResponse.swift in Sources */,
+				11BE6BAA28AFB4C0006EA904 /* ShowcaseFlow.swift in Sources */,
 				114CF5AD2822679500ADA815 /* PBPurchasePlugin.swift in Sources */,
 				11A61EF3283795D500F88116 /* GetFeaturesRequestPayload.swift in Sources */,
 				11A2F32B28AE3BDD00FDCA7D /* PricePoint.swift in Sources */,
