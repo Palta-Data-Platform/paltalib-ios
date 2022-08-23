@@ -44,7 +44,8 @@ final class ConfigApplyServiceTests: XCTestCase {
             remoteConfig: config,
             apiKey: "palta-key",
             amplitudeApiKey: "amplitude-key",
-            eventQueueAssemblyProvider: assemblyProvider
+            eventQueueAssemblyProvider: assemblyProvider,
+            host: nil
         )
         
         service.apply(
@@ -85,7 +86,8 @@ final class ConfigApplyServiceTests: XCTestCase {
             remoteConfig: config,
             apiKey: "palta-key",
             amplitudeApiKey: "amplitude-key",
-            eventQueueAssemblyProvider: assemblyProvider
+            eventQueueAssemblyProvider: assemblyProvider,
+            host: nil
         )
         
         service.apply(
@@ -121,7 +123,8 @@ final class ConfigApplyServiceTests: XCTestCase {
             remoteConfig: config,
             apiKey: "palta-key",
             amplitudeApiKey: "amplitude-key",
-            eventQueueAssemblyProvider: assemblyProvider
+            eventQueueAssemblyProvider: assemblyProvider,
+            host: nil
         )
         
         service.apply(
@@ -161,8 +164,7 @@ final class ConfigApplyServiceTests: XCTestCase {
                     realtimeEventTypes: [],
                     excludedEventTypes: [],
                     sendMechanism: .amplitude
-                ),
-                url: nil
+                )
             ),
             .defaultAmplitude
         ])
@@ -177,7 +179,8 @@ final class ConfigApplyServiceTests: XCTestCase {
             remoteConfig: config,
             apiKey: "palta-key",
             amplitudeApiKey: "amplitude-key",
-            eventQueueAssemblyProvider: assemblyProvider
+            eventQueueAssemblyProvider: assemblyProvider,
+            host: nil
         )
         
         service.apply(
@@ -213,8 +216,7 @@ final class ConfigApplyServiceTests: XCTestCase {
                     realtimeEventTypes: [],
                     excludedEventTypes: [],
                     sendMechanism: .paltaBrain
-                ),
-                url: URL(string: "http://example.com")
+                )
             ),
             .defaultPaltaBrain,
             .defaultAmplitude
@@ -232,7 +234,8 @@ final class ConfigApplyServiceTests: XCTestCase {
             remoteConfig: config,
             apiKey: "palta-key",
             amplitudeApiKey: "amplitude-key",
-            eventQueueAssemblyProvider: assemblyProvider
+            eventQueueAssemblyProvider: assemblyProvider,
+            host: URL(string: "http://example.com")
         )
         
         service.apply(

@@ -12,12 +12,20 @@ final class ConfigApplyService {
     private let remoteConfig: RemoteConfig
     private let apiKey: String?
     private let amplitudeApiKey: String?
+    private let host: URL?
     private let eventQueueAssemblyProvider: EventQueueAssemblyProvider
     
-    init(remoteConfig: RemoteConfig, apiKey: String?, amplitudeApiKey: String?, eventQueueAssemblyProvider: EventQueueAssemblyProvider) {
+    init(
+        remoteConfig: RemoteConfig,
+        apiKey: String?,
+        amplitudeApiKey: String?,
+        eventQueueAssemblyProvider: EventQueueAssemblyProvider,
+        host: URL?
+    ) {
         self.remoteConfig = remoteConfig
         self.apiKey = apiKey
         self.amplitudeApiKey = amplitudeApiKey
+        self.host = host
         self.eventQueueAssemblyProvider = eventQueueAssemblyProvider
     }
     
@@ -56,7 +64,8 @@ final class ConfigApplyService {
                 target,
                 apiKey: amplitudeApiKey,
                 defaultAmplitude: &defaultAmplitude,
-                amplitudeInstances: &amplitudeInstances
+                amplitudeInstances: &amplitudeInstances,
+                host: nil
             )
             
         case (.amplitude, .amplitude, _, nil), (.amplitude, nil, _, nil):
@@ -71,7 +80,8 @@ final class ConfigApplyService {
                 target,
                 apiKey: apiKey,
                 defaultAmplitude: &dummyAmplitude,
-                amplitudeInstances: &amplitudeInstances
+                amplitudeInstances: &amplitudeInstances,
+                host: (host ?? URL(string: "https://api.paltabrain.com"))?.appendingPathComponent("/v1/amplitude")
             )
             
         case
@@ -96,7 +106,8 @@ final class ConfigApplyService {
         _ target: ConfigTarget,
         apiKey: String,
         defaultAmplitude: inout Amplitude?,
-        amplitudeInstances: inout [Amplitude]
+        amplitudeInstances: inout [Amplitude],
+        host: URL?
     ) {
         let amplitudeInstance: Amplitude
         
@@ -108,7 +119,7 @@ final class ConfigApplyService {
         }
         
         amplitudeInstance.initializeApiKey(apiKey)
-        amplitudeInstance.apply(target)
+        amplitudeInstance.apply(target, host: host)
         
         amplitudeInstance.setOffline(false)
 
@@ -131,7 +142,7 @@ final class ConfigApplyService {
         }
         
         eventQueueAssembly.eventSender.apiToken = apiKey
-        eventQueueAssembly.apply(target)
+        eventQueueAssembly.apply(target, host: host)
         
         paltaAssemblies.append(eventQueueAssembly)
     }

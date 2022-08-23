@@ -37,11 +37,10 @@ final class AmplitudeExtensionTests: XCTestCase {
                 realtimeEventTypes: ["real-time"],
                 excludedEventTypes: ["excluded"],
                 sendMechanism: .paltaBrain
-            ),
-            url: nil
+            )
         )
         
-        instance.apply(target)
+        instance.apply(target, host: nil)
         
         XCTAssertEqual(instance.eventUploadThreshold, 23)
         XCTAssertEqual(instance.eventUploadMaxBatchSize, 67)
@@ -67,11 +66,10 @@ final class AmplitudeExtensionTests: XCTestCase {
                 realtimeEventTypes: ["real-time"],
                 excludedEventTypes: ["excluded-event"],
                 sendMechanism: .paltaBrain
-            ),
-            url: URL(string: "http://example.com")
+            )
         )
         
-        instance.apply(target)
+        instance.apply(target, host: URL(string: "http://example.com"))
         
         XCTAssertEqual(instance.eventUploadThreshold, 98)
         XCTAssertEqual(instance.eventUploadMaxBatchSize, 234)

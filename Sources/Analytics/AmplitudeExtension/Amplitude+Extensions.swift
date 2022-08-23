@@ -49,7 +49,7 @@ extension Amplitude {
         }
     }
     
-    func apply(_ target: ConfigTarget) {
+    func apply(_ target: ConfigTarget, host: URL?) {
         let settings = target.settings
         trackingSessionEvents = settings.trackingSessionEvents
         eventMaxCount = Int32(settings.eventMaxCount)
@@ -59,7 +59,7 @@ extension Amplitude {
         minTimeBetweenSessionsMillis = settings.minTimeBetweenSessionsMillis
         excludedEvents = settings.excludedEventTypes
         
-        if let url = target.url {
+        if let url = host {
             setServerUrl(url.absoluteString)
         }
     }

@@ -40,8 +40,7 @@ final class ConfigurationServiceTests: XCTestCase {
                             realtimeEventTypes: [],
                                         excludedEventTypes: [],
                             sendMechanism: .paltaBrain
-                        ),
-                        url: URL(string: "https://mock.url")
+                        )
                     )
                 ]
             )
@@ -49,18 +48,20 @@ final class ConfigurationServiceTests: XCTestCase {
 
         let successCalled = expectation(description: "Success called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: URL(string: "https://test.test")) { result in
             guard case let .success(config) = result else {
                 return
             }
 
-            XCTAssertEqual(config.targets.first?.url, URL(string: "https://mock.url"))
             XCTAssertEqual(config.targets.first?.settings.eventMaxCount, 1228)
 
             successCalled.fulfill()
         }
-
-        XCTAssertEqual(httpClientMock.request as? AnalyticsHTTPRequest, .remoteConfig("API_KEY_MCK"))
+        
+        XCTAssertEqual(
+            httpClientMock.request as? AnalyticsHTTPRequest,
+            .remoteConfig(URL(string: "https://test.test"), "API_KEY_MCK")
+        )
 
         wait(for: [successCalled], timeout: 0.05)
 
@@ -84,8 +85,7 @@ final class ConfigurationServiceTests: XCTestCase {
                         realtimeEventTypes: [],
                         excludedEventTypes: [],
                         sendMechanism: .paltaBrain
-                    ),
-                    url: URL(string: "https://mock.url")
+                    )
                 )
             ]
         )
@@ -94,18 +94,17 @@ final class ConfigurationServiceTests: XCTestCase {
 
         let successCalled = expectation(description: "Success called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: nil) { result in
             guard case let .success(config) = result else {
                 return
             }
-
-            XCTAssertEqual(config.targets.first?.url, URL(string: "https://mock.url"))
+            
             XCTAssertEqual(config.targets.first?.settings.eventMaxCount, 1228)
 
             successCalled.fulfill()
         }
 
-        XCTAssertEqual(httpClientMock.request as? AnalyticsHTTPRequest, .remoteConfig("API_KEY_MCK"))
+        XCTAssertEqual(httpClientMock.request as? AnalyticsHTTPRequest, .remoteConfig(nil, "API_KEY_MCK"))
 
         wait(for: [successCalled], timeout: 0.05)
 
@@ -117,7 +116,7 @@ final class ConfigurationServiceTests: XCTestCase {
 
         let failCalled = expectation(description: "Fail called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: nil) { result in
             guard case .failure = result else {
                 return
             }
@@ -135,12 +134,11 @@ final class ConfigurationServiceTests: XCTestCase {
 
         let successCalled = expectation(description: "Success called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: nil) { result in
             guard case let .success(config) = result else {
                 return
             }
 
-            XCTAssertEqual(config.targets.first?.url, URL(string: "https://url.mock"))
             XCTAssertEqual(config.targets.first?.settings.minTimeBetweenSessionsMillis, 678)
 
             successCalled.fulfill()
@@ -164,8 +162,7 @@ final class ConfigurationServiceTests: XCTestCase {
                         realtimeEventTypes: [],
                         excludedEventTypes: [],
                         sendMechanism: .paltaBrain
-                    ),
-                    url: URL(string: "https://url.mock")
+                    )
                 )
             ]
         )

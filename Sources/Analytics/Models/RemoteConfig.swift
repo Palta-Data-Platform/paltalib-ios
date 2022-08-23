@@ -26,8 +26,7 @@ struct ConfigTarget: Codable, Equatable {
             realtimeEventTypes: [],
             excludedEventTypes: [],
             sendMechanism: .amplitude
-        ),
-        url: nil
+        )
     )
     
     static let defaultPaltaBrain = ConfigTarget(
@@ -42,13 +41,11 @@ struct ConfigTarget: Codable, Equatable {
             realtimeEventTypes: [],
             excludedEventTypes: [],
             sendMechanism: .paltaBrain
-        ),
-        url: URL(string: "https://api.paltabrain.com/events-v2")
+        )
     )
 
     let name: Name
     let settings: ConfigSettings
-    let url: URL?
 }
 
 struct ConfigSettings: Codable, Equatable {

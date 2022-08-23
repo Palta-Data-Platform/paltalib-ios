@@ -9,7 +9,7 @@ import Foundation
 import PaltaLibCore
 
 enum AnalyticsHTTPRequest: Equatable {
-    case remoteConfig(String)
+    case remoteConfig(URL?, String)
     case sendEvents(URL?, SendEventsPayload)
 }
 
@@ -24,21 +24,18 @@ extension AnalyticsHTTPRequest: CodableAutobuildingHTTPRequest {
     }
 
     var baseURL: URL {
-        guard case let .sendEvents(url, _) = self, let url = url else {
-            return URL(string: "https://api.paltabrain.com")!
+        switch self {
+        case .remoteConfig(let url, _), .sendEvents(let url, _):
+            return url ?? URL(string: "https://api.paltabrain.com")!
         }
-        
-        return url
     }
 
     var path: String? {
         switch self {
         case .remoteConfig:
             return "/v1/config"
-        case .sendEvents(let url, _) where url == nil:
-            return "/events-v2"
         case .sendEvents:
-            return nil
+            return "/v2/amplitude"
         }
     }
 
@@ -48,7 +45,7 @@ extension AnalyticsHTTPRequest: CodableAutobuildingHTTPRequest {
 
     var headers: [String : String]? {
         switch self {
-        case .remoteConfig(let apiKey):
+        case .remoteConfig(_, let apiKey):
             return ["X-API-Key": apiKey]
 
         case .sendEvents(_, let payload):

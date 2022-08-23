@@ -1,5 +1,6 @@
 import Amplitude
 import PaltaLibCore
+import Foundation
 
 public final class PaltaAnalytics {
     public static let instance = PaltaAnalytics()
@@ -33,7 +34,7 @@ public final class PaltaAnalytics {
     private var defaultAmplitudeInstance: Amplitude? = Amplitude
         .instance(withName: ConfigTarget.defaultAmplitude.name.rawValue)
         .do {
-            $0.apply(.defaultAmplitude)
+            $0.apply(.defaultAmplitude, host: nil)
             $0.setOffline(true)
         }
     
@@ -45,29 +46,17 @@ public final class PaltaAnalytics {
     private var isConfigured = false
     private var apiKey: String?
     private var amplitudeApiKey: String?
+    private var host: URL?
     
     init() {
         defaultPaltaInstance = assembly.newEventQueueAssembly()
     }
 
-    @available(
-        *,
-         deprecated,
-         message: "Set trackingSessionEvents locally is ignored. Use func configure(name:amplitudeAPIKey:paltaAPIKey:) instead"
-    )
     public func configure(
         name: String,
         amplitudeAPIKey: String? = nil,
         paltaAPIKey: String? = nil,
-        trackingSessionEvents: Bool
-    ) {
-        configure(name: name, amplitudeAPIKey: amplitudeAPIKey, paltaAPIKey: paltaAPIKey)
-    }
-
-    public func configure(
-        name: String,
-        amplitudeAPIKey: String? = nil,
-        paltaAPIKey: String? = nil
+        host: URL?
     ) {
         lock.lock()
         defer { lock.unlock() }
@@ -77,6 +66,7 @@ public final class PaltaAnalytics {
         self.isConfigured = true
         self.apiKey = paltaAPIKey
         self.amplitudeApiKey = amplitudeAPIKey
+        self.host = host
 
         if let amplitudeAPIKey = amplitudeAPIKey {
             defaultAmplitudeInstance?.initializeApiKey(amplitudeAPIKey)
@@ -91,7 +81,7 @@ public final class PaltaAnalytics {
             return
         }
 
-        assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey) { [self] (result: Result<RemoteConfig, Error>) in
+        assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey, host: host) { [self] (result: Result<RemoteConfig, Error>) in
             switch result {
             case .failure(let error):
                 print("PaltaAnalytics: configuration fetch failed: \(error.localizedDescription), used default config.")
@@ -109,7 +99,8 @@ public final class PaltaAnalytics {
             remoteConfig: remoteConfig,
             apiKey: apiKey,
             amplitudeApiKey: amplitudeApiKey,
-            eventQueueAssemblyProvider: assembly
+            eventQueueAssemblyProvider: assembly,
+            host: host
         )
         
         service.apply(

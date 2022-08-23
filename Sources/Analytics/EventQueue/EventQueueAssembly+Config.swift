@@ -8,7 +8,7 @@
 import Foundation
 
 extension EventQueueAssembly {
-    func apply(_ target: ConfigTarget) {
+    func apply(_ target: ConfigTarget, host: URL?) {
         let normalConfig = EventQueueConfig(
             maxBatchSize: target.settings.eventUploadMaxBatchSize,
             uploadInterval: TimeInterval(target.settings.eventUploadPeriodSeconds),
@@ -32,7 +32,7 @@ extension EventQueueAssembly {
         eventQueue.liveEventTypes = target.settings.realtimeEventTypes
         eventQueue.excludedEvents = target.settings.excludedEventTypes
         
-        eventSender.baseURL = target.url
+        eventSender.baseURL = host
 
         sessionManager.maxSessionAge = target.settings.minTimeBetweenSessionsMillis
     }

@@ -35,11 +35,10 @@ final class EventQueueAssemblyTests: XCTestCase {
                 realtimeEventTypes: ["real-time"],
                 excludedEventTypes: ["excluded-event"],
                 sendMechanism: .paltaBrain
-            ),
-            url: URL(string: "http://example.com")
+            )
         )
         
-        assembly.apply(target)
+        assembly.apply(target, host: URL(string: "http://example.com"))
         
         let configApplied = expectation(description: "Config applied")
         assembly.eventQueueCore.addBarrier(configApplied.fulfill)
