@@ -48,7 +48,7 @@ final class EventSenderTests: XCTestCase {
                     events: events,
                     serviceInfo: .init(
                         uploadTime: .currentTimestamp(),
-                        library: .init(name: "PaltaBrain", version: "2.1.5"),
+                        library: .init(name: "PaltaBrain", version: "2.2.0"),
                         telemetry: .mock()
                     )
                 )
