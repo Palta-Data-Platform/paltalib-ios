@@ -11,9 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         PaltaAnalytics.instance.configure(
             name: "PaltaExample",
-            amplitudeAPIKey: "AMPLITUDE",
-            paltaAPIKey: "9ccb3ba886444f0e842186b2a3135aa6",
-            host: URL(string: "https://telemetry.zing.paltabrain.com")
+            paltaAPIKey: "a-key",
+            host: URL(string: "https://telemetry.mobilesdk.paltabrain.com")
         )
         
         PaltaAnalytics.instance.setUserId("slava")
