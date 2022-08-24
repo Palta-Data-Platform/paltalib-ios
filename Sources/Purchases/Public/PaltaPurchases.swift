@@ -70,6 +70,18 @@ public final class PaltaPurchases: PaltaPurchasesProtocol {
         }
     }
     
+    public func getShowcaseProducts(_ completion: @escaping (Result<[Product], Error>) -> Void) {
+        checkSetupFinished()
+        
+        callAndCollect(call: { plugIn, callback in
+            plugIn.getShowcaseProducts(callback)
+        }, completion: { result in
+            completion(
+                result.map { $0.reduce([], +) }
+            )
+        })
+    }
+    
     public func getProducts(
         with productIdentifiers: [String],
         completion: @escaping (Result<Set<Product>, Error>) -> Void
