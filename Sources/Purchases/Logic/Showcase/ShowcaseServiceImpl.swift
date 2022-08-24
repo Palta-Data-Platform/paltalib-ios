@@ -21,8 +21,10 @@ final class ShowcaseServiceImpl: ShowcaseService {
     }
     
     func getProductIds(for userId: UserId, _ completion: @escaping (Result<[PricePoint], PaymentsError>) -> Void) {
+        let request = PaymentsHTTPRequest(environment: environment, endpoint: .getShowcase(userId, nil))
+        
         httpClient
-            .perform(PaymentsHTTPRequest.getShowcase(environment, userId, nil)) { (result: Result<ShowcaseResponse, NetworkErrorWithoutResponse>) in
+            .perform(request) { (result: Result<ShowcaseResponse, NetworkErrorWithoutResponse>) in
             completion(
                 result
                     .map { $0.pricePoints }

@@ -39,7 +39,7 @@ final class SubscriptionsServiceTests: XCTestCase {
             completionCalled.fulfill()
         }
         
-        XCTAssertEqual(httpMock.request as? PaymentsHTTPRequest, .getSubcriptions(.dev, userId, ids))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getSubcriptions(userId, ids))
         
         wait(for: [completionCalled], timeout: 0.1)
     }
@@ -50,14 +50,13 @@ final class SubscriptionsServiceTests: XCTestCase {
         service.getSubscriptions(with: [], for: .uuid(.init())) { _ in }
         
         guard
-            let request = httpMock.request as? PaymentsHTTPRequest,
-                case let .getSubcriptions(env, _, _) = request
+            let request = httpMock.request as? PaymentsHTTPRequest
         else {
             XCTAssert(false)
             return
         }
         
-        XCTAssertEqual(env, .dev)
+        XCTAssertEqual(request.environment, .dev)
     }
     
     func testProdEnvironment() {
@@ -66,14 +65,13 @@ final class SubscriptionsServiceTests: XCTestCase {
         service.getSubscriptions(with: [], for: .uuid(.init())) { _ in }
         
         guard
-            let request = httpMock.request as? PaymentsHTTPRequest,
-                case let .getSubcriptions(env, _, _) = request
+            let request = httpMock.request as? PaymentsHTTPRequest
         else {
             XCTAssert(false)
             return
         }
         
-        XCTAssertEqual(env, .prod)
+        XCTAssertEqual(request.environment, .prod)
     }
     
     func testFailure() {
@@ -91,7 +89,7 @@ final class SubscriptionsServiceTests: XCTestCase {
             completionCalled.fulfill()
         }
         
-        XCTAssertEqual(httpMock.request as? PaymentsHTTPRequest, .getSubcriptions(.dev, userId, ids))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getSubcriptions(userId, ids))
         
         wait(for: [completionCalled], timeout: 0.1)
     }

@@ -22,7 +22,7 @@ final class FeaturesServiceImpl: FeaturesService {
     }
     
     func getFeatures(for userId: UserId, completion: @escaping (Result<[Feature], PaymentsError>) -> Void) {
-        let request = PaymentsHTTPRequest.getFeatures(environment, userId)
+        let request = PaymentsHTTPRequest(environment: environment, endpoint: .getFeatures(userId))
         
         httpClient.perform(request) { (result: Result<FeaturesResponse, NetworkErrorWithoutResponse>) in
             switch result {

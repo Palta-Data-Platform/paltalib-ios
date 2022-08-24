@@ -13,11 +13,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     func testGetShowcase() {
         let userId = UUID()
         
-        let request = PaymentsHTTPRequest.getShowcase(
-            .prod,
-            .uuid(userId),
-            nil
-        )
+        let request = PaymentsHTTPRequest(environment: .prod, endpoint: .getShowcase(.uuid(userId), nil))
         
         let urlRequest = request.urlRequest(headerFields: ["aHeader": "aValue"])
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
@@ -37,10 +33,9 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     func testGetSubscriptionsNoIDs() {
         let userIdString = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
         
-        let request = PaymentsHTTPRequest.getSubcriptions(
-            .dev,
-            .uuid(UUID(uuidString: userIdString)!),
-            nil
+        let request = PaymentsHTTPRequest(
+            environment: .dev,
+            endpoint: .getSubcriptions(.uuid(UUID(uuidString: userIdString)!), nil)
         )
         
         let urlRequest = request.urlRequest(headerFields: ["aHeader": "aValue"])
@@ -62,10 +57,9 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let userIdString = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
         let subscriptionIDs: Set<UUID> = [UUID(), UUID()]
         
-        let request = PaymentsHTTPRequest.getSubcriptions(
-            .prod,
-            .uuid(UUID(uuidString: userIdString)!),
-            subscriptionIDs
+        let request = PaymentsHTTPRequest(
+            environment: .prod,
+            endpoint: .getSubcriptions(.uuid(UUID(uuidString: userIdString)!), subscriptionIDs)
         )
         
         let urlRequest = request.urlRequest(headerFields: ["aHeader": "aValue"])
@@ -78,9 +72,9 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     func testGetFeatures() {
         let userIdString = "8900f862-0cc4-4d0a-aa12-5b76ea12c574"
         
-        let request = PaymentsHTTPRequest.getFeatures(
-            .prod,
-            .uuid(UUID(uuidString: userIdString)!)
+        let request = PaymentsHTTPRequest(
+            environment: .prod,
+            endpoint: .getFeatures(.uuid(UUID(uuidString: userIdString)!))
         )
         
         let urlRequest = request.urlRequest(headerFields: ["aHeader2": "aValue2"])

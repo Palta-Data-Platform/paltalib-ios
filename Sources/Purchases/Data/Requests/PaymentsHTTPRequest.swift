@@ -8,38 +8,33 @@
 import Foundation
 import PaltaLibCore
 
-enum PaymentsHTTPRequest: Equatable {
-    case getFeatures(Environment, UserId)
-    case getSubcriptions(Environment, UserId, Set<UUID>?)
-    case getShowcase(Environment, UserId, String?)
+struct PaymentsHTTPRequest: Equatable {
+    enum Endpoint: Equatable {
+        case getFeatures(UserId)
+        case getSubcriptions(UserId, Set<UUID>?)
+        case getShowcase(UserId, String?)
+    }
+    
+    let environment: Environment
+    let endpoint: Endpoint
 }
 
 extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
-    var environment: Environment {
-        switch self {
-        case .getFeatures(let environemt, _):
-            return environemt
-        case .getSubcriptions(let environemt, _, _):
-            return environemt
-        case .getShowcase(let environment, _, _):
-            return environment
-        }
-    }
     var bodyObject: AnyEncodable? {
-        switch self {
-        case let .getFeatures(_, userId):
+        switch endpoint {
+        case let .getFeatures(userId):
             return GetFeaturesRequestPayload(customerId: userId).typeErased
             
-        case let .getSubcriptions(_, userId, subscriptionIds):
+        case let .getSubcriptions(userId, subscriptionIds):
             return GetSubscriptionsRequestPayload(customerId: userId, onlyIds: subscriptionIds).typeErased
             
-        case let .getShowcase(_, userId, countryCode):
+        case let .getShowcase(userId, countryCode):
             return GetShowcaseRequestPayload(customerId: userId, countryCode: countryCode).typeErased
         }
     }
     
     var method: HTTPMethod {
-        switch self {
+        switch endpoint {
         case .getSubcriptions, .getFeatures, .getShowcase:
             return .post
         }
@@ -55,7 +50,7 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
     }
     
     var path: String? {
-        switch self {
+        switch endpoint {
         case .getFeatures:
             return "/feature-provisioner/get-features"
             

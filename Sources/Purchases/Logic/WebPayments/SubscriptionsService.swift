@@ -30,7 +30,7 @@ final class SubscriptionsServiceImpl: SubscriptionsService {
         for userId: UserId,
         completion: @escaping (Result<[Subscription], PaymentsError>) -> Void
     ) {
-        let request = PaymentsHTTPRequest.getSubcriptions(environment, userId, ids)
+        let request = PaymentsHTTPRequest(environment: environment, endpoint: .getSubcriptions(userId, ids))
         
         httpClient.perform(request) { (result: Result<SubscriptionResponse, NetworkErrorWithoutResponse>) in
             switch result {

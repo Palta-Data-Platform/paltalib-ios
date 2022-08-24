@@ -47,7 +47,7 @@ final class ShowcaseServiceTests: XCTestCase {
             completionCalled.fulfill()
         }
         
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest), .getShowcase(.dev, .uuid(uuid), nil))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getShowcase(.uuid(uuid), nil))
         
         wait(for: [completionCalled], timeout: 0.1)
     }
@@ -66,7 +66,7 @@ final class ShowcaseServiceTests: XCTestCase {
             completionCalled.fulfill()
         }
         
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest), .getShowcase(.dev, .uuid(uuid), nil))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getShowcase(.uuid(uuid), nil))
         
         wait(for: [completionCalled], timeout: 0.1)
     }
@@ -77,14 +77,13 @@ final class ShowcaseServiceTests: XCTestCase {
         service.getProductIds(for: .uuid(.init())) { _ in }
         
         guard
-            let request = httpMock.request as? PaymentsHTTPRequest,
-                case let .getShowcase(env, _, _) = request
+            let request = httpMock.request as? PaymentsHTTPRequest
         else {
             XCTAssert(false)
             return
         }
         
-        XCTAssertEqual(env, .dev)
+        XCTAssertEqual(request.environment, .dev)
     }
     
     func testProdEnvironment() {
@@ -93,13 +92,12 @@ final class ShowcaseServiceTests: XCTestCase {
         service.getProductIds(for: .uuid(.init())) { _ in }
         
         guard
-            let request = httpMock.request as? PaymentsHTTPRequest,
-                case let .getShowcase(env, _, _) = request
+            let request = httpMock.request as? PaymentsHTTPRequest
         else {
             XCTAssert(false)
             return
         }
         
-        XCTAssertEqual(env, .prod)
+        XCTAssertEqual(request.environment, .prod)
     }
 }
