@@ -113,6 +113,70 @@ final class PBPurchasePluginTests: XCTestCase {
         wait(for: [completionCalled], timeout: 0.1)
     }
     
+    func testGetShowcaseProductsSuccess() {
+        let productId = UUID().uuidString
+        let userId = UserId.uuid(.init())
+        let completionCalled = expectation(description: "Success called")
+        
+        assemblyMock.showcaseFlowMock.result = .success([.mock(productIdentifier: productId)])
+        
+        plugin.logIn(appUserId: userId, completion: { _ in })
+        
+        plugin.getShowcaseProducts { result in
+            guard case .success(let products) = result else {
+                return
+            }
+            
+            XCTAssertEqual(products.count, 1)
+            XCTAssertEqual(products.first?.productIdentifier, productId)
+            
+            completionCalled.fulfill()
+        }
+        
+        wait(for: [completionCalled], timeout: 0.1)
+        
+        XCTAssertEqual(assemblyMock.showcaseUserId, userId)
+    }
+    
+    func testGetShowcaseProductsFail() {
+        let userId = UserId.uuid(.init())
+        let completionCalled = expectation(description: "Fail called")
+        
+        assemblyMock.showcaseFlowMock.result = .failure(.timedOut)
+        
+        plugin.logIn(appUserId: userId, completion: { _ in })
+        
+        plugin.getShowcaseProducts { result in
+            guard case .failure = result else {
+                return
+            }
+            
+            completionCalled.fulfill()
+        }
+        
+        wait(for: [completionCalled], timeout: 0.1)
+        
+        XCTAssertEqual(assemblyMock.showcaseUserId, userId)
+    }
+    
+    func testGetShowcaseProductsNoUserId() {
+        let completionCalled = expectation(description: "Fail called")
+        
+        plugin.getShowcaseProducts { result in
+            guard
+                case .failure(let error) = result,
+                let paymentsError = error as? PaymentsError,
+                    case .noUserId = paymentsError
+            else {
+                return
+            }
+            
+            completionCalled.fulfill()
+        }
+        
+        wait(for: [completionCalled], timeout: 0.1)
+    }
+    
     func testGetOffer() {
         let completionCalled = expectation(description: "Not supported called")
         

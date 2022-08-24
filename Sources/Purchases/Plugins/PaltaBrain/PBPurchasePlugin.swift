@@ -45,6 +45,17 @@ public final class PBPurchasePlugin: PurchasePlugin {
         completion(.success([]))
     }
     
+    public func getShowcaseProducts(_ completion: @escaping (Result<[Product], Error>) -> Void) {
+        guard let userId = userId else {
+            completion(.failure(PaymentsError.noUserId))
+            return
+        }
+
+        assembly.makeShowcaseFlow(userId: userId).start { result in
+            completion(result.mapError { $0 as Error })
+        }
+    }
+    
     public func getPromotionalOffer(
         for productDiscount: ProductDiscount,
         product: Product,

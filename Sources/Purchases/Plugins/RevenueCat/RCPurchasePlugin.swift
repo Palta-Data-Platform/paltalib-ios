@@ -44,6 +44,10 @@ public final class RCPurchasePlugin: NSObject, PurchasePlugin {
         }
     }
     
+    public func getShowcaseProducts(_ completion: @escaping (Result<[Product], Error>) -> Void) {
+        completion(.success([]))
+    }
+    
     public func getProducts(
         with productIdentifiers: [String],
         _ completion: @escaping (Result<Set<Product>, Error>) -> Void

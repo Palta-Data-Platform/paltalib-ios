@@ -188,6 +188,7 @@
 		11BE6BC528B3C4AF006EA904 /* AppstoreProductServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE6BC428B3C4AF006EA904 /* AppstoreProductServiceMock.swift */; };
 		11BE6BC728B3C554006EA904 /* PricePointMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE6BC628B3C554006EA904 /* PricePointMock.swift */; };
 		11BE6BC928B61068006EA904 /* ShowcaseAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE6BC828B61068006EA904 /* ShowcaseAssembly.swift */; };
+		11BE6BCC28B61A26006EA904 /* ShowcaseFlowMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BE6BCA28B61A13006EA904 /* ShowcaseFlowMock.swift */; };
 		11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4C2816A835004D0185 /* Telemetry.swift */; };
 		11C60F502816D598004D0185 /* TelemetryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4E2816D585004D0185 /* TelemetryMock.swift */; };
 		11C60F5228181323004D0185 /* Amplitude+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F5128181323004D0185 /* Amplitude+Extensions.swift */; };
@@ -455,6 +456,7 @@
 		11BE6BC428B3C4AF006EA904 /* AppstoreProductServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreProductServiceMock.swift; sourceTree = "<group>"; };
 		11BE6BC628B3C554006EA904 /* PricePointMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricePointMock.swift; sourceTree = "<group>"; };
 		11BE6BC828B61068006EA904 /* ShowcaseAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseAssembly.swift; sourceTree = "<group>"; };
+		11BE6BCA28B61A13006EA904 /* ShowcaseFlowMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseFlowMock.swift; sourceTree = "<group>"; };
 		11C60F4C2816A835004D0185 /* Telemetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telemetry.swift; sourceTree = "<group>"; };
 		11C60F4E2816D585004D0185 /* TelemetryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryMock.swift; sourceTree = "<group>"; };
 		11C60F5128181323004D0185 /* Amplitude+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Amplitude+Extensions.swift"; sourceTree = "<group>"; };
@@ -843,6 +845,7 @@
 				113A7A062850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift */,
 				11BE6BC228B3C45C006EA904 /* ShowcaseServiceMock.swift */,
 				11BE6BC428B3C4AF006EA904 /* AppstoreProductServiceMock.swift */,
+				11BE6BCA28B61A13006EA904 /* ShowcaseFlowMock.swift */,
 				11BE6BC628B3C554006EA904 /* PricePointMock.swift */,
 			);
 			path = Payments;
@@ -1402,6 +1405,7 @@
 				11115A4227FB74B000A41ADA /* EventSenderMock.swift in Sources */,
 				11BE6BC728B3C554006EA904 /* PricePointMock.swift in Sources */,
 				11A61EE328378C0D00F88116 /* SubscriptionResponseTests.swift in Sources */,
+				11BE6BCC28B61A26006EA904 /* ShowcaseFlowMock.swift in Sources */,
 				11543034282D02E50021ED6F /* PromoOfferMock.swift in Sources */,
 				111A59A82840CE630052FCD1 /* SubscriptionsServiceMock.swift in Sources */,
 				11BE6BC128B3C3FC006EA904 /* ShowcaseFlowTests.swift in Sources */,
