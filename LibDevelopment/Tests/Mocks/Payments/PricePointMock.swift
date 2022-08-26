@@ -10,6 +10,6 @@ import Foundation
 
 extension PricePoint {
     static func mock(priority: Int? = nil) -> PricePoint {
-        PricePoint(ident: UUID().uuidString, appStoreId: UUID().uuidString, priority: priority)
+        PricePoint(ident: UUID().uuidString, parameters: .init(productId: UUID().uuidString), priority: priority)
     }
 }

@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import PaltaLibCore
 
 struct GetShowcaseRequestPayload: Encodable {
     let customerId: UserId
     let countryCode: String?
-    let platformCode: String = "ios"
+    let storeType: Int = 2
+    let requestContext: CodableDictionary = [:]
 }

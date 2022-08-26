@@ -36,9 +36,9 @@ final class ShowcaseFlowTests: XCTestCase {
         showcaseService.result = .success(pricepoints)
         
         appStoreProductsService.result = .success([
-            .mock(productIdentifier: pricepoints[0].appStoreId),
-            .mock(productIdentifier: pricepoints[1].appStoreId),
-            .mock(productIdentifier: pricepoints[2].appStoreId)
+            .mock(productIdentifier: pricepoints[0].parameters.productId),
+            .mock(productIdentifier: pricepoints[1].parameters.productId),
+            .mock(productIdentifier: pricepoints[2].parameters.productId)
         ])
         
         let successCalled = expectation(description: "Success called")
@@ -50,7 +50,7 @@ final class ShowcaseFlowTests: XCTestCase {
             
             XCTAssertEqual(
                 products.map { $0.productIdentifier },
-                [pricepoints[1].appStoreId, pricepoints[0].appStoreId, pricepoints[2].appStoreId]
+                [pricepoints[1].parameters.productId, pricepoints[0].parameters.productId, pricepoints[2].parameters.productId]
             )
             
             successCalled.fulfill()
@@ -59,7 +59,7 @@ final class ShowcaseFlowTests: XCTestCase {
         wait(for: [successCalled], timeout: 0.1)
         
         XCTAssertEqual(showcaseService.userId, userId)
-        XCTAssertEqual(appStoreProductsService.ids, Set(pricepoints.map { $0.appStoreId }))
+        XCTAssertEqual(appStoreProductsService.ids, Set(pricepoints.map { $0.parameters.productId }))
     }
     
     func testFailShowcase() {

@@ -22,7 +22,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.paltabrain.com/showcase/get-price-points"))
         XCTAssertEqual(
             payloadString,
-            "{\"platformCode\":\"ios\",\"customerId\":{\"value\":\"\(userId.uuidString)\",\"type\":\"merchant-uuid\"}}"
+            "{\"requestContext\":{},\"customerId\":{\"value\":\"\(userId.uuidString)\",\"type\":\"merchant-uuid\"},\"storeType\":2}"
         )
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,

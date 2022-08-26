@@ -24,8 +24,8 @@ final class ShowcaseServiceTests: XCTestCase {
     func testSuccess() {
         let uuid = UUID()
         let expectedPricePoints = [
-            PricePoint(ident: "ident1", appStoreId: "id1", priority: 3),
-            PricePoint(ident: "ident2", appStoreId: "id2", priority: 5)
+            PricePoint(ident: "ident1", parameters: .init(productId: "id1"), priority: 3),
+            PricePoint(ident: "ident2", parameters: .init(productId: "id2"), priority: 5)
         ]
         
         let completionCalled = expectation(description: "Success called")

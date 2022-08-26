@@ -17,12 +17,16 @@ final class ShowcaseResponseTests: XCTestCase {
   "pricePoints": [
     {
       "ident": "ident1",
-      "appStoreId": "id1",
-      "priority": 1001
+      "priority": 1001,
+      "parameters": {
+          "productId": "id1"
+      }
     },
     {
       "ident": "ident2",
-      "appStoreId": "id2"
+      "parameters": {
+          "productId": "id2"
+      }
     }
   ]
 }
@@ -33,7 +37,7 @@ final class ShowcaseResponseTests: XCTestCase {
         XCTAssertEqual(response.status, "success")
         XCTAssertEqual(response.pricePoints.count, 2)
         XCTAssertEqual(response.pricePoints.first?.ident, "ident1")
-        XCTAssertEqual(response.pricePoints.last?.appStoreId, "id2")
+        XCTAssertEqual(response.pricePoints.last?.parameters.productId, "id2")
         XCTAssertEqual(response.pricePoints.first?.priority, 1001)
         XCTAssertEqual(response.pricePoints.last?.priority, nil)
     }

@@ -8,7 +8,11 @@
 import Foundation
 
 struct PricePoint: Decodable, Equatable {
+    struct Parameters: Decodable, Equatable {
+        let productId: String
+    }
+    
     let ident: String
-    let appStoreId: String
+    let parameters: Parameters
     let priority: Int?
 }

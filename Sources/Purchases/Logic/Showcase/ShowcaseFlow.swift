@@ -47,7 +47,7 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
         for pricePoints: [PricePoint],
         completion: @escaping (Result<[Product], PaymentsError>) -> Void
     ) {
-        let ids = Set(pricePoints.map { $0.appStoreId })
+        let ids = Set(pricePoints.map { $0.parameters.productId })
         appStoreProductsService.retrieveProducts(with: ids) { [self] result in
             switch result {
             case .success(let products):
@@ -66,7 +66,7 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
     ) {
         let pricePointMap: [String: PricePoint] = Dictionary(
             grouping: pricePoints,
-            by: { $0.appStoreId }
+            by: { $0.parameters.productId }
         ).compactMapValues { $0.first }
         
         let priorityForProduct: (Product) -> Int = {
