@@ -12,8 +12,13 @@ import XCTest
 final class PaymentsHTTPRequestTests: XCTestCase {
     func testGetShowcase() {
         let userId = UUID()
+        let traceId = UUID()
         
-        let request = PaymentsHTTPRequest(environment: .prod, endpoint: .getShowcase(.uuid(userId), nil))
+        let request = PaymentsHTTPRequest(
+            environment: .prod,
+            traceId: traceId,
+            endpoint: .getShowcase(.uuid(userId), nil)
+        )
         
         let urlRequest = request.urlRequest(headerFields: ["aHeader": "aValue"])
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
@@ -26,15 +31,21 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         )
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,
-            ["Content-Type": "application/json", "aHeader": "aValue"]
+            [
+                "Content-Type": "application/json",
+                "aHeader": "aValue",
+                "x-paltabrain-trace-id": traceId.uuidString
+            ]
         )
     }
     
     func testGetSubscriptionsNoIDs() {
         let userIdString = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        let traceId = UUID()
         
         let request = PaymentsHTTPRequest(
             environment: .dev,
+            traceId: traceId,
             endpoint: .getSubcriptions(.uuid(UUID(uuidString: userIdString)!), nil)
         )
         
@@ -49,16 +60,22 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         )
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,
-            ["Content-Type": "application/json", "aHeader": "aValue"]
+            [
+                "Content-Type": "application/json",
+                "aHeader": "aValue",
+                "x-paltabrain-trace-id": traceId.uuidString
+            ]
         )
     }
     
     func testGetSubscriptionsWithIDs() {
         let userIdString = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        let traceId = UUID()
         let subscriptionIDs: Set<UUID> = [UUID(), UUID()]
         
         let request = PaymentsHTTPRequest(
             environment: .prod,
+            traceId: traceId,
             endpoint: .getSubcriptions(.uuid(UUID(uuidString: userIdString)!), subscriptionIDs)
         )
         
@@ -71,9 +88,11 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     
     func testGetFeatures() {
         let userIdString = "8900f862-0cc4-4d0a-aa12-5b76ea12c574"
+        let traceId = UUID()
         
         let request = PaymentsHTTPRequest(
             environment: .prod,
+            traceId: traceId,
             endpoint: .getFeatures(.uuid(UUID(uuidString: userIdString)!))
         )
         
@@ -88,7 +107,11 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         )
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,
-            ["Content-Type": "application/json", "aHeader2": "aValue2"]
+            [
+                "Content-Type": "application/json",
+                "aHeader2": "aValue2",
+                "x-paltabrain-trace-id": traceId.uuidString
+            ]
         )
     }
 }

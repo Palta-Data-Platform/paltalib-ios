@@ -55,6 +55,7 @@ final class PaidFeaturesServiceTests: XCTestCase {
         XCTAssertEqual(subscriptionsMock.ids, [subscriptionId])
         XCTAssertEqual(mapperMock.features, [.mock(lastSubscriptionId: subscriptionId)])
         XCTAssertEqual(mapperMock.subscriptions, subscriptions)
+        XCTAssertEqual(featuresMock.traceId, subscriptionsMock.traceId)
         
         wait(for: [completionCalled], timeout: 0.1)
     }

@@ -16,6 +16,7 @@ struct PaymentsHTTPRequest: Equatable {
     }
     
     let environment: Environment
+    let traceId: UUID
     let endpoint: Endpoint
 }
 
@@ -31,6 +32,13 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
         case let .getShowcase(userId, countryCode):
             return GetShowcaseRequestPayload(customerId: userId, countryCode: countryCode).typeErased
         }
+    }
+    
+    var headers: [String : String]? {
+        [
+            "x-paltabrain-trace-id": traceId.uuidString,
+            "Content-Type": "application/json"
+        ]
     }
     
     var method: HTTPMethod {

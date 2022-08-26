@@ -9,7 +9,7 @@ import Foundation
 import PaltaLibCore
 
 protocol FeaturesService {
-    func getFeatures(for userId: UserId, completion: @escaping (Result<[Feature], PaymentsError>) -> Void)
+    func getFeatures(for userId: UserId, traceId: UUID, completion: @escaping (Result<[Feature], PaymentsError>) -> Void)
 }
 
 final class FeaturesServiceImpl: FeaturesService {
@@ -21,8 +21,8 @@ final class FeaturesServiceImpl: FeaturesService {
         self.httpClient = httpClient
     }
     
-    func getFeatures(for userId: UserId, completion: @escaping (Result<[Feature], PaymentsError>) -> Void) {
-        let request = PaymentsHTTPRequest(environment: environment, endpoint: .getFeatures(userId))
+    func getFeatures(for userId: UserId, traceId: UUID, completion: @escaping (Result<[Feature], PaymentsError>) -> Void) {
+        let request = PaymentsHTTPRequest(environment: environment, traceId: traceId, endpoint: .getFeatures(userId))
         
         httpClient.perform(request) { (result: Result<FeaturesResponse, NetworkErrorWithoutResponse>) in
             switch result {

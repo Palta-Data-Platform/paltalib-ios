@@ -33,10 +33,11 @@ final class PaidFeaturesServiceImpl: PaidFeaturesService {
         for userId: UserId,
         completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void
     ) {
-        featuresService.getFeatures(for: userId) { [weak self] result in
+        let traceId = UUID()
+        featuresService.getFeatures(for: userId, traceId: traceId) { [weak self] result in
             switch result {
             case .success(let features):
-                self?.getSubscriptions(userId: userId, features: features, completion: completion)
+                self?.getSubscriptions(userId: userId, features: features, traceId: traceId, completion: completion)
                 
             case .failure(let error):
                 completion(.failure(error))
@@ -47,6 +48,7 @@ final class PaidFeaturesServiceImpl: PaidFeaturesService {
     private func getSubscriptions(
         userId: UserId,
         features: [Feature],
+        traceId: UUID,
         completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void
     ) {
         let subscriptionIds = Set(features.compactMap { $0.lastSubscriptionId })
@@ -56,7 +58,7 @@ final class PaidFeaturesServiceImpl: PaidFeaturesService {
             return
         }
         
-        subscriptionsService.getSubscriptions(with: subscriptionIds, for: userId) { [weak self] result in
+        subscriptionsService.getSubscriptions(with: subscriptionIds, for: userId, traceId: traceId) { [weak self] result in
             switch result {
             case .success(let subscriptions):
                 self?.prepareData(

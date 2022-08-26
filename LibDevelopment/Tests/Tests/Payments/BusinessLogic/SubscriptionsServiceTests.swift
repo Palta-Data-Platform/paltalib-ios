@@ -25,11 +25,12 @@ final class SubscriptionsServiceTests: XCTestCase {
         let userId = UserId.uuid(.init())
         let ids: Set<UUID> = [.init(), .init()]
         let expectedSubscriptions = [Subscription.mock()]
+        let traceId = UUID()
         httpMock.result = .success(SubscriptionResponse(subscriptions: expectedSubscriptions))
         
         let completionCalled = expectation(description: "Success completion called")
         
-        service.getSubscriptions(with: ids, for: userId) { result in
+        service.getSubscriptions(with: ids, for: userId, traceId: traceId) { result in
             guard case let .success(subscriptions) = result else {
                 return
             }
@@ -40,6 +41,7 @@ final class SubscriptionsServiceTests: XCTestCase {
         }
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getSubcriptions(userId, ids))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
         
         wait(for: [completionCalled], timeout: 0.1)
     }
@@ -47,7 +49,7 @@ final class SubscriptionsServiceTests: XCTestCase {
     func testDevEnvironment() {
         service = SubscriptionsServiceImpl(environment: .dev, httpClient: httpMock)
         
-        service.getSubscriptions(with: [], for: .uuid(.init())) { _ in }
+        service.getSubscriptions(with: [], for: .uuid(.init()), traceId: UUID()) { _ in }
         
         guard
             let request = httpMock.request as? PaymentsHTTPRequest
@@ -62,7 +64,7 @@ final class SubscriptionsServiceTests: XCTestCase {
     func testProdEnvironment() {
         service = SubscriptionsServiceImpl(environment: .prod, httpClient: httpMock)
         
-        service.getSubscriptions(with: [], for: .uuid(.init())) { _ in }
+        service.getSubscriptions(with: [], for: .uuid(.init()), traceId: UUID()) { _ in }
         
         guard
             let request = httpMock.request as? PaymentsHTTPRequest
@@ -81,7 +83,7 @@ final class SubscriptionsServiceTests: XCTestCase {
         
         let completionCalled = expectation(description: "Failure completion called")
         
-        service.getSubscriptions(with: ids, for: userId) { result in
+        service.getSubscriptions(with: ids, for: userId, traceId: UUID()) { result in
             guard case .failure = result else {
                 return
             }

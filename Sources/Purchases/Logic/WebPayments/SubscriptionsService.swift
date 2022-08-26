@@ -12,6 +12,7 @@ protocol SubscriptionsService {
     func getSubscriptions(
         with ids: Set<UUID>,
         for userId: UserId,
+        traceId: UUID,
         completion: @escaping (Result<[Subscription], PaymentsError>) -> Void
     )
 }
@@ -28,9 +29,14 @@ final class SubscriptionsServiceImpl: SubscriptionsService {
     func getSubscriptions(
         with ids: Set<UUID>,
         for userId: UserId,
+        traceId: UUID,
         completion: @escaping (Result<[Subscription], PaymentsError>) -> Void
     ) {
-        let request = PaymentsHTTPRequest(environment: environment, endpoint: .getSubcriptions(userId, ids))
+        let request = PaymentsHTTPRequest(
+            environment: environment,
+            traceId: traceId,
+            endpoint: .getSubcriptions(userId, ids)
+        )
         
         httpClient.perform(request) { (result: Result<SubscriptionResponse, NetworkErrorWithoutResponse>) in
             switch result {

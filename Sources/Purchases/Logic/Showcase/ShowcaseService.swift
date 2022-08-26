@@ -6,9 +6,10 @@
 //
 
 import PaltaLibCore
+import Foundation
 
 protocol ShowcaseService {
-    func getProductIds(for userId: UserId, _ completion: @escaping (Result<[PricePoint], PaymentsError>) -> Void)
+    func getProductIds(for userId: UserId, traceId: UUID, _ completion: @escaping (Result<[PricePoint], PaymentsError>) -> Void)
 }
 
 final class ShowcaseServiceImpl: ShowcaseService {
@@ -20,8 +21,12 @@ final class ShowcaseServiceImpl: ShowcaseService {
         self.httpClient = httpClient
     }
     
-    func getProductIds(for userId: UserId, _ completion: @escaping (Result<[PricePoint], PaymentsError>) -> Void) {
-        let request = PaymentsHTTPRequest(environment: environment, endpoint: .getShowcase(userId, nil))
+    func getProductIds(for userId: UserId, traceId: UUID, _ completion: @escaping (Result<[PricePoint], PaymentsError>) -> Void) {
+        let request = PaymentsHTTPRequest(
+            environment: environment,
+            traceId: traceId,
+            endpoint: .getShowcase(userId, nil)
+        )
         
         httpClient
             .perform(request) { (result: Result<ShowcaseResponse, NetworkErrorWithoutResponse>) in

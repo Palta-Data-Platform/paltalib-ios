@@ -17,6 +17,7 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
     private let appStoreProductsService: AppstoreProductService
     
     private var isInProgress = false
+    private let traceId = UUID()
     
     init(userId: UserId, showcaseService: ShowcaseService, appStoreProductsService: AppstoreProductService) {
         self.userId = userId
@@ -32,7 +33,7 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
         
         isInProgress = true
 
-        showcaseService.getProductIds(for: userId) { [self] result in
+        showcaseService.getProductIds(for: userId, traceId: traceId) { [self] result in
             switch result {
             case .success(let pricePoints):
                 getProducts(for: pricePoints, completion: completion)

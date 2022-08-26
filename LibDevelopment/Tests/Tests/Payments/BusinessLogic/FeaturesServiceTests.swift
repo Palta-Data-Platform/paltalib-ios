@@ -22,12 +22,13 @@ final class FeaturesServiceTests: XCTestCase {
     
     func testSuccess() {
         let uuid = UUID()
+        let traceId = UUID()
         let expectedFeatures = [Feature.mock()]
         let completionCalled = expectation(description: "Success called")
         
         httpMock.result = .success(FeaturesResponse(features: expectedFeatures))
         
-        service.getFeatures(for: .uuid(uuid)) { result in
+        service.getFeatures(for: .uuid(uuid), traceId: traceId) { result in
             guard case let .success(features) = result else {
                 return
             }
@@ -38,6 +39,7 @@ final class FeaturesServiceTests: XCTestCase {
         }
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getFeatures(.uuid(uuid)))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
         
         wait(for: [completionCalled], timeout: 0.1)
     }
@@ -49,7 +51,7 @@ final class FeaturesServiceTests: XCTestCase {
         
         httpMock.result = .success(FeaturesResponse(features: expectedFeatures))
         
-        service.getFeatures(for: .uuid(uuid)) { result in
+        service.getFeatures(for: .uuid(uuid), traceId: UUID()) { result in
             guard case let .success(features) = result else {
                 return
             }
@@ -67,7 +69,7 @@ final class FeaturesServiceTests: XCTestCase {
     func testDevEnvironment() {
         service = FeaturesServiceImpl(environment: .dev, httpClient: httpMock)
         
-        service.getFeatures(for: .uuid(.init())) { _ in }
+        service.getFeatures(for: .uuid(.init()), traceId: UUID()) { _ in }
         
         guard
             let request = httpMock.request as? PaymentsHTTPRequest
@@ -82,7 +84,7 @@ final class FeaturesServiceTests: XCTestCase {
     func testProdEnvironment() {
         service = FeaturesServiceImpl(environment: .prod, httpClient: httpMock)
         
-        service.getFeatures(for: .uuid(.init())) { _ in }
+        service.getFeatures(for: .uuid(.init()), traceId: UUID()) { _ in }
         
         guard
             let request = httpMock.request as? PaymentsHTTPRequest

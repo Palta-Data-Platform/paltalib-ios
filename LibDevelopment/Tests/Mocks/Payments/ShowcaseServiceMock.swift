@@ -10,10 +10,12 @@ import Foundation
 
 final class ShowcaseServiceMock: ShowcaseService {
     var userId: UserId?
+    var traceId: UUID?
     var result: Result<[PricePoint], PaymentsError>?
     
-    func getProductIds(for userId: UserId, _ completion: @escaping (Result<[PricePoint], PaymentsError>) -> Void) {
+    func getProductIds(for userId: UserId, traceId: UUID, _ completion: @escaping (Result<[PricePoint], PaymentsError>) -> Void) {
         self.userId = userId
+        self.traceId = traceId
         
         if let result = result {
             completion(result)

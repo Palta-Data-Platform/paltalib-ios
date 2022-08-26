@@ -23,6 +23,7 @@ final class ShowcaseServiceTests: XCTestCase {
     
     func testSuccess() {
         let uuid = UUID()
+        let traceId = UUID()
         let expectedPricePoints = [
             PricePoint(ident: "ident1", parameters: .init(productId: "id1"), priority: 3),
             PricePoint(ident: "ident2", parameters: .init(productId: "id2"), priority: 5)
@@ -37,7 +38,7 @@ final class ShowcaseServiceTests: XCTestCase {
             )
         )
         
-        service.getProductIds(for: .uuid(uuid)) { result in
+        service.getProductIds(for: .uuid(uuid), traceId: traceId) { result in
             guard case let .success(pricepoints) = result else {
                 return
             }
@@ -48,6 +49,7 @@ final class ShowcaseServiceTests: XCTestCase {
         }
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getShowcase(.uuid(uuid), nil))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
         
         wait(for: [completionCalled], timeout: 0.1)
     }
@@ -58,7 +60,7 @@ final class ShowcaseServiceTests: XCTestCase {
         
         httpMock.result = .failure(NetworkErrorWithoutResponse.urlError(URLError(.notConnectedToInternet)))
         
-        service.getProductIds(for: .uuid(uuid)) { result in
+        service.getProductIds(for: .uuid(uuid), traceId: UUID()) { result in
             guard case let .failure(error) = result, case .networkError = error else {
                 return
             }
@@ -74,7 +76,7 @@ final class ShowcaseServiceTests: XCTestCase {
     func testDevEnvironment() {
         service = ShowcaseServiceImpl(environment: .dev, httpClient: httpMock)
         
-        service.getProductIds(for: .uuid(.init())) { _ in }
+        service.getProductIds(for: .uuid(.init()), traceId: UUID()) { _ in }
         
         guard
             let request = httpMock.request as? PaymentsHTTPRequest
@@ -89,7 +91,7 @@ final class ShowcaseServiceTests: XCTestCase {
     func testProdEnvironment() {
         service = ShowcaseServiceImpl(environment: .prod, httpClient: httpMock)
         
-        service.getProductIds(for: .uuid(.init())) { _ in }
+        service.getProductIds(for: .uuid(.init()), traceId: UUID()) { _ in }
         
         guard
             let request = httpMock.request as? PaymentsHTTPRequest
