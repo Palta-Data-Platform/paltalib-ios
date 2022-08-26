@@ -17,12 +17,6 @@ final class AvailablePurchasesViewModel {
         fileprivate let product: Product
     }
     
-    private let productIdentifiers: [String] = [
-        "com.palta.brain.demo.paidfeature",
-        "nonrensubsc",
-        "com.paltabrain.payments.test1"
-    ]
-    
     @Published
     private(set) var items: [Item] = []
     
@@ -42,7 +36,7 @@ final class AvailablePurchasesViewModel {
     }
     
     private func fetchProducts() {
-        PaltaPurchases.instance.getProducts(with: productIdentifiers) { [weak self] result in
+        PaltaPurchases.instance.getShowcaseProducts { [weak self] result in
             switch result {
             case .success(let products):
                 self?.mapProducts(products)
@@ -52,7 +46,7 @@ final class AvailablePurchasesViewModel {
         }
     }
     
-    private func mapProducts(_ products: Set<Product>) {
+    private func mapProducts(_ products: [Product]) {
         items = products.map {
             Item(
                 name: $0.localizedTitle,
