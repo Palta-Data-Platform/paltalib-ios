@@ -13,6 +13,7 @@ struct PaymentsHTTPRequest: Equatable {
         case getFeatures(UserId)
         case getSubcriptions(UserId, Set<UUID>?)
         case getShowcase(UserId, String?)
+        case startCheckout(UserId, UUID)
     }
     
     let environment: Environment
@@ -31,6 +32,9 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
             
         case let .getShowcase(userId, countryCode):
             return GetShowcaseRequestPayload(customerId: userId, countryCode: countryCode).typeErased
+            
+        case let .startCheckout(userId, orderId):
+            return StartCheckoutRequestPayload(customerId: userId, orderId: orderId).typeErased
         }
     }
     
@@ -43,7 +47,7 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
     
     var method: HTTPMethod {
         switch endpoint {
-        case .getSubcriptions, .getFeatures, .getShowcase:
+        case .getSubcriptions, .getFeatures, .getShowcase, .startCheckout:
             return .post
         }
     }
@@ -67,6 +71,9 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
             
         case .getShowcase:
             return "/showcase/get-price-points"
+            
+        case .startCheckout:
+            return "/apple-store/start-checkout"
         }
     }
 }
