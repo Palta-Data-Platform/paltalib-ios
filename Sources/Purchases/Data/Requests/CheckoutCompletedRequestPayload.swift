@@ -1,0 +1,13 @@
+//
+//  CheckoutCompletedRequestPayload.swift
+//  PaltaLibPayments
+//
+//  Created by Vyacheslav Beltyukov on 29/08/2022.
+//
+
+import Foundation
+
+struct CheckoutCompletedRequestPayload: Encodable, Equatable {
+    let orderId: UUID
+    let receipt: String
+}

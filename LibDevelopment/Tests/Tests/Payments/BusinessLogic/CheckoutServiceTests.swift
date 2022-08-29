@@ -75,4 +75,58 @@ final class CheckoutServiceTests: XCTestCase {
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .dev)
     }
+    
+    func testCompleteSuccess() {
+        let receiptData = Data(0...100)
+        let orderId = UUID()
+        let traceId = UUID()
+        
+        httpMock.result = .success(StatusReponse(status: "ok"))
+        
+        let successCalled = expectation(description: "Success called")
+        
+        checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, traceId: traceId) { result in
+            guard case .success = result else {
+                return
+            }
+            
+            successCalled.fulfill()
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
+        
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .checkoutCompleted(orderId, receiptData.base64EncodedString()))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
+    }
+    
+    func testCompleteFailure() {
+        httpMock.result = .failure(NetworkErrorWithoutResponse.noData)
+        let failCalled = expectation(description: "Fail called")
+        
+        checkoutService.completeCheckout(orderId: UUID(), receiptData: Data(), traceId: UUID()) { result in
+            guard case .failure = result else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+    }
+    
+    func testCompleteProdEnv() {
+        checkoutService = .init(environment: .prod, httpClient: httpMock)
+        
+        checkoutService.completeCheckout(orderId: UUID(), receiptData: Data(), traceId: UUID(), completion: { _ in })
+        
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .prod)
+    }
+    
+    func testCompleteDevEnv() {
+        checkoutService = .init(environment: .dev, httpClient: httpMock)
+        
+        checkoutService.completeCheckout(orderId: UUID(), receiptData: Data(), traceId: UUID(), completion: { _ in })
+        
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .dev)
+    }
 }

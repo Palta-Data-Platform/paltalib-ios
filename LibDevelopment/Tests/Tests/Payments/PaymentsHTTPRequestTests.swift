@@ -144,4 +144,34 @@ final class PaymentsHTTPRequestTests: XCTestCase {
             ]
         )
     }
+    
+    func testCompleteCheckout() {
+        let traceId = UUID()
+        let orderId = UUID()
+        let receipt = UUID().uuidString
+        
+        let request = PaymentsHTTPRequest(
+            environment: .prod,
+            traceId: traceId,
+            endpoint: .checkoutCompleted(orderId, receipt)
+        )
+        
+        let urlRequest = request.urlRequest(headerFields: ["aHeader2": "aValue2"])
+        let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
+        
+        XCTAssertEqual(urlRequest?.httpMethod, "POST")
+        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.paltabrain.com/apple-store/checkout-completed"))
+        XCTAssertEqual(
+            payloadString,
+            "{\"orderId\":\"\(orderId.uuidString)\",\"receipt\":\"\(receipt)\"}"
+        )
+        XCTAssertEqual(
+            urlRequest?.allHTTPHeaderFields,
+            [
+                "Content-Type": "application/json",
+                "aHeader2": "aValue2",
+                "x-paltabrain-trace-id": traceId.uuidString
+            ]
+        )
+    }
 }

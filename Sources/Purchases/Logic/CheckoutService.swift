@@ -15,6 +15,13 @@ protocol CheckoutService {
         traceId: UUID,
         completion: @escaping (Result<(), PaymentsError>) -> Void
     )
+    
+    func completeCheckout(
+        orderId: UUID,
+        receiptData: Data,
+        traceId: UUID,
+        completion: @escaping (Result<(), PaymentsError>) -> Void
+    )
 }
 
 final class CheckoutServiceImpl: CheckoutService {
@@ -49,5 +56,26 @@ final class CheckoutServiceImpl: CheckoutService {
         }
     }
     
-    
+    func completeCheckout(
+        orderId: UUID,
+        receiptData: Data,
+        traceId: UUID,
+        completion: @escaping (Result<(), PaymentsError>) -> Void
+    ) {
+        let request = PaymentsHTTPRequest(
+            environment: environment,
+            traceId: traceId,
+            endpoint: .checkoutCompleted(orderId, receiptData.base64EncodedString())
+        )
+        
+        httpClient.perform(request) { (result: Result<StatusReponse, NetworkErrorWithoutResponse>) in
+            switch result {
+            case .success:
+                completion(.success(()))
+                
+            case .failure(let error):
+                completion(.failure(PaymentsError(networkError: error)))
+            }
+        }
+    }
 }
