@@ -150,6 +150,8 @@
 		1154303D282E4CD90021ED6F /* CustomerInfo+PaidFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154303B282E4AF30021ED6F /* CustomerInfo+PaidFeatures.swift */; };
 		117A2E2828BCB9AD0047E7F3 /* CheckoutCompletedRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E2728BCB9AD0047E7F3 /* CheckoutCompletedRequestPayload.swift */; };
 		117A2E2A28BCCB0C0047E7F3 /* CheckoutFailedRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E2928BCCB0C0047E7F3 /* CheckoutFailedRequestPayload.swift */; };
+		117A2E2C28BDF3E90047E7F3 /* GetCheckoutRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E2B28BDF3E90047E7F3 /* GetCheckoutRequestPayload.swift */; };
+		117A2E2E28BE04710047E7F3 /* PaymentQueueInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E2D28BE04710047E7F3 /* PaymentQueueInteractor.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
@@ -423,6 +425,8 @@
 		1154303B282E4AF30021ED6F /* CustomerInfo+PaidFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerInfo+PaidFeatures.swift"; sourceTree = "<group>"; };
 		117A2E2728BCB9AD0047E7F3 /* CheckoutCompletedRequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutCompletedRequestPayload.swift; sourceTree = "<group>"; };
 		117A2E2928BCCB0C0047E7F3 /* CheckoutFailedRequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutFailedRequestPayload.swift; sourceTree = "<group>"; };
+		117A2E2B28BDF3E90047E7F3 /* GetCheckoutRequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCheckoutRequestPayload.swift; sourceTree = "<group>"; };
+		117A2E2D28BE04710047E7F3 /* PaymentQueueInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentQueueInteractor.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
@@ -884,6 +888,7 @@
 			children = (
 				111A59AF2840E5630052FCD1 /* PaymentsAssembly.swift */,
 				11BE6BD328B8DD95006EA904 /* CheckoutService.swift */,
+				117A2E2D28BE04710047E7F3 /* PaymentQueueInteractor.swift */,
 				11A2F32328AE33BA00FDCA7D /* Showcase */,
 				111A59AE2840E4820052FCD1 /* WebPayments */,
 			);
@@ -1034,6 +1039,7 @@
 				11BE6BD528B8E502006EA904 /* StartCheckoutRequestPayload.swift */,
 				117A2E2728BCB9AD0047E7F3 /* CheckoutCompletedRequestPayload.swift */,
 				117A2E2928BCCB0C0047E7F3 /* CheckoutFailedRequestPayload.swift */,
+				117A2E2B28BDF3E90047E7F3 /* GetCheckoutRequestPayload.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1464,6 +1470,7 @@
 				1129A4362827E3C2009DDC41 /* Transaction.swift in Sources */,
 				11BE6BC928B61068006EA904 /* ShowcaseAssembly.swift in Sources */,
 				111A59972840C4840052FCD1 /* SubscriptionsService.swift in Sources */,
+				117A2E2C28BDF3E90047E7F3 /* GetCheckoutRequestPayload.swift in Sources */,
 				1129A4322827E34F009DDC41 /* Product.swift in Sources */,
 				114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */,
 				11A2F32828AE3BA700FDCA7D /* ShowcaseResponse.swift in Sources */,
@@ -1480,6 +1487,7 @@
 				11A2F32B28AE3BDD00FDCA7D /* PricePoint.swift in Sources */,
 				11A3ECE1289ACF5600D747E9 /* Environment.swift in Sources */,
 				11A61E822833B89B00F88116 /* UserId.swift in Sources */,
+				117A2E2E28BE04710047E7F3 /* PaymentQueueInteractor.swift in Sources */,
 				11A2F33B28AF858600FDCA7D /* AppstoreProductMapper.swift in Sources */,
 				114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */,
 				11A61ED7283788DD00F88116 /* Feature.swift in Sources */,

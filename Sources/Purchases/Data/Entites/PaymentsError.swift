@@ -19,6 +19,7 @@ public enum PaymentsError: Error {
     case serverError(Int)
     case sdkError(SDKError)
     case networkError(URLError)
+    case purchaseInProgress
 }
 
 public enum SDKError: Error {
@@ -84,6 +85,8 @@ extension PaymentsError {
             print("PaltaLib: Payments: Error occured within StoreKit\(error.map { ":\n\($0)" } ?? "")")
         case .timedOut:
             print("PaltaLib: Payments: Operation timed out")
+        case .purchaseInProgress:
+            print("PaltaLib: Payments: You already have in progress purchase for this product id")
         }
     }
 }
