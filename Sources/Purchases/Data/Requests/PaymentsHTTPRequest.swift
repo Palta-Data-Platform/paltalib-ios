@@ -15,6 +15,7 @@ struct PaymentsHTTPRequest: Equatable {
         case getShowcase(UserId, String?)
         case startCheckout(UserId, UUID)
         case checkoutCompleted(UUID, String)
+        case checkoutFailed(UUID)
     }
     
     let environment: Environment
@@ -39,6 +40,9 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
             
         case let .checkoutCompleted(orderId, receipt):
             return CheckoutCompletedRequestPayload(orderId: orderId, receipt: receipt).typeErased
+            
+        case let .checkoutFailed(orderId):
+            return CheckoutFailedRequestPayload(orderId: orderId).typeErased
         }
     }
     
@@ -51,7 +55,7 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
     
     var method: HTTPMethod {
         switch endpoint {
-        case .getSubcriptions, .getFeatures, .getShowcase, .startCheckout, .checkoutCompleted:
+        case .getSubcriptions, .getFeatures, .getShowcase, .startCheckout, .checkoutCompleted, .checkoutFailed:
             return .post
         }
     }
@@ -81,6 +85,9 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
             
         case .checkoutCompleted:
             return "/apple-store/checkout-completed"
+            
+        case .checkoutFailed:
+            return "/apple-store/checkout-failed"
         }
     }
 }

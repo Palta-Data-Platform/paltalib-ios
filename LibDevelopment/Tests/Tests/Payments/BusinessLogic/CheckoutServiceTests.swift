@@ -129,4 +129,57 @@ final class CheckoutServiceTests: XCTestCase {
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .dev)
     }
+    
+    func testFailSuccess() {
+        let orderId = UUID()
+        let traceId = UUID()
+        
+        httpMock.result = .success(StatusReponse(status: "ok"))
+        
+        let successCalled = expectation(description: "Success called")
+        
+        checkoutService.failCheckout(orderId: orderId, traceId: traceId) { result in
+            guard case .success = result else {
+                return
+            }
+            
+            successCalled.fulfill()
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
+        
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .checkoutFailed(orderId))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
+    }
+    
+    func testFailFailure() {
+        httpMock.result = .failure(NetworkErrorWithoutResponse.noData)
+        let failCalled = expectation(description: "Fail called")
+        
+        checkoutService.failCheckout(orderId: UUID(), traceId: UUID()) { result in
+            guard case .failure = result else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+    }
+    
+    func testFailProdEnv() {
+        checkoutService = .init(environment: .prod, httpClient: httpMock)
+        
+        checkoutService.failCheckout(orderId: UUID(), traceId: UUID(), completion: { _ in })
+        
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .prod)
+    }
+    
+    func testFailDevEnv() {
+        checkoutService = .init(environment: .dev, httpClient: httpMock)
+        
+        checkoutService.failCheckout(orderId: UUID(), traceId: UUID(), completion: { _ in })
+        
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .dev)
+    }
 }
