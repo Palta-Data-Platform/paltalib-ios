@@ -154,6 +154,7 @@
 		117A2E2E28BE04710047E7F3 /* PaymentQueueInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E2D28BE04710047E7F3 /* PaymentQueueInteractor.swift */; };
 		117A2E3228BF5ADF0047E7F3 /* GetCheckoutReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E3128BF5ADF0047E7F3 /* GetCheckoutReponse.swift */; };
 		117A2E3428BF5AF40047E7F3 /* CheckoutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E3328BF5AF40047E7F3 /* CheckoutState.swift */; };
+		117A2E3628BF85AA0047E7F3 /* StartCheckoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E3528BF85AA0047E7F3 /* StartCheckoutResponse.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
@@ -431,6 +432,7 @@
 		117A2E2D28BE04710047E7F3 /* PaymentQueueInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentQueueInteractor.swift; sourceTree = "<group>"; };
 		117A2E3128BF5ADF0047E7F3 /* GetCheckoutReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCheckoutReponse.swift; sourceTree = "<group>"; };
 		117A2E3328BF5AF40047E7F3 /* CheckoutState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutState.swift; sourceTree = "<group>"; };
+		117A2E3528BF85AA0047E7F3 /* StartCheckoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCheckoutResponse.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
@@ -1008,6 +1010,7 @@
 				11A61EDC28378BAA00F88116 /* FeaturesResponse.swift */,
 				117A2E3128BF5ADF0047E7F3 /* GetCheckoutReponse.swift */,
 				11BE6BD728B8EDBC006EA904 /* StatusReponse.swift */,
+				117A2E3528BF85AA0047E7F3 /* StartCheckoutResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -1495,6 +1498,7 @@
 				11A3ECE1289ACF5600D747E9 /* Environment.swift in Sources */,
 				11A61E822833B89B00F88116 /* UserId.swift in Sources */,
 				117A2E2E28BE04710047E7F3 /* PaymentQueueInteractor.swift in Sources */,
+				117A2E3628BF85AA0047E7F3 /* StartCheckoutResponse.swift in Sources */,
 				11A2F33B28AF858600FDCA7D /* AppstoreProductMapper.swift in Sources */,
 				114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */,
 				11A61ED7283788DD00F88116 /* Feature.swift in Sources */,

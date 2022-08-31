@@ -11,9 +11,8 @@ import PaltaLibCore
 protocol CheckoutService {
     func startCheckout(
         userId: UserId,
-        orderId: UUID,
         traceId: UUID,
-        completion: @escaping (Result<(), PaymentsError>) -> Void
+        completion: @escaping (Result<UUID, PaymentsError>) -> Void
     )
     
     func completeCheckout(
@@ -47,20 +46,19 @@ final class CheckoutServiceImpl: CheckoutService {
 
     func startCheckout(
         userId: UserId,
-        orderId: UUID,
         traceId: UUID,
-        completion: @escaping (Result<(), PaymentsError>) -> Void
+        completion: @escaping (Result<UUID, PaymentsError>) -> Void
     ) {
         let request = PaymentsHTTPRequest(
             environment: environment,
             traceId: traceId,
-            endpoint: .startCheckout(userId, orderId)
+            endpoint: .startCheckout(userId)
         )
         
-        httpClient.perform(request) { (result: Result<StatusReponse, NetworkErrorWithoutResponse>) in
+        httpClient.perform(request) { (result: Result<StartCheckoutResponse, NetworkErrorWithoutResponse>) in
             switch result {
-            case .success:
-                completion(.success(()))
+            case .success(let response):
+                completion(.success(response.orderId))
                 
             case .failure(let error):
                 completion(.failure(PaymentsError(networkError: error)))

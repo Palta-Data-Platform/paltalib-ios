@@ -13,7 +13,7 @@ struct PaymentsHTTPRequest: Equatable {
         case getFeatures(UserId)
         case getSubcriptions(UserId, Set<UUID>?)
         case getShowcase(UserId, String?)
-        case startCheckout(UserId, UUID)
+        case startCheckout(UserId)
         case checkoutCompleted(UUID, String)
         case checkoutFailed(UUID)
         case getCheckout(UUID)
@@ -36,8 +36,8 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
         case let .getShowcase(userId, countryCode):
             return GetShowcaseRequestPayload(customerId: userId, countryCode: countryCode).typeErased
             
-        case let .startCheckout(userId, orderId):
-            return StartCheckoutRequestPayload(customerId: userId, orderId: orderId).typeErased
+        case let .startCheckout(userId):
+            return StartCheckoutRequestPayload(customerId: userId).typeErased
             
         case let .checkoutCompleted(orderId, receipt):
             return CheckoutCompletedRequestPayload(orderId: orderId, receipt: receipt).typeErased

@@ -118,12 +118,11 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     func testStartCheckout() {
         let userId = UUID()
         let traceId = UUID()
-        let orderId = UUID()
         
         let request = PaymentsHTTPRequest(
             environment: .dev,
             traceId: traceId,
-            endpoint: .startCheckout(.uuid(userId), orderId)
+            endpoint: .startCheckout(.uuid(userId))
         )
         
         let urlRequest = request.urlRequest(headerFields: ["aHeader2": "aValue2"])
@@ -133,7 +132,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.dev.paltabrain.com/apple-store/start-checkout"))
         XCTAssertEqual(
             payloadString,
-            "{\"orderId\":\"\(orderId.uuidString)\",\"customerId\":{\"value\":\"\(userId.uuidString)\",\"type\":\"merchant-uuid\"}}"
+            "{\"customerId\":{\"value\":\"\(userId.uuidString)\",\"type\":\"merchant-uuid\"}}"
         )
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,
