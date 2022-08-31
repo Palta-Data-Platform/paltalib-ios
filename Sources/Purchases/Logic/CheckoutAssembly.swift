@@ -29,6 +29,8 @@ final class CheckoutAssemblyImpl: CheckoutAssembly {
     
     func makeCheckoutFlow(userId: UserId, product: Product) -> CheckoutFlow {
         CheckoutFlowImpl(
+            userId: userId,
+            product: product,
             checkoutService: checkoutService,
             featuresService: webPaymentsAssembly.paidFeaturesService,
             paymentQueueInteractor: paymentQueueInteractor

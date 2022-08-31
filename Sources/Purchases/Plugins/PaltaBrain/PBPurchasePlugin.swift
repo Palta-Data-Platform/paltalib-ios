@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import StoreKit
 
 public final class PBPurchasePlugin: PurchasePlugin {
     public var delegate: PurchasePluginDelegate?
@@ -69,7 +70,24 @@ public final class PBPurchasePlugin: PurchasePlugin {
         with promoOffer: PromoOffer?,
         _ completion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void
     ) {
-        completion(.notSupported)
+        guard product.originalEntity is SKProduct else {
+            completion(.notSupported)
+            return
+        }
+        
+        guard let userId = userId else {
+            completion(.failure(PaymentsError.noUserId))
+            return
+        }
+
+        assembly.makeCheckoutFlow(userId: userId, product: product).start { result in
+            switch result {
+            case .success(let features):
+                completion(.success(.init(transaction: .inApp, paidFeatures: features)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     public func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
