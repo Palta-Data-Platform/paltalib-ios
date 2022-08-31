@@ -22,4 +22,8 @@ final class PaymentsAssemblyMock: PaymentsAssembly {
         showcaseUserId = userId
         return showcaseFlowMock
     }
+    
+    func makeCheckoutFlow(userId: UserId, product: Product) -> CheckoutFlow {
+        fatalError()
+    }
 }
