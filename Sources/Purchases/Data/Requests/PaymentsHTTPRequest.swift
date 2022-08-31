@@ -97,4 +97,14 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
             return "/apple-store/get-checkout"
         }
     }
+    
+    var timeout: TimeInterval? {
+        switch endpoint {
+        case .getCheckout:
+            return 300
+            
+        default:
+            return nil
+        }
+    }
 }
