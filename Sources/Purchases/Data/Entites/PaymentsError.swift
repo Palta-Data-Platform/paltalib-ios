@@ -15,11 +15,14 @@ public enum PaymentsError: Error {
     case noUserId
     case cancelledByUser
     case timedOut
+    case noReceipt
     case storeKitError(Error?)
     case serverError(Int)
     case sdkError(SDKError)
     case networkError(URLError)
     case purchaseInProgress
+    case flowNotCompleted
+    case flowFailed(UUID)
 }
 
 public enum SDKError: Error {
@@ -87,6 +90,12 @@ extension PaymentsError {
             print("PaltaLib: Payments: Operation timed out")
         case .purchaseInProgress:
             print("PaltaLib: Payments: You already have in progress purchase for this product id")
+        case .noReceipt:
+            print("PaltaLib: Payments: No App Store receipt found. Please verify that you're running App Store version of the app.")
+        case .flowFailed(let orderId):
+            print("PaltaLib: Payments: Your payment flow has failed. Please contact PB team for details. Order id: \(orderId)")
+        case .flowNotCompleted:
+            print("PaltaLib: Payments: Your payment completed successfully however we didn't grant you features yet. Try to call .getPaidFeatures later")
         }
     }
 }

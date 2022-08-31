@@ -10,4 +10,6 @@ import Foundation
 enum CheckoutState: String, Decodable {
     case completed
     case processing
+    case failed
+    case cancelled
 }
