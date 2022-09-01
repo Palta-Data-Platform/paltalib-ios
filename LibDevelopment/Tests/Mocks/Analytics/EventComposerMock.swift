@@ -14,17 +14,14 @@ final class EventComposerMock: EventComposer {
     var shouldFailDeserialize = false
     
     var timestamp: Int?
-    var isOutOfSession: Bool?
     
     func composeEvent(
         of type: EventType,
         with header: EventHeader?,
         and payload: EventPayload,
-        timestamp: Int?,
-        outOfSession: Bool
+        timestamp: Int?
     ) -> BatchEvent {
         self.timestamp = timestamp
-        self.isOutOfSession = outOfSession
         
         return BatchEventMock(shouldFailSerialize: shouldFailSerialize, shouldFailDeserialize: shouldFailDeserialize)
     }

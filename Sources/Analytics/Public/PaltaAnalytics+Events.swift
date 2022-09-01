@@ -9,7 +9,7 @@ import Foundation
 import PaltaLibAnalyticsModel
 
 public extension PaltaAnalytics {
-    func log<E: Event>(_ event: E, outOfSession: Bool = false) {
-        assembly.eventQueueAssembly.eventQueue.logEvent(event, outOfSession: outOfSession)
+    func log<E: Event>(_ event: E) {
+        assembly.eventQueueAssembly.eventQueue.logEvent(event)
     }
 }

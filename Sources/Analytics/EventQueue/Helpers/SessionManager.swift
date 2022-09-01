@@ -111,9 +111,9 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
             return session
         } else {
             let timestamp = currentTimestamp()
-            sessionStartLogger?(timestamp)
             let session = Session(id: timestamp)
             self.session = session
+            sessionStartLogger?(timestamp)
             return session
         }
     }

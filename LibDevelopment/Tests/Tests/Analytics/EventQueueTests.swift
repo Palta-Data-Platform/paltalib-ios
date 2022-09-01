@@ -43,10 +43,9 @@ final class EventQueueTests: XCTestCase {
     
     func testAddEvent() {
         let event = EventMock()
-        eventQueue.logEvent(event, outOfSession: false)
+        eventQueue.logEvent(event)
         
         XCTAssertNil(eventComposerMock.timestamp)
-        XCTAssertEqual(eventComposerMock.isOutOfSession, false)
 
         XCTAssert(coreMock.addedEvents.first?.event.event is BatchEventMock)
         XCTAssert(storageMock.storedEvents.first?.event.event is BatchEventMock)
@@ -59,16 +58,6 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(coreMock.addedEvents.count, 1)
         XCTAssertEqual(storageMock.storedEvents.count, 1)
         XCTAssert(sessionManagerMock.refreshSessionCalled)
-    }
-
-    func testAddOutOfSessionEvent() {
-        let event = EventMock()
-        eventQueue.logEvent(event, outOfSession: true)
-        
-        XCTAssertNil(eventComposerMock.timestamp)
-        XCTAssertEqual(eventComposerMock.isOutOfSession, true)
-
-        XCTAssertFalse(sessionManagerMock.refreshSessionCalled)
     }
 
     func testInit() {
@@ -138,7 +127,6 @@ final class EventQueueTests: XCTestCase {
         sessionManagerMock.sessionStartLogger?(85)
         
         XCTAssertEqual(eventComposerMock.timestamp, 85)
-        XCTAssertEqual(eventComposerMock.isOutOfSession, true)
         XCTAssertEqual(coreMock.addedEvents.count, 1)
         XCTAssertEqual(storageMock.storedEvents.count, 1)
         XCTAssertFalse(sessionManagerMock.refreshSessionCalled)

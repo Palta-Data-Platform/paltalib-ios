@@ -9,7 +9,7 @@ import Foundation
 import PaltaLibAnalyticsModel
 
 protocol EventQueue {
-    func logEvent<E: Event>(_ incomingEvent: E, outOfSession: Bool)
+    func logEvent<E: Event>(_ incomingEvent: E)
 }
 
 final class EventQueueImpl: EventQueue {
@@ -43,13 +43,13 @@ final class EventQueueImpl: EventQueue {
         startSessionManager()
     }
     
-    func logEvent<E: Event>(_ incomingEvent: E, outOfSession: Bool) {
+    func logEvent<E: Event>(_ incomingEvent: E) {
         logEvent(
             of: incomingEvent.type,
             with: incomingEvent.header,
             and: incomingEvent.payload,
             timestamp: nil,
-            outOfSession: outOfSession
+            skipRefreshSession: false
         )
     }
     
@@ -58,9 +58,9 @@ final class EventQueueImpl: EventQueue {
         with header: EventHeader?,
         and payload: EventPayload,
         timestamp: Int?,
-        outOfSession: Bool
+        skipRefreshSession: Bool
     ) {
-        if !outOfSession {
+        if !skipRefreshSession {
             sessionManager.refreshSession(with: currentTimestamp())
         }
 
@@ -68,8 +68,7 @@ final class EventQueueImpl: EventQueue {
             of: type,
             with: header,
             and: payload,
-            timestamp: timestamp,
-            outOfSession: outOfSession
+            timestamp: timestamp
         )
         
         let storableEvent = StorableEvent(
@@ -125,7 +124,7 @@ final class EventQueueImpl: EventQueue {
                 with: nil,
                 and: self.stack.sessionStartEventPayloadProvider(),
                 timestamp: timestamp,
-                outOfSession: true
+                skipRefreshSession: true
             )
         }
         
