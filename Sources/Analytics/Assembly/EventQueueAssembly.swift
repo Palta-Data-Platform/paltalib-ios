@@ -54,7 +54,7 @@ extension EventQueueAssembly {
         
         let eventComposer = EventComposerImpl(
             stack: stack,
-            sessionIdProvider: analyticsCoreAssembly.sessionManager
+            sessionProvider: analyticsCoreAssembly.sessionManager
         )
         
         // Storages

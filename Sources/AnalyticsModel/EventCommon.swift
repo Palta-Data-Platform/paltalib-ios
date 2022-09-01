@@ -11,10 +11,12 @@ public struct EventCommon {
     public let eventType: EventType
     public let timestamp: Int
     public let sessionId: Int
+    public let sequenceNumber: Int
     
-    public init(eventType: EventType, timestamp: Int, sessionId: Int) {
+    public init(eventType: EventType, timestamp: Int, sessionId: Int, sequenceNumber: Int) {
         self.eventType = eventType
         self.timestamp = timestamp
         self.sessionId = sessionId
+        self.sequenceNumber = sequenceNumber
     }
 }

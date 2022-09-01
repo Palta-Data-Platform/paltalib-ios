@@ -27,7 +27,7 @@ final class SessionManagerTests: XCTestCase {
     }
 
     func testRestoreSession() {
-        let session = Session(id: 22)
+        let session = Session(id: 22, currentEventNumber: 5)
         userDefaults.set(try! JSONEncoder().encode(session), forKey: "paltaBrainSession")
 
         let newSessionLogged = expectation(description: "New session logged")
@@ -40,6 +40,7 @@ final class SessionManagerTests: XCTestCase {
 
         wait(for: [newSessionLogged], timeout: 0.05)
         XCTAssertEqual(sessionManager.sessionId, session.id)
+        XCTAssertEqual(sessionManager.nextEventNumber(), 6)
     }
 
     func testNoSavedSession() {
@@ -56,6 +57,8 @@ final class SessionManagerTests: XCTestCase {
         wait(for: [newSessionLogged], timeout: 0.05)
         
         XCTAssertEqual(sessionManager.sessionId, 890)
+        
+        XCTAssertEqual(sessionManager.nextEventNumber(), 0)
     }
 
     func testExpiredSession() throws {
@@ -74,6 +77,8 @@ final class SessionManagerTests: XCTestCase {
         sessionManager.start()
 
         wait(for: [newSessionLogged], timeout: 0.05)
+        
+        XCTAssertEqual(sessionManager.nextEventNumber(), 0)
     }
 
     func testAppBecomeActive() {
@@ -89,6 +94,8 @@ final class SessionManagerTests: XCTestCase {
         notificationCenter.post(name: UIApplication.didBecomeActiveNotification, object: nil)
 
         wait(for: [newSessionLogged], timeout: 0.05)
+        
+        XCTAssertEqual(sessionManager.nextEventNumber(), 0)
     }
 
     func testRefreshSessionValid() throws {
@@ -121,5 +128,26 @@ final class SessionManagerTests: XCTestCase {
         XCTAssertEqual(sessionManager.sessionId, initialSessionId)
         XCTAssertEqual(session?.id, initialSessionId)
         XCTAssertEqual(session?.lastEventTimestamp, mockedTimestamp)
+    }
+    
+    func testConcurrentEventCounterIncrement() {
+        var counters: IndexSet = []
+        let syncroQueue = DispatchQueue(label: "")
+        
+        DispatchQueue.concurrentPerform(iterations: 10) { _ in
+            for _ in 0...999 {
+                let counter = sessionManager.nextEventNumber()
+                
+                syncroQueue.async {
+                    counters.insert(counter)
+                }
+            }
+        }
+        
+        syncroQueue.sync {
+            // Wait syncro queue to finish
+        }
+        
+        XCTAssertEqual(counters, IndexSet(0...9999))
     }
 }

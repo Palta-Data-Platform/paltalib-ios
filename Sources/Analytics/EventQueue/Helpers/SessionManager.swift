@@ -9,8 +9,10 @@ import Foundation
 import UIKit
 import PaltaLibAnalyticsModel
 
-protocol SessionIdProvider {
+protocol SessionProvider {
     var sessionId: Int { get }
+    
+    func nextEventNumber() -> Int
 }
 
 protocol SessionManager: AnyObject {
@@ -21,7 +23,7 @@ protocol SessionManager: AnyObject {
     func start()
 }
 
-final class SessionManagerImpl: SessionManager, SessionIdProvider {
+final class SessionManagerImpl: SessionManager, SessionProvider {
     var sessionId: Int {
         session.id
     }
@@ -84,6 +86,12 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
 
     func start() {
         loadSession()
+    }
+    
+    func nextEventNumber() -> Int {
+        lock.lock()
+        defer { lock.unlock() }
+        return session.nextEventNumber()
     }
 
     private func subscribeForNotifications() {

@@ -19,11 +19,11 @@ protocol EventComposer {
 
 final class EventComposerImpl: EventComposer {
     private let stack: Stack
-    private let sessionIdProvider: SessionIdProvider
+    private let sessionProvider: SessionProvider
     
-    init(stack: Stack, sessionIdProvider: SessionIdProvider) {
+    init(stack: Stack, sessionProvider: SessionProvider) {
         self.stack = stack
-        self.sessionIdProvider = sessionIdProvider
+        self.sessionProvider = sessionProvider
     }
     
     func composeEvent(
@@ -35,7 +35,8 @@ final class EventComposerImpl: EventComposer {
         let common = EventCommon(
             eventType: type,
             timestamp: timestamp ?? currentTimestamp(),
-            sessionId: sessionIdProvider.sessionId
+            sessionId: sessionProvider.sessionId,
+            sequenceNumber: sessionProvider.nextEventNumber()
         )
         
         return stack.event.init(common: common, header: header, payload: payload)

@@ -17,7 +17,7 @@ final class EventComposerTests: XCTestCase {
         try super.setUpWithError()
         
         sessionIdProvider = .init()
-        composer = EventComposerImpl(stack: .mock, sessionIdProvider: sessionIdProvider)
+        composer = EventComposerImpl(stack: .mock, sessionProvider: sessionIdProvider)
     }
     
     func testComposeEvent() {
