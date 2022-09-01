@@ -49,6 +49,7 @@ struct BatchEventTemplate: Template {
                     "msg.eventType = eventType.intValue",
                     "msg.eventTs = Int64(timestamp)",
                     "msg.sessionID = Int64(sessionId)",
+                    "msg.sessionEventSeqNum = Int64(sequenceNumber)",
                     "return msg"
                 ]
             )

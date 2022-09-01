@@ -2,7 +2,7 @@
 
 import PaltaLibAnalytics
 import PaltaLibAnalyticsModel
-import PaltaAnalyticsTransport
+import PaltaAnlyticsTransport
 
 extension Stack {
     public static let `default`: Stack = Stack(

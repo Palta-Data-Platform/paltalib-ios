@@ -11,6 +11,7 @@ extension PaltaLibAnalyticsModel.EventCommon {
             msg.eventType = eventType.intValue
             msg.eventTs = Int64(timestamp)
             msg.sessionID = Int64(sessionId)
+            msg.sessionEventSeqNum = sequenceNumber
             return msg
         }
     } 
