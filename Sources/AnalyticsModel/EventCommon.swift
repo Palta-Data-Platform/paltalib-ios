@@ -18,7 +18,5 @@ public struct EventCommon {
         self.timestamp = timestamp
         self.sessionId = sessionId
         self.sequenceNumber = sequenceNumber
-        
-        print("BUMBUUQ \(sequenceNumber)")
     }
 }
