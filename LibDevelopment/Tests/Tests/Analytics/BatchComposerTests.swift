@@ -57,4 +57,28 @@ final class BatchComposerTests: XCTestCase {
         XCTAssertEqual(batch?.common?.utcOffset, 898)
         XCTAssertEqual(batch?.common?.batchId, batchId)
     }
+    
+    func testEventsSorted() throws {
+        let events = [
+            BatchEventMock(timestamp: 7),
+            BatchEventMock(timestamp: 2),
+            BatchEventMock(timestamp: 55),
+            BatchEventMock(timestamp: 34)
+        ]
+        
+        let contextId = UUID()
+        let context = try BatchContextMock(
+            data: Data(repeating: .random(in: 0...120), count: .random(in: 20...30))
+        )
+        
+        contextProvider.context = context
+        uuidGenerator.uuids = [UUID()]
+        
+        let batch = composer.makeBatch(of: events, with: contextId) as? BatchMock
+        
+        XCTAssertEqual(
+            batch?.events?.map { $0.timestamp },
+            [2, 7, 34, 55]
+        )
+    }
 }

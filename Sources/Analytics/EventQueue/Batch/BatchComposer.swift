@@ -42,10 +42,12 @@ final class BatchComposerImpl: BatchComposer {
             utcOffset: Int64(deviceInfoProvider.timezoneOffsetSeconds)
         )
         
+        let sortedEvents = events.sorted(by: { $0.timestamp < $1.timestamp })
+        
         let batch = stack.batch.init(
             common: common,
             context: contextProvider.context(with: contextId),
-            events: events
+            events: sortedEvents
         )
         
         return batch

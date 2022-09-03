@@ -58,6 +58,12 @@ struct BatchEventMock: BatchEvent, Hashable {
         self.data = data
     }
     
+    init(timestamp: Int) {
+        self.init()
+        
+        self.timestamp = timestamp
+    }
+    
     func serialize() throws -> Data {
         if shouldFailSerialize {
             throw NSError(domain: "", code: 0)

@@ -146,6 +146,7 @@
 		116068982886DA3A009CF8EC /* BatchContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116068812886DA29009CF8EC /* BatchContext.swift */; };
 		116068B42887F7F3009CF8EC /* UUIDGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116068B32887F7F3009CF8EC /* UUIDGeneratorTests.swift */; };
 		116068B728881A42009CF8EC /* Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 116068B5288819C0009CF8EC /* Timestamp.m */; };
+		117A2E3B28C394610047E7F3 /* EventCommonMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E3A28C394610047E7F3 /* EventCommonMock.swift */; };
 		117D9BE4285C7D5C006F3E2E /* StorableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE3285C7D5C006F3E2E /* StorableEvent.swift */; };
 		117D9BE828608FDE006F3E2E /* IdentifiableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */; };
 		117D9BEA286090B8006F3E2E /* StorableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE9286090B8006F3E2E /* StorableEventTests.swift */; };
@@ -444,6 +445,7 @@
 		116068842886DA29009CF8EC /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		116068B32887F7F3009CF8EC /* UUIDGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDGeneratorTests.swift; sourceTree = "<group>"; };
 		116068B5288819C0009CF8EC /* Timestamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Timestamp.m; sourceTree = "<group>"; };
+		117A2E3A28C394610047E7F3 /* EventCommonMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCommonMock.swift; sourceTree = "<group>"; };
 		117D9BE3285C7D5C006F3E2E /* StorableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableEvent.swift; sourceTree = "<group>"; };
 		117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableEvent.swift; sourceTree = "<group>"; };
 		117D9BE9286090B8006F3E2E /* StorableEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableEventTests.swift; sourceTree = "<group>"; };
@@ -890,6 +892,7 @@
 				117D9C52286C5A95006F3E2E /* BatchStorageMock.swift */,
 				117D9C54286C5B21006F3E2E /* BatchSenderMock.swift */,
 				117D9C4C286C52AC006F3E2E /* CurrentContextProviderMock.swift */,
+				117A2E3A28C394610047E7F3 /* EventCommonMock.swift */,
 				1137D168285B2589008CA306 /* DTO */,
 			);
 			path = Analytics;
@@ -1524,6 +1527,7 @@
 				117D9C55286C5B21006F3E2E /* BatchSenderMock.swift in Sources */,
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
 				113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */,
+				117A2E3B28C394610047E7F3 /* EventCommonMock.swift in Sources */,
 				111A599D2840C60C0052FCD1 /* SubscriptionMock.swift in Sources */,
 				11418AD42881972A00694505 /* EventMock.swift in Sources */,
 				11A31AB0287C0F4A00A32D69 /* UserIdTests.swift in Sources */,
