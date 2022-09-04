@@ -33,6 +33,13 @@ protocol CheckoutService {
         traceId: UUID,
         completion: @escaping (Result<CheckoutState, PaymentsError>) -> Void
     )
+    
+    func log(
+        level: LogPayload.Level,
+        event: String,
+        data: [String: Any]?,
+        traceId: UUID
+    )
 }
 
 final class CheckoutServiceImpl: CheckoutService {
@@ -130,6 +137,17 @@ final class CheckoutServiceImpl: CheckoutService {
             case .failure(let error):
                 completion(.failure(PaymentsError(networkError: error)))
             }
+        }
+    }
+    
+    func log(level: LogPayload.Level, event: String, data: [String : Any]?, traceId: UUID) {
+        let request = PaymentsHTTPRequest(
+            environment: environment,
+            traceId: traceId,
+            endpoint: .log(level, event, data.map(CodableDictionary.init))
+        )
+        
+        httpClient.perform(request) { (_: Result<StatusReponse, NetworkErrorWithoutResponse>) in
         }
     }
 }

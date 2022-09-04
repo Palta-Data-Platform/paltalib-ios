@@ -13,15 +13,18 @@ protocol CheckoutAssembly {
 }
 
 final class CheckoutAssemblyImpl: CheckoutAssembly {
+    let environment: Environment
     let checkoutService: CheckoutService
     let paymentQueueInteractor: PaymentQueueInteractor
     let webPaymentsAssembly: WebPaymentsAssembly
     
     init(
+        environment: Environment,
         checkoutService: CheckoutService,
         paymentQueueInteractor: PaymentQueueInteractor,
         webPaymentsAssembly: WebPaymentsAssembly
     ) {
+        self.environment = environment
         self.checkoutService = checkoutService
         self.paymentQueueInteractor = paymentQueueInteractor
         self.webPaymentsAssembly = webPaymentsAssembly
@@ -29,6 +32,7 @@ final class CheckoutAssemblyImpl: CheckoutAssembly {
     
     func makeCheckoutFlow(userId: UserId, product: Product) -> CheckoutFlow {
         CheckoutFlowImpl(
+            environment: environment,
             userId: userId,
             product: product,
             checkoutService: checkoutService,
@@ -52,6 +56,7 @@ extension CheckoutAssemblyImpl {
         let paymentQueueInteractor = PaymentQueueInteractorImpl(paymentQueue: .default())
         
         self.init(
+            environment: environment,
             checkoutService: checkoutService,
             paymentQueueInteractor: paymentQueueInteractor,
             webPaymentsAssembly: webPaymentsAssembly
