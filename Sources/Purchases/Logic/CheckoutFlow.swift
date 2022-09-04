@@ -53,12 +53,12 @@ final class CheckoutFlowImpl: CheckoutFlow {
         
         isInProgress = true
         
-        checkoutService.startCheckout(userId: userId, traceId: traceId) { [weak self] result in
+        checkoutService.startCheckout(userId: userId, traceId: traceId) { [self] result in
             switch result {
             case .success(let orderId):
-                self?.purchase(with: orderId, completion: completion)
+                purchase(with: orderId, completion: completion)
             case .failure(let error):
-                self?.logError(error, "Start checkout failed")
+                logError(error, "Start checkout failed")
                 completion(.failure(error))
             }
         }
@@ -73,12 +73,12 @@ final class CheckoutFlowImpl: CheckoutFlow {
             data: ["productId": product.productIdentifier, "userId": userId.stringValue]
         )
         
-        paymentQueueInteractor.purchase(product) { [weak self] result in
+        paymentQueueInteractor.purchase(product, orderId: orderId) { [self] result in
             switch result {
             case .success:
-                self?.completeCheckout(for: orderId, completion: completion)
+                completeCheckout(for: orderId, completion: completion)
             case .failure(let error):
-                self?.failPurchase(orderId: orderId, with: error, completion: completion)
+                failPurchase(orderId: orderId, with: error, completion: completion)
                 completion(.failure(error))
             }
         }
@@ -97,12 +97,12 @@ final class CheckoutFlowImpl: CheckoutFlow {
         
         logStep("Receipt retrieved. Completing checkout...")
         
-        checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, traceId: traceId) { [weak self] result in
+        checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, traceId: traceId) { [self] result in
             switch result {
             case .success:
-                self?.getCheckout(for: orderId, completion: completion)
+                getCheckout(for: orderId, completion: completion)
             case .failure(let error):
-                self?.logError(error, "Checkout complete failed")
+                logError(error, "Checkout complete failed")
                 completion(.failure(error))
             }
         }
@@ -114,12 +114,12 @@ final class CheckoutFlowImpl: CheckoutFlow {
     ) {
         logStep("Getting checkout state...")
         
-        checkoutService.getCheckout(orderId: orderId, traceId: traceId) { [weak self] result in
+        checkoutService.getCheckout(orderId: orderId, traceId: traceId) { [self] result in
             switch result {
             case .success(let checkoutState):
-                self?.getFeatures(after: checkoutState, orderId: orderId, completion: completion)
+                getFeatures(after: checkoutState, orderId: orderId, completion: completion)
             case .failure(let error):
-                self?.logError(error, "Get checkout failed")
+                logError(error, "Get checkout failed")
                 completion(.failure(error))
             }
         }
