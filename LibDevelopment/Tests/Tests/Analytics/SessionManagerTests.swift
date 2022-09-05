@@ -22,14 +22,14 @@ final class SessionManagerTests: XCTestCase {
         userDefaults = UserDefaults()
         notificationCenter = NotificationCenter()
 
-        userDefaults.set(nil, forKey: "paltaBrainSession")
+        userDefaults.set(nil, forKey: "paltaBrainSession_legacy")
 
         sessionManager = SessionManagerImpl(userDefaults: userDefaults, notificationCenter: notificationCenter)
     }
 
     func testRestoreSession() {
         let session = Session(id: 22)
-        userDefaults.set(try! JSONEncoder().encode(session), forKey: "paltaBrainSession")
+        userDefaults.set(try! JSONEncoder().encode(session), forKey: "paltaBrainSession_legacy")
 
         let newSessionLogged = expectation(description: "New session logged")
         newSessionLogged.isInverted = true
@@ -59,7 +59,7 @@ final class SessionManagerTests: XCTestCase {
     func testExpiredSession() throws {
         var session = Session(id: 22)
         session.lastEventTimestamp = 10
-        userDefaults.set(try JSONEncoder().encode(session), forKey: "paltaBrainSession")
+        userDefaults.set(try JSONEncoder().encode(session), forKey: "paltaBrainSession_legacy")
 
         let newSessionLogged = expectation(description: "New session logged")
 
@@ -91,7 +91,7 @@ final class SessionManagerTests: XCTestCase {
         let lastSessionTimestamp = Int.currentTimestamp() - 1000
         var session = Session(id: 22)
         session.lastEventTimestamp = lastSessionTimestamp
-        userDefaults.set(try! JSONEncoder().encode(session), forKey: "paltaBrainSession")
+        userDefaults.set(try! JSONEncoder().encode(session), forKey: "paltaBrainSession_legacy")
         sessionManager.start()
 
         let sessionEventLogged = expectation(description: "New session logged")
@@ -123,7 +123,7 @@ final class SessionManagerTests: XCTestCase {
         sessionManager.refreshSession(with: 0)
 
         let session = try userDefaults
-            .data(forKey: "paltaBrainSession")
+            .data(forKey: "paltaBrainSession_legacy")
             .map { try JSONDecoder().decode(Session.self, from: $0) }
         
         XCTAssertEqual(sessionManager.sessionId, initialSessionId)
@@ -139,7 +139,7 @@ final class SessionManagerTests: XCTestCase {
         sessionManager.refreshSession(with: 0)
 
         let session = try userDefaults
-            .data(forKey: "paltaBrainSession")
+            .data(forKey: "paltaBrainSession_legacy")
             .map { try JSONDecoder().decode(Session.self, from: $0) }
         
         XCTAssertNotEqual(sessionManager.sessionId, initialSessionId)

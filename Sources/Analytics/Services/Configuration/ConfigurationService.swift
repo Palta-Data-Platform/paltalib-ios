@@ -2,9 +2,9 @@ import Foundation
 import PaltaLibCore
 
 final class ConfigurationService {
-    private lazy var cachedConfig: RemoteConfig? = userDefaults.object(for: "paltaBrainRemoteConfig") {
+    private lazy var cachedConfig: RemoteConfig? = userDefaults.object(for: "paltaBrainRemoteConfig_legacy") {
         didSet {
-            userDefaults.set(cachedConfig, for: "paltaBrainRemoteConfig")
+            userDefaults.set(cachedConfig, for: "paltaBrainRemoteConfig_legacy")
         }
     }
 

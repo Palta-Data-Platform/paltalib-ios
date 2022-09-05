@@ -116,9 +116,9 @@ final class EventComposerImpl: EventComposer {
 }
 
 private class SequenceNumberProvider {
-    private var currentNumber = UserDefaults.standard.integer(forKey: "sequnce_number") {
+    private var currentNumber = UserDefaults.standard.integer(forKey: "sequnce_number_legacy") {
         didSet {
-            UserDefaults.standard.set(currentNumber, forKey: "sequnce_number")
+            UserDefaults.standard.set(currentNumber, forKey: "sequnce_number_legacy")
         }
     }
     

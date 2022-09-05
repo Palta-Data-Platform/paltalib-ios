@@ -55,7 +55,7 @@ final class UserPropertiesKeeperImpl: UserPropertiesKeeper {
     
     private let lock = NSRecursiveLock()
 
-    private let defaultsKey = "paltaBrainUserProperties"
+    private let defaultsKey = "paltaBrainUserProperties_legacy"
     private let trackingOptionsProvider: TrackingOptionsProvider
     private let deviceInfoProvider: DeviceInfoProvider
     private let userDefaults: UserDefaults

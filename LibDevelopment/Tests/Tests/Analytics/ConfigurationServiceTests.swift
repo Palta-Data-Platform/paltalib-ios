@@ -21,7 +21,7 @@ final class ConfigurationServiceTests: XCTestCase {
         httpClientMock = .init()
         configurationService = .init(userDefaults: userDefaults, httpClient: httpClientMock)
 
-        userDefaults.set(nil, forKey: "paltaBrainRemoteConfig")
+        userDefaults.set(nil, forKey: "paltaBrainRemoteConfig_legacy")
     }
 
     func testRequestConfigSuccessWithoutCache() {
@@ -65,7 +65,7 @@ final class ConfigurationServiceTests: XCTestCase {
 
         wait(for: [successCalled], timeout: 0.05)
 
-        XCTAssertNotNil(userDefaults.object(for: "paltaBrainRemoteConfig") as RemoteConfig?)
+        XCTAssertNotNil(userDefaults.object(for: "paltaBrainRemoteConfig_legacy") as RemoteConfig?)
     }
 
     func testRequestConfigSuccessWithCache() {
@@ -108,7 +108,7 @@ final class ConfigurationServiceTests: XCTestCase {
 
         wait(for: [successCalled], timeout: 0.05)
 
-        XCTAssertEqual(userDefaults.object(for: "paltaBrainRemoteConfig"), remoteConfig)
+        XCTAssertEqual(userDefaults.object(for: "paltaBrainRemoteConfig_legacy"), remoteConfig)
     }
 
     func testRequestConfigErrorWithoutCache() {
@@ -166,6 +166,6 @@ final class ConfigurationServiceTests: XCTestCase {
                 )
             ]
         )
-        userDefaults.set(cachedConfig, for: "paltaBrainRemoteConfig")
+        userDefaults.set(cachedConfig, for: "paltaBrainRemoteConfig_legacy")
     }
 }

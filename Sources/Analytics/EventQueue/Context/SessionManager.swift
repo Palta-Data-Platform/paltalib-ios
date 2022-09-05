@@ -60,7 +60,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     private var subscriptionToken: NSObjectProtocol?
     
     private let lock = NSRecursiveLock()
-    private let defaultsKey = "paltaBrainSession"
+    private let defaultsKey = "paltaBrainSession_legacy"
     private let userDefaults: UserDefaults
     private let notificationCenter: NotificationCenter
 
