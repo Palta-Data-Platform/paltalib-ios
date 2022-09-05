@@ -10,5 +10,6 @@ target 'PaltaExample' do
   
   # Helper libraries
   pod 'SnapKit'
+  pod 'MBProgressHUD', '~> 1.2.0'
 
 end

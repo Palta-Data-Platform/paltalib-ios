@@ -2,6 +2,7 @@ PODS:
   - Amplitude (8.11.1):
     - AnalyticsConnector (~> 1.0.0)
   - AnalyticsConnector (1.0.0)
+  - MBProgressHUD (1.2.0)
   - PaltaLibAnalytics (2.1.7):
     - Amplitude (>= 8.5.0)
     - PaltaLibCore (>= 2.2.1)
@@ -13,6 +14,7 @@ PODS:
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - MBProgressHUD (~> 1.2.0)
   - PaltaLibAnalytics (~> 2.1.6)
   - PaltaLibPurchases (= 3.0.0)
   - SnapKit
@@ -21,6 +23,7 @@ SPEC REPOS:
   trunk:
     - Amplitude
     - AnalyticsConnector
+    - MBProgressHUD
     - PaltaLibAnalytics
     - PaltaLibCore
     - PaltaLibPurchases
@@ -30,12 +33,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Amplitude: 63df137a65a9dad663670cd97a46b5b9877f6287
   AnalyticsConnector: 4c386d5972ac9da86e22d668564dbbac97558754
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   PaltaLibAnalytics: 694dd37b490e121544e80304cade3667f6b2ece4
   PaltaLibCore: d4b6a07f7de3009526fddd35fb66e56a709ff210
   PaltaLibPurchases: a4aa2a3ce44bb27e90a257e14c51d854f597d0aa
   RevenueCat: 5009a82afee178848de97cf2d712be1015a5d33c
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 2112245823e124680cc55f013d7371cb784bfca6
+PODFILE CHECKSUM: d0889c0a16f4905ff08d674b979c4a3863cafa03
 
 COCOAPODS: 1.11.3

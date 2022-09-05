@@ -18,6 +18,9 @@ final class AvailablePurchasesViewModel {
     }
     
     @Published
+    private(set) var operationInProgress = false
+    
+    @Published
     private(set) var items: [Item] = []
     
     init() {
@@ -25,6 +28,8 @@ final class AvailablePurchasesViewModel {
     }
     
     func buy(_ item: Item) {
+        operationInProgress = true
+        
         PaltaPurchases.instance.purchase(item.product, with: nil) { [weak self] result in
             switch result {
             case .success:
@@ -32,6 +37,8 @@ final class AvailablePurchasesViewModel {
             case .failure(let error):
                 print("Unable to purchase: \(error)")
             }
+
+            self?.operationInProgress = false
         }
     }
     

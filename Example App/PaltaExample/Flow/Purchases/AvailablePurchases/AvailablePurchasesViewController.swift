@@ -7,11 +7,14 @@
 
 import UIKit
 import Combine
+import MBProgressHUD
 
 final class AvailablePurchasesViewController: UIViewController {
     private var cancels: Set<AnyCancellable> = []
     
     private let viewModel = AvailablePurchasesViewModel()
+    
+    private lazy var progressHud = MBProgressHUD(view: view)
     
     private lazy var tableView = UITableView().do {
         $0.delegate = self
@@ -42,6 +45,20 @@ final class AvailablePurchasesViewController: UIViewController {
                 DispatchQueue.main.async {
                     tableView.reloadData()
                 }
+            }
+            .store(in: &cancels)
+        
+        viewModel.$operationInProgress
+            .filter { $0 }
+            .sink { [view] _ in
+                MBProgressHUD.showAdded(to: view!, animated: true)
+            }
+            .store(in: &cancels)
+        
+        viewModel.$operationInProgress
+            .filter { !$0 }
+            .sink { [view] _ in
+                MBProgressHUD.hide(for: view!, animated: true)
             }
             .store(in: &cancels)
     }
