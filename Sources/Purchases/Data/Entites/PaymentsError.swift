@@ -7,6 +7,7 @@
 
 import Foundation
 import PaltaLibCore
+import StoreKit
 
 public enum PaymentsError: Error {
     public static let unknownError: PaymentsError = .sdkError(.other(nil))
@@ -16,7 +17,7 @@ public enum PaymentsError: Error {
     case cancelledByUser
     case timedOut
     case noReceipt
-    case storeKitError(Error?)
+    case storeKitError(SKError.Code?)
     case serverError(Int)
     case sdkError(SDKError)
     case networkError(URLError)

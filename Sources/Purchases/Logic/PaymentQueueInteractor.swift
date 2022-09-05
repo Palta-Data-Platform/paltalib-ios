@@ -71,7 +71,12 @@ final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
     }
     
     private func failPurchase(for productIdentifier: String, with error: Error?) {
-        completionHandlers[productIdentifier]?(.failure(.storeKitError(error)))
+        let skError = error as? SKError
+        let code = skError?.code
+        
+        let paymentsError: PaymentsError = code == .paymentCancelled ? .cancelledByUser : .storeKitError(code)
+        
+        completionHandlers[productIdentifier]?(.failure(paymentsError))
         completionHandlers[productIdentifier] = nil
     }
     

@@ -86,7 +86,9 @@ private final class RequestHandler: NSObject, SKProductsRequestDelegate {
             return
         }
         
-        completion(.failure(.storeKitError(error)))
+        let code = (error as? SKError)?.code
+        
+        completion(.failure(.storeKitError(code)))
         
         isCompleted = true
         timeoutTask?.cancel()
