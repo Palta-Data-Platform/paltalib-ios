@@ -22,7 +22,7 @@ final class FileEventStorage: EventStorage {
         in: .userDomainMask,
         appropriateFor: nil,
         create: true
-    ).appendingPathComponent("PaltaBrainEvents")
+    ).appendingPathComponent("PaltaBrainEventsLegacy")
     
     private let encoder: JSONEncoder = {
         let encoder = JSONEncoder()

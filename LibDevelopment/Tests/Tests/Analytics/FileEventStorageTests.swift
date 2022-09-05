@@ -16,7 +16,7 @@ final class FileEventStorageTests: XCTestCase {
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-        ).appendingPathComponent("PaltaBrainEvents")
+        ).appendingPathComponent("PaltaBrainEventsLegacy")
         try? FileManager.default.removeItem(at: url)
     }
 
