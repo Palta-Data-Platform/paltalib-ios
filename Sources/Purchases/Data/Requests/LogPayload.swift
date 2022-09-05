@@ -17,5 +17,5 @@ struct LogPayload: Encodable {
     
     let level: Level
     let eventName: String
-    let data: CodableDictionary?
+    let data: CodableDictionary
 }

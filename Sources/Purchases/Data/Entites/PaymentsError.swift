@@ -23,6 +23,35 @@ public enum PaymentsError: Error {
     case purchaseInProgress
     case flowNotCompleted
     case flowFailed(UUID)
+    
+    var localizedDescription: String {
+        switch self {
+        case .invalidKey:
+            return "PaltaLib: Payments: Invalid API key error."
+        case .noUserId:
+            return "PaltaLib: Payments: Log in user first."
+        case .serverError:
+            return "PaltaLib: Payments: Server error. Please try again later."
+        case .sdkError(let error):
+            return "PaltaLib: Payments: SDK error. Please contact developer. \n\(error)"
+        case .networkError(let error):
+            return "PaltaLib: Payments: Network error. Please try again later. \n\(error)"
+        case .cancelledByUser:
+            return "PaltaLib: Payments: Operation cancelled by user"
+        case .storeKitError(let error):
+            return "PaltaLib: Payments: Error occured within StoreKit\(error.map { ":\n\($0)" } ?? "")"
+        case .timedOut:
+            return "PaltaLib: Payments: Operation timed out"
+        case .purchaseInProgress:
+            return "PaltaLib: Payments: You already have in progress purchase for this product id"
+        case .noReceipt:
+            return "PaltaLib: Payments: No App Store receipt found. Please verify that you're running App Store version of the app."
+        case .flowFailed(let orderId):
+            return "PaltaLib: Payments: Your payment flow has failed. Please contact PB team for details. Order id: \(orderId)"
+        case .flowNotCompleted:
+            return "PaltaLib: Payments: Your payment completed successfully however we didn't grant you features yet. Try to call .getPaidFeatures later"
+        }
+    }
 }
 
 public enum SDKError: Error {
@@ -71,31 +100,6 @@ extension PaymentsError {
 
 extension PaymentsError {
     func printLog() {
-        switch self {
-        case .invalidKey:
-            print("PaltaLib: Payments: Invalid API key error.")
-        case .noUserId:
-            print("PaltaLib: Payments: Log in user first.")
-        case .serverError:
-            print("PaltaLib: Payments: Server error. Please try again later.")
-        case .sdkError(let error):
-            print("PaltaLib: Payments: SDK error. Please contact developer. \n\(error)")
-        case .networkError(let error):
-            print("PaltaLib: Payments: Network error. Please try again later. \n\(error)")
-        case .cancelledByUser:
-            print("PaltaLib: Payments: Operation cancelled by user")
-        case .storeKitError(let error):
-            print("PaltaLib: Payments: Error occured within StoreKit\(error.map { ":\n\($0)" } ?? "")")
-        case .timedOut:
-            print("PaltaLib: Payments: Operation timed out")
-        case .purchaseInProgress:
-            print("PaltaLib: Payments: You already have in progress purchase for this product id")
-        case .noReceipt:
-            print("PaltaLib: Payments: No App Store receipt found. Please verify that you're running App Store version of the app.")
-        case .flowFailed(let orderId):
-            print("PaltaLib: Payments: Your payment flow has failed. Please contact PB team for details. Order id: \(orderId)")
-        case .flowNotCompleted:
-            print("PaltaLib: Payments: Your payment completed successfully however we didn't grant you features yet. Try to call .getPaidFeatures later")
-        }
+        print(localizedDescription)
     }
 }

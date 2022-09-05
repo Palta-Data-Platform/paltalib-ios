@@ -50,7 +50,7 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
             return GetCheckoutRequestPayload(orderId: orderId).typeErased
             
         case let .log(level, event, data):
-            return LogPayload(level: level, eventName: event, data: data).typeErased
+            return LogPayload(level: level, eventName: event, data: data ?? [:]).typeErased
         }
     }
     

@@ -181,7 +181,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         }
         
         checkoutService.log(
-            level: .error,
+            level: .info,
             event: stepName,
             data: nil,
             traceId: traceId
