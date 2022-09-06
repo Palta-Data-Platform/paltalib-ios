@@ -232,4 +232,32 @@ final class PaymentsHTTPRequestTests: XCTestCase {
             ]
         )
     }
+    
+    func testLog() {
+        let traceId = UUID()
+        
+        let request = PaymentsHTTPRequest(
+            environment: .dev,
+            traceId: traceId,
+            endpoint: .log(.error, "An event", ["3": 5])
+        )
+        
+        let urlRequest = request.urlRequest(headerFields: ["aHeader5": "aValue5"])
+        let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
+        
+        XCTAssertEqual(urlRequest?.httpMethod, "POST")
+        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.dev.paltabrain.com/apple-store/log-event"))
+        XCTAssertEqual(
+            payloadString,
+            "{\"level\":\"error\",\"eventName\":\"An event\",\"data\":{\"3\":5}}"
+        )
+        XCTAssertEqual(
+            urlRequest?.allHTTPHeaderFields,
+            [
+                "Content-Type": "application/json",
+                "aHeader5": "aValue5",
+                "x-paltabrain-trace-id": traceId.uuidString
+            ]
+        )
+    }
 }
