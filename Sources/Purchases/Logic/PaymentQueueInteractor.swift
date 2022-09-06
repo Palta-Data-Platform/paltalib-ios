@@ -9,7 +9,7 @@ import Foundation
 import StoreKit
 
 protocol PaymentQueueInteractor {
-    func purchase(_ product: Product, orderId: UUID, completion: @escaping (Result<(), PaymentsError>) -> Void)
+    func purchase(_ product: Product, orderId: UUID, completion: @escaping (Result<String, PaymentsError>) -> Void)
 }
 
 final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
@@ -17,7 +17,7 @@ final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
     
     private let queueObserver = PaymentQueueObserver()
     
-    private var completionHandlers: [String: (Result<(), PaymentsError>) -> Void] = [:]
+    private var completionHandlers: [String: (Result<String, PaymentsError>) -> Void] = [:]
     
     init(paymentQueue: SKPaymentQueue) {
         self.paymentQueue = paymentQueue
@@ -25,7 +25,7 @@ final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
         setupListener()
     }
     
-    func purchase(_ product: Product, orderId: UUID, completion: @escaping (Result<(), PaymentsError>) -> Void) {
+    func purchase(_ product: Product, orderId: UUID, completion: @escaping (Result<String, PaymentsError>) -> Void) {
         guard completionHandlers[product.productIdentifier] == nil else {
             completion(.failure(.purchaseInProgress))
             return
@@ -64,7 +64,7 @@ final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
         case .failed:
             failPurchase(for: productIdentifier, with: error)
         case .purchased, .restored:
-            completePurchase(for: productIdentifier)
+            completePurchase(for: productIdentifier, transactionId: transactionId)
         @unknown default:
             assertionFailure()
         }
@@ -74,14 +74,21 @@ final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
         let skError = error as? SKError
         let code = skError?.code
         
-        let paymentsError: PaymentsError = code == .paymentCancelled ? .cancelledByUser : .storeKitError(code)
+        let paymentsError: PaymentsError =
+        error as? PaymentsError
+        ?? (code == .paymentCancelled ? .cancelledByUser : .storeKitError(code))
         
         completionHandlers[productIdentifier]?(.failure(paymentsError))
         completionHandlers[productIdentifier] = nil
     }
     
-    private func completePurchase(for productIdentifier: String) {
-        completionHandlers[productIdentifier]?(.success(()))
+    private func completePurchase(for productIdentifier: String, transactionId: String?) {
+        guard let transactionId = transactionId else {
+            failPurchase(for: productIdentifier, with: PaymentsError.unknownError)
+            return
+        }
+
+        completionHandlers[productIdentifier]?(.success(transactionId))
         completionHandlers[productIdentifier] = nil
     }
 }
@@ -91,7 +98,12 @@ private final class PaymentQueueObserver: NSObject, SKPaymentTransactionObserver
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         transactions.forEach {
-            listener?($0.payment.productIdentifier, $0.transactionState, $0.transactionIdentifier, $0.error)
+            listener?(
+                $0.payment.productIdentifier,
+                $0.transactionState,
+                $0.original?.transactionIdentifier ?? $0.transactionIdentifier,
+                $0.error
+            )
         }
     }
 }

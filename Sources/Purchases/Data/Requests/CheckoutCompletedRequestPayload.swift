@@ -8,6 +8,11 @@
 import Foundation
 
 struct CheckoutCompletedRequestPayload: Encodable, Equatable {
+    struct Purchase: Encodable, Equatable {
+        let receipt: String
+        let transactionId: String
+    }
+    
     let orderId: UUID
-    let receipt: String
+    let purchase: Purchase
 }
