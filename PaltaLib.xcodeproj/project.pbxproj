@@ -161,6 +161,8 @@
 		117A2E3F28C753760047E7F3 /* CheckoutFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E3E28C753760047E7F3 /* CheckoutFlowTests.swift */; };
 		117A2E4128C753FB0047E7F3 /* CheckoutServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E4028C753FB0047E7F3 /* CheckoutServiceMock.swift */; };
 		117A2E4328C7572E0047E7F3 /* PaymentQueueInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E4228C7572E0047E7F3 /* PaymentQueueInteractorMock.swift */; };
+		117A2E4628C75B4A0047E7F3 /* ReceiptProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E4428C75AE10047E7F3 /* ReceiptProvider.swift */; };
+		117A2E4828C75B920047E7F3 /* ReceiptProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E4728C75B920047E7F3 /* ReceiptProviderMock.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
@@ -445,6 +447,8 @@
 		117A2E3E28C753760047E7F3 /* CheckoutFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutFlowTests.swift; sourceTree = "<group>"; };
 		117A2E4028C753FB0047E7F3 /* CheckoutServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutServiceMock.swift; sourceTree = "<group>"; };
 		117A2E4228C7572E0047E7F3 /* PaymentQueueInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentQueueInteractorMock.swift; sourceTree = "<group>"; };
+		117A2E4428C75AE10047E7F3 /* ReceiptProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptProvider.swift; sourceTree = "<group>"; };
+		117A2E4728C75B920047E7F3 /* ReceiptProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptProviderMock.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
@@ -885,6 +889,7 @@
 				11BE6BC628B3C554006EA904 /* PricePointMock.swift */,
 				117A2E4028C753FB0047E7F3 /* CheckoutServiceMock.swift */,
 				117A2E4228C7572E0047E7F3 /* PaymentQueueInteractorMock.swift */,
+				117A2E4728C75B920047E7F3 /* ReceiptProviderMock.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -912,6 +917,7 @@
 				11BE6BD328B8DD95006EA904 /* CheckoutService.swift */,
 				117A2E2D28BE04710047E7F3 /* PaymentQueueInteractor.swift */,
 				117A2E3728BFA02A0047E7F3 /* CheckoutAssembly.swift */,
+				117A2E4428C75AE10047E7F3 /* ReceiptProvider.swift */,
 				11A2F32328AE33BA00FDCA7D /* Showcase */,
 				111A59AE2840E4820052FCD1 /* WebPayments */,
 			);
@@ -1423,6 +1429,7 @@
 				11A61EEC2837925A00F88116 /* FeatureResponseTests.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,
 				11A61E842833E0C900F88116 /* AmplitudeExtensionTests.swift in Sources */,
+				117A2E4828C75B920047E7F3 /* ReceiptProviderMock.swift in Sources */,
 				113AD63C2837A6DD00324D62 /* FeatureMapperTests.swift in Sources */,
 				113A7A072850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift in Sources */,
 				117A2E4128C753FB0047E7F3 /* CheckoutServiceMock.swift in Sources */,
@@ -1526,6 +1533,7 @@
 				114CF5AB2822677900ADA815 /* RCPurchasePlugin.swift in Sources */,
 				11A61ED7283788DD00F88116 /* Feature.swift in Sources */,
 				117A2E2A28BCCB0C0047E7F3 /* CheckoutFailedRequestPayload.swift in Sources */,
+				117A2E4628C75B4A0047E7F3 /* ReceiptProvider.swift in Sources */,
 				1129A4342827E370009DDC41 /* PromoOffer.swift in Sources */,
 				117A2E3D28C530620047E7F3 /* LogPayload.swift in Sources */,
 				117A2E3228BF5ADF0047E7F3 /* GetCheckoutReponse.swift in Sources */,

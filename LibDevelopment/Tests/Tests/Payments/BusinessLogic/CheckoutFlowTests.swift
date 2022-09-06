@@ -17,6 +17,7 @@ final class CheckoutFlowTests: XCTestCase {
     private var checkoutService: CheckoutServiceMock!
     private var featuresService: PaidFeaturesServiceMock!
     private var paymentQueueInteractor: PaymentQueueInteractorMock!
+    private var receiptProvider: ReceiptProviderMock!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -26,6 +27,7 @@ final class CheckoutFlowTests: XCTestCase {
         checkoutService = .init()
         featuresService = .init()
         paymentQueueInteractor = .init()
+        receiptProvider = .init()
         
         flow = CheckoutFlowImpl(
             environment: .dev,
@@ -33,20 +35,22 @@ final class CheckoutFlowTests: XCTestCase {
             product: product,
             checkoutService: checkoutService,
             featuresService: featuresService,
-            paymentQueueInteractor: paymentQueueInteractor
+            paymentQueueInteractor: paymentQueueInteractor,
+            receiptProvider: receiptProvider
         )
     }
     
     func testSuccessFlow() {
         let orderId = UUID()
         let transactionId = UUID().uuidString
+        let receiptData = Data((0...20).map { _ in UInt8.random(in: 0...255) })
         
         checkoutService.startResult = .success(orderId)
         paymentQueueInteractor.result = .success(transactionId)
+        receiptProvider.data = receiptData
         checkoutService.completeResult = .success(())
         checkoutService.getResult = .success(.completed)
         featuresService.result = .success(PaidFeatures(features: [PaidFeature(name: "A feature", startDate: Date())]))
-        
         
         let successCalled = expectation(description: "Success called")
         
@@ -63,6 +67,7 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertEqual(checkoutService.startUserId, userId)
         XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
         XCTAssertEqual(checkoutService.completeOrderId, orderId)
+        XCTAssertEqual(checkoutService.completeReceiptData, receiptData)
         XCTAssertEqual(checkoutService.completTransactionId, transactionId)
         XCTAssertEqual(checkoutService.getOrderId, orderId)
         XCTAssertEqual(featuresService.userId, userId)
@@ -75,6 +80,7 @@ final class CheckoutFlowTests: XCTestCase {
         
         checkoutService.startResult = .success(orderId)
         paymentQueueInteractor.result = .success(transactionId)
+        receiptProvider.data = nil
         checkoutService.failResult = .success(())
         
         let failCalled = expectation(description: "Fail called")

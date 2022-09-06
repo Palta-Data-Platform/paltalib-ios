@@ -24,6 +24,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
     private let checkoutService: CheckoutService
     private let featuresService: PaidFeaturesService
     private let paymentQueueInteractor: PaymentQueueInteractor
+    private let receiptProvider: ReceiptProvider
     
     init(
         environment: Environment,
@@ -31,7 +32,8 @@ final class CheckoutFlowImpl: CheckoutFlow {
         product: Product,
         checkoutService: CheckoutService,
         featuresService: PaidFeaturesService,
-        paymentQueueInteractor: PaymentQueueInteractor
+        paymentQueueInteractor: PaymentQueueInteractor,
+        receiptProvider: ReceiptProvider
     ) {
         self.environment = environment
         self.userId = userId
@@ -39,6 +41,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         self.checkoutService = checkoutService
         self.featuresService = featuresService
         self.paymentQueueInteractor = paymentQueueInteractor
+        self.receiptProvider = receiptProvider
     }
     
     func start( completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void) {
@@ -91,7 +94,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
     ) {
         logStep("App Store purchase successful. Retrieving receipt...")
         
-        guard let receiptData = Bundle.main.appStoreReceiptURL.flatMap({ try? Data(contentsOf: $0) }) else {
+        guard let receiptData = receiptProvider.getReceiptData() else {
             failPurchase(orderId: orderId, with: .noReceipt, completion: completion)
             return
         }

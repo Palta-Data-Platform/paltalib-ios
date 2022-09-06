@@ -37,7 +37,8 @@ final class CheckoutAssemblyImpl: CheckoutAssembly {
             product: product,
             checkoutService: checkoutService,
             featuresService: webPaymentsAssembly.paidFeaturesService,
-            paymentQueueInteractor: paymentQueueInteractor
+            paymentQueueInteractor: paymentQueueInteractor,
+            receiptProvider: ReceiptProviderImpl()
         )
     }
 }
