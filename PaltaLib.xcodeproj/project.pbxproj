@@ -163,6 +163,7 @@
 		117A2E4328C7572E0047E7F3 /* PaymentQueueInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E4228C7572E0047E7F3 /* PaymentQueueInteractorMock.swift */; };
 		117A2E4628C75B4A0047E7F3 /* ReceiptProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E4428C75AE10047E7F3 /* ReceiptProvider.swift */; };
 		117A2E4828C75B920047E7F3 /* ReceiptProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E4728C75B920047E7F3 /* ReceiptProviderMock.swift */; };
+		117A2E4A28C770770047E7F3 /* CheckoutFlowLogsDisableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E4928C770770047E7F3 /* CheckoutFlowLogsDisableTests.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
@@ -449,6 +450,7 @@
 		117A2E4228C7572E0047E7F3 /* PaymentQueueInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentQueueInteractorMock.swift; sourceTree = "<group>"; };
 		117A2E4428C75AE10047E7F3 /* ReceiptProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptProvider.swift; sourceTree = "<group>"; };
 		117A2E4728C75B920047E7F3 /* ReceiptProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptProviderMock.swift; sourceTree = "<group>"; };
+		117A2E4928C770770047E7F3 /* CheckoutFlowLogsDisableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutFlowLogsDisableTests.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
@@ -835,6 +837,7 @@
 				11BE6BC028B3C3FC006EA904 /* ShowcaseFlowTests.swift */,
 				11BE6BD928B8EEEF006EA904 /* CheckoutServiceTests.swift */,
 				117A2E3E28C753760047E7F3 /* CheckoutFlowTests.swift */,
+				117A2E4928C770770047E7F3 /* CheckoutFlowLogsDisableTests.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -1425,6 +1428,7 @@
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
 				11BE6BDB28B8EEF4006EA904 /* CheckoutServiceTests.swift in Sources */,
 				114D07012806F64B00ACD310 /* EventQueueMock.swift in Sources */,
+				117A2E4A28C770770047E7F3 /* CheckoutFlowLogsDisableTests.swift in Sources */,
 				11543038282D03280021ED6F /* ProductMock.swift in Sources */,
 				11A61EEC2837925A00F88116 /* FeatureResponseTests.swift in Sources */,
 				111159BD27F7723700A41ADA /* TimerMock.swift in Sources */,

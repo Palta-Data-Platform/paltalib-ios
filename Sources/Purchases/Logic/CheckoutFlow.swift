@@ -82,7 +82,6 @@ final class CheckoutFlowImpl: CheckoutFlow {
                 completeCheckout(for: orderId, transactionId: transactionId, completion: completion)
             case .failure(let error):
                 failPurchase(orderId: orderId, with: error, completion: completion)
-                completion(.failure(error))
             }
         }
     }
@@ -107,7 +106,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
                 getCheckout(for: orderId, completion: completion)
             case .failure(let error):
                 logError(error, "Checkout complete failed")
-                completion(.failure(error))
+                completion(.failure(.flowNotCompleted))
             }
         }
     }
@@ -124,7 +123,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
                 getFeatures(after: checkoutState, orderId: orderId, completion: completion)
             case .failure(let error):
                 logError(error, "Get checkout failed")
-                completion(.failure(error))
+                completion(.failure(.flowNotCompleted))
             }
         }
     }
@@ -137,7 +136,14 @@ final class CheckoutFlowImpl: CheckoutFlow {
         switch checkoutState {
         case .completed:
             logStep("Get checkout successful. Retrieving features")
-            featuresService.getPaidFeatures(for: userId, completion: completion)
+            featuresService.getPaidFeatures(for: userId) { result in
+                switch result {
+                case .success:
+                    completion(result)
+                case .failure:
+                    completion(.failure(.flowNotCompleted))
+                }
+            }
         case .processing:
             logError(.flowNotCompleted, "Received processing checkout status from backend")
             completion(.failure(.flowNotCompleted))

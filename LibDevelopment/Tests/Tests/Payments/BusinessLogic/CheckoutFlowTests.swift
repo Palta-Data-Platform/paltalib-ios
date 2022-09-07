@@ -74,6 +74,56 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertNil(checkoutService.failOrderId)
     }
     
+    func testFailStartCheckout() {
+        checkoutService.startResult = .failure(.networkError(URLError(.appTransportSecurityRequiresSecureConnection)))
+        
+        let failCalled = expectation(description: "Fail called")
+        
+        flow.start { result in
+            guard case .failure(let error) = result, case .networkError = error else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+        
+        XCTAssertEqual(checkoutService.startUserId, userId)
+        XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
+        XCTAssertNil(checkoutService.completeOrderId)
+        XCTAssertNil(checkoutService.failOrderId)
+        XCTAssertNil(checkoutService.getOrderId)
+        XCTAssertNil(featuresService.userId)
+        XCTAssertNil(paymentQueueInteractor.product)
+    }
+    
+    func testFailPurchaseFlow() {
+        let orderId = UUID()
+        
+        checkoutService.startResult = .success(orderId)
+        paymentQueueInteractor.result = .failure(.cancelledByUser)
+        checkoutService.failResult = .success(())
+        
+        let failCalled = expectation(description: "Fail called")
+        
+        flow.start { result in
+            guard case .failure(let error) = result, case .cancelledByUser = error else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+        
+        XCTAssertEqual(checkoutService.startUserId, userId)
+        XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
+        XCTAssertEqual(checkoutService.failOrderId, orderId)
+        XCTAssertNil(checkoutService.getOrderId)
+        XCTAssertNil(featuresService.userId)
+    }
+    
     func testNoReceiptFlow() {
         let orderId = UUID()
         let transactionId = UUID().uuidString
@@ -101,6 +151,158 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertNil(checkoutService.completeOrderId)
         XCTAssertNil(checkoutService.getOrderId)
         XCTAssertNil(featuresService.userId)
+    }
+    
+    func testCompleteFailedFlow() {
+        let orderId = UUID()
+        let transactionId = UUID().uuidString
+        
+        checkoutService.startResult = .success(orderId)
+        paymentQueueInteractor.result = .success(transactionId)
+        receiptProvider.data = Data()
+        checkoutService.completeResult = .failure(.networkError(URLError(.badURL)))
+        
+        let failCalled = expectation(description: "Fail called")
+        
+        flow.start { result in
+            guard case .failure(let error) = result, case .flowNotCompleted = error else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+        
+        XCTAssertEqual(checkoutService.startUserId, userId)
+        XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
+        XCTAssertEqual(checkoutService.completeOrderId, orderId)
+        XCTAssertNil(checkoutService.getOrderId)
+        XCTAssertNil(featuresService.userId)
+    }
+    
+    func testFlowCancelled() {
+        let orderId = UUID()
+        checkoutService.startResult = .success(orderId)
+        paymentQueueInteractor.result = .success("")
+        receiptProvider.data = Data()
+        checkoutService.completeResult = .success(())
+        checkoutService.getResult = .success(.cancelled)
+        
+        let failCalled = expectation(description: "Fail called")
+        
+        flow.start { result in
+            guard case .failure(let error) = result, case .flowFailed(let failedOrderId) = error else {
+                return
+            }
+            
+            XCTAssertEqual(failedOrderId, orderId)
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+        
+        XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
+        XCTAssertNil(featuresService.userId)
+    }
+    
+    func testFlowFailed() {
+        let orderId = UUID()
+        checkoutService.startResult = .success(orderId)
+        paymentQueueInteractor.result = .success("")
+        receiptProvider.data = Data()
+        checkoutService.completeResult = .success(())
+        checkoutService.getResult = .success(.failed)
+        
+        let failCalled = expectation(description: "Fail called")
+        
+        flow.start { result in
+            guard case .failure(let error) = result, case .flowFailed(let failedOrderId) = error else {
+                return
+            }
+            
+            XCTAssertEqual(failedOrderId, orderId)
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+        
+        XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
+        XCTAssertNil(featuresService.userId)
+    }
+    
+    func testFlowPending() {
+        let orderId = UUID()
+        checkoutService.startResult = .success(orderId)
+        paymentQueueInteractor.result = .success("")
+        receiptProvider.data = Data()
+        checkoutService.completeResult = .success(())
+        checkoutService.getResult = .success(.processing)
+        
+        let failCalled = expectation(description: "Fail called")
+        
+        flow.start { result in
+            guard case .failure(let error) = result, case .flowNotCompleted = error else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+        
+        XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
+        XCTAssertNil(featuresService.userId)
+    }
+    
+    func testGetCheckoutFailedFlow() {
+        let orderId = UUID()
+        checkoutService.startResult = .success(orderId)
+        paymentQueueInteractor.result = .success("")
+        receiptProvider.data = Data()
+        checkoutService.completeResult = .success(())
+        checkoutService.getResult = .failure(.networkError(URLError(.cannotFindHost)))
+        
+        let failCalled = expectation(description: "Fail called")
+        
+        flow.start { result in
+            guard case .failure(let error) = result, case .flowNotCompleted = error else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+        
+        XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
+        XCTAssertNil(featuresService.userId)
+    }
+    
+    func testGetFeaturesFailedFlow() {
+        let orderId = UUID()
+        checkoutService.startResult = .success(orderId)
+        paymentQueueInteractor.result = .success("")
+        receiptProvider.data = Data()
+        checkoutService.completeResult = .success(())
+        checkoutService.getResult = .success(.completed)
+        featuresService.result = .failure(.sdkError(.protocolError))
+        
+        let failCalled = expectation(description: "Fail called")
+        
+        flow.start { result in
+            guard case .failure(let error) = result, case .flowNotCompleted = error else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+        
+        XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
     }
     
     private func collectTraceIds() -> Set<UUID> {
