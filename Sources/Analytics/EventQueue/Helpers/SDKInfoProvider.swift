@@ -18,6 +18,6 @@ final class SDKInfoProviderImpl: SDKInfoProvider {
     }
     
     var sdkVersion: String {
-        Bundle(for: type(of: self)).infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
+        "3.0.2"
     }
 }
