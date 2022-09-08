@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'PaltaLibEvents'
-  spec.version               = '1.0.1'
+  spec.version               = '1.0.2'
   spec.license               = 'MIT'
   spec.summary               = 'PaltaLib iOS SDK - Template for event schema generation'
   spec.homepage              = 'https://github.com/Palta-Data-Platform/paltalib-ios'
@@ -13,6 +13,6 @@ Pod::Spec.new do |spec|
   spec.source_files = 'Sources/Events/**/*.{swift,m}'
   spec.module_name = 'PaltaEvents'
   
-  spec.dependency 'PaltaLibAnalytics', '~> 3.0.1'
+  spec.dependency 'PaltaLibAnalytics', '~> 3.0.2'
   spec.dependency 'PaltaLibEventsTransport', '~> 1.0.0'
 end
