@@ -1,11 +1,11 @@
 PODS:
-  - PaltaLibAnalytics (3.0.0):
-    - PaltaLibAnalyticsModel (~> 1.0.0)
+  - PaltaLibAnalytics (3.0.2):
+    - PaltaLibAnalyticsModel (~> 1.1.0)
     - PaltaLibCore (>= 2.2.1)
-  - PaltaLibAnalyticsModel (1.0.0)
+  - PaltaLibAnalyticsModel (1.1.0)
   - PaltaLibCore (2.3.0)
-  - PaltaLibEvents (1.0.0):
-    - PaltaLibAnalytics (~> 3.0.0)
+  - PaltaLibEvents (1.0.2):
+    - PaltaLibAnalytics (~> 3.0.2)
     - PaltaLibEventsTransport (~> 1.0.0)
   - PaltaLibEventsTransport (1.0.0):
     - SwiftProtobuf (~> 1.19.0)
@@ -16,7 +16,7 @@ PODS:
   - SwiftProtobuf (1.19.1)
 
 DEPENDENCIES:
-  - PaltaLibEvents (= 1.0.0)
+  - PaltaLibEvents (= 1.0.2)
   - PaltaLibPurchases (= 3.0.0)
 
 SPEC REPOS:
@@ -31,15 +31,15 @@ SPEC REPOS:
     - SwiftProtobuf
 
 SPEC CHECKSUMS:
-  PaltaLibAnalytics: b2cb2f84ac8d0bf5d2257eabc45d1ae99f952dd4
-  PaltaLibAnalyticsModel: 510ef85732c38b8a2573c9fe2aeeff7adffd1b9a
+  PaltaLibAnalytics: f3a378e1c4114956f5b89fba886e11261be1f53b
+  PaltaLibAnalyticsModel: cbd04357147f63fa20b157ae8842ebe05883f102
   PaltaLibCore: d4b6a07f7de3009526fddd35fb66e56a709ff210
-  PaltaLibEvents: 629146b35163626955e8e982f408f54c00a80eec
+  PaltaLibEvents: 62667a4403470396b6e70fe1adc6ed94bb69963a
   PaltaLibEventsTransport: fda10663667f1ca9ee251c3cdf044ecd61a65aaf
   PaltaLibPurchases: a4aa2a3ce44bb27e90a257e14c51d854f597d0aa
   RevenueCat: 5009a82afee178848de97cf2d712be1015a5d33c
   SwiftProtobuf: 59d9ea2eb5f84b509f32d170a65f3348ae758f1e
 
-PODFILE CHECKSUM: cb1fcbe9662fb276201aa037836c4dd77a70d5e7
+PODFILE CHECKSUM: 13279810d89c5840adafb235f00fb5212d9bb7bf
 
 COCOAPODS: 1.11.3
