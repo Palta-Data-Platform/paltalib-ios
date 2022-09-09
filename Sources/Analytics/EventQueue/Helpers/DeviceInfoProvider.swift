@@ -11,16 +11,16 @@ import CoreTelephony
 import AdSupport
 import AppTrackingTransparency
 
-protocol DeviceInfoProvider {
+public protocol DeviceInfoProvider {
     var osVersion: String { get }
-    var appVersion: String? { get }
+    var appVersion: String { get }
     var deviceModel: String { get }
     var carrier: String { get }
     var country: String? { get }
     var language: String? { get }
-    var timezoneOffset: Int { get }
-    var idfa: String? { get }
-    var idfv: String? { get }
+    var timezoneOffsetSeconds: Int { get }
+    var idfa: String { get }
+    var idfv: String { get }
 }
 
 final class DeviceInfoProviderImpl: DeviceInfoProvider {
@@ -28,8 +28,8 @@ final class DeviceInfoProviderImpl: DeviceInfoProvider {
         UIDevice.current.systemVersion
     }
 
-    var appVersion: String? {
-        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
 
     var deviceModel: String {
@@ -37,7 +37,21 @@ final class DeviceInfoProviderImpl: DeviceInfoProvider {
     }
 
     var carrier: String {
-        CTTelephonyNetworkInfo().subscriberCellularProvider?.carrierName ?? "Unknown"
+        let defaultValue = "Unknown"
+        if #available(iOS 12.0, *) {
+            let carriersString = CTTelephonyNetworkInfo()
+                .serviceSubscriberCellularProviders?
+                .compactMap { $0.value.carrierName }
+                .joined(separator: ",")
+            ?? ""
+            
+            return carriersString.isEmpty ? defaultValue : carriersString
+        } else {
+            return CTTelephonyNetworkInfo()
+                .subscriberCellularProvider?
+                .carrierName
+            ?? defaultValue
+        }
     }
 
     var country: String? {
@@ -48,26 +62,26 @@ final class DeviceInfoProviderImpl: DeviceInfoProvider {
         Locale.current.languageCode
     }
 
-    var timezoneOffset: Int {
-        TimeZone.current.secondsFromGMT() / 3600
+    var timezoneOffsetSeconds: Int {
+        TimeZone.current.secondsFromGMT()
     }
 
-    var idfa: String? {
+    var idfa: String {
         if #available(iOS 14, *) {
             if ATTrackingManager.trackingAuthorizationStatus != .authorized  {
-                return nil
+                return ""
             }
         } else {
             if ASIdentifierManager.shared().isAdvertisingTrackingEnabled == false {
-                return nil
+                return ""
             }
         }
 
         return ASIdentifierManager.shared().advertisingIdentifier.uuidString
     }
 
-    private(set) var idfv: String? = {
-        let closure = { UIDevice.current.identifierForVendor?.uuidString }
+    let idfv: String = {
+        let closure = { UIDevice.current.identifierForVendor?.uuidString ?? "" }
 
         if Thread.isMainThread {
             return closure()

@@ -6,27 +6,28 @@
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 @testable import PaltaLibAnalytics
 
-final class SessionManagerMock: SessionManager, SessionIdProvider {
+final class SessionManagerMock: SessionManager, SessionProvider {
     var sessionId: Int = -1
-    var sessionEventLogger: ((String, Int) -> Void)?
+    var sessionStartLogger: ((Int) -> Void)?
 
     var refreshSessionCalled = false
     var startCalled = false
     var startNewSessionCalled = false
-
+    
+    var eventNumber: Int = .random(in: 0...10000)
+    
     func refreshSession(with timestamp: Int) {
         refreshSessionCalled = true
+    }
+    
+    func nextEventNumber() -> Int {
+        eventNumber
     }
 
     func start() {
         startCalled = true
     }
-
-    func startNewSession() {
-        startNewSessionCalled = true
-    }
-
-
 }
