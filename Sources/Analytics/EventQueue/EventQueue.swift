@@ -1,111 +1,107 @@
 //
 //  EventQueue.swift
-//  
+//  PaltaLibAnalytics
 //
-//  Created by Vyacheslav Beltyukov on 31.03.2022.
+//  Created by Vyacheslav Beltyukov on 07/06/2022.
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 
 protocol EventQueue {
-    func logEvent(
-        eventType: String,
-        eventProperties: [String: Any],
-        apiProperties: [String: Any],
-        groups: [String: Any],
-        userProperties: [String: Any],
-        groupProperties: [String: Any],
-        timestamp: Int?,
-        outOfSession: Bool
-    )
+    func logEvent<E: Event>(_ incomingEvent: E)
 }
 
 final class EventQueueImpl: EventQueue {
-    var trackingSessionEvents = true
-    var liveEventTypes: Set<String> = []
-    var excludedEvents: Set<String> = []
-
+    private let stack: Stack
     private let core: EventQueueCore
-    private let liveCore: EventQueueCore
     private let storage: EventStorage
-    private let sender: EventSender
+    private let sendController: BatchSendController
     private let eventComposer: EventComposer
     private let sessionManager: SessionManager
-    private let timer: Timer
+    private let contextProvider: CurrentContextProvider
 
     init(
+        stack: Stack,
         core: EventQueueCore,
-        liveCore: EventQueueCore,
         storage: EventStorage,
-        sender: EventSender,
+        sendController: BatchSendController,
         eventComposer: EventComposer,
         sessionManager: SessionManager,
-        timer: Timer
+        contextProvider: CurrentContextProvider
     ) {
+        self.stack = stack
         self.core = core
-        self.liveCore = liveCore
         self.storage = storage
-        self.sender = sender
+        self.sendController = sendController
         self.eventComposer = eventComposer
         self.sessionManager = sessionManager
-        self.timer = timer
+        self.contextProvider = contextProvider
 
         setupCore(core, liveQueue: false)
-        setupCore(liveCore, liveQueue: true)
+        setupSendController()
         startSessionManager()
     }
-
-    func logEvent(
-        eventType: String,
-        eventProperties: [String: Any],
-        apiProperties: [String: Any] = [:],
-        groups: [String: Any],
-        userProperties: [String: Any] = [:],
-        groupProperties: [String: Any] = [:],
-        timestamp: Int? = nil,
-        outOfSession: Bool = false
+    
+    func logEvent<E: Event>(_ incomingEvent: E) {
+        logEvent(
+            of: incomingEvent.type,
+            with: incomingEvent.header,
+            and: incomingEvent.payload,
+            timestamp: nil,
+            skipRefreshSession: false
+        )
+    }
+    
+    private func logEvent(
+        of type: EventType,
+        with header: EventHeader?,
+        and payload: EventPayload,
+        timestamp: Int?,
+        skipRefreshSession: Bool
     ) {
-        guard !excludedEvents.contains(eventType) else {
-            return
-        }
-        
-        if !outOfSession {
-            sessionManager.refreshSession(with: timestamp ?? .currentTimestamp())
+        if !skipRefreshSession {
+            sessionManager.refreshSession(with: currentTimestamp())
         }
 
         let event = eventComposer.composeEvent(
-            eventType: eventType,
-            eventProperties: eventProperties,
-            apiProperties: apiProperties,
-            groups: groups,
-            userProperties: userProperties,
-            groupProperties: groupProperties,
-            timestamp: timestamp,
-            outOfSession: outOfSession
+            of: type,
+            with: header,
+            and: payload,
+            timestamp: timestamp
         )
-
-        storage.storeEvent(event)
-
-        if liveEventTypes.contains(eventType) {
-            liveCore.addEvent(event)
-        } else {
-            core.addEvent(event)
+        
+        let storableEvent = StorableEvent(
+            event: IdentifiableEvent(id: UUID(), event: event),
+            contextId: contextProvider.currentContextId
+        )
+        
+        storage.storeEvent(storableEvent)
+        core.addEvent(storableEvent)
+    }
+    
+    private func setupSendController() {
+        sendController.isReadyCallback = { [core] in
+            core.sendEventsAvailable()
         }
     }
 
     private func setupCore(_ core: EventQueueCore, liveQueue: Bool) {
-        core.sendHandler = { [weak self] events, telemetry, completionHandler in
-            self?.sendEvents(
-                Array(events),
-                telemetry: liveQueue ? nil : telemetry,
-                completionHandler
-            )
+        core.sendHandler = { [weak self] events, contextId, _ in
+            guard let self = self, self.sendController.isReady else {
+                return false
+            }
+            
+            self.sendController.sendBatch(of: events, with: contextId)
+            return true
         }
 
         core.removeHandler = { [weak self] in
             guard let self = self else { return }
 
-            $0.forEach(self.storage.removeEvent)
+            $0.forEach {
+                self.storage.removeEvent(with: $0.event.id)
+            }
         }
 
         guard !liveQueue else {
@@ -118,41 +114,21 @@ final class EventQueueImpl: EventQueue {
     }
 
     private func startSessionManager() {
-        sessionManager.sessionEventLogger = { [weak self] eventName, timestamp in
-            guard let self = self, self.trackingSessionEvents else {
+        sessionManager.sessionStartLogger = { [weak self] timestamp in
+            guard let self = self else {
                 return
             }
             
             self.logEvent(
-                eventType: eventName,
-                eventProperties: [:],
-                apiProperties: ["special": eventName],
-                groups: [:],
+                of: self.stack.sessionStartEventType,
+                with: nil,
+                and: self.stack.sessionStartEventPayloadProvider(),
                 timestamp: timestamp,
-                outOfSession: true
+                skipRefreshSession: true
             )
         }
-
+        
         sessionManager.start()
     }
-
-    private func sendEvents(_ events: [Event], telemetry: Telemetry?, _ completionHandler: @escaping () -> Void) {
-        sender.sendEvents(events, telemetry: telemetry) { [core, storage, timer] result in
-            switch result {
-            case .success:
-                events.forEach(storage.removeEvent)
-                completionHandler()
-
-            case .failure(let error) where error.requiresRetry:
-                core.addEvents(events)
-                timer.scheduleTimer(timeInterval: 5, on: .global()) {
-                    completionHandler()
-                }
-
-            case .failure:
-                events.forEach(storage.removeEvent)
-                completionHandler()
-            }
-        }
-    }
 }
+

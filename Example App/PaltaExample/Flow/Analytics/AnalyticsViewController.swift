@@ -18,6 +18,24 @@ class AnalyticsViewController: UIViewController {
         color: .systemBlue,
         action: viewModel.logTestEvent
     )
+    
+    private lazy var changeContextButton = Button(
+        title: "Change context",
+        color: .systemBrown,
+        action: viewModel.changeContext
+    )
+    
+    private lazy var loadTestButton = Button(
+        title: "Load test",
+        color: .systemRed,
+        action: viewModel.loadTest
+    )
+    
+    private lazy var buttonsStack = UIStackView(arrangedSubviews: [testLogButton, changeContextButton, loadTestButton]).do {
+        $0.axis = .vertical
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.spacing = 24
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +51,7 @@ class AnalyticsViewController: UIViewController {
     private func configureTestButton() {
         view.addSubview(testLogButton)
         
-        testLogButton.snp.makeConstraints {
+        buttonsStack.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.centerY.equalToSuperview()
         }

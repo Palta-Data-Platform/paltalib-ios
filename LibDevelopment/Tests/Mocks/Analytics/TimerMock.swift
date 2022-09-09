@@ -31,4 +31,10 @@ final class TimerMock: PaltaLibAnalytics.Timer {
             self.completion?()
         }
     }
+    
+    func fireAndWait() {
+        dispatchQueue?.sync {
+            self.completion?()
+        }
+    }
 }

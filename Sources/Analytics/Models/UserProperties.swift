@@ -10,4 +10,5 @@ import Foundation
 struct UserProperties: Codable {
     var userId: String?
     var deviceId: String?
+    var instanceId: UUID?
 }

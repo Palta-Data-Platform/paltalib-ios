@@ -2,7 +2,7 @@
 //  EventQueueCoreMock.swift
 //  PaltaLibTests
 //
-//  Created by Vyacheslav Beltyukov on 04.04.2022.
+//  Created by Vyacheslav Beltyukov on 29/06/2022.
 //
 
 import Foundation
@@ -11,14 +11,19 @@ import Foundation
 final class EventQueueCoreMock: EventQueueCore {
     var sendHandler: UploadHandler?
     var removeHandler: RemoveHandler?
-
-    var addedEvents: [Event] = []
-
-    func addEvent(_ event: Event) {
+    
+    var addedEvents: [StorableEvent] = []
+    var sendEventsTriggered = false
+    
+    func addEvent(_ event: StorableEvent) {
         addedEvents.append(event)
     }
-
-    func addEvents(_ events: [Event]) {
+    
+    func addEvents(_ events: [StorableEvent]) {
         addedEvents.append(contentsOf: events)
+    }
+    
+    func sendEventsAvailable() {
+        sendEventsTriggered = true
     }
 }

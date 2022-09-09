@@ -5,23 +5,25 @@ import UIKit
 import CoreData
 import PaltaLibAnalytics
 import PaltaLibPurchases
+import PaltaEvents
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        PaltaAnalytics.instance.configure(
-            name: "PaltaExample",
-            amplitudeAPIKey: "AMPLITUDE",
-            paltaAPIKey: "0037c694a811422a88e2a3c5a90510e3"
-        )
+        PaltaAnalytics.shared.setAPIKey("0037c694a811422a88e2a3c5a90510e3", and: URL(string: "https://telemetry.mobilesdk.dev.paltabrain.com"))
+        
+        PaltaAnalytics.shared.editContext { context in
+            context.user = .init(userID: "slava")
+        }
         
         PaltaPurchases.instance.setup(with: [
 //            RCPurchasePlugin(apiKey: "appl_XLKhpPFayETZEchAVBKynvTNkAr"),
             PBPurchasePlugin(apiKey: "13ac16d7a83e42268c7f9abb7bcd6443", environment: .dev)
         ])
         
-        PaltaAnalytics.instance.logEvent("app-launch")
+        PaltaAnalytics.shared.log(
+            PageOpenEvent(header: .init(), pageID: "launch")
+        )
         
         return true
     }

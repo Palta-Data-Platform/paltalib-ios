@@ -2,41 +2,27 @@
 //  EventComposerMock.swift
 //  PaltaLibTests
 //
-//  Created by Vyacheslav Beltyukov on 04.04.2022.
+//  Created by Vyacheslav Beltyukov on 29/06/2022.
 //
 
 import Foundation
+import PaltaLibAnalyticsModel
 @testable import PaltaLibAnalytics
 
 final class EventComposerMock: EventComposer {
-    var eventType: String?
-    var eventProperties: [String : Any]?
-    var apiProperties: [String : Any]?
-    var groups: [String : Any]?
-    var userProperties: [String: Any]?
-    var groupProperties: [String: Any]?
+    var shouldFailSerialize = false
+    var shouldFailDeserialize = false
+    
     var timestamp: Int?
-    var outOfSession: Bool?
-
+    
     func composeEvent(
-        eventType: String,
-        eventProperties: [String: Any],
-        apiProperties: [String: Any],
-        groups: [String: Any],
-        userProperties: [String: Any],
-        groupProperties: [String: Any],
-        timestamp: Int?,
-        outOfSession: Bool
-    ) -> Event {
-        self.eventType = eventType
-        self.eventProperties = eventProperties
-        self.apiProperties = apiProperties
-        self.groups = groups
-        self.userProperties = userProperties
-        self.groupProperties = groupProperties
+        of type: EventType,
+        with header: EventHeader?,
+        and payload: EventPayload,
+        timestamp: Int?
+    ) -> BatchEvent {
         self.timestamp = timestamp
-        self.outOfSession = outOfSession
         
-        return .mock()
+        return BatchEventMock(shouldFailSerialize: shouldFailSerialize, shouldFailDeserialize: shouldFailDeserialize)
     }
 }

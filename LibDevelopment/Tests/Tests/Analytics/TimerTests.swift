@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import PaltaLibAnalyticsModel
 @testable import PaltaLibAnalytics
 
 final class TimerTests: XCTestCase {

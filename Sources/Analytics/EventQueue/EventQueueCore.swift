@@ -1,30 +1,32 @@
 //
 //  EventQueueCore.swift
-//  
+//  PaltaLibAnalytics
 //
-//  Created by Vyacheslav Beltyukov on 31.03.2022.
+//  Created by Vyacheslav Beltyukov on 06/06/2022.
 //
 
 import Foundation
 import PaltaLibCore
+import PaltaLibAnalyticsModel
 
 struct EventQueueConfig {
     let maxBatchSize: Int
     let uploadInterval: TimeInterval
     let uploadThreshold: Int
     let maxEvents: Int
-    let maxConcurrentOperations: Int
 }
 
 protocol EventQueueCore: AnyObject {
-    typealias UploadHandler = (ArraySlice<Event>, Telemetry, @escaping () -> Void) -> Void
-    typealias RemoveHandler = (ArraySlice<Event>) -> Void
+    typealias UploadHandler = ([UUID: BatchEvent], UUID, Telemetry) -> Bool
+    typealias RemoveHandler = (ArraySlice<StorableEvent>) -> Void
 
     var sendHandler: UploadHandler? { get set }
     var removeHandler: RemoveHandler? { get set }
 
-    func addEvent(_ event: Event)
-    func addEvents(_ events: [Event])
+    func addEvent(_ event: StorableEvent)
+    func addEvents(_ events: [StorableEvent])
+    
+    func sendEventsAvailable()
 }
 
 final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
@@ -39,19 +41,7 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         }
     }
 
-    private var operationsInProgress = 0 {
-        didSet {
-            if
-                let maxOperations = config?.maxConcurrentOperations,
-                oldValue >= maxOperations,
-                operationsInProgress < maxOperations
-            {
-                resumeOperations()
-            }
-        }
-    }
-
-    private var events: [Event] = []
+    private var events: [StorableEvent] = []
 
     private var droppedEventsCount = 0
 
@@ -70,20 +60,30 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         self.timer = timer
     }
 
-    func addEvent(_ event: Event) {
+    func addEvent(_ event: StorableEvent) {
         workingQueue.async {
             self.insert(event)
             self.onNewEvents()
         }
     }
 
-    func addEvents(_ events: [Event]) {
+    func addEvents(_ events: [StorableEvent]) {
         workingQueue.async {
             events.forEach(self.insert)
             self.onNewEvents()
         }
     }
     
+    func sendEventsAvailable() {
+        workingQueue.async { [self] in
+            if timerFired {
+                flush()
+            } else {
+                flushByCountOrContexts()
+            }
+        }
+    }
+
     func apply(_ config: EventQueueConfig) {
         workingQueue.async {
             self.config = config
@@ -96,23 +96,17 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     }
     #endif
 
-    private func insert(_ event: Event) {
-        let index = events.lastIndex(where: { $0.timestamp > event.timestamp }) ?? 0
+    private func insert(_ event: StorableEvent) {
+        let index = events.firstIndex(where: {
+            $0.event.event.timestamp > event.event.event.timestamp
+        }) ?? events.endIndex
         events.insert(event, at: index)
     }
 
     private func onNewEvents() {
         stripEventsIfNeeded()
         scheduleTimerIfNeeded()
-        flushIfNeededByCount()
-    }
-
-    private func onOperationsCountReduced() {
-        if timerFired {
-            flush()
-        } else {
-            flushIfNeededByCount()
-        }
+        flushByCountOrContexts()
     }
 
     private func stripEventsIfNeeded() {
@@ -120,8 +114,9 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
             return
         }
 
-        let strippedEvents = events.suffix(from: config.maxEvents)
-        events = Array(events.prefix(config.maxEvents))
+        let stripCount = events.count - config.maxEvents
+        let strippedEvents = events.prefix(stripCount)
+        events = Array(events.suffix(config.maxEvents))
 
         droppedEventsCount += strippedEvents.count
         removeHandler?(strippedEvents)
@@ -134,76 +129,79 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
 
         timerToken = timer.scheduleTimer(timeInterval: config.uploadInterval, on: workingQueue) { [weak self] in
             self?.timerFired = true
-            self?.attemptFlush()
+            self?.timerToken = nil
+            self?.flush()
         }
     }
 
-    private func flushIfNeededByCount() {
+    private func flushIfNeededByCount() -> Bool {
         guard let config = config, events.count >= config.uploadThreshold else {
-            return
-        }
-
-        attemptFlush()
-    }
-
-    private func resumeOperations() {
-        if timerFired {
-            attemptFlush()
-        } else {
-            flushIfNeededByCount()
-        }
-    }
-
-    private func attemptFlush() {
-        guard let config = config, config.maxConcurrentOperations > operationsInProgress else {
-            return
+            return false
         }
 
         flush()
+        return true
+    }
+    
+    private func flushIfMultipleContexts() -> Bool {
+        guard
+            config != nil,
+            let firstContextId = events.first?.contextId,
+            !events.allSatisfy({ $0.contextId == firstContextId })
+        else {
+            return false
+        }
+        
+        flush()
+        return true
+    }
+    
+    private func flushByCountOrContexts() {
+        let flushedByCount = flushIfNeededByCount()
+        
+        guard !flushedByCount else {
+            return
+        }
+        
+        _ = flushIfMultipleContexts()
     }
 
     private func flush() {
-        assert(Thread.callStackSymbols[1].contains("attemptFlush"))
-
+        let timerWasFired = timerFired
         timerFired = false
 
         guard let config = config else {
             assertionFailure("Flush shouldn't be called unless we have a config")
             return
         }
-
-        let batchSize = config.maxBatchSize
-        let batchesCount = events.count / batchSize + (events.count % batchSize > 0 ? 1 : 0)
-
-        var lastUploadedIndex: Int?
-
-        for batchIndex in 0..<batchesCount {
-            guard operationsInProgress < config.maxConcurrentOperations else {
-                break
-            }
-
-            let start = batchIndex * batchSize
-            let end = min(events.count, (batchIndex + 1) * batchSize)
-            let range = start..<end
-            lastUploadedIndex = end
-
-            let telemetry = Telemetry(
-                eventsInBatch: range.count,
-                batchLoad: Double(range.count) / Double(config.maxBatchSize),
-                eventsDroppedSinceLastBatch: droppedEventsCount
-            )
-
-            droppedEventsCount = 0
-
-            operationsInProgress += 1
-            sendHandler?(events[range], telemetry, { [weak self] in
-                self?.workingQueue.async {
-                    self?.operationsInProgress -= 1
-                }
-            })
+        
+        guard let contextId = events.first?.contextId else {
+            return
         }
 
-        events = lastUploadedIndex.map { Array(events.suffix(from: $0)) } ?? events
+        let batchSize = config.maxBatchSize
+        let firstIndexWithAnotherContext = events.firstIndex { $0.contextId != contextId } ?? .max
+
+        let range = 0..<min(batchSize, events.count, firstIndexWithAnotherContext)
+
+        let telemetry = Telemetry(
+            eventsInBatch: range.count,
+            batchLoad: Double(range.count) / Double(batchSize),
+            eventsDroppedSinceLastBatch: droppedEventsCount
+        )
+
+        let batchEvents = Dictionary(grouping: events[range], by: { $0.event.id })
+            .compactMapValues { $0.first?.event.event }
+        let batchFormed = sendHandler?(batchEvents, contextId, telemetry) ?? false
+        
+        guard batchFormed else {
+            timerFired = timerWasFired
+            return
+        }
+        
+        droppedEventsCount = 0
+
+        events = Array(events.suffix(from: range.upperBound))
 
         if events.isEmpty {
             timerToken = nil

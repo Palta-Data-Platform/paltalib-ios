@@ -1,191 +1,44 @@
-import Amplitude
-import PaltaLibCore
+//
+//  PaltaAnalytics.swift
+//  PaltaLibAnalytics
+//
+//  Created by Vyacheslav Beltyukov on 29/06/2022.
+//
 
-public final class PaltaAnalytics {
-    public static let instance = PaltaAnalytics()
+import Foundation
+import PaltaLibAnalyticsModel
 
-    var paltaQueues: [EventQueueImpl] {
-        paltaQueueAssemblies.map { $0.eventQueue }
-    }
+public class PaltaAnalytics {
+    private static var stack: Stack?
+    private static let lock = NSRecursiveLock()
 
-    let assembly = AnalyticsAssembly()
-    
-    var paltaQueueAssemblies: [EventQueueAssembly] {
-        if let defaultPaltaInstance = defaultPaltaInstance {
-            return [defaultPaltaInstance]
-        } else {
-            return _paltaQueueAssemblies
-        }
+    public static func initiate(with stack: Stack) {
+        self.stack = stack
     }
     
-    var amplitudeInstances: [Amplitude] {
-        if let defaultAmplitudeInstance = defaultAmplitudeInstance {
-            return [defaultAmplitudeInstance]
-        } else {
-            return _amplitudeInstances
-        }
-    }
-    
-    private let lock = NSRecursiveLock()
-
-    private(set) var targets = [Target]()
-    
-    private var defaultAmplitudeInstance: Amplitude? = Amplitude
-        .instance(withName: ConfigTarget.defaultAmplitude.name.rawValue)
-        .do {
-            $0.apply(.defaultAmplitude)
-            $0.setOffline(true)
-        }
-    
-    private var defaultPaltaInstance: EventQueueAssembly?
-    
-    private var _paltaQueueAssemblies: [EventQueueAssembly] = []
-    private var _amplitudeInstances: [Amplitude] = []
-
-    private var isConfigured = false
-    private var apiKey: String?
-    private var amplitudeApiKey: String?
-    
-    init() {
-        defaultPaltaInstance = assembly.newEventQueueAssembly()
-    }
-
-    @available(
-        *,
-         deprecated,
-         message: "Set trackingSessionEvents locally is ignored. Use func configure(name:amplitudeAPIKey:paltaAPIKey:) instead"
-    )
-    public func configure(
-        name: String,
-        amplitudeAPIKey: String? = nil,
-        paltaAPIKey: String? = nil,
-        trackingSessionEvents: Bool
-    ) {
-        configure(name: name, amplitudeAPIKey: amplitudeAPIKey, paltaAPIKey: paltaAPIKey)
-    }
-
-    public func configure(
-        name: String,
-        amplitudeAPIKey: String? = nil,
-        paltaAPIKey: String? = nil
-    ) {
+    public static var shared: PaltaAnalytics {
         lock.lock()
         defer { lock.unlock() }
+
+        if let configuredInstance = _shared {
+            return configuredInstance
+        }
         
-        guard !isConfigured else { return }
+        guard let stack = stack else {
+            fatalError("Attempt to access PaltaAnalytics without setting up")
+        }
         
-        self.isConfigured = true
-        self.apiKey = paltaAPIKey
-        self.amplitudeApiKey = amplitudeAPIKey
-
-        if let amplitudeAPIKey = amplitudeAPIKey {
-            defaultAmplitudeInstance?.initializeApiKey(amplitudeAPIKey)
-        }
-
-        requestRemoteConfigs()
-    }
-    
-    private func requestRemoteConfigs() {
-        guard let apiKey = apiKey else {
-            print("PaltaAnalytics: error: API key is not set")
-            return
-        }
-
-        assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey) { [self] (result: Result<RemoteConfig, Error>) in
-            switch result {
-            case .failure(let error):
-                print("PaltaAnalytics: configuration fetch failed: \(error.localizedDescription), used default config.")
-                applyRemoteConfig(.default)
-            case .success(let config):
-                applyRemoteConfig(config)
-            }
-        }
-    }
-    
-    private func applyRemoteConfig(_ remoteConfig: RemoteConfig) {
-        lock.lock()
-
-        let service = ConfigApplyService(
-            remoteConfig: remoteConfig,
-            apiKey: apiKey,
-            amplitudeApiKey: amplitudeApiKey,
-            eventQueueAssemblyProvider: assembly
-        )
+        let shared = PaltaAnalytics(assembly: AnalyticsAssembly(stack: stack))
+        _shared = shared
         
-        service.apply(
-            defaultPaltaAssembly: &defaultPaltaInstance,
-            defaultAmplitude: &defaultAmplitudeInstance,
-            paltaAssemblies: &_paltaQueueAssemblies,
-            amplitudeInstances: &_amplitudeInstances
-        )
-        
-        lock.unlock()
-    }
-
-    public func setOffline(_ offline: Bool) {
-        amplitudeInstances.forEach {
-            $0.setOffline(offline)
-        }
-
-        paltaQueueAssemblies.forEach {
-            $0.eventQueueCore.isPaused = offline
-            $0.liveEventQueueCore.isPaused = offline
-        }
+        return shared
     }
     
-    public func useAdvertisingIdForDeviceId() {
-        amplitudeInstances.forEach {
-            $0.useAdvertisingIdForDeviceId()
-        }
-
-        assembly.analyticsCoreAssembly.userPropertiesKeeper.useIDFAasDeviceId = true
-    }
-
-    public func setTrackingOptions(_ options: AMPTrackingOptions) {
-        amplitudeInstances.forEach {
-            $0.setTrackingOptions(options)
-        }
-
-        assembly.analyticsCoreAssembly.trackingOptionsProvider.setTrackingOptions(options)
-    }
-
-    public func enableCoppaControl() {
-        amplitudeInstances.forEach {
-            $0.enableCoppaControl()
-        }
-
-        assembly.analyticsCoreAssembly.trackingOptionsProvider.coppaControlEnabled = true
-    }
+    private static var _shared: PaltaAnalytics?
     
-    public func disableCoppaControl() {
-        amplitudeInstances.forEach {
-            $0.disableCoppaControl()
-        }
-
-        assembly.analyticsCoreAssembly.trackingOptionsProvider.coppaControlEnabled = false
-    }
+    let assembly: AnalyticsAssembly
     
-    public func getDeviceId() -> String? {
-        assembly.analyticsCoreAssembly.userPropertiesKeeper.deviceId
-    }
-    
-    public func regenerateDeviceId() {
-        assembly.analyticsCoreAssembly.userPropertiesKeeper.generateDeviceId(forced: true)
-
-        amplitudeInstances.forEach {
-            $0.setDeviceId(assembly.analyticsCoreAssembly.userPropertiesKeeper.deviceId ?? "")
-        }
-    }
-    
-    public func getSessionId() -> Int64? {
-        Int64(assembly.analyticsCoreAssembly.sessionManager.sessionId)
-    }
-    
-    public func setSessionId(_ timestamp: Int64) {
-        amplitudeInstances.forEach {
-            $0.setSessionId(timestamp)
-        }
-
-        assembly.analyticsCoreAssembly.sessionManager.setSessionId(Int(timestamp))
+    init(assembly: AnalyticsAssembly) {
+        self.assembly = assembly
     }
 }

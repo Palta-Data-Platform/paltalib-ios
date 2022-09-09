@@ -7,7 +7,6 @@
 
 import XCTest
 import Foundation
-import Amplitude
 @testable import PaltaLibAnalytics
 
 final class SessionManagerTests: XCTestCase {
@@ -28,32 +27,38 @@ final class SessionManagerTests: XCTestCase {
     }
 
     func testRestoreSession() {
-        let session = Session(id: 22)
+        let session = Session(id: 22, currentEventNumber: 5)
         userDefaults.set(try! JSONEncoder().encode(session), forKey: "paltaBrainSession")
 
         let newSessionLogged = expectation(description: "New session logged")
         newSessionLogged.isInverted = true
 
-        sessionManager.sessionEventLogger = { _, _ in
+        sessionManager.sessionStartLogger = { _ in
             newSessionLogged.fulfill()
         }
         sessionManager.start()
 
         wait(for: [newSessionLogged], timeout: 0.05)
         XCTAssertEqual(sessionManager.sessionId, session.id)
+        XCTAssertEqual(sessionManager.nextEventNumber(), 6)
     }
 
     func testNoSavedSession() {
         let newSessionLogged = expectation(description: "New session logged")
+        
+        mockedTimestamp = 890
 
-        sessionManager.sessionEventLogger = { eventName, timestamp in
-            XCTAssertEqual(eventName, kAMPSessionStartEvent)
-            XCTAssert(abs(Int.currentTimestamp() - timestamp) < 2)
+        sessionManager.sessionStartLogger = { timestamp in
+            XCTAssertEqual(timestamp, 890)
             newSessionLogged.fulfill()
         }
         sessionManager.start()
 
         wait(for: [newSessionLogged], timeout: 0.05)
+        
+        XCTAssertEqual(sessionManager.sessionId, 890)
+        
+        XCTAssertEqual(sessionManager.nextEventNumber(), 0)
     }
 
     func testExpiredSession() throws {
@@ -62,63 +67,41 @@ final class SessionManagerTests: XCTestCase {
         userDefaults.set(try JSONEncoder().encode(session), forKey: "paltaBrainSession")
 
         let newSessionLogged = expectation(description: "New session logged")
+        
+        mockedTimestamp = 10_000_000
 
-        sessionManager.sessionEventLogger = { eventName, timestamp in
-            XCTAssertEqual(eventName, kAMPSessionStartEvent)
-            XCTAssert(abs(Int.currentTimestamp() - timestamp) < 2)
+        sessionManager.sessionStartLogger = { timestamp in
+            XCTAssertEqual(timestamp, 10_000_000)
             newSessionLogged.fulfill()
         }
         sessionManager.start()
 
         wait(for: [newSessionLogged], timeout: 0.05)
+        
+        XCTAssertEqual(sessionManager.nextEventNumber(), 0)
     }
 
     func testAppBecomeActive() {
         let newSessionLogged = expectation(description: "New session logged")
+        
+        mockedTimestamp = 25088
 
-        sessionManager.sessionEventLogger = { eventName, timestamp in
-            XCTAssertEqual(eventName, kAMPSessionStartEvent)
-            XCTAssert(abs(Int.currentTimestamp() - timestamp) < 2)
+        sessionManager.sessionStartLogger = { timestamp in
+            XCTAssertEqual(timestamp, 25088)
             newSessionLogged.fulfill()
         }
 
         notificationCenter.post(name: UIApplication.didBecomeActiveNotification, object: nil)
 
         wait(for: [newSessionLogged], timeout: 0.05)
-    }
-
-    func testCreateNewSession() {
-        let lastSessionTimestamp = Int.currentTimestamp() - 1000
-        var session = Session(id: 22)
-        session.lastEventTimestamp = lastSessionTimestamp
-        userDefaults.set(try! JSONEncoder().encode(session), forKey: "paltaBrainSession")
-        sessionManager.start()
-
-        let sessionEventLogged = expectation(description: "New session logged")
-        sessionEventLogged.expectedFulfillmentCount = 2
-
-        var eventNames: [String] = []
-        var eventTimes: [Int] = []
-
-        sessionManager.sessionEventLogger = {
-            eventNames.append($0)
-            eventTimes.append($1)
-            sessionEventLogged.fulfill()
-        }
-
-        sessionManager.startNewSession()
-
-        wait(for: [sessionEventLogged], timeout: 0.05)
-
-        XCTAssertEqual(eventNames, [kAMPSessionEndEvent, kAMPSessionStartEvent])
-        XCTAssertEqual(eventTimes[0], lastSessionTimestamp)
-        XCTAssert(abs(Int.currentTimestamp() - eventTimes[1]) < 4)
+        
+        XCTAssertEqual(sessionManager.nextEventNumber(), 0)
     }
 
     func testRefreshSessionValid() throws {
         let initialSessionId = sessionManager.sessionId
         sessionManager.maxSessionAge = 100
-        Int.timestampMock = initialSessionId + 5
+        mockedTimestamp = initialSessionId + 5
         
         sessionManager.refreshSession(with: 0)
 
@@ -131,19 +114,40 @@ final class SessionManagerTests: XCTestCase {
         XCTAssertEqual(session?.lastEventTimestamp, 0)
     }
     
-    func testRefreshSessionInvalid() throws {
+    func testRefreshSessionInvalidWithinForeground() throws {
         let initialSessionId = sessionManager.sessionId
-        sessionManager.maxSessionAge = 100
-        Int.timestampMock = initialSessionId + 105
+        sessionManager.maxSessionAge = 1
+        mockedTimestamp = initialSessionId + 1005
         
-        sessionManager.refreshSession(with: 0)
+        sessionManager.refreshSession(with: mockedTimestamp!)
 
         let session = try userDefaults
             .data(forKey: "paltaBrainSession")
             .map { try JSONDecoder().decode(Session.self, from: $0) }
         
-        XCTAssertNotEqual(sessionManager.sessionId, initialSessionId)
-        XCTAssertNotEqual(session?.id, initialSessionId)
-        XCTAssertEqual(session?.lastEventTimestamp, Int.timestampMock)
+        XCTAssertEqual(sessionManager.sessionId, initialSessionId)
+        XCTAssertEqual(session?.id, initialSessionId)
+        XCTAssertEqual(session?.lastEventTimestamp, mockedTimestamp)
+    }
+    
+    func testConcurrentEventCounterIncrement() {
+        var counters: IndexSet = []
+        let syncroQueue = DispatchQueue(label: "")
+        
+        DispatchQueue.concurrentPerform(iterations: 10) { _ in
+            for _ in 0...999 {
+                let counter = sessionManager.nextEventNumber()
+                
+                syncroQueue.async {
+                    counters.insert(counter)
+                }
+            }
+        }
+        
+        syncroQueue.sync {
+            // Wait syncro queue to finish
+        }
+        
+        XCTAssertEqual(counters, IndexSet(0...9999))
     }
 }
