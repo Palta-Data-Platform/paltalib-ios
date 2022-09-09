@@ -11,6 +11,7 @@
 		114CF59D2821539C00ADA815 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF59C2821539C00ADA815 /* Button.swift */; };
 		114CF59F2821920200ADA815 /* PurchasesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF59E2821920200ADA815 /* PurchasesViewModel.swift */; };
 		114CF5A12821920F00ADA815 /* PurchasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A02821920F00ADA815 /* PurchasesViewController.swift */; };
+		117A2E4D28CB64E30047E7F3 /* PurchaseDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117A2E4C28CB64E30047E7F3 /* PurchaseDebugViewController.swift */; };
 		118369472844AA130028CED9 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118369462844AA130028CED9 /* UserView.swift */; };
 		11F56C8128AB99D300C403C7 /* AvailablePurchasesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F56C8028AB99D200C403C7 /* AvailablePurchasesViewModel.swift */; };
 		11F56C8328AB9B2D00C403C7 /* AvailablePurchasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F56C8228AB9B2D00C403C7 /* AvailablePurchasesViewController.swift */; };
@@ -33,6 +34,7 @@
 		114CF59C2821539C00ADA815 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		114CF59E2821920200ADA815 /* PurchasesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewModel.swift; sourceTree = "<group>"; };
 		114CF5A02821920F00ADA815 /* PurchasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewController.swift; sourceTree = "<group>"; };
+		117A2E4C28CB64E30047E7F3 /* PurchaseDebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDebugViewController.swift; sourceTree = "<group>"; };
 		118369462844AA130028CED9 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		11F56C8028AB99D200C403C7 /* AvailablePurchasesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailablePurchasesViewModel.swift; sourceTree = "<group>"; };
 		11F56C8228AB9B2D00C403C7 /* AvailablePurchasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailablePurchasesViewController.swift; sourceTree = "<group>"; };
@@ -65,10 +67,19 @@
 		114CF5A2282264E700ADA815 /* Purchases */ = {
 			isa = PBXGroup;
 			children = (
+				117A2E4B28CB64CD0047E7F3 /* PurchaseDebug */,
 				11F56C8728ABAC0500C403C7 /* Purchases */,
 				11F56C8628ABABFC00C403C7 /* AvailablePurchases */,
 			);
 			path = Purchases;
+			sourceTree = "<group>";
+		};
+		117A2E4B28CB64CD0047E7F3 /* PurchaseDebug */ = {
+			isa = PBXGroup;
+			children = (
+				117A2E4C28CB64E30047E7F3 /* PurchaseDebugViewController.swift */,
+			);
+			path = PurchaseDebug;
 			sourceTree = "<group>";
 		};
 		11F56C8628ABABFC00C403C7 /* AvailablePurchases */ = {
@@ -300,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11F56C8528AB9B3700C403C7 /* AvailablePurchaseCell.swift in Sources */,
+				117A2E4D28CB64E30047E7F3 /* PurchaseDebugViewController.swift in Sources */,
 				118369472844AA130028CED9 /* UserView.swift in Sources */,
 				114CF59B2821536400ADA815 /* MainViewController.swift in Sources */,
 				7F3B88D52745382C000A6D46 /* SwitchView.swift in Sources */,

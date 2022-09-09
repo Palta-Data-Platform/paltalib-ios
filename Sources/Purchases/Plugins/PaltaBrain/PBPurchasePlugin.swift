@@ -90,6 +90,27 @@ public final class PBPurchasePlugin: PurchasePlugin {
         }
     }
     
+    public func purchase2(_ product: Product, stages: @escaping (String) -> Void, _ completion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void) {
+        guard product.originalEntity is SKProduct else {
+            completion(.notSupported)
+            return
+        }
+        
+        guard let userId = userId else {
+            completion(.failure(PaymentsError.noUserId))
+            return
+        }
+        
+        assembly.makeCheckoutFlow(userId: userId, product: product, logging: stages).start { result in
+            switch result {
+            case .success(let features):
+                completion(.success(.init(transaction: .inApp, paidFeatures: features)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     public func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
         getPaidFeatures(completion)
     }

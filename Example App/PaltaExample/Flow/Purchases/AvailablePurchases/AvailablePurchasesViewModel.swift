@@ -14,7 +14,7 @@ final class AvailablePurchasesViewModel {
         let period: String
         let price: String
         
-        fileprivate let product: Product
+        let product: Product
     }
     
     @Published

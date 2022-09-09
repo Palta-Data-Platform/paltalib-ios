@@ -13,6 +13,7 @@ protocol PaymentsAssembly {
     
     func makeShowcaseFlow(userId: UserId) -> ShowcaseFlow
     func makeCheckoutFlow(userId: UserId, product: Product) -> CheckoutFlow
+    func makeCheckoutFlow(userId: UserId, product: Product, logging: @escaping (String) -> Void) -> CheckoutFlow
 }
 
 final class RealPaymentsAssembly: PaymentsAssembly {
@@ -43,6 +44,10 @@ final class RealPaymentsAssembly: PaymentsAssembly {
     
     func makeCheckoutFlow(userId: UserId, product: Product) -> CheckoutFlow {
         checkoutAssembly.makeCheckoutFlow(userId: userId, product: product)
+    }
+    
+    func makeCheckoutFlow(userId: UserId, product: Product, logging: @escaping (String) -> Void) -> CheckoutFlow {
+        checkoutAssembly.makeCheckoutFlow(userId: userId, product: product, logging: logging)
     }
 }
 

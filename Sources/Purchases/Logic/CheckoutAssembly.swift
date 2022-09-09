@@ -10,6 +10,7 @@ import PaltaLibCore
 
 protocol CheckoutAssembly {
     func makeCheckoutFlow(userId: UserId, product: Product) -> CheckoutFlow
+    func makeCheckoutFlow(userId: UserId, product: Product, logging: @escaping (String) -> Void) -> CheckoutFlow
 }
 
 final class CheckoutAssemblyImpl: CheckoutAssembly {
@@ -32,6 +33,20 @@ final class CheckoutAssemblyImpl: CheckoutAssembly {
     
     func makeCheckoutFlow(userId: UserId, product: Product) -> CheckoutFlow {
         CheckoutFlowImpl(
+            logging: { _ in },
+            environment: environment,
+            userId: userId,
+            product: product,
+            checkoutService: checkoutService,
+            featuresService: webPaymentsAssembly.paidFeaturesService,
+            paymentQueueInteractor: paymentQueueInteractor,
+            receiptProvider: ReceiptProviderImpl()
+        )
+    }
+    
+    func makeCheckoutFlow(userId: UserId, product: Product, logging: @escaping (String) -> Void) -> CheckoutFlow {
+        CheckoutFlowImpl(
+            logging: logging,
             environment: environment,
             userId: userId,
             product: product,

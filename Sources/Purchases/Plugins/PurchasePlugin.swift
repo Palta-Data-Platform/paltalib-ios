@@ -34,6 +34,12 @@ public protocol PurchasePlugin: AnyObject {
         with promoOffer: PromoOffer?,
         _ completion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void
     )
+    
+    func purchase2(
+        _ product: Product,
+        stages: @escaping (String) -> Void,
+        _ completion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void
+    )
 
     func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void)
     

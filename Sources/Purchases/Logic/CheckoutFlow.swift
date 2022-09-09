@@ -13,6 +13,8 @@ protocol CheckoutFlow {
 }
 
 final class CheckoutFlowImpl: CheckoutFlow {
+    private let logging: (String) -> Void
+    
     private let lock = NSRecursiveLock()
     private let traceId = UUID()
     private var isInProgress = false
@@ -27,6 +29,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
     private let receiptProvider: ReceiptProvider
     
     init(
+        logging: @escaping (String) -> Void,
         environment: Environment,
         userId: UserId,
         product: Product,
@@ -35,6 +38,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         paymentQueueInteractor: PaymentQueueInteractor,
         receiptProvider: ReceiptProvider
     ) {
+        self.logging = logging
         self.environment = environment
         self.userId = userId
         self.product = product
@@ -159,12 +163,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void
     ) {
         if environment == .dev {
-            checkoutService.log(
-                level: .error,
-                event: "App Store purchase failed",
-                data: ["error": error.localizedDescription],
-                traceId: traceId
-            )
+            logError(error, "App Store purchase failed")
         }
         
         checkoutService.failCheckout(orderId: orderId, traceId: traceId) { (_: Result<(), PaymentsError>) in
@@ -173,6 +172,8 @@ final class CheckoutFlowImpl: CheckoutFlow {
     }
     
     private func logError(_ error: PaymentsError, _ messageName: String) {
+        logging(messageName)
+        
         guard environment == .dev else {
             return
         }
@@ -186,6 +187,8 @@ final class CheckoutFlowImpl: CheckoutFlow {
     }
     
     private func logStep(_ stepName: String, data: [String: Any]? = nil) {
+        logging(stepName)
+
         guard environment == .dev else {
             return
         }

@@ -120,6 +120,18 @@ public final class PaltaPurchases: PaltaPurchasesProtocol {
         }
     }
     
+    public func purchase2(
+        _ product: Product,
+        stages: @escaping (String) -> Void,
+        _ completion: @escaping (Result<SuccessfulPurchase, Error>) -> Void
+    ) {
+        checkSetupFinished()
+        
+        start(completion: completion) { plugin, completion in
+            plugin.purchase2(product, stages: stages, completion)
+        }
+    }
+    
     public func restorePurchases(completion: @escaping (Result<PaidFeatures, Error>) -> Void) {
         checkSetupFinished()
         

@@ -74,8 +74,8 @@ extension AvailablePurchasesViewController: UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "Purchase", for: indexPath) as! AvailablePurchaseCell
         cell.item = viewModel.items[indexPath.row]
         
-        cell.buyHandler = { [viewModel] in
-            viewModel.buy($0)
+        cell.buyHandler = { [unowned self] in
+            navigationController?.pushViewController(PurchaseDebugViewController(product: $0.product), animated: true)
         }
         
         return cell

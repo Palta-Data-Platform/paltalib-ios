@@ -9,6 +9,9 @@ import Foundation
 import RevenueCat
 
 public final class RCPurchasePlugin: NSObject, PurchasePlugin {
+    public func purchase2(_ product: Product, stages: @escaping (String) -> Void, _ completion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void) {
+        completion(.notSupported)
+    }
     public var delegate: PurchasePluginDelegate?
 
     private lazy var purchases = Purchases.shared

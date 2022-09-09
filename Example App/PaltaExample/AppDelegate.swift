@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
         PaltaPurchases.instance.setup(with: [
-            RCPurchasePlugin(apiKey: "appl_XLKhpPFayETZEchAVBKynvTNkAr"),
-            PBPurchasePlugin(apiKey: "a87f9d0ef2d341ea931d0ca626193e34", environment: .prod)
+//            RCPurchasePlugin(apiKey: "appl_XLKhpPFayETZEchAVBKynvTNkAr"),
+            PBPurchasePlugin(apiKey: "13ac16d7a83e42268c7f9abb7bcd6443", environment: .dev)
         ])
         
         PaltaAnalytics.instance.logEvent("app-launch")
