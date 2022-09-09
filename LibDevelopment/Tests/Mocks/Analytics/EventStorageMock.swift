@@ -2,28 +2,26 @@
 //  EventStorageMock.swift
 //  PaltaLibTests
 //
-//  Created by Vyacheslav Beltyukov on 04.04.2022.
+//  Created by Vyacheslav Beltyukov on 29/06/2022.
 //
 
 import Foundation
 @testable import PaltaLibAnalytics
 
 final class EventStorageMock: EventStorage {
-    var addedEvents: [Event] = []
-
-    var removedEvents: [Event] = []
-
-    var eventsToLoad: [Event] = []
-
-    func storeEvent(_ event: Event) {
-        addedEvents.append(event)
+    var storedEvents: [StorableEvent] = []
+    var removedIds: [UUID] = []
+    var loadedEvents: [StorableEvent] = []
+    
+    func storeEvent(_ event: StorableEvent) {
+        storedEvents.append(event)
     }
-
-    func removeEvent(_ event: Event) {
-        removedEvents.append(event)
+    
+    func removeEvent(with id: UUID) {
+        removedIds.append(id)
     }
-
-    func loadEvents(_ completion: @escaping ([Event]) -> Void) {
-        completion(eventsToLoad)
+    
+    func loadEvents(_ completion: @escaping ([StorableEvent]) -> Void) {
+        completion(loadedEvents)
     }
 }

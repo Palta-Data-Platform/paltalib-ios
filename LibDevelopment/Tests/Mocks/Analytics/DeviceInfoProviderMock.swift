@@ -10,12 +10,12 @@ import Foundation
 
 final class DeviceInfoProviderMock: DeviceInfoProvider {
     var osVersion: String = "undefinedVersion"
-    var appVersion: String?
+    var appVersion: String = "version-mock" 
     var deviceModel: String = "undefinedModel"
     var carrier: String = "undefinedCarrier"
     var country: String?
     var language: String?
-    var timezoneOffset: Int = 0
-    var idfa: String? = "idfa="
-    var idfv: String? = "idfv="
+    var timezoneOffsetSeconds: Int = 0
+    var idfa: String = "idfa="
+    var idfv: String = "idfv="
 }

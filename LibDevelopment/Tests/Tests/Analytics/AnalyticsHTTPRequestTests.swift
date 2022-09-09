@@ -9,9 +9,9 @@ import Foundation
 import XCTest
 @testable import PaltaLibAnalytics
 
-final class AnalyticsHTTPRequestTests: XCTestCase {
-    func testConfig() {
-        let request = AnalyticsHTTPRequest.remoteConfig("api-key-here")
+final class GetConfigRequestTests: XCTestCase {
+    func testDefaultHost() {
+        let request = GetConfigRequest(host: nil, apiKey: "api-key-here")
 
         let expectedHeaders = [
             "additionalHeader": "additionalHeaderValue",
@@ -22,64 +22,27 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
 
         XCTAssertEqual(urlRequest?.httpMethod, "GET")
         XCTAssertEqual(urlRequest?.allHTTPHeaderFields, expectedHeaders)
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.paltabrain.com/v1/config"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.paltabrain.com/v2/config"))
         XCTAssertEqual(urlRequest?.timeoutInterval, 10)
         XCTAssertEqual(urlRequest?.cachePolicy, .reloadIgnoringLocalAndRemoteCacheData)
         XCTAssertNil(urlRequest?.httpBody)
     }
-
-    func testSendEvent() {
-        let events: [Event] = [.mock()]
-        let request = AnalyticsHTTPRequest.sendEvents(
-            URL(string: "https://mock.mock/path"),
-            SendEventsPayload(
-                apiKey: "mockKey",
-                events: events,
-                serviceInfo: .init(
-                    uploadTime: .currentTimestamp(),
-                    library: .init(name: "PaltaBrain", version: "2.1.5"),
-                    telemetry: .mock()
-                )
-            )
-        )
+    
+    func testCustomHost() {
+        let request = GetConfigRequest(host: URL(string: "http://test.host.com"), apiKey: "api-key-here")
 
         let expectedHeaders = [
             "additionalHeader": "additionalHeaderValue",
-            "X-API-Key": "mockKey",
-            "Content-Type": "application/json"
+            "X-API-Key": "api-key-here"
         ]
 
         let urlRequest = request.urlRequest(headerFields: ["additionalHeader": "additionalHeaderValue"])
 
-        XCTAssertEqual(urlRequest?.httpMethod, "POST")
+        XCTAssertEqual(urlRequest?.httpMethod, "GET")
         XCTAssertEqual(urlRequest?.allHTTPHeaderFields, expectedHeaders)
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://mock.mock/path"))
-        XCTAssertEqual(urlRequest?.timeoutInterval, 30)
+        XCTAssertEqual(urlRequest?.url, URL(string: "http://test.host.com/v2/config"))
+        XCTAssertEqual(urlRequest?.timeoutInterval, 10)
         XCTAssertEqual(urlRequest?.cachePolicy, .reloadIgnoringLocalAndRemoteCacheData)
-        XCTAssertNotNil(urlRequest?.httpBody)
-    }
-    
-    func testSendEventWithoutBaseURL() {
-        let events: [Event] = [.mock()]
-        let request = AnalyticsHTTPRequest.sendEvents(
-            nil,
-            SendEventsPayload(
-                apiKey: "mockKey",
-                events: events,
-                serviceInfo: .init(
-                    uploadTime: .currentTimestamp(),
-                    library: .init(name: "PaltaBrain", version: "2.1.5"),
-                    telemetry: nil
-                )
-            )
-        )
-
-        let urlRequest = request.urlRequest(headerFields: ["additionalHeader": "additionalHeaderValue"])
-
-        XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.paltabrain.com/events-v2"))
-        XCTAssertEqual(urlRequest?.timeoutInterval, 30)
-        XCTAssertEqual(urlRequest?.cachePolicy, .reloadIgnoringLocalAndRemoteCacheData)
-        XCTAssertNotNil(urlRequest?.httpBody)
+        XCTAssertNil(urlRequest?.httpBody)
     }
 }

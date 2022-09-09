@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'PaltaLibAnalytics'
-  spec.version               = '2.1.7'
+  spec.version               = '3.0.2'
   spec.license               = 'MIT'
   spec.summary               = 'PaltaLib iOS SDK - Analytics'
   spec.homepage              = 'https://github.com/Palta-Data-Platform/paltalib-ios'
@@ -11,9 +11,9 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = '10.0'
   spec.swift_versions        = '5.3'
 
-  spec.source_files = 'Sources/Analytics/**/*.swift'
+  spec.source_files = 'Sources/Analytics/**/*.{swift,m}'
 
   spec.dependency 'PaltaLibCore', '>= 2.2.1'
-  spec.dependency 'Amplitude', '>= 8.5.0'
+  spec.dependency 'PaltaLibAnalyticsModel', '~> 1.1.0'
 end
 

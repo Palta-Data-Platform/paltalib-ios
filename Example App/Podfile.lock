@@ -1,41 +1,49 @@
 PODS:
-  - Amplitude (8.11.1):
-    - AnalyticsConnector (~> 1.0.0)
-  - AnalyticsConnector (1.0.0)
-  - PaltaLibAnalytics (2.1.7):
-    - Amplitude (>= 8.5.0)
+  - PaltaLibAnalytics (3.0.2):
+    - PaltaLibAnalyticsModel (~> 1.1.0)
     - PaltaLibCore (>= 2.2.1)
+  - PaltaLibAnalyticsModel (1.1.0)
   - PaltaLibCore (2.3.0)
+  - PaltaLibEvents (1.0.2):
+    - PaltaLibAnalytics (~> 3.0.2)
+    - PaltaLibEventsTransport (~> 1.0.0)
+  - PaltaLibEventsTransport (1.0.0):
+    - SwiftProtobuf (~> 1.19.0)
   - PaltaLibPurchases (3.0.0):
     - PaltaLibCore (>= 2.3.0)
     - RevenueCat (~> 4.7.0)
   - RevenueCat (4.7.0)
   - SnapKit (5.6.0)
+  - SwiftProtobuf (1.19.1)
 
 DEPENDENCIES:
-  - PaltaLibAnalytics (~> 2.1.6)
+  - PaltaLibEvents (= 1.0.2)
   - PaltaLibPurchases (= 3.0.0)
   - SnapKit
 
 SPEC REPOS:
   trunk:
-    - Amplitude
-    - AnalyticsConnector
     - PaltaLibAnalytics
+    - PaltaLibAnalyticsModel
     - PaltaLibCore
+    - PaltaLibEvents
+    - PaltaLibEventsTransport
     - PaltaLibPurchases
     - RevenueCat
     - SnapKit
+    - SwiftProtobuf
 
 SPEC CHECKSUMS:
-  Amplitude: 63df137a65a9dad663670cd97a46b5b9877f6287
-  AnalyticsConnector: 4c386d5972ac9da86e22d668564dbbac97558754
-  PaltaLibAnalytics: 694dd37b490e121544e80304cade3667f6b2ece4
+  PaltaLibAnalytics: f3a378e1c4114956f5b89fba886e11261be1f53b
+  PaltaLibAnalyticsModel: cbd04357147f63fa20b157ae8842ebe05883f102
   PaltaLibCore: d4b6a07f7de3009526fddd35fb66e56a709ff210
+  PaltaLibEvents: 62667a4403470396b6e70fe1adc6ed94bb69963a
+  PaltaLibEventsTransport: fda10663667f1ca9ee251c3cdf044ecd61a65aaf
   PaltaLibPurchases: a4aa2a3ce44bb27e90a257e14c51d854f597d0aa
   RevenueCat: 5009a82afee178848de97cf2d712be1015a5d33c
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftProtobuf: 59d9ea2eb5f84b509f32d170a65f3348ae758f1e
 
-PODFILE CHECKSUM: 2112245823e124680cc55f013d7371cb784bfca6
+PODFILE CHECKSUM: cd409a6171b87761f4915870a8d3b88474626a9b
 
 COCOAPODS: 1.11.3

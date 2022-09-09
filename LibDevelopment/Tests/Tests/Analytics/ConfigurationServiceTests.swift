@@ -25,42 +25,33 @@ final class ConfigurationServiceTests: XCTestCase {
     }
 
     func testRequestConfigSuccessWithoutCache() {
+        let host = URL(string: "http://test.something")
         httpClientMock.result = .success(
             RemoteConfig(
-                targets: [
-                    ConfigTarget(
-                        name: .paltabrain,
-                        settings: ConfigSettings(
-                            eventUploadThreshold: 788,
-                            eventUploadMaxBatchSize: 3789,
-                            eventMaxCount: 1228,
-                            eventUploadPeriodSeconds: 4429,
-                            minTimeBetweenSessionsMillis: 4393,
-                            trackingSessionEvents: false,
-                            realtimeEventTypes: [],
-                                        excludedEventTypes: [],
-                            sendMechanism: .paltaBrain
-                        ),
-                        url: URL(string: "https://mock.url")
-                    )
-                ]
+                eventUploadThreshold: 12,
+                eventUploadMaxBatchSize: 13,
+                eventMaxCount: 1228,
+                eventUploadPeriod: 15,
+                minTimeBetweenSessions: 16
             )
         )
 
         let successCalled = expectation(description: "Success called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: host) { result in
             guard case let .success(config) = result else {
                 return
             }
 
-            XCTAssertEqual(config.targets.first?.url, URL(string: "https://mock.url"))
-            XCTAssertEqual(config.targets.first?.settings.eventMaxCount, 1228)
+            XCTAssertEqual(config.eventMaxCount, 1228)
 
             successCalled.fulfill()
         }
 
-        XCTAssertEqual(httpClientMock.request as? AnalyticsHTTPRequest, .remoteConfig("API_KEY_MCK"))
+        XCTAssertEqual(
+            httpClientMock.request as? GetConfigRequest,
+            GetConfigRequest(host: host, apiKey: "API_KEY_MCK")
+        )
 
         wait(for: [successCalled], timeout: 0.05)
 
@@ -71,41 +62,31 @@ final class ConfigurationServiceTests: XCTestCase {
         cacheConfig()
 
         let remoteConfig = RemoteConfig(
-            targets: [
-                ConfigTarget(
-                    name: .paltabrain,
-                    settings: ConfigSettings(
-                        eventUploadThreshold: 788,
-                        eventUploadMaxBatchSize: 3789,
-                        eventMaxCount: 1228,
-                        eventUploadPeriodSeconds: 4429,
-                        minTimeBetweenSessionsMillis: 4393,
-                        trackingSessionEvents: false,
-                        realtimeEventTypes: [],
-                        excludedEventTypes: [],
-                        sendMechanism: .paltaBrain
-                    ),
-                    url: URL(string: "https://mock.url")
-                )
-            ]
+            eventUploadThreshold: 788,
+            eventUploadMaxBatchSize: 3789,
+            eventMaxCount: 1228,
+            eventUploadPeriod: 4429,
+            minTimeBetweenSessions: 4393
         )
 
         httpClientMock.result = .success(remoteConfig)
 
         let successCalled = expectation(description: "Success called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: nil) { result in
             guard case let .success(config) = result else {
                 return
             }
 
-            XCTAssertEqual(config.targets.first?.url, URL(string: "https://mock.url"))
-            XCTAssertEqual(config.targets.first?.settings.eventMaxCount, 1228)
+            XCTAssertEqual(config.eventMaxCount, 1228)
 
             successCalled.fulfill()
         }
-
-        XCTAssertEqual(httpClientMock.request as? AnalyticsHTTPRequest, .remoteConfig("API_KEY_MCK"))
+        
+        XCTAssertEqual(
+            httpClientMock.request as? GetConfigRequest,
+            GetConfigRequest(host: nil, apiKey: "API_KEY_MCK")
+        )
 
         wait(for: [successCalled], timeout: 0.05)
 
@@ -117,7 +98,7 @@ final class ConfigurationServiceTests: XCTestCase {
 
         let failCalled = expectation(description: "Fail called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: nil) { result in
             guard case .failure = result else {
                 return
             }
@@ -135,13 +116,12 @@ final class ConfigurationServiceTests: XCTestCase {
 
         let successCalled = expectation(description: "Success called")
 
-        configurationService.requestConfigs(apiKey: "API_KEY_MCK") { result in
+        configurationService.requestConfigs(apiKey: "API_KEY_MCK", host: nil) { result in
             guard case let .success(config) = result else {
                 return
             }
 
-            XCTAssertEqual(config.targets.first?.url, URL(string: "https://url.mock"))
-            XCTAssertEqual(config.targets.first?.settings.minTimeBetweenSessionsMillis, 678)
+            XCTAssertEqual(config.minTimeBetweenSessions, 678)
 
             successCalled.fulfill()
         }
@@ -151,24 +131,13 @@ final class ConfigurationServiceTests: XCTestCase {
 
     private func cacheConfig() {
         let cachedConfig = RemoteConfig(
-            targets: [
-                ConfigTarget(
-                    name: .paltabrain,
-                    settings: ConfigSettings(
-                        eventUploadThreshold: 656,
-                        eventUploadMaxBatchSize: 788,
-                        eventMaxCount: 434,
-                        eventUploadPeriodSeconds: 0,
-                        minTimeBetweenSessionsMillis: 678,
-                        trackingSessionEvents: true,
-                        realtimeEventTypes: [],
-                        excludedEventTypes: [],
-                        sendMechanism: .paltaBrain
-                    ),
-                    url: URL(string: "https://url.mock")
-                )
-            ]
+            eventUploadThreshold: 656,
+            eventUploadMaxBatchSize: 788,
+            eventMaxCount: 434,
+            eventUploadPeriod: 0,
+            minTimeBetweenSessions: 678
         )
+
         userDefaults.set(cachedConfig, for: "paltaBrainRemoteConfig")
     }
 }
