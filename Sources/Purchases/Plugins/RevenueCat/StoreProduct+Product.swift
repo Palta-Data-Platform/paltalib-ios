@@ -10,45 +10,19 @@ import RevenueCat
 
 extension Product {
     init(rc: StoreProduct) {
-        if #available(iOS 12.2, *) {
-            self.init(
-                productType: ProductType(rc: rc.productType),
-                productIdentifier: rc.productIdentifier,
-                localizedDescription: rc.localizedDescription,
-                localizedTitle: rc.localizedTitle,
-                currencyCode: rc.currencyCode,
-                price: rc.price,
-                localizedPriceString: rc.localizedPriceString,
-                subscriptionPeriod: rc._subscriptionPeriod,
-                introductoryDiscount: rc._introductoryDiscount,
-                discounts: rc._discounts,
-                originalEntity: rc
-            )
-        } else if #available(iOS 11.2, *) {
-            self.init(
-                productType: ProductType(rc: rc.productType),
-                productIdentifier: rc.productIdentifier,
-                localizedDescription: rc.localizedDescription,
-                localizedTitle: rc.localizedTitle,
-                currencyCode: rc.currencyCode,
-                price: rc.price,
-                localizedPriceString: rc.localizedPriceString,
-                subscriptionPeriod: rc._subscriptionPeriod,
-                introductoryDiscount: rc._introductoryDiscount,
-                originalEntity: rc
-            )
-        } else {
-            self.init(
-                productType: ProductType(rc: rc.productType),
-                productIdentifier: rc.productIdentifier,
-                localizedDescription: rc.localizedDescription,
-                localizedTitle: rc.localizedTitle,
-                currencyCode: rc.currencyCode,
-                price: rc.price,
-                localizedPriceString: rc.localizedPriceString,
-                originalEntity: rc
-            )
-        }
+        self.init(
+            productType: ProductType(rc: rc.productType),
+            productIdentifier: rc.productIdentifier,
+            localizedDescription: rc.localizedDescription,
+            localizedTitle: rc.localizedTitle,
+            currencyCode: rc.currencyCode,
+            price: rc.price,
+            localizedPriceString: rc.localizedPriceString,
+            subscriptionPeriod: rc._subscriptionPeriod,
+            introductoryDiscount: rc._introductoryDiscount,
+            discounts: rc._discounts,
+            originalEntity: rc
+        )
     }
     
     var storeProduct: StoreProduct? {
