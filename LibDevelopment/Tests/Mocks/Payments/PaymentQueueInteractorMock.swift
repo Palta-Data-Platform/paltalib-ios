@@ -9,12 +9,15 @@ import Foundation
 @testable import PaltaLibPayments
 
 final class PaymentQueueInteractorMock: PaymentQueueInteractor {
-    var product: Product?
+    var product: ShowcaseProduct?
     var orderId: UUID?
     
     var result: Result<String, PaymentsError>?
     
-    func purchase(_ product: Product, orderId: UUID, completion: @escaping (Result<String, PaymentsError>) -> Void) {
+    func purchase(_ product: ShowcaseProduct, orderId: UUID, completion: @escaping (Result<String, PaymentsError>) -> Void) {
+        self.product = product
+        self.orderId = orderId
+        
         if let result = result {
             completion(result)
         }

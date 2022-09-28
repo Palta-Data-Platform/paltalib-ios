@@ -13,7 +13,7 @@ final class CheckoutFlowTests: XCTestCase {
     private var flow: CheckoutFlowImpl!
     
     private var userId: UserId!
-    private var product: Product!
+    private var product: ShowcaseProduct!
     private var checkoutService: CheckoutServiceMock!
     private var featuresService: PaidFeaturesServiceMock!
     private var paymentQueueInteractor: PaymentQueueInteractorMock!
@@ -65,6 +65,7 @@ final class CheckoutFlowTests: XCTestCase {
         wait(for: [successCalled], timeout: 0.1)
         
         XCTAssertEqual(checkoutService.startUserId, userId)
+        XCTAssertEqual(checkoutService.startIdent, product.ident)
         XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
         XCTAssertEqual(checkoutService.completeOrderId, orderId)
         XCTAssertEqual(checkoutService.completeReceiptData, receiptData)

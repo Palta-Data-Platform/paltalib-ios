@@ -9,4 +9,5 @@ import Foundation
 
 struct StartCheckoutRequestPayload: Encodable, Equatable {
     let customerId: UserId
+    let ident: String
 }

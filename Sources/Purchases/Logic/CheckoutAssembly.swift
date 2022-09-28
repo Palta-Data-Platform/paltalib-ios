@@ -9,7 +9,7 @@ import Foundation
 import PaltaLibCore
 
 protocol CheckoutAssembly {
-    func makeCheckoutFlow(userId: UserId, product: Product) -> CheckoutFlow
+    func makeCheckoutFlow(userId: UserId, product: ShowcaseProduct) -> CheckoutFlow
 }
 
 final class CheckoutAssemblyImpl: CheckoutAssembly {
@@ -30,7 +30,7 @@ final class CheckoutAssemblyImpl: CheckoutAssembly {
         self.webPaymentsAssembly = webPaymentsAssembly
     }
     
-    func makeCheckoutFlow(userId: UserId, product: Product) -> CheckoutFlow {
+    func makeCheckoutFlow(userId: UserId, product: ShowcaseProduct) -> CheckoutFlow {
         CheckoutFlowImpl(
             environment: environment,
             userId: userId,

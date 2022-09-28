@@ -9,6 +9,8 @@ import Foundation
 @testable import PaltaLibPayments
 
 final class PaymentsAssemblyMock: PaymentsAssembly {
+    
+    
     var showcaseUserId: UserId?
 
     let paidFeaturesMock = PaidFeaturesServiceMock()
@@ -23,7 +25,7 @@ final class PaymentsAssemblyMock: PaymentsAssembly {
         return showcaseFlowMock
     }
     
-    func makeCheckoutFlow(userId: UserId, product: Product) -> CheckoutFlow {
+    func makeCheckoutFlow(userId: UserId, product: ShowcaseProduct) -> CheckoutFlow {
         fatalError()
     }
 }
