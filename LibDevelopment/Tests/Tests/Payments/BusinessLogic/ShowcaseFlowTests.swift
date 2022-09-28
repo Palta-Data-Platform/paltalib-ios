@@ -28,9 +28,9 @@ final class ShowcaseFlowTests: XCTestCase {
     
     func testSuccess() {
         let pricepoints: [PricePoint] = [
-            .mock(priority: 3),
-            .mock(priority: 5),
-            .mock(priority: 1)
+            .mock(priority: 3, appStoreId: "0", ident: "i_0"),
+            .mock(priority: 5, appStoreId: "1", ident: "i_1"),
+            .mock(priority: 1, appStoreId: "2", ident: "i_2")
         ]
         
         showcaseService.result = .success(pricepoints)
@@ -60,6 +60,7 @@ final class ShowcaseFlowTests: XCTestCase {
         
         XCTAssertEqual(showcaseService.userId, userId)
         XCTAssertEqual(appStoreProductsService.ids, Set(pricepoints.map { $0.parameters.productId }))
+        XCTAssertEqual(appStoreProductsService.idents, ["0": "i_0", "1": "i_1", "2": "i_2"])
     }
     
     func testFailShowcase() {

@@ -30,7 +30,6 @@ extension Product {
     }
 }
 
-@available(iOS 11.2, *)
 private extension StoreProduct {
     var _subscriptionPeriod: SubscriptionPeriod? {
         subscriptionPeriod.map {
@@ -43,7 +42,6 @@ private extension StoreProduct {
     }
 }
 
-@available(iOS 12.2, *)
 private extension StoreProduct {
     var _discounts: [ProductDiscount] {
         discounts.map(ProductDiscount.init)

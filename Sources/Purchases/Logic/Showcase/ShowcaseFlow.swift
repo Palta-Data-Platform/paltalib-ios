@@ -48,8 +48,10 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
         for pricePoints: [PricePoint],
         completion: @escaping (Result<[Product], PaymentsError>) -> Void
     ) {
+        let idents = makePricePointMap(from: pricePoints).mapValues { $0.ident }
+        
         let ids = Set(pricePoints.map { $0.parameters.productId })
-        appStoreProductsService.retrieveProducts(with: ids) { [self] result in
+        appStoreProductsService.retrieveProducts(with: ids, idents: idents) { [self] result in
             switch result {
             case .success(let products):
                 matchProducts(products, and: pricePoints, completion: completion)
@@ -65,10 +67,7 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
         and pricePoints: [PricePoint],
         completion: @escaping (Result<[Product], PaymentsError>) -> Void
     ) {
-        let pricePointMap: [String: PricePoint] = Dictionary(
-            grouping: pricePoints,
-            by: { $0.parameters.productId }
-        ).compactMapValues { $0.first }
+        let pricePointMap = makePricePointMap(from: pricePoints)
         
         let priorityForProduct: (Product) -> Int = {
             pricePointMap[$0.productIdentifier]?.priority ?? 0
@@ -77,5 +76,12 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
         completion(
             .success(products.sorted(by: { priorityForProduct($0) > priorityForProduct($1) }))
         )
+    }
+    
+    private func makePricePointMap(from pricePoints: [PricePoint]) -> [String: PricePoint] {
+        Dictionary(
+            grouping: pricePoints,
+            by: { $0.parameters.productId }
+        ).compactMapValues { $0.first }
     }
 }
