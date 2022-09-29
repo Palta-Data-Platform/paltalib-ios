@@ -107,11 +107,15 @@ extension PurchasesViewModel: UserViewModel {
             .eraseToAnyPublisher()
     }
     
-    func onButtonTap(_ login: String?) {
+    func onLoginTap(_ login: String?) {
         if userId != nil {
             userId = nil
         } else if let userId = login.flatMap(UUID.init) {
             self.userId = userId
         }
+    }
+    
+    func onGenerateTap() {
+        onLoginTap(UUID().uuidString)
     }
 }

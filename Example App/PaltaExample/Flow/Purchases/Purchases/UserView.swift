@@ -12,7 +12,8 @@ import Combine
 protocol UserViewModel: AnyObject {
     var statePublisher: AnyPublisher<UserView.State, Never> { get }
     
-    func onButtonTap(_ login: String?)
+    func onLoginTap(_ login: String?)
+    func onGenerateTap()
 }
 
 final class UserView: UIView {
@@ -31,14 +32,22 @@ final class UserView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private lazy var button = UIButton(type: .custom).do {
+    private lazy var loginButton = UIButton(type: .custom).do {
         $0.addTarget(self, action: #selector(onButtonTap), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitleColor(.systemBlue, for: .normal)
         $0.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
     
-    private lazy var stackView = UIStackView(arrangedSubviews: [field, button]).do {
+    private lazy var generateButton = UIButton(type: .custom).do {
+        $0.addTarget(self, action: #selector(onGenTap), for: .touchUpInside)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitle("Gen id", for: .normal)
+        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
+    }
+    
+    private lazy var stackView = UIStackView(arrangedSubviews: [field, generateButton, loginButton]).do {
         $0.axis = .horizontal
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.spacing = 4
@@ -81,16 +90,23 @@ final class UserView: UIView {
         case .loggedIn(let login):
             field.text = login
             field.isEnabled = false
-            button.setTitle("Log Out", for: .normal)
+            loginButton.setTitle("Log Out", for: .normal)
+            generateButton.isHidden = true
         case .loggedOut:
             field.text = nil
             field.isEnabled = true
-            button.setTitle("Log In", for: .normal)
+            loginButton.setTitle("Log In", for: .normal)
+            generateButton.isHidden = false
         }
     }
     
     @objc
     private func onButtonTap() {
-        viewModel.onButtonTap(field.text)
+        viewModel.onLoginTap(field.text)
+    }
+    
+    @objc
+    private func onGenTap() {
+        viewModel.onGenerateTap()
     }
 }
