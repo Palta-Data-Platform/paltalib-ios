@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import PaltaLibCore
 
 struct CheckoutFailedRequestPayload: Equatable, Encodable {
     let orderId: UUID
+    let purchase: CodableDictionary = [:]
 }
