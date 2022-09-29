@@ -56,7 +56,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
             return
         }
         
-        logStep("Start checkout", data: ["productId": product.skProduct.productIdentifier, "userId": userId.stringValue])
+        logStep("start_checkout", data: ["productId": product.skProduct.productIdentifier, "userId": userId.stringValue])
         
         isInProgress = true
         
@@ -65,7 +65,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
             case .success(let orderId):
                 purchase(with: orderId, completion: completion)
             case .failure(let error):
-                logError(error, "Start checkout failed")
+                logError(error, "start_checkout_failed")
                 completion(.failure(error))
             }
         }
@@ -76,7 +76,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void
     ) {
         logStep(
-            "App Store purchase started",
+            "appstore_purchase_started",
             data: ["productId": product.skProduct.productIdentifier, "userId": userId.stringValue]
         )
         
@@ -95,14 +95,14 @@ final class CheckoutFlowImpl: CheckoutFlow {
         transactionId: String,
         completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void
     ) {
-        logStep("App Store purchase successful. Retrieving receipt...")
+        logStep("retrieving_receipt")
         
         guard let receiptData = receiptProvider.getReceiptData() else {
             failPurchase(orderId: orderId, with: .noReceipt, completion: completion)
             return
         }
         
-        logStep("Receipt retrieved. Completing checkout...")
+        logStep("receipt_retrieved")
         
         checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, transactionId: transactionId, traceId: traceId) { [self] result in
             switch result {
@@ -119,14 +119,14 @@ final class CheckoutFlowImpl: CheckoutFlow {
         for orderId: UUID,
         completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void
     ) {
-        logStep("Getting checkout state...")
+        logStep("get_checkout_state")
         
         checkoutService.getCheckout(orderId: orderId, traceId: traceId) { [self] result in
             switch result {
             case .success(let checkoutState):
                 getFeatures(after: checkoutState, orderId: orderId, completion: completion)
             case .failure(let error):
-                logError(error, "Get checkout failed")
+                logError(error, "get_checkout_state_failed")
                 completion(.failure(.flowNotCompleted))
             }
         }
@@ -140,7 +140,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         logging("Received checkout state: \(checkoutState)")
         switch checkoutState {
         case .completed:
-            logStep("Get checkout successful. Retrieving features")
+            logStep("get_checkout_success")
             featuresService.getPaidFeatures(for: userId) { result in
                 switch result {
                 case .success:
@@ -150,10 +150,10 @@ final class CheckoutFlowImpl: CheckoutFlow {
                 }
             }
         case .processing:
-            logError(.flowNotCompleted, "Received processing checkout status from backend")
+            logError(.flowNotCompleted, "get_checkout_processing")
             completion(.failure(.flowNotCompleted))
         case .failed, .cancelled:
-            logError(.flowFailed(orderId), "Received failed checkout status from backend")
+            logError(.flowFailed(orderId), "get_checkout_failed")
             completion(.failure(.flowFailed(orderId)))
         }
     }
@@ -164,7 +164,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void
     ) {
         if environment == .dev {
-            logError(error, "App Store purchase failed")
+            logError(error, "appstore_failed")
         }
         
         checkoutService.failCheckout(orderId: orderId, traceId: traceId) { (_: Result<(), PaymentsError>) in
