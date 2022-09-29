@@ -137,6 +137,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         orderId: UUID,
         completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void
     ) {
+        logging("Received checkout state: \(checkoutState)")
         switch checkoutState {
         case .completed:
             logStep("Get checkout successful. Retrieving features")
@@ -172,7 +173,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
     }
     
     private func logError(_ error: PaymentsError, _ messageName: String) {
-        logging(messageName)
+        logging("\(messageName) Error: \(error.localizedDescription)")
         
         guard environment == .dev else {
             return
