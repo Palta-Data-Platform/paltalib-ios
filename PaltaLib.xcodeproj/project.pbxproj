@@ -212,6 +212,7 @@
 		11C60F5528195B34004D0185 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 11C60F5428195B34004D0185 /* README.md */; };
 		11F9D78728E5D27B00B6386E /* BackgroundNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */; };
 		11F9D78A28E5D3E100B6386E /* BackgroundNotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */; };
+		11F9D78D28E5D6C800B6386E /* BackgroundNotifierMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D78B28E5D6A900B6386E /* BackgroundNotifierMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -515,6 +516,7 @@
 		11C60F5428195B34004D0185 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifier.swift; sourceTree = "<group>"; };
 		11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifierTests.swift; sourceTree = "<group>"; };
+		11F9D78B28E5D6A900B6386E /* BackgroundNotifierMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifierMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -890,6 +892,7 @@
 				117D9C2F2869A731006F3E2E /* UUIDGeneratorMock.swift */,
 				117D9C322869A799006F3E2E /* ContextProviderMock.swift */,
 				117D9C44286C4D16006F3E2E /* EventQueueCoreMock.swift */,
+				11F9D78B28E5D6A900B6386E /* BackgroundNotifierMock.swift */,
 				117D9C46286C4E26006F3E2E /* EventStorageMock.swift */,
 				117D9C48286C4EB2006F3E2E /* BatchSendControllerMock.swift */,
 				117D9C4A286C4F6A006F3E2E /* EventComposerMock.swift */,
@@ -1531,6 +1534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				117D9C55286C5B21006F3E2E /* BatchSenderMock.swift in Sources */,
+				11F9D78D28E5D6C800B6386E /* BackgroundNotifierMock.swift in Sources */,
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
 				113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */,
 				117A2E3B28C394610047E7F3 /* EventCommonMock.swift in Sources */,

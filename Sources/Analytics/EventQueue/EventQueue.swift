@@ -20,6 +20,7 @@ final class EventQueueImpl: EventQueue {
     private let eventComposer: EventComposer
     private let sessionManager: SessionManager
     private let contextProvider: CurrentContextProvider
+    private let backgroundNotifier: BackgroundNotifier
 
     init(
         stack: Stack,
@@ -28,7 +29,8 @@ final class EventQueueImpl: EventQueue {
         sendController: BatchSendController,
         eventComposer: EventComposer,
         sessionManager: SessionManager,
-        contextProvider: CurrentContextProvider
+        contextProvider: CurrentContextProvider,
+        backgroundNotifier: BackgroundNotifier
     ) {
         self.stack = stack
         self.core = core
@@ -37,10 +39,12 @@ final class EventQueueImpl: EventQueue {
         self.eventComposer = eventComposer
         self.sessionManager = sessionManager
         self.contextProvider = contextProvider
+        self.backgroundNotifier = backgroundNotifier
 
         setupCore(core, liveQueue: false)
         setupSendController()
         startSessionManager()
+        subscribeForBackgroundNotifications()
     }
     
     func logEvent<E: Event>(_ incomingEvent: E) {
@@ -129,6 +133,12 @@ final class EventQueueImpl: EventQueue {
         }
         
         sessionManager.start()
+    }
+    
+    private func subscribeForBackgroundNotifications() {
+        backgroundNotifier.addListener { [weak self] in
+            self?.core.forceFlush()
+        }
     }
 }
 

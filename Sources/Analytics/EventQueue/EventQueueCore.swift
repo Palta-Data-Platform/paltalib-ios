@@ -27,6 +27,7 @@ protocol EventQueueCore: AnyObject {
     func addEvents(_ events: [StorableEvent])
     
     func sendEventsAvailable()
+    func forceFlush()
 }
 
 final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
@@ -87,6 +88,12 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     func apply(_ config: EventQueueConfig) {
         workingQueue.async {
             self.config = config
+        }
+    }
+    
+    func forceFlush() {
+        workingQueue.async { [self] in
+            flush()
         }
     }
     
