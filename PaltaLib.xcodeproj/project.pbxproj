@@ -178,6 +178,8 @@
 		11C60F502816D598004D0185 /* TelemetryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4E2816D585004D0185 /* TelemetryMock.swift */; };
 		11C60F5228181323004D0185 /* Amplitude+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F5128181323004D0185 /* Amplitude+Extensions.swift */; };
 		11C60F5528195B34004D0185 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 11C60F5428195B34004D0185 /* README.md */; };
+		11F9D78728E5D27B00B6386E /* BackgroundNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */; };
+		11F9D78A28E5D3E100B6386E /* BackgroundNotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -431,6 +433,8 @@
 		11C60F4E2816D585004D0185 /* TelemetryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryMock.swift; sourceTree = "<group>"; };
 		11C60F5128181323004D0185 /* Amplitude+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Amplitude+Extensions.swift"; sourceTree = "<group>"; };
 		11C60F5428195B34004D0185 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifier.swift; sourceTree = "<group>"; };
+		11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifierTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -719,6 +723,7 @@
 				11A61E832833E0C900F88116 /* AmplitudeExtensionTests.swift */,
 				11A61EA82835054700F88116 /* EventQueueAssemblyTests.swift */,
 				11A61EAB2835073D00F88116 /* ConfigApplyServiceTests.swift */,
+				11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -991,6 +996,7 @@
 				114D06FC2806EEE500ACD310 /* IdentityLogger.swift */,
 				114D0702280757DB00ACD310 /* RevenueLogger.swift */,
 				114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */,
+				11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1353,6 +1359,7 @@
 				11543035282D02E80021ED6F /* ProductDiscountMock.swift in Sources */,
 				11543028282BF7B50021ED6F /* PaidFeatureTests.swift in Sources */,
 				11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */,
+				11F9D78A28E5D3E100B6386E /* BackgroundNotifierTests.swift in Sources */,
 				113AD6422837AC6D00324D62 /* FeaturesServiceTests.swift in Sources */,
 				11115A4827FB75CD00A41ADA /* EventQueueCoreMock.swift in Sources */,
 				11A61EB02835161F00F88116 /* EventQueueAssemblyProviderMock.swift in Sources */,
@@ -1416,6 +1423,7 @@
 				1111596A27F70BE400A41ADA /* PaltaAnalytics.swift in Sources */,
 				114D06E028041BAA00ACD310 /* AnalyticsAssembly.swift in Sources */,
 				11115A8F28001F2300A41ADA /* UserPropertiesKeeper.swift in Sources */,
+				11F9D78728E5D27B00B6386E /* BackgroundNotifier.swift in Sources */,
 				11115A9128001FA800A41ADA /* UserProperties.swift in Sources */,
 				1111596727F70BE400A41ADA /* PaltaAnalytics+Target.swift in Sources */,
 				11A61EA52834F01300F88116 /* ConfigApplyService.swift in Sources */,
