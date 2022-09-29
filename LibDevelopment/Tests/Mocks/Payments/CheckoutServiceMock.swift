@@ -10,6 +10,7 @@ import Foundation
 
 final class CheckoutServiceMock: CheckoutService {
     var startUserId: UserId?
+    var startIdent: String?
     var startTraceId: UUID?
     var startResult: Result<UUID, PaymentsError>?
     
@@ -32,8 +33,9 @@ final class CheckoutServiceMock: CheckoutService {
     var logData: [String: Any]?
     var logTraceId: UUID?
     
-    func startCheckout(userId: UserId, traceId: UUID, completion: @escaping (Result<UUID, PaymentsError>) -> Void) {
+    func startCheckout(userId: UserId, ident: String, traceId: UUID, completion: @escaping (Result<UUID, PaymentsError>) -> Void) {
         startUserId = userId
+        startIdent = ident
         startTraceId = traceId
         
         if let startResult = startResult {

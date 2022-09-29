@@ -70,7 +70,7 @@ public final class PBPurchasePlugin: PurchasePlugin {
         with promoOffer: PromoOffer?,
         _ completion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void
     ) {
-        guard product.originalEntity is SKProduct else {
+        guard let product = product.originalEntity as? ShowcaseProduct else {
             completion(.notSupported)
             return
         }
@@ -91,7 +91,7 @@ public final class PBPurchasePlugin: PurchasePlugin {
     }
     
     public func purchase2(_ product: Product, stages: @escaping (String) -> Void, _ completion: @escaping (PurchasePluginResult<SuccessfulPurchase, Error>) -> Void) {
-        guard product.originalEntity is SKProduct else {
+        guard let product = product.originalEntity as? ShowcaseProduct else {
             completion(.notSupported)
             return
         }

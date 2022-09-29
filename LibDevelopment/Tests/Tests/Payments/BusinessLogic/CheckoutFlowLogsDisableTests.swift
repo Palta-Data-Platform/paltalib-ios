@@ -13,7 +13,7 @@ final class CheckoutFlowLogsDisableTests: XCTestCase {
     private var flow: CheckoutFlowImpl!
     
     private var userId: UserId!
-    private var product: Product!
+    private var product: ShowcaseProduct!
     private var checkoutService: CheckoutServiceMock!
     private var featuresService: PaidFeaturesServiceMock!
     private var paymentQueueInteractor: PaymentQueueInteractorMock!

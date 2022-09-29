@@ -18,6 +18,9 @@ extension Product {
             currencyCode: nil,
             price: 0,
             localizedPriceString: "",
+            subscriptionPeriod: nil,
+            introductoryDiscount: nil,
+            discounts: [],
             originalEntity: 0
         )
     }

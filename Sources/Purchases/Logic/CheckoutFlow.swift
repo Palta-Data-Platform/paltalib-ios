@@ -21,7 +21,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
     
     private let environment: Environment
     private let userId: UserId
-    private let product: Product
+    private let product: ShowcaseProduct
     
     private let checkoutService: CheckoutService
     private let featuresService: PaidFeaturesService
@@ -32,7 +32,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         logging: @escaping (String) -> Void,
         environment: Environment,
         userId: UserId,
-        product: Product,
+        product: ShowcaseProduct,
         checkoutService: CheckoutService,
         featuresService: PaidFeaturesService,
         paymentQueueInteractor: PaymentQueueInteractor,
@@ -48,7 +48,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         self.receiptProvider = receiptProvider
     }
     
-    func start( completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void) {
+    func start(completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void) {
         lock.lock()
         defer { lock.lock() }
         
@@ -56,11 +56,11 @@ final class CheckoutFlowImpl: CheckoutFlow {
             return
         }
         
-        logStep("Start checkout", data: ["productId": product.productIdentifier, "userId": userId.stringValue])
+        logStep("Start checkout", data: ["productId": product.skProduct.productIdentifier, "userId": userId.stringValue])
         
         isInProgress = true
         
-        checkoutService.startCheckout(userId: userId, traceId: traceId) { [self] result in
+        checkoutService.startCheckout(userId: userId, ident: product.ident, traceId: traceId) { [self] result in
             switch result {
             case .success(let orderId):
                 purchase(with: orderId, completion: completion)
@@ -77,7 +77,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
     ) {
         logStep(
             "App Store purchase started",
-            data: ["productId": product.productIdentifier, "userId": userId.stringValue]
+            data: ["productId": product.skProduct.productIdentifier, "userId": userId.stringValue]
         )
         
         paymentQueueInteractor.purchase(product, orderId: orderId) { [self] result in

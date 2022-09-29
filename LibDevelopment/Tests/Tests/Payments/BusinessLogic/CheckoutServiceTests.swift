@@ -25,13 +25,14 @@ final class CheckoutServiceTests: XCTestCase {
     func testStartSuccess() {
         let userId = UserId.uuid(UUID())
         let expectedOrderId = UUID()
+        let ident = UUID().uuidString
         let traceId = UUID()
         
         httpMock.result = .success(StartCheckoutResponse(status: "OK", orderId: expectedOrderId))
         
         let successCalled = expectation(description: "Success called")
         
-        checkoutService.startCheckout(userId: userId, traceId: traceId) { result in
+        checkoutService.startCheckout(userId: userId, ident: ident, traceId: traceId) { result in
             guard case let .success(orderId) = result else {
                 return
             }
@@ -43,7 +44,7 @@ final class CheckoutServiceTests: XCTestCase {
         
         wait(for: [successCalled], timeout: 0.1)
         
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .startCheckout(userId))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .startCheckout(userId, ident))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
     }
     
@@ -51,7 +52,7 @@ final class CheckoutServiceTests: XCTestCase {
         httpMock.result = .failure(NetworkErrorWithoutResponse.noData)
         let failCalled = expectation(description: "Fail called")
         
-        checkoutService.startCheckout(userId: .uuid(UUID()), traceId: UUID()) { result in
+        checkoutService.startCheckout(userId: .uuid(UUID()), ident: "", traceId: UUID()) { result in
             guard case .failure = result else {
                 return
             }
@@ -65,7 +66,7 @@ final class CheckoutServiceTests: XCTestCase {
     func testStartProdEnv() {
         checkoutService = .init(environment: .prod, httpClient: httpMock)
         
-        checkoutService.startCheckout(userId: .uuid(UUID()), traceId: UUID(), completion: { _ in })
+        checkoutService.startCheckout(userId: .uuid(UUID()), ident: "", traceId: UUID(), completion: { _ in })
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .prod)
     }
@@ -73,7 +74,7 @@ final class CheckoutServiceTests: XCTestCase {
     func testStartDevEnv() {
         checkoutService = .init(environment: .dev, httpClient: httpMock)
         
-        checkoutService.startCheckout(userId: .uuid(UUID()), traceId: UUID(), completion: { _ in })
+        checkoutService.startCheckout(userId: .uuid(UUID()), ident: "", traceId: UUID(), completion: { _ in })
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .dev)
     }

@@ -561,7 +561,7 @@ final class PaltaPurchasesTests: XCTestCase {
             [.mock(productIdentifier: "3")]
         ]
         
-        let experctedProducts: [Product] = [
+        let expectedProducts: [Product] = [
             .mock(productIdentifier: "1"),
             .mock(productIdentifier: "2"),
             .mock(productIdentifier: "3")
@@ -575,7 +575,7 @@ final class PaltaPurchasesTests: XCTestCase {
                 return
             }
             
-            XCTAssertEqual(products, experctedProducts)
+            XCTAssertEqual(products, expectedProducts)
             successCalled.fulfill()
         }
         

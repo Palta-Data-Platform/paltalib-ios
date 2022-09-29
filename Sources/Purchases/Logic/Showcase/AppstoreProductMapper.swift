@@ -8,35 +8,35 @@
 import Foundation
 import StoreKit
 
-protocol AppstoreProductMapper {
-    func map(_ appStoreProduct: SKProduct) -> Product
+protocol AppstoreProductMapper: AnyObject {
+    func map(_ appStoreProduct: SKProduct, idents: [String: String]) -> Product
 }
 
 final class AppstoreProductMapperImpl: AppstoreProductMapper {
     private var priceFormatters: [Locale: NumberFormatter] = [:]
     
-    func map(_ appStoreProduct: SKProduct) -> Product {
-        if #available(iOS 12.2, *) {
-            return Product(
-                productType: .nonConsumable,
-                productIdentifier: appStoreProduct.productIdentifier,
-                localizedDescription: appStoreProduct.localizedDescription,
-                localizedTitle: appStoreProduct.localizedTitle,
-                currencyCode: appStoreProduct.priceLocale.currencyCode,
-                price: appStoreProduct.price.decimalValue,
-                localizedPriceString: priceString(locale: appStoreProduct.priceLocale, price: appStoreProduct.price),
-                subscriptionPeriod: appStoreProduct.subscriptionPeriod.map(SubscriptionPeriod.init),
-                introductoryDiscount: appStoreProduct.introductoryPrice.map {
-                    ProductDiscount(sk: $0, priceFormatter: priceString(locale:price:))
-                },
-                discounts: appStoreProduct.discounts.map {
-                    ProductDiscount(sk: $0, priceFormatter: priceString(locale:price:))
-                },
-                originalEntity: appStoreProduct
-            )
-        } else {
+    func map(_ appStoreProduct: SKProduct, idents: [String: String]) -> Product {
+        guard let ident = idents[appStoreProduct.productIdentifier] else {
             fatalError()
         }
+
+        return Product(
+            productType: .nonConsumable,
+            productIdentifier: appStoreProduct.productIdentifier,
+            localizedDescription: appStoreProduct.localizedDescription,
+            localizedTitle: appStoreProduct.localizedTitle,
+            currencyCode: appStoreProduct.priceLocale.currencyCode,
+            price: appStoreProduct.price.decimalValue,
+            localizedPriceString: priceString(locale: appStoreProduct.priceLocale, price: appStoreProduct.price),
+            subscriptionPeriod: appStoreProduct.subscriptionPeriod.map(SubscriptionPeriod.init),
+            introductoryDiscount: appStoreProduct.introductoryPrice.map {
+                ProductDiscount(sk: $0, priceFormatter: priceString(locale:price:))
+            },
+            discounts: appStoreProduct.discounts.map {
+                ProductDiscount(sk: $0, priceFormatter: priceString(locale:price:))
+            },
+            originalEntity: ShowcaseProduct(ident: ident, skProduct: appStoreProduct)
+        )
     }
     
     private func priceString(locale: Locale, price: NSDecimalNumber) -> String {

@@ -9,7 +9,7 @@ import Foundation
 import StoreKit
 
 protocol PaymentQueueInteractor {
-    func purchase(_ product: Product, orderId: UUID, completion: @escaping (Result<String, PaymentsError>) -> Void)
+    func purchase(_ product: ShowcaseProduct, orderId: UUID, completion: @escaping (Result<String, PaymentsError>) -> Void)
 }
 
 final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
@@ -25,20 +25,15 @@ final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
         setupListener()
     }
     
-    func purchase(_ product: Product, orderId: UUID, completion: @escaping (Result<String, PaymentsError>) -> Void) {
-        guard completionHandlers[product.productIdentifier] == nil else {
+    func purchase(_ product: ShowcaseProduct, orderId: UUID, completion: @escaping (Result<String, PaymentsError>) -> Void) {
+        guard completionHandlers[product.skProduct.productIdentifier] == nil else {
             completion(.failure(.purchaseInProgress))
             return
         }
         
-        guard let skProduct = product.originalEntity as? SKProduct else {
-            completion(.failure(.sdkError(.noSuitablePlugin)))
-            return
-        }
+        completionHandlers[product.skProduct.productIdentifier] = completion
         
-        completionHandlers[product.productIdentifier] = completion
-        
-        let payment = SKMutablePayment(product: skProduct)
+        let payment = SKMutablePayment(product: product.skProduct)
         payment.applicationUsername = orderId.uuidString
         paymentQueue.add(payment)
     }
