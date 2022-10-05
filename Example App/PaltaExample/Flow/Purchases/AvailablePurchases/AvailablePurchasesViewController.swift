@@ -31,6 +31,12 @@ final class AvailablePurchasesViewController: UIViewController {
         setupBindings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.onViewWillAppear()
+    }
+    
     private func setupLayout() {
         view.addSubview(tableView)
         
