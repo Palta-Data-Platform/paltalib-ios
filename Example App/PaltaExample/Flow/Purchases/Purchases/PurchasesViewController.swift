@@ -11,14 +11,6 @@ import Combine
 final class PurchasesViewController: UIViewController {
     private lazy var userView = UserView(viewModel: viewModel as! UserViewModel)
 
-    private lazy var stateLabel: UILabel = {
-        let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .title3)
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        return label
-    }()
-
     private lazy var buyButton = Button(
         title: "Buy something",
         color: .systemMint
@@ -28,10 +20,20 @@ final class PurchasesViewController: UIViewController {
             animated: true
         )
     }
+    
+    private lazy var featuresButton = Button(
+        title: "Check available features",
+        color: .systemTeal
+    ) { [unowned self] in
+        navigationController?.pushViewController(
+            AvailableFeaturesViewController(),
+            animated: true
+        )
+    }
 
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [userView, stateLabel, buyButton]
+            arrangedSubviews: [userView, buyButton, featuresButton]
         )
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -78,12 +80,12 @@ final class PurchasesViewController: UIViewController {
     }
 
     private func setupBindings() {
-        viewModel.subscriptionStatePublisher
-            .assign(to: \.text, on: stateLabel)
-            .store(in: &cancels)
-
         viewModel.isButtonActive
             .assign(to: \.isEnabled, on: buyButton)
+            .store(in: &cancels)
+        
+        viewModel.isButtonActive
+            .assign(to: \.isEnabled, on: featuresButton)
             .store(in: &cancels)
     }
 }
