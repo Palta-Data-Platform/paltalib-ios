@@ -72,6 +72,7 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertEqual(checkoutService.completTransactionId, transactionId)
         XCTAssertEqual(checkoutService.getOrderId, orderId)
         XCTAssertEqual(featuresService.userId, userId)
+        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [transactionId])
         XCTAssertNil(checkoutService.failOrderId)
     }
     
@@ -96,6 +97,7 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertNil(checkoutService.failOrderId)
         XCTAssertNil(checkoutService.getOrderId)
         XCTAssertNil(featuresService.userId)
+        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [])
         XCTAssertNil(paymentQueueInteractor.product)
     }
     
@@ -121,6 +123,7 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertEqual(checkoutService.startUserId, userId)
         XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
         XCTAssertEqual(checkoutService.failOrderId, orderId)
+        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [])
         XCTAssertNil(checkoutService.getOrderId)
         XCTAssertNil(featuresService.userId)
     }
@@ -149,6 +152,7 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertEqual(checkoutService.startUserId, userId)
         XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
         XCTAssertEqual(checkoutService.failOrderId, orderId)
+        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [])
         XCTAssertNil(checkoutService.completeOrderId)
         XCTAssertNil(checkoutService.getOrderId)
         XCTAssertNil(featuresService.userId)
@@ -178,6 +182,7 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertEqual(checkoutService.startUserId, userId)
         XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
         XCTAssertEqual(checkoutService.completeOrderId, orderId)
+        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [])
         XCTAssertNil(checkoutService.getOrderId)
         XCTAssertNil(featuresService.userId)
     }

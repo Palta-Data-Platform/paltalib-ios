@@ -193,7 +193,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.dev.paltabrain.com/apple-store/checkout-failed"))
         XCTAssertEqual(
             payloadString,
-            "{\"orderId\":\"\(orderId.uuidString)\"}"
+            "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{}}"
         )
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,

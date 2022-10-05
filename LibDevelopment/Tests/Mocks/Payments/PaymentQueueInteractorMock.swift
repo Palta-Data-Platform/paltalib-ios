@@ -11,6 +11,7 @@ import Foundation
 final class PaymentQueueInteractorMock: PaymentQueueInteractor {
     var product: ShowcaseProduct?
     var orderId: UUID?
+    var closedTransactions: Set<String> = []
     
     var result: Result<String, PaymentsError>?
     
@@ -21,5 +22,9 @@ final class PaymentQueueInteractorMock: PaymentQueueInteractor {
         if let result = result {
             completion(result)
         }
+    }
+    
+    func close(_ transaction: String) {
+        closedTransactions.insert(transaction)
     }
 }
