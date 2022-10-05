@@ -23,10 +23,6 @@ final class AvailablePurchasesViewModel {
     @Published
     private(set) var items: [Item] = []
     
-    init() {
-        fetchProducts()
-    }
-    
     func buy(_ item: Item) {
         operationInProgress = true
         
@@ -40,6 +36,11 @@ final class AvailablePurchasesViewModel {
 
             self?.operationInProgress = false
         }
+    }
+    
+    func onViewWillAppear() {
+        items = []
+        fetchProducts()
     }
     
     private func fetchProducts() {
