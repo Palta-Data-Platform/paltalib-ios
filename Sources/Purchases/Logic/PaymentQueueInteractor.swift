@@ -10,6 +10,7 @@ import StoreKit
 
 protocol PaymentQueueInteractor {
     func purchase(_ product: ShowcaseProduct, orderId: UUID, completion: @escaping (Result<String, PaymentsError>) -> Void)
+    func close(_ transaction: String)
 }
 
 final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
@@ -36,6 +37,14 @@ final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
         let payment = SKMutablePayment(product: product.skProduct)
         payment.applicationUsername = orderId.uuidString
         paymentQueue.add(payment)
+    }
+    
+    func close(_ transaction: String) {
+        guard let transaction = paymentQueue.transactions.first(where: { $0.transactionIdentifier == transaction }) else {
+            return
+        }
+        
+        paymentQueue.finishTransaction(transaction)
     }
     
     private func setupListener() {
@@ -82,8 +91,13 @@ final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
             failPurchase(for: productIdentifier, with: PaymentsError.unknownError)
             return
         }
+        
+        if let completionHandler = completionHandlers[productIdentifier] {
+            completionHandler(.success(transactionId))
+        } else {
+            close(transactionId)
+        }
 
-        completionHandlers[productIdentifier]?(.success(transactionId))
         completionHandlers[productIdentifier] = nil
     }
 }

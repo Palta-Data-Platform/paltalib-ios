@@ -60,6 +60,12 @@ final class PurchasesViewController: UIViewController {
         setupUI()
         setupBindings()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.onViewWillAppear()
+    }
 
     private func setupUI() {
         view.backgroundColor = .systemBackground
