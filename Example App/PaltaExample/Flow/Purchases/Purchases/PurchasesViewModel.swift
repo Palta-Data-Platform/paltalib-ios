@@ -12,6 +12,8 @@ import PaltaLibPurchases
 protocol PurchasesViewModelInterface {
     var subscriptionStatePublisher: AnyPublisher<String?, Never> { get }
     var isButtonActive: AnyPublisher<Bool, Never> { get }
+    
+    func onViewWillAppear()
 }
 
 final class PurchasesViewModel: PurchasesViewModelInterface {
@@ -58,6 +60,12 @@ final class PurchasesViewModel: PurchasesViewModelInterface {
     
     init() {
         setupBindings()
+    }
+    
+    func onViewWillAppear() {
+        if let userId = userId {
+            getPurchases(with: userId)
+        }
     }
     
     private func setupBindings() {
