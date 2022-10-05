@@ -50,7 +50,7 @@ final class UserView: UIView {
     private lazy var stackView = UIStackView(arrangedSubviews: [field, generateButton, loginButton]).do {
         $0.axis = .horizontal
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.spacing = 4
+        $0.spacing = 12
     }
     
     private var cancels: Set<AnyCancellable> = []
