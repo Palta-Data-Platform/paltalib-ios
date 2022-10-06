@@ -160,12 +160,10 @@ final class PurchasesViewModel: PurchasesViewModelInterface {
             PaltaPurchases.instance.getProducts(with: ["com.palta.brain.demo.paidfeature"]) { [weak self] result in
                 switch result {
                 case .success(let products):
-                    print("EBUNAAA \(products)")
                     self?.subscriptionProduct = products.first(where: { $0.productType == .autoRenewableSubscription })
                     self?.lifetimeProduct = products.first(where: { $0.productType == .nonConsumable })
                     self?.periodProduct = products.first(where: { $0.productType == .nonRenewableSubscription })
                 case .failure(let error):
-                    print("EBUNAAA \(error)")
                     print(error)
                 }
             }
@@ -174,17 +172,12 @@ final class PurchasesViewModel: PurchasesViewModelInterface {
         PaltaPurchases.instance.getPaidFeatures { [weak self] result in
             switch result {
             case .success(let features):
-                print(features)
                 self?.update(with: features)
                 
             case .failure(let error):
                 print(error)
             }
         }
-        
-        print("EBUNAAA")
-        
-        
     }
     
     private func update(with paidFeatures: PaidFeatures) {
