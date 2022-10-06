@@ -5,6 +5,7 @@ import UIKit
 import CoreData
 import PaltaLibAnalytics
 import PaltaEvents
+import PaltaLibPurchases
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PaltaAnalytics.shared.log(
             PageOpenEvent(header: .init(), pageID: "launch")
         )
+        
+        PaltaPurchases.instance.setup(with: [
+            PBPurchasePlugin(
+                apiKey: "13ac16d7a83e42268c7f9abb7bcd6443",
+                environment: URL(string: "https://api.payments.dev.paltabrain.com")!
+            )
+        ])
         
         return true
     }

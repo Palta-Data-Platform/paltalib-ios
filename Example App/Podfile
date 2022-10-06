@@ -5,6 +5,6 @@ target 'PaltaExample' do
   use_frameworks!
 
   pod 'PaltaLibEvents', '1.0.2'
-  pod 'PaltaLibPurchases', '3.0.0'
+  pod 'PaltaLibPurchases', '3.1.0'
 
 end
