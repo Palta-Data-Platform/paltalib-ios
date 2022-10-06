@@ -13,12 +13,14 @@ import PaltaLibCore
 final class SubscriptionsServiceTests: XCTestCase {
     var httpMock: HTTPClientMock!
     var service: SubscriptionsServiceImpl!
+    var environment: Environment!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
         httpMock = .init()
-        service = SubscriptionsServiceImpl(environment: .dev, httpClient: httpMock)
+        environment = URL(string: "https://mock.mock/\(UUID())")
+        service = SubscriptionsServiceImpl(environment: environment, httpClient: httpMock)
     }
     
     func testSuccess() {
@@ -39,41 +41,9 @@ final class SubscriptionsServiceTests: XCTestCase {
             completionCalled.fulfill()
         }
         
-        XCTAssertEqual(httpMock.request as? PaymentsHTTPRequest, .getSubcriptions(.dev, userId, ids))
+        XCTAssertEqual(httpMock.request as? PaymentsHTTPRequest, .getSubcriptions(environment, userId, ids))
         
         wait(for: [completionCalled], timeout: 0.1)
-    }
-    
-    func testDevEnvironment() {
-        service = SubscriptionsServiceImpl(environment: .dev, httpClient: httpMock)
-        
-        service.getSubscriptions(with: [], for: .uuid(.init())) { _ in }
-        
-        guard
-            let request = httpMock.request as? PaymentsHTTPRequest,
-                case let .getSubcriptions(env, _, _) = request
-        else {
-            XCTAssert(false)
-            return
-        }
-        
-        XCTAssertEqual(env, .dev)
-    }
-    
-    func testProdEnvironment() {
-        service = SubscriptionsServiceImpl(environment: .prod, httpClient: httpMock)
-        
-        service.getSubscriptions(with: [], for: .uuid(.init())) { _ in }
-        
-        guard
-            let request = httpMock.request as? PaymentsHTTPRequest,
-                case let .getSubcriptions(env, _, _) = request
-        else {
-            XCTAssert(false)
-            return
-        }
-        
-        XCTAssertEqual(env, .prod)
     }
     
     func testFailure() {
@@ -91,7 +61,7 @@ final class SubscriptionsServiceTests: XCTestCase {
             completionCalled.fulfill()
         }
         
-        XCTAssertEqual(httpMock.request as? PaymentsHTTPRequest, .getSubcriptions(.dev, userId, ids))
+        XCTAssertEqual(httpMock.request as? PaymentsHTTPRequest, .getSubcriptions(environment, userId, ids))
         
         wait(for: [completionCalled], timeout: 0.1)
     }

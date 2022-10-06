@@ -12,9 +12,10 @@ import XCTest
 final class PaymentsHTTPRequestTests: XCTestCase {
     func testGetSubscriptionsNoIDs() {
         let userIdString = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest.getSubcriptions(
-            .dev,
+            env,
             .uuid(UUID(uuidString: userIdString)!),
             nil
         )
@@ -23,7 +24,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.dev.paltabrain.com/subscriptions-tracker/get-subscriptions"))
+        XCTAssertEqual(urlRequest?.url, env.appendingPathComponent("subscriptions-tracker/get-subscriptions"))
         XCTAssertEqual(
             payloadString,
             "{\"customerId\":{\"value\":\"\(userIdString.uppercased())\",\"type\":\"merchant-uuid\"}}"
@@ -37,9 +38,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     func testGetSubscriptionsWithIDs() {
         let userIdString = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
         let subscriptionIDs: Set<UUID> = [UUID(), UUID()]
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest.getSubcriptions(
-            .prod,
+            env,
             .uuid(UUID(uuidString: userIdString)!),
             subscriptionIDs
         )
@@ -53,9 +55,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     
     func testGetFeatures() {
         let userIdString = "8900f862-0cc4-4d0a-aa12-5b76ea12c574"
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest.getFeatures(
-            .prod,
+            env,
             .uuid(UUID(uuidString: userIdString)!)
         )
         
@@ -63,7 +66,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.paltabrain.com/feature-provisioner/get-features"))
+        XCTAssertEqual(urlRequest?.url, env.appendingPathComponent("feature-provisioner/get-features"))
         XCTAssertEqual(
             payloadString,
             "{\"customerId\":{\"value\":\"\(userIdString.uppercased())\",\"type\":\"merchant-uuid\"}}"

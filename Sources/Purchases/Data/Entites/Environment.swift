@@ -7,7 +7,4 @@
 
 import Foundation
 
-public enum Environment {
-    case dev
-    case prod
-}
+public typealias Environment = URL

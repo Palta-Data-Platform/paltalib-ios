@@ -40,12 +40,7 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
     }
     
     var baseURL: URL {
-        switch environment {
-        case .prod:
-            return URL(string: "https://api.payments.paltabrain.com")!
-        case .dev:
-            return URL(string: "https://api.payments.dev.paltabrain.com")!
-        }
+        environment
     }
     
     var path: String? {
