@@ -110,7 +110,7 @@ private final class PaymentQueueObserver: NSObject, SKPaymentTransactionObserver
             listener?(
                 $0.payment.productIdentifier,
                 $0.transactionState,
-                $0.original?.transactionIdentifier ?? $0.transactionIdentifier,
+                $0.transactionIdentifier ?? $0.original?.transactionIdentifier,
                 $0.error
             )
         }
