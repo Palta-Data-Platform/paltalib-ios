@@ -164,7 +164,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.paltabrain.com/apple-store/checkout-completed"))
         XCTAssertEqual(
             payloadString,
-            "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{\"receipt\":\"\(receipt)\",\"transactionId\":\"\(transactionId)\"}}"
+            "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{\"receiptData\":\"\(receipt)\",\"transactionId\":\"\(transactionId)\"}}"
         )
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,

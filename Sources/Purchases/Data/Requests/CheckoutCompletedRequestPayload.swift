@@ -9,7 +9,7 @@ import Foundation
 
 struct CheckoutCompletedRequestPayload: Encodable, Equatable {
     struct Purchase: Encodable, Equatable {
-        let receipt: String
+        let receiptData: String
         let transactionId: String
     }
     

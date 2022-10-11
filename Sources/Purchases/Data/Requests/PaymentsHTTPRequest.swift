@@ -43,7 +43,7 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
         case let .checkoutCompleted(orderId, receipt, transactionId):
             return CheckoutCompletedRequestPayload(
                 orderId: orderId,
-                purchase: .init(receipt: receipt, transactionId: transactionId)
+                purchase: .init(receiptData: receipt, transactionId: transactionId)
             ).typeErased
             
         case let .checkoutFailed(orderId):
