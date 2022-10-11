@@ -12,6 +12,7 @@ import XCTest
 final class CheckoutFlowLogsDisableTests: XCTestCase {
     private var flow: CheckoutFlowImpl!
     
+    private var environment: Environment!
     private var userId: UserId!
     private var product: ShowcaseProduct!
     private var checkoutService: CheckoutServiceMock!
@@ -22,6 +23,7 @@ final class CheckoutFlowLogsDisableTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
+        environment = URL(string: "https://api.payments.paltabrain.com")
         userId = .uuid(UUID())
         product = .mock(productIdentifier: UUID().uuidString)
         checkoutService = .init()
@@ -30,7 +32,7 @@ final class CheckoutFlowLogsDisableTests: XCTestCase {
         receiptProvider = .init()
         
         flow = CheckoutFlowImpl(
-            environment: .prod,
+            environment: environment,
             userId: userId,
             product: product,
             checkoutService: checkoutService,
@@ -72,7 +74,7 @@ final class CheckoutFlowLogsDisableTests: XCTestCase {
         
         wait(for: [flowFinished], timeout: 0.1)
         
-        XCTAssertNil(checkoutService.logEvent)
+        XCTAssertNotNil(checkoutService.logEvent)
     }
     
     func testFailPurchase() {
@@ -85,7 +87,7 @@ final class CheckoutFlowLogsDisableTests: XCTestCase {
         
         wait(for: [flowFinished], timeout: 0.1)
         
-        XCTAssertNil(checkoutService.logEvent)
+        XCTAssertNotNil(checkoutService.logEvent)
     }
     
     func testFailReceipt() {
@@ -98,7 +100,7 @@ final class CheckoutFlowLogsDisableTests: XCTestCase {
         
         wait(for: [flowFinished], timeout: 0.1)
         
-        XCTAssertNil(checkoutService.logEvent)
+        XCTAssertNotNil(checkoutService.logEvent)
     }
     
     func testFailComplete() {
@@ -111,7 +113,7 @@ final class CheckoutFlowLogsDisableTests: XCTestCase {
         
         wait(for: [flowFinished], timeout: 0.1)
         
-        XCTAssertNil(checkoutService.logEvent)
+        XCTAssertNotNil(checkoutService.logEvent)
     }
     
     func testFailGet() {
@@ -124,7 +126,7 @@ final class CheckoutFlowLogsDisableTests: XCTestCase {
         
         wait(for: [flowFinished], timeout: 0.1)
         
-        XCTAssertNil(checkoutService.logEvent)
+        XCTAssertNotNil(checkoutService.logEvent)
     }
     
     func testFailFeatures() {

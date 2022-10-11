@@ -81,17 +81,15 @@ final class PurchasesViewModel: PurchasesViewModelInterface {
     }
     
     private func getPurchases(with userId: UUID) {
-        PaltaPurchases.instance.logIn(appUserId: .uuid(userId)) { _ in
-        }
-        
-        PaltaPurchases.instance.getPaidFeatures { [weak self] result in
-            switch result {
-            case .success(let features):
-                print(features)
-                self?.update(with: features)
-                
-            case .failure(let error):
-                print(error)
+        PaltaPurchases.instance.logIn(appUserId: .uuid(userId)) { [weak self] _ in
+            PaltaPurchases.instance.getPaidFeatures { [weak self] result in
+                switch result {
+                case .success(let features):
+                    self?.update(with: features)
+                    
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }

@@ -6,6 +6,7 @@ import CoreData
 import PaltaLibAnalytics
 import PaltaLibPurchases
 import PaltaEvents
+import PaltaLibPurchases
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,14 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             context.user = .init(userID: "slava")
         }
         
-        PaltaPurchases.instance.setup(with: [
-            RCPurchasePlugin(apiKey: "appl_XLKhpPFayETZEchAVBKynvTNkAr"),
-            PBPurchasePlugin(apiKey: "a87f9d0ef2d341ea931d0ca626193e34", environment: .prod)
-        ])
-        
         PaltaAnalytics.shared.log(
             PageOpenEvent(header: .init(), pageID: "launch")
         )
+        
+        PaltaPurchases.instance.setup(with: [
+            RCPurchasePlugin(apiKey: "appl_XLKhpPFayETZEchAVBKynvTNkAr"),
+            PBPurchasePlugin(
+                apiKey: "13ac16d7a83e42268c7f9abb7bcd6443",
+                environment: URL(string: "https://api.payments.dev.paltabrain.com")!
+            )
+        ])
         
         return true
     }

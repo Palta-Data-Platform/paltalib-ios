@@ -13,9 +13,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     func testGetShowcase() {
         let userId = UUID()
         let traceId = UUID()
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest(
-            environment: .prod,
+            environment: env,
             traceId: traceId,
             endpoint: .getShowcase(.uuid(userId), nil)
         )
@@ -24,7 +25,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.paltabrain.com/showcase/get-price-points"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "\(env)/showcase/get-price-points"))
         XCTAssertEqual(
             payloadString,
             "{\"requestContext\":{},\"customerId\":{\"value\":\"\(userId.uuidString)\",\"type\":\"merchant-uuid\"},\"storeType\":2}"
@@ -41,10 +42,12 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     
     func testGetSubscriptionsNoIDs() {
         let userIdString = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+
         let traceId = UUID()
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest(
-            environment: .dev,
+            environment: env,
             traceId: traceId,
             endpoint: .getSubcriptions(.uuid(UUID(uuidString: userIdString)!), nil)
         )
@@ -53,7 +56,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.dev.paltabrain.com/subscriptions-tracker/get-subscriptions"))
+        XCTAssertEqual(urlRequest?.url, env.appendingPathComponent("subscriptions-tracker/get-subscriptions"))
         XCTAssertEqual(
             payloadString,
             "{\"customerId\":{\"value\":\"\(userIdString.uppercased())\",\"type\":\"merchant-uuid\"}}"
@@ -72,9 +75,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let userIdString = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
         let traceId = UUID()
         let subscriptionIDs: Set<UUID> = [UUID(), UUID()]
-        
+        let env = URL(string: "http://\(UUID())")!
+
         let request = PaymentsHTTPRequest(
-            environment: .prod,
+            environment: env,
             traceId: traceId,
             endpoint: .getSubcriptions(.uuid(UUID(uuidString: userIdString)!), subscriptionIDs)
         )
@@ -89,9 +93,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     func testGetFeatures() {
         let userIdString = "8900f862-0cc4-4d0a-aa12-5b76ea12c574"
         let traceId = UUID()
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest(
-            environment: .prod,
+            environment: env,
             traceId: traceId,
             endpoint: .getFeatures(.uuid(UUID(uuidString: userIdString)!))
         )
@@ -100,7 +105,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.paltabrain.com/feature-provisioner/get-features"))
+        XCTAssertEqual(urlRequest?.url, env.appendingPathComponent("feature-provisioner/get-features"))
         XCTAssertEqual(
             payloadString,
             "{\"customerId\":{\"value\":\"\(userIdString.uppercased())\",\"type\":\"merchant-uuid\"}}"
@@ -119,9 +124,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let userId = UUID()
         let ident = UUID().uuidString
         let traceId = UUID()
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest(
-            environment: .dev,
+            environment: env,
             traceId: traceId,
             endpoint: .startCheckout(.uuid(userId), ident)
         )
@@ -130,7 +136,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.dev.paltabrain.com/apple-store/start-checkout"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "\(env)/apple-store/start-checkout"))
         XCTAssertEqual(
             payloadString,
             "{\"ident\":\"\(ident)\",\"customerId\":{\"value\":\"\(userId.uuidString)\",\"type\":\"merchant-uuid\"}}"
@@ -150,9 +156,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let orderId = UUID()
         let receipt = UUID().uuidString
         let transactionId = UUID().uuidString
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest(
-            environment: .prod,
+            environment: env,
             traceId: traceId,
             endpoint: .checkoutCompleted(orderId, receipt, transactionId)
         )
@@ -161,7 +168,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.paltabrain.com/apple-store/checkout-completed"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "\(env)/apple-store/checkout-completed"))
         XCTAssertEqual(
             payloadString,
             "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{\"receiptData\":\"\(receipt)\",\"transactionId\":\"\(transactionId)\"}}"
@@ -179,9 +186,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     func testFailCheckout() {
         let traceId = UUID()
         let orderId = UUID()
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest(
-            environment: .dev,
+            environment: env,
             traceId: traceId,
             endpoint: .checkoutFailed(orderId)
         )
@@ -190,7 +198,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.dev.paltabrain.com/apple-store/checkout-failed"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "\(env)/apple-store/checkout-failed"))
         XCTAssertEqual(
             payloadString,
             "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{}}"
@@ -208,9 +216,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     func testGetCheckout() {
         let traceId = UUID()
         let orderId = UUID()
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest(
-            environment: .prod,
+            environment: env,
             traceId: traceId,
             endpoint: .getCheckout(orderId)
         )
@@ -219,7 +228,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.paltabrain.com/apple-store/get-checkout"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "\(env)/apple-store/get-checkout"))
         XCTAssertEqual(
             payloadString,
             "{\"orderId\":\"\(orderId.uuidString)\"}"
@@ -236,9 +245,10 @@ final class PaymentsHTTPRequestTests: XCTestCase {
     
     func testLog() {
         let traceId = UUID()
+        let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest(
-            environment: .dev,
+            environment: env,
             traceId: traceId,
             endpoint: .log(.error, "An event", ["3": 5])
         )
@@ -247,7 +257,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
         
         XCTAssertEqual(urlRequest?.httpMethod, "POST")
-        XCTAssertEqual(urlRequest?.url, URL(string: "https://api.payments.dev.paltabrain.com/apple-store/log-event"))
+        XCTAssertEqual(urlRequest?.url, URL(string: "\(env)/apple-store/log-event"))
         XCTAssertEqual(
             payloadString,
             "{\"level\":\"error\",\"eventName\":\"An event\",\"data\":{\"3\":5}}"

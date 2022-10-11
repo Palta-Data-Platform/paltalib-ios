@@ -159,14 +159,12 @@ final class CheckoutFlowImpl: CheckoutFlow {
         with error: PaymentsError,
         completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void
     ) {
-        if environment == .dev {
-            checkoutService.log(
-                level: .error,
-                event: "appstore_failed",
-                data: ["error": error.localizedDescription],
-                traceId: traceId
-            )
-        }
+        checkoutService.log(
+            level: .error,
+            event: "appstore_failed",
+            data: ["error": error.localizedDescription],
+            traceId: traceId
+        )
         
         checkoutService.failCheckout(orderId: orderId, traceId: traceId) { (_: Result<(), PaymentsError>) in
             completion(.failure(error))
@@ -174,10 +172,6 @@ final class CheckoutFlowImpl: CheckoutFlow {
     }
     
     private func logError(_ error: PaymentsError, _ messageName: String) {
-        guard environment == .dev else {
-            return
-        }
-        
         checkoutService.log(
             level: .error,
             event: messageName,
@@ -187,7 +181,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
     }
     
     private func logStep(_ stepName: String, data: [String: Any]? = nil) {
-        guard environment == .dev else {
+        guard environment == URL(string: "https://api.payments.dev.paltabrain.com") else {
             return
         }
         
