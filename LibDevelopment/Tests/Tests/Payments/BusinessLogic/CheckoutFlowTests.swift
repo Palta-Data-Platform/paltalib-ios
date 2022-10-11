@@ -12,6 +12,7 @@ import XCTest
 final class CheckoutFlowTests: XCTestCase {
     private var flow: CheckoutFlowImpl!
     
+    private var environment: Environment!
     private var userId: UserId!
     private var product: ShowcaseProduct!
     private var checkoutService: CheckoutServiceMock!
@@ -22,6 +23,7 @@ final class CheckoutFlowTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
+        environment = Environment(string: "http://\(UUID())")
         userId = .uuid(UUID())
         product = .mock(productIdentifier: UUID().uuidString)
         checkoutService = .init()
@@ -30,7 +32,7 @@ final class CheckoutFlowTests: XCTestCase {
         receiptProvider = .init()
         
         flow = CheckoutFlowImpl(
-            environment: .dev,
+            environment: environment,
             userId: userId,
             product: product,
             checkoutService: checkoutService,

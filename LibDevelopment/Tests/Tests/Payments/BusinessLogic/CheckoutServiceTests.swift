@@ -13,13 +13,15 @@ import PaltaLibCore
 final class CheckoutServiceTests: XCTestCase {
     private var checkoutService: CheckoutServiceImpl!
     
+    private var environment: Environment!
     private var httpMock: HTTPClientMock!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
+        environment = URL(string: "http://\(UUID())")
         httpMock = .init()
-        checkoutService = .init(environment: .dev, httpClient: httpMock)
+        checkoutService = .init(environment: environment, httpClient: httpMock)
     }
     
     func testStartSuccess() {
@@ -46,6 +48,7 @@ final class CheckoutServiceTests: XCTestCase {
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .startCheckout(userId, ident))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
     }
     
     func testStartFailure() {
@@ -61,22 +64,6 @@ final class CheckoutServiceTests: XCTestCase {
         }
         
         wait(for: [failCalled], timeout: 0.1)
-    }
-    
-    func testStartProdEnv() {
-        checkoutService = .init(environment: .prod, httpClient: httpMock)
-        
-        checkoutService.startCheckout(userId: .uuid(UUID()), ident: "", traceId: UUID(), completion: { _ in })
-        
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .prod)
-    }
-    
-    func testStartDevEnv() {
-        checkoutService = .init(environment: .dev, httpClient: httpMock)
-        
-        checkoutService.startCheckout(userId: .uuid(UUID()), ident: "", traceId: UUID(), completion: { _ in })
-        
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .dev)
     }
     
     func testCompleteSuccess() {
@@ -101,6 +88,7 @@ final class CheckoutServiceTests: XCTestCase {
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .checkoutCompleted(orderId, receiptData.base64EncodedString(), transactionId))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
     }
     
     func testCompleteFailure() {
@@ -116,22 +104,6 @@ final class CheckoutServiceTests: XCTestCase {
         }
         
         wait(for: [failCalled], timeout: 0.1)
-    }
-    
-    func testCompleteProdEnv() {
-        checkoutService = .init(environment: .prod, httpClient: httpMock)
-        
-        checkoutService.completeCheckout(orderId: UUID(), receiptData: Data(), transactionId: "", traceId: UUID(), completion: { _ in })
-        
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .prod)
-    }
-    
-    func testCompleteDevEnv() {
-        checkoutService = .init(environment: .dev, httpClient: httpMock)
-        
-        checkoutService.completeCheckout(orderId: UUID(), receiptData: Data(), transactionId: "", traceId: UUID(), completion: { _ in })
-        
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .dev)
     }
     
     func testFailSuccess() {
@@ -153,6 +125,7 @@ final class CheckoutServiceTests: XCTestCase {
         wait(for: [successCalled], timeout: 0.1)
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .checkoutFailed(orderId))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
     }
     
@@ -169,22 +142,6 @@ final class CheckoutServiceTests: XCTestCase {
         }
         
         wait(for: [failCalled], timeout: 0.1)
-    }
-    
-    func testFailProdEnv() {
-        checkoutService = .init(environment: .prod, httpClient: httpMock)
-        
-        checkoutService.failCheckout(orderId: UUID(), traceId: UUID(), completion: { _ in })
-        
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .prod)
-    }
-    
-    func testFailDevEnv() {
-        checkoutService = .init(environment: .dev, httpClient: httpMock)
-        
-        checkoutService.failCheckout(orderId: UUID(), traceId: UUID(), completion: { _ in })
-        
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .dev)
     }
     
     func testGetCheckoutSuccess() {
@@ -209,6 +166,7 @@ final class CheckoutServiceTests: XCTestCase {
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getCheckout(orderId))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
     }
     
     func testGetCheckoutFailure() {
@@ -226,22 +184,6 @@ final class CheckoutServiceTests: XCTestCase {
         wait(for: [failCalled], timeout: 0.1)
     }
     
-    func testGetCheckoutProdEnv() {
-        checkoutService = .init(environment: .prod, httpClient: httpMock)
-        
-        checkoutService.getCheckout(orderId: UUID(), traceId: UUID(), completion: { _ in })
-        
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .prod)
-    }
-    
-    func testGetCheckoutDevEnv() {
-        checkoutService = .init(environment: .dev, httpClient: httpMock)
-        
-        checkoutService.getCheckout(orderId: UUID(), traceId: UUID(), completion: { _ in })
-        
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .dev)
-    }
-    
     func testLogNoData() {
         let traceId = UUID()
         
@@ -251,6 +193,7 @@ final class CheckoutServiceTests: XCTestCase {
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .log(.info, "An event", nil))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
     }
     
     func testLogWithData() {
@@ -262,21 +205,6 @@ final class CheckoutServiceTests: XCTestCase {
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .log(.error, "event", ["some": 10.5]))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
-    }
-    
-    func testLogProdEnv() {
-        checkoutService = .init(environment: .prod, httpClient: httpMock)
-        
-        checkoutService.log(level: .info, event: "", data: nil, traceId: UUID())
-        
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .prod)
-    }
-    
-    func testLogDevEnv() {
-        checkoutService = .init(environment: .dev, httpClient: httpMock)
-        
-        checkoutService.log(level: .info, event: "", data: nil, traceId: UUID())
-        
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, .dev)
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
     }
 }

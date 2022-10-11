@@ -43,7 +43,7 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
         case let .checkoutCompleted(orderId, receipt, transactionId):
             return CheckoutCompletedRequestPayload(
                 orderId: orderId,
-                purchase: .init(receipt: receipt, transactionId: transactionId)
+                purchase: .init(receiptData: receipt, transactionId: transactionId)
             ).typeErased
             
         case let .checkoutFailed(orderId):
@@ -72,12 +72,7 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
     }
     
     var baseURL: URL {
-        switch environment {
-        case .prod:
-            return URL(string: "https://api.payments.paltabrain.com")!
-        case .dev:
-            return URL(string: "https://api.payments.dev.paltabrain.com")!
-        }
+        environment
     }
     
     var path: String? {

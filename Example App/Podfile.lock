@@ -10,7 +10,7 @@ PODS:
     - PaltaLibEventsTransport (~> 1.0.0)
   - PaltaLibEventsTransport (1.0.0):
     - SwiftProtobuf (~> 1.19.0)
-  - PaltaLibPurchases (3.0.0):
+  - PaltaLibPurchases (3.1.0):
     - PaltaLibCore (>= 2.3.0)
     - RevenueCat (~> 4.7.0)
   - RevenueCat (4.7.0)
@@ -46,11 +46,11 @@ SPEC CHECKSUMS:
   PaltaLibCore: d4b6a07f7de3009526fddd35fb66e56a709ff210
   PaltaLibEvents: 62667a4403470396b6e70fe1adc6ed94bb69963a
   PaltaLibEventsTransport: fda10663667f1ca9ee251c3cdf044ecd61a65aaf
-  PaltaLibPurchases: 15ea199e9dc26bd5508b442a6c14e7ff73aaf991
+  PaltaLibPurchases: 5650d58119903f1816fbcf3cba84c17493b46055
   RevenueCat: 5009a82afee178848de97cf2d712be1015a5d33c
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftProtobuf: 59d9ea2eb5f84b509f32d170a65f3348ae758f1e
 
-PODFILE CHECKSUM: 6e3f9c6f4e2c3a44633dfda0160b8e92b2620de5
+PODFILE CHECKSUM: 03c8fbe3aec318059e28b610df72ef7a7d6760e1
 
 COCOAPODS: 1.11.3

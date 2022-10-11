@@ -13,12 +13,14 @@ import PaltaLibCore
 final class SubscriptionsServiceTests: XCTestCase {
     var httpMock: HTTPClientMock!
     var service: SubscriptionsServiceImpl!
+    var environment: Environment!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
         httpMock = .init()
-        service = SubscriptionsServiceImpl(environment: .dev, httpClient: httpMock)
+        environment = URL(string: "https://mock.mock/\(UUID())")
+        service = SubscriptionsServiceImpl(environment: environment, httpClient: httpMock)
     }
     
     func testSuccess() {
@@ -42,40 +44,11 @@ final class SubscriptionsServiceTests: XCTestCase {
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getSubcriptions(userId, ids))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
         
         wait(for: [completionCalled], timeout: 0.1)
     }
-    
-    func testDevEnvironment() {
-        service = SubscriptionsServiceImpl(environment: .dev, httpClient: httpMock)
-        
-        service.getSubscriptions(with: [], for: .uuid(.init()), traceId: UUID()) { _ in }
-        
-        guard
-            let request = httpMock.request as? PaymentsHTTPRequest
-        else {
-            XCTAssert(false)
-            return
-        }
-        
-        XCTAssertEqual(request.environment, .dev)
-    }
-    
-    func testProdEnvironment() {
-        service = SubscriptionsServiceImpl(environment: .prod, httpClient: httpMock)
-        
-        service.getSubscriptions(with: [], for: .uuid(.init()), traceId: UUID()) { _ in }
-        
-        guard
-            let request = httpMock.request as? PaymentsHTTPRequest
-        else {
-            XCTAssert(false)
-            return
-        }
-        
-        XCTAssertEqual(request.environment, .prod)
-    }
-    
+
     func testFailure() {
         let userId = UserId.uuid(.init())
         let ids: Set<UUID> = [.init(), .init()]
@@ -92,6 +65,7 @@ final class SubscriptionsServiceTests: XCTestCase {
         }
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getSubcriptions(userId, ids))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
         
         wait(for: [completionCalled], timeout: 0.1)
     }

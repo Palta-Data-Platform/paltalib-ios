@@ -11,14 +11,16 @@ import XCTest
 @testable import PaltaLibPayments
 
 final class ShowcaseServiceTests: XCTestCase {
+    var environment: Environment!
     var service: ShowcaseServiceImpl!
     var httpMock: HTTPClientMock!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         
+        environment = URL(string: "http://\(UUID())")
         httpMock = .init()
-        service = .init(environment: .dev, httpClient: httpMock)
+        service = .init(environment: environment, httpClient: httpMock)
     }
     
     func testSuccess() {
@@ -50,6 +52,7 @@ final class ShowcaseServiceTests: XCTestCase {
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getShowcase(.uuid(uuid), nil))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
         
         wait(for: [completionCalled], timeout: 0.1)
     }
@@ -69,37 +72,8 @@ final class ShowcaseServiceTests: XCTestCase {
         }
         
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .getShowcase(.uuid(uuid), nil))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
         
         wait(for: [completionCalled], timeout: 0.1)
-    }
-    
-    func testDevEnvironment() {
-        service = ShowcaseServiceImpl(environment: .dev, httpClient: httpMock)
-        
-        service.getProductIds(for: .uuid(.init()), traceId: UUID()) { _ in }
-        
-        guard
-            let request = httpMock.request as? PaymentsHTTPRequest
-        else {
-            XCTAssert(false)
-            return
-        }
-        
-        XCTAssertEqual(request.environment, .dev)
-    }
-    
-    func testProdEnvironment() {
-        service = ShowcaseServiceImpl(environment: .prod, httpClient: httpMock)
-        
-        service.getProductIds(for: .uuid(.init()), traceId: UUID()) { _ in }
-        
-        guard
-            let request = httpMock.request as? PaymentsHTTPRequest
-        else {
-            XCTAssert(false)
-            return
-        }
-        
-        XCTAssertEqual(request.environment, .prod)
     }
 }

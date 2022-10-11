@@ -6,7 +6,7 @@ target 'PaltaExample' do
   
   # Palta SDKs
   pod 'PaltaLibEvents', '1.0.2'
-  pod 'PaltaLibPurchases', :path => '..'
+  pod 'PaltaLibPurchases', :path => '..' #'3.1.0'
   
   # Helper libraries
   pod 'SnapKit'
