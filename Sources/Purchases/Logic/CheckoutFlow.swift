@@ -103,12 +103,12 @@ final class CheckoutFlowImpl: CheckoutFlow {
         checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, transactionId: transactionId, traceId: traceId) { [self] result in
             switch result {
             case .success:
-                paymentQueueInteractor.close(transactionId)
                 getCheckout(for: orderId, completion: completion)
             case .failure(let error):
                 logError(error, "Checkout complete failed")
                 completion(.failure(.flowNotCompleted))
             }
+            paymentQueueInteractor.close(transactionId)
         }
     }
     
