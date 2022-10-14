@@ -39,12 +39,32 @@ let configFolderURL = currentURL.appendingPathComponent("config")
 let configURL = configFolderURL.appendingPathComponent("config.yaml")
 let eventsURL = currentURL.appendingPathComponent("Pods/PaltaLibEvents/Sources/Events")
 
+func prepareProto() throws {
+    // TODO: Remove this workaround
+    
+    try FileManager.default.removeItem(at: configFolderURL.appendingPathComponent("config.proto"))
+    try FileManager.default.removeItem(at: configFolderURL.appendingPathComponent("config_v2.proto"))
+    
+    let protoStrings = try String(
+        contentsOf: configFolderURL.appendingPathComponent("config_v1.proto")
+    ).components(separatedBy: "\n")
+    
+    try protoStrings
+        .filter { !$0.starts(with: "package paltabrain.") }
+        .joined(separator: "\n")
+        .write(to: configFolderURL.appendingPathComponent("config.proto"), atomically: true, encoding: .utf8)
+    
+    try FileManager.default.removeItem(at: configFolderURL.appendingPathComponent("config_v1.proto"))
+}
+
 let curlCommand = "curl --location --request GET '\(host.appendingPathComponent("v1/schema"))'"
 + "\\\n --header 'x-api-key: \(apiKey)' --output config.zip"
 
 shell(curlCommand)
 
 shell("unzip config.zip -d config")
+
+try prepareProto()
 
 shell("protoc --swift_out=. config/config.proto --swift_opt=Visibility=Public")
 
