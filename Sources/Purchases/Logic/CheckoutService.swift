@@ -20,6 +20,7 @@ protocol CheckoutService {
         orderId: UUID,
         receiptData: Data,
         transactionId: String,
+        originalTransactionId: String,
         traceId: UUID,
         completion: @escaping (Result<(), PaymentsError>) -> Void
     )
@@ -80,13 +81,14 @@ final class CheckoutServiceImpl: CheckoutService {
         orderId: UUID,
         receiptData: Data,
         transactionId: String,
+        originalTransactionId: String,
         traceId: UUID,
         completion: @escaping (Result<(), PaymentsError>) -> Void
     ) {
         let request = PaymentsHTTPRequest(
             environment: environment,
             traceId: traceId,
-            endpoint: .checkoutCompleted(orderId, receiptData.base64EncodedString(), transactionId)
+            endpoint: .checkoutCompleted(orderId, receiptData.base64EncodedString(), transactionId, originalTransactionId)
         )
         
         httpClient.perform(request) { (result: Result<StatusReponse, NetworkErrorWithoutResponse>) in
