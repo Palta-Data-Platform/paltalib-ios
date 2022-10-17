@@ -78,8 +78,8 @@ final class CheckoutFlowImpl: CheckoutFlow {
         
         paymentQueueInteractor.purchase(product, orderId: orderId) { [self] result in
             switch result {
-            case .success(let transactionId):
-                completeCheckout(for: orderId, transactionId: transactionId, completion: completion)
+            case let .success((transactionId, originalTransactionId)):
+                completeCheckout(for: orderId, transactionId: transactionId, originalTransactionId: originalTransactionId, completion: completion)
             case .failure(let error):
                 failPurchase(orderId: orderId, with: error, completion: completion)
             }
@@ -89,6 +89,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
     private func completeCheckout(
         for orderId: UUID,
         transactionId: String,
+        originalTransactionId: String,
         completion: @escaping (Result<PaidFeatures, PaymentsError>) -> Void
     ) {
         logStep("retrieving_receipt")
@@ -100,7 +101,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
         
         logStep("receipt_retrieved")
         
-        checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, transactionId: transactionId, traceId: traceId) { [self] result in
+        checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, transactionId: transactionId, originalTransactionId: originalTransactionId, traceId: traceId) { [self] result in
             switch result {
             case .success:
                 getCheckout(for: orderId, completion: completion)

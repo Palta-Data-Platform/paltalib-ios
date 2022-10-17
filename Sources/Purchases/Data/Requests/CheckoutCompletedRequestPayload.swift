@@ -11,6 +11,7 @@ struct CheckoutCompletedRequestPayload: Encodable, Equatable {
     struct Purchase: Encodable, Equatable {
         let receiptData: String
         let transactionId: String
+        let originalTransactionId: String
     }
     
     let orderId: UUID
