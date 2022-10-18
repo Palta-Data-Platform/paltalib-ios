@@ -22,14 +22,17 @@ func shell(_ command: String) -> String {
     
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
     let output = String(data: data, encoding: .utf8)!
-    print(output)
     
     return output
 }
 
-guard CommandLine.arguments.count == 3, let host = URL(string: "https://\(CommandLine.arguments[1])") else {
+guard CommandLine.arguments.count >= 3, let host = URL(string: "https://\(CommandLine.arguments[1])") else {
     fatalError("You need to supply host as first argument and API Key as a second argument")
 }
+
+let podsPath = CommandLine.arguments
+    .first(where: { $0.starts(with: "--podsPath") })
+    .flatMap { $0.components(separatedBy: "=").last }
 
 let apiKey = CommandLine.arguments[2]
 
@@ -37,7 +40,18 @@ let currentURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
 
 let configFolderURL = currentURL.appendingPathComponent("config")
 let configURL = configFolderURL.appendingPathComponent("config.yaml")
-let eventsURL = currentURL.appendingPathComponent("Pods/PaltaLibEvents/Sources/Events")
+
+let eventsURL: URL
+let eventsTransportURL: URL
+
+if let podsPath = podsPath {
+    let podsURL = currentURL.addingRelativePath(podsPath)
+    eventsURL = podsURL.appendingPathComponent("PaltaLibEvents/Sources/Events")
+    eventsTransportURL = podsURL.appendingPathComponent("PaltaLibEventsTransport/Sources/EventsTransport/config.pb.swift")
+} else {
+    eventsURL = currentURL.appendingPathComponent("Pods/PaltaLibEvents/Sources/Events")
+    eventsTransportURL = currentURL.appendingPathComponent("Pods/PaltaLibEventsTransport/Sources/EventsTransport/config.pb.swift")
+}
 
 func prepareProto() throws {
     // TODO: Remove this workaround
@@ -68,9 +82,9 @@ try prepareProto()
 
 shell("protoc --swift_out=. config/config.proto --swift_opt=Visibility=Public")
 
-shell("mv -f config/config.pb.swift Pods/PaltaLibEventsTransport/Sources/EventsTransport/config.pb.swift")
+shell("mv -f config/config.pb.swift \(eventsTransportURL.path.replacingOccurrences(of: " ", with: "\\ "))")
 
-shell("chmod -R +w Pods/PaltaLibEvents/Sources/Events/")
+shell("chmod -R +w \(eventsURL.path.replacingOccurrences(of: " ", with: "\\ "))")
 
 do {
     try YAMLBasedEventsGenerator(yamlURL: configURL, codeURL: eventsURL).generate()
@@ -80,3 +94,27 @@ do {
 
 shell("rm -rf config")
 shell("rm -rf config.zip")
+
+private extension URL {
+    func addingRelativePath(_ relativePath: String) -> URL {
+        var pathComponents = self.pathComponents
+        let relativePathComponents = relativePath.components(separatedBy: "/")
+        
+        for component in relativePathComponents {
+            switch component {
+            case "..":
+                pathComponents.removeLast()
+            case ".":
+                break
+            case "":
+                pathComponents = []
+            default:
+                pathComponents.append(component)
+            }
+        }
+        
+        var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: false)
+        urlComponents?.path = pathComponents.filter { $0 != "/" }.joined(separator: "/")
+        return URL(fileURLWithPath: pathComponents.joined(separator: "/"))
+    }
+}
