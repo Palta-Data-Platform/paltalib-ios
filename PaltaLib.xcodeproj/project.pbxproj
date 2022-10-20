@@ -104,6 +104,10 @@
 		112FCA3C2847C8D400C8F88A /* ScreenMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA3B2847C8D400C8F88A /* ScreenMap.swift */; };
 		112FCA3E2847CAE400C8F88A /* RunLoopObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA3D2847CAE400C8F88A /* RunLoopObserver.swift */; };
 		112FCA422849EAEF00C8F88A /* ScrollTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCA412849EAEE00C8F88A /* ScrollTracker.swift */; };
+		1139FDE9290155FF0097109D /* BatchSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139FDE8290155FF0097109D /* BatchSender.swift */; };
+		1139FDEB290156A10097109D /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139FDEA290156A10097109D /* Batch.swift */; };
+		1139FDEE290158E10097109D /* BatchSenderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139FDEC290158D70097109D /* BatchSenderTests.swift */; };
+		1139FDF12901591D0097109D /* BatchMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139FDEF290159130097109D /* BatchMock.swift */; };
 		113A7A052850AB00004C0C5D /* PaltaPurchasesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7A042850AB00004C0C5D /* PaltaPurchasesDelegate.swift */; };
 		113A7A072850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7A062850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift */; };
 		113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */; };
@@ -357,6 +361,10 @@
 		112FCA3B2847C8D400C8F88A /* ScreenMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenMap.swift; sourceTree = "<group>"; };
 		112FCA3D2847CAE400C8F88A /* RunLoopObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunLoopObserver.swift; sourceTree = "<group>"; };
 		112FCA412849EAEE00C8F88A /* ScrollTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTracker.swift; sourceTree = "<group>"; };
+		1139FDE8290155FF0097109D /* BatchSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSender.swift; sourceTree = "<group>"; };
+		1139FDEA290156A10097109D /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
+		1139FDEC290158D70097109D /* BatchSenderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSenderTests.swift; sourceTree = "<group>"; };
+		1139FDEF290159130097109D /* BatchMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchMock.swift; sourceTree = "<group>"; };
 		113A7A042850AB00004C0C5D /* PaltaPurchasesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesDelegate.swift; sourceTree = "<group>"; };
 		113A7A062850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesDelegateMock.swift; sourceTree = "<group>"; };
 		113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsHTTPRequestTests.swift; sourceTree = "<group>"; };
@@ -590,6 +598,7 @@
 				1111593B27F708E400A41ADA /* RemoteConfig.swift */,
 				11115A9028001FA800A41ADA /* UserProperties.swift */,
 				11C60F4C2816A835004D0185 /* Telemetry.swift */,
+				1139FDEA290156A10097109D /* Batch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -647,6 +656,7 @@
 				111159B627F73F8400A41ADA /* EventQueueCore.swift */,
 				11115A3327FAFA7A00A41ADA /* EventStorage.swift */,
 				11115A3B27FB176700A41ADA /* EventSender.swift */,
+				1139FDE8290155FF0097109D /* BatchSender.swift */,
 				11115A3D27FB18B000A41ADA /* EventComposer.swift */,
 				111159B827F73F9000A41ADA /* Timer.swift */,
 				11115A8127FEC60400A41ADA /* EventQueueAssembly.swift */,
@@ -719,6 +729,7 @@
 				11A61E832833E0C900F88116 /* AmplitudeExtensionTests.swift */,
 				11A61EA82835054700F88116 /* EventQueueAssemblyTests.swift */,
 				11A61EAB2835073D00F88116 /* ConfigApplyServiceTests.swift */,
+				1139FDEC290158D70097109D /* BatchSenderTests.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -770,6 +781,7 @@
 			isa = PBXGroup;
 			children = (
 				111159BC27F7723700A41ADA /* TimerMock.swift */,
+				1139FDEF290159130097109D /* BatchMock.swift */,
 				111159BE27F773E900A41ADA /* EventMock.swift */,
 				11115A3F27FB740B00A41ADA /* EventStorageMock.swift */,
 				11115A4127FB74B000A41ADA /* EventSenderMock.swift */,
@@ -1299,6 +1311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				114D070A280816D200ACD310 /* TrackingOptionsProviderMock.swift in Sources */,
+				1139FDEE290158E10097109D /* BatchSenderTests.swift in Sources */,
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
 				113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */,
 				114D06FF2806F62200ACD310 /* IdentityLoggerTests.swift in Sources */,
@@ -1309,6 +1322,7 @@
 				11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
+				1139FDF12901591D0097109D /* BatchMock.swift in Sources */,
 				11115A96280023B200A41ADA /* UserPropertiesKeeperTests.swift in Sources */,
 				11115A6227FC8EBF00A41ADA /* SessionManagerMock.swift in Sources */,
 				114D07012806F64B00ACD310 /* EventQueueMock.swift in Sources */,
@@ -1424,12 +1438,14 @@
 				11115A5127FB7E6B00A41ADA /* Event.swift in Sources */,
 				11115A4B27FB7E5700A41ADA /* EventComposer.swift in Sources */,
 				1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */,
+				1139FDEB290156A10097109D /* Batch.swift in Sources */,
 				11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */,
 				1111596E27F70BF500A41ADA /* Settings.swift in Sources */,
 				11A61EA72835043600F88116 /* EventQueueAssembly+Config.swift in Sources */,
 				11C60F5228181323004D0185 /* Amplitude+Extensions.swift in Sources */,
 				114D06FD2806EEE500ACD310 /* IdentityLogger.swift in Sources */,
 				1111596827F70BE400A41ADA /* PaltaAnalytics+ConfigurationOptions.swift in Sources */,
+				1139FDE9290155FF0097109D /* BatchSender.swift in Sources */,
 				1111596427F70BD900A41ADA /* PaltaAnalytics+Revenue.swift in Sources */,
 				11115A4C27FB7E6000A41ADA /* Timer.swift in Sources */,
 				1111596627F70BE400A41ADA /* PaltaAnalytics+Identify.swift in Sources */,

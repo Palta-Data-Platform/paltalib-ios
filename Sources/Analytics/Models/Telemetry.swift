@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Telemetry: Encodable, Equatable {
+struct Telemetry: Codable, Equatable {
     let eventsInBatch: Int
     let batchLoad: Double
     let eventsDroppedSinceLastBatch: Int
