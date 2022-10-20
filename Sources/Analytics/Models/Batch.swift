@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Batch: Codable {
+struct Batch: Codable, Equatable {
     let events: [Event]
     let telemetry: Telemetry
 }
