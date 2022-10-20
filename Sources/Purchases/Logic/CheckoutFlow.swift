@@ -109,7 +109,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
                 logError(error, "Checkout complete failed")
                 completion(.failure(.flowNotCompleted))
             }
-            paymentQueueInteractor.close(transactionId)
+            paymentQueueInteractor.close(originalTransactionId)
         }
     }
     
