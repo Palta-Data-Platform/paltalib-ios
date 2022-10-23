@@ -13,11 +13,10 @@ struct EventQueueConfig {
     let uploadInterval: TimeInterval
     let uploadThreshold: Int
     let maxEvents: Int
-    let maxConcurrentOperations: Int
 }
 
 protocol EventQueueCore: AnyObject {
-    typealias UploadHandler = (ArraySlice<Event>, Telemetry, @escaping () -> Void) -> Void
+    typealias UploadHandler = (ArraySlice<Event>, Telemetry) -> Bool
     typealias RemoveHandler = (ArraySlice<Event>) -> Void
 
     var sendHandler: UploadHandler? { get set }
@@ -25,6 +24,9 @@ protocol EventQueueCore: AnyObject {
 
     func addEvent(_ event: Event)
     func addEvents(_ events: [Event])
+    
+    func sendEventsAvailable()
+    func forceFlush()
 }
 
 final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
@@ -36,18 +38,6 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     private(set) var config: EventQueueConfig? {
         didSet {
             onNewEvents()
-        }
-    }
-
-    private var operationsInProgress = 0 {
-        didSet {
-            if
-                let maxOperations = config?.maxConcurrentOperations,
-                oldValue >= maxOperations,
-                operationsInProgress < maxOperations
-            {
-                resumeOperations()
-            }
         }
     }
 
@@ -84,9 +74,25 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         }
     }
     
+    func sendEventsAvailable() {
+        workingQueue.async { [self] in
+            if timerFired {
+                flush()
+            } else {
+                flushIfNeededByCount()
+            }
+        }
+    }
+    
     func apply(_ config: EventQueueConfig) {
         workingQueue.async {
             self.config = config
+        }
+    }
+    
+    func forceFlush() {
+        workingQueue.async { [self] in
+            flush()
         }
     }
     
@@ -105,14 +111,6 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         stripEventsIfNeeded()
         scheduleTimerIfNeeded()
         flushIfNeededByCount()
-    }
-
-    private func onOperationsCountReduced() {
-        if timerFired {
-            flush()
-        } else {
-            flushIfNeededByCount()
-        }
     }
 
     private func stripEventsIfNeeded() {
@@ -134,7 +132,7 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
 
         timerToken = timer.scheduleTimer(timeInterval: config.uploadInterval, on: workingQueue) { [weak self] in
             self?.timerFired = true
-            self?.attemptFlush()
+            self?.flush()
         }
     }
 
@@ -143,28 +141,11 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
             return
         }
 
-        attemptFlush()
-    }
-
-    private func resumeOperations() {
-        if timerFired {
-            attemptFlush()
-        } else {
-            flushIfNeededByCount()
-        }
-    }
-
-    private func attemptFlush() {
-        guard let config = config, config.maxConcurrentOperations > operationsInProgress else {
-            return
-        }
-
         flush()
     }
 
     private func flush() {
-        assert(Thread.callStackSymbols[1].contains("attemptFlush"))
-
+        let timerWasFired = timerFired
         timerFired = false
 
         guard let config = config else {
@@ -173,37 +154,25 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
         }
 
         let batchSize = config.maxBatchSize
-        let batchesCount = events.count / batchSize + (events.count % batchSize > 0 ? 1 : 0)
+        let range = max(0, events.count - batchSize)..<events.count
+        
+        let telemetry = Telemetry(
+            eventsInBatch: range.count,
+            batchLoad: Double(range.count) / Double(batchSize),
+            eventsDroppedSinceLastBatch: droppedEventsCount
+        )
 
-        var lastUploadedIndex: Int?
+        let batchEvents = events[range]
+        let batchFormed = sendHandler?(batchEvents, telemetry) ?? false
 
-        for batchIndex in 0..<batchesCount {
-            guard operationsInProgress < config.maxConcurrentOperations else {
-                break
-            }
-
-            let start = batchIndex * batchSize
-            let end = min(events.count, (batchIndex + 1) * batchSize)
-            let range = start..<end
-            lastUploadedIndex = end
-
-            let telemetry = Telemetry(
-                eventsInBatch: range.count,
-                batchLoad: Double(range.count) / Double(config.maxBatchSize),
-                eventsDroppedSinceLastBatch: droppedEventsCount
-            )
-
-            droppedEventsCount = 0
-
-            operationsInProgress += 1
-            sendHandler?(events[range], telemetry, { [weak self] in
-                self?.workingQueue.async {
-                    self?.operationsInProgress -= 1
-                }
-            })
+        guard batchFormed else {
+            timerFired = timerWasFired
+            return
         }
+        
+        droppedEventsCount = 0
 
-        events = lastUploadedIndex.map { Array(events.suffix(from: $0)) } ?? events
+        events = Array(events.prefix(upTo: range.lowerBound))
 
         if events.isEmpty {
             timerToken = nil

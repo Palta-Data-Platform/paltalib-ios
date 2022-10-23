@@ -61,10 +61,11 @@ final class EventQueueCoreTests: XCTestCase {
     private var _removeIsCalled: XCTestExpectation?
     private var _removeIsntCalled: XCTestExpectation?
 
-    private var completionHandlers: [() -> Void] = []
     private var sentEvents: [Event]?
     private var telemetry: Telemetry?
     private var removedEvents: [Event]?
+    
+    private var sendResult = true
 
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -73,19 +74,20 @@ final class EventQueueCoreTests: XCTestCase {
         queue = EventQueueCoreImpl(timer: timerMock)
         sentEvents = nil
         removedEvents = nil
-        completionHandlers = []
+        sendResult = true
 
         _sendIsCalled = nil
         _sendIsntCalled = nil
         _removeIsCalled = nil
         _removeIsntCalled = nil
 
-        queue.sendHandler = { [unowned self] events, telemetry, completionHandler in
+        queue.sendHandler = { [unowned self] events, telemetry in
             sentEvents = Array(events)
             self.telemetry = telemetry
-            completionHandlers.append(completionHandler)
             _sendIsCalled?.fulfill()
             _sendIsntCalled?.fulfill()
+            
+            return sendResult
         }
 
         queue.removeHandler = { [unowned self] events in
@@ -96,6 +98,7 @@ final class EventQueueCoreTests: XCTestCase {
     }
 
     func testNoSendWithoutConfig() {
+        warmUpExpectations(sendIsCalled, removeIsntCalled)
         queue.addEvent(.mock())
         
         waitForQueue()
@@ -106,7 +109,7 @@ final class EventQueueCoreTests: XCTestCase {
         wait(for: [sendIsntCalled], timeout: 0.1)
 
         queue.apply(
-            .init(maxBatchSize: 2, uploadInterval: 3, uploadThreshold: 3, maxEvents: 3, maxConcurrentOperations: .max)
+            .init(maxBatchSize: 2, uploadInterval: 3, uploadThreshold: 3, maxEvents: 3)
         )
         
         waitForQueue()
@@ -121,8 +124,10 @@ final class EventQueueCoreTests: XCTestCase {
     }
 
     func testTimerBasedSend() {
+        warmUpExpectations(sendIsCalled, removeIsntCalled)
+        
         queue.apply(
-            .init(maxBatchSize: 2, uploadInterval: 3, uploadThreshold: 3, maxEvents: 3, maxConcurrentOperations: .max)
+            .init(maxBatchSize: 2, uploadInterval: 3, uploadThreshold: 3, maxEvents: 3)
         )
         
         waitForQueue()
@@ -144,18 +149,20 @@ final class EventQueueCoreTests: XCTestCase {
     }
 
     func testTwoSequentalEvents() {
+        warmUpExpectations(sendIsCalled)
+        
         queue.apply(
-            .init(maxBatchSize: 3, uploadInterval: 3, uploadThreshold: 3, maxEvents: 3, maxConcurrentOperations: .max)
+            .init(maxBatchSize: 3, uploadInterval: 3, uploadThreshold: 3, maxEvents: 3)
         )
         
         waitForQueue()
 
         queue.addEvent(.mock())
-        waitForQueue()
         XCTAssertEqual(timerMock.passedInterval, 3)
 
         timerMock.passedInterval = nil
         queue.addEvent(.mock())
+        
         waitForQueue()
         XCTAssertNil(timerMock.passedInterval)
 
@@ -171,8 +178,10 @@ final class EventQueueCoreTests: XCTestCase {
     }
 
     func testThresholdSend() {
+        warmUpExpectations(sendIsCalled, removeIsntCalled)
+        
         queue.apply(
-            .init(maxBatchSize: 3, uploadInterval: 3, uploadThreshold: 2, maxEvents: 3, maxConcurrentOperations: .max)
+            .init(maxBatchSize: 3, uploadInterval: 3, uploadThreshold: 2, maxEvents: 3)
         )
         
         waitForQueue()
@@ -192,8 +201,10 @@ final class EventQueueCoreTests: XCTestCase {
     }
 
     func testMultibatchSend1() {
+        warmUpExpectations(sendIsCalled)
+        
         queue.apply(
-            .init(maxBatchSize: 3, uploadInterval: 3, uploadThreshold: 5, maxEvents: 30, maxConcurrentOperations: .max)
+            .init(maxBatchSize: 3, uploadInterval: 3, uploadThreshold: 5, maxEvents: 30)
         )
         
         waitForQueue()
@@ -204,44 +215,25 @@ final class EventQueueCoreTests: XCTestCase {
         queue.addEvent(.mock())
         queue.addEvent(.mock())
 
-        sendIsCalled.expectedFulfillmentCount = 2
-        wait(for: [sendIsCalled], timeout: 0.1)
-
-        XCTAssertEqual(sentEvents?.count, 2)
-        XCTAssertEqual(telemetry?.batchLoad, 2 / 3)
-        XCTAssertEqual(telemetry?.eventsInBatch, 2)
-        XCTAssertEqual(telemetry?.eventsDroppedSinceLastBatch, 0)
-    }
-
-    func testMultibatchSend2() {
-        queue.apply(
-            .init(maxBatchSize: 3, uploadInterval: 3, uploadThreshold: 6, maxEvents: 30, maxConcurrentOperations: .max)
-        )
-        
-        waitForQueue()
-
-        queue.addEvent(.mock())
-        queue.addEvent(.mock())
-        queue.addEvent(.mock())
-        queue.addEvent(.mock())
-        queue.addEvent(.mock())
-        queue.addEvent(.mock())
-
-        sendIsCalled.expectedFulfillmentCount = 2
         wait(for: [sendIsCalled], timeout: 0.1)
 
         XCTAssertEqual(sentEvents?.count, 3)
+        XCTAssertEqual(telemetry?.batchLoad, 1)
+        XCTAssertEqual(telemetry?.eventsInBatch, 3)
+        XCTAssertEqual(telemetry?.eventsDroppedSinceLastBatch, 0)
     }
 
     func testBatchAddWithTimer() {
+        warmUpExpectations(sendIsCalled)
+        
         queue.apply(
-            .init(maxBatchSize: 300, uploadInterval: 8, uploadThreshold: 20, maxEvents: 30, maxConcurrentOperations: .max)
+            .init(maxBatchSize: 300, uploadInterval: 8, uploadThreshold: 20, maxEvents: 30)
         )
         
         waitForQueue()
 
         queue.addEvents(
-            Array(repeating: .mock(), count: 10)
+            .mock(count: 10)
         )
         
         waitForQueue()
@@ -252,7 +244,7 @@ final class EventQueueCoreTests: XCTestCase {
 
         timerMock.passedInterval = nil
         queue.addEvents(
-            Array(repeating: .mock(), count: 3)
+            .mock(count: 3)
         )
         
         waitForQueue()
@@ -265,20 +257,22 @@ final class EventQueueCoreTests: XCTestCase {
     }
 
     func testBatchAddByCount() {
+        warmUpExpectations(sendIsCalled)
+        
         queue.apply(
-            .init(maxBatchSize: 300, uploadInterval: 8, uploadThreshold: 10, maxEvents: 30, maxConcurrentOperations: .max)
+            .init(maxBatchSize: 300, uploadInterval: 8, uploadThreshold: 10, maxEvents: 30)
         )
         
         waitForQueue()
 
         queue.addEvents(
-            Array(repeating: .mock(), count: 9)
+            .mock(count: 9)
         )
 
         wait(for: [sendIsntCalled], timeout: 0.1)
 
         queue.addEvents(
-            Array(repeating: .mock(), count: 3)
+            .mock(count: 3)
         )
 
         wait(for: [sendIsCalled], timeout: 0.1)
@@ -287,8 +281,10 @@ final class EventQueueCoreTests: XCTestCase {
     }
 
     func testBatchAddWithOverflow() {
+        warmUpExpectations(removeIsCalled)
+        
         queue.apply(
-            .init(maxBatchSize: 300, uploadInterval: 8, uploadThreshold: 10, maxEvents: 5, maxConcurrentOperations: .max)
+            .init(maxBatchSize: 300, uploadInterval: 8, uploadThreshold: 10, maxEvents: 5)
         )
         
         waitForQueue()
@@ -312,57 +308,143 @@ final class EventQueueCoreTests: XCTestCase {
         XCTAssertEqual(telemetry?.eventsInBatch, 5)
         XCTAssertEqual(telemetry?.eventsDroppedSinceLastBatch, 5)
     }
-
-    func testLongUploadByCount() {
-        queue.apply(
-            .init(maxBatchSize: 2, uploadInterval: 8, uploadThreshold: 2, maxEvents: 30, maxConcurrentOperations: 2)
-        )
+    
+    func testSendMultipleContextsOverBatchLimit() {
+        let events: [Event] = [
+            .mock(timestamp: 0),
+            .mock(timestamp: 1),
+            .mock(timestamp: 2),
+            .mock(timestamp: 3),
+            .mock(timestamp: 4),
+            .mock(timestamp: 5)
+        ]
         
-        waitForQueue()
-
-        sendIsCalled.expectedFulfillmentCount = 2
-
-        queue.addEvents(
-            Array(repeating: .mock(), count: 6)
+        queue.apply(
+            .init(maxBatchSize: 2, uploadInterval: 100, uploadThreshold: 2, maxEvents: 100)
         )
-
+        waitForQueue()
+        
+        queue.addEvents(events)
+        
         wait(for: [sendIsCalled], timeout: 0.1)
-        wait(for: [sendIsntCalled], timeout: 0.1)
-
-        _sendIsCalled = nil
-        _sendIsntCalled = nil
-
-        XCTAssertEqual(completionHandlers.count, 2)
-        completionHandlers.forEach { $0() }
-
-        wait(for: [sendIsCalled], timeout: 0.1)
+        
+        XCTAssertEqual(
+            Set(sentEvents ?? []),
+            Set(events[0...1])
+        )
     }
-
-    func testLongUploadWithTimer() {
+    
+    func testFlushOnDemandWithTimer() {
         queue.apply(
-            .init(maxBatchSize: 2, uploadInterval: 8, uploadThreshold: 2, maxEvents: 30, maxConcurrentOperations: 2)
+            .init(maxBatchSize: 100, uploadInterval: 1, uploadThreshold: 100, maxEvents: 100)
         )
-        
         waitForQueue()
-
-        sendIsCalled.expectedFulfillmentCount = 2
-
-        queue.addEvents(
-            Array(repeating: .mock(), count: 5)
-        )
-
-        wait(for: [sendIsCalled], timeout: 0.1)
-        wait(for: [sendIsntCalled], timeout: 0.1)
-
+        
+        warmUpExpectations(sendIsCalled)
+        
+        queue.addEvent(.mock())
+        queue.addEvent(.mock())
+        queue.addEvent(.mock())
+        
+        sendResult = false
+        
         timerMock.fire()
-
+        
+        wait(for: [sendIsCalled], timeout: 0.1)
+        
         _sendIsCalled = nil
         _sendIsntCalled = nil
-
-        XCTAssertEqual(completionHandlers.count, 2)
-        completionHandlers.forEach { $0() }
-
+        warmUpExpectations(sendIsCalled)
+        sentEvents = nil
+        sendResult = true
+        
+        queue.sendEventsAvailable()
+        
         wait(for: [sendIsCalled], timeout: 0.1)
+        
+        XCTAssertEqual(sentEvents?.count, 3)
+        
+        _sendIsCalled = nil
+        _sendIsntCalled = nil
+        warmUpExpectations(sendIsntCalled)
+        queue.sendEventsAvailable()
+        wait(for: [sendIsntCalled], timeout: 0.1)
+    }
+    
+    func testFlushOnDemandWithCount() {
+        queue.apply(
+            .init(maxBatchSize: 100, uploadInterval: 1, uploadThreshold: 3, maxEvents: 100)
+        )
+        waitForQueue()
+        
+        warmUpExpectations(sendIsCalled)
+        
+        sendResult = false
+        
+        queue.addEvent(.mock())
+        queue.addEvent(.mock())
+        queue.addEvent(.mock())
+        
+        wait(for: [sendIsCalled], timeout: 0.1)
+        
+        _sendIsCalled = nil
+        _sendIsntCalled = nil
+        warmUpExpectations(sendIsCalled)
+        sentEvents = nil
+        sendResult = true
+        
+        queue.sendEventsAvailable()
+        
+        wait(for: [sendIsCalled], timeout: 0.1)
+        
+        XCTAssertEqual(sentEvents?.count, 3)
+        
+        _sendIsCalled = nil
+        _sendIsntCalled = nil
+        warmUpExpectations(sendIsntCalled)
+        queue.sendEventsAvailable()
+        wait(for: [sendIsntCalled], timeout: 0.1)
+    }
+    
+    func testFlushOnDemandNoTrigger() {
+        queue.apply(
+            .init(maxBatchSize: 100, uploadInterval: 100, uploadThreshold: 300, maxEvents: 100)
+        )
+        waitForQueue()
+        
+        warmUpExpectations(sendIsntCalled)
+        
+        queue.addEvent(.mock())
+        queue.addEvent(.mock())
+        queue.addEvent(.mock())
+        
+        queue.sendEventsAvailable()
+        
+        wait(for: [sendIsntCalled], timeout: 0.1)
+    }
+    
+    func testForceFlush() {
+        let events: [Event] = [
+            .mock(timestamp: 0),
+            .mock(timestamp: 1)
+        ]
+        
+        queue.apply(
+            .init(maxBatchSize: 200, uploadInterval: 100, uploadThreshold: 200, maxEvents: 100)
+        )
+        waitForQueue()
+        
+        queue.addEvents(events)
+        
+        queue.forceFlush()
+        
+        wait(for: [sendIsCalled], timeout: 0.15)
+        
+        XCTAssertEqual(sentEvents?.count, 2)
+    }
+    
+    private func warmUpExpectations(_ expectations: XCTestExpectation...) {
+        // Do nothing. Lazy properties are initiated by this call
     }
     
     private func waitForQueue(file: StaticString = #file, line: Int = #line) {

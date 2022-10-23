@@ -117,6 +117,7 @@
 		1139FE02290274A30097109D /* BatchComposerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139FE01290274A30097109D /* BatchComposerMock.swift */; };
 		1139FE04290274E60097109D /* BatchStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139FE03290274E60097109D /* BatchStorageMock.swift */; };
 		1139FE062902750C0097109D /* BatchSenderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139FE052902750C0097109D /* BatchSenderMock.swift */; };
+		1139FE082902AF5A0097109D /* BatchSendControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1139FE072902AF5A0097109D /* BatchSendControllerMock.swift */; };
 		113A7A052850AB00004C0C5D /* PaltaPurchasesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7A042850AB00004C0C5D /* PaltaPurchasesDelegate.swift */; };
 		113A7A072850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7A062850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift */; };
 		113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */; };
@@ -383,6 +384,7 @@
 		1139FE01290274A30097109D /* BatchComposerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchComposerMock.swift; sourceTree = "<group>"; };
 		1139FE03290274E60097109D /* BatchStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchStorageMock.swift; sourceTree = "<group>"; };
 		1139FE052902750C0097109D /* BatchSenderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSenderMock.swift; sourceTree = "<group>"; };
+		1139FE072902AF5A0097109D /* BatchSendControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSendControllerMock.swift; sourceTree = "<group>"; };
 		113A7A042850AB00004C0C5D /* PaltaPurchasesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesDelegate.swift; sourceTree = "<group>"; };
 		113A7A062850E4FF004C0C5D /* PaltaPurchasesDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchasesDelegateMock.swift; sourceTree = "<group>"; };
 		113AD63228379C8A00324D62 /* PaymentsHTTPRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsHTTPRequestTests.swift; sourceTree = "<group>"; };
@@ -813,6 +815,7 @@
 				11115A4327FB751E00A41ADA /* EventComposerMock.swift */,
 				114D07002806F64B00ACD310 /* EventQueueMock.swift */,
 				11115A4727FB75CD00A41ADA /* EventQueueCoreMock.swift */,
+				1139FE072902AF5A0097109D /* BatchSendControllerMock.swift */,
 				11115A6027FC8EBC00A41ADA /* SessionManagerMock.swift */,
 				11115A9828003D6500A41ADA /* UserPropertiesKeeperMock.swift */,
 				114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */,
@@ -1350,6 +1353,7 @@
 				11115A7A27FDCC3500A41ADA /* AnalyticsHTTPRequestTests.swift in Sources */,
 				11115A5F27FC78D700A41ADA /* SessionManagerTests.swift in Sources */,
 				11115A4627FB757400A41ADA /* EventQueueTests.swift in Sources */,
+				1139FE082902AF5A0097109D /* BatchSendControllerMock.swift in Sources */,
 				1139FDF6290173790097109D /* BatchStorageTests.swift in Sources */,
 				1139FDF12901591D0097109D /* BatchMock.swift in Sources */,
 				11115A96280023B200A41ADA /* UserPropertiesKeeperTests.swift in Sources */,

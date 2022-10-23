@@ -13,6 +13,8 @@ final class EventQueueCoreMock: EventQueueCore {
     var removeHandler: RemoveHandler?
 
     var addedEvents: [Event] = []
+    var sendEventsTriggered = false
+    var forceFlushTriggered = false
 
     func addEvent(_ event: Event) {
         addedEvents.append(event)
@@ -20,5 +22,13 @@ final class EventQueueCoreMock: EventQueueCore {
 
     func addEvents(_ events: [Event]) {
         addedEvents.append(contentsOf: events)
+    }
+    
+    func sendEventsAvailable() {
+        sendEventsTriggered = true
+    }
+    
+    func forceFlush() {
+        forceFlushTriggered = true
     }
 }

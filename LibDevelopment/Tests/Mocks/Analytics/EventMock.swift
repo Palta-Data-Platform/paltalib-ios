@@ -40,3 +40,11 @@ extension Event {
         )
     }
 }
+
+extension Array where Element == Event {
+    static func mock(count: Int) -> [Element] {
+        (1...count).map { _ in
+            Event.mock()
+        }
+    }
+}

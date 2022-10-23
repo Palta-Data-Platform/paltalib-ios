@@ -17,12 +17,7 @@ protocol EventStorage {
 final class FileEventStorage: EventStorage {
     private let fileManager: FileManager = .default
 
-    private lazy var folderURL = try! fileManager.url(
-        for: .libraryDirectory,
-        in: .userDomainMask,
-        appropriateFor: nil,
-        create: true
-    ).appendingPathComponent("PaltaBrainEvents")
+    private let folderURL: URL
     
     private let encoder: JSONEncoder = {
         let encoder = JSONEncoder()
@@ -36,7 +31,9 @@ final class FileEventStorage: EventStorage {
 
     private let workingQueue = DispatchQueue(label: "com.paltabrain.EventStorage", attributes: .concurrent)
 
-    init() {
+    init(folderURL: URL) {
+        self.folderURL = folderURL
+        
         if !fileManager.fileExists(atPath: folderURL.path) {
             try? fileManager.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
         }

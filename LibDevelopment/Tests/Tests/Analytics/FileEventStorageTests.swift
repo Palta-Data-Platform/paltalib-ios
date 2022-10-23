@@ -9,9 +9,12 @@ import XCTest
 @testable import PaltaLibAnalytics
 
 final class FileEventStorageTests: XCTestCase {
+    private var url: URL!
+    
     override func setUpWithError() throws {
         try super.setUpWithError()
-        let url = try FileManager.default.url(
+        
+        url = try FileManager.default.url(
             for: .libraryDirectory,
             in: .userDomainMask,
             appropriateFor: nil,
@@ -25,7 +28,7 @@ final class FileEventStorageTests: XCTestCase {
             Event.mock(uuid: UUID(), timestamp: $0)
         }
 
-        let storage1 = FileEventStorage()
+        let storage1 = FileEventStorage(folderURL: url)
 
         originalEvents.forEach {
             storage1.storeEvent($0)
@@ -35,7 +38,7 @@ final class FileEventStorageTests: XCTestCase {
         storage1.addBarrier(storageFinished.fulfill)
         wait(for: [storageFinished], timeout: 0.1)
 
-        let storage2 = FileEventStorage()
+        let storage2 = FileEventStorage(folderURL: url)
 
         let eventsLoaded = expectation(description: "Events loaded")
 
@@ -54,7 +57,7 @@ final class FileEventStorageTests: XCTestCase {
             Event.mock(uuid: UUID(), timestamp: $0)
         }
 
-        let storage1 = FileEventStorage()
+        let storage1 = FileEventStorage(folderURL: url)
 
         originalEvents.forEach {
             storage1.storeEvent($0)
@@ -67,7 +70,7 @@ final class FileEventStorageTests: XCTestCase {
         storage1.addBarrier(storageFinished.fulfill)
         wait(for: [storageFinished], timeout: 0.1)
 
-        let storage2 = FileEventStorage()
+        let storage2 = FileEventStorage(folderURL: url)
 
         let eventsLoaded = expectation(description: "Events loaded")
         let expectedEvents = originalEvents.filter { $0 != removedEvent }
@@ -87,7 +90,7 @@ final class FileEventStorageTests: XCTestCase {
             Event.mock(uuid: UUID(), timestamp: $0)
         }
 
-        let storage1 = FileEventStorage()
+        let storage1 = FileEventStorage(folderURL: url)
 
         originalEvents.forEach {
             storage1.storeEvent($0)
@@ -97,7 +100,7 @@ final class FileEventStorageTests: XCTestCase {
         storage1.addBarrier(storageFinished.fulfill)
         wait(for: [storageFinished], timeout: 0.1)
 
-        let storage2 = FileEventStorage()
+        let storage2 = FileEventStorage(folderURL: url)
 
         let removedEvent = originalEvents.randomElement()!
         storage2.removeEvent(removedEvent)
@@ -117,7 +120,7 @@ final class FileEventStorageTests: XCTestCase {
 
     func testSavePerformance() {
         measure {
-            let storage = FileEventStorage()
+            let storage = FileEventStorage(folderURL: url)
             (0...5000).forEach {
                 storage.storeEvent(.mock(timestamp: $0))
             }
@@ -130,7 +133,7 @@ final class FileEventStorageTests: XCTestCase {
     }
 
     func testLoadPerformance() {
-        let storage = FileEventStorage()
+        let storage = FileEventStorage(folderURL: url)
         (0...5000).forEach {
             storage.storeEvent(.mock(timestamp: $0))
         }
@@ -143,7 +146,7 @@ final class FileEventStorageTests: XCTestCase {
             let group = DispatchGroup()
             group.enter()
 
-            FileEventStorage().loadEvents { _ in
+            FileEventStorage(folderURL: url).loadEvents { _ in
                 group.leave()
             }
 

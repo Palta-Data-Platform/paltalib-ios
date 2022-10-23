@@ -26,32 +26,33 @@ final class EventQueueImpl: EventQueue {
     var excludedEvents: Set<String> = []
 
     private let core: EventQueueCore
-    private let liveCore: EventQueueCore
+//    private let liveCore: EventQueueCore
     private let storage: EventStorage
-    private let sender: EventSender
+    private let sendController: BatchSendController
     private let eventComposer: EventComposer
     private let sessionManager: SessionManager
     private let timer: Timer
 
     init(
         core: EventQueueCore,
-        liveCore: EventQueueCore,
+//        liveCore: EventQueueCore,
         storage: EventStorage,
-        sender: EventSender,
+        sendController: BatchSendController,
         eventComposer: EventComposer,
         sessionManager: SessionManager,
         timer: Timer
     ) {
         self.core = core
-        self.liveCore = liveCore
+//        self.liveCore = liveCore
         self.storage = storage
-        self.sender = sender
+        self.sendController = sendController
         self.eventComposer = eventComposer
         self.sessionManager = sessionManager
         self.timer = timer
 
+        setupSendController()
         setupCore(core, liveQueue: false)
-        setupCore(liveCore, liveQueue: true)
+//        setupCore(liveCore, liveQueue: true)
         startSessionManager()
     }
 
@@ -86,26 +87,35 @@ final class EventQueueImpl: EventQueue {
 
         storage.storeEvent(event)
 
-        if liveEventTypes.contains(eventType) {
-            liveCore.addEvent(event)
-        } else {
+//        if liveEventTypes.contains(eventType) {
+//            liveCore.addEvent(event)
+//        } else {
             core.addEvent(event)
+//        }
+    }
+    
+    private func setupSendController() {
+        sendController.isReadyCallback = { [core] in
+            core.sendEventsAvailable()
         }
     }
 
     private func setupCore(_ core: EventQueueCore, liveQueue: Bool) {
-        core.sendHandler = { [weak self] events, telemetry, completionHandler in
-            self?.sendEvents(
-                Array(events),
-                telemetry: liveQueue ? nil : telemetry,
-                completionHandler
-            )
+        core.sendHandler = { [weak self] events, telemetry in
+            guard let self = self, self.sendController.isReady else {
+                return false
+            }
+            
+            self.sendController.sendBatch(of: Array(events), with: telemetry)
+            return true
         }
 
         core.removeHandler = { [weak self] in
             guard let self = self else { return }
 
-            $0.forEach(self.storage.removeEvent)
+            $0.forEach {
+                self.storage.removeEvent($0)
+            }
         }
 
         guard !liveQueue else {
@@ -134,25 +144,5 @@ final class EventQueueImpl: EventQueue {
         }
 
         sessionManager.start()
-    }
-
-    private func sendEvents(_ events: [Event], telemetry: Telemetry?, _ completionHandler: @escaping () -> Void) {
-        sender.sendEvents(events, telemetry: telemetry) { [core, storage, timer] result in
-            switch result {
-            case .success:
-                events.forEach(storage.removeEvent)
-                completionHandler()
-
-            case .failure(let error) where error.requiresRetry:
-                core.addEvents(events)
-                timer.scheduleTimer(timeInterval: 5, on: .global()) {
-                    completionHandler()
-                }
-
-            case .failure:
-                events.forEach(storage.removeEvent)
-                completionHandler()
-            }
-        }
     }
 }

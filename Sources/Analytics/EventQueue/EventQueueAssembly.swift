@@ -48,6 +48,13 @@ final class EventQueueAssembly: FunctionalExtension {
 
 extension EventQueueAssembly {
     convenience init(coreAssembly: CoreAssembly, analyticsCoreAssembly: AnalyticsCoreAssembly) {
+        let folderURL = try! FileManager.default.url(
+            for: .libraryDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        ).appendingPathComponent("PaltaBrainEvents")
+        
         let eventQueueCore = EventQueueCoreImpl(timer: TimerImpl())
 
         let liveEventQueueCore = EventQueueCoreImpl(timer: ImmediateTimer()).do {
@@ -56,13 +63,12 @@ extension EventQueueAssembly {
                     maxBatchSize: 5,
                     uploadInterval: 0,
                     uploadThreshold: 3,
-                    maxEvents: 100,
-                    maxConcurrentOperations: .max
+                    maxEvents: 100
                 )
             )
         }
 
-        let eventStorage: EventStorage = FileEventStorage()
+        let eventStorage: EventStorage = FileEventStorage(folderURL: folderURL)
 
         let eventComposer = EventComposerImpl(
             sessionIdProvider: analyticsCoreAssembly.sessionManager,
@@ -72,12 +78,21 @@ extension EventQueueAssembly {
         )
 
         let eventSender = EventSenderImpl(httpClient: coreAssembly.httpClient)
+        
+        let batchStorage = BatchStorageImpl(folderURL: folderURL, fileManager: .default)
+        
+        let batchSendController = BatchSendControllerImpl(
+            batchComposer: BatchComposerImpl(),
+            batchStorage: batchStorage,
+            batchSender: BatchSenderImpl(httpClient: coreAssembly.httpClient),
+            eventStorage: eventStorage,
+            timer: TimerImpl()
+        )
 
         let eventQueue = EventQueueImpl(
             core: eventQueueCore,
-            liveCore: liveEventQueueCore,
             storage: eventStorage,
-            sender: eventSender,
+            sendController: batchSendController,
             eventComposer: eventComposer,
             sessionManager: analyticsCoreAssembly.sessionManager,
             timer: TimerImpl()

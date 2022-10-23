@@ -13,16 +13,14 @@ extension EventQueueAssembly {
             maxBatchSize: target.settings.eventUploadMaxBatchSize,
             uploadInterval: TimeInterval(target.settings.eventUploadPeriodSeconds),
             uploadThreshold: target.settings.eventUploadThreshold,
-            maxEvents: target.settings.eventMaxCount,
-            maxConcurrentOperations: 5
+            maxEvents: target.settings.eventMaxCount
         )
         
         let liveConfig = EventQueueConfig(
             maxBatchSize: target.settings.eventUploadMaxBatchSize,
             uploadInterval: 0,
             uploadThreshold: 0,
-            maxEvents: target.settings.eventMaxCount,
-            maxConcurrentOperations: .max
+            maxEvents: target.settings.eventMaxCount
         )
         
         eventQueueCore.apply(normalConfig)
