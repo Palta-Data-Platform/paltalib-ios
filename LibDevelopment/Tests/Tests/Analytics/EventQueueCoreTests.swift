@@ -326,7 +326,7 @@ final class EventQueueCoreTests: XCTestCase {
         
         queue.addEvents(events)
         
-        wait(for: [sendIsCalled], timeout: 0.1)
+        wait(for: [sendIsCalled], timeout: 0.3)
         
         XCTAssertEqual(
             Set(sentEvents ?? []),

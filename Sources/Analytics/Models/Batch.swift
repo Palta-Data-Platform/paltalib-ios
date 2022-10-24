@@ -8,6 +8,7 @@
 import Foundation
 
 struct Batch: Codable, Equatable {
+    let batchId: UUID
     let events: [Event]
     let telemetry: Telemetry
 }

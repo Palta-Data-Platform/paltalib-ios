@@ -49,6 +49,7 @@ final class BatchSenderImpl: BatchSender {
         let request = AnalyticsHTTPRequest.sendEvents(
             baseURL,
             SendEventsPayload(
+                batchId: batch.batchId,
                 apiKey: apiToken,
                 events: batch.events,
                 serviceInfo: .init(

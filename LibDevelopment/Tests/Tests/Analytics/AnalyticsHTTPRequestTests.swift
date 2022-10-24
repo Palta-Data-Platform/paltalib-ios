@@ -51,6 +51,7 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
         let request = AnalyticsHTTPRequest.sendEvents(
             URL(string: "https://mock.mock"),
             SendEventsPayload(
+                batchId: UUID(),
                 apiKey: "mockKey",
                 events: events,
                 serviceInfo: .init(
@@ -82,6 +83,7 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
         let request = AnalyticsHTTPRequest.sendEvents(
             nil,
             SendEventsPayload(
+                batchId: UUID(),
                 apiKey: "mockKey",
                 events: events,
                 serviceInfo: .init(

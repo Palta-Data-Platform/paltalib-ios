@@ -15,6 +15,7 @@ protocol BatchComposer {
 final class BatchComposerImpl: BatchComposer {
     func makeBatch(of events: [Event], telemetry: Telemetry) -> Batch {
         Batch(
+            batchId: UUID(),
             events: events.sorted(by: { $0.timestamp < $1.timestamp }),
             telemetry: telemetry
         )

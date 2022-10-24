@@ -31,6 +31,7 @@ struct SendEventsPayload: Encodable, Equatable {
         let telemetry: Telemetry?
     }
 
+    let batchId: UUID
     let apiKey: String
     let events: [Event]
     let serviceInfo: ServiceInfo
