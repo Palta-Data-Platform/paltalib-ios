@@ -30,7 +30,7 @@ extension EventQueueAssembly {
         eventQueue.liveEventTypes = target.settings.realtimeEventTypes
         eventQueue.excludedEvents = target.settings.excludedEventTypes
         
-        eventSender.baseURL = host
+        batchSender.baseURL = host
 
         sessionManager.maxSessionAge = target.settings.minTimeBetweenSessionsMillis
     }

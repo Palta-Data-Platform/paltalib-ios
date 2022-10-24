@@ -141,7 +141,7 @@ final class ConfigApplyService {
             eventQueueAssembly = eventQueueAssemblyProvider.newEventQueueAssembly()
         }
         
-        eventQueueAssembly.eventSender.apiToken = apiKey
+        eventQueueAssembly.batchSender.apiToken = apiKey
         eventQueueAssembly.apply(target, host: host)
         
         paltaAssemblies.append(eventQueueAssembly)

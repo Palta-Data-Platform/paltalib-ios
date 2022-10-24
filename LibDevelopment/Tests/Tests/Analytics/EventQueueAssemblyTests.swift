@@ -53,6 +53,6 @@ final class EventQueueAssemblyTests: XCTestCase {
         XCTAssertEqual(assembly.eventQueue.excludedEvents, ["excluded-event"])
         XCTAssertEqual(assembly.eventQueue.liveEventTypes, ["real-time"])
         
-        XCTAssertEqual(assembly.eventSender.baseURL, URL(string: "http://example.com"))
+        XCTAssertEqual(assembly.batchSender.baseURL, URL(string: "http://example.com"))
     }
 }

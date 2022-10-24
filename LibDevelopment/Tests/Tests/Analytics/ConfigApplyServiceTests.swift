@@ -69,7 +69,7 @@ final class ConfigApplyServiceTests: XCTestCase {
         XCTAssert(paltaQueueAssemblies.first === palta)
         XCTAssert(amplitudeInstances.first === amplitude)
         
-        XCTAssertEqual(paltaQueueAssemblies.first?.eventSender.apiToken, "palta-key")
+        XCTAssertEqual(paltaQueueAssemblies.first?.batchSender.apiToken, "palta-key")
         XCTAssertEqual(amplitudeInstances.first?.apiKey, "amplitude-key")
     }
     
@@ -147,7 +147,7 @@ final class ConfigApplyServiceTests: XCTestCase {
         
         XCTAssert(paltaQueueAssemblies.first === palta)
         
-        XCTAssertEqual(paltaQueueAssemblies.first?.eventSender.apiToken, "palta-key")
+        XCTAssertEqual(paltaQueueAssemblies.first?.batchSender.apiToken, "palta-key")
     }
     
     func testPaltaBrainOnLegacy() {
@@ -257,8 +257,8 @@ final class ConfigApplyServiceTests: XCTestCase {
         XCTAssert(paltaQueueAssemblies.first === palta)
         XCTAssert(amplitudeInstances.first === amplitude)
         
-        XCTAssertEqual(paltaQueueAssemblies[0].eventSender.apiToken, "palta-key")
-        XCTAssertEqual(paltaQueueAssemblies.last?.eventSender.apiToken, "palta-key")
+        XCTAssertEqual(paltaQueueAssemblies[0].batchSender.apiToken, "palta-key")
+        XCTAssertEqual(paltaQueueAssemblies.last?.batchSender.apiToken, "palta-key")
         XCTAssertEqual(amplitudeInstances.last?.apiKey, "amplitude-key")
     }
 }

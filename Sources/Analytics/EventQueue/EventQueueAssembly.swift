@@ -17,7 +17,7 @@ final class EventQueueAssembly: FunctionalExtension {
     let eventStorage: EventStorage
 
     let eventComposer: EventComposerImpl
-    let eventSender: EventSenderImpl
+    let batchSender: BatchSenderImpl
     let eventQueue: EventQueueImpl
     
     let identityLogger: IdentityLogger
@@ -29,7 +29,7 @@ final class EventQueueAssembly: FunctionalExtension {
         liveEventQueueCore: EventQueueCoreImpl,
         eventStorage: EventStorage,
         eventComposer: EventComposerImpl,
-        eventSender: EventSenderImpl,
+        batchSender: BatchSenderImpl,
         eventQueue: EventQueueImpl,
         identityLogger: IdentityLogger,
         revenueLogger: RevenueLogger
@@ -39,7 +39,7 @@ final class EventQueueAssembly: FunctionalExtension {
         self.liveEventQueueCore = liveEventQueueCore
         self.eventStorage = eventStorage
         self.eventComposer = eventComposer
-        self.eventSender = eventSender
+        self.batchSender = batchSender
         self.eventQueue = eventQueue
         self.identityLogger = identityLogger
         self.revenueLogger = revenueLogger
@@ -76,15 +76,14 @@ extension EventQueueAssembly {
             deviceInfoProvider: DeviceInfoProviderImpl(),
             trackingOptionsProvider: analyticsCoreAssembly.trackingOptionsProvider
         )
-
-        let eventSender = EventSenderImpl(httpClient: coreAssembly.httpClient)
         
         let batchStorage = BatchStorageImpl(folderURL: folderURL, fileManager: .default)
+        let batchSender = BatchSenderImpl(httpClient: coreAssembly.httpClient)
         
         let batchSendController = BatchSendControllerImpl(
             batchComposer: BatchComposerImpl(),
             batchStorage: batchStorage,
-            batchSender: BatchSenderImpl(httpClient: coreAssembly.httpClient),
+            batchSender: batchSender,
             eventStorage: eventStorage,
             timer: TimerImpl()
         )
@@ -108,7 +107,7 @@ extension EventQueueAssembly {
             liveEventQueueCore: liveEventQueueCore,
             eventStorage: eventStorage,
             eventComposer: eventComposer,
-            eventSender: eventSender,
+            batchSender: batchSender,
             eventQueue: eventQueue,
             identityLogger: identityLogger,
             revenueLogger: revenueLogger
