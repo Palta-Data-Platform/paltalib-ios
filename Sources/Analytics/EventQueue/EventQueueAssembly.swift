@@ -18,6 +18,7 @@ final class EventQueueAssembly: FunctionalExtension {
 
     let eventComposer: EventComposerImpl
     let batchSender: BatchSenderImpl
+    let batchSendController: BatchSendControllerImpl
     let eventQueue: EventQueueImpl
     
     let identityLogger: IdentityLogger
@@ -30,6 +31,7 @@ final class EventQueueAssembly: FunctionalExtension {
         eventStorage: EventStorage,
         eventComposer: EventComposerImpl,
         batchSender: BatchSenderImpl,
+        batchSendController: BatchSendControllerImpl,
         eventQueue: EventQueueImpl,
         identityLogger: IdentityLogger,
         revenueLogger: RevenueLogger
@@ -40,6 +42,7 @@ final class EventQueueAssembly: FunctionalExtension {
         self.eventStorage = eventStorage
         self.eventComposer = eventComposer
         self.batchSender = batchSender
+        self.batchSendController = batchSendController
         self.eventQueue = eventQueue
         self.identityLogger = identityLogger
         self.revenueLogger = revenueLogger
@@ -108,6 +111,7 @@ extension EventQueueAssembly {
             eventStorage: eventStorage,
             eventComposer: eventComposer,
             batchSender: batchSender,
+            batchSendController: batchSendController,
             eventQueue: eventQueue,
             identityLogger: identityLogger,
             revenueLogger: revenueLogger

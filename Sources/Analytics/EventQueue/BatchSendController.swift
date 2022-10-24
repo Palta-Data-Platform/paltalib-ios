@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import PaltaLibAnalyticsModel
 
 protocol BatchSendController: AnyObject {
     var isReady: Bool { get }

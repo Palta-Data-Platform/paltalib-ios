@@ -143,6 +143,7 @@ final class ConfigApplyService {
         
         eventQueueAssembly.batchSender.apiToken = apiKey
         eventQueueAssembly.apply(target, host: host)
+        eventQueueAssembly.batchSendController.configurationFinished()
         
         paltaAssemblies.append(eventQueueAssembly)
     }

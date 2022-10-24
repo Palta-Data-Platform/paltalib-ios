@@ -12,6 +12,7 @@ struct SendEventsPayload: Encodable, Equatable {
         case apiKey = "api_key"
         case events
         case serviceInfo = "paltabrain"
+        case batchId
     }
 
     struct ServiceInfo: Encodable, Equatable {
