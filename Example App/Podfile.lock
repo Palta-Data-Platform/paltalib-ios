@@ -1,59 +1,37 @@
 PODS:
-  - Amplitude (8.5.0)
-  - AppsFlyerFramework (6.4.4):
-    - AppsFlyerFramework/Main (= 6.4.4)
-  - AppsFlyerFramework/Main (6.4.4)
-  - PaltaLibAnalytics (2.1.5):
-    - Amplitude (~> 8.5.0)
-    - PaltaLibCore (~> 2.2.1)
-  - PaltaLibAttribution (2.1.0):
-    - AppsFlyerFramework (~> 6.4.2)
-    - PaltaLibCore
-  - PaltaLibCore (2.2.1)
+  - Amplitude (8.14.0):
+    - AnalyticsConnector (~> 1.0.0)
+  - AnalyticsConnector (1.0.0)
+  - PaltaLibAnalytics (2.3.0):
+    - Amplitude (>= 8.5.0)
+    - PaltaLibCore (>= 2.2.1)
+  - PaltaLibCore (2.3.0)
   - PaltaLibPurchases (3.0.0):
-    - PaltaLibAttribution
-    - PaltaLibCore (>= 2.1.0)
+    - PaltaLibCore (>= 2.3.0)
     - RevenueCat (~> 4.7.0)
   - RevenueCat (4.7.0)
 
 DEPENDENCIES:
-  - PaltaLibAnalytics (~> 2.1.5)
-  - PaltaLibCore (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `develop`)
-  - PaltaLibPurchases (from `https://github.com/Palta-Data-Platform/paltalib-ios.git`, branch `develop`)
+  - PaltaLibAnalytics (~> 2.3.0)
+  - PaltaLibPurchases (= 3.0.0)
 
 SPEC REPOS:
   trunk:
     - Amplitude
-    - AppsFlyerFramework
+    - AnalyticsConnector
     - PaltaLibAnalytics
-    - PaltaLibAttribution
+    - PaltaLibCore
+    - PaltaLibPurchases
     - RevenueCat
 
-EXTERNAL SOURCES:
-  PaltaLibCore:
-    :branch: develop
-    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
-  PaltaLibPurchases:
-    :branch: develop
-    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
-
-CHECKOUT OPTIONS:
-  PaltaLibCore:
-    :commit: 3fa521c5b59f447e791ff752779ec5c1a06f9517
-    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
-  PaltaLibPurchases:
-    :commit: 3fa521c5b59f447e791ff752779ec5c1a06f9517
-    :git: https://github.com/Palta-Data-Platform/paltalib-ios.git
-
 SPEC CHECKSUMS:
-  Amplitude: ef9ed339ddd33c9183edf63fa4bbaa86cf873321
-  AppsFlyerFramework: 6ea252ecb04cf443550576922cddb95b35c958ed
-  PaltaLibAnalytics: 6e8b8ce5af7522cedd5fe66d03151a3158efceb5
-  PaltaLibAttribution: 90259869a9acaac73ee83dcaced3b4ddcbb7656c
-  PaltaLibCore: 1591d5784f2c9d01115bccb5f6e81dc8d51efa52
-  PaltaLibPurchases: 907e6c3e3f8ff86a96c3a64cbeb6effa29aa912a
+  Amplitude: bff4ceaad2a79e908682134d75dc862960594ea6
+  AnalyticsConnector: 4c386d5972ac9da86e22d668564dbbac97558754
+  PaltaLibAnalytics: 86c831b23f00a8e6106ee357e2dcb10aba85f02b
+  PaltaLibCore: d4b6a07f7de3009526fddd35fb66e56a709ff210
+  PaltaLibPurchases: a4aa2a3ce44bb27e90a257e14c51d854f597d0aa
   RevenueCat: 5009a82afee178848de97cf2d712be1015a5d33c
 
-PODFILE CHECKSUM: a07526e24785361c8ba8fa6f896c1f376bb3fbc7
+PODFILE CHECKSUM: a07cf9a35ea36a72c2485ad0cdca3e2c47a644f5
 
 COCOAPODS: 1.11.3
