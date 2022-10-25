@@ -12,7 +12,6 @@ struct SendEventsPayload: Encodable, Equatable {
         case apiKey = "api_key"
         case events
         case serviceInfo = "paltabrain"
-        case batchId
     }
 
     struct ServiceInfo: Encodable, Equatable {
@@ -25,14 +24,15 @@ struct SendEventsPayload: Encodable, Equatable {
             case uploadTime = "client_upload_time"
             case library
             case telemetry
+            case batchId = "batch_id"
         }
         
         let uploadTime: Int
         let library: Library
         let telemetry: Telemetry?
+        let batchId: UUID
     }
 
-    let batchId: UUID
     let apiKey: String
     let events: [Event]
     let serviceInfo: ServiceInfo

@@ -48,13 +48,13 @@ final class BatchSenderImpl: BatchSender {
         let request = AnalyticsHTTPRequest.sendEvents(
             baseURL,
             SendEventsPayload(
-                batchId: batch.batchId,
                 apiKey: apiToken,
                 events: batch.events,
                 serviceInfo: .init(
                     uploadTime: .currentTimestamp(),
                     library: .init(name: "PaltaBrain", version: "2.3.0"), // TODO: Auto update version
-                    telemetry: batch.telemetry
+                    telemetry: batch.telemetry,
+                    batchId: batch.batchId
                 )
             )
         )
