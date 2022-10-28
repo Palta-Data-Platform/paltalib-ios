@@ -15,7 +15,7 @@ struct PaymentsHTTPRequest: Equatable {
         case getShowcase(UserId, String?)
         case startCheckout(UserId, String)
         case checkoutCompleted(UUID, String, String, String)
-        case checkoutFailed(UUID)
+        case checkoutFailed(UUID, Int, String)
         case getCheckout(UUID)
         case log(LogPayload.Level, String, CodableDictionary?)
     }
@@ -46,8 +46,8 @@ extension PaymentsHTTPRequest: CodableAutobuildingHTTPRequest {
                 purchase: .init(receiptData: receipt, transactionId: transactionId, originalTransactionId: originalTransactionId)
             ).typeErased
             
-        case let .checkoutFailed(orderId):
-            return CheckoutFailedRequestPayload(orderId: orderId).typeErased
+        case let .checkoutFailed(orderId, errorCode, errorMessage):
+            return CheckoutFailedRequestPayload(orderId: orderId, purchase: .init(errorCode: "\(errorCode)", errorMessage: errorMessage)).typeErased
             
         case let .getCheckout(orderId):
             return GetCheckoutRequestPayload(orderId: orderId).typeErased

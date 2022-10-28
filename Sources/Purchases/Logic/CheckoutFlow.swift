@@ -167,7 +167,7 @@ final class CheckoutFlowImpl: CheckoutFlow {
             traceId: traceId
         )
         
-        checkoutService.failCheckout(orderId: orderId, traceId: traceId) { (_: Result<(), PaymentsError>) in
+        checkoutService.failCheckout(orderId: orderId, error: error, traceId: traceId) { (_: Result<(), PaymentsError>) in
             completion(.failure(error))
         }
     }

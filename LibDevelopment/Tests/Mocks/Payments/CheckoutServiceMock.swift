@@ -63,7 +63,7 @@ final class CheckoutServiceMock: CheckoutService {
         }
     }
     
-    func failCheckout(orderId: UUID, traceId: UUID, completion: @escaping (Result<(), PaymentsError>) -> Void) {
+    func failCheckout(orderId: UUID, error: PaymentsError, traceId: UUID, completion: @escaping (Result<(), PaymentsError>) -> Void) {
         failOrderId = orderId
         failTraceId = traceId
         

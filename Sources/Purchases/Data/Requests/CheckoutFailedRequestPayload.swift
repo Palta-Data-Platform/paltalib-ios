@@ -9,6 +9,11 @@ import Foundation
 import PaltaLibCore
 
 struct CheckoutFailedRequestPayload: Equatable, Encodable {
+    struct Purchase: Equatable, Encodable {
+        let errorCode: String
+        let errorMessage: String
+    }
+    
     let orderId: UUID
-    let purchase: CodableDictionary = [:]
+    let purchase: Purchase
 }

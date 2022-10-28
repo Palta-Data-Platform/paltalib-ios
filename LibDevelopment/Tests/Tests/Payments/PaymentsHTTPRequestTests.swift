@@ -192,7 +192,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let request = PaymentsHTTPRequest(
             environment: env,
             traceId: traceId,
-            endpoint: .checkoutFailed(orderId)
+            endpoint: .checkoutFailed(orderId, 585, "Some message")
         )
         
         let urlRequest = request.urlRequest(headerFields: ["aHeader5": "aValue5"])
@@ -202,7 +202,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest?.url, URL(string: "\(env)/apple-store/checkout-failed"))
         XCTAssertEqual(
             payloadString,
-            "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{}}"
+            "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{\"errorMessage\":\"Some message\",\"errorCode\":\"585\"}}"
         )
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,

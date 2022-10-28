@@ -53,6 +53,35 @@ public enum PaymentsError: Error {
             return "PaltaLib: Payments: Your payment completed successfully however we didn't grant you features yet. Try to call .getPaidFeatures later"
         }
     }
+    
+    var code: Int {
+        switch self {
+        case .invalidKey:
+            return 1001
+        case .noUserId:
+            return 1002
+        case .cancelledByUser:
+            return 2001
+        case .purchaseInProgress:
+            return 2002
+        case .timedOut:
+            return 3001
+        case .networkError:
+            return 3002
+        case .serverError:
+            return 3003
+        case .noReceipt:
+            return 4001
+        case .storeKitError:
+            return 4002
+        case .sdkError:
+            return 4003
+        case .flowFailed:
+            return 4004
+        case .flowNotCompleted:
+            return 5001
+        }
+    }
 }
 
 public enum SDKError: Error {
