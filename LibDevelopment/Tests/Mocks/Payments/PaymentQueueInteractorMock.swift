@@ -13,9 +13,9 @@ final class PaymentQueueInteractorMock: PaymentQueueInteractor {
     var orderId: UUID?
     var closedTransactions: Set<String> = []
     
-    var result: Result<String, PaymentsError>?
+    var result: Result<(String, String), PaymentsError>?
     
-    func purchase(_ product: ShowcaseProduct, orderId: UUID, completion: @escaping (Result<String, PaymentsError>) -> Void) {
+    func purchase(_ product: ShowcaseProduct, orderId: UUID, completion: @escaping (Result<(String, String), PaymentsError>) -> Void) {
         self.product = product
         self.orderId = orderId
         

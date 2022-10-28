@@ -17,6 +17,7 @@ final class CheckoutServiceMock: CheckoutService {
     var completeOrderId: UUID?
     var completeReceiptData: Data?
     var completTransactionId: String?
+    var completeOriginalTransactionId: String?
     var completeTraceId: UUID?
     var completeResult: Result<(), PaymentsError>?
     
@@ -47,12 +48,14 @@ final class CheckoutServiceMock: CheckoutService {
         orderId: UUID,
         receiptData: Data,
         transactionId: String,
+        originalTransactionId: String,
         traceId: UUID,
-        completion: @escaping (Result<(), PaymentsError>) -> Void
+        completion: @escaping (Result<(), PaltaLibPayments.PaymentsError>) -> Void
     ) {
         completeOrderId = orderId
         completeReceiptData = receiptData
         completTransactionId = transactionId
+        completeOriginalTransactionId = originalTransactionId
         completeTraceId = traceId
         
         if let completeResult = completeResult {

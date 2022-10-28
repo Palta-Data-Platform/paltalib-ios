@@ -71,12 +71,13 @@ final class CheckoutServiceTests: XCTestCase {
         let orderId = UUID()
         let traceId = UUID()
         let transactionId = UUID().uuidString
+        let originalTransactionId = UUID().uuidString
         
         httpMock.result = .success(StatusReponse(status: "ok"))
         
         let successCalled = expectation(description: "Success called")
         
-        checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, transactionId: transactionId, traceId: traceId) { result in
+        checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, transactionId: transactionId, originalTransactionId: originalTransactionId, traceId: traceId) { result in
             guard case .success = result else {
                 return
             }
@@ -86,7 +87,7 @@ final class CheckoutServiceTests: XCTestCase {
         
         wait(for: [successCalled], timeout: 0.1)
         
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .checkoutCompleted(orderId, receiptData.base64EncodedString(), transactionId))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .checkoutCompleted(orderId, receiptData.base64EncodedString(), transactionId, originalTransactionId))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
     }
@@ -95,7 +96,7 @@ final class CheckoutServiceTests: XCTestCase {
         httpMock.result = .failure(NetworkErrorWithoutResponse.noData)
         let failCalled = expectation(description: "Fail called")
         
-        checkoutService.completeCheckout(orderId: UUID(), receiptData: Data(), transactionId: "", traceId: UUID()) { result in
+        checkoutService.completeCheckout(orderId: UUID(), receiptData: Data(), transactionId: "", originalTransactionId: "", traceId: UUID()) { result in
             guard case .failure = result else {
                 return
             }

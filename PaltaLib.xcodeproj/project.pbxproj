@@ -247,7 +247,6 @@
 		11C60F5528195B34004D0185 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 11C60F5428195B34004D0185 /* README.md */; };
 		11C725A028E33B32009284C5 /* ShowcaseProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7259F28E33B32009284C5 /* ShowcaseProduct.swift */; };
 		11C725A328E43231009284C5 /* ShowcaseProduct+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C725A128E4317D009284C5 /* ShowcaseProduct+Mock.swift */; };
-		11C725A628E44245009284C5 /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 11C725A528E44245009284C5 /* OCMock */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -601,7 +600,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11C725A628E44245009284C5 /* OCMock in Frameworks */,
 				1111599A27F70CB000A41ADA /* PaltaLibAnalytics.framework in Frameworks */,
 				11418B322885754C00694505 /* Difference in Frameworks */,
 				1111599B27F70CB000A41ADA /* PaltaLibAttribution.framework in Frameworks */,
@@ -1365,7 +1363,6 @@
 			name = PaltaLibTests;
 			packageProductDependencies = (
 				11418B312885754C00694505 /* Difference */,
-				11C725A528E44245009284C5 /* OCMock */,
 			);
 			productName = PaltaLibTests;
 			productReference = 111158F827F6FE5600A41ADA /* PaltaLibTests.xctest */;
@@ -1546,7 +1543,6 @@
 				114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				113A79BF284F7FBC004C0C5D /* XCRemoteSwiftPackageReference "swift-protobuf" */,
 				11418B2E2885753400694505 /* XCRemoteSwiftPackageReference "Difference" */,
-				11C725A428E44244009284C5 /* XCRemoteSwiftPackageReference "ocmock" */,
 			);
 			productRefGroup = 111158BD27F6014D00A41ADA /* Products */;
 			projectDirPath = "";
@@ -2688,14 +2684,6 @@
 				minimumVersion = 4.3.0;
 			};
 		};
-		11C725A428E44244009284C5 /* XCRemoteSwiftPackageReference "ocmock" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/erikdoe/ocmock.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2718,11 +2706,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */;
 			productName = RevenueCat;
-		};
-		11C725A528E44245009284C5 /* OCMock */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 11C725A428E44244009284C5 /* XCRemoteSwiftPackageReference "ocmock" */;
-			productName = OCMock;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -48,7 +48,7 @@ final class CheckoutFlowLogsDisableTests: XCTestCase {
         
         receiptProvider.data = Data()
         
-        paymentQueueInteractor.result = .success("")
+        paymentQueueInteractor.result = .success(("", ""))
         featuresService.result = .success(PaidFeatures())
     }
     

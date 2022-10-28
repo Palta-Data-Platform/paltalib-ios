@@ -7,7 +7,6 @@
 
 import Foundation
 import StoreKit
-import OCMock
 @testable import PaltaLibPayments
 
 extension ShowcaseProduct {

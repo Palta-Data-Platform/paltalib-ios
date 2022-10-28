@@ -156,12 +156,13 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let orderId = UUID()
         let receipt = UUID().uuidString
         let transactionId = UUID().uuidString
+        let originalTransactionId = UUID().uuidString
         let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest(
             environment: env,
             traceId: traceId,
-            endpoint: .checkoutCompleted(orderId, receipt, transactionId)
+            endpoint: .checkoutCompleted(orderId, receipt, transactionId, originalTransactionId)
         )
         
         let urlRequest = request.urlRequest(headerFields: ["aHeader2": "aValue2"])
