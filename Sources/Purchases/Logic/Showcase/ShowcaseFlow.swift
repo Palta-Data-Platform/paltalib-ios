@@ -50,7 +50,7 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
     ) {
         let idents = makePricePointMap(from: pricePoints).mapValues { $0.ident }
         
-        let ids = Set(pricePoints.map { $0.parameters.productId })
+        let ids = Set(pricePoints.map { $0.productId })
         appStoreProductsService.retrieveProducts(with: ids, idents: idents) { [self] result in
             switch result {
             case .success(let products):
@@ -81,7 +81,7 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
     private func makePricePointMap(from pricePoints: [PricePoint]) -> [String: PricePoint] {
         Dictionary(
             grouping: pricePoints,
-            by: { $0.parameters.productId }
+            by: { $0.productId }
         ).compactMapValues { $0.first }
     }
 }

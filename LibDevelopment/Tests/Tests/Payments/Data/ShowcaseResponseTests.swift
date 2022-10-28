@@ -18,15 +18,11 @@ final class ShowcaseResponseTests: XCTestCase {
     {
       "ident": "ident1",
       "priority": 1001,
-      "parameters": {
-          "productId": "id1"
-      }
+      "productId": "id1"
     },
     {
       "ident": "ident2",
-      "parameters": {
-          "productId": "id2"
-      }
+      "productId": "id2"
     }
   ]
 }
@@ -37,7 +33,7 @@ final class ShowcaseResponseTests: XCTestCase {
         XCTAssertEqual(response.status, "success")
         XCTAssertEqual(response.pricePoints.count, 2)
         XCTAssertEqual(response.pricePoints.first?.ident, "ident1")
-        XCTAssertEqual(response.pricePoints.last?.parameters.productId, "id2")
+        XCTAssertEqual(response.pricePoints.last?.productId, "id2")
         XCTAssertEqual(response.pricePoints.first?.priority, 1001)
         XCTAssertEqual(response.pricePoints.last?.priority, nil)
     }
@@ -50,9 +46,7 @@ final class ShowcaseResponseTests: XCTestCase {
     {
       "ident": "ident1",
       "priority": 1001,
-      "parameters": {
-          "productId": "id1"
-      }
+      "productId": "id1"
     },
     {
       "ident": "ident-1",
@@ -60,14 +54,10 @@ final class ShowcaseResponseTests: XCTestCase {
     },
     {
       "ident": "ident2",
-      "parameters": {
-          "productId": "id2"
-      }
+      "productId": "id2"
     },
     {
-      "parameters": {
-          "productId": "id2"
-      }
+      "productId": "id2"
     }
   ]
 }
@@ -78,7 +68,7 @@ final class ShowcaseResponseTests: XCTestCase {
         XCTAssertEqual(response.status, "success")
         XCTAssertEqual(response.pricePoints.count, 2)
         XCTAssertEqual(response.pricePoints.first?.ident, "ident1")
-        XCTAssertEqual(response.pricePoints.last?.parameters.productId, "id2")
+        XCTAssertEqual(response.pricePoints.last?.productId, "id2")
         XCTAssertEqual(response.pricePoints.first?.priority, 1001)
         XCTAssertEqual(response.pricePoints.last?.priority, nil)
     }
