@@ -76,7 +76,7 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertEqual(checkoutService.completeOriginalTransactionId, originalTransactionId)
         XCTAssertEqual(checkoutService.getOrderId, orderId)
         XCTAssertEqual(featuresService.userId, userId)
-        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [transactionId])
+        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [originalTransactionId])
         XCTAssertNil(checkoutService.failOrderId)
     }
     
