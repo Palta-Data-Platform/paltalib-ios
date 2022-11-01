@@ -112,7 +112,8 @@ extension EventQueueAssembly {
             sendController: sendController,
             eventComposer: eventComposer,
             sessionManager: analyticsCoreAssembly.sessionManager,
-            contextProvider: currentContextManager
+            contextProvider: currentContextManager,
+            backgroundNotifier: BackgroundNotifierImpl(notificationCenter: .default)
         )
         
         self.init(
