@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1136F80A290C037100E104DF /* EnvironmentSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136F809290C037100E104DF /* EnvironmentSetupViewController.swift */; };
+		1136F8222911185800E104DF /* EnvironmentSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136F8212911185800E104DF /* EnvironmentSettingsService.swift */; };
+		1136F82429111D1600E104DF /* EnvironmentSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136F82329111D1600E104DF /* EnvironmentSetupViewModel.swift */; };
 		114CF59B2821536400ADA815 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF59A2821536400ADA815 /* MainViewController.swift */; };
 		114CF59D2821539C00ADA815 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF59C2821539C00ADA815 /* Button.swift */; };
 		114CF59F2821920200ADA815 /* PurchasesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF59E2821920200ADA815 /* PurchasesViewModel.swift */; };
@@ -29,6 +32,9 @@
 /* Begin PBXFileReference section */
 		0022A0D53D957A0C019C5D8B /* Pods_PaltaExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaltaExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		002AB426BEC946836EB1AD63 /* Pods-PaltaExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaltaExample.debug.xcconfig"; path = "Target Support Files/Pods-PaltaExample/Pods-PaltaExample.debug.xcconfig"; sourceTree = "<group>"; };
+		1136F809290C037100E104DF /* EnvironmentSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSetupViewController.swift; sourceTree = "<group>"; };
+		1136F8212911185800E104DF /* EnvironmentSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSettingsService.swift; sourceTree = "<group>"; };
+		1136F82329111D1600E104DF /* EnvironmentSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSetupViewModel.swift; sourceTree = "<group>"; };
 		114CF59A2821536400ADA815 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		114CF59C2821539C00ADA815 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		114CF59E2821920200ADA815 /* PurchasesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewModel.swift; sourceTree = "<group>"; };
@@ -62,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1136F8252911691100E104DF /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				1136F809290C037100E104DF /* EnvironmentSetupViewController.swift */,
+				1136F82329111D1600E104DF /* EnvironmentSetupViewModel.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
 		114CF5A2282264E700ADA815 /* Purchases */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				7F3B88D22745380F000A6D46 /* Views */,
+				1136F8212911185800E104DF /* EnvironmentSettingsService.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -169,6 +185,7 @@
 		7FE10A7B27316E6E003081CF /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				1136F8252911691100E104DF /* Environment */,
 				7FE10A7C27316E6E003081CF /* Analytics */,
 				114CF59A2821536400ADA815 /* MainViewController.swift */,
 				114CF5A2282264E700ADA815 /* Purchases */,
@@ -299,9 +316,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1136F82429111D1600E104DF /* EnvironmentSetupViewModel.swift in Sources */,
 				11F56C8528AB9B3700C403C7 /* AvailablePurchaseCell.swift in Sources */,
 				118369472844AA130028CED9 /* UserView.swift in Sources */,
 				114CF59B2821536400ADA815 /* MainViewController.swift in Sources */,
+				1136F80A290C037100E104DF /* EnvironmentSetupViewController.swift in Sources */,
+				1136F8222911185800E104DF /* EnvironmentSettingsService.swift in Sources */,
 				7F3B88D52745382C000A6D46 /* SwitchView.swift in Sources */,
 				7FE10A8027316E6E003081CF /* AnalyticsViewModel.swift in Sources */,
 				114CF59D2821539C00ADA815 /* Button.swift in Sources */,

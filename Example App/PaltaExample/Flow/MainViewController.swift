@@ -28,9 +28,19 @@ final class MainViewController: UIViewController {
             animated: true
         )
     }
+    
+    private lazy var environmentButton = Button(
+        title: "Change environment",
+        color: .systemRed
+    ) { [weak self] in
+        self?.navigationController?.pushViewController(
+            EnvironmentSetupViewController(),
+            animated: true
+        )
+    }
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [analyticsButton, paymentsButton])
+        let stackView = UIStackView(arrangedSubviews: [analyticsButton, paymentsButton, environmentButton])
         stackView.axis = .vertical
         stackView.spacing = 64
         stackView.alignment = .fill
