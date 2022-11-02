@@ -575,7 +575,7 @@ final class PaltaPurchasesTests: XCTestCase {
                 return
             }
             
-            XCTAssertEqual(products, expectedProducts)
+            XCTAssertEqual(Set(products), Set(expectedProducts))
             successCalled.fulfill()
         }
         

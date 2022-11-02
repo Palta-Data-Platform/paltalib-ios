@@ -156,12 +156,13 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let orderId = UUID()
         let receipt = UUID().uuidString
         let transactionId = UUID().uuidString
+        let originalTransactionId = UUID().uuidString
         let env = URL(string: "http://\(UUID())")!
         
         let request = PaymentsHTTPRequest(
             environment: env,
             traceId: traceId,
-            endpoint: .checkoutCompleted(orderId, receipt, transactionId)
+            endpoint: .checkoutCompleted(orderId, receipt, transactionId, originalTransactionId)
         )
         
         let urlRequest = request.urlRequest(headerFields: ["aHeader2": "aValue2"])
@@ -171,7 +172,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest?.url, URL(string: "\(env)/apple-store/checkout-completed"))
         XCTAssertEqual(
             payloadString,
-            "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{\"receiptData\":\"\(receipt)\",\"transactionId\":\"\(transactionId)\"}}"
+            "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{\"originalTransactionId\":\"\(originalTransactionId)\",\"receiptData\":\"\(receipt)\",\"transactionId\":\"\(transactionId)\"}}"
         )
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,
@@ -191,7 +192,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         let request = PaymentsHTTPRequest(
             environment: env,
             traceId: traceId,
-            endpoint: .checkoutFailed(orderId)
+            endpoint: .checkoutFailed(orderId, 585, "Some message")
         )
         
         let urlRequest = request.urlRequest(headerFields: ["aHeader5": "aValue5"])
@@ -201,7 +202,7 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest?.url, URL(string: "\(env)/apple-store/checkout-failed"))
         XCTAssertEqual(
             payloadString,
-            "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{}}"
+            "{\"orderId\":\"\(orderId.uuidString)\",\"purchase\":{\"errorMessage\":\"Some message\",\"errorCode\":\"585\"}}"
         )
         XCTAssertEqual(
             urlRequest?.allHTTPHeaderFields,

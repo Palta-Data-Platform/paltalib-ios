@@ -10,8 +10,10 @@ import PaltaLibPurchases
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    private let environmentSettingsService: EnvironmentSettingsService = .shared
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        PaltaAnalytics.shared.setAPIKey("0037c694a811422a88e2a3c5a90510e3", and: URL(string: "https://telemetry.mobilesdk.dev.paltabrain.com"))
+        PaltaAnalytics.shared.setAPIKey(environmentSettingsService.analyticsApiKey, and: environmentSettingsService.analyticsHost)
         
         PaltaAnalytics.shared.editContext { context in
             context.user = .init(userID: "slava")
@@ -24,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PaltaPurchases.instance.setup(with: [
 //            RCPurchasePlugin(apiKey: "appl_XLKhpPFayETZEchAVBKynvTNkAr"),
             PBPurchasePlugin(
-                apiKey: "13ac16d7a83e42268c7f9abb7bcd6443",
-                environment: URL(string: "https://api.payments.dev.paltabrain.com")!
+                apiKey: environmentSettingsService.paymentsApiKey,
+                environment: environmentSettingsService.paymentsHost
             )
         ])
         

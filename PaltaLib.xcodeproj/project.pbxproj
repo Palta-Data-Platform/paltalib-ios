@@ -247,7 +247,9 @@
 		11C60F5528195B34004D0185 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 11C60F5428195B34004D0185 /* README.md */; };
 		11C725A028E33B32009284C5 /* ShowcaseProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C7259F28E33B32009284C5 /* ShowcaseProduct.swift */; };
 		11C725A328E43231009284C5 /* ShowcaseProduct+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C725A128E4317D009284C5 /* ShowcaseProduct+Mock.swift */; };
-		11C725A628E44245009284C5 /* OCMock in Frameworks */ = {isa = PBXBuildFile; productRef = 11C725A528E44245009284C5 /* OCMock */; };
+		11F9D78728E5D27B00B6386E /* BackgroundNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */; };
+		11F9D78A28E5D3E100B6386E /* BackgroundNotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */; };
+		11F9D78D28E5D6C800B6386E /* BackgroundNotifierMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D78B28E5D6A900B6386E /* BackgroundNotifierMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -586,6 +588,9 @@
 		11C60F5428195B34004D0185 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		11C7259F28E33B32009284C5 /* ShowcaseProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseProduct.swift; sourceTree = "<group>"; };
 		11C725A128E4317D009284C5 /* ShowcaseProduct+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShowcaseProduct+Mock.swift"; sourceTree = "<group>"; };
+		11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifier.swift; sourceTree = "<group>"; };
+		11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifierTests.swift; sourceTree = "<group>"; };
+		11F9D78B28E5D6A900B6386E /* BackgroundNotifierMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifierMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -601,7 +606,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11C725A628E44245009284C5 /* OCMock in Frameworks */,
 				1111599A27F70CB000A41ADA /* PaltaLibAnalytics.framework in Frameworks */,
 				11418B322885754C00694505 /* Difference in Frameworks */,
 				1111599B27F70CB000A41ADA /* PaltaLibAttribution.framework in Frameworks */,
@@ -901,6 +905,7 @@
 				117D9C4E286C59CA006F3E2E /* BatchSendControllerTests.swift */,
 				119A1D20287835B9006D53A3 /* RemoteConfigTests.swift */,
 				116068B32887F7F3009CF8EC /* UUIDGeneratorTests.swift */,
+				11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -967,6 +972,7 @@
 				117D9C2F2869A731006F3E2E /* UUIDGeneratorMock.swift */,
 				117D9C322869A799006F3E2E /* ContextProviderMock.swift */,
 				117D9C44286C4D16006F3E2E /* EventQueueCoreMock.swift */,
+				11F9D78B28E5D6A900B6386E /* BackgroundNotifierMock.swift */,
 				117D9C46286C4E26006F3E2E /* EventStorageMock.swift */,
 				117D9C48286C4EB2006F3E2E /* BatchSendControllerMock.swift */,
 				117D9C4A286C4F6A006F3E2E /* EventComposerMock.swift */,
@@ -1263,6 +1269,7 @@
 				117D9C2A2869A253006F3E2E /* UUIDGenerator.swift */,
 				11115A9B280065E300A41ADA /* DeviceInfoProvider.swift */,
 				113A79A7284F6EB3004C0C5D /* Timestamp.swift */,
+				11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */,
 				116068B5288819C0009CF8EC /* Timestamp.m */,
 			);
 			path = Helpers;
@@ -1365,7 +1372,6 @@
 			name = PaltaLibTests;
 			packageProductDependencies = (
 				11418B312885754C00694505 /* Difference */,
-				11C725A528E44245009284C5 /* OCMock */,
 			);
 			productName = PaltaLibTests;
 			productReference = 111158F827F6FE5600A41ADA /* PaltaLibTests.xctest */;
@@ -1546,7 +1552,6 @@
 				114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				113A79BF284F7FBC004C0C5D /* XCRemoteSwiftPackageReference "swift-protobuf" */,
 				11418B2E2885753400694505 /* XCRemoteSwiftPackageReference "Difference" */,
-				11C725A428E44244009284C5 /* XCRemoteSwiftPackageReference "ocmock" */,
 			);
 			productRefGroup = 111158BD27F6014D00A41ADA /* Products */;
 			projectDirPath = "";
@@ -1648,6 +1653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				117D9C55286C5B21006F3E2E /* BatchSenderMock.swift in Sources */,
+				11F9D78D28E5D6C800B6386E /* BackgroundNotifierMock.swift in Sources */,
 				111159AC27F71D2100A41ADA /* CodableDictionaryTests.swift in Sources */,
 				11BE6BC528B3C4AF006EA904 /* AppstoreProductServiceMock.swift in Sources */,
 				113AD63328379C8A00324D62 /* PaymentsHTTPRequestTests.swift in Sources */,
@@ -1732,6 +1738,7 @@
 				117D9BEA286090B8006F3E2E /* StorableEventTests.swift in Sources */,
 				11543028282BF7B50021ED6F /* PaidFeatureTests.swift in Sources */,
 				11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */,
+				11F9D78A28E5D3E100B6386E /* BackgroundNotifierTests.swift in Sources */,
 				113AD6422837AC6D00324D62 /* FeaturesServiceTests.swift in Sources */,
 				1137D167285B2211008CA306 /* BatchStorageTests.swift in Sources */,
 				117D9C312869A734006F3E2E /* UUIDGeneratorMock.swift in Sources */,
@@ -1819,6 +1826,7 @@
 				11C60F4D2816A835004D0185 /* Telemetry.swift in Sources */,
 				11115A8F28001F2300A41ADA /* UserPropertiesKeeper.swift in Sources */,
 				116068B728881A42009CF8EC /* Timestamp.m in Sources */,
+				11F9D78728E5D27B00B6386E /* BackgroundNotifier.swift in Sources */,
 				1137D15D285A0211008CA306 /* SDKInfoProvider.swift in Sources */,
 				11115A9128001FA800A41ADA /* UserProperties.swift in Sources */,
 				113A799C284E5704004C0C5D /* BatchStorage.swift in Sources */,
@@ -2688,14 +2696,6 @@
 				minimumVersion = 4.3.0;
 			};
 		};
-		11C725A428E44244009284C5 /* XCRemoteSwiftPackageReference "ocmock" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/erikdoe/ocmock.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2718,11 +2718,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 114CF5B52823C83000ADA815 /* XCRemoteSwiftPackageReference "purchases-ios" */;
 			productName = RevenueCat;
-		};
-		11C725A528E44245009284C5 /* OCMock */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 11C725A428E44244009284C5 /* XCRemoteSwiftPackageReference "ocmock" */;
-			productName = OCMock;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

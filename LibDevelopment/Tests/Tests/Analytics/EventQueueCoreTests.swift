@@ -503,6 +503,28 @@ final class EventQueueCoreTests: XCTestCase {
         )
     }
     
+    func testForceFlush() {
+        let contextId = UUID()
+        
+        let events: [StorableEvent] = [
+            .mock(timestamp: 0, contextId: contextId),
+            .mock(timestamp: 1, contextId: contextId)
+        ]
+        
+        queue.apply(
+            .init(maxBatchSize: 200, uploadInterval: 100, uploadThreshold: 200, maxEvents: 100)
+        )
+        waitForQueue()
+        
+        queue.addEvents(events)
+        
+        queue.forceFlush()
+        
+        wait(for: [sendIsCalled], timeout: 0.15)
+        
+        XCTAssertEqual(sentEvents?.count, 2)
+    }
+    
     private func warmUpExpectations(_ expectations: XCTestExpectation...) {
         // Do nothing. Lazy properties are initiated by this call
     }

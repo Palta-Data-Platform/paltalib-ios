@@ -14,6 +14,7 @@ final class EventQueueCoreMock: EventQueueCore {
     
     var addedEvents: [StorableEvent] = []
     var sendEventsTriggered = false
+    var forceFlushTriggered = false
     
     func addEvent(_ event: StorableEvent) {
         addedEvents.append(event)
@@ -25,5 +26,9 @@ final class EventQueueCoreMock: EventQueueCore {
     
     func sendEventsAvailable() {
         sendEventsTriggered = true
+    }
+    
+    func forceFlush() {
+        forceFlushTriggered = true
     }
 }

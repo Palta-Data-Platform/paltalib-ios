@@ -17,6 +17,7 @@ final class EventQueueTests: XCTestCase {
     private var eventComposerMock: EventComposerMock!
     private var sessionManagerMock: SessionManagerMock!
     private var contextProviderMock: CurrentContextProviderMock!
+    private var backgroundNotifierMock: BackgroundNotifierMock!
     
     private var eventQueue: EventQueueImpl!
     
@@ -29,6 +30,7 @@ final class EventQueueTests: XCTestCase {
         sessionManagerMock = .init()
         sendControllerMock = .init()
         contextProviderMock = .init()
+        backgroundNotifierMock = .init()
         
         eventQueue = EventQueueImpl(
             stack: .mock,
@@ -37,7 +39,8 @@ final class EventQueueTests: XCTestCase {
             sendController: sendControllerMock,
             eventComposer: eventComposerMock,
             sessionManager: sessionManagerMock,
-            contextProvider: contextProviderMock
+            contextProvider: contextProviderMock,
+            backgroundNotifier: backgroundNotifierMock
         )
     }
     
@@ -58,6 +61,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(coreMock.addedEvents.count, 1)
         XCTAssertEqual(storageMock.storedEvents.count, 1)
         XCTAssert(sessionManagerMock.refreshSessionCalled)
+        XCTAssertFalse(coreMock.forceFlushTriggered)
     }
 
     func testInit() {
@@ -70,7 +74,8 @@ final class EventQueueTests: XCTestCase {
             sendController: sendControllerMock,
             eventComposer: eventComposerMock,
             sessionManager: sessionManagerMock,
-            contextProvider: contextProviderMock
+            contextProvider: contextProviderMock,
+            backgroundNotifier: backgroundNotifierMock
         )
 
         try XCTAssertEqual(
@@ -83,6 +88,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertNotNil(sendControllerMock.isReadyCallback)
         XCTAssert(sessionManagerMock.startCalled)
         XCTAssertNotNil(sessionManagerMock.sessionStartLogger)
+        XCTAssertFalse(coreMock.forceFlushTriggered)
     }
     
     func testSendWhenAvailable() {
@@ -95,6 +101,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(result, true)
         XCTAssertEqual(sendControllerMock.sentEvents as? [UUID: BatchEventMock], events)
         XCTAssertEqual(sendControllerMock.contextId, contextId)
+        XCTAssertFalse(coreMock.forceFlushTriggered)
     }
     
     func testSendWhenNotAvailable() {
@@ -107,12 +114,14 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(result, false)
         XCTAssertNil(sendControllerMock.sentEvents)
         XCTAssertNil(sendControllerMock.contextId)
+        XCTAssertFalse(coreMock.forceFlushTriggered)
     }
     
     func testNotifyWhenAvailable() {
         sendControllerMock.isReadyCallback?()
         
         XCTAssert(coreMock.sendEventsTriggered)
+        XCTAssertFalse(coreMock.forceFlushTriggered)
     }
 
     func testEviction() {
@@ -121,6 +130,7 @@ final class EventQueueTests: XCTestCase {
         coreMock.removeHandler?(ArraySlice(eventsToRemove))
 
         XCTAssertEqual(storageMock.removedIds, eventsToRemove.map { $0.event.id })
+        XCTAssertFalse(coreMock.forceFlushTriggered)
     }
     
     func testSessionStartLogger() {
@@ -130,5 +140,12 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(coreMock.addedEvents.count, 1)
         XCTAssertEqual(storageMock.storedEvents.count, 1)
         XCTAssertFalse(sessionManagerMock.refreshSessionCalled)
+        XCTAssertFalse(coreMock.forceFlushTriggered)
+    }
+    
+    func testBackground() {
+        backgroundNotifierMock.listener?()
+        
+        XCTAssert(coreMock.forceFlushTriggered)
     }
 }

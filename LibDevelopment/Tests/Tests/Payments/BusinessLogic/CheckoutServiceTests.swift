@@ -71,12 +71,13 @@ final class CheckoutServiceTests: XCTestCase {
         let orderId = UUID()
         let traceId = UUID()
         let transactionId = UUID().uuidString
+        let originalTransactionId = UUID().uuidString
         
         httpMock.result = .success(StatusReponse(status: "ok"))
         
         let successCalled = expectation(description: "Success called")
         
-        checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, transactionId: transactionId, traceId: traceId) { result in
+        checkoutService.completeCheckout(orderId: orderId, receiptData: receiptData, transactionId: transactionId, originalTransactionId: originalTransactionId, traceId: traceId) { result in
             guard case .success = result else {
                 return
             }
@@ -86,7 +87,7 @@ final class CheckoutServiceTests: XCTestCase {
         
         wait(for: [successCalled], timeout: 0.1)
         
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .checkoutCompleted(orderId, receiptData.base64EncodedString(), transactionId))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .checkoutCompleted(orderId, receiptData.base64EncodedString(), transactionId, originalTransactionId))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
     }
@@ -95,7 +96,7 @@ final class CheckoutServiceTests: XCTestCase {
         httpMock.result = .failure(NetworkErrorWithoutResponse.noData)
         let failCalled = expectation(description: "Fail called")
         
-        checkoutService.completeCheckout(orderId: UUID(), receiptData: Data(), transactionId: "", traceId: UUID()) { result in
+        checkoutService.completeCheckout(orderId: UUID(), receiptData: Data(), transactionId: "", originalTransactionId: "", traceId: UUID()) { result in
             guard case .failure = result else {
                 return
             }
@@ -114,7 +115,7 @@ final class CheckoutServiceTests: XCTestCase {
         
         let successCalled = expectation(description: "Success called")
         
-        checkoutService.failCheckout(orderId: orderId, traceId: traceId) { result in
+        checkoutService.failCheckout(orderId: orderId, error: .unknownError, traceId: traceId) { result in
             guard case .success = result else {
                 return
             }
@@ -124,7 +125,7 @@ final class CheckoutServiceTests: XCTestCase {
         
         wait(for: [successCalled], timeout: 0.1)
         
-        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .checkoutFailed(orderId))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .checkoutFailed(orderId, PaymentsError.unknownError.code, PaymentsError.unknownError.localizedDescription))
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
         XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
     }
@@ -133,7 +134,7 @@ final class CheckoutServiceTests: XCTestCase {
         httpMock.result = .failure(NetworkErrorWithoutResponse.noData)
         let failCalled = expectation(description: "Fail called")
         
-        checkoutService.failCheckout(orderId: UUID(), traceId: UUID()) { result in
+        checkoutService.failCheckout(orderId: UUID(), error: .unknownError, traceId: UUID()) { result in
             guard case .failure = result else {
                 return
             }

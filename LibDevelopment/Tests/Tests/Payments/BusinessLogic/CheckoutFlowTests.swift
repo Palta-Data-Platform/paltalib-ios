@@ -45,10 +45,11 @@ final class CheckoutFlowTests: XCTestCase {
     func testSuccessFlow() {
         let orderId = UUID()
         let transactionId = UUID().uuidString
+        let originalTransactionId = UUID().uuidString
         let receiptData = Data((0...20).map { _ in UInt8.random(in: 0...255) })
         
         checkoutService.startResult = .success(orderId)
-        paymentQueueInteractor.result = .success(transactionId)
+        paymentQueueInteractor.result = .success((transactionId, originalTransactionId))
         receiptProvider.data = receiptData
         checkoutService.completeResult = .success(())
         checkoutService.getResult = .success(.completed)
@@ -72,9 +73,10 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertEqual(checkoutService.completeOrderId, orderId)
         XCTAssertEqual(checkoutService.completeReceiptData, receiptData)
         XCTAssertEqual(checkoutService.completTransactionId, transactionId)
+        XCTAssertEqual(checkoutService.completeOriginalTransactionId, originalTransactionId)
         XCTAssertEqual(checkoutService.getOrderId, orderId)
         XCTAssertEqual(featuresService.userId, userId)
-        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [transactionId])
+        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [originalTransactionId])
         XCTAssertNil(checkoutService.failOrderId)
     }
     
@@ -133,9 +135,10 @@ final class CheckoutFlowTests: XCTestCase {
     func testNoReceiptFlow() {
         let orderId = UUID()
         let transactionId = UUID().uuidString
+        let originalTransactionId = UUID().uuidString
         
         checkoutService.startResult = .success(orderId)
-        paymentQueueInteractor.result = .success(transactionId)
+        paymentQueueInteractor.result = .success((transactionId, originalTransactionId))
         receiptProvider.data = nil
         checkoutService.failResult = .success(())
         
@@ -163,9 +166,10 @@ final class CheckoutFlowTests: XCTestCase {
     func testCompleteFailedFlow() {
         let orderId = UUID()
         let transactionId = UUID().uuidString
+        let originalTransactionId = UUID().uuidString
         
         checkoutService.startResult = .success(orderId)
-        paymentQueueInteractor.result = .success(transactionId)
+        paymentQueueInteractor.result = .success((transactionId, originalTransactionId))
         receiptProvider.data = Data()
         checkoutService.completeResult = .failure(.networkError(URLError(.badURL)))
         
@@ -184,7 +188,7 @@ final class CheckoutFlowTests: XCTestCase {
         XCTAssertEqual(checkoutService.startUserId, userId)
         XCTAssertEqual(collectTraceIds().count, 1) // The same trace id is passed everywhere
         XCTAssertEqual(checkoutService.completeOrderId, orderId)
-        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [])
+        XCTAssertEqual(paymentQueueInteractor.closedTransactions, [originalTransactionId])
         XCTAssertNil(checkoutService.getOrderId)
         XCTAssertNil(featuresService.userId)
     }
@@ -192,7 +196,7 @@ final class CheckoutFlowTests: XCTestCase {
     func testFlowCancelled() {
         let orderId = UUID()
         checkoutService.startResult = .success(orderId)
-        paymentQueueInteractor.result = .success("")
+        paymentQueueInteractor.result = .success(("", ""))
         receiptProvider.data = Data()
         checkoutService.completeResult = .success(())
         checkoutService.getResult = .success(.cancelled)
@@ -218,7 +222,7 @@ final class CheckoutFlowTests: XCTestCase {
     func testFlowFailed() {
         let orderId = UUID()
         checkoutService.startResult = .success(orderId)
-        paymentQueueInteractor.result = .success("")
+        paymentQueueInteractor.result = .success(("", ""))
         receiptProvider.data = Data()
         checkoutService.completeResult = .success(())
         checkoutService.getResult = .success(.failed)
@@ -244,7 +248,7 @@ final class CheckoutFlowTests: XCTestCase {
     func testFlowPending() {
         let orderId = UUID()
         checkoutService.startResult = .success(orderId)
-        paymentQueueInteractor.result = .success("")
+        paymentQueueInteractor.result = .success(("", ""))
         receiptProvider.data = Data()
         checkoutService.completeResult = .success(())
         checkoutService.getResult = .success(.processing)
@@ -268,7 +272,7 @@ final class CheckoutFlowTests: XCTestCase {
     func testGetCheckoutFailedFlow() {
         let orderId = UUID()
         checkoutService.startResult = .success(orderId)
-        paymentQueueInteractor.result = .success("")
+        paymentQueueInteractor.result = .success(("", ""))
         receiptProvider.data = Data()
         checkoutService.completeResult = .success(())
         checkoutService.getResult = .failure(.networkError(URLError(.cannotFindHost)))
@@ -292,7 +296,7 @@ final class CheckoutFlowTests: XCTestCase {
     func testGetFeaturesFailedFlow() {
         let orderId = UUID()
         checkoutService.startResult = .success(orderId)
-        paymentQueueInteractor.result = .success("")
+        paymentQueueInteractor.result = .success(("", ""))
         receiptProvider.data = Data()
         checkoutService.completeResult = .success(())
         checkoutService.getResult = .success(.completed)
