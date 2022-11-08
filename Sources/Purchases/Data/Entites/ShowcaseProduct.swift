@@ -11,4 +11,6 @@ import StoreKit
 struct ShowcaseProduct {
     let ident: String
     let skProduct: SKProduct
+    let discount: SKProductDiscount?
+    let priority: Int?
 }

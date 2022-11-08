@@ -9,8 +9,6 @@ import Foundation
 @testable import PaltaLibPayments
 
 final class PaymentsAssemblyMock: PaymentsAssembly {
-    
-    
     var showcaseUserId: UserId?
 
     let paidFeaturesMock = PaidFeaturesServiceMock()

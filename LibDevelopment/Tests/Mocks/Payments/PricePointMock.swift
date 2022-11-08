@@ -9,7 +9,7 @@ import Foundation
 @testable import PaltaLibPayments
 
 extension PricePoint {
-    static func mock(priority: Int? = nil, appStoreId: String = UUID().uuidString, ident: String = UUID().uuidString) -> PricePoint {
-        PricePoint(ident: ident, productId: appStoreId, priority: priority)
+    static func mock(priority: Int? = nil, appStoreId: String = UUID().uuidString, ident: String = UUID().uuidString, useIntroOffer: Bool = true) -> PricePoint {
+        PricePoint(ident: ident, productId: appStoreId, useIntroOffer: useIntroOffer, priority: priority)
     }
 }
