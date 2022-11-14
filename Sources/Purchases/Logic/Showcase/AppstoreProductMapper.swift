@@ -23,12 +23,10 @@ final class AppstoreProductMapperImpl: AppstoreProductMapper {
         return pricePoints.compactMap { (pricePoint) -> Product? in
             let appliedDiscount: SKProductDiscount?
             
-            if pricePoint.useIntroOffer, let introOffer = appStoreProduct.introductoryPrice {
+            if let introOffer = appStoreProduct.introductoryPrice {
                 appliedDiscount = introOffer
-            } else if !pricePoint.useIntroOffer {
-                appliedDiscount = nil
             } else {
-                return nil
+                appliedDiscount = nil
             }
             
             return Product(

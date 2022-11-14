@@ -36,6 +36,7 @@ final class PaymentQueueInteractorImpl: PaymentQueueInteractor {
         
         let payment = SKMutablePayment(product: product.skProduct)
         payment.applicationUsername = orderId.uuidString
+        
         paymentQueue.add(payment)
     }
     

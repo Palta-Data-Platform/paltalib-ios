@@ -10,24 +10,26 @@ import Foundation
 struct PricePoint: Equatable {
     let ident: String
     let productId: String
-    let useIntroOffer: Bool
     let priority: Int?
 }
 
 extension PricePoint: Decodable {
-    enum CodingKeys: CodingKey {
+    private enum TopCodingKeys: CodingKey {
         case ident
-        case productId
-        case useIntroOffer
         case priority
+        case appleStore
+    }
+    
+    private enum AppleStoreCodingKeys: CodingKey {
+        case productId
     }
     
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let topContainer = try decoder.container(keyedBy: TopCodingKeys.self)
+        let appleStoreContainer = try topContainer.nestedContainer(keyedBy: AppleStoreCodingKeys.self, forKey: .appleStore)
         
-        self.ident = try container.decode(String.self, forKey: .ident)
-        self.productId = try container.decode(String.self, forKey: .productId)
-        self.useIntroOffer = try container.decodeIfPresent(Bool.self, forKey: .useIntroOffer) ?? false
-        self.priority = try container.decodeIfPresent(Int.self, forKey: .priority)
+        self.ident = try topContainer.decode(String.self, forKey: .ident)
+        self.productId = try appleStoreContainer.decode(String.self, forKey: .productId)
+        self.priority = try topContainer.decodeIfPresent(Int.self, forKey: .priority)
     }
 }
