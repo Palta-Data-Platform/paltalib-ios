@@ -8,7 +8,7 @@
 import Foundation
 import StoreKit
 
-struct ShowcaseProduct {
+struct ShowcaseProduct: Equatable {
     let ident: String
     let skProduct: SKProduct
     let discount: SKProductDiscount?

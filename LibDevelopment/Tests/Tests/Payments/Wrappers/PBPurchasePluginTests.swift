@@ -191,16 +191,25 @@ final class PBPurchasePluginTests: XCTestCase {
         wait(for: [completionCalled], timeout: 0.1)
     }
     
-    func testPurchase() {
+    func testPurchaseSuccess() {
+        let userId = UserId.uuid(UUID())
+        plugin.logIn(appUserId: userId, completion: { _ in })
+        
+        let product = Product.mock()
+        assemblyMock.checkoutFlowMock.result = .success(PaidFeatures())
         let completionCalled = expectation(description: "Not supported called")
         
-        plugin.purchase(.mock(), with: nil) { result in
-            guard case .notSupported = result else {
+        plugin.purchase(product, with: nil) { result in
+            guard case .success = result else {
                 return
             }
             
             completionCalled.fulfill()
         }
+        
+        XCTAssertEqual(assemblyMock.checkoutUserId, userId)
+        XCTAssertEqual(assemblyMock.checkoutProduct, product.originalEntity as? ShowcaseProduct)
+        XCTAssertNotNil(assemblyMock.checkoutProduct)
         
         wait(for: [completionCalled], timeout: 0.1)
     }

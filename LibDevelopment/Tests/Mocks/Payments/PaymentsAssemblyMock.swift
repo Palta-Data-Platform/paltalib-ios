@@ -10,9 +10,13 @@ import Foundation
 
 final class PaymentsAssemblyMock: PaymentsAssembly {
     var showcaseUserId: UserId?
+    
+    var checkoutUserId: UserId?
+    var checkoutProduct: ShowcaseProduct?
 
     let paidFeaturesMock = PaidFeaturesServiceMock()
     let showcaseFlowMock = ShowcaseFlowMock()
+    let checkoutFlowMock = CheckoutFlowMock()
     
     var paidFeaturesService: PaidFeaturesService {
         paidFeaturesMock
@@ -24,6 +28,9 @@ final class PaymentsAssemblyMock: PaymentsAssembly {
     }
     
     func makeCheckoutFlow(userId: UserId, product: ShowcaseProduct) -> CheckoutFlow {
-        fatalError()
+        checkoutUserId = userId
+        checkoutProduct = product
+        
+        return checkoutFlowMock
     }
 }
