@@ -22,7 +22,7 @@ extension Product {
             appliedDiscount: nil,
             introductoryDiscount: nil,
             discounts: [],
-            originalEntity: ShowcaseProduct.mock()
+            originalEntity: ShowcaseProduct.mock(priority: priority)
         )
     }
 }
