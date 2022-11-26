@@ -7,7 +7,6 @@
 
 import Foundation
 import XCTest
-import PaltaLibAnalyticsModel
 @testable import PaltaLibAnalytics
 
 final class BatchStorageTests: XCTestCase {

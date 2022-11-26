@@ -51,13 +51,13 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
         let request = AnalyticsHTTPRequest.sendEvents(
             URL(string: "https://mock.mock"),
             SendEventsPayload(
-                batchId: UUID(),
                 apiKey: "mockKey",
                 events: events,
                 serviceInfo: .init(
                     uploadTime: .currentTimestamp(),
                     library: .init(name: "PaltaBrain", version: "2.1.5"),
-                    telemetry: .mock()
+                    telemetry: .mock(),
+                    batchId: UUID()
                 )
             )
         )
@@ -83,13 +83,13 @@ final class AnalyticsHTTPRequestTests: XCTestCase {
         let request = AnalyticsHTTPRequest.sendEvents(
             nil,
             SendEventsPayload(
-                batchId: UUID(),
                 apiKey: "mockKey",
                 events: events,
                 serviceInfo: .init(
                     uploadTime: .currentTimestamp(),
                     library: .init(name: "PaltaBrain", version: "2.1.5"),
-                    telemetry: nil
+                    telemetry: nil,
+                    batchId: UUID()
                 )
             )
         )

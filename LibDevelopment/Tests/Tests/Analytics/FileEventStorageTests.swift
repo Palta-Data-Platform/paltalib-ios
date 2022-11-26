@@ -122,7 +122,7 @@ final class FileEventStorageTests: XCTestCase {
         measure {
             let storage = FileEventStorage(folderURL: url)
             (0...5000).forEach {
-                storage.storeEvent(.mock(timestamp: $0))
+                storage.storeEvent(.mock(uuid: UUID(), timestamp: $0))
             }
 
             let group = DispatchGroup()
