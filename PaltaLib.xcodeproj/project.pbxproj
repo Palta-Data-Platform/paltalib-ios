@@ -122,6 +122,8 @@
 		113AD6402837AA5B00324D62 /* FeaturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD63E2837A9D600324D62 /* FeaturesService.swift */; };
 		113AD6422837AC6D00324D62 /* FeaturesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6412837AC6D00324D62 /* FeaturesServiceTests.swift */; };
 		113AD6442837AD3B00324D62 /* FeatureMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AD6432837AD3B00324D62 /* FeatureMock.swift */; };
+		113C2C4229327A500052603B /* SQLiteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113C2C4129327A500052603B /* SQLiteStorage.swift */; };
+		113C2C45293290A90052603B /* SQLiteStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113C2C43293290A50052603B /* SQLiteStorageTests.swift */; };
 		11418B322885754C00694505 /* Difference in Frameworks */ = {isa = PBXBuildFile; productRef = 11418B312885754C00694505 /* Difference */; };
 		11418B372885757400694505 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11418B352885755D00694505 /* TestHelpers.swift */; };
 		114CF5A82822673100ADA815 /* PurchasePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF5A72822673100ADA815 /* PurchasePlugin.swift */; };
@@ -158,6 +160,8 @@
 		11543038282D03280021ED6F /* ProductMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543036282D02F20021ED6F /* ProductMock.swift */; };
 		1154303A282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543039282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift */; };
 		1154303D282E4CD90021ED6F /* CustomerInfo+PaidFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154303B282E4AF30021ED6F /* CustomerInfo+PaidFeatures.swift */; };
+		11641EF829361B6800C127DD /* UUIDDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11641EF729361B6800C127DD /* UUIDDataTests.swift */; };
+		11641EF929361B9F00C127DD /* UUID+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E0975A29350358005B5268 /* UUID+Data.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
@@ -386,6 +390,8 @@
 		113AD6412837AC6D00324D62 /* FeaturesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesServiceTests.swift; sourceTree = "<group>"; };
 		113AD6432837AD3B00324D62 /* FeatureMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureMock.swift; sourceTree = "<group>"; };
 		113AD6472837AE8400324D62 /* PaymentsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsError.swift; sourceTree = "<group>"; };
+		113C2C4129327A500052603B /* SQLiteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteStorage.swift; sourceTree = "<group>"; };
+		113C2C43293290A50052603B /* SQLiteStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteStorageTests.swift; sourceTree = "<group>"; };
 		11418B352885755D00694505 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		114CF5A52822670C00ADA815 /* PaltaPurchases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaPurchases.swift; sourceTree = "<group>"; };
 		114CF5A72822673100ADA815 /* PurchasePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePlugin.swift; sourceTree = "<group>"; };
@@ -420,6 +426,7 @@
 		11543036282D02F20021ED6F /* ProductMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductMock.swift; sourceTree = "<group>"; };
 		11543039282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreProductDiscount+ProductDiscount.swift"; sourceTree = "<group>"; };
 		1154303B282E4AF30021ED6F /* CustomerInfo+PaidFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerInfo+PaidFeatures.swift"; sourceTree = "<group>"; };
+		11641EF729361B6800C127DD /* UUIDDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDDataTests.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
@@ -451,6 +458,7 @@
 		11C60F4E2816D585004D0185 /* TelemetryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryMock.swift; sourceTree = "<group>"; };
 		11C60F5128181323004D0185 /* Amplitude+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Amplitude+Extensions.swift"; sourceTree = "<group>"; };
 		11C60F5428195B34004D0185 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		11E0975A29350358005B5268 /* UUID+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Data.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -667,6 +675,7 @@
 				11115A3927FB172D00A41ADA /* EventQueue.swift */,
 				111159B627F73F8400A41ADA /* EventQueueCore.swift */,
 				11115A3327FAFA7A00A41ADA /* EventStorage.swift */,
+				113C2C4129327A500052603B /* SQLiteStorage.swift */,
 				1139FDE8290155FF0097109D /* BatchSender.swift */,
 				1139FDF229015C320097109D /* BatchStorage.swift */,
 				1139FDF7290174BB0097109D /* BatchComposer.swift */,
@@ -718,6 +727,7 @@
 			children = (
 				111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */,
 				11115A6A27FDB87B00A41ADA /* AnyEncodableTests.swift */,
+				11641EF729361B6800C127DD /* UUIDDataTests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -727,6 +737,7 @@
 			children = (
 				111159BA27F76AEF00A41ADA /* EventQueueCoreTests.swift */,
 				11115A3527FB00A500A41ADA /* FileEventStorageTests.swift */,
+				113C2C43293290A50052603B /* SQLiteStorageTests.swift */,
 				11115A3127FAF23F00A41ADA /* TimerTests.swift */,
 				11115A4527FB757400A41ADA /* EventQueueTests.swift */,
 				114D070428075C4900ACD310 /* RevenueLoggerTests.swift */,
@@ -936,6 +947,7 @@
 		11A61ED42837881F00F88116 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				11E0975A29350358005B5268 /* UUID+Data.swift */,
 				11115A9228001FE400A41ADA /* UserDefaults+Codable.swift */,
 				1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */,
 				1154302E282D004A0021ED6F /* ArrayExtension.swift */,
@@ -1312,6 +1324,7 @@
 			files = (
 				11115A8727FF1BCF00A41ADA /* EmptyResponse.swift in Sources */,
 				111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */,
+				11641EF929361B9F00C127DD /* UUID+Data.swift in Sources */,
 				11A61EE82837918B00F88116 /* JSONDecoder.swift in Sources */,
 				11115A9728003BD600A41ADA /* UserDefaults+Codable.swift in Sources */,
 				1154302F282D004A0021ED6F /* ArrayExtension.swift in Sources */,
@@ -1328,6 +1341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				113C2C45293290A90052603B /* SQLiteStorageTests.swift in Sources */,
 				1139FE02290274A30097109D /* BatchComposerMock.swift in Sources */,
 				114D070A280816D200ACD310 /* TrackingOptionsProviderMock.swift in Sources */,
 				1139FDEE290158E10097109D /* BatchSenderTests.swift in Sources */,
@@ -1373,6 +1387,7 @@
 				111A59BA2840E9C50052FCD1 /* PaymentsAssemblyMock.swift in Sources */,
 				11C60F502816D598004D0185 /* TelemetryMock.swift in Sources */,
 				114CF5B028226F5600ADA815 /* PaltaPurchasesTests.swift in Sources */,
+				11641EF829361B6800C127DD /* UUIDDataTests.swift in Sources */,
 				11A61EAA2835054A00F88116 /* EventQueueAssemblyTests.swift in Sources */,
 				11A61EAD2835074100F88116 /* ConfigApplyServiceTests.swift in Sources */,
 				114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */,
@@ -1464,6 +1479,7 @@
 				1111596B27F70BE400A41ADA /* PaltaAnalytics+Event.swift in Sources */,
 				1139FDEB290156A10097109D /* Batch.swift in Sources */,
 				11115A7727FDC6B800A41ADA /* AnalyticsHTTPRequest.swift in Sources */,
+				113C2C4229327A500052603B /* SQLiteStorage.swift in Sources */,
 				1111596E27F70BF500A41ADA /* Settings.swift in Sources */,
 				11A61EA72835043600F88116 /* EventQueueAssembly+Config.swift in Sources */,
 				11C60F5228181323004D0185 /* Amplitude+Extensions.swift in Sources */,

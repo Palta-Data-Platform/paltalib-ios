@@ -131,6 +131,33 @@ final class FileEventStorageTests: XCTestCase {
             group.wait()
         }
     }
+    
+    func testRemovePerformance() {
+        let events: [Event] = (0...5000).map {
+            .mock(uuid: UUID(), timestamp: $0)
+        }
+        measure {
+            let storage = FileEventStorage(folderURL: url)
+            events.forEach {
+                storage.storeEvent($0)
+            }
+            
+            
+            let group = DispatchGroup()
+            group.enter()
+            storage.addBarrier(group.leave)
+            group.wait()
+            
+            events.forEach {
+                storage.removeEvent($0)
+            }
+
+            let group2 = DispatchGroup()
+            group2.enter()
+            storage.addBarrier(group2.leave)
+            group2.wait()
+        }
+    }
 
     func testLoadPerformance() {
         let storage = FileEventStorage(folderURL: url)
