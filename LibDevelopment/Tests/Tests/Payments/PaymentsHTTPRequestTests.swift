@@ -244,6 +244,37 @@ final class PaymentsHTTPRequestTests: XCTestCase {
         )
     }
     
+    func testRestore() {
+        let traceId = UUID()
+        let customerId = UserId.string("a customer")
+        let receipt = "a receipt"
+        let env = URL(string: "http://\(UUID())")!
+        
+        let request = PaymentsHTTPRequest(
+            environment: env,
+            traceId: traceId,
+            endpoint: .restorePurchase(customerId, receipt)
+        )
+        
+        let urlRequest = request.urlRequest(headerFields: ["aHeader5": "aValue5"])
+        let payloadString = urlRequest?.httpBody.flatMap { String(data: $0, encoding: .utf8) }
+        
+        XCTAssertEqual(urlRequest?.httpMethod, "POST")
+        XCTAssertEqual(urlRequest?.url, URL(string: "\(env)/apple-store/process-restore"))
+        XCTAssertEqual(
+            payloadString,
+            "{\"customerId\":{\"value\":\"a customer\",\"type\":\"merchant-str\"},\"receiptData\":\"a receipt\"}"
+        )
+        XCTAssertEqual(
+            urlRequest?.allHTTPHeaderFields,
+            [
+                "Content-Type": "application/json",
+                "aHeader5": "aValue5",
+                "x-paltabrain-trace-id": traceId.uuidString
+            ]
+        )
+    }
+    
     func testLog() {
         let traceId = UUID()
         let env = URL(string: "http://\(UUID())")!
