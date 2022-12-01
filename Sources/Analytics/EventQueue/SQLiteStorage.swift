@@ -83,21 +83,21 @@ final class SQLiteStorage {
 extension SQLiteStorage: EventStorage {
     func storeEvent(_ event: Event) {
         let row = RowData(column1: event.insertId.data, column2: try! encoder.encode(event))
-        try! executeStatement("INSERT INTO events (event_id, event_data) VALUES (?, ?)") { executor in
+        try? executeStatement("INSERT INTO events (event_id, event_data) VALUES (?, ?)") { executor in
             executor.setRow(row)
             try executor.runStep()
         }
     }
     
     func removeEvent(_ event: Event) {
-        try! executeStatement("DELETE FROM events WHERE event_id = ?") { executor in
+        try? executeStatement("DELETE FROM events WHERE event_id = ?") { executor in
             executor.setValue(event.insertId.data)
             try executor.runStep()
         }
     }
     
     func loadEvents(_ completion: @escaping ([Event]) -> Void) {
-        let results = try! executeStatement("SELECT event_id, event_data FROM events") { executor in
+        let results: [Event]? = try? executeStatement("SELECT event_id, event_data FROM events") { executor in
             var results: [Event] = []
             
             while executor.runQuery(), let row = executor.getRow() {
@@ -106,10 +106,10 @@ extension SQLiteStorage: EventStorage {
                 }
             }
             
-            return results
+            return results as [Event]
         }
         
-        completion(results)
+        completion(results ?? [])
     }
 }
 
