@@ -61,7 +61,7 @@ final class SQLiteStorage {
         }
     }
     
-    private func executeStatement<T>(_ statementString: String, _ execution: (StatementExecutor) throws -> T) throws -> T {
+    private func executeStatement<T>(_ statementString: String, _ execution: (StatementExecutor) throws -> T = defaultExecution(_:)) throws -> T {
         var statement: OpaquePointer?
         
         guard
@@ -90,10 +90,7 @@ extension SQLiteStorage: EventStorage {
     }
     
     func removeEvent(_ event: Event) {
-        try? executeStatement("DELETE FROM events WHERE event_id = ?") { executor in
-            executor.setValue(event.insertId.data)
-            try executor.runStep()
-        }
+        try? doRemoveEvent(event)
     }
     
     func loadEvents(_ completion: @escaping ([Event]) -> Void) {
@@ -111,6 +108,51 @@ extension SQLiteStorage: EventStorage {
         
         completion(results ?? [])
     }
+    
+    private func doRemoveEvent(_ event: Event) throws {
+        try executeStatement("DELETE FROM events WHERE event_id = ?") { executor in
+            executor.setValue(event.insertId.data)
+            try executor.runStep()
+        }
+    }
+}
+
+extension SQLiteStorage: BatchStorage {
+    func saveBatch(_ batch: Batch) throws {
+        do {
+            try executeStatement("BEGIN TRANSACTION")
+            
+            try doSaveBatch(batch)
+            
+            try batch.events.forEach {
+                try doRemoveEvent($0)
+            }
+            
+            try executeStatement("COMMIT TRANSACTION")
+        } catch {
+            try executeStatement("ROLLBACK TRANSACTION")
+            throw error
+        }
+    }
+    
+    func loadBatch() throws -> Batch? {
+        try executeStatement("SELECT batch_id, batch_data FROM batches") { executor in
+            executor.runQuery()
+            return try executor.getRow().map { try decoder.decode(Batch.self, from: $0.column2) }
+        }
+    }
+    
+    func removeBatch() throws {
+        try executeStatement("DELETE FROM batches WHERE TRUE")
+    }
+    
+    private func doSaveBatch(_ batch: Batch) throws {
+        let row = RowData(column1: batch.batchId.data, column2: try encoder.encode(batch))
+        try executeStatement("INSERT INTO batches (batch_id, batch_data) VALUES (?, ?)") { executor in
+            executor.setRow(row)
+            try executor.runStep()
+        }
+    }
 }
 
 private struct StatementExecutor {
@@ -122,6 +164,7 @@ private struct StatementExecutor {
         }
     }
     
+    @discardableResult
     func runQuery() -> Bool {
         sqlite3_step(statement) == SQLITE_ROW
     }
@@ -162,3 +205,7 @@ private struct RowData {
 }
 
 private let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+
+private func defaultExecution(_ executor: StatementExecutor) throws {
+    try executor.runStep()
+}

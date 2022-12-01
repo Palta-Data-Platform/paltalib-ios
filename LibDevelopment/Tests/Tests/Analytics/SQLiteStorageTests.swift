@@ -88,4 +88,54 @@ final class SQLiteStorageTests: XCTestCase {
 
         wait(for: [eventsLoaded], timeout: 0.05)
     }
+    
+    func testBatchStore() throws {
+        let expectedEvents = (0...20).map {
+            Event.mock(uuid: UUID(), timestamp: $0)
+        }
+        
+        let batch = Batch(batchId: UUID(), events: Array(expectedEvents[0...10]), telemetry: .mock())
+        
+        let storage1 = try SQLiteStorage(folderURL: url)
+        expectedEvents.forEach(storage1.storeEvent(_:))
+        
+        try storage1.saveBatch(batch)
+        
+        let storage2 = try SQLiteStorage(folderURL: url)
+
+        let eventsLoaded = expectation(description: "Events loaded")
+
+        storage2.loadEvents { events in
+            let sortedEvents = events.sorted(by: { $0.timestamp < $1.timestamp })
+
+            XCTAssertEqual(sortedEvents, Array(expectedEvents[11...20]))
+            eventsLoaded.fulfill()
+        }
+
+        wait(for: [eventsLoaded], timeout: 0.05)
+        
+        XCTAssertEqual(try storage2.loadBatch(), batch)
+    }
+    
+    func testBatchRemove() throws {
+        let expectedEvents = (0...20).map {
+            Event.mock(uuid: UUID(), timestamp: $0)
+        }
+        
+        let batch = Batch(batchId: UUID(), events: Array(expectedEvents[0...10]), telemetry: .mock())
+        
+        let storage1 = try SQLiteStorage(folderURL: url)
+        try storage1.saveBatch(batch)
+        
+        let storage2 = try SQLiteStorage(folderURL: url)
+        try storage2.removeBatch()
+        
+        let storage3 = try SQLiteStorage(folderURL: url)
+        XCTAssertNil(try storage3.loadBatch())
+    }
+    
+    func testBatchLoadNoBatch() throws {
+        let storage = try SQLiteStorage(folderURL: url)
+        XCTAssertNil(try storage.loadBatch())
+    }
 }
