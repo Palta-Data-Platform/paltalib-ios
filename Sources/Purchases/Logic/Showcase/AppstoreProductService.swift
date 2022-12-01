@@ -9,7 +9,7 @@ import Foundation
 import StoreKit
 
 protocol AppstoreProductService {
-    func retrieveProducts(with ids: Set<String>, idents: [String: String], completion: @escaping (Result<[Product], PaymentsError>) -> Void)
+    func retrieveProducts(with ids: Set<String>, pricePoints: [String: [PricePoint]], completion: @escaping (Result<[Product], PaymentsError>) -> Void)
 }
 
 final class AppstoreProductServiceImpl: AppstoreProductService {
@@ -21,9 +21,9 @@ final class AppstoreProductServiceImpl: AppstoreProductService {
         self.mapper = mapper
     }
     
-    func retrieveProducts(with ids: Set<String>, idents: [String: String], completion: @escaping (Result<[Product], PaymentsError>) -> Void) {
+    func retrieveProducts(with ids: Set<String>, pricePoints: [String: [PricePoint]], completion: @escaping (Result<[Product], PaymentsError>) -> Void) {
         let request = SKProductsRequest(productIdentifiers: ids)
-        let handler = RequestHandler(request: request, idents: idents, mapper: mapper) { [unowned self] in
+        let handler = RequestHandler(request: request, pricePoints: pricePoints, mapper: mapper) { [unowned self] in
             pendingRequests.removeAll(where: { $0.request == request })
             completion($0)
         }
@@ -35,7 +35,7 @@ private final class RequestHandler: NSObject, SKProductsRequestDelegate {
     private let timeoutInterval: TimeInterval = 10
 
     let request: SKProductsRequest
-    private let idents: [String: String]
+    private let pricePoints: [String: [PricePoint]]
     private let mapper: AppstoreProductMapper
     private let completion: (Result<[Product], PaymentsError>) -> Void
     
@@ -45,12 +45,12 @@ private final class RequestHandler: NSObject, SKProductsRequestDelegate {
     
     init(
         request: SKProductsRequest,
-        idents: [String: String],
+        pricePoints: [String: [PricePoint]],
         mapper: AppstoreProductMapper,
         completion: @escaping (Result<[Product], PaymentsError>) -> Void
     ) {
         self.request = request
-        self.idents = idents
+        self.pricePoints = pricePoints
         self.mapper = mapper
         self.completion = completion
         
@@ -72,7 +72,7 @@ private final class RequestHandler: NSObject, SKProductsRequestDelegate {
         
         completion(
             .success(
-                response.products.map { mapper.map($0, idents: idents) }
+                response.products.flatMap { mapper.map($0, pricePoints: pricePoints) }
             )
         )
         

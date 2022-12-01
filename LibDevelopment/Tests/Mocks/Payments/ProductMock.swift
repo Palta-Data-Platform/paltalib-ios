@@ -9,7 +9,7 @@ import Foundation
 @testable import PaltaLibPayments
 
 extension Product {
-    static func mock(productIdentifier: String = "") -> Product {
+    static func mock(productIdentifier: String = "", priority: Int? = nil) -> Product {
         .init(
             productType: .nonRenewableSubscription,
             productIdentifier: productIdentifier,
@@ -19,9 +19,10 @@ extension Product {
             price: 0,
             localizedPriceString: "",
             subscriptionPeriod: nil,
+            appliedDiscount: nil,
             introductoryDiscount: nil,
             discounts: [],
-            originalEntity: 0
+            originalEntity: ShowcaseProduct.mock(priority: priority)
         )
     }
 }

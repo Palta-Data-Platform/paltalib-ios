@@ -9,34 +9,46 @@ import Foundation
 import StoreKit
 
 protocol AppstoreProductMapper: AnyObject {
-    func map(_ appStoreProduct: SKProduct, idents: [String: String]) -> Product
+    func map(_ appStoreProduct: SKProduct, pricePoints: [String: [PricePoint]]) -> [Product]
 }
 
 final class AppstoreProductMapperImpl: AppstoreProductMapper {
     private var priceFormatters: [Locale: NumberFormatter] = [:]
     
-    func map(_ appStoreProduct: SKProduct, idents: [String: String]) -> Product {
-        guard let ident = idents[appStoreProduct.productIdentifier] else {
+    func map(_ appStoreProduct: SKProduct, pricePoints: [String: [PricePoint]]) -> [Product] {
+        guard let pricePoints = pricePoints[appStoreProduct.productIdentifier] else {
             fatalError()
         }
-
-        return Product(
-            productType: .nonConsumable,
-            productIdentifier: appStoreProduct.productIdentifier,
-            localizedDescription: appStoreProduct.localizedDescription,
-            localizedTitle: appStoreProduct.localizedTitle,
-            currencyCode: appStoreProduct.priceLocale.currencyCode,
-            price: appStoreProduct.price.decimalValue,
-            localizedPriceString: priceString(locale: appStoreProduct.priceLocale, price: appStoreProduct.price),
-            subscriptionPeriod: appStoreProduct.subscriptionPeriod.map(SubscriptionPeriod.init),
-            introductoryDiscount: appStoreProduct.introductoryPrice.map {
-                ProductDiscount(sk: $0, priceFormatter: priceString(locale:price:))
-            },
-            discounts: appStoreProduct.discounts.map {
-                ProductDiscount(sk: $0, priceFormatter: priceString(locale:price:))
-            },
-            originalEntity: ShowcaseProduct(ident: ident, skProduct: appStoreProduct)
-        )
+        
+        return pricePoints.compactMap { (pricePoint) -> Product? in
+            let appliedDiscount: SKProductDiscount?
+            
+            if let introOffer = appStoreProduct.introductoryPrice {
+                appliedDiscount = introOffer
+            } else {
+                appliedDiscount = nil
+            }
+            
+            return Product(
+                productType: appStoreProduct.subscriptionPeriod != nil ? .autoRenewableSubscription : .nonConsumable,
+                productIdentifier: appStoreProduct.productIdentifier,
+                localizedDescription: appStoreProduct.localizedDescription,
+                localizedTitle: appStoreProduct.localizedTitle,
+                currencyCode: appStoreProduct.priceLocale.currencyCode,
+                price: appStoreProduct.price.decimalValue,
+                localizedPriceString: priceString(locale: appStoreProduct.priceLocale, price: appStoreProduct.price),
+                subscriptionPeriod: appStoreProduct.subscriptionPeriod.map(SubscriptionPeriod.init),
+                appliedDiscount: appliedDiscount.map { ProductDiscount(sk: $0, priceFormatter: priceString(locale:price:)) },
+                introductoryDiscount: nil,
+                discounts: [],
+                originalEntity: ShowcaseProduct(
+                    ident: pricePoint.ident,
+                    skProduct: appStoreProduct,
+                    discount: appliedDiscount,
+                    priority: pricePoint.priority
+                )
+            )
+        }
     }
     
     private func priceString(locale: Locale, price: NSDecimalNumber) -> String {

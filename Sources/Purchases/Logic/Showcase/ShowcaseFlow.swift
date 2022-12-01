@@ -48,13 +48,13 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
         for pricePoints: [PricePoint],
         completion: @escaping (Result<[Product], PaymentsError>) -> Void
     ) {
-        let idents = makePricePointMap(from: pricePoints).mapValues { $0.ident }
+        let pricePointsMap = makePricePointMap(from: pricePoints)
         
         let ids = Set(pricePoints.map { $0.productId })
-        appStoreProductsService.retrieveProducts(with: ids, idents: idents) { [self] result in
+        appStoreProductsService.retrieveProducts(with: ids, pricePoints: pricePointsMap) { [self] result in
             switch result {
             case .success(let products):
-                matchProducts(products, and: pricePoints, completion: completion)
+                sortProducts(products, completion: completion)
             case .failure(let error):
                 completion(.failure(error))
                 isInProgress = false
@@ -62,15 +62,12 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
         }
     }
     
-    private func matchProducts(
+    private func sortProducts(
         _ products: [Product],
-        and pricePoints: [PricePoint],
         completion: @escaping (Result<[Product], PaymentsError>) -> Void
     ) {
-        let pricePointMap = makePricePointMap(from: pricePoints)
-        
         let priorityForProduct: (Product) -> Int = {
-            pricePointMap[$0.productIdentifier]?.priority ?? 0
+            ($0.originalEntity as? ShowcaseProduct)?.priority ?? 0
         }
         
         completion(
@@ -78,10 +75,10 @@ final class ShowcaseFlowImpl: ShowcaseFlow {
         )
     }
     
-    private func makePricePointMap(from pricePoints: [PricePoint]) -> [String: PricePoint] {
+    private func makePricePointMap(from pricePoints: [PricePoint]) -> [String: [PricePoint]] {
         Dictionary(
             grouping: pricePoints,
             by: { $0.productId }
-        ).compactMapValues { $0.first }
+        )
     }
 }

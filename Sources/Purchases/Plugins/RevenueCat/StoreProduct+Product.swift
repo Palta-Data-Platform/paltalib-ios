@@ -19,6 +19,7 @@ extension Product {
             price: rc.price,
             localizedPriceString: rc.localizedPriceString,
             subscriptionPeriod: rc._subscriptionPeriod,
+            appliedDiscount: nil,
             introductoryDiscount: rc._introductoryDiscount,
             discounts: rc._discounts,
             originalEntity: rc

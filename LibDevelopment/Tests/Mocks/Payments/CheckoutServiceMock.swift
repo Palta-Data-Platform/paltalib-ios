@@ -29,6 +29,11 @@ final class CheckoutServiceMock: CheckoutService {
     var getTraceId: UUID?
     var getResult: Result<CheckoutState, PaymentsError>?
     
+    var restoreCustomerId: UserId?
+    var restoreData: Data?
+    var restoreTraceId: UUID?
+    var restoreResult: Result<(), PaymentsError>?
+    
     var logLevel: LogPayload.Level?
     var logEvent: String?
     var logData: [String: Any]?
@@ -78,6 +83,16 @@ final class CheckoutServiceMock: CheckoutService {
         
         if let getResult = getResult {
             completion(getResult)
+        }
+    }
+    
+    func restorePurchases(customerId: UserId, receiptData: Data, traceId: UUID, completion: @escaping (Result<(), PaymentsError>) -> Void) {
+        restoreCustomerId = customerId
+        restoreData = receiptData
+        restoreTraceId = traceId
+        
+        if let restoreResult = restoreResult {
+            completion(restoreResult)
         }
     }
     

@@ -38,6 +38,13 @@ protocol CheckoutService {
         completion: @escaping (Result<CheckoutState, PaymentsError>) -> Void
     )
     
+    func restorePurchases(
+        customerId: UserId,
+        receiptData: Data,
+        traceId: UUID,
+        completion: @escaping (Result<(), PaymentsError>) -> Void
+    )
+    
     func log(
         level: LogPayload.Level,
         event: String,
@@ -141,6 +148,29 @@ final class CheckoutServiceImpl: CheckoutService {
             switch result {
             case .success(let response):
                 completion(.success(response.state))
+                
+            case .failure(let error):
+                completion(.failure(PaymentsError(networkError: error)))
+            }
+        }
+    }
+    
+    func restorePurchases(
+        customerId: UserId,
+        receiptData: Data,
+        traceId: UUID,
+        completion: @escaping (Result<(), PaymentsError>) -> Void
+    ) {
+        let request = PaymentsHTTPRequest(
+            environment: environment,
+            traceId: traceId,
+            endpoint: .restorePurchase(customerId, receiptData.base64EncodedString())
+        )
+        
+        httpClient.perform(request) { (result: Result<EmptyResponse, NetworkErrorWithoutResponse>) in
+            switch result {
+            case .success:
+                completion(.success(()))
                 
             case .failure(let error):
                 completion(.failure(PaymentsError(networkError: error)))

@@ -48,9 +48,14 @@ public struct Product {
     public let currencyCode: String?
     public let price: Decimal
     public let localizedPriceString: String
-    
+
     public let subscriptionPeriod: SubscriptionPeriod?
+    public let appliedDiscount: ProductDiscount?
+    
+    @available(*, deprecated, message: "This parameter will be filled only for third-party providers like Revenue Cat")
     public let introductoryDiscount: ProductDiscount?
+    
+    @available(*, deprecated, message: "This parameter will be filled only for third-party providers like Revenue Cat")
     public let discounts: [ProductDiscount]
     
     let originalEntity: Any
@@ -64,6 +69,7 @@ extension Product: Hashable {
         && lhs.localizedTitle == rhs.localizedTitle
         && lhs.currencyCode == rhs.currencyCode
         && lhs.price == rhs.price
+        && lhs.appliedDiscount == rhs.appliedDiscount
         && lhs.discounts == rhs.discounts
         && lhs.subscriptionPeriod == rhs.subscriptionPeriod
         && lhs.introductoryDiscount == rhs.introductoryDiscount
@@ -78,6 +84,7 @@ extension Product: Hashable {
         price.hash(into: &hasher)
         subscriptionPeriod.hash(into: &hasher)
         introductoryDiscount?.hashValue.hash(into: &hasher)
+        appliedDiscount?.hashValue.hash(into: &hasher)
         
         discounts.forEach {
             $0.hashValue.hash(into: &hasher)

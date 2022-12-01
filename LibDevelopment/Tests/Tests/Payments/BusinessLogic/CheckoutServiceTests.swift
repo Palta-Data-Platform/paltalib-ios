@@ -185,6 +185,45 @@ final class CheckoutServiceTests: XCTestCase {
         wait(for: [failCalled], timeout: 0.1)
     }
     
+    func testRestoreSuccess() {
+        let customerId = UserId.uuid(UUID())
+        let receiptData = Data((0...100).map { _ in UInt8.random(in: 0...255) })
+        let traceId = UUID()
+        
+        httpMock.result = .success(EmptyResponse())
+        
+        let successCalled = expectation(description: "Success called")
+        
+        checkoutService.restorePurchases(customerId: customerId, receiptData: receiptData, traceId: traceId) { result in
+            guard case .success = result else {
+                return
+            }
+            
+            successCalled.fulfill()
+        }
+        
+        wait(for: [successCalled], timeout: 0.1)
+        
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.endpoint, .restorePurchase(customerId, receiptData.base64EncodedString()))
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.traceId, traceId)
+        XCTAssertEqual((httpMock.request as? PaymentsHTTPRequest)?.environment, environment)
+    }
+    
+    func testRestoreFailure() {
+        httpMock.result = .failure(NetworkErrorWithoutResponse.decodingError(nil))
+        let failCalled = expectation(description: "Fail called")
+        
+        checkoutService.restorePurchases(customerId: .string(""), receiptData: Data(), traceId: UUID()) { result in
+            guard case .failure = result else {
+                return
+            }
+            
+            failCalled.fulfill()
+        }
+        
+        wait(for: [failCalled], timeout: 0.1)
+    }
+    
     func testLogNoData() {
         let traceId = UUID()
         

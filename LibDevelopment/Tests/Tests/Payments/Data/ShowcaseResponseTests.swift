@@ -18,11 +18,15 @@ final class ShowcaseResponseTests: XCTestCase {
     {
       "ident": "ident1",
       "priority": 1001,
-      "productId": "id1"
+      "appleStore": {
+          "productId": "id1"
+      }
     },
     {
       "ident": "ident2",
-      "productId": "id2"
+      "appleStore": {
+          "productId": "id2"
+      }
     }
   ]
 }
@@ -46,7 +50,9 @@ final class ShowcaseResponseTests: XCTestCase {
     {
       "ident": "ident1",
       "priority": 1001,
-      "productId": "id1"
+      "appleStore": {
+          "productId": "id1"
+      }
     },
     {
       "ident": "ident-1",
@@ -54,10 +60,14 @@ final class ShowcaseResponseTests: XCTestCase {
     },
     {
       "ident": "ident2",
-      "productId": "id2"
+      "appleStore": {
+          "productId": "id2"
+      }
     },
     {
-      "productId": "id2"
+      "appleStore": {
+          "productId": "id12"
+      }
     }
   ]
 }

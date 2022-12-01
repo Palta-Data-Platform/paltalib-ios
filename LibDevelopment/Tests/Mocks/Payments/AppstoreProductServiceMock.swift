@@ -10,11 +10,11 @@ import Foundation
 
 final class AppstoreProductServiceMock: AppstoreProductService {
     var result: Result<[Product], PaymentsError>?
-    var idents: [String: String]?
+    var pricePoints: [String : [PaltaLibPayments.PricePoint]]?
     var ids: Set<String>?
     
-    func retrieveProducts(with ids: Set<String>, idents: [String : String], completion: @escaping (Result<[Product], PaymentsError>) -> Void) {
-        self.idents = idents
+    func retrieveProducts(with ids: Set<String>, pricePoints: [String : [PricePoint]], completion: @escaping (Result<[Product], PaymentsError>) -> Void) {
+        self.pricePoints = pricePoints
         self.ids = ids
         
         if let result = result {
