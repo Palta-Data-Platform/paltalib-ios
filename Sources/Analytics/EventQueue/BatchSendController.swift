@@ -35,20 +35,17 @@ final class BatchSendControllerImpl: BatchSendController {
     private let batchComposer: BatchComposer
     private let batchStorage: BatchStorage
     private let batchSender: BatchSender
-    private let eventStorage: EventStorage
     private let timer: Timer
     
     init(
         batchComposer: BatchComposer,
         batchStorage: BatchStorage,
         batchSender: BatchSender,
-        eventStorage: EventStorage,
         timer: Timer
     ) {
         self.batchComposer = batchComposer
         self.batchStorage = batchStorage
         self.batchSender = batchSender
-        self.eventStorage = eventStorage
         self.timer = timer
     }
     
@@ -66,9 +63,6 @@ final class BatchSendControllerImpl: BatchSendController {
         
         do {
             try batchStorage.saveBatch(batch)
-            events.forEach {
-                eventStorage.removeEvent($0)
-            }
         } catch {
             print("PaltaLib: Analytics: Error saving batch: \(error)")
             completeBatchSend()

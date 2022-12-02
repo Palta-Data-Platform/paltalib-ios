@@ -13,7 +13,6 @@ final class BatchSendControllerTests: XCTestCase {
     private var composerMock: BatchComposerMock!
     private var storageMock: BatchStorageMock!
     private var senderMock: BatchSenderMock!
-    private var eventStorageMock: EventStorageMock!
     private var timerMock: TimerMock!
     
     private var controller: BatchSendControllerImpl!
@@ -24,14 +23,12 @@ final class BatchSendControllerTests: XCTestCase {
         composerMock = .init()
         storageMock = .init()
         senderMock = .init()
-        eventStorageMock = .init()
         timerMock = .init()
         
         controller = BatchSendControllerImpl(
             batchComposer: composerMock,
             batchStorage: storageMock,
             batchSender: senderMock,
-            eventStorage: eventStorageMock,
             timer: timerMock
         )
     }
@@ -56,7 +53,6 @@ final class BatchSendControllerTests: XCTestCase {
         XCTAssertNotNil(senderMock.batch)
         XCTAssertNotNil(storageMock.savedBatch)
         XCTAssert(storageMock.batchRemoved)
-        XCTAssertEqual(eventStorageMock.removedEvents.count, 11)
         XCTAssert(controller.isReady)
     }
     
@@ -76,7 +72,6 @@ final class BatchSendControllerTests: XCTestCase {
         composerMock.telemetry = nil
         senderMock.batch = nil
         storageMock.savedBatch = nil
-        eventStorageMock.removedEvents = []
         
         controller.sendBatch(of: events2, with: .mock())
         
@@ -85,7 +80,6 @@ final class BatchSendControllerTests: XCTestCase {
         XCTAssertNil(composerMock.events)
         XCTAssertNil(senderMock.batch)
         XCTAssertNil(storageMock.savedBatch)
-        XCTAssert(eventStorageMock.removedEvents.isEmpty)
         XCTAssertFalse(controller.isReady)
     }
     
@@ -299,7 +293,6 @@ final class BatchSendControllerTests: XCTestCase {
         XCTAssertNil(composerMock.events)
         XCTAssertNil(composerMock.telemetry)
         XCTAssertNotNil(senderMock.batch)
-        XCTAssert(eventStorageMock.removedEvents.isEmpty)
         
         senderMock.result = .success(())
         let isReadyCalled = expectation(description: "Is Ready called")

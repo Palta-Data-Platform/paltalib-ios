@@ -87,7 +87,6 @@ extension EventQueueAssembly {
             batchComposer: BatchComposerImpl(),
             batchStorage: batchStorage,
             batchSender: batchSender,
-            eventStorage: eventStorage,
             timer: TimerImpl()
         )
 
