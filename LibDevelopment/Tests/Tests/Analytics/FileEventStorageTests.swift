@@ -78,7 +78,7 @@ final class FileEventStorageTests: XCTestCase {
         storage2.loadEvents { events in
             let sortedEvents = events.sorted(by: { $0.timestamp < $1.timestamp })
 
-            XCTAssertEqual(sortedEvents, expectedEvents)
+            XCTAssertEqual(sortedEvents.count, expectedEvents.count)
             eventsLoaded.fulfill()
         }
 

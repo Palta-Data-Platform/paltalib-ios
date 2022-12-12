@@ -9,7 +9,7 @@ import Foundation
 import PaltaLibCore
 
 protocol EventQueueAssemblyProvider {
-    func newEventQueueAssembly() ->  EventQueueAssembly
+    func newEventQueueAssembly() throws ->  EventQueueAssembly
 }
 
 final class AnalyticsAssembly: EventQueueAssemblyProvider {
@@ -22,8 +22,8 @@ final class AnalyticsAssembly: EventQueueAssemblyProvider {
         self.analyticsCoreAssembly = AnalyticsCoreAssembly(coreAssembly: coreAssembly)
     }
 
-    func newEventQueueAssembly() ->  EventQueueAssembly {
-        .init(
+    func newEventQueueAssembly() throws ->  EventQueueAssembly {
+        try .init(
             coreAssembly: coreAssembly,
             analyticsCoreAssembly: analyticsCoreAssembly
         )

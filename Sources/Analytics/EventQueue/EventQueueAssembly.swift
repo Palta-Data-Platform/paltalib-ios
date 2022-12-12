@@ -50,7 +50,7 @@ final class EventQueueAssembly: FunctionalExtension {
 }
 
 extension EventQueueAssembly {
-    convenience init(coreAssembly: CoreAssembly, analyticsCoreAssembly: AnalyticsCoreAssembly) {
+    convenience init(coreAssembly: CoreAssembly, analyticsCoreAssembly: AnalyticsCoreAssembly) throws {
         let folderURL = try! FileManager.default.url(
             for: .libraryDirectory,
             in: .userDomainMask,
@@ -71,7 +71,14 @@ extension EventQueueAssembly {
             )
         }
 
-        let eventStorage: EventStorage = FileEventStorage(folderURL: folderURL)
+        let storage = try SQLiteStorage(folderURL: folderURL)
+        
+        do {
+            let migrator = FileStorageMigrator(folderURL: folderURL, newStorage: storage)
+            try migrator.migrateEvents()
+        } catch {
+            print("PaltaLib: Analytics: Error migrating events from legacy storage: \(error.localizedDescription)")
+        }
 
         let eventComposer = EventComposerImpl(
             sessionIdProvider: analyticsCoreAssembly.sessionManager,
@@ -80,19 +87,18 @@ extension EventQueueAssembly {
             trackingOptionsProvider: analyticsCoreAssembly.trackingOptionsProvider
         )
         
-        let batchStorage = BatchStorageImpl(folderURL: folderURL, fileManager: .default)
         let batchSender = BatchSenderImpl(httpClient: coreAssembly.httpClient)
         
         let batchSendController = BatchSendControllerImpl(
             batchComposer: BatchComposerImpl(),
-            batchStorage: batchStorage,
+            batchStorage: storage,
             batchSender: batchSender,
             timer: TimerImpl()
         )
 
         let eventQueue = EventQueueImpl(
             core: eventQueueCore,
-            storage: eventStorage,
+            storage: storage,
             sendController: batchSendController,
             eventComposer: eventComposer,
             sessionManager: analyticsCoreAssembly.sessionManager,
@@ -107,7 +113,7 @@ extension EventQueueAssembly {
             sessionManager: analyticsCoreAssembly.sessionManager,
             eventQueueCore: eventQueueCore,
             liveEventQueueCore: liveEventQueueCore,
-            eventStorage: eventStorage,
+            eventStorage: storage,
             eventComposer: eventComposer,
             batchSender: batchSender,
             batchSendController: batchSendController,

@@ -10,7 +10,7 @@ import PaltaLibCore
 @testable import PaltaLibAnalytics
 
 final class EventQueueAssemblyProviderMock: EventQueueAssemblyProvider {
-    func newEventQueueAssembly() -> EventQueueAssembly {
-        .init(coreAssembly: .init(), analyticsCoreAssembly: .init(coreAssembly: .init()))
+    func newEventQueueAssembly() throws -> EventQueueAssembly {
+        try .init(coreAssembly: .init(), analyticsCoreAssembly: .init(coreAssembly: .init()))
     }
 }

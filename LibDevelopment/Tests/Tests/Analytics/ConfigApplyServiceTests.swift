@@ -29,11 +29,11 @@ final class ConfigApplyServiceTests: XCTestCase {
         amplitudeInstances = []
     }
     
-    func testTwoTargetsDefault() {
+    func testTwoTargetsDefault() throws {
         let config = RemoteConfig.default
         
         let amplitude = Amplitude()
-        let palta = assemblyProvider.newEventQueueAssembly()
+        let palta = try assemblyProvider.newEventQueueAssembly()
         
         let coreConfigApplied = expectation(description: "Core config applied")
         
@@ -73,11 +73,11 @@ final class ConfigApplyServiceTests: XCTestCase {
         XCTAssertEqual(amplitudeInstances.first?.apiKey, "amplitude-key")
     }
     
-    func testOnlyAmplitude() {
+    func testOnlyAmplitude() throws {
         let config = RemoteConfig(targets: [.defaultAmplitude])
         
         let amplitude = Amplitude()
-        let palta = assemblyProvider.newEventQueueAssembly()
+        let palta = try assemblyProvider.newEventQueueAssembly()
         
         defaultAmplitudeInstance = amplitude
         defaultPaltaInstance = palta
@@ -108,11 +108,11 @@ final class ConfigApplyServiceTests: XCTestCase {
         XCTAssertEqual(amplitudeInstances.first?.apiKey, "amplitude-key")
     }
     
-    func testOnlyPaltaBrain() {
+    func testOnlyPaltaBrain() throws {
         let config = RemoteConfig(targets: [.defaultPaltaBrain])
         
         let amplitude = Amplitude()
-        let palta = assemblyProvider.newEventQueueAssembly()
+        let palta = try assemblyProvider.newEventQueueAssembly()
         
         let coreConfigApplied = expectation(description: "Core config applied")
         
@@ -150,7 +150,7 @@ final class ConfigApplyServiceTests: XCTestCase {
         XCTAssertEqual(paltaQueueAssemblies.first?.batchSender.apiToken, "palta-key")
     }
     
-    func testPaltaBrainOnLegacy() {
+    func testPaltaBrainOnLegacy() throws {
         let config = RemoteConfig(targets: [
             ConfigTarget(
                 name: .paltabrain,
@@ -170,7 +170,7 @@ final class ConfigApplyServiceTests: XCTestCase {
         ])
         
         let amplitude = Amplitude()
-        let palta = assemblyProvider.newEventQueueAssembly()
+        let palta = try assemblyProvider.newEventQueueAssembly()
         
         defaultAmplitudeInstance = amplitude
         defaultPaltaInstance = palta
@@ -202,7 +202,7 @@ final class ConfigApplyServiceTests: XCTestCase {
         XCTAssertEqual(amplitudeInstances.last?.apiKey, "amplitude-key")
     }
     
-    func testTwoPaltaBrain() {
+    func testTwoPaltaBrain() throws {
         let config = RemoteConfig(targets: [
             ConfigTarget(
                 name: .paltabrain,
@@ -223,7 +223,7 @@ final class ConfigApplyServiceTests: XCTestCase {
         ])
         
         let amplitude = Amplitude()
-        let palta = assemblyProvider.newEventQueueAssembly()
+        let palta = try assemblyProvider.newEventQueueAssembly()
         
         let coreConfigApplied = expectation(description: "Core config applied")
         

@@ -16,7 +16,7 @@ final class EventQueueAssemblyTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         
-        assembly = EventQueueAssembly(
+        assembly = try EventQueueAssembly(
             coreAssembly: CoreAssembly(),
             analyticsCoreAssembly: AnalyticsCoreAssembly(coreAssembly: CoreAssembly())
         )

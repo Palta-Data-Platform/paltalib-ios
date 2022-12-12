@@ -49,7 +49,12 @@ public final class PaltaAnalytics {
     private var host: URL?
     
     init() {
-        defaultPaltaInstance = assembly.newEventQueueAssembly()
+        do {
+            defaultPaltaInstance = try assembly.newEventQueueAssembly()
+        } catch {
+            print("PaltaLib: Analytics: failed to setup instance due to error: \(error)")
+            return
+        }
     }
 
     public func configure(

@@ -138,7 +138,12 @@ final class ConfigApplyService {
             eventQueueAssembly = defPaltaAssembly
             defaultPaltaAssembly = nil
         } else {
-            eventQueueAssembly = eventQueueAssemblyProvider.newEventQueueAssembly()
+            do {
+                eventQueueAssembly = try eventQueueAssemblyProvider.newEventQueueAssembly()
+            } catch {
+                print("PaltaLib: Analytics: failed to setup instance due to error: \(error)")
+                return
+            }
         }
         
         eventQueueAssembly.batchSender.apiToken = apiKey
