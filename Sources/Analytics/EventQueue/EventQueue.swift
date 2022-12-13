@@ -32,6 +32,7 @@ final class EventQueueImpl: EventQueue {
     private let eventComposer: EventComposer
     private let sessionManager: SessionManager
     private let timer: Timer
+    private let backgroundNotifier: BackgroundNotifier
 
     init(
         core: EventQueueCore,
@@ -40,7 +41,8 @@ final class EventQueueImpl: EventQueue {
         sender: EventSender,
         eventComposer: EventComposer,
         sessionManager: SessionManager,
-        timer: Timer
+        timer: Timer,
+        backgroundNotifier: BackgroundNotifier
     ) {
         self.core = core
         self.liveCore = liveCore
@@ -49,10 +51,12 @@ final class EventQueueImpl: EventQueue {
         self.eventComposer = eventComposer
         self.sessionManager = sessionManager
         self.timer = timer
+        self.backgroundNotifier = backgroundNotifier
 
         setupCore(core, liveQueue: false)
         setupCore(liveCore, liveQueue: true)
         startSessionManager()
+        subscribeForBackgroundNotifications()
     }
 
     func logEvent(
@@ -153,6 +157,13 @@ final class EventQueueImpl: EventQueue {
                 events.forEach(storage.removeEvent)
                 completionHandler()
             }
+            
+        }
+    }
+    
+    private func subscribeForBackgroundNotifications() {
+        backgroundNotifier.addListener { [weak self] in
+            self?.core.forceFlush()
         }
     }
 }

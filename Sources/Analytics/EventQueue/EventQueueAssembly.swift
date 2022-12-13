@@ -80,7 +80,8 @@ extension EventQueueAssembly {
             sender: eventSender,
             eventComposer: eventComposer,
             sessionManager: analyticsCoreAssembly.sessionManager,
-            timer: TimerImpl()
+            timer: TimerImpl(),
+            backgroundNotifier: BackgroundNotifierImpl(notificationCenter: .default)
         )
 
         let identityLogger = IdentityLogger(eventQueue: eventQueue)

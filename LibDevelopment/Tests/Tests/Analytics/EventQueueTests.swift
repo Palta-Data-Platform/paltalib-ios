@@ -17,6 +17,7 @@ final class EventQueueTests: XCTestCase {
     var senderMock: EventSenderMock!
     var composerMock: EventComposerMock!
     var sessionManagerMock: SessionManagerMock!
+    var backgroundNotifierMock: BackgroundNotifierMock!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -28,6 +29,7 @@ final class EventQueueTests: XCTestCase {
         senderMock = .init()
         composerMock = .init()
         sessionManagerMock = .init()
+        backgroundNotifierMock = .init()
 
         eventQueue = .init(
             core: coreMock,
@@ -36,7 +38,8 @@ final class EventQueueTests: XCTestCase {
             sender: senderMock,
             eventComposer: composerMock,
             sessionManager: sessionManagerMock,
-            timer: timerMock
+            timer: timerMock,
+            backgroundNotifier: backgroundNotifierMock
         )
 
         eventQueue.excludedEvents = ["excludedEvent"]
@@ -99,7 +102,8 @@ final class EventQueueTests: XCTestCase {
             sender: senderMock,
             eventComposer: composerMock,
             sessionManager: sessionManagerMock,
-            timer: timerMock
+            timer: timerMock,
+            backgroundNotifier: backgroundNotifierMock
         )
 
         XCTAssertEqual(storageMock.eventsToLoad, coreMock.addedEvents)
@@ -235,5 +239,11 @@ final class EventQueueTests: XCTestCase {
         XCTAssert(coreMock.addedEvents.isEmpty)
         XCTAssert(liveCoreMock.addedEvents.isEmpty)
         XCTAssert(storageMock.addedEvents.isEmpty)
+    }
+    
+    func testBackground() {
+        backgroundNotifierMock.listener?()
+        
+        XCTAssert(coreMock.forceFlushTriggered)
     }
 }

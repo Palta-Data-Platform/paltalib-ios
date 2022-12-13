@@ -25,6 +25,8 @@ protocol EventQueueCore: AnyObject {
 
     func addEvent(_ event: Event)
     func addEvents(_ events: [Event])
+    
+    func forceFlush()
 }
 
 final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
@@ -87,6 +89,12 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     func apply(_ config: EventQueueConfig) {
         workingQueue.async {
             self.config = config
+        }
+    }
+    
+    func forceFlush() {
+        workingQueue.async { [self] in
+            flush()
         }
     }
     
@@ -163,8 +171,6 @@ final class EventQueueCoreImpl: EventQueueCore, FunctionalExtension {
     }
 
     private func flush() {
-        assert(Thread.callStackSymbols[1].contains("attemptFlush"))
-
         timerFired = false
 
         guard let config = config else {
