@@ -72,9 +72,11 @@ final class SQLiteStorage {
             throw SQliteError.statementPreparationFailed
         }
         
-        let result = try execution(StatementExecutor(statement: statement))
+        defer {
+            sqlite3_finalize(statement)
+        }
         
-        sqlite3_finalize(statement)
+        let result = try execution(StatementExecutor(statement: statement))
         
         return result
     }
@@ -159,7 +161,8 @@ private struct StatementExecutor {
     let statement: OpaquePointer
     
     func runStep() throws {
-        guard sqlite3_step(statement) == SQLITE_DONE else {
+        let result = sqlite3_step(statement)
+        guard result == SQLITE_DONE else {
             throw SQliteError.stepExecutionFailed
         }
     }
