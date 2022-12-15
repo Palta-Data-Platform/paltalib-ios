@@ -70,6 +70,10 @@ extension EventQueueAssembly {
                 )
             )
         }
+        
+        if !FileManager.default.fileExists(atPath: folderURL.path) {
+            try FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: true)
+        }
 
         let storage = try SQLiteStorage(folderURL: folderURL)
         

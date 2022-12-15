@@ -24,6 +24,10 @@ final class FileStorageMigrator {
         let files = try fileManager.contentsOfDirectory(atPath: folderURL.path)
         
         for file in files {
+            guard file.hasSuffix(".event") else {
+                continue
+            }
+
             let url = folderURL.appendingPathComponent(file)
             do {
                 let data = try Data(contentsOf: url)
