@@ -78,7 +78,11 @@ final class BatchSendControllerImpl: BatchSendController {
     
     private func completeBatchSend() {
         lock.lock()
-        try! batchStorage.removeBatch()
+        do {
+            try batchStorage.removeBatch()
+        } catch {
+            print("PaltaLib: Analytics: Batch remove failed due to error: \(error)")
+        }
         _isReady = true
         lock.unlock()
     }
