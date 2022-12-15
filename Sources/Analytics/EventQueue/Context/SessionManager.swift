@@ -111,12 +111,13 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
         session = restoreSession() ?? newSession()
         lock.unlock()
     }
-
+    
     private func newSession() -> Session {
-        sessionEventLogger?(kAMPSessionStartEvent, .currentTimestamp())
-        return Session(id: .currentTimestamp())
+        let timestamp: Int = .currentTimestamp()
+        sessionEventLogger?(kAMPSessionStartEvent, timestamp)
+        return Session(id: timestamp)
     }
-
+    
     private func restoreSession() -> Session? {
         guard
             let session: Session = userDefaults.object(for: defaultsKey),

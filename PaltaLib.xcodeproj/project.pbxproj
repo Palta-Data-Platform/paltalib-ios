@@ -165,6 +165,7 @@
 		11641F03293A5B8500C127DD /* FileStorageMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11641F01293A5B7300C127DD /* FileStorageMigratorTests.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
+		117FF7502948C14D0031F685 /* BackgroundNotifierMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117FF74F2948C14D0031F685 /* BackgroundNotifierMock.swift */; };
 		1195971D2810AE72009FBAB5 /* FunctionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */; };
 		119597252811DB92009FBAB5 /* ConfigurationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */; };
 		11A31AAD287C054A00A32D69 /* PaltaPurchasesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A31AAC287C054A00A32D69 /* PaltaPurchasesProtocol.swift */; };
@@ -193,6 +194,8 @@
 		11C60F502816D598004D0185 /* TelemetryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F4E2816D585004D0185 /* TelemetryMock.swift */; };
 		11C60F5228181323004D0185 /* Amplitude+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C60F5128181323004D0185 /* Amplitude+Extensions.swift */; };
 		11C60F5528195B34004D0185 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 11C60F5428195B34004D0185 /* README.md */; };
+		11F9D78728E5D27B00B6386E /* BackgroundNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */; };
+		11F9D78A28E5D3E100B6386E /* BackgroundNotifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -431,6 +434,7 @@
 		11641F01293A5B7300C127DD /* FileStorageMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageMigratorTests.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
+		117FF74F2948C14D0031F685 /* BackgroundNotifierMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundNotifierMock.swift; sourceTree = "<group>"; };
 		1183694C2844DED60028CED9 /* ViewTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTracker.swift; sourceTree = "<group>"; };
 		1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalExtension.swift; sourceTree = "<group>"; };
 		119597242811DB92009FBAB5 /* ConfigurationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceTests.swift; sourceTree = "<group>"; };
@@ -461,6 +465,8 @@
 		11C60F5128181323004D0185 /* Amplitude+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Amplitude+Extensions.swift"; sourceTree = "<group>"; };
 		11C60F5428195B34004D0185 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		11E0975A29350358005B5268 /* UUID+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Data.swift"; sourceTree = "<group>"; };
+		11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifier.swift; sourceTree = "<group>"; };
+		11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifierTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -759,6 +765,7 @@
 				1139FDF9290175490097109D /* BatchComposerTests.swift */,
 				1139FDFE2901A1C20097109D /* BatchSendControllerTests.swift */,
 				11641F01293A5B7300C127DD /* FileStorageMigratorTests.swift */,
+				11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -826,6 +833,7 @@
 				1139FE01290274A30097109D /* BatchComposerMock.swift */,
 				1139FE03290274E60097109D /* BatchStorageMock.swift */,
 				1139FE052902750C0097109D /* BatchSenderMock.swift */,
+				117FF74F2948C14D0031F685 /* BackgroundNotifierMock.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -1036,6 +1044,7 @@
 				114D06FC2806EEE500ACD310 /* IdentityLogger.swift */,
 				114D0702280757DB00ACD310 /* RevenueLogger.swift */,
 				114D0707280814D900ACD310 /* TrackingOptionsProvider.swift */,
+				11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1394,6 +1403,7 @@
 				11A61EAA2835054A00F88116 /* EventQueueAssemblyTests.swift in Sources */,
 				11A61EAD2835074100F88116 /* ConfigApplyServiceTests.swift in Sources */,
 				114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */,
+				117FF7502948C14D0031F685 /* BackgroundNotifierMock.swift in Sources */,
 				111159BB27F76AEF00A41ADA /* EventQueueCoreTests.swift in Sources */,
 				114CF5B228226F6900ADA815 /* PurchasePluginMock.swift in Sources */,
 				1139FDFB290175500097109D /* BatchComposerTests.swift in Sources */,
@@ -1407,6 +1417,7 @@
 				11543035282D02E80021ED6F /* ProductDiscountMock.swift in Sources */,
 				11543028282BF7B50021ED6F /* PaidFeatureTests.swift in Sources */,
 				11115A3227FAF23F00A41ADA /* TimerTests.swift in Sources */,
+				11F9D78A28E5D3E100B6386E /* BackgroundNotifierTests.swift in Sources */,
 				113AD6422837AC6D00324D62 /* FeaturesServiceTests.swift in Sources */,
 				11115A4827FB75CD00A41ADA /* EventQueueCoreMock.swift in Sources */,
 				11A61EB02835161F00F88116 /* EventQueueAssemblyProviderMock.swift in Sources */,
@@ -1471,6 +1482,7 @@
 				114D06E028041BAA00ACD310 /* AnalyticsAssembly.swift in Sources */,
 				11115A8F28001F2300A41ADA /* UserPropertiesKeeper.swift in Sources */,
 				1139FDF8290174BB0097109D /* BatchComposer.swift in Sources */,
+				11F9D78728E5D27B00B6386E /* BackgroundNotifier.swift in Sources */,
 				11115A9128001FA800A41ADA /* UserProperties.swift in Sources */,
 				1111596727F70BE400A41ADA /* PaltaAnalytics+Target.swift in Sources */,
 				1139FDFD290176ED0097109D /* BatchSendController.swift in Sources */,

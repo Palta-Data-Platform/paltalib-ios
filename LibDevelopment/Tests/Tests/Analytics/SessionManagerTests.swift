@@ -146,4 +146,24 @@ final class SessionManagerTests: XCTestCase {
         XCTAssertNotEqual(session?.id, initialSessionId)
         XCTAssertEqual(session?.lastEventTimestamp, Int.timestampMock)
     }
+    
+    func testSessionIdDoesntChangeWhileCreation() {
+        let initialSessionId = sessionManager.sessionId
+        sessionManager.maxSessionAge = 100
+        Int.timestampMock = initialSessionId + 105
+        
+        var loggerTimestamp: Int?
+        
+        sessionManager.sessionEventLogger = { name, timestamp in
+            guard name == kAMPSessionStartEvent else {
+                return
+            }
+            loggerTimestamp = timestamp
+            Int.timestampMock = initialSessionId + 140
+        }
+        
+        sessionManager.refreshSession(with: 0)
+        
+        XCTAssertEqual(loggerTimestamp, sessionManager.sessionId)
+    }
 }

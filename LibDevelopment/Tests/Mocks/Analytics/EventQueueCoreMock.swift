@@ -13,6 +13,7 @@ final class EventQueueCoreMock: EventQueueCore {
     var removeHandler: RemoveHandler?
 
     var addedEvents: [Event] = []
+    
     var sendEventsTriggered = false
     var forceFlushTriggered = false
 
