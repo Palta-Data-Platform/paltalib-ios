@@ -26,6 +26,12 @@ final class SessionManagerTests: XCTestCase {
 
         sessionManager = SessionManagerImpl(userDefaults: userDefaults, notificationCenter: notificationCenter)
     }
+    
+    override func tearDownWithError() throws {
+        try super.tearDownWithError()
+        
+        sessionManager.maxSessionAge = 5 * 60 * 1000
+    }
 
     func testRestoreSession() {
         let session = Session(id: 22)
@@ -57,6 +63,7 @@ final class SessionManagerTests: XCTestCase {
     }
 
     func testExpiredSession() throws {
+        Int.timestampMock = 1_000_000
         var session = Session(id: 22)
         session.lastEventTimestamp = 10
         userDefaults.set(try JSONEncoder().encode(session), forKey: "paltaBrainSession")
@@ -88,6 +95,7 @@ final class SessionManagerTests: XCTestCase {
     }
 
     func testCreateNewSession() {
+        Int.timestampMock = 10000
         let lastSessionTimestamp = Int.currentTimestamp() - 1000
         var session = Session(id: 22)
         session.lastEventTimestamp = lastSessionTimestamp
@@ -142,9 +150,9 @@ final class SessionManagerTests: XCTestCase {
             .data(forKey: "paltaBrainSession")
             .map { try JSONDecoder().decode(Session.self, from: $0) }
         
-        XCTAssertNotEqual(sessionManager.sessionId, initialSessionId)
-        XCTAssertNotEqual(session?.id, initialSessionId)
-        XCTAssertEqual(session?.lastEventTimestamp, Int.timestampMock)
+        XCTAssertEqual(sessionManager.sessionId, initialSessionId)
+        XCTAssertEqual(session?.id, initialSessionId)
+        XCTAssertEqual(session?.lastEventTimestamp, 0)
     }
     
     func testSessionIdDoesntChangeWhileCreation() {
@@ -162,7 +170,7 @@ final class SessionManagerTests: XCTestCase {
             Int.timestampMock = initialSessionId + 140
         }
         
-        sessionManager.refreshSession(with: 0)
+        notificationCenter.post(name: UIApplication.didBecomeActiveNotification, object: nil)
         
         XCTAssertEqual(loggerTimestamp, sessionManager.sessionId)
     }

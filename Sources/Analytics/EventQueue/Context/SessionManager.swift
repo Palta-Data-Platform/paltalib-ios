@@ -26,7 +26,14 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
         session.id
     }
 
-    var maxSessionAge: Int = 5 * 60 * 1000
+    var maxSessionAge: Int {
+        get {
+            userDefaults.object(for: "maxSessionAge") ?? 5 * 60 * 1000
+        }
+        set {
+            userDefaults.set(newValue, for: "maxSessionAge")
+        }
+    }
 
     var sessionEventLogger: ((String, Int) -> Void)?
 
@@ -38,9 +45,7 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
             if let session = _session {
                 return session
             } else {
-                let session = restoreSession() ?? newSession()
-                _session = session
-                return session
+                return loadSession()
             }
         }
         
@@ -72,22 +77,22 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     func refreshSession(with timestamp: Int) {
-        if isSessionValid(session) {
-            session.lastEventTimestamp = timestamp
-        } else {
-            startNewSession()
-        }
-        
+        lock.lock()
+        session.lastEventTimestamp = timestamp
+        lock.unlock()
     }
 
     func start() {
-        onBecomeActive()
+        loadSession()
     }
 
     func startNewSession() {
         lock.lock()
         sessionEventLogger?(kAMPSessionEndEvent, session.lastEventTimestamp)
-        session = newSession()
+        let timestamp = Int.currentTimestamp()
+        let session = Session(id: timestamp)
+        self.session = session
+        sessionEventLogger?(kAMPSessionStartEvent, timestamp)
         lock.unlock()
     }
 
@@ -107,26 +112,26 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     private func onBecomeActive() {
+        loadSession()
+    }
+    
+    @discardableResult
+    private func loadSession() -> Session {
         lock.lock()
-        session = restoreSession() ?? newSession()
-        lock.unlock()
-    }
-    
-    private func newSession() -> Session {
-        let timestamp: Int = .currentTimestamp()
-        sessionEventLogger?(kAMPSessionStartEvent, timestamp)
-        return Session(id: timestamp)
-    }
-    
-    private func restoreSession() -> Session? {
-        guard
+        defer { lock.unlock() }
+        if
             let session: Session = userDefaults.object(for: defaultsKey),
             isSessionValid(session)
-        else {
-            return nil
+        {
+            self.session = session
+            return session
+        } else {
+            let timestamp = Int.currentTimestamp()
+            let session = Session(id: timestamp)
+            self.session = session
+            sessionEventLogger?(kAMPSessionStartEvent, timestamp)
+            return session
         }
-
-        return session
     }
 
     private func saveSession() {
