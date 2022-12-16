@@ -10,7 +10,7 @@ on:
     
 jobs:
   build:
-    runs-on: macOS-11
+    runs-on: macos-12
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
