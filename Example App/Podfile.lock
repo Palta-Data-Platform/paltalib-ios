@@ -2,17 +2,17 @@ PODS:
   - Amplitude (8.14.0):
     - AnalyticsConnector (~> 1.0.0)
   - AnalyticsConnector (1.0.0)
-  - PaltaLibAnalytics (2.3.0):
+  - PaltaLibAnalytics (2.4.0):
     - Amplitude (>= 8.5.0)
-    - PaltaLibCore (>= 2.2.1)
-  - PaltaLibCore (2.3.0)
+    - PaltaLibCore (>= 2.4.0)
+  - PaltaLibCore (2.4.0)
   - PaltaLibPurchases (3.0.0):
     - PaltaLibCore (>= 2.3.0)
     - RevenueCat (~> 4.7.0)
   - RevenueCat (4.7.0)
 
 DEPENDENCIES:
-  - PaltaLibAnalytics (~> 2.3.0)
+  - PaltaLibAnalytics (~> 2.4.0)
   - PaltaLibPurchases (= 3.0.0)
 
 SPEC REPOS:
@@ -27,11 +27,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Amplitude: bff4ceaad2a79e908682134d75dc862960594ea6
   AnalyticsConnector: 4c386d5972ac9da86e22d668564dbbac97558754
-  PaltaLibAnalytics: 86c831b23f00a8e6106ee357e2dcb10aba85f02b
-  PaltaLibCore: d4b6a07f7de3009526fddd35fb66e56a709ff210
+  PaltaLibAnalytics: 8441c32d1dddda6774259c4d7aeda5a89fef4997
+  PaltaLibCore: 230177e6631985dce4b123bd798cb3139877ab67
   PaltaLibPurchases: a4aa2a3ce44bb27e90a257e14c51d854f597d0aa
   RevenueCat: 5009a82afee178848de97cf2d712be1015a5d33c
 
-PODFILE CHECKSUM: a07cf9a35ea36a72c2485ad0cdca3e2c47a644f5
+PODFILE CHECKSUM: 9a3b942222ec8472833a43ea17e592b9c34fa618
 
 COCOAPODS: 1.11.3
