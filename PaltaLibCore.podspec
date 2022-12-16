@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'PaltaLibCore'
-  spec.version               = '2.3.0'
+  spec.version               = '2.4.0'
   spec.license               = 'MIT'
   spec.summary               = 'PaltaLib iOS SDK - Core part'
   spec.homepage              = 'https://github.com/Palta-Data-Platform/paltalib-ios'
