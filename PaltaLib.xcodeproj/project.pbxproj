@@ -151,6 +151,8 @@
 		117D9BE828608FDE006F3E2E /* IdentifiableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */; };
 		117D9BEA286090B8006F3E2E /* StorableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE9286090B8006F3E2E /* StorableEventTests.swift */; };
 		117D9BEE2861E311006F3E2E /* EventStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BED2861E311006F3E2E /* EventStorageTests.swift */; };
+		11641EF829361B6800C127DD /* UUIDDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11641EF729361B6800C127DD /* UUIDDataTests.swift */; };
+		11641EF929361B9F00C127DD /* UUID+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E0975A29350358005B5268 /* UUID+Data.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		117D9BFF2863423C006F3E2E /* CurrentContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */; };
@@ -453,6 +455,7 @@
 		117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableEvent.swift; sourceTree = "<group>"; };
 		117D9BE9286090B8006F3E2E /* StorableEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableEventTests.swift; sourceTree = "<group>"; };
 		117D9BED2861E311006F3E2E /* EventStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorageTests.swift; sourceTree = "<group>"; };
+		11641EF729361B6800C127DD /* UUIDDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDDataTests.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContextManager.swift; sourceTree = "<group>"; };
@@ -517,6 +520,7 @@
 		11F9D78628E5D27B00B6386E /* BackgroundNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifier.swift; sourceTree = "<group>"; };
 		11F9D78828E5D3DC00B6386E /* BackgroundNotifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifierTests.swift; sourceTree = "<group>"; };
 		11F9D78B28E5D6A900B6386E /* BackgroundNotifierMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNotifierMock.swift; sourceTree = "<group>"; };
+		11E0975A29350358005B5268 /* UUID+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Data.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -802,6 +806,7 @@
 			children = (
 				111159AB27F71D2100A41ADA /* CodableDictionaryTests.swift */,
 				11115A6A27FDB87B00A41ADA /* AnyEncodableTests.swift */,
+				11641EF729361B6800C127DD /* UUIDDataTests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1079,6 +1084,7 @@
 		11A61ED42837881F00F88116 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				11E0975A29350358005B5268 /* UUID+Data.swift */,
 				11115A9228001FE400A41ADA /* UserDefaults+Codable.swift */,
 				1195971C2810AE72009FBAB5 /* FunctionalExtension.swift */,
 				1154302E282D004A0021ED6F /* ArrayExtension.swift */,
@@ -1517,6 +1523,7 @@
 			files = (
 				11115A8727FF1BCF00A41ADA /* EmptyResponse.swift in Sources */,
 				111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */,
+				11641EF929361B9F00C127DD /* UUID+Data.swift in Sources */,
 				11A61EE82837918B00F88116 /* JSONDecoder.swift in Sources */,
 				11115A9728003BD600A41ADA /* UserDefaults+Codable.swift in Sources */,
 				1154302F282D004A0021ED6F /* ArrayExtension.swift in Sources */,
@@ -1586,6 +1593,7 @@
 				117D9C372869CAE5006F3E2E /* StorableEvent+Mock.swift in Sources */,
 				11C60F502816D598004D0185 /* TelemetryMock.swift in Sources */,
 				114CF5B028226F5600ADA815 /* PaltaPurchasesTests.swift in Sources */,
+				11641EF829361B6800C127DD /* UUIDDataTests.swift in Sources */,
 				114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */,
 				117D9C3D286B33FA006F3E2E /* EventHeadeMock.swift in Sources */,
 				114CF5B228226F6900ADA815 /* PurchasePluginMock.swift in Sources */,
