@@ -26,10 +26,10 @@ final class AnalyticsAssembly {
 }
 
 extension AnalyticsAssembly {
-    convenience init(stack: Stack) {
+    convenience init(stack: Stack) throws {
         let coreAssembly = CoreAssembly()
         let analyticsCoreAssembly = AnalyticsCoreAssembly(coreAssembly: coreAssembly)
-        let eventQueueAssembly = EventQueueAssembly(
+        let eventQueueAssembly = try EventQueueAssembly(
             stack: stack,
             coreAssembly: coreAssembly,
             analyticsCoreAssembly: analyticsCoreAssembly

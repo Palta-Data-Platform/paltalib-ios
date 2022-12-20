@@ -28,7 +28,16 @@ public class PaltaAnalytics {
             fatalError("Attempt to access PaltaAnalytics without setting up")
         }
         
-        let shared = PaltaAnalytics(assembly: AnalyticsAssembly(stack: stack))
+        let assembly: AnalyticsAssembly?
+        
+        do {
+            assembly = try AnalyticsAssembly(stack: stack)
+        } catch {
+            print("PaltaLib: Analytics: Failed to initialize instance. No events are tracked!")
+            assembly = nil
+        }
+        
+        let shared = PaltaAnalytics(assembly: assembly)
         _shared = shared
         
         return shared
@@ -36,9 +45,9 @@ public class PaltaAnalytics {
     
     private static var _shared: PaltaAnalytics?
     
-    let assembly: AnalyticsAssembly
+    let assembly: AnalyticsAssembly?
     
-    init(assembly: AnalyticsAssembly) {
+    init(assembly: AnalyticsAssembly?) {
         self.assembly = assembly
     }
 }

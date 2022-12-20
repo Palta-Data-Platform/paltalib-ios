@@ -10,6 +10,6 @@ import PaltaLibAnalyticsModel
 
 public extension PaltaAnalytics {
     func _editContext<C: BatchContext>(_ modifier: (inout C) -> Void) {
-        assembly.eventQueueAssembly.contextModifier.editContext(modifier)
+        assembly?.eventQueueAssembly.contextModifier.editContext(modifier)
     }
 }

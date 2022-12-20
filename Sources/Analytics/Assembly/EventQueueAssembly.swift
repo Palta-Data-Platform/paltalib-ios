@@ -36,8 +36,8 @@ extension EventQueueAssembly {
         stack: Stack,
         coreAssembly: CoreAssembly,
         analyticsCoreAssembly: AnalyticsCoreAssembly
-    ) {
-        let workingUrl = try! FileManager.default.url(
+    ) throws {
+        let workingUrl = try FileManager.default.url(
             for: .libraryDirectory,
             in: .userDomainMask,
             appropriateFor: nil,
@@ -76,6 +76,8 @@ extension EventQueueAssembly {
             stack: stack,
             fileManager: .default
         )
+        
+        let sqliteStorage = try SQLiteStorage(folderURL: workingUrl, stack: stack)
         
         // Context
         

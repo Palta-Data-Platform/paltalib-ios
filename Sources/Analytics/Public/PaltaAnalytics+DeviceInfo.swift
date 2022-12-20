@@ -9,6 +9,6 @@ import Foundation
 
 public extension PaltaAnalytics {
     static var deviceInfoProvider: DeviceInfoProvider {
-        shared.assembly.analyticsCoreAssembly.deviceInfoProvider
+        shared.assembly?.analyticsCoreAssembly.deviceInfoProvider ?? DeviceInfoProviderImpl()
     }
 }

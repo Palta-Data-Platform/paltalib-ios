@@ -9,7 +9,7 @@ import Foundation
 
 public extension PaltaAnalytics {
     func setAPIKey(_ apiKey: String, and baseURL: URL? = nil) {
-        assembly.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey, host: baseURL) { result in
+        assembly?.analyticsCoreAssembly.configurationService.requestConfigs(apiKey: apiKey, host: baseURL) { result in
             switch result {
             case .success(let config):
                 self.apply(config, apiKey: apiKey, baseURL: baseURL)
@@ -22,6 +22,8 @@ public extension PaltaAnalytics {
     }
     
     private func apply(_ config: RemoteConfig, apiKey: String, baseURL: URL?) {
+        guard let assembly = assembly else { return }
+
         ConfigApplyService(
             remoteConfig: config,
             apiKey: apiKey,
