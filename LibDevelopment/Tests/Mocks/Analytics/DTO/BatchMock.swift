@@ -19,13 +19,14 @@ struct BatchMock: Batch, Equatable {
     let data: Data
     
     init(shouldFailSerialize: Bool = false) {
-        self.batchId = UUID()
+        let batchId = UUID()
+        self.batchId = batchId
         self.common = nil
         self.context = nil
         self.events = nil
         
         self.shouldFailSerialize = shouldFailSerialize
-        self.data = Data((0...20).map { _ in UInt8.random(in: 0...255) })
+        self.data = batchId.data
     }
     
     init(common: BatchCommon, context: BatchContext, events: [BatchEvent]) {
@@ -39,7 +40,7 @@ struct BatchMock: Batch, Equatable {
     }
     
     init(data: Data) throws {
-        self.batchId = UUID()
+        self.batchId = UUID(data: data) ?? UUID()
         self.common = nil
         self.context = nil
         self.events = nil

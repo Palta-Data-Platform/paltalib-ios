@@ -14,6 +14,12 @@ protocol BatchStorage {
     func removeBatch() throws
 }
 
+protocol BatchStorage2 {
+    func loadBatch() throws -> Batch?
+    func saveBatch<IDS: Collection>(_ batch: Batch, with eventIds: IDS) throws where IDS.Element == UUID
+    func removeBatch() throws
+}
+
 final class BatchStorageImpl: BatchStorage {
     private var fileURL: URL {
         folderURL.appendingPathComponent("currentBatch")

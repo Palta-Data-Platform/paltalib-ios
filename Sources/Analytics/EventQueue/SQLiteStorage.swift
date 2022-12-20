@@ -136,6 +136,44 @@ extension SQLiteStorage: EventStorage {
     }
 }
 
+extension SQLiteStorage: BatchStorage2 {
+    func loadBatch() throws -> Batch? {
+        try executeStatement("SELECT batch_id, batch_data FROM batches") { executor in
+            executor.runQuery()
+            return try executor.getRow().map { try stack.batch.init(data: $0.column2) }
+        }
+    }
+    
+    func saveBatch<IDS: Collection>(_ batch: Batch, with eventIds: IDS) throws where IDS.Element == UUID {
+        do {
+            try executeStatement("BEGIN TRANSACTION")
+            
+            try doSaveBatch(batch)
+            
+            try eventIds.forEach {
+                try doRemoveEvent(with: $0)
+            }
+            
+            try executeStatement("COMMIT TRANSACTION")
+        } catch {
+            try executeStatement("ROLLBACK TRANSACTION")
+            throw error
+        }
+    }
+    
+    func removeBatch() throws {
+        try executeStatement("DELETE FROM batches WHERE TRUE")
+    }
+    
+    private func doSaveBatch(_ batch: Batch) throws {
+        let row = RowData(column1: batch.batchId.data, column2: try batch.serialize())
+        try executeStatement("INSERT INTO batches (batch_id, batch_data) VALUES (?, ?)") { executor in
+            executor.setRow(row)
+            try executor.runStep()
+        }
+    }
+}
+
 private struct StatementExecutor {
     let statement: OpaquePointer
     

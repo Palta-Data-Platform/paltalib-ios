@@ -144,4 +144,43 @@ final class SQLiteStorageTests: XCTestCase {
         
         wait(for: [loadCompleted], timeout: 0.1)
     }
+    
+    func testBatchStore() throws {
+        let expectedEvents = (0...20).map {
+            StorableEvent.mock(timestamp: $0)
+        }
+        
+        let batch = BatchMock()
+        
+        expectedEvents.forEach(storage.storeEvent(_:))
+        
+        try storage.saveBatch(batch, with: expectedEvents[0...10].map { $0.event.id })
+
+        let eventsLoaded = expectation(description: "Events loaded")
+
+        storage.loadEvents { events in
+            let sortedEvents = events.sorted(by: { $0.event.event.timestamp < $1.event.event.timestamp })
+
+            XCTAssertEqual(sortedEvents.map { $0.event.id }, expectedEvents[11...20].map { $0.event.id })
+            eventsLoaded.fulfill()
+        }
+
+        wait(for: [eventsLoaded], timeout: 0.05)
+        
+        XCTAssertEqual(try storage.loadBatch() as? BatchMock, batch)
+    }
+    
+    func testBatchRemove() throws {
+        let batch = BatchMock()
+
+        try storage.saveBatch(batch, with: [])
+        
+        try storage.removeBatch()
+        
+        XCTAssertNil(try storage.loadBatch())
+    }
+    
+    func testBatchLoadNoBatch() throws {
+        XCTAssertNil(try storage.loadBatch())
+    }
 }
