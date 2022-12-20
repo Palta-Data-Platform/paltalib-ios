@@ -8,6 +8,8 @@
 import Foundation
 
 public protocol Batch {
+    var batchId: UUID { get }
+
     init(common: BatchCommon, context: BatchContext, events: [BatchEvent])
     init(data: Data) throws
     

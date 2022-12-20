@@ -14,10 +14,12 @@ struct BatchMock: Batch, Equatable {
     let context: BatchContextMock?
     let events: [BatchEventMock]?
     
+    let batchId: UUID
     let shouldFailSerialize: Bool
     let data: Data
     
     init(shouldFailSerialize: Bool = false) {
+        self.batchId = UUID()
         self.common = nil
         self.context = nil
         self.events = nil
@@ -27,6 +29,7 @@ struct BatchMock: Batch, Equatable {
     }
     
     init(common: BatchCommon, context: BatchContext, events: [BatchEvent]) {
+        self.batchId = (common as? BatchCommonMock)?.batchId ?? UUID()
         self.common = common as? BatchCommonMock
         self.context = context as? BatchContextMock
         self.events = events as? [BatchEventMock]
@@ -36,6 +39,7 @@ struct BatchMock: Batch, Equatable {
     }
     
     init(data: Data) throws {
+        self.batchId = UUID()
         self.common = nil
         self.context = nil
         self.events = nil
