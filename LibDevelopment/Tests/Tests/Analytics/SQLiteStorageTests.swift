@@ -27,14 +27,14 @@ final class SQLiteStorageTests: XCTestCase {
         
         try fileManager.createDirectory(at: testURL, withIntermediateDirectories: true)
         
-        storage = try SQLiteStorage(folderURL: testURL, stack: stackMock)
+        try reinitStorage()
     }
     
     override func tearDown() async throws {
         try fileManager.removeItem(at: testURL)
     }
     
-    func testSaveEvent() {
+    func testSaveEvent() throws {
         let event = StorableEvent(
             event: IdentifiableEvent(id: .init(), event: BatchEventMock()),
             contextId: .init()
@@ -42,6 +42,7 @@ final class SQLiteStorageTests: XCTestCase {
         
         storage.storeEvent(event)
         
+        try reinitStorage()
         var restoredEvent: StorableEvent?
         let loadFinished = expectation(description: "Load finished")
         
@@ -57,7 +58,7 @@ final class SQLiteStorageTests: XCTestCase {
         XCTAssertEqual(restoredEvent?.event.event.timestamp, event.event.event.timestamp)
     }
     
-    func testSaveEventError() {
+    func testSaveEventError() throws {
         let event = StorableEvent(
             event: IdentifiableEvent(id: .init(), event: BatchEventMock(shouldFailSerialize: true)),
             contextId: .init()
@@ -65,6 +66,7 @@ final class SQLiteStorageTests: XCTestCase {
         
         storage.storeEvent(event)
         
+        try reinitStorage()
         var restoredEvent: StorableEvent?
         let loadFinished = expectation(description: "Load finished")
         
@@ -85,8 +87,10 @@ final class SQLiteStorageTests: XCTestCase {
         )
         
         storage.storeEvent(event)
+        try reinitStorage()
         storage.removeEvent(with: event.event.id)
         
+        try reinitStorage()
         var restoredEvent: StorableEvent?
         let loadFinished = expectation(description: "Load finished")
         
@@ -107,8 +111,10 @@ final class SQLiteStorageTests: XCTestCase {
         )
         
         storage.storeEvent(event)
+        try reinitStorage()
         storage.removeEvent(with: UUID())
         
+        try reinitStorage()
         var restoredEvent: StorableEvent?
         let loadFinished = expectation(description: "Load finished")
         
@@ -135,6 +141,7 @@ final class SQLiteStorageTests: XCTestCase {
         
         events.forEach(storage.storeEvent)
         
+        try reinitStorage()
         let loadCompleted = expectation(description: "Load completed")
         
         storage.loadEvents { events in
@@ -154,8 +161,10 @@ final class SQLiteStorageTests: XCTestCase {
         
         expectedEvents.forEach(storage.storeEvent(_:))
         
+        try reinitStorage()
         try storage.saveBatch(batch, with: expectedEvents[0...10].map { $0.event.id })
 
+        try reinitStorage()
         let eventsLoaded = expectation(description: "Events loaded")
 
         storage.loadEvents { events in
@@ -175,12 +184,18 @@ final class SQLiteStorageTests: XCTestCase {
 
         try storage.saveBatch(batch, with: [])
         
+        try reinitStorage()
         try storage.removeBatch()
         
+        try reinitStorage()
         XCTAssertNil(try storage.loadBatch())
     }
     
     func testBatchLoadNoBatch() throws {
         XCTAssertNil(try storage.loadBatch())
+    }
+    
+    private func reinitStorage() throws {
+        storage = try SQLiteStorage(folderURL: testURL, stack: stackMock)
     }
 }
