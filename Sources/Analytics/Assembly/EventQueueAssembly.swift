@@ -99,9 +99,8 @@ extension EventQueueAssembly {
         
         let sendController = BatchSendControllerImpl(
             batchComposer: batchComposer,
-            batchStorage: batchStorage,
+            batchStorage: sqliteStorage,
             batchSender: batchSender,
-            eventStorage: eventStorage,
             timer: TimerImpl()
         )
         

@@ -13,7 +13,6 @@ final class BatchSendControllerTests: XCTestCase {
     private var composerMock: BatchComposerMock!
     private var storageMock: BatchStorageMock!
     private var senderMock: BatchSenderMock!
-    private var eventStorageMock: EventStorageMock!
     private var timerMock: TimerMock!
     
     private var controller: BatchSendControllerImpl!
@@ -24,14 +23,12 @@ final class BatchSendControllerTests: XCTestCase {
         composerMock = .init()
         storageMock = .init()
         senderMock = .init()
-        eventStorageMock = .init()
         timerMock = .init()
         
         controller = BatchSendControllerImpl(
             batchComposer: composerMock,
             batchStorage: storageMock,
             batchSender: senderMock,
-            eventStorage: eventStorageMock,
             timer: timerMock
         )
     }
@@ -60,7 +57,7 @@ final class BatchSendControllerTests: XCTestCase {
         XCTAssertNotNil(senderMock.batch as? BatchMock)
         XCTAssertNotNil(storageMock.savedBatch)
         XCTAssert(storageMock.batchRemoved)
-        XCTAssertEqual(eventStorageMock.removedIds.count, 11)
+        XCTAssertEqual(storageMock.eventIds.count, 11)
         XCTAssert(controller.isReady)
     }
     
@@ -81,7 +78,7 @@ final class BatchSendControllerTests: XCTestCase {
         composerMock.contextId = nil
         senderMock.batch = nil
         storageMock.savedBatch = nil
-        eventStorageMock.removedIds = []
+        storageMock.eventIds = []
         
         controller.sendBatch(of: events2, with: contextId)
         
@@ -90,7 +87,7 @@ final class BatchSendControllerTests: XCTestCase {
         XCTAssertNil(composerMock.events)
         XCTAssertNil(senderMock.batch)
         XCTAssertNil(storageMock.savedBatch)
-        XCTAssert(eventStorageMock.removedIds.isEmpty)
+        XCTAssert(storageMock.eventIds.isEmpty)
         XCTAssertFalse(controller.isReady)
     }
     
@@ -312,7 +309,7 @@ final class BatchSendControllerTests: XCTestCase {
         XCTAssertNil(composerMock.events)
         XCTAssertNil(composerMock.contextId)
         XCTAssertNotNil(senderMock.batch as? BatchMock)
-        XCTAssert(eventStorageMock.removedIds.isEmpty)
+        XCTAssert(storageMock.eventIds.isEmpty)
         
         senderMock.result = .success(())
         let isReadyCalled = expectation(description: "Is Ready called")

@@ -34,22 +34,19 @@ final class BatchSendControllerImpl: BatchSendController {
     
     private let lock = NSRecursiveLock()
     private let batchComposer: BatchComposer
-    private let batchStorage: BatchStorage
+    private let batchStorage: BatchStorage2
     private let batchSender: BatchSender
-    private let eventStorage: EventStorage
     private let timer: Timer
     
     init(
         batchComposer: BatchComposer,
-        batchStorage: BatchStorage,
+        batchStorage: BatchStorage2,
         batchSender: BatchSender,
-        eventStorage: EventStorage,
         timer: Timer
     ) {
         self.batchComposer = batchComposer
         self.batchStorage = batchStorage
         self.batchSender = batchSender
-        self.eventStorage = eventStorage
         self.timer = timer
     }
     
@@ -66,10 +63,7 @@ final class BatchSendControllerImpl: BatchSendController {
         let batch = batchComposer.makeBatch(of: Array(events.values), with: contextId)
         
         do {
-            try batchStorage.saveBatch(batch)
-            events.forEach {
-                eventStorage.removeEvent(with: $0.key)
-            }
+            try batchStorage.saveBatch(batch, with: events.keys)
         } catch {
             print("PaltaLib: Analytics: Error saving batch: \(error)")
             completeBatchSend()

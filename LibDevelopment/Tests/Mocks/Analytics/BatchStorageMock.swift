@@ -9,10 +9,11 @@ import Foundation
 import PaltaLibAnalyticsModel
 @testable import PaltaLibAnalytics
 
-final class BatchStorageMock: BatchStorage {
+final class BatchStorageMock: BatchStorage2 {
     var batchToLoad: Batch?
     var batchLoadError: Error?
     var savedBatch: Batch?
+    var eventIds: Set<UUID> = []
     var batchRemoved = false
     
     func loadBatch() throws -> Batch? {
@@ -21,6 +22,11 @@ final class BatchStorageMock: BatchStorage {
         } else {
             return batchToLoad
         }
+    }
+    
+    func saveBatch<IDS: Collection>(_ batch: Batch, with eventIds: IDS) throws where IDS.Element == UUID {
+        savedBatch = batch
+        self.eventIds = Set(eventIds)
     }
     
     func saveBatch(_ batch: Batch) throws {
