@@ -144,11 +144,11 @@ extension CodableDictionary {
                 self = .boolean(false)
             } else if let number = value as? NSNumber, CFNumberGetType(number as CFNumber).isInteger  {
                 self = .integer(number.int64Value)
-            } else if let number = value as? NSNumber, CFNumberGetType(number as CFNumber).isDouble {
+            } else if let number = value as? NSNumber, CFNumberGetType(number as CFNumber).isDouble, number.doubleValue.isFinite {
                 self = .double(number.doubleValue)
             } else if let date = value as? Date {
                 self = .date(date)
-            } else if value is NSNull  {
+            } else if (value as? NullRepresentable)?.asNull != nil {
                 self = .null
             } else if let string = value as? String {
                 self = .string(string)

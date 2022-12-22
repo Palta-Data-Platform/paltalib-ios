@@ -151,6 +151,7 @@
 		117D9BE828608FDE006F3E2E /* IdentifiableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */; };
 		117D9BEA286090B8006F3E2E /* StorableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE9286090B8006F3E2E /* StorableEventTests.swift */; };
 		117D9BEE2861E311006F3E2E /* EventStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BED2861E311006F3E2E /* EventStorageTests.swift */; };
+		115954BA29544C71008254F6 /* NullRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115954B929544C71008254F6 /* NullRepresentable.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		117D9BFF2863423C006F3E2E /* CurrentContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */; };
@@ -453,6 +454,7 @@
 		117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableEvent.swift; sourceTree = "<group>"; };
 		117D9BE9286090B8006F3E2E /* StorableEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableEventTests.swift; sourceTree = "<group>"; };
 		117D9BED2861E311006F3E2E /* EventStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorageTests.swift; sourceTree = "<group>"; };
+		115954B929544C71008254F6 /* NullRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullRepresentable.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContextManager.swift; sourceTree = "<group>"; };
@@ -1072,6 +1074,7 @@
 				11115A6727FDB70A00A41ADA /* AnyEncodable.swift */,
 				111159A927F71CDB00A41ADA /* CodableDictionary.swift */,
 				11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */,
+				115954B929544C71008254F6 /* NullRepresentable.swift */,
 			);
 			path = DataStruct;
 			sourceTree = "<group>";
@@ -1516,6 +1519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11115A8727FF1BCF00A41ADA /* EmptyResponse.swift in Sources */,
+				115954BA29544C71008254F6 /* NullRepresentable.swift in Sources */,
 				111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */,
 				11A61EE82837918B00F88116 /* JSONDecoder.swift in Sources */,
 				11115A9728003BD600A41ADA /* UserDefaults+Codable.swift in Sources */,
