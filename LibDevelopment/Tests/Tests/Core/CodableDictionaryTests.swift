@@ -18,6 +18,9 @@ final class CodableDictionaryTests: XCTestCase {
             "integerNSNumber": 2 as NSNumber,
             "boolNSNumber": true as NSNumber,
             "doubleNSNumber": 3.5 as NSNumber,
+            "doubleNan": Double.nan as NSNumber,
+            "doubleInfinity": Double.infinity as NSNumber,
+            "doubleNan2": (3.0 / 0.0) as NSNumber,
             "string": "aString",
             "null": NSNull(),
             "dictionary": ["key": "value"],
@@ -40,6 +43,10 @@ final class CodableDictionaryTests: XCTestCase {
             .dictionary(CodableDictionary(["key": "value"]))
         )
         XCTAssertEqual(codableDictionary.dictionary["array"], .array([.integer(3)]))
+        
+        XCTAssertNil(codableDictionary["doubleNan"])
+        XCTAssertNil(codableDictionary["doubleInfinity"])
+        XCTAssertNil(codableDictionary["doubleNan2"])
     }
 
     func testDecode() throws {
@@ -149,7 +156,10 @@ final class CodableDictionaryTests: XCTestCase {
             "null": NSNull(),
             "dictionary": ["key": "value"],
             "array": [3],
-            "date": Date(timeIntervalSince1970: 1)
+            "date": Date(timeIntervalSince1970: 1),
+            "doubleNan": Double.nan as NSNumber,
+            "doubleInfinity": Double.infinity as NSNumber,
+            "doubleNan2": (3.0 / 0.0) as NSNumber
         ]
 
         let codableDictionary = CodableDictionary(originalDictionary)
@@ -210,5 +220,17 @@ final class CodableDictionaryTests: XCTestCase {
         XCTAssert(outputDictionary["null"] is NSNull)
         XCTAssertEqual(outputDictionary["dictionary"] as? [String: String], ["key": "value"])
         XCTAssertEqual(outputDictionary["array"] as? [Int64], [3])
+    }
+    
+    func testArrayWithNils() throws {
+        let array: [Any?] = [1, nil, 5, "str", nil, 0.25]
+        let codableDictionary: CodableDictionary = ["array": array]
+        
+        let encoder = JSONEncoder()
+
+        let outputString = try String(data: encoder.encode(codableDictionary), encoding: .utf8)
+        let desiredString = "{\"array\":[1,null,5,\"str\",null,0.25]}"
+
+        XCTAssertEqual(outputString, desiredString)
     }
 }
