@@ -163,6 +163,7 @@
 		11641EF929361B9F00C127DD /* UUID+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E0975A29350358005B5268 /* UUID+Data.swift */; };
 		11641F00293A566400C127DD /* FileStorageMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11641EFF293A566400C127DD /* FileStorageMigrator.swift */; };
 		11641F03293A5B8500C127DD /* FileStorageMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11641F01293A5B7300C127DD /* FileStorageMigratorTests.swift */; };
+		115954BA29544C71008254F6 /* NullRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115954B929544C71008254F6 /* NullRepresentable.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		117FF7502948C14D0031F685 /* BackgroundNotifierMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117FF74F2948C14D0031F685 /* BackgroundNotifierMock.swift */; };
@@ -432,6 +433,7 @@
 		11641EF729361B6800C127DD /* UUIDDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDDataTests.swift; sourceTree = "<group>"; };
 		11641EFF293A566400C127DD /* FileStorageMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageMigrator.swift; sourceTree = "<group>"; };
 		11641F01293A5B7300C127DD /* FileStorageMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageMigratorTests.swift; sourceTree = "<group>"; };
+		115954B929544C71008254F6 /* NullRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullRepresentable.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		117FF74F2948C14D0031F685 /* BackgroundNotifierMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundNotifierMock.swift; sourceTree = "<group>"; };
@@ -951,6 +953,7 @@
 				11115A6727FDB70A00A41ADA /* AnyEncodable.swift */,
 				111159A927F71CDB00A41ADA /* CodableDictionary.swift */,
 				11115A8527FF1BCC00A41ADA /* EmptyResponse.swift */,
+				115954B929544C71008254F6 /* NullRepresentable.swift */,
 			);
 			path = DataStruct;
 			sourceTree = "<group>";
@@ -1335,6 +1338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11115A8727FF1BCF00A41ADA /* EmptyResponse.swift in Sources */,
+				115954BA29544C71008254F6 /* NullRepresentable.swift in Sources */,
 				111158D927F603D800A41ADA /* HTTPRequest.swift in Sources */,
 				11641EF929361B9F00C127DD /* UUID+Data.swift in Sources */,
 				11A61EE82837918B00F88116 /* JSONDecoder.swift in Sources */,
