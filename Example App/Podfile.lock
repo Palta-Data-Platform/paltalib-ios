@@ -12,17 +12,22 @@ PODS:
   - RevenueCat (4.7.0)
 
 DEPENDENCIES:
-  - PaltaLibAnalytics (~> 2.2.1)
+  - PaltaLibAnalytics (from `..`)
+  - PaltaLibCore (from `..`)
   - PaltaLibPurchases (= 3.0.0)
 
 SPEC REPOS:
   trunk:
     - Amplitude
     - AnalyticsConnector
-    - PaltaLibAnalytics
-    - PaltaLibCore
     - PaltaLibPurchases
     - RevenueCat
+
+EXTERNAL SOURCES:
+  PaltaLibAnalytics:
+    :path: ".."
+  PaltaLibCore:
+    :path: ".."
 
 SPEC CHECKSUMS:
   Amplitude: bff4ceaad2a79e908682134d75dc862960594ea6
@@ -32,6 +37,6 @@ SPEC CHECKSUMS:
   PaltaLibPurchases: a4aa2a3ce44bb27e90a257e14c51d854f597d0aa
   RevenueCat: 5009a82afee178848de97cf2d712be1015a5d33c
 
-PODFILE CHECKSUM: b4581db4fd146548aaf50ea13c3c097a3439416c
+PODFILE CHECKSUM: 33e5d0bb814ae3aba9ece1f565130b1ec3e37a89
 
 COCOAPODS: 1.11.3

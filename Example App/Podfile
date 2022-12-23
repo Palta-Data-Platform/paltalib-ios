@@ -4,7 +4,7 @@
 target 'PaltaExample' do
   use_frameworks!
 
-  pod 'PaltaLibAnalytics', '~> 2.2.1'
+  pod 'PaltaLibAnalytics', '~> 2.2.2'
   pod 'PaltaLibPurchases', '3.0.0'
 
 end
