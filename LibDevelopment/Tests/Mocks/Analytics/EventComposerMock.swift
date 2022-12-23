@@ -16,7 +16,7 @@ final class EventComposerMock: EventComposer {
     var userProperties: [String: Any]?
     var groupProperties: [String: Any]?
     var timestamp: Int?
-    var outOfSession: Bool?
+    var sessionId: Int?
 
     func composeEvent(
         eventType: String,
@@ -26,7 +26,7 @@ final class EventComposerMock: EventComposer {
         userProperties: [String: Any],
         groupProperties: [String: Any],
         timestamp: Int?,
-        outOfSession: Bool
+        sessionId: Int?
     ) -> Event {
         self.eventType = eventType
         self.eventProperties = eventProperties
@@ -35,7 +35,7 @@ final class EventComposerMock: EventComposer {
         self.userProperties = userProperties
         self.groupProperties = groupProperties
         self.timestamp = timestamp
-        self.outOfSession = outOfSession
+        self.sessionId = sessionId
         
         return .mock()
     }

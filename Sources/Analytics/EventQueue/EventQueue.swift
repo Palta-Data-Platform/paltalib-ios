@@ -59,7 +59,7 @@ final class EventQueueImpl: EventQueue {
         startSessionManager()
         subscribeForBackgroundNotifications()
     }
-
+    
     func logEvent(
         eventType: String,
         eventProperties: [String: Any],
@@ -69,6 +69,30 @@ final class EventQueueImpl: EventQueue {
         groupProperties: [String: Any] = [:],
         timestamp: Int? = nil,
         outOfSession: Bool = false
+    ) {
+        doLogEvent(
+            eventType: eventType,
+            eventProperties: eventProperties,
+            apiProperties: apiProperties,
+            groups: groups,
+            userProperties: userProperties,
+            groupProperties: groupProperties,
+            timestamp: timestamp,
+            sessionId: outOfSession ? -1 : nil,
+            outOfSession: outOfSession
+        )
+    }
+
+    private func doLogEvent(
+        eventType: String,
+        eventProperties: [String: Any],
+        apiProperties: [String: Any],
+        groups: [String: Any],
+        userProperties: [String: Any],
+        groupProperties: [String: Any],
+        timestamp: Int?,
+        sessionId: Int?,
+        outOfSession: Bool
     ) {
         guard !excludedEvents.contains(eventType) else {
             return
@@ -86,7 +110,7 @@ final class EventQueueImpl: EventQueue {
             userProperties: userProperties,
             groupProperties: groupProperties,
             timestamp: timestamp,
-            outOfSession: outOfSession
+            sessionId: sessionId
         )
 
         storage.storeEvent(event)
@@ -137,12 +161,15 @@ final class EventQueueImpl: EventQueue {
                 return
             }
             
-            self.logEvent(
+            self.doLogEvent(
                 eventType: eventName,
                 eventProperties: [:],
                 apiProperties: ["special": eventName],
                 groups: [:],
+                userProperties: [:],
+                groupProperties: [:],
                 timestamp: timestamp,
+                sessionId: timestamp,
                 outOfSession: true
             )
         }

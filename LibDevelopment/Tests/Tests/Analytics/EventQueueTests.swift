@@ -62,7 +62,7 @@ final class EventQueueTests: XCTestCase {
         XCTAssertEqual(composerMock.userProperties as? [String: Int], ["user": 4])
         XCTAssertEqual(composerMock.groupProperties as? [String: Int], ["groupP": 5])
         XCTAssertEqual(composerMock.timestamp, 22)
-        XCTAssertEqual(composerMock.outOfSession, false)
+        XCTAssertNil(composerMock.sessionId)
 
         XCTAssertEqual(coreMock.addedEvents.count, 1)
         XCTAssertEqual(storageMock.addedEvents.count, 1)
@@ -80,7 +80,7 @@ final class EventQueueTests: XCTestCase {
             outOfSession: true
         )
 
-        XCTAssertEqual(composerMock.outOfSession, true)
+        XCTAssertEqual(composerMock.sessionId, -1)
 
         XCTAssertEqual(coreMock.addedEvents, [.mock()])
         XCTAssertEqual(storageMock.addedEvents, [.mock()])

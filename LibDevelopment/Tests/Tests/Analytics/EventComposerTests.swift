@@ -51,7 +51,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: ["user": "D"],
             groupProperties: ["groupP": "E"],
             timestamp: 11,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertEqual(event.eventType, "someType")
@@ -86,7 +86,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         let timeDiff = abs(event.timestamp - .currentTimestamp())
@@ -104,7 +104,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertEqual(event.timezone, "GMT+1")
@@ -121,7 +121,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertEqual(event.timezone, "GMT-6")
@@ -138,7 +138,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertEqual(event.timezone, "GMT+0")
@@ -155,7 +155,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertEqual(event.timezone, "GMT-11")
@@ -176,7 +176,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -208,7 +208,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -245,7 +245,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -277,7 +277,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -309,7 +309,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -341,7 +341,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -373,7 +373,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -405,7 +405,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -437,7 +437,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -469,7 +469,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -501,7 +501,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         XCTAssertNotNil(event.timezone)
@@ -529,7 +529,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: true
+            sessionId: -1
         )
 
         XCTAssertEqual(event.sessionId, -1)
@@ -544,7 +544,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         let event2 = composer.composeEvent(
@@ -555,7 +555,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: true
+            sessionId: -1
         )
 
         XCTAssert(event2.sequenceNumber - event1.sequenceNumber == 1)
@@ -570,7 +570,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: false
+            sessionId: nil
         )
 
         // Init new composer
@@ -594,7 +594,7 @@ final class EventComposerTests: XCTestCase {
             userProperties: [:],
             groupProperties: [:],
             timestamp: nil,
-            outOfSession: true
+            sessionId: -1
         )
 
         XCTAssert(event2.sequenceNumber - event1.sequenceNumber == 1)
