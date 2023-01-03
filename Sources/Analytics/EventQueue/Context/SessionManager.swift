@@ -83,7 +83,19 @@ final class SessionManagerImpl: SessionManager, SessionIdProvider {
     }
 
     func start() {
-        loadSession()
+        let work = {
+            guard UIApplication.shared.applicationState != .background else {
+                return
+            }
+
+            self.onBecomeActive()
+        }
+        
+        if Thread.isMainThread {
+            work()
+        } else {
+            DispatchQueue.main.sync(execute: work)
+        }
     }
 
     func startNewSession() {
