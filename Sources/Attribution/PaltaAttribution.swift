@@ -66,13 +66,15 @@ extension PaltaAttribution: PaltaAppsflyerAdapterDelegate {
     public func didReceiveConversion(_ adapter: PaltaAppsflyerAdapter, with result: Result<[AnyHashable: Any], Error>) {
         if
             case let Result.success(conversionData) = result,
-            conversionData[Constants.deepLinkValueKey] as? String == Constants.webSubscriptionsDeeplinkValue,
+            let deepLinkValue = conversionData[Constants.deepLinkValueKey] as? String,
+            let userIDType = Constants.webSubscriptionDeeplinkTypes[deepLinkValue],
             let userID = conversionData[Constants.deepLinkUserIdKey] as? String
         {
-            delegate?.didReceiveUserID(self, userID: userID)
+            delegate?.didReceiveUserID(self, userID: userID, of: userIDType)
             
             let userData = UserData(
                 userId: userID,
+                userIdType: userIDType,
                 voucherId: conversionData[Constants.deepLinkVoucherIdKey] as? String
             )
             
@@ -84,13 +86,15 @@ extension PaltaAttribution: PaltaAppsflyerAdapterDelegate {
     public func didReceiveAttributionInfo(_ adapter: PaltaAppsflyerAdapter, with result: Result<[AnyHashable: Any], Error>) {
         if
             case let Result.success(conversionData) = result,
-           conversionData[Constants.deepLinkValueKey] as? String == Constants.webSubscriptionsDeeplinkValue,
+            let deepLinkValue = conversionData[Constants.deepLinkValueKey] as? String,
+            let userIDType = Constants.webSubscriptionDeeplinkTypes[deepLinkValue],
             let userID = conversionData[Constants.deepLinkUserIdKey] as? String
         {
-            delegate?.didReceiveUserID(self, userID: userID)
+            delegate?.didReceiveUserID(self, userID: userID, of: userIDType)
             
             let userData = UserData(
                 userId: userID,
+                userIdType: userIDType,
                 voucherId: conversionData[Constants.deepLinkVoucherIdKey] as? String
             )
             
@@ -101,13 +105,14 @@ extension PaltaAttribution: PaltaAppsflyerAdapterDelegate {
 
     public func didReceiveDeepLink(_ attribution: PaltaAppsflyerAdapter, deepLink: DeepLink) {
         if
-            deepLink.deeplinkValue == Constants.webSubscriptionsDeeplinkValue,
+            let userIDType = deepLink.deeplinkValue.flatMap({ Constants.webSubscriptionDeeplinkTypes[$0] }),
             let userID = deepLink.clickEvent[Constants.deepLinkUserIdKey] as? String
         {
-            delegate?.didReceiveUserID(self, userID: userID)
+            delegate?.didReceiveUserID(self, userID: userID, of: userIDType)
             
             let userData = UserData(
                 userId: userID,
+                userIdType: userIDType,
                 voucherId: deepLink.voucherId
             )
             
@@ -123,6 +128,10 @@ extension PaltaAttribution {
         static let deepLinkUserIdKey = "deep_link_sub1"
         static let deepLinkVoucherIdKey = "deep_link_sub2"
         static let deepLinkValueKey = "deep_link_value"
-        static let webSubscriptionsDeeplinkValue = "web_subscription_revenue_cat_id"
+        
+        static let webSubscriptionDeeplinkTypes: [String: UserIDType] = [
+            "web_subscription_revenue_cat_id": .revenueCat,
+            "web_subscription_palta_payments_id": .paltaPayments
+        ]
     }
 }

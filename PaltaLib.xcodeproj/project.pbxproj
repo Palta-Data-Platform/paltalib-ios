@@ -117,6 +117,7 @@
 		114D06D828040D0A00ACD310 /* DeviceInfoProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */; };
 		114D06DA280418C500ACD310 /* DeviceInfoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */; };
 		114D06DF28041BA700ACD310 /* AnalyticsCoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */; };
+		114D28F029B13D7100490079 /* PaltaAttribution+UserIDType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114D28EF29B13D7100490079 /* PaltaAttribution+UserIDType.swift */; };
 		1150909B2859D8A9009F53AD /* EventQueueAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150909A2859D8A9009F53AD /* EventQueueAssembly.swift */; };
 		115090A12859EF8C009F53AD /* BatchSendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115090A02859EF8C009F53AD /* BatchSendRequest.swift */; };
 		11543015282BCFC80021ED6F /* PaidFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543014282BCFC80021ED6F /* PaidFeature.swift */; };
@@ -134,6 +135,7 @@
 		11543038282D03280021ED6F /* ProductMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543036282D02F20021ED6F /* ProductMock.swift */; };
 		1154303A282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11543039282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift */; };
 		1154303D282E4CD90021ED6F /* CustomerInfo+PaidFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154303B282E4AF30021ED6F /* CustomerInfo+PaidFeatures.swift */; };
+		115954BA29544C71008254F6 /* NullRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115954B929544C71008254F6 /* NullRepresentable.swift */; };
 		1160688F2886DA3A009CF8EC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160687E2886DA29009CF8EC /* Event.swift */; };
 		116068902886DA3A009CF8EC /* BatchCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160687C2886DA29009CF8EC /* BatchCommon.swift */; };
 		116068912886DA3A009CF8EC /* BatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160687B2886DA29009CF8EC /* BatchEvent.swift */; };
@@ -151,7 +153,6 @@
 		117D9BE828608FDE006F3E2E /* IdentifiableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */; };
 		117D9BEA286090B8006F3E2E /* StorableEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BE9286090B8006F3E2E /* StorableEventTests.swift */; };
 		117D9BEE2861E311006F3E2E /* EventStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BED2861E311006F3E2E /* EventStorageTests.swift */; };
-		115954BA29544C71008254F6 /* NullRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115954B929544C71008254F6 /* NullRepresentable.swift */; };
 		117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */; };
 		117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */; };
 		117D9BFF2863423C006F3E2E /* CurrentContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */; };
@@ -420,6 +421,7 @@
 		114D06D728040D0A00ACD310 /* DeviceInfoProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderMock.swift; sourceTree = "<group>"; };
 		114D06D9280418C500ACD310 /* DeviceInfoProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoProviderTests.swift; sourceTree = "<group>"; };
 		114D06DD28041B9200ACD310 /* AnalyticsCoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCoreAssembly.swift; sourceTree = "<group>"; };
+		114D28EF29B13D7100490079 /* PaltaAttribution+UserIDType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserIDType.swift"; sourceTree = "<group>"; };
 		1150909A2859D8A9009F53AD /* EventQueueAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventQueueAssembly.swift; sourceTree = "<group>"; };
 		115090A02859EF8C009F53AD /* BatchSendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchSendRequest.swift; sourceTree = "<group>"; };
 		11543014282BCFC80021ED6F /* PaidFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidFeature.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 		11543036282D02F20021ED6F /* ProductMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductMock.swift; sourceTree = "<group>"; };
 		11543039282D26100021ED6F /* StoreProductDiscount+ProductDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreProductDiscount+ProductDiscount.swift"; sourceTree = "<group>"; };
 		1154303B282E4AF30021ED6F /* CustomerInfo+PaidFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerInfo+PaidFeatures.swift"; sourceTree = "<group>"; };
+		115954B929544C71008254F6 /* NullRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullRepresentable.swift; sourceTree = "<group>"; };
 		1160687B2886DA29009CF8EC /* BatchEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchEvent.swift; sourceTree = "<group>"; };
 		1160687C2886DA29009CF8EC /* BatchCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchCommon.swift; sourceTree = "<group>"; };
 		1160687D2886DA29009CF8EC /* EventHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHeader.swift; sourceTree = "<group>"; };
@@ -454,7 +457,6 @@
 		117D9BE728608FDE006F3E2E /* IdentifiableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableEvent.swift; sourceTree = "<group>"; };
 		117D9BE9286090B8006F3E2E /* StorableEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableEventTests.swift; sourceTree = "<group>"; };
 		117D9BED2861E311006F3E2E /* EventStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStorageTests.swift; sourceTree = "<group>"; };
-		115954B929544C71008254F6 /* NullRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullRepresentable.swift; sourceTree = "<group>"; };
 		117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaltaAttribution+UserData.swift"; sourceTree = "<group>"; };
 		117D9BF128630976006F3E2E /* PaltaAttributionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaltaAttributionDelegate.swift; sourceTree = "<group>"; };
 		117D9BFE2863423C006F3E2E /* CurrentContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContextManager.swift; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 				1111595C27F7095200A41ADA /* PaltaAttribution+Configuration.swift */,
 				1111595A27F7095200A41ADA /* PaltaAttribution+DeepLink.swift */,
 				117D9BEF286308DE006F3E2E /* PaltaAttribution+UserData.swift */,
+				114D28EF29B13D7100490079 /* PaltaAttribution+UserIDType.swift */,
 			);
 			path = Sources/Attribution;
 			sourceTree = "<group>";
@@ -1715,6 +1718,7 @@
 				117D9BF228630976006F3E2E /* PaltaAttributionDelegate.swift in Sources */,
 				1111598027F70C1500A41ADA /* PaltaAttribution.swift in Sources */,
 				1111598127F70C1500A41ADA /* PaltaAttribution+Configuration.swift in Sources */,
+				114D28F029B13D7100490079 /* PaltaAttribution+UserIDType.swift in Sources */,
 				117D9BF0286308DE006F3E2E /* PaltaAttribution+UserData.swift in Sources */,
 				1111598227F70C1500A41ADA /* PaltaAppsflyerAdapter.swift in Sources */,
 			);

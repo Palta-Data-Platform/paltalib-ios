@@ -17,7 +17,10 @@ public extension PaltaAttribution {
         public let isDeferred: Bool
         
         public var voucherId: String? {
-            guard deeplinkValue == Constants.webSubscriptionsDeeplinkValue else {
+            guard
+                let deeplinkValue = deeplinkValue,
+                Constants.webSubscriptionDeeplinkTypes.keys.contains(deeplinkValue)
+            else {
                 return nil
             }
             
