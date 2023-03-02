@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = 'PaltaLibAttribution'
-  spec.version               = '2.1.1'
+  spec.version               = '2.2.0-beta'
   spec.license               = 'MIT'
   spec.summary               = 'PaltaLib iOS SDK - Attribution'
   spec.homepage              = 'https://github.com/Palta-Data-Platform/paltalib-ios'
