@@ -16,6 +16,6 @@ public protocol PaltaAttributionDelegate: AnyObject {
 }
 
 public extension PaltaAttributionDelegate {
-    func didReceiveUserID(_ attribution: PaltaAttribution, userID: String) {}
+    func didReceiveUserID(_ attribution: PaltaAttribution, userID: String, of type: PaltaAttribution.UserIDType) {}
     func didReceive(_ attribution: PaltaAttribution, userData: PaltaAttribution.UserData) {}
 }
