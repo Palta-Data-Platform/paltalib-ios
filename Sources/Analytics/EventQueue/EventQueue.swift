@@ -87,13 +87,21 @@ final class EventQueueImpl: EventQueue {
             timestamp: timestamp,
             outOfSession: outOfSession
         )
-
-        storage.storeEvent(event)
-
-        if liveEventTypes.contains(eventType) {
-            liveCore.addEvent(event)
-        } else {
-            core.addEvent(event)
+        
+        do {
+            _ = try JSONEncoder.default.encode(event)
+            
+            // Do not process unencodable events
+            
+            storage.storeEvent(event)
+            
+            if liveEventTypes.contains(eventType) {
+                liveCore.addEvent(event)
+            } else {
+                core.addEvent(event)
+            }
+        } catch {
+            print("PaltaLib: Analytics: Dropped event of type: \(eventType) due to encoding error: \(error)")
         }
     }
 
