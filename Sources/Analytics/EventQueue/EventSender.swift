@@ -56,7 +56,7 @@ final class EventSenderImpl: EventSender {
                 events: events,
                 serviceInfo: .init(
                     uploadTime: .currentTimestamp(),
-                    library: .init(name: "PaltaBrain", version: "2.2.1"), // TODO: Auto update version
+                    library: .init(name: "PaltaBrain", version: "2.2.5"), // TODO: Auto update version
                     telemetry: telemetry
                 )
             )
