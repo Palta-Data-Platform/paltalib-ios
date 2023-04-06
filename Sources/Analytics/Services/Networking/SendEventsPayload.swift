@@ -24,10 +24,12 @@ struct SendEventsPayload: Encodable, Equatable {
             case uploadTime = "client_upload_time"
             case library
             case telemetry
+            case networkErrors
         }
         
         let uploadTime: Int
         let library: Library
+        let networkErrors: [String]
         let telemetry: Telemetry?
     }
 

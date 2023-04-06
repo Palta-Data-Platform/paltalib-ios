@@ -33,9 +33,11 @@ final class EventSenderImpl: EventSender {
     var apiToken: String?
     var baseURL: URL?
 
+    private let networkErrorLogger: NetworkErrorLogger
     private let httpClient: HTTPClient
 
-    init(httpClient: HTTPClient) {
+    init(networkErrorLogger: NetworkErrorLogger, httpClient: HTTPClient) {
+        self.networkErrorLogger = networkErrorLogger
         self.httpClient = httpClient
     }
 
@@ -56,26 +58,29 @@ final class EventSenderImpl: EventSender {
                 events: events,
                 serviceInfo: .init(
                     uploadTime: .currentTimestamp(),
-                    library: .init(name: "PaltaBrain", version: "2.2.5"), // TODO: Auto update version
+                    library: .init(name: "PaltaBrain", version: "2.2.6"), // TODO: Auto update version
+                    networkErrors: networkErrorLogger.getTenRecentErrors(),
                     telemetry: telemetry
                 )
             )
         )
 
-        httpClient.perform(request) { (result: Result<EmptyResponse, NetworkErrorWithoutResponse>) in
+        httpClient.perform(request) { [networkErrorLogger] (result: Result<EmptyResponse, NetworkErrorWithoutResponse>) in
             switch result {
             case .success:
                 completion(.success(()))
             case .failure(let error):
-                EventSenderImpl.handleError(error, completion)
+                EventSenderImpl.handleError(error, networkErrorLogger, completion)
             }
         }
     }
 
     private static func handleError(
         _ error: NetworkErrorWithoutResponse,
+        _ errorLogger: NetworkErrorLogger,
         _ completion: @escaping (Result<(), EventSendError>) -> Void
     ) {
+        errorLogger.logNetworkError(error)
         switch error {
         case .urlError(let error) where error.code == .notConnectedToInternet:
             completion(.failure(.noInternet))

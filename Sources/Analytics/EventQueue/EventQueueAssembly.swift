@@ -71,7 +71,10 @@ extension EventQueueAssembly {
             trackingOptionsProvider: analyticsCoreAssembly.trackingOptionsProvider
         )
 
-        let eventSender = EventSenderImpl(httpClient: coreAssembly.httpClient)
+        let eventSender = EventSenderImpl(
+            networkErrorLogger: NetworkErrorLoggerImpl(),
+            httpClient: coreAssembly.httpClient
+        )
 
         let eventQueue = EventQueueImpl(
             core: eventQueueCore,
