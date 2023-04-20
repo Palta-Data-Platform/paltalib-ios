@@ -8,25 +8,29 @@
 import Foundation
 import PaltaCore
 
-enum EventSendError: Error {
-    case timeout
-    case noInternet
-    case serverError
-    case badRequest
-    case unknown
-
+extension CategorisedNetworkError {
     var requiresRetry: Bool {
         switch self {
-        case .timeout, .noInternet, .serverError:
+        case .timeout, .noInternet, .serverError, .requiresHttps, .dnsError, .sslError, .otherNetworkError,
+            .decodingError, .badResponse, cantConnectToHost, .notConfigured:
             return true
-        case .badRequest, .unknown:
+        case .badRequest, .unknown, .unauthorised, .clientError:
+            return false
+        }
+    }
+    
+    var canRetryIndefinetely: Bool {
+        switch self {
+        case .notConfigured, .requiresHttps, .noInternet, .cantConnectToHost:
+            return true
+        default:
             return false
         }
     }
 }
 
 protocol EventSender {
-    func sendEvents(_ events: [Event], telemetry: Telemetry?, completion: @escaping (Result<(), EventSendError>) -> Void)
+    func sendEvents(_ events: [Event], telemetry: Telemetry?, completion: @escaping (Result<(), CategorisedNetworkError>) -> Void)
 }
 
 final class EventSenderImpl: EventSender {
@@ -42,7 +46,7 @@ final class EventSenderImpl: EventSender {
     func sendEvents(
         _ events: [Event],
         telemetry: Telemetry?,
-        completion: @escaping (Result<(), EventSendError>) -> Void
+        completion: @escaping (Result<(), CategorisedNetworkError>) -> Void
     ) {
         guard let apiToken = apiToken else {
             assertionFailure("Attempt to send event without API token")
@@ -74,19 +78,8 @@ final class EventSenderImpl: EventSender {
 
     private static func handleError(
         _ error: NetworkErrorWithoutResponse,
-        _ completion: @escaping (Result<(), EventSendError>) -> Void
+        _ completion: @escaping (Result<(), CategorisedNetworkError>) -> Void
     ) {
-        switch error {
-        case .urlError(let error) where error.code == .notConnectedToInternet:
-            completion(.failure(.noInternet))
-        case .urlError(let error) where error.code == .timedOut:
-            completion(.failure(.timeout))
-        case .invalidStatusCode(let code, _) where (400...499).contains(code):
-            completion(.failure(.badRequest))
-        case .invalidStatusCode(let code, _) where (500...599).contains(code):
-            completion(.failure(.serverError))
-        default:
-            completion(.failure(.unknown))
-        }
+        completion(.failure(CategorisedNetworkError(error)))
     }
 }
