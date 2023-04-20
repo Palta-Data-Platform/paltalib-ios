@@ -12,7 +12,7 @@ extension CategorisedNetworkError {
     var requiresRetry: Bool {
         switch self {
         case .timeout, .noInternet, .serverError, .requiresHttps, .dnsError, .sslError, .otherNetworkError,
-            .decodingError, .badResponse, cantConnectToHost, .notConfigured:
+                .decodingError, .badResponse, .cantConnectToHost, .notConfigured:
             return true
         case .badRequest, .unknown, .unauthorised, .clientError:
             return false
