@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import PaltaLibCore
+import PaltaCore
 
 final class AnalyticsCoreAssembly {
     let trackingOptionsProvider: TrackingOptionsProviderImpl

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import PaltaLibCore
+import PaltaCore
 
 struct Event: Codable, Hashable {
     enum CodingKeys: String, CodingKey {

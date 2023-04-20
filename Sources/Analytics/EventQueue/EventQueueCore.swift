@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import PaltaLibCore
+import PaltaCore
 
 struct EventQueueConfig {
     let maxBatchSize: Int

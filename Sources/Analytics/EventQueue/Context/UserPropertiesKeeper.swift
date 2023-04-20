@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import PaltaLibCore
+import PaltaCore
 
 protocol UserPropertiesProvider: AnyObject {
     var userId: String? { get }

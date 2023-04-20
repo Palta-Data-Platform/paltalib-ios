@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import PaltaLibCore
+import PaltaCore
 
 enum AnalyticsHTTPRequest: Equatable {
     case remoteConfig(URL?, String)

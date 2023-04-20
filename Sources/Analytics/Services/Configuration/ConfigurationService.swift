@@ -1,5 +1,5 @@
 import Foundation
-import PaltaLibCore
+import PaltaCore
 
 final class ConfigurationService {
     private lazy var cachedConfig: RemoteConfig? = userDefaults.object(for: "paltaBrainRemoteConfig") {

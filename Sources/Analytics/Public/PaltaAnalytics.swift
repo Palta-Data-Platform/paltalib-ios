@@ -1,5 +1,5 @@
 import Amplitude
-import PaltaLibCore
+import PaltaCore
 import Foundation
 
 public final class PaltaAnalytics {
