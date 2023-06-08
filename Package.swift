@@ -19,8 +19,8 @@ let products: [Product] = [
 
 let dependencies: [Package.Dependency] = [
     .package(
-        url: "https://github.com/amplitude/Amplitude-iOS.git",
-        from: "8.5.0"
+        url: "https://github.com/MontakOleg/Amplitude-iOS.git",
+        from: "8.16.2"
     ),
     .package(
         url: "https://github.com/Palta-Data-Platform/paltalib-swift-core.git",
